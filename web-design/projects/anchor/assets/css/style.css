@@ -5596,50 +5596,50 @@ form.search-box .input-form .world-form i {
     transition: all 0.3s
 }
 
-.Contact-info {
+.contact-info {
     margin-bottom: 25px
 }
 
-.Contact-info__icon {
+.contact-info__icon {
     margin-right: 20px
 }
 
-.Contact-info__icon i,
-.Contact-info__icon span {
+.contact-info__icon i,
+.contact-info__icon span {
     color: #8f9195;
     font-size: 27px
 }
 
-.Contact-info .media-body h3 {
+.contact-info .media-body h3 {
     font-size: 16px;
     margin-bottom: 0;
     font-size: 16px;
     color: #2a2a2a
 }
 
-.Contact-info .media-body h3 a:hover {
+.contact-info .media-body h3 a:hover {
     color: #1f2b7b
 }
 
-.Contact-info .media-body p {
+.contact-info .media-body p {
     color: #8a8a8a
 }
 
-.Contact-title {
+.contact-title {
     font-size: 27px;
     font-weight: 600;
     margin-bottom: 20px
 }
 
-.form-Contact label {
+.form-contact label {
     font-size: 14px
 }
 
-.form-Contact .form-group {
+.form-contact .form-group {
     margin-bottom: 30px
 }
 
-.form-Contact .form-control {
+.form-contact .form-control {
     border: 1px solid #e5e6e9;
     border-radius: 0px;
     height: 48px;
@@ -5648,17 +5648,17 @@ form.search-box .input-form .world-form i {
     background: transparent
 }
 
-.form-Contact .form-control:focus {
+.form-contact .form-control:focus {
     outline: 0;
     box-shadow: none
 }
 
-.form-Contact .form-control::placeholder {
+.form-contact .form-control::placeholder {
     font-weight: 300;
     color: #999999
 }
 
-.form-Contact textarea {
+.form-contact textarea {
     border-radius: 0px;
     height: 100% !important
 }
@@ -5701,30 +5701,30 @@ form.search-box .input-form .world-form i {
     display: block
 }
 
-.Contact-section {
+.contact-section {
     padding: 130px 0 100px
 }
 
 @media (max-width: 991px) {
-    .Contact-section {
+    .contact-section {
         padding: 70px 0 40px
     }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
-    .Contact-section {
+    .contact-section {
         padding: 80px 0 50px
     }
 }
 
-.Contact-section .btn_2 {
+.contact-section .btn_2 {
     background-color: #191d34;
     padding: 18px 60px;
     border-radius: 50px;
     margin-top: 0
 }
 
-.Contact-section .btn_2:hover {
+.contact-section .btn_2:hover {
     background-color: #1f2b7b
 }
 
