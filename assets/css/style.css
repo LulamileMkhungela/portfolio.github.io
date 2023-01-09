@@ -19782,13 +19782,17 @@ ul.list-unstyle.mb-0 {
 
 #one:checked~.panels #one-panel,
 #two:checked~.panels #two-panel,
-#three:checked~.panels #three-panel{
+#three:checked~.panels #three-panel,
+#four:checked~.panels #four-panel{
   display: flex;
 }
 
 #one:checked~.tabs #one-tab,
 #two:checked~.tabs #two-tab,
-#three:checked~.tabs #three-tab{
+#three:checked~.tabs #three-tab,
+#four:checked~.tabs #four-tab
+
+{
   background: rgba(255, 0, 0, 0.2);
   color: #fff;
   border-top: 3px solid #ff0000;
@@ -19800,4 +19804,11 @@ ul.list-unstyle.mb-0 {
 }
 .holder {border-style: dotted dashed solid double;
   padding: 8px;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  color: #c4cfde !important;
+}
+.h4-color {
+  color: #c4cfde !important;
 }
