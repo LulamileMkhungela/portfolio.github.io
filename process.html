@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Process Steps</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #0d1117;
+      color: #c9d1d9;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .step {
+      background: linear-gradient(145deg, #161b22, #1c222a);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .step:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.6), 0 4px 6px rgba(255, 255, 255, 0.2);
+    }
+
+    .step-number {
+      font-size: 20px;
+      color: #58a6ff;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .step h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+      color: #f0f6fc;
+    }
+
+    .step p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #8b949e;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="step">
+      <div class="step-number">01 Discovery</div>
+      <h2>Discovery</h2>
+      <p>I work with stakeholders to understand their vision, goals, and target audience.</p>
+      <p>I collaborate with UX researchers to inform my design decisions. Also talk with product owners and project managers to establish project timelines and deliverables.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">02 Design</div>
+      <h2>Design</h2>
+      <p>I create a series of wireframes and visual designs in Figma that bring the company's vision to life.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">03 Iterations</div>
+      <h2>Iterations</h2>
+      <p>Gathering feedback from the team and user testing throughout this process. Refining my designs until I arrive at a final product that meets their needs.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">04 Delivery</div>
+      <h2>Delivery</h2>
+      <p>I provide developers and QA's with all of the necessary documentation and materials to ensure a smooth transition to execution and the final product.</p>
+    </div>
+  </div>
+</body>
+</html>

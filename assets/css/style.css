@@ -19643,7 +19643,8 @@ p.post-date {
   margin-bottom: 9px;
 }
 .post-date a {
-  padding: 3px 6px;
+  padding: 6px 6px;
+  margin-top: 8px;
 }
 p.post-date .bi-eye-fill {
   padding: 0px 8px;
@@ -19651,6 +19652,7 @@ p.post-date .bi-eye-fill {
 .post-share {
   display: flex;
   justify-content: space-between;
+  margin-top: .5px;
 }
 .post-sharee {
   display: flex;
