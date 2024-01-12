@@ -19798,3 +19798,6 @@ ul.list-unstyle.mb-0 {
   font-weight: var(--s-semi-bold); 
   border-bottom: 2px solid #c4cfde;
 }
+.holder {border-style: dotted dashed solid double;
+  padding: 8px;
+}
