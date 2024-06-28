@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Le-Musica Game</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/css/style2.css">
+  <link href="https://fonts.googleapis.com/css?family=Cabin:700" rel="stylesheet">
+</head>
+
+<body>
+  <!--  Spotify SideBar Style -->
+  <div class="card mb-3" style="max-width: 100%;">
+    <div class="row no-gutters">
+      <div class="col-lg-2">
+
+        <a class="navbar-brand" href="https://www.linkedin.com/in/lulamile-mkhungela/" target="_blank">
+          <img src="./assets/images/spotifyLogo.png" width="50" height="50" alt="spotifyLogo">
+          Le-Musica Game
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">Home</h5>
+          <p class="card-text">
+            <h5 class="text-muted">Search</h5>
+          </p>
+          <p class="card-text">
+            <h5 class="text-muted">Your Library</h5>
+          </p>
+          <p class="card-text"><small class="text-muted">RECENTLY PLAYED</small></p>
+          <br>
+          <p class="card-text"><small class="text-muted">This Is Bad Bunny</small></p>
+          <p class="card-text"><small class="text-muted">Fat Freddy's Drop</small></p>
+          <p class="card-text"><small class="text-muted">Frankie Ruiz</small></p>
+          <p class="card-text"><small class="text-muted">SOJA</small></p>
+
+        </div>
+      </div>
+
+      <!--  Le-Musica Game Header -->
+      <div class="col-lg-10">
+        <div class="container">
+          <div class="card-body">
+            <div class="jumbotron">
+              <h1 class="card-title">Do You Know More About Music?</h1>
+
+              <br>
+
+              <button id="start" class="btn btn-light btn-lg startButton">Start</button>
+              <p id="timeRemaining"> </p>
+              <p id="LeMusicaGame"></p>
+              <button id="submit" class="btn btn-success btn-lg">Submit Quiz</button>
+              <p id="Results"></p>
+              <button id="playAgain" class="btn btn-success btn-lg">Play Again?</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--    JavaScript Links-->
+  <script>
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
+</script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="./assets/javascript/app.js"></script>
+</body>
+
+</html>
