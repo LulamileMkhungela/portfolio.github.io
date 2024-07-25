@@ -1,0 +1,87 @@
+body{
+    background-image: url(../images/cover.jpg);
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    font-family: 'Cabin', sans-serif;
+    
+}
+
+.navbar-brand{
+    font-family: 'Cabin', sans-serif;
+    color: #fff;
+    font-size: 30px;
+
+}
+
+.container{
+    text-align: left;
+    font-family: 'Cabin', sans-serif;
+  
+    
+}
+
+.jumbotron{
+    background-color:transparent;
+    margin-top: 30px;
+    text-align: left;
+    margin-bottom: 30px;
+    border: none;
+}
+
+
+#startButton{
+    background-color: #1ED760;
+    color: #fff;
+    font-size: 35px;
+    text-align: center;
+    padding: 5px 80px 10px;
+    border-radius: 500px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    
+}
+
+h1, h2, h4{
+    color: #fff;
+    
+}
+
+
+
+@media(max-width: 1300px){
+
+
+
+    body{
+        background-size: 1300px 1100px;
+    }
+    
+    
+    }
+
+    @media(max-width: 500px){
+        body{
+            background-size: 500px 2100px;
+        }
+
+        .container{
+            text-align: center;
+    }
+  
+    
+    .col-lg-3{
+        padding-top: 10px;
+        padding-bottom: 10px;
+    
+    }
+
+    #botton{
+        margin-top: 0px;
+    }
+
+    .navbar{
+        background-color: black;
+    }
+    
+    }
