@@ -32,6 +32,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <!-- Style css -->
     <link rel="stylesheet" href="html/lula/assets/css/style.css">
+    <style>
+        img {
+            pointer-events: none;
+        }
+    </style>
     <meta name="google-site-verification" content="VrMQ9qOS1OSgpcIa5JWyypJrHg0aSzrxrDWwctoh5MU" />
 </head>
 <title>Home</title>
@@ -470,6 +475,11 @@
     <script src="html/lula/assets/js/vendor/jquery-one-page-nav.js"></script>
     <!-- main JS -->
     <script src="html/lula/assets/js/main.js"></script>
+    <script>
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    </script>
 </body>
 
 </html>
