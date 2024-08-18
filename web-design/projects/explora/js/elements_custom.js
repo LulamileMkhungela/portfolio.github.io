@@ -1,20 +1,3 @@
-/* JS Document */
-
-/******************************
-
-[Table of Contents]
-
-1. Vars and Inits
-2. Set Header
-3. Init Menu
-4. Init Progress Bars
-5. Init Accordions
-6. Initialize Milestones
-7. Init Loaders
-8. Init Search Form
-
-
-******************************/
 
 $(document).ready(function()
 {

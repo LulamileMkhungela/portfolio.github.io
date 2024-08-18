@@ -1,19 +1,3 @@
-/* JS Document */
-
-/******************************
-
-[Table of Contents]
-
-1. Vars and Inits
-2. Set Header
-3. Init Menu
-4. Init Isotope Filtering
-5. Init Search
-6. Init More Options
-7. Init Search Form
-
-
-******************************/
 
 $(document).ready(function()
 {

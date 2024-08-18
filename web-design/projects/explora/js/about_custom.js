@@ -1,18 +1,3 @@
-/* JS Document */
-
-/******************************
-
-[Table of Contents]
-
-1. Vars and Inits
-2. Set Header
-3. Init Menu
-4. Init Stats
-5. Initialize Milestones
-6. Init Search Form
-
-
-******************************/
 
 $(document).ready(function()
 {
