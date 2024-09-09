@@ -271,8 +271,8 @@ pre.w-code-block code {
 .w-optimization {
   display: contents;
 }
-.w-luflow-badge,
-.w-luflow-badge > img {
+.w-webflow-badge,
+.w-webflow-badge > img {
   box-sizing: unset;
   width: unset;
   height: unset;
@@ -321,7 +321,7 @@ pre.w-code-block code {
   word-wrap: unset;
   transition: unset;
 }
-.w-luflow-badge {
+.w-webflow-badge {
   white-space: nowrap;
   cursor: pointer;
   box-shadow: 0 0 0 1px #0000001a, 0 1px 3px #0000001a;
@@ -344,7 +344,7 @@ pre.w-code-block code {
   inset: auto 12px 12px auto !important;
   transform: none !important;
 }
-.w-luflow-badge > img {
+.w-webflow-badge > img {
   position: unset;
   visibility: unset !important;
   opacity: 1 !important;
@@ -2011,7 +2011,7 @@ blockquote {
 .h2.cc--text_offset {
   margin-bottom: -12.2rem;
 }
-.h2.cc--users-says {
+.h2.cc--team {
   transform: translate(26%);
 }
 .h3 {
@@ -2079,7 +2079,7 @@ blockquote {
 .additional-text.cc--extended {
   min-width: 13ch;
 }
-.additional-text.cc--users-says {
+.additional-text.cc--team {
   opacity: 0.8;
   color: var(--grey-10);
 }
@@ -2297,7 +2297,7 @@ blockquote {
   height: 100%;
   display: flex;
 }
-.flex-vertical-sides.cc--users-says {
+.flex-vertical-sides.cc--team {
   max-width: 33rem;
 }
 .flex-container {
@@ -2778,19 +2778,19 @@ blockquote {
   flex: 1;
   display: flex;
 }
-.line-wrapper.cc--users-says-left {
+.line-wrapper.cc--team-left {
   margin-left: calc(var(--container--padding) * -1);
   padding-right: 0;
   position: absolute;
   inset: 0% 0% auto;
 }
-.line-wrapper.cc--users-says-right {
+.line-wrapper.cc--team-right {
   margin-right: calc(var(--container--padding) * -1);
   padding-left: 0;
   position: absolute;
   inset: 0% 0% auto;
 }
-.line-wrapper.cc--users-says-botton {
+.line-wrapper.cc--team-botton {
   padding-left: 0;
   padding-right: 0;
   position: absolute;
@@ -2856,7 +2856,7 @@ blockquote {
 .u--caps {
   text-transform: uppercase;
 }
-.i-do {
+.we-do {
   margin-top: 0.75rem;
   margin-right: 2.625rem;
 }
@@ -3007,7 +3007,7 @@ blockquote {
 .column-astronaut {
   grid-column: 3 / span 4;
 }
-.articles-item {
+.article-item {
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
   justify-content: space-between;
@@ -3048,7 +3048,7 @@ blockquote {
   margin-bottom: 0;
   display: grid;
 }
-.award {
+.article {
   margin-bottom: -2.525rem;
 }
 .flex-10 {
@@ -3123,7 +3123,7 @@ blockquote {
 .orbit-circle.small-orbit._3 {
   transform: rotate3d(0.5, 1, 2, 90deg);
 }
-.users-says-grid {
+.team-grid {
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   grid-template-rows: auto;
@@ -3156,9 +3156,6 @@ blockquote {
 .swiper.cc--stories_thumbs {
   min-width: 94px;
 }
-.fig{
-  margin-top: 16px;
-}
 .story-phone-wrapper {
   padding-top: var(--container--padding);
   padding-bottom: var(--container--padding);
@@ -3168,7 +3165,7 @@ blockquote {
   display: flex;
   position: relative;
 }
-.users-says_right-side {
+.team_right-side {
   padding-top: var(--container--padding);
   padding-right: 14rem;
   padding-bottom: var(--container--padding);
@@ -3252,13 +3249,13 @@ blockquote {
 .slider-button.cc--prev:active {
   transform: scale(0.95) rotate(180deg);
 }
-.rt-users-says {
+.rt-team {
   color: var(--grey-50);
   font-size: var(--font-size--additional);
   line-height: var(--line-height--additional-text);
   letter-spacing: var(--letter-smacing--smaller-font);
 }
-.rt-users-says p {
+.rt-team p {
   font-size: var(--font-size--additional);
 }
 .userpic {
@@ -3893,13 +3890,13 @@ blockquote {
 .mobile-heading {
   display: none;
 }
-.i-do_flex {
+.we-do_flex {
   flex-flow: column;
   align-items: flex-end;
   margin-top: -1rem;
   display: flex;
 }
-.i-do_top-flex {
+.we-do_top-flex {
   align-items: flex-start;
   display: flex;
 }
@@ -3907,7 +3904,7 @@ blockquote {
   justify-content: flex-start;
   align-items: flex-start;
 }
-.users-says-slide_fade,
+.team-slide_fade,
 .u--hide-desktop {
   display: none;
 }
@@ -3992,11 +3989,11 @@ blockquote {
   align-items: center;
   display: flex;
 }
-.users-says-heading_container.container {
+.team-heading_container.container {
   margin-top: 400px;
   margin-bottom: 172px;
 }
-.i-do_container.container {
+.we-do_container.container {
   margin-top: 42px;
 }
 .articles-heading_container.container {
@@ -4538,7 +4535,7 @@ blockquote {
 .send-button.email-valid.active {
   opacity: 1;
 }
-.award-image {
+.article-image {
   max-width: 400px;
 }
 .articles-trigger {
@@ -4620,7 +4617,7 @@ blockquote {
   position: absolute;
   inset: 0 0% auto;
 }
-.articles-line_flex {
+.article-line_flex {
   grid-column: 1 / span 6;
   align-items: flex-start;
   display: flex;
@@ -4916,7 +4913,7 @@ blockquote {
     margin-top: 0;
     padding-top: 0;
   }
-  .flex-vertical-sides.cc--users-says {
+  .flex-vertical-sides.cc--team {
     text-align: center;
     min-width: auto;
     margin-left: auto;
@@ -5015,9 +5012,9 @@ blockquote {
     padding-left: 0;
     padding-right: 0;
   }
-  .line-wrapper.cc--users-says-left,
-  .line-wrapper.cc--users-says-right,
-  .line-wrapper.cc--users-says-botton {
+  .line-wrapper.cc--team-left,
+  .line-wrapper.cc--team-right,
+  .line-wrapper.cc--team-botton {
     display: none;
   }
   .line-divider.cc--slanted {
@@ -5037,7 +5034,7 @@ blockquote {
   .line-wrapper-left.cc--articles {
     min-width: auto;
   }
-  .i-do {
+  .we-do {
     margin-top: 0.25rem;
   }
   .hero-anim {
@@ -5081,10 +5078,10 @@ blockquote {
     margin-right: auto;
     transform: none;
   }
-  .award {
+  .article {
     margin-bottom: -2rem;
   }
-  .users-says-grid {
+  .team-grid {
     grid-template-rows: auto auto;
     grid-template-columns: 1fr;
     place-items: stretch stretch;
@@ -5119,7 +5116,7 @@ blockquote {
     padding-bottom: 0;
     padding-left: 0;
   }
-  .users-says_right-side {
+  .team_right-side {
     padding-right: 0;
   }
   .story_nav {
@@ -5207,18 +5204,18 @@ blockquote {
     justify-content: space-between;
     display: flex;
   }
-  .i-do_flex {
+  .we-do_flex {
     justify-content: flex-start;
     align-items: stretch;
     margin-top: 178px;
   }
-  .i-do_top-flex {
+  .we-do_top-flex {
     justify-content: space-between;
   }
   .u--hide_mobile {
     display: none;
   }
-  .users-says-heading.flex {
+  .team-heading.flex {
     justify-content: center;
     align-items: flex-start;
   }
@@ -5226,7 +5223,7 @@ blockquote {
     max-width: 16rem;
     margin-top: -1rem;
   }
-  .users-says-slide_fade {
+  .team-slide_fade {
     z-index: 2;
     opacity: 0.8;
     display: block;
@@ -5262,11 +5259,11 @@ blockquote {
     display: block;
     position: relative;
   }
-  .users-says-heading_container.container {
+  .team-heading_container.container {
     margin-top: 90px;
     margin-bottom: calc((var(--container--top-padding-mobile) / 2) * -1);
   }
-  .i-do_container.container {
+  .we-do_container.container {
     margin-bottom: 34px;
   }
   .project-stats_container.container {
@@ -5663,11 +5660,11 @@ blockquote {
     margin-left: calc(var(--container--padding) * -1);
     margin-right: calc(var(--container--padding) * -1);
   }
-  .articles-item {
+  .article-item {
     padding-top: 1rem;
     padding-bottom: 0.8rem;
   }
-  .award {
+  .article {
     margin-bottom: -1.7rem;
   }
   .xstar {
@@ -5676,7 +5673,7 @@ blockquote {
   .swiper.story-swiper {
     min-height: 512px;
   }
-  .users-says_right-side {
+  .team_right-side {
     padding-top: 0;
     padding-bottom: 54px;
   }
@@ -5693,7 +5690,7 @@ blockquote {
     width: 1.5rem;
     height: 1.5rem;
   }
-  .i-do_flex {
+  .we-do_flex {
     margin-top: 80px;
   }
   .articles-heading.flex-10 {
@@ -5712,10 +5709,10 @@ blockquote {
   .button_wrapper {
     margin-top: 50px;
   }
-  .users-says-heading_container.container {
+  .team-heading_container.container {
     margin-bottom: -60px;
   }
-  .i-do_container.container {
+  .we-do_container.container {
     margin-top: 24px;
   }
   .project-stats_container.container {
@@ -5871,7 +5868,7 @@ blockquote {
   }
 }
 @media screen and (max-width: 479px) {
-  .h2.cc--users-says {
+  .h2.cc--team {
     margin-left: -6.6rem;
     transform: translate(0%);
   }
@@ -5939,7 +5936,7 @@ blockquote {
   .story-arrows {
     inset: auto 0% 0%;
   }
-  .users-says-slide_fade {
+  .team-slide_fade {
     background-image: linear-gradient(#0000 30%, #000);
   }
   .contact-link_mobile {
@@ -5957,7 +5954,7 @@ blockquote {
   .lines-flex.cc--reverse {
     animation: 60s linear infinite reverse markee;
   }
-  .users-say {
+  .our-team {
     margin-left: -3.1rem;
     padding-top: 2.6rem;
     padding-left: 1.8rem;
@@ -5965,7 +5962,7 @@ blockquote {
   .circle-button {
     padding: 18px 26px 16px;
   }
-  .articles-line_flex {
+  .article-line_flex {
     grid-column: 1 / span 5;
   }
   .copy-icon {
