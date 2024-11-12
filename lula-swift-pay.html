@@ -37,6 +37,14 @@
   <!-- Note: MonsterInsights is not currently configured on this site. The site owner needs to authenticate with Google Analytics in the MonsterInsights settings panel. -->
   <!-- No tracking code set -->
   <!-- / Google Analytics by MonsterInsights -->
+  <script>
+    document.addEventListener("contextmenu", function(event) {
+      if (event.target.tagName.toLowerCase() === "img") {
+        event.preventDefault();
+        alert("Opps, you are prohibited to save this image.");
+      }
+    });
+  </script>
   <script type="text/javascript">
     /* <![CDATA[ */
     window._wpemojiSettings = {
