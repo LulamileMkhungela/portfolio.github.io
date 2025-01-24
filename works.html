@@ -127,6 +127,9 @@
       .swiper-pagination {
         position: fixed !important;
       }
+      .no-copy {
+      user-select: none;
+    }
     </style>
 
     <script>
@@ -186,7 +189,7 @@
       type="text/javascript"
     ></script>
   </head>
-  <body>
+  <body class="no-copy">
     <div class="global_symbol">
       <div class="global_embed w-embed">
         <style>
@@ -2724,7 +2727,7 @@
                     <div class="case-text cc--works">
                       <div class="flex-sides">
                         <div class="additional-text">
-                          Product Design | Web Desig
+                          Product Design | Web Design
                         </div>
                         <div class="additional-text case-year">2022</div>
                       </div>
@@ -6163,42 +6166,6 @@
                     <source src="#" type="video/mp4" codecs="hvc1" />
                     <source src="#" type="video/webm" />
                   </video>
-                  <!-- <div class="hidden w-dyn-list">
-                    <div role="list" class="w-dyn-items">
-                      <div role="listitem" class="w-dyn-item">
-                        <div class="astro-vid_link">
-                          https://video.cosmos.studio/cosmonaut-dance_Silly-Dance-2.webm
-                        </div>
-                        <div class="astro-vid_link_mac">
-                          https://video.cosmos.studio/cosmonaut-dance_Silly-Dance-2.mov
-                        </div>
-                      </div>
-                      <div role="listitem" class="w-dyn-item">
-                        <div class="astro-vid_link">
-                          https://video.cosmos.studio/cosmonaut-dance_Silly-Dance.webm
-                        </div>
-                        <div class="astro-vid_link_mac">
-                          https://video.cosmos.studio/cosmonaut-dance_Silly-Dance.mov
-                        </div>
-                      </div>
-                      <div role="listitem" class="w-dyn-item">
-                        <div class="astro-vid_link">
-                          https://video.cosmos.studio/cosmonaut-dance_Rumba.webm
-                        </div>
-                        <div class="astro-vid_link_mac">
-                          https://video.cosmos.studio/cosmonaut-dance_Rumba.mov
-                        </div>
-                      </div>
-                      <div role="listitem" class="w-dyn-item">
-                        <div class="astro-vid_link">
-                          https://video.cosmos.studio/cosmonaut-dance_Chicken-Dance.webm
-                        </div>
-                        <div class="astro-vid_link_mac">
-                          https://video.cosmos.studio/cosmonaut-dance_Chicken-Dance.mov
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
                 </div>
                 <div class="title-wrapper">
                   <div class="additional-text u--caps">Back home in</div>
@@ -6272,7 +6239,13 @@
     ></script>
     <script>
       document.addEventListener("contextmenu", function (e) {
-        e.preventDefault();
+        e.preventDefault(); // Disable right-click
+      });
+  
+      document.addEventListener("keydown", function (e) {
+        if (e.ctrlKey && (e.key === "c" || e.key === "x" || e.key === "v")) {
+          e.preventDefault(); // Disable Ctrl+C, Ctrl+X, and Ctrl+V
+        }
       });
     </script>
     <script>

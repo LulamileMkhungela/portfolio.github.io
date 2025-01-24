@@ -277,6 +277,9 @@
           opacity: 0;
         }
       }
+      .no-copy {
+      user-select: none;
+    }
     </style>
 
     <script
@@ -284,7 +287,7 @@
       type="text/javascript"
     ></script>
   </head>
-  <body>
+  <body class="no-copy">
     <div class="preloader">
       <div class="preloader_lottie">
         <div class="preloader-numbers_wr">
@@ -7712,10 +7715,16 @@
 
     <script src="./assets.slater.app/slater/4562/18145.js"></script>
     <script>
-      document.addEventListener('contextmenu', function (e) {
-          e.preventDefault();
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault(); // Disable right-click
       });
-  </script>
+  
+      document.addEventListener("keydown", function (e) {
+        if (e.ctrlKey && (e.key === "c" || e.key === "x" || e.key === "v")) {
+          e.preventDefault(); // Disable Ctrl+C, Ctrl+X, and Ctrl+V
+        }
+      });
+    </script>
   <script>
     $(window).on("beforeunload", function () {
       $("body").hide();
