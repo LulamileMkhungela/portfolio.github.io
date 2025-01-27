@@ -10044,7 +10044,7 @@ __p+='`),
         var A = /list-manage[1-9]?.com/i,
           R = t.debounce(function () {
             d(
-              "Oops! This page has improperly configured forms. Please contact Lu Creatives to fix this issue."
+              "Oops! Something went wrong whilst loading the site, Continue with limited access "
             );
           }, 100);
         r.ready =
