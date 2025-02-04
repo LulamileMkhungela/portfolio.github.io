@@ -4481,7 +4481,7 @@ figcaption {
 }
 
 .rl-styleguide_image-wrapper {
-  background-image: url(https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/65ae7103c404c7659539bb03_Webflow%20Background.svg);
+  background-image: url(https://cdn.prod.website-files.com/resource/65ae7103c404c7659539bb03_Webflow%20Background.svg);
   background-position: 0%;
   background-repeat: no-repeat;
   background-size: 1080px;
@@ -5608,7 +5608,7 @@ figcaption {
 .body {
   color: var(--base-color-neutral--dark-grey-2);
   background-color: #fafaf8;
-  background-image: url(https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677e0f1e7108ec1ebaeaf45d_Gradient%20\(1\).png);
+  background-image: url(https://cdn.prod.website-files.com/resource/677e0f1e7108ec1ebaeaf45d_Gradient%20\(1\).png);
   background-position: 0 0;
   background-size: 720px;
   margin-bottom: 0;
@@ -10329,7 +10329,7 @@ figcaption {
 }
 
 .header82_lightbox {
-  background-image: url(https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677f6d4c0033dec1555eba00_home-hero%20\(10\).png), url(https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677f6dca3527f2029452887b_home-hero%20\(11\).png);
+  background-image: url(https://cdn.prod.website-files.com/resource/677f6d4c0033dec1555eba00_home-hero%20\(10\).png), url(https://cdn.prod.website-files.com/resource/677f6dca3527f2029452887b_home-hero%20\(11\).png);
   background-position: 50%, 50%;
   background-repeat: repeat, repeat;
   background-size: cover, cover;
@@ -10358,7 +10358,7 @@ figcaption {
   border: 1px solid var(--border-color--border-secondary);
   object-fit: cover;
   background-color: #0000;
-  background-image: url(https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677f6ec4dfcbec48054ae298_home-hero-elements.png), url(https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677e6416fb57016ef1905492_home-hero.png);
+  background-image: url(https://cdn.prod.website-files.com/resource/677f6ec4dfcbec48054ae298_home-hero-elements.png), url(https://cdn.prod.website-files.com/resource/677e6416fb57016ef1905492_home-hero.png);
   background-position: 0 0, 0 0;
   background-size: cover, auto;
   border-radius: 24px;
@@ -11397,7 +11397,7 @@ figcaption {
 }
 
 .form_input-5.is-select-input {
-  background-image: url(https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/66e7b32bc7a18dc168ee79d8_chevron-down.svg);
+  background-image: url(https://cdn.prod.website-files.com/resource/66e7b32bc7a18dc168ee79d8_chevron-down.svg);
   background-position: 99%;
   background-repeat: no-repeat;
   background-size: auto
@@ -12275,7 +12275,7 @@ figcaption {
 }
 
 .body-5 {
-  background-image: url(https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677e0f1e7108ec1ebaeaf45d_Gradient%20\(1\).png);
+  background-image: url(https://cdn.prod.website-files.com/resource/677e0f1e7108ec1ebaeaf45d_Gradient%20\(1\).png);
   background-position: 0 0;
   background-size: auto
 }
@@ -14753,7 +14753,7 @@ figcaption {
   }
 
   .header82_lightbox {
-    background-image: url(https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677f6dca3527f2029452887b_home-hero%20\(11\).png);
+    background-image: url(https://cdn.prod.website-files.com/resource/677f6dca3527f2029452887b_home-hero%20\(11\).png);
     background-position: 50%;
     background-repeat: repeat;
     background-size: cover
@@ -19411,7 +19411,7 @@ figcaption {
 
 @font-face {
   font-family: 'Open Sauce One';
-  src: url('https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/66de9b90c54f4ead3682039b_OpenSauceOne-Regular.ttf') format('truetype');
+  src: url('https://cdn.prod.website-files.com/resource/66de9b90c54f4ead3682039b_OpenSauceOne-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -19419,7 +19419,7 @@ figcaption {
 
 @font-face {
   font-family: 'Open Sauce One - Semi Bold';
-  src: url('https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/66de9b904e2eb7c12754e40d_OpenSauceOne-SemiBold.ttf') format('truetype');
+  src: url('https://cdn.prod.website-files.com/resource/66de9b904e2eb7c12754e40d_OpenSauceOne-SemiBold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -19427,7 +19427,7 @@ figcaption {
 
 @font-face {
   font-family: 'Open Sauce One - Medium';
-  src: url('https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/66de9b90c334563cf403e194_OpenSauceOne-Medium.ttf') format('truetype');
+  src: url('https://cdn.prod.website-files.com/resource/66de9b90c334563cf403e194_OpenSauceOne-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -19435,7 +19435,7 @@ figcaption {
 
 @font-face {
   font-family: 'Open Sauce One - Bold';
-  src: url('https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/66de9b9035a491ec7ca7b76f_OpenSauceOne-Bold.ttf') format('truetype');
+  src: url('https://cdn.prod.website-files.com/resource/66de9b9035a491ec7ca7b76f_OpenSauceOne-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
