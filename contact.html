@@ -269,6 +269,16 @@
                   type="text/javascript"></script>
                 <script src="https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/js/webflow.460247f5.21c1fc1d3508c06d.js"
                   type="text/javascript"></script>
+                  <script>
+                    document.addEventListener('contextmenu', function (e) {
+                      e.preventDefault();
+                    });
+                    document.querySelectorAll('img').forEach(img => {
+                      img.addEventListener('dragstart', function (e) {
+                        e.preventDefault();
+                      });
+                    });
+                  </script>
               
                   <div class="back-to-top">
                     <svg class="back-to-top-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

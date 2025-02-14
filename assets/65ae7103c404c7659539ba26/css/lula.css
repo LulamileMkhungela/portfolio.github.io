@@ -19498,3 +19498,9 @@ figcaption {
       font-size: 11px;
   }
 }
+body {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+}
