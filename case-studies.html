@@ -84,6 +84,7 @@
       --neu-accent-hover: #357abd;
       --text-primary: #44476a;
       --text-secondary: #6b7280;
+      --neu-lemon: #ffd700;
     }
 
     * {
@@ -133,7 +134,7 @@
     .fs-cc-banner_button,
     .fs-cc-prefs_button,
     .button-group a,
-    a[href]:not(.navbar14_link):not(.footer1_link):not(.text-style-link):not(.navbar14_logo-link):not(.case-study-link):not(.figma-access-link) {
+    a[href]:not(.navbar14_link):not(.footer1_link):not(.text-style-link):not(.navbar14_logo-link):not(.case-study-link):not(.figma-access-link):not(.tab-button) {
       background: linear-gradient(145deg, #f5f7f9, var(--neu-bg-secondary)) !important;
       box-shadow:
         inset 4px 4px 8px var(--neu-shadow-dark),
@@ -157,7 +158,7 @@
     .fs-cc-banner_button:hover,
     .fs-cc-prefs_button:hover,
     .button-group a:hover,
-    a[href]:not(.navbar14_link):not(.footer1_link):not(.text-style-link):not(.navbar14_logo-link):not(.case-study-link):not(.figma-access-link):hover {
+    a[href]:not(.navbar14_link):not(.footer1_link):not(.text-style-link):not(.navbar14_logo-link):not(.case-study-link):not(.figma-access-link):not(.tab-button):hover {
       background: linear-gradient(145deg, var(--neu-bg-secondary), #f5f7f9) !important;
       box-shadow:
         6px 6px 12px var(--neu-shadow-dark),
@@ -171,16 +172,54 @@
     .fs-cc-banner_button:active,
     .fs-cc-prefs_button:active,
     .button-group a:active,
-    a[href]:not(.navbar14_link):not(.footer1_link):not(.text-style-link):not(.navbar14_logo-link):not(.case-study-link):not(.figma-access-link):active {
+    a[href]:not(.navbar14_link):not(.footer1_link):not(.text-style-link):not(.navbar14_logo-link):not(.case-study-link):not(.figma-access-link):not(.tab-button):active {
       transform: translateY(-1px) !important;
       box-shadow:
         inset 6px 6px 12px var(--neu-shadow-dark),
         inset -6px -6px 12px var(--neu-shadow-light) !important;
     }
 
-    /* Primary Button Special Styling */
-    .button.is-alternate.is-primary,
-    .w-button.is-alternate.is-primary {
+    /* Tab Navigation Styling */
+    .tab-navigation {
+      background: linear-gradient(145deg, var(--neu-bg-secondary), #f5f7f9) !important;
+      box-shadow:
+        8px 8px 16px var(--neu-shadow-dark),
+        -8px -8px 16px var(--neu-shadow-light) !important;
+      border-radius: var(--neu-border-radius-large) !important;
+      padding: 1rem !important;
+      margin: 2rem 0 !important;
+      display: flex !important;
+      gap: 0.5rem !important;
+      overflow-x: auto !important;
+    }
+
+    .tab-button {
+      background: linear-gradient(145deg, #f5f7f9, var(--neu-bg-secondary)) !important;
+      border: none !important;
+      padding: 12px 24px !important;
+      border-radius: var(--neu-border-radius-small) !important;
+      color: var(--text-primary) !important;
+      font-weight: 500 !important;
+      cursor: pointer !important;
+      transition: all 0.3s ease !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+      text-decoration: none !important;
+      display: inline-block !important;
+      min-width: fit-content !important;
+      box-shadow:
+        4px 4px 8px var(--neu-shadow-dark),
+        -4px -4px 8px var(--neu-shadow-light) !important;
+    }
+
+    .tab-button:hover {
+      transform: translateY(-2px) !important;
+      box-shadow:
+        6px 6px 12px var(--neu-shadow-dark),
+        -6px -6px 12px var(--neu-shadow-light) !important;
+    }
+
+    .tab-button.active {
       background: linear-gradient(145deg, var(--neu-accent), var(--neu-accent-hover)) !important;
       color: white !important;
       box-shadow:
@@ -189,8 +228,7 @@
         3px 3px 8px rgba(74, 144, 226, 0.4) !important;
     }
 
-    .button.is-alternate.is-primary:hover,
-    .w-button.is-alternate.is-primary:hover {
+    .tab-button.active:hover {
       box-shadow:
         6px 6px 16px rgba(74, 144, 226, 0.5),
         -6px -6px 16px rgba(255, 255, 255, 0.3),
@@ -198,12 +236,13 @@
       transform: translateY(-3px) !important;
     }
 
-    .button.is-alternate.is-primary:active,
-    .w-button.is-alternate.is-primary:active {
-      box-shadow:
-        inset 6px 6px 12px rgba(53, 122, 189, 0.4),
-        inset -6px -6px 12px rgba(255, 255, 255, 0.1) !important;
-      transform: translateY(-1px) !important;
+    /* Tab Content */
+    .tab-content {
+      display: none !important;
+    }
+
+    .tab-content.active {
+      display: block !important;
     }
 
     /* Header Section - Reduced padding */
@@ -300,6 +339,71 @@
         -6px -6px 12px var(--neu-shadow-light) !important;
     }
 
+    /* Resource Cards Grid - Neumorphic */
+    .section_layout401 {
+      background: linear-gradient(135deg, var(--neu-bg-primary) 0%, var(--neu-bg-secondary) 100%) !important;
+    }
+
+    .layout401_component {
+      padding: 0 !important;
+    }
+
+    .layout401_grid-list {
+      gap: 1rem !important;
+    }
+
+    .layout401_card {
+      background: linear-gradient(145deg, var(--neu-bg-secondary), #f5f7f9) !important;
+      box-shadow: 
+        8px 8px 16px var(--neu-shadow-dark),
+        -8px -8px 16px var(--neu-shadow-light) !important;
+      border-radius: var(--neu-border-radius-large) !important;
+      padding: 1.5rem !important;
+      transition: all 0.3s ease !important;
+      border: none !important;
+    }
+
+    .layout401_card:hover {
+      transform: translateY(-3px) !important;
+      box-shadow: 
+        12px 12px 24px var(--neu-shadow-dark),
+        -12px -12px 24px var(--neu-shadow-light) !important;
+    }
+
+    /* Primary colored card for CTA */
+    .layout401_card.primary-color {
+      background: linear-gradient(145deg, var(--neu-accent), var(--neu-accent-hover)) !important;
+      color: white !important;
+      box-shadow: 
+        8px 8px 20px rgba(74, 144, 226, 0.4),
+        -8px -8px 20px rgba(255, 255, 255, 0.3) !important;
+    }
+
+    .layout401_card.primary-color:hover {
+      box-shadow: 
+        12px 12px 28px rgba(74, 144, 226, 0.5),
+        -12px -12px 28px rgba(255, 255, 255, 0.4) !important;
+    }
+
+    .layout401_card.primary-color h3,
+    .layout401_card.primary-color p {
+      color: white !important;
+    }
+
+    /* Image styling */
+    .blog3_image-wrapper {
+      border-radius: var(--neu-border-radius) !important;
+      overflow: hidden !important;
+      box-shadow: 
+        4px 4px 8px var(--neu-shadow-dark),
+        -4px -4px 8px var(--neu-shadow-light) !important;
+      transition: transform 0.3s ease !important;
+    }
+
+    .blog3_image-wrapper:hover {
+      transform: scale(1.02) !important;
+    }
+
     /* Tag styling - Reduced padding */
     .text-style-tagline {
       background: linear-gradient(145deg, #f0f4f8, #e6f0ff) !important;
@@ -313,6 +417,30 @@
       color: var(--neu-accent) !important;
       display: inline-block !important;
       margin: 0.125rem 0.25rem 0.125rem 0 !important;
+    }
+
+    .text-style-tagline.blue {
+      color: var(--neu-accent) !important;
+      background: linear-gradient(145deg, #e6f0ff, #f0f4f8) !important;
+    }
+
+    .text-style-tagline.lemon {
+      color: #b8860b !important;
+      background: linear-gradient(145deg, #fffacd, #ffeaa7) !important;
+    }
+
+    /* Icon wrapper */
+    .layout353_icon-wrapper {
+      background: linear-gradient(145deg, #f5f7f9, var(--neu-bg-secondary)) !important;
+      box-shadow: 
+        4px 4px 8px var(--neu-shadow-dark),
+        -4px -4px 8px var(--neu-shadow-light) !important;
+      border-radius: 50% !important;
+      padding: 0.75rem !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin-right: 0.75rem !important;
     }
 
     /* Section backgrounds */
@@ -502,7 +630,7 @@
       display: inline-flex !important;
       align-items: center !important;
       gap: 0.5rem !important;
-background: linear-gradient(145deg, #7990d8, #5f76c0) !important;
+      background: linear-gradient(145deg, #7990d8, #5f76c0) !important;
       color: white !important;
       padding: 1rem 2rem !important;
       border-radius: var(--neu-border-radius) !important;
@@ -572,6 +700,48 @@ background: linear-gradient(145deg, #7990d8, #5f76c0) !important;
       opacity: 1 !important;
     }
 
+    /* UI Playground Section */
+    .ui-playground-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+      gap: 1.5rem !important;
+      margin-top: 2rem !important;
+    }
+
+    .playground-item {
+      background: linear-gradient(145deg, var(--neu-bg-secondary), #f5f7f9) !important;
+      box-shadow:
+        8px 8px 16px var(--neu-shadow-dark),
+        -8px -8px 16px var(--neu-shadow-light) !important;
+      border-radius: var(--neu-border-radius-large) !important;
+      padding: 1.5rem !important;
+      transition: all 0.3s ease !important;
+      text-align: center !important;
+    }
+
+    .playground-item:hover {
+      transform: translateY(-3px) !important;
+      box-shadow:
+        12px 12px 24px var(--neu-shadow-dark),
+        -12px -12px 24px var(--neu-shadow-light) !important;
+    }
+
+    .playground-icon {
+      width: 60px !important;
+      height: 60px !important;
+      margin: 0 auto 1rem auto !important;
+      background: linear-gradient(145deg, var(--neu-accent), var(--neu-accent-hover)) !important;
+      border-radius: 50% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      color: white !important;
+      font-size: 1.5rem !important;
+      box-shadow:
+        4px 4px 8px rgba(74, 144, 226, 0.3),
+        -4px -4px 8px rgba(255, 255, 255, 0.2) !important;
+    }
+
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .navbar14_component {
@@ -602,6 +772,16 @@ background: linear-gradient(145deg, #7990d8, #5f76c0) !important;
         padding-bottom: 2rem !important;
       }
 
+      .tab-navigation {
+        padding: 0.75rem !important;
+        gap: 0.25rem !important;
+      }
+
+      .tab-button {
+        padding: 10px 16px !important;
+        font-size: 0.875rem !important;
+      }
+
       /* Mobile image adjustments */
       .layout397_card-large-image-wrapper,
       .cta1_image-wrapper {
@@ -611,6 +791,14 @@ background: linear-gradient(145deg, #7990d8, #5f76c0) !important;
       .layout397_card-large-image,
       .cta1_image {
         height: 180px !important;
+      }
+
+      .layout401_card {
+        padding: 1.25rem !important;
+      }
+
+      .layout401_grid-list {
+        gap: 0.75rem !important;
       }
 
       /* Figma embed mobile adjustments */
@@ -634,6 +822,11 @@ background: linear-gradient(145deg, #7990d8, #5f76c0) !important;
         padding: 0.8rem 1.5rem !important;
         font-size: 0.9rem !important;
       }
+
+      .ui-playground-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+      }
     }
 
     @media (max-width: 479px) {
@@ -654,6 +847,15 @@ background: linear-gradient(145deg, #7990d8, #5f76c0) !important;
         padding-bottom: 1.5rem !important;
       }
 
+      .tab-navigation {
+        padding: 0.5rem !important;
+      }
+
+      .tab-button {
+        padding: 8px 12px !important;
+        font-size: 0.8rem !important;
+      }
+
       /* Small mobile image adjustments */
       .layout397_card-large-image-wrapper,
       .cta1_image-wrapper {
@@ -663,6 +865,14 @@ background: linear-gradient(145deg, #7990d8, #5f76c0) !important;
       .layout397_card-large-image,
       .cta1_image {
         height: 160px !important;
+      }
+
+      .layout401_card {
+        padding: 1rem !important;
+      }
+
+      .layout401_grid-list {
+        gap: 0.5rem !important;
       }
 
       /* Small mobile Figma adjustments */
@@ -681,6 +891,365 @@ background: linear-gradient(145deg, #7990d8, #5f76c0) !important;
       .figma-access-link {
         padding: 0.7rem 1.2rem !important;
         font-size: 0.85rem !important;
+      }
+    }
+
+    /* UI Dev Components Styling */
+    .demo-button {
+      background: linear-gradient(145deg, #f5f7f9, var(--neu-bg-secondary)) !important;
+      box-shadow:
+        inset 4px 4px 8px var(--neu-shadow-dark),
+        inset -4px -4px 8px var(--neu-shadow-light),
+        2px 2px 6px rgba(174, 190, 205, 0.15) !important;
+      border-radius: var(--neu-border-radius-small) !important;
+      border: none !important;
+      padding: 12px 24px !important;
+      color: var(--text-primary) !important;
+      font-weight: 600 !important;
+      cursor: pointer !important;
+      transition: all 0.3s ease !important;
+      font-family: inherit !important;
+      font-size: 0.9rem !important;
+    }
+
+    .demo-button:hover {
+      transform: translateY(-2px) !important;
+      box-shadow:
+        6px 6px 12px var(--neu-shadow-dark),
+        -6px -6px 12px var(--neu-shadow-light) !important;
+    }
+
+    .demo-button:active {
+      transform: translateY(0) !important;
+      box-shadow:
+        inset 6px 6px 12px var(--neu-shadow-dark),
+        inset -6px -6px 12px var(--neu-shadow-light) !important;
+    }
+
+    .demo-button.primary {
+      background: linear-gradient(145deg, var(--neu-accent), var(--neu-accent-hover)) !important;
+      color: white !important;
+    }
+
+    .demo-button.secondary {
+      background: linear-gradient(145deg, #6c757d, #5a6268) !important;
+      color: white !important;
+    }
+
+    .demo-button.success {
+      background: linear-gradient(145deg, #28a745, #218838) !important;
+      color: white !important;
+    }
+
+    .demo-button.warning {
+      background: linear-gradient(145deg, #ffc107, #e0a800) !important;
+      color: #212529 !important;
+    }
+
+    .demo-button.danger {
+      background: linear-gradient(145deg, #dc3545, #c82333) !important;
+      color: white !important;
+    }
+
+    .demo-button.icon-button {
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.5rem !important;
+    }
+
+    .demo-button.icon-button span {
+      font-size: 1.1em !important;
+    }
+
+    /* Form Components */
+    .demo-form {
+      max-width: 500px !important;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem !important;
+    }
+
+    .form-label {
+      display: block !important;
+      margin-bottom: 0.5rem !important;
+      font-weight: 600 !important;
+      color: var(--text-primary) !important;
+      font-size: 0.9rem !important;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100% !important;
+      padding: 12px 16px !important;
+      border: none !important;
+      border-radius: var(--neu-border-radius-small) !important;
+      background: linear-gradient(145deg, #f8fafc, var(--neu-bg-secondary)) !important;
+      box-shadow:
+        inset 4px 4px 8px var(--neu-shadow-dark),
+        inset -4px -4px 8px var(--neu-shadow-light) !important;
+      color: var(--text-primary) !important;
+      font-family: inherit !important;
+      font-size: 0.9rem !important;
+      transition: all 0.3s ease !important;
+      box-sizing: border-box !important;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none !important;
+      box-shadow:
+        inset 6px 6px 12px var(--neu-shadow-dark),
+        inset -6px -6px 12px var(--neu-shadow-light),
+        0 0 0 3px rgba(74, 144, 226, 0.1) !important;
+    }
+
+    .form-textarea {
+      resize: vertical !important;
+      min-height: 100px !important;
+    }
+
+    /* Toggle Switches */
+    .toggle-row {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      padding: 0.5rem 0 !important;
+    }
+
+    .toggle-switch {
+      position: relative !important;
+      display: inline-block !important;
+      width: 60px !important;
+      height: 30px !important;
+    }
+
+    .toggle-switch input {
+      opacity: 0 !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+
+    .toggle-slider {
+      position: absolute !important;
+      cursor: pointer !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      background: linear-gradient(145deg, #f5f7f9, var(--neu-bg-secondary)) !important;
+      box-shadow:
+        inset 4px 4px 8px var(--neu-shadow-dark),
+        inset -4px -4px 8px var(--neu-shadow-light) !important;
+      transition: 0.4s !important;
+      border-radius: 30px !important;
+    }
+
+    .toggle-slider:before {
+      position: absolute !important;
+      content: "" !important;
+      height: 22px !important;
+      width: 22px !important;
+      left: 4px !important;
+      bottom: 4px !important;
+      background: linear-gradient(145deg, var(--neu-bg-secondary), #f5f7f9) !important;
+      box-shadow:
+        2px 2px 4px var(--neu-shadow-dark),
+        -2px -2px 4px var(--neu-shadow-light) !important;
+      transition: 0.4s !important;
+      border-radius: 50% !important;
+    }
+
+    .toggle-switch input:checked + .toggle-slider {
+      background: linear-gradient(145deg, var(--neu-accent), var(--neu-accent-hover)) !important;
+    }
+
+    .toggle-switch input:checked + .toggle-slider:before {
+      transform: translateX(30px) !important;
+      background: white !important;
+      box-shadow:
+        2px 2px 4px rgba(0, 0, 0, 0.1),
+        -2px -2px 4px rgba(255, 255, 255, 0.9) !important;
+    }
+
+    /* Progress Bars */
+    .progress-label {
+      margin-bottom: 0.5rem !important;
+      font-weight: 600 !important;
+      color: var(--text-primary) !important;
+      font-size: 0.9rem !important;
+    }
+
+    .progress-bar {
+      width: 100% !important;
+      height: 20px !important;
+      background: linear-gradient(145deg, #f5f7f9, var(--neu-bg-secondary)) !important;
+      box-shadow:
+        inset 4px 4px 8px var(--neu-shadow-dark),
+        inset -4px -4px 8px var(--neu-shadow-light) !important;
+      border-radius: 10px !important;
+      overflow: hidden !important;
+      position: relative !important;
+    }
+
+    .progress-fill {
+      height: 100% !important;
+      background: linear-gradient(145deg, var(--neu-accent), var(--neu-accent-hover)) !important;
+      border-radius: 10px !important;
+      transition: width 2s ease !important;
+      position: relative !important;
+    }
+
+    .progress-fill::after {
+      content: "" !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        rgba(255, 255, 255, 0) 100%) !important;
+      animation: shimmer 2s infinite !important;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Interactive Cards */
+    .interactive-card {
+      background: linear-gradient(145deg, var(--neu-bg-secondary), #f5f7f9) !important;
+      border-radius: var(--neu-border-radius) !important;
+      padding: 1.5rem !important;
+      cursor: pointer !important;
+      transition: all 0.6s ease !important;
+      transform-style: preserve-3d !important;
+      height: 150px !important;
+      position: relative !important;
+      box-shadow:
+        8px 8px 16px var(--neu-shadow-dark),
+        -8px -8px 16px var(--neu-shadow-light) !important;
+    }
+
+    .interactive-card:hover {
+      box-shadow:
+        12px 12px 24px var(--neu-shadow-dark),
+        -12px -12px 24px var(--neu-shadow-light) !important;
+    }
+
+    .interactive-card.flipped {
+      transform: rotateY(180deg) !important;
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute !important;
+      width: 100% !important;
+      height: 100% !important;
+      top: 0 !important;
+      left: 0 !important;
+      backface-visibility: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      padding: 1rem !important;
+      box-sizing: border-box !important;
+    }
+
+    .card-back {
+      transform: rotateY(180deg) !important;
+    }
+
+    .card-icon {
+      font-size: 2rem !important;
+      margin-bottom: 0.5rem !important;
+    }
+
+    .card-front h4,
+    .card-back h4 {
+      margin: 0.5rem 0 !important;
+      color: var(--text-primary) !important;
+    }
+
+    .card-front p,
+    .card-back p {
+      margin: 0 !important;
+      color: var(--text-secondary) !important;
+      font-size: 0.9rem !important;
+    }
+
+    /* Code Preview */
+    .code-preview {
+      background: #1e1e1e !important;
+      border-radius: var(--neu-border-radius-small) !important;
+      overflow: hidden !important;
+      box-shadow:
+        inset 4px 4px 8px rgba(0, 0, 0, 0.3),
+        inset -4px -4px 8px rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .code-preview pre {
+      margin: 0 !important;
+      padding: 1.5rem !important;
+      overflow-x: auto !important;
+    }
+
+    .code-preview code {
+      color: #d4d4d4 !important;
+      font-family: 'Courier New', monospace !important;
+      font-size: 0.85rem !important;
+      line-height: 1.5 !important;
+    }
+
+    /* Responsive adjustments for UI Dev components */
+    @media (max-width: 768px) {
+      .demo-form {
+        max-width: 100% !important;
+      }
+
+      .interactive-card {
+        height: 120px !important;
+        padding: 1rem !important;
+      }
+
+      .card-icon {
+        font-size: 1.5rem !important;
+      }
+
+      .demo-button {
+        padding: 10px 16px !important;
+        font-size: 0.85rem !important;
+      }
+
+      .toggle-switch {
+        width: 50px !important;
+        height: 25px !important;
+      }
+
+      .toggle-slider:before {
+        height: 18px !important;
+        width: 18px !important;
+        left: 3px !important;
+        bottom: 3px !important;
+      }
+
+      .toggle-switch input:checked + .toggle-slider:before {
+        transform: translateX(25px) !important;
+      }
+
+      .code-preview pre {
+        padding: 1rem !important;
+      }
+
+      .code-preview code {
+        font-size: 0.75rem !important;
       }
     }
 
@@ -724,11 +1293,9 @@ background: linear-gradient(145deg, #7990d8, #5f76c0) !important;
               <a href="index.html" class="navbar14_link w-nav-link"
                 >Services</a
               ><a href="./case-studies.html" class="navbar14_link w-nav-link w--current"
-                >Work</a
+                >Projects</a
               ><a href="./about-me.html" class="navbar14_link w-nav-link"
                 >About </a
-              ><a href="./resources.html" class="navbar14_link w-nav-link"
-                >Resources</a
               >
             </div>
             <div
@@ -752,181 +1319,65 @@ background: linear-gradient(145deg, #7990d8, #5f76c0) !important;
     </div>
   </div>
 
-<section class="section_layout401 cream-background">
-  <div class="padding-global">
-    <div class="container-large">
-      <div class="padding-section-medium">
-        <div class="layout401_component">
-          <div class="margin-bottom margin-large">
-            <div class="text-align-center-2">
-              <div class="max-width-large align-center">
-                <div class="margin-bottom margin-small">
-                  <h2 class="heading-2">Success Stories</h2>
+  <!-- Tab Navigation -->
+  <section class="section_layout401">
+    <div class="padding-global">
+      <div class="container-large">
+        <div class="tab-navigation">
+          <button class="tab-button active" onclick="switchTab('case-studies')">UX/UI/CX Case Studies</button>
+          <button class="tab-button" onclick="switchTab('resources')">Resources</button>
+          <button class="tab-button" onclick="switchTab('ui-playground')">UI Designs</button>
+          <button class="tab-button" onclick="switchTab('about')">UI Dev</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Studies Tab Content -->
+  <div id="case-studies" class="tab-content active">
+    <section class="section_layout401 cream-background">
+      <div class="padding-global">
+        <div class="container-large">
+          <div class="padding-section-medium">
+            <div class="layout401_component">
+              <div class="margin-bottom margin-large">
+                <div class="text-align-center-2">
+                  <div class="max-width-large align-center">
+                    <div class="margin-bottom margin-small">
+                      <h2 class="heading-2">Success Stories</h2>
+                    </div>
+                    <p class="text-size-large">
+                      I don't just make things look good. I verify the problem,
+                      value and meet business/user needs
+                    </p>
+                  </div>
                 </div>
-                <p class="text-size-large">
-                  I don't just make things look good. I verify the problem,
-                  value and meet business/user needs
-                </p>
               </div>
-            </div>
-          </div>
-          
-          <div class="w-layout-grid layout401_grid-list gap-16px">
-            <div
-              id="w-node-_604e62b4-28ce-c885-cdda-c390f7e26d8b-b4f3157c"
-              class="w-layout-grid grid-packages"
-            >
-              <!-- SmartServe by OpenSesyme -->
-              <a href="./smart-serve.html" class="case-study-link">
-                <div class="layout397_card-large cream-background">
-                  <div class="layout397_card-large-content">
-                    <div class="layout397_card-large-content-top">
-                      <div class="margin-bottom margin-xsmall align-horizontally">
-                        <h3 class="heading-4">SmartServe: By OpenSesyme</h3>
-                      </div>
-                      <p class="text-size-medium">
-                        Tableside Restaurant Ordering Application
-                        Market: South Africa
-                      </p>
-                    </div>
-                    <div class="layout397_card-large-image-wrapper">
-                      <img
-                        sizes="(max-width: 3960px) 100vw, 3960px"
-                        src="https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/smartserver.jpg?alt=media&token=f5dbe379-3b5b-4001-9d45-37b20b7e23e3"
-                        alt="SmartServe Restaurant App"
-                        srcset="https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/smartserver.jpg?alt=media&token=f5dbe379-3b5b-4001-9d45-37b20b7e23e3 500w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/smartserver.jpg?alt=media&token=f5dbe379-3b5b-4001-9d45-37b20b7e23e3 800w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/smartserver.jpg?alt=media&token=f5dbe379-3b5b-4001-9d45-37b20b7e23e3 1080w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/smartserver.jpg?alt=media&token=f5dbe379-3b5b-4001-9d45-37b20b7e23e3 1600w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/smartserver.jpg?alt=media&token=f5dbe379-3b5b-4001-9d45-37b20b7e23e3 2000w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/smartserver.jpg?alt=media&token=f5dbe379-3b5b-4001-9d45-37b20b7e23e3 2600w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/smartserver.jpg?alt=media&token=f5dbe379-3b5b-4001-9d45-37b20b7e23e3 2970w"
-                        loading="lazy"
-                        class="layout397_card-large-image"
-                      />
-                    </div>
-                    <div class="margin-top margin-xsmall">
-                      <div class="button-group">
-                        <div class="button is-secondary max-width-full w-inline-block">
-                          <div>Read More</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-
-              <!-- Banks Branch Visit UX -->
-              <a href="./banking-experience.html" class="case-study-link">
-                <div class="layout397_card-large cream-background">
-                  <div class="layout397_card-large-content">
-                    <div class="layout397_card-large-content-top">
-                      <div class="margin-bottom margin-xsmall align-horizontally">
-                        <h3 class="heading-4">Banks Branch Visit UX</h3>
-                      </div>
-                      <p class="text-size-medium">
-                        South African Bank Branch User Experience Transformation (Absa Hackathon and beyond)
-                      </p>
-                    </div>
-                    <div class="layout397_card-large-image-wrapper">
-                      <img
-                        sizes="(max-width: 3960px) 100vw, 3960px"
-                        srcset="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 500w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 800w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 1080w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 1600w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 3960w"
-                        alt="Banking UX Transformation"
-                        src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7"
-                        loading="lazy"
-                        class="layout397_card-large-image"
-                      />
-                    </div>
-                    <div class="margin-top margin-xsmall">
-                      <div class="button-group">
-                        <div class="button is-secondary max-width-full w-inline-block">
-                          <div>Read More</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-
-              <!-- Sesyme Mobile App -->
-              <a href="./sesyme-app.html" class="case-study-link">
-                <div class="layout397_card-large cream-background">
-                  <div class="layout397_card-large-content">
-                    <div class="layout397_card-large-content-top">
-                      <div class="margin-bottom margin-xsmall align-horizontally">
-                        <h3 class="heading-4">Sesyme Mobile App</h3>
-                      </div>
-                      <p class="text-size-medium">
-                        Sesyme is a great solution for both the publisher and the student
-                      </p>
-                    </div>
-                    <div class="layout397_card-large-image-wrapper">
-                      <img
-                        sizes="(max-width: 3960px) 100vw, 3960px"
-                        srcset="https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/Screenshot%202025-06-29%20at%2014.50.32.png?alt=media&token=0150610b-5866-4ab0-a6dc-726d971d9e01 500w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/Screenshot%202025-06-29%20at%2014.50.32.png?alt=media&token=0150610b-5866-4ab0-a6dc-726d971d9e01 800w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/Screenshot%202025-06-29%20at%2014.50.32.png?alt=media&token=0150610b-5866-4ab0-a6dc-726d971d9e01 1080w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/Screenshot%202025-06-29%20at%2014.50.32.png?alt=media&token=0150610b-5866-4ab0-a6dc-726d971d9e01 1600w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/Screenshot%202025-06-29%20at%2014.50.32.png?alt=media&token=0150610b-5866-4ab0-a6dc-726d971d9e01 3960w"
-                        alt="Sesyme Mobile App"
-                        src="https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/Screenshot%202025-06-29%20at%2014.50.32.png?alt=media&token=0150610b-5866-4ab0-a6dc-726d971d9e01"
-                        loading="lazy"
-                        class="layout397_card-large-image"
-                      />
-                    </div>
-                    <div class="margin-top margin-xsmall">
-                      <div class="button-group">
-                        <div class="button is-secondary max-width-full w-inline-block">
-                          <div>View All</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-
-              <!-- Practo App -->
-              <a href="./practo.html" class="case-study-link">
-                <div class="layout397_card-large cream-background">
-                  <div class="layout397_card-large-content">
-                    <div class="layout397_card-large-content-top">
-                      <div class="margin-bottom margin-xsmall align-horizontally">
-                        <h3 class="heading-4">Practo App</h3>
-                      </div>
-                      <p class="text-size-medium">
-                        Streamline the entire doctor visit process, eliminating long waits and uncertainties
-                      </p>
-                    </div>
-                    <div class="layout397_card-large-image-wrapper">
-                      <img
-                        sizes="(max-width: 3960px) 100vw, 3960px"
-                        srcset="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 500w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 800w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 1080w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 1600w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 3960w"
-                        alt="Practo Doctor App"
-                        src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252"
-                        loading="lazy"
-                        class="layout397_card-large-image"
-                      />
-                    </div>
-                    <div class="margin-top margin-xsmall">
-                      <div class="button-group">
-                        <div class="button is-secondary max-width-full w-inline-block">
-                          <div>Read More</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-
-                  <!-- Vodacom Bursary -->
-                  <a href="./voda-bursary.html" class="case-study-link">
+              
+              <div class="w-layout-grid layout401_grid-list gap-16px">
+                <div
+                  id="w-node-_604e62b4-28ce-c885-cdda-c390f7e26d8b-b4f3157c"
+                  class="w-layout-grid grid-packages"
+                >
+                  <!-- SmartServe by OpenSesyme -->
+                  <a href="./smart-serve.html" class="case-study-link">
                     <div class="layout397_card-large cream-background">
                       <div class="layout397_card-large-content">
                         <div class="layout397_card-large-content-top">
                           <div class="margin-bottom margin-xsmall align-horizontally">
-                            <h3 class="heading-4">Vodacom External Bursary</h3>
+                            <h3 class="heading-4">SmartServe: By OpenSesyme</h3>
                           </div>
                           <p class="text-size-medium">
-                            Complete redesign of Vodacom external bursary platform
+                            Tableside Restaurant Ordering Application
+                            Market: South Africa
                           </p>
                         </div>
                         <div class="layout397_card-large-image-wrapper">
                           <img
                             sizes="(max-width: 3960px) 100vw, 3960px"
-                            srcset="https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/Vodacom-South-Africa-Bursary-Programme.webp?alt=media&token=6d37ff5e-f671-45ff-938d-14b1620507c6 500w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/Vodacom-South-Africa-Bursary-Programme.webp?alt=media&token=6d37ff5e-f671-45ff-938d-14b1620507c6 800w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/Vodacom-South-Africa-Bursary-Programme.webp?alt=media&token=6d37ff5e-f671-45ff-938d-14b1620507c6 1080w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/Vodacom-South-Africa-Bursary-Programme.webp?alt=media&token=6d37ff5e-f671-45ff-938d-14b1620507c6 1600w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/Vodacom-South-Africa-Bursary-Programme.webp?alt=media&token=6d37ff5e-f671-45ff-938d-14b1620507c6 3960w"
-                            alt="Practo Doctor App"
-                            src="https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/Vodacom-South-Africa-Bursary-Programme.webp?alt=media&token=6d37ff5e-f671-45ff-938d-14b1620507c6"
+                            src="https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/smartserver.jpg?alt=media&token=f5dbe379-3b5b-4001-9d45-37b20b7e23e3"
+                            alt="SmartServe Restaurant App"
+                            srcset="https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/smartserver.jpg?alt=media&token=f5dbe379-3b5b-4001-9d45-37b20b7e23e3 500w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/smartserver.jpg?alt=media&token=f5dbe379-3b5b-4001-9d45-37b20b7e23e3 800w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/smartserver.jpg?alt=media&token=f5dbe379-3b5b-4001-9d45-37b20b7e23e3 1080w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/smartserver.jpg?alt=media&token=f5dbe379-3b5b-4001-9d45-37b20b7e23e3 1600w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/smartserver.jpg?alt=media&token=f5dbe379-3b5b-4001-9d45-37b20b7e23e3 2000w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/smartserver.jpg?alt=media&token=f5dbe379-3b5b-4001-9d45-37b20b7e23e3 2600w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/smartserver.jpg?alt=media&token=f5dbe379-3b5b-4001-9d45-37b20b7e23e3 2970w"
                             loading="lazy"
                             class="layout397_card-large-image"
                           />
@@ -942,23 +1393,24 @@ background: linear-gradient(145deg, #7990d8, #5f76c0) !important;
                     </div>
                   </a>
 
-                   <!-- CarGuard -->
-                   <a href="./car-guard.html" class="case-study-link">
+                  <!-- Banks Branch Visit UX -->
+                  <a href="./banking-experience.html" class="case-study-link">
                     <div class="layout397_card-large cream-background">
                       <div class="layout397_card-large-content">
                         <div class="layout397_card-large-content-top">
                           <div class="margin-bottom margin-xsmall align-horizontally">
-                            <h3 class="heading-4">CarGuard</h3>
+                            <h3 class="heading-4">Banks Branch Visit UX</h3>
                           </div>
                           <p class="text-size-medium">
-                           Anti-fraud project, still researching, get insights and adapting the solution based on real user feedback </p>
+                            South African Bank Branch User Experience Transformation (Absa Hackathon and beyond)
+                          </p>
                         </div>
                         <div class="layout397_card-large-image-wrapper">
                           <img
                             sizes="(max-width: 3960px) 100vw, 3960px"
-                            srcset="https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/carguard.png?alt=media&token=829edcaf-1af3-4590-88f8-c6bee1838e72 500w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/carguard.png?alt=media&token=829edcaf-1af3-4590-88f8-c6bee1838e72 800w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/carguard.png?alt=media&token=829edcaf-1af3-4590-88f8-c6bee1838e72 1080w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/carguard.png?alt=media&token=829edcaf-1af3-4590-88f8-c6bee1838e72 1600w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/carguard.png?alt=media&token=829edcaf-1af3-4590-88f8-c6bee1838e72 3960w"
-                            alt="CarGuard"
-                            src="https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/carguard.png?alt=media&token=829edcaf-1af3-4590-88f8-c6bee1838e72"
+                            srcset="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 500w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 800w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 1080w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 1600w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 3960w"
+                            alt="Banking UX Transformation"
+                            src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7"
                             loading="lazy"
                             class="layout397_card-large-image"
                           />
@@ -973,47 +1425,692 @@ background: linear-gradient(145deg, #7990d8, #5f76c0) !important;
                       </div>
                     </div>
                   </a>
+
+                  <!-- Sesyme Mobile App -->
+                  <a href="./sesyme-app.html" class="case-study-link">
+                    <div class="layout397_card-large cream-background">
+                      <div class="layout397_card-large-content">
+                        <div class="layout397_card-large-content-top">
+                          <div class="margin-bottom margin-xsmall align-horizontally">
+                            <h3 class="heading-4">Sesyme Mobile App</h3>
+                          </div>
+                          <p class="text-size-medium">
+                            Sesyme is a great solution for both the publisher and the student
+                          </p>
+                        </div>
+                        <div class="layout397_card-large-image-wrapper">
+                          <img
+                            sizes="(max-width: 3960px) 100vw, 3960px"
+                            srcset="https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/Screenshot%202025-06-29%20at%2014.50.32.png?alt=media&token=0150610b-5866-4ab0-a6dc-726d971d9e01 500w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/Screenshot%202025-06-29%20at%2014.50.32.png?alt=media&token=0150610b-5866-4ab0-a6dc-726d971d9e01 800w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/Screenshot%202025-06-29%20at%2014.50.32.png?alt=media&token=0150610b-5866-4ab0-a6dc-726d971d9e01 1080w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/Screenshot%202025-06-29%20at%2014.50.32.png?alt=media&token=0150610b-5866-4ab0-a6dc-726d971d9e01 1600w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/Screenshot%202025-06-29%20at%2014.50.32.png?alt=media&token=0150610b-5866-4ab0-a6dc-726d971d9e01 3960w"
+                            alt="Sesyme Mobile App"
+                            src="https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/Screenshot%202025-06-29%20at%2014.50.32.png?alt=media&token=0150610b-5866-4ab0-a6dc-726d971d9e01"
+                            loading="lazy"
+                            class="layout397_card-large-image"
+                          />
+                        </div>
+                        <div class="margin-top margin-xsmall">
+                          <div class="button-group">
+                            <div class="button is-secondary max-width-full w-inline-block">
+                              <div>View All</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+
+                  <!-- Practo App -->
+                  <a href="./practo.html" class="case-study-link">
+                    <div class="layout397_card-large cream-background">
+                      <div class="layout397_card-large-content">
+                        <div class="layout397_card-large-content-top">
+                          <div class="margin-bottom margin-xsmall align-horizontally">
+                            <h3 class="heading-4">Practo App</h3>
+                          </div>
+                          <p class="text-size-medium">
+                            Streamline the entire doctor visit process, eliminating long waits and uncertainties
+                          </p>
+                        </div>
+                        <div class="layout397_card-large-image-wrapper">
+                          <img
+                            sizes="(max-width: 3960px) 100vw, 3960px"
+                            srcset="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 500w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 800w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 1080w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 1600w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 3960w"
+                            alt="Practo Doctor App"
+                            src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252"
+                            loading="lazy"
+                            class="layout397_card-large-image"
+                          />
+                        </div>
+                        <div class="margin-top margin-xsmall">
+                          <div class="button-group">
+                            <div class="button is-secondary max-width-full w-inline-block">
+                              <div>Read More</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+
+                      <!-- Vodacom Bursary -->
+                      <a href="./voda-bursary.html" class="case-study-link">
+                        <div class="layout397_card-large cream-background">
+                          <div class="layout397_card-large-content">
+                            <div class="layout397_card-large-content-top">
+                              <div class="margin-bottom margin-xsmall align-horizontally">
+                                <h3 class="heading-4">Vodacom External Bursary</h3>
+                              </div>
+                              <p class="text-size-medium">
+                                Complete redesign of Vodacom external bursary platform
+                              </p>
+                            </div>
+                            <div class="layout397_card-large-image-wrapper">
+                              <img
+                                sizes="(max-width: 3960px) 100vw, 3960px"
+                                srcset="https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/Vodacom-South-Africa-Bursary-Programme.webp?alt=media&token=6d37ff5e-f671-45ff-938d-14b1620507c6 500w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/Vodacom-South-Africa-Bursary-Programme.webp?alt=media&token=6d37ff5e-f671-45ff-938d-14b1620507c6 800w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/Vodacom-South-Africa-Bursary-Programme.webp?alt=media&token=6d37ff5e-f671-45ff-938d-14b1620507c6 1080w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/Vodacom-South-Africa-Bursary-Programme.webp?alt=media&token=6d37ff5e-f671-45ff-938d-14b1620507c6 1600w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/Vodacom-South-Africa-Bursary-Programme.webp?alt=media&token=6d37ff5e-f671-45ff-938d-14b1620507c6 3960w"
+                                alt="Practo Doctor App"
+                                src="https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/Vodacom-South-Africa-Bursary-Programme.webp?alt=media&token=6d37ff5e-f671-45ff-938d-14b1620507c6"
+                                loading="lazy"
+                                class="layout397_card-large-image"
+                              />
+                            </div>
+                            <div class="margin-top margin-xsmall">
+                              <div class="button-group">
+                                <div class="button is-secondary max-width-full w-inline-block">
+                                  <div>Read More</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+
+                       <!-- CarGuard -->
+                       <a href="./car-guard.html" class="case-study-link">
+                        <div class="layout397_card-large cream-background">
+                          <div class="layout397_card-large-content">
+                            <div class="layout397_card-large-content-top">
+                              <div class="margin-bottom margin-xsmall align-horizontally">
+                                <h3 class="heading-4">CarGuard</h3>
+                              </div>
+                              <p class="text-size-medium">
+                               Anti-fraud project, still researching, get insights and adapting the solution based on real user feedback </p>
+                            </div>
+                            <div class="layout397_card-large-image-wrapper">
+                              <img
+                                sizes="(max-width: 3960px) 100vw, 3960px"
+                                srcset="https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/carguard.png?alt=media&token=829edcaf-1af3-4590-88f8-c6bee1838e72 500w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/carguard.png?alt=media&token=829edcaf-1af3-4590-88f8-c6bee1838e72 800w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/carguard.png?alt=media&token=829edcaf-1af3-4590-88f8-c6bee1838e72 1080w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/carguard.png?alt=media&token=829edcaf-1af3-4590-88f8-c6bee1838e72 1600w, https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/carguard.png?alt=media&token=829edcaf-1af3-4590-88f8-c6bee1838e72 3960w"
+                                alt="CarGuard"
+                                src="https://firebasestorage.googleapis.com/v0/b/lunia-from-lulamile.appspot.com/o/carguard.png?alt=media&token=829edcaf-1af3-4590-88f8-c6bee1838e72"
+                                loading="lazy"
+                                class="layout397_card-large-image"
+                              />
+                            </div>
+                            <div class="margin-top margin-xsmall">
+                              <div class="button-group">
+                                <div class="button is-secondary max-width-full w-inline-block">
+                                  <div>Read More</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                         <!-- Hushscape -->
+                         <a href="./hashscape.html" class="case-study-link">
+                          <div class="layout397_card-large cream-background">
+                            <div class="layout397_card-large-content">
+                              <div class="layout397_card-large-content-top">
+                                <div class="margin-bottom margin-xsmall align-horizontally">
+                                  <h3 class="heading-4">GBV App that uses AI to analyse abuse</h3>
+                                </div>
+                                <p class="text-size-medium">
+                                  Created a tech solution targeting perpetrators of violence against women </p>
+                              </div>
+                              <div class="layout397_card-large-image-wrapper">
+                                <img
+                                  sizes="(max-width: 3960px) 100vw, 3960px"
+                                  srcset="https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fwinning-gif.gif?alt=media&token=7d68abc1-9418-4a8a-9c29-2764c6a0b4d4 500w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fwinning-gif.gif?alt=media&token=7d68abc1-9418-4a8a-9c29-2764c6a0b4d4 800w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fwinning-gif.gif?alt=media&token=7d68abc1-9418-4a8a-9c29-2764c6a0b4d4 1080w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fwinning-gif.gif?alt=media&token=7d68abc1-9418-4a8a-9c29-2764c6a0b4d4 1600w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fwinning-gif.gif?alt=media&token=7d68abc1-9418-4a8a-9c29-2764c6a0b4d4 3960w"
+                                  alt="CarGuard"
+                                  src="https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fwinning-gif.gif?alt=media&token=7d68abc1-9418-4a8a-9c29-2764c6a0b4d4"
+                                  loading="lazy"
+                                  class="layout397_card-large-image"
+                                />
+                              </div>
+                              <div class="margin-top margin-xsmall">
+                                <div class="button-group">
+                                  <div class="button is-secondary max-width-full w-inline-block">
+                                    <div>Read More</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- Enhanced Figma Showcase Section -->
-<section class="figma-showcase-section">
-  <div class="figma-showcase-container">
-    <div class="figma-showcase-wrapper">
-      <div class="figma-showcase-header">
-        <h2 class="figma-showcase-title">Complete Design Portfolio</h2>
-        <p class="figma-showcase-subtitle">
-          Explore my comprehensive collection of UX/UI designs, wireframes, prototypes, and design systems. 
-        </p>
+    <!-- Enhanced Figma Showcase Section -->
+    <section class="figma-showcase-section">
+      <div class="figma-showcase-container">
+        <div class="figma-showcase-wrapper">
+          <div class="figma-showcase-header">
+            <h2 class="figma-showcase-title">Complete Design Portfolio</h2>
+            <p class="figma-showcase-subtitle">
+              Explore my comprehensive collection of UX/UI designs, wireframes, prototypes, and design systems. 
+            </p>
+          </div>
+          
+          <div class="figma-embed-container">
+            <div class="figma-loading">Loading design portfolio...</div>
+            <iframe 
+              class="figma-embed-frame" 
+              src="https://embed.figma.com/design/SeCP6cuxXX8UyhnOn2wYcJ/Collection-Of-Projects?node-id=8949-77053&embed-host=share" 
+              allowfullscreen
+              title="Lula-Creatives Design Portfolio">
+            </iframe>
+          </div>
+          
+          <a href="https://www.figma.com/design/SeCP6cuxXX8UyhnOn2wYcJ/Collection-Of-Projects?node-id=8949-77053" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="figma-access-link">
+            <svg class="figma-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 0C8.25 0 5.25 3 5.25 6.75C5.25 8.25 5.625 9.75 6.375 11.0625L12 24L17.625 11.0625C18.375 9.75 18.75 8.25 18.75 6.75C18.75 3 15.75 0 12 0ZM12 9C10.35 9 9 7.65 9 6C9 4.35 10.35 3 12 3C13.65 3 15 4.35 15 6C15 7.65 13.65 9 12 9Z" fill="currentColor"/>
+            </svg>
+            Request Access to Full Portfolio →
+          </a>
+        </div>
       </div>
-      
-      <div class="figma-embed-container">
-        <div class="figma-loading">Loading design portfolio...</div>
-        <iframe 
-          class="figma-embed-frame" 
-          src="https://embed.figma.com/design/SeCP6cuxXX8UyhnOn2wYcJ/Collection-Of-Projects?node-id=8949-77053&embed-host=share" 
-          allowfullscreen
-          title="Lula-Creatives Design Portfolio">
-        </iframe>
-      </div>
-      
-      <a href="https://www.figma.com/design/SeCP6cuxXX8UyhnOn2wYcJ/Collection-Of-Projects?node-id=8949-77053" 
-         target="_blank" 
-         rel="noopener noreferrer" 
-         class="figma-access-link">
-        <svg class="figma-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 0C8.25 0 5.25 3 5.25 6.75C5.25 8.25 5.625 9.75 6.375 11.0625L12 24L17.625 11.0625C18.375 9.75 18.75 8.25 18.75 6.75C18.75 3 15.75 0 12 0ZM12 9C10.35 9 9 7.65 9 6C9 4.35 10.35 3 12 3C13.65 3 15 4.35 15 6C15 7.65 13.65 9 12 9Z" fill="currentColor"/>
-        </svg>
-        Request Access to Full Portfolio →
-      </a>
-    </div>
+    </section>
   </div>
-</section>
+
+  <!-- Resources Tab Content -->
+  <div id="resources" class="tab-content">
+    <section class="section_layout401 cream-background">
+      <div class="padding-global">
+        <div class="container-large">
+          <div class="padding-section-xsmall">
+            <div class="layout401_component">
+              <div class="margin-bottom margin-medium">
+                <div class="text-align-center-2">
+                  <div class="max-width-large align-center">
+                    <div class="margin-bottom margin-small">
+                      <h2 class="heading-2">Resources & Blogs</h2>
+                    </div>
+                    <p class="text-size-large">
+                      Transform your product with my tailored design Resources & Blogs I crafted for seamless user experiences.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="w-layout-grid layout401_grid-list gap-16px">
+                <div id="w-node-ba360bfd-3d3e-b9ae-e739-40c8743ffc7e-36e61d9f" class="w-layout-grid layout401_row">
+                  <div class="layout401_card white-background">
+                    <div class="layout401_card-content with-image">
+                      <div class="layout401_card-content-top">
+                        <div class="margin-bottom margin-xsmall">
+                          <div class="text-style-tagline blue margin-right">Notion</div>
+                          <div class="text-style-tagline lemon">Article</div>
+                        </div>
+                        <div class="margin-bottom margin-xxsmall">
+                          <h3 class="heading-4 text-weight-semibold">All in One UX/UI Guide and Bookmarks</h3>
+                        </div>
+                        <p class="text-size-medium margin-top margin-xsmall">This is a curated library, that can help you find relevant information on your UX journey!</p>
+                      </div>
+                      <div class="margin-bottom margin-xsmall margin-top">
+                        <img sizes="(max-width: 4251px) 100vw, 4251px" srcset="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w" alt="loading" src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80" loading="lazy" class="blog3_image-wrapper with-border"/>
+                      </div>
+                      <a href="https://decorous-spoonbill-a2b.notion.site/All-in-One-UX-UI-Guide-and-Bookmarks-1fc13a25a580813eaa61cb9b77a9bf63" target="_blank" class="button top-margin w-button">Read More</a>
+                    </div>
+                  </div>
+                  <div class="layout401_card white-background">
+                    <div class="layout401_card-content with-image">
+                      <div class="layout401_card-content-top">
+                        <div class="margin-bottom margin-xsmall">
+                          <div class="text-style-tagline lemon">Article</div>
+                        </div>
+                        <div class="margin-bottom margin-xxsmall">
+                          <h3 class="heading-4 text-weight-semibold">GBV App that uses AI to analyse abuse</h3>
+                        </div>
+                        <p class="text-size-medium margin-top margin-xsmall">Created a tech solution targeting perpetrators of violence against women</p>
+                      </div>
+                      <div class="margin-bottom margin-xsmall margin-top">
+                        <img sizes="(max-width: 4251px) 100vw, 4251px" srcset="https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fwinning-gif.gif?alt=media&token=7d68abc1-9418-4a8a-9c29-2764c6a0b4d4 500w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fwinning-gif.gif?alt=media&token=7d68abc1-9418-4a8a-9c29-2764c6a0b4d4 800w" alt="loading" src="https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fwinning-gif.gif?alt=media&token=7d68abc1-9418-4a8a-9c29-2764c6a0b4d4" loading="lazy" class="blog3_image-wrapper with-border"/>
+                      </div>
+                      <a href="./hashscape.html" class="button top-margin w-button">Read More</a>
+                    </div>
+                  </div>
+                  <div class="layout401_card white-background">
+                    <div class="layout401_card-content with-image">
+                      <div class="layout401_card-content-top">
+                        <div class="margin-bottom margin-xsmall">
+                          <div class="text-style-tagline lemon">Article | FNB Hackerthon</div>
+                        </div>
+                        <div class="margin-bottom margin-xxsmall">
+                          <h3 class="heading-4 text-weight-semibold">Enhancing Financial Inclusion For SMME's</h3>
+                        </div>
+                        <p class="text-size-medium margin-top margin-xsmall">An inventory management by leveraging AI video analytics and smart sensors.</p>
+                      </div>
+                      <div class="margin-bottom margin-xsmall margin-top">
+                        <img sizes="(max-width: 4251px) 100vw, 4251px" srcset="https://firebasestorage.googleapis.com/v0/b/lunia-by-lulamile.appspot.com/o/fnbapph.jpg?alt=media&token=ec4ba3c0-6c17-4be5-af91-9a048c136c51 500w, https://firebasestorage.googleapis.com/v0/b/lunia-by-lulamile.appspot.com/o/fnbapph.jpg?alt=media&token=ec4ba3c0-6c17-4be5-af91-9a048c136c51 800w" alt="Financial Technology Dashboard" src="https://firebasestorage.googleapis.com/v0/b/lunia-by-lulamile.appspot.com/o/fnbapph.jpg?alt=media&token=ec4ba3c0-6c17-4be5-af91-9a048c136c51" loading="lazy" class="blog3_image-wrapper with-border"/>
+                      </div>
+                      <a href="https://drive.google.com/file/d/1anSnYJt_4Okl3xQuKkCJDAVROcVOqEFr/view" target="_blank" class="button top-margin w-button">Read More</a>
+                    </div>
+                  </div>
+                  <div class="layout401_card white-background">
+                    <div class="layout401_card-content with-image">
+                      <div class="layout401_card-content-top">
+                        <div class="margin-bottom margin-xsmall">
+                          <div class="text-style-tagline blue margin-right">Notion</div>
+                          <div class="text-style-tagline lemon">Article</div>
+                        </div>
+                        <div class="margin-bottom margin-xxsmall">
+                          <h3 class="heading-4 text-weight-semibold">Break into tech as a designer</h3>
+                        </div>
+                        <p class="text-size-medium margin-top margin-xsmall">Learn key steps to land your first tech role, build a standout portfolio.</p>
+                      </div>
+                      <div class="margin-bottom margin-xsmall margin-top">
+                        <img sizes="(max-width: 4251px) 100vw, 4251px" alt="loading" src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/Screenshot%202025-04-19%20at%2019.35.32.png?alt=media&token=87195bd1-7507-4b79-bb0f-ff8c8a0b130d" loading="lazy" class="blog3_image-wrapper with-border"/>
+                      </div>
+                      <a href="https://decorous-spoonbill-a2b.notion.site/UX-UI-Project-Design-Check-Resources-1fc13a25a5808148ab09d8128fc1fe6b" target="_blank" class="button top-margin w-button">Read More</a>
+                    </div>
+                  </div>
+                  <div class="layout401_card white-background">
+                    <div class="layout401_card-content with-image">
+                      <div class="layout401_card-content-top">
+                        <div class="margin-bottom margin-xsmall">
+                          <div class="text-style-tagline lemon">Article | African Bank Hackarthon</div>
+                        </div>
+                        <div class="margin-bottom margin-xxsmall">
+                          <h3 class="heading-4 text-weight-semibold">Community-Based Financial Hubs</h3>
+                        </div>
+                        <p class="text-size-medium margin-top margin-xsmall">Built a supportive community, connecting farmers and cooperatives with funding.</p>
+                      </div>
+                      <div class="margin-bottom margin-xsmall margin-top">
+                        <img sizes="(max-width: 4251px) 100vw, 4251px" srcset="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&h=480&fit=crop&auto=format&q=80 800w" alt="Community Farming Cooperation" src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&h=480&fit=crop&auto=format&q=80" loading="lazy" class="blog3_image-wrapper with-border"/>
+                      </div>
+                      <a href="https://drive.google.com/file/d/19_dk5NRI_gJzYwyyR5kw_POwazmNhgp-/view" target="_blank" class="button top-margin w-button">Read More</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="w-node-bdc792a3-831b-bbf4-8883-0c231e30f41b-b4f3157c" class="w-layout-grid grid-packages _1-column">
+                <div class="layout401_card primary-color">
+                  <div class="layout401_card-content grid">
+                    <div class="layout401_card-content-top">
+                      <div class="margin-bottom margin-xsmall align-horizontally">
+                        <div class="layout353_icon-wrapper"><img loading="lazy"
+                            src="https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/67d161844c65fa4292904395_trending-3%2C%20trends.svg"
+                            alt="loading" class="icon-1x1-small" /></div>
+                        <h3 class="heading-4">Creative Resource Library</h3>
+                      </div>
+                      <p class="text-size-medium">Design is an ongoing journey—not a one-time fix. This space is dedicated to curated UX/UI resources to support your product's growth and design evolution. Can't find what you're looking for?</p>
+                    </div>
+                    <div id="w-node-_79263e90-095e-a37f-c375-487cec8753a5-b4f3157c" class="button-group is-aligned-right">
+                      <a href="./contact.html" class="button w-inline-block">
+                        <div>Contact me → </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- UI Playground Tab Content -->
+  <div id="ui-playground" class="tab-content">
+    <section class="section_layout401 cream-background">
+      <div class="padding-global">
+        <div class="container-large">
+          <div class="padding-section-medium">
+            <div class="layout401_component">
+              <div class="margin-bottom margin-large">
+                <div class="text-align-center-2">
+                  <div class="max-width-large align-center">
+                    <div class="margin-bottom margin-small">
+                      <h2 class="heading-2">UI Playground</h2>
+                    </div>
+                    <p class="text-size-large">
+                      Experimental interfaces, interactive prototypes, and creative design explorations
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="ui-playground-grid">
+                <div class="playground-item">
+                  <div class="playground-icon">🎨</div>
+                  <h3 class="heading-4">Design Systems</h3>
+                  <p class="text-size-medium">Component libraries and design tokens for scalable design systems</p>
+                  <div class="margin-top margin-small">
+                    <a href="https://mkhungela-l.github.io/lula/" target="_blank" class="button w-button">Explore</a>
+                  </div>
+                </div>
+                
+                <div class="playground-item">
+                  <div class="playground-icon">⚡</div>
+                  <h3 class="heading-4">Interactive Prototypes</h3>
+                  <p class="text-size-medium">High-fidelity prototypes with micro-interactions and animations</p>
+                  <div class="margin-top margin-small">
+                    <button class="button w-button">Coming Soon</button>
+                  </div>
+                </div>
+                
+                <div class="playground-item">
+                  <div class="playground-icon">🌟</div>
+                  <h3 class="heading-4">3D Interfaces</h3>
+                  <p class="text-size-medium">Experimental 3D UI elements and immersive design concepts</p>
+                  <div class="margin-top margin-small">
+                    <button class="button w-button">Coming Soon</button>
+                  </div>
+                </div>
+                
+                <div class="playground-item">
+                  <div class="playground-icon">🔮</div>
+                  <h3 class="heading-4">AI-Powered UX</h3>
+                  <p class="text-size-medium">Exploring the intersection of AI and user experience design</p>
+                  <div class="margin-top margin-small">
+                    <button class="button w-button">Coming Soon</button>
+                  </div>
+                </div>
+                
+                <div class="playground-item">
+                  <div class="playground-icon">📱</div>
+                  <h3 class="heading-4">Mobile Innovations</h3>
+                  <p class="text-size-medium">Cutting-edge mobile interface patterns and gestures</p>
+                  <div class="margin-top margin-small">
+                    <button class="button w-button">Coming Soon</button>
+                  </div>
+                </div>
+                
+                <div class="playground-item">
+                  <div class="playground-icon">🎯</div>
+                  <h3 class="heading-4">Accessibility Focus</h3>
+                  <p class="text-size-medium">Inclusive design solutions and accessibility-first approaches</p>
+                  <div class="margin-top margin-small">
+                    <button class="button w-button">Coming Soon</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- UI Dev Tab Content -->
+  <div id="about" class="tab-content">
+    <section class="section_layout401 cream-background">
+      <div class="padding-global">
+        <div class="container-large">
+          <div class="padding-section-medium">
+            <div class="layout401_component">
+              <div class="margin-bottom margin-large">
+                <div class="text-align-center-2">
+                  <div class="max-width-large align-center">
+                    <div class="margin-bottom margin-small">
+                      <h2 class="heading-2">UI Development Showcase</h2>
+                    </div>
+                    <p class="text-size-large">
+                      Interactive components, design systems, and functional UI elements built with modern web technologies
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Interactive Button Component -->
+              <div class="margin-bottom margin-large">
+                <div class="layout401_card white-background">
+                  <div class="layout401_card-content">
+                    <div class="margin-bottom margin-small">
+                      <h3 class="heading-4">Interactive Button System</h3>
+                      <p class="text-size-medium">Neumorphic button components with hover states and animations</p>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                      <button class="demo-button primary">Primary Action</button>
+                      <button class="demo-button secondary">Secondary</button>
+                      <button class="demo-button success">Success</button>
+                      <button class="demo-button warning">Warning</button>
+                      <button class="demo-button danger">Danger</button>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                      <button class="demo-button icon-button">
+                        <span>❤️</span> Like
+                      </button>
+                      <button class="demo-button icon-button">
+                        <span>📥</span> Download
+                      </button>
+                      <button class="demo-button icon-button">
+                        <span>🔗</span> Share
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive Form Components -->
+              <div class="margin-bottom margin-large">
+                <div class="layout401_card white-background">
+                  <div class="layout401_card-content">
+                    <div class="margin-bottom margin-small">
+                      <h3 class="heading-4">Form Components</h3>
+                      <p class="text-size-medium">Custom form elements with validation and interactive feedback</p>
+                    </div>
+                    
+                    <form class="demo-form">
+                      <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-input" placeholder="Enter your name" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" placeholder="your@email.com" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label class="form-label">Project Type</label>
+                        <select class="form-select">
+                          <option>Web Design</option>
+                          <option>Mobile App</option>
+                          <option>UI/UX Consultation</option>
+                          <option>Design System</option>
+                        </select>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-textarea" rows="4" placeholder="Tell me about your project..."></textarea>
+                      </div>
+                      
+                      <button type="submit" class="demo-button primary" style="width: 100%;">
+                        Send Message
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Toggle Switches -->
+              <div class="margin-bottom margin-large">
+                <div class="layout401_card white-background">
+                  <div class="layout401_card-content">
+                    <div class="margin-bottom margin-small">
+                      <h3 class="heading-4">Toggle Switches & Controls</h3>
+                      <p class="text-size-medium">Custom switches and controls with smooth animations</p>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                      <div class="toggle-row">
+                        <span>Dark Mode</span>
+                        <label class="toggle-switch">
+                          <input type="checkbox" id="darkmode">
+                          <span class="toggle-slider"></span>
+                        </label>
+                      </div>
+                      
+                      <div class="toggle-row">
+                        <span>Notifications</span>
+                        <label class="toggle-switch">
+                          <input type="checkbox" checked>
+                          <span class="toggle-slider"></span>
+                        </label>
+                      </div>
+                      
+                      <div class="toggle-row">
+                        <span>Auto-save</span>
+                        <label class="toggle-switch">
+                          <input type="checkbox">
+                          <span class="toggle-slider"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Progress Indicators -->
+              <div class="margin-bottom margin-large">
+                <div class="layout401_card white-background">
+                  <div class="layout401_card-content">
+                    <div class="margin-bottom margin-small">
+                      <h3 class="heading-4">Progress Indicators</h3>
+                      <p class="text-size-medium">Animated progress bars and loading states</p>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                      <div>
+                        <div class="progress-label">Project Completion: 75%</div>
+                        <div class="progress-bar">
+                          <div class="progress-fill" style="width: 75%;"></div>
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <div class="progress-label">Design Phase: 90%</div>
+                        <div class="progress-bar">
+                          <div class="progress-fill" style="width: 90%;"></div>
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <div class="progress-label">Development: 45%</div>
+                        <div class="progress-bar">
+                          <div class="progress-fill" style="width: 45%;"></div>
+                        </div>
+                      </div>
+                      
+                      <button onclick="animateProgress()" class="demo-button secondary">
+                        Animate Progress
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card Hover Effects -->
+              <div class="margin-bottom margin-large">
+                <div class="layout401_card white-background">
+                  <div class="layout401_card-content">
+                    <div class="margin-bottom margin-small">
+                      <h3 class="heading-4">Interactive Cards</h3>
+                      <p class="text-size-medium">Hover effects and micro-interactions</p>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                      <div class="interactive-card" onclick="flipCard(this)">
+                        <div class="card-front">
+                          <div class="card-icon">🎨</div>
+                          <h4>Design</h4>
+                          <p>Click to flip</p>
+                        </div>
+                        <div class="card-back">
+                          <h4>UI/UX Design</h4>
+                          <p>Creating beautiful and functional user interfaces</p>
+                        </div>
+                      </div>
+                      
+                      <div class="interactive-card" onclick="flipCard(this)">
+                        <div class="card-front">
+                          <div class="card-icon">💻</div>
+                          <h4>Development</h4>
+                          <p>Click to flip</p>
+                        </div>
+                        <div class="card-back">
+                          <h4>Frontend Dev</h4>
+                          <p>Bringing designs to life with modern web technologies</p>
+                        </div>
+                      </div>
+                      
+                      <div class="interactive-card" onclick="flipCard(this)">
+                        <div class="card-front">
+                          <div class="card-icon">⚡</div>
+                          <h4>Performance</h4>
+                          <p>Click to flip</p>
+                        </div>
+                        <div class="card-back">
+                          <h4>Optimization</h4>
+                          <p>Fast, efficient, and scalable solutions</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Code Preview -->
+              <div class="margin-bottom margin-large">
+                <div class="layout401_card white-background">
+                  <div class="layout401_card-content">
+                    <div class="margin-bottom margin-small">
+                      <h3 class="heading-4">Code Preview</h3>
+                      <p class="text-size-medium">Sample CSS for neumorphic button implementation</p>
+                    </div>
+                    
+                    <div class="code-preview">
+                      <pre><code>.demo-button {
+  background: linear-gradient(145deg, #f5f7f9, #ffffff);
+  box-shadow: 
+    inset 4px 4px 8px rgba(174, 190, 205, 0.25),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.95),
+    2px 2px 6px rgba(174, 190, 205, 0.15);
+  border-radius: 8px;
+  border: none;
+  padding: 12px 24px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.demo-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    6px 6px 12px rgba(174, 190, 205, 0.25),
+    -6px -6px 12px rgba(255, 255, 255, 0.95);
+}</code></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <footer class="footer1_component">
     <div class="padding-global-6">
@@ -1048,8 +2145,7 @@ background: linear-gradient(145deg, #7990d8, #5f76c0) !important;
               </div>
               <div id="w-node-_8887211e-55e1-82fc-c812-4e3f0494b617-0494b60c" class="footer1_link-list"><a href="./index.html"
                   aria-current="page" class="footer1_link">Home</a><a href="./case-studies.html"
-                  class="footer1_link">Work</a><a
-                  href="./resources.html" class="footer1_link">Resources</a></div>
+                  class="footer1_link">Projects</a></div>
               <div id="w-node-_4023670b-f684-32f2-18f3-3804327eabad-0494b60c" class="footer1_link-list"><a href="#"
                   class="footer1_link">UX Sprints</a><a href="./ui-playground.html" class="footer1_link">UI
                   Playground</a><a href="./contact.html"
@@ -1079,6 +2175,139 @@ background: linear-gradient(145deg, #7990d8, #5f76c0) !important;
   </div>
 
   <script>
+    // Tab switching functionality
+    function switchTab(tabName) {
+      // Hide all tab contents
+      const tabContents = document.querySelectorAll('.tab-content');
+      tabContents.forEach(content => {
+        content.classList.remove('active');
+      });
+      
+      // Remove active class from all tab buttons
+      const tabButtons = document.querySelectorAll('.tab-button');
+      tabButtons.forEach(button => {
+        button.classList.remove('active');
+      });
+      
+      // Show selected tab content
+      const selectedTab = document.getElementById(tabName);
+      if (selectedTab) {
+        selectedTab.classList.add('active');
+      }
+      
+      // Add active class to clicked button
+      const clickedButton = event.target;
+      clickedButton.classList.add('active');
+      
+      // Update URL hash without scrolling
+      history.pushState(null, null, '#' + tabName);
+    }
+
+    // UI Dev Interactive Functions
+    function flipCard(card) {
+      card.classList.toggle('flipped');
+    }
+
+    function animateProgress() {
+      const progressBars = document.querySelectorAll('.progress-fill');
+      
+      // Reset all progress bars
+      progressBars.forEach(bar => {
+        const currentWidth = bar.style.width;
+        bar.style.width = '0%';
+        
+        // Animate back to original width
+        setTimeout(() => {
+          bar.style.width = currentWidth;
+        }, 100);
+      });
+    }
+
+    // Form validation and submission
+    function setupFormHandling() {
+      const form = document.querySelector('.demo-form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Get form elements
+          const inputs = form.querySelectorAll('input, select, textarea');
+          let isValid = true;
+          
+          // Simple validation
+          inputs.forEach(input => {
+            if (input.hasAttribute('required') && !input.value.trim()) {
+              isValid = false;
+              input.style.boxShadow = 'inset 4px 4px 8px rgba(220, 53, 69, 0.3), inset -4px -4px 8px rgba(255, 255, 255, 0.95)';
+            } else {
+              input.style.boxShadow = '';
+            }
+          });
+          
+          if (isValid) {
+            // Show success message
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '✓ Message Sent!';
+            submitBtn.style.background = 'linear-gradient(145deg, #28a745, #218838)';
+            submitBtn.style.color = 'white';
+            
+            setTimeout(() => {
+              submitBtn.textContent = originalText;
+              submitBtn.style.background = '';
+              submitBtn.style.color = '';
+              form.reset();
+            }, 2000);
+          }
+        });
+      }
+    }
+
+    // Dark mode toggle functionality
+    function setupDarkModeToggle() {
+      const darkModeToggle = document.getElementById('darkmode');
+      if (darkModeToggle) {
+        darkModeToggle.addEventListener('change', function() {
+          if (this.checked) {
+            document.body.style.filter = 'invert(1) hue-rotate(180deg)';
+            document.querySelectorAll('img, video').forEach(media => {
+              media.style.filter = 'invert(1) hue-rotate(180deg)';
+            });
+          } else {
+            document.body.style.filter = '';
+            document.querySelectorAll('img, video').forEach(media => {
+              media.style.filter = '';
+            });
+          }
+        });
+      }
+    }
+
+    // Auto-animate progress bars on tab switch
+    function autoAnimateProgress() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const progressBars = entry.target.querySelectorAll('.progress-fill');
+            progressBars.forEach((bar, index) => {
+              setTimeout(() => {
+                const targetWidth = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                  bar.style.width = targetWidth;
+                }, 100);
+              }, index * 200);
+            });
+          }
+        });
+      }, { threshold: 0.5 });
+
+      const progressSection = document.querySelector('.progress-bar')?.closest('.layout401_card');
+      if (progressSection) {
+        observer.observe(progressSection);
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
       const backToTopButton = document.querySelector('.back-to-top');
 
@@ -1110,6 +2339,39 @@ background: linear-gradient(145deg, #7990d8, #5f76c0) !important;
           figmaContainer.classList.add('loaded');
         });
       }
+
+      // Initialize UI Dev functionality
+      setupFormHandling();
+      setupDarkModeToggle();
+      autoAnimateProgress();
+
+      // Check URL hash on page load
+      const hash = window.location.hash.substr(1);
+      if (hash && ['case-studies', 'resources', 'ui-playground', 'about'].includes(hash)) {
+        // Hide all tab contents
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabContents.forEach(content => {
+          content.classList.remove('active');
+        });
+        
+        // Remove active class from all tab buttons
+        const tabButtons = document.querySelectorAll('.tab-button');
+        tabButtons.forEach(button => {
+          button.classList.remove('active');
+        });
+        
+        // Show selected tab content
+        const selectedTab = document.getElementById(hash);
+        if (selectedTab) {
+          selectedTab.classList.add('active');
+        }
+        
+        // Add active class to corresponding button
+        const activeButton = document.querySelector(`[onclick="switchTab('${hash}')"]`);
+        if (activeButton) {
+          activeButton.classList.add('active');
+        }
+      }
     });
 
     // Prevent right-click and image dragging
@@ -1123,9 +2385,7 @@ background: linear-gradient(145deg, #7990d8, #5f76c0) !important;
     });
   </script>
 
-  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=resource"
-    type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-    crossorigin="anonymous"></script>
+  <script src="https://d3e54v103j8qbb.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 </body>
 
