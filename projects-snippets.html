@@ -216,18 +216,30 @@
                 </div>
             </div>
         </section>
-        <!-- <section class="section_layout401 cream-background">
+        <section class="section_layout401 cream-background">
           <div class="padding-global">
               <div class="container-large">
                   <div class="padding-section-xsmall">
-                      <img src="https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/67cffb99f1374ff4069f78e8_7.avif"
+                      <img src="./assets/Glassy Instagram.png"
                           loading="lazy" sizes="(max-width: 1980px) 100vw, 1980px"
-                          srcset="https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/67cffb99f1374ff4069f78e8_7-p-500.avif 500w, https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/67cffb99f1374ff4069f78e8_7-p-800.avif 800w, https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/67cffb99f1374ff4069f78e8_7.avif 1980w"
+                          srcset="./assets/Glassy Instagram.png 500w, ./assets/Glassy Instagram.png 800w, ./assets/Glassy Instagram.png 1980w"
                           alt="" class="case-study-image" />
                   </div>
               </div>
           </div>
-      </section> -->
+      </section>
+      <section class="section_layout401 cream-background">
+        <div class="padding-global">
+            <div class="container-large">
+                <div class="padding-section-xsmall">
+                    <img src="./assets/Save As= index.html.png"
+                        loading="lazy" sizes="(max-width: 1980px) 100vw, 1980px"
+                        srcset="./assets/Save As= index.html.png 500w, ./assets/Save As= index.html.png 800w, ./assets/Save As= index.html.png 1980w"
+                        alt="" class="case-study-image" />
+                </div>
+            </div>
+        </div>
+    </section>
         </header>
         <section class="section-cta">
             <div class="padding-global">
@@ -324,9 +336,7 @@
                   document.addEventListener('DOMContentLoaded', function() {
                       const backToTopButton = document.querySelector('.back-to-top');
                       
-                      // Function to check scroll position and show/hide button
                       function toggleBackToTopButton() {
-                          // Show button when user scrolls down 40% of the viewport height
                           if (window.scrollY > window.innerHeight * 0.4) {
                               backToTopButton.classList.add('visible');
                           } else {
@@ -334,18 +344,15 @@
                           }
                       }
                       
-                      // Add scroll event listener
                       window.addEventListener('scroll', toggleBackToTopButton);
                       
-                      // Add click event listener to scroll back to top
-                      backToTopButton.addEventListener('click', function() {
+                            backToTopButton.addEventListener('click', function() {
                           window.scrollTo({
                               top: 0,
                               behavior: 'smooth'
                           });
                       });
                       
-                      // Initial check in case the page is loaded in the middle
                       toggleBackToTopButton();
                   });
               </script>

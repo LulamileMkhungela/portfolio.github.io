@@ -609,29 +609,24 @@
                       document.addEventListener('DOMContentLoaded', function() {
                           const backToTopButton = document.querySelector('.back-to-top');
                           
-                          // Function to check scroll position and show/hide button
-                          function toggleBackToTopButton() {
-                              // Show button when user scrolls down 40% of the viewport height
-                              if (window.scrollY > window.innerHeight * 0.4) {
+                              function toggleBackToTopButton() {
+                                  if (window.scrollY > window.innerHeight * 0.4) {
                                   backToTopButton.classList.add('visible');
                               } else {
                                   backToTopButton.classList.remove('visible');
                               }
                           }
                           
-                          // Add scroll event listener
-                          window.addEventListener('scroll', toggleBackToTopButton);
+                              window.addEventListener('scroll', toggleBackToTopButton);
                           
-                          // Add click event listener to scroll back to top
-                          backToTopButton.addEventListener('click', function() {
+                                    backToTopButton.addEventListener('click', function() {
                               window.scrollTo({
                                   top: 0,
                                   behavior: 'smooth'
                               });
                           });
                           
-                          // Initial check in case the page is loaded in the middle
-                          toggleBackToTopButton();
+                              toggleBackToTopButton();
                       });
                   </script>
                   
