@@ -3493,12 +3493,12 @@ figcaption {
   color: var(--base-color-brand--black)
 }
 
-.button.is-alternate.is-primary {
+/* .button.is-alternate.is-primary {
   border-style: none;
   border-color: var(--primary-blue);
   background-color: var(--darker-blue);
   color: var(--cream)
-}
+} */
 
 .button.is-alternate.is-primary:hover {
   border-style: none;
@@ -12162,13 +12162,13 @@ figcaption {
   grid-row-gap: 1rem;
   border: 1px solid var(--border-color--border-secondary);
   background-color: var(--base-color-brand--white);
-  border-radius: 16px;
+  border-radius: 6px;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   max-width: 80rem;
   height: auto;
-  min-height: 4.5rem;
+  min-height: 3.5rem;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1rem;
@@ -16907,7 +16907,7 @@ figcaption {
   }
 
   .navbar14_container {
-    min-height: 4rem;
+    min-height: 3.5rem;
     padding-left: 5%;
     padding-right: 5%
   }
