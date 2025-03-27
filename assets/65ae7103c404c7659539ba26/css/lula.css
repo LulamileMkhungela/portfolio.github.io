@@ -4237,7 +4237,7 @@ figcaption {
 
 .padding-section-large {
   background-color: #0000;
-  padding-top: 5rem;
+  padding-top: 1.5rem;
   padding-bottom: 5rem;
   font-family: Open Sauce One, sans-serif
 }
@@ -18112,7 +18112,7 @@ figcaption {
   }
 
   .padding-section-xxlarge.extra-top {
-    padding-top: 8rem
+    padding-top: 1.5rem
   }
 
   .padding-section-xxlarge.less-bottom-padding {
