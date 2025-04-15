@@ -12925,7 +12925,13 @@ figcaption {
 .case-study-link.top-margin {
   margin-top: 40px
 }
-
+.contact-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -2.5px
+}
 .logo-case-study {
   max-width: 130px;
   margin-bottom: 0
