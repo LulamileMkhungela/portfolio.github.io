@@ -242,6 +242,47 @@
                 flex-direction: column;
             }
         }
+        /* References Button */
+.references-container {
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.references-button {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.references-button:hover {
+    background-color: var(--highlight);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Print styles for the button */
+@media print {
+    .references-container {
+        margin: 30px 0 10px;
+        text-align: center;
+    }
+    
+    .references-button {
+        background-color: transparent;
+        color: var(--primary-color);
+        box-shadow: none;
+        border: 1px solid var(--border-color);
+        padding: 8px 16px;
+    }
+}
     </style>
 </head>
 <body>
@@ -485,5 +526,8 @@
             <p>Completed secondary education with a focus on STEM subjects including Mathematics, Physical Sciences, and Economics. Additional coursework included IsiXhosa, English, Life Orientation, and Accounting, establishing a strong academic foundation for future technical and professional development.</p>
         </div>
     </section>
+    <div class="references-container">
+        <button class="references-button">References Available Upon Request</button>
+    </div>
 </body>
 </html>
