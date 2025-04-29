@@ -131,10 +131,25 @@
                   tomorrow</h1>
               </div>
               <p class="text-size-large">A blend of strategic UX, holistic design, and AI-enhanced workflows.</p>
-              <div class="margin-top margin-medium">
-                <div class="button-group is-center"><a href="https://calendar.app.google/zaoQCaqAhrZmVM8D6"
-                    target="_blank" class="button w-button">Book a 15-min call</a></div>
+              <div class="button-group is-center margin-top-3rem" style="text-align: center;">
+                <button onclick="toggleCalendar()" class="button w-button">
+                  Book a 15-min call →
+                </button>
               </div>
+                <div id="calendarEmbed" style="display: none; margin-top: 2rem; text-align: center;">
+                <iframe
+                  src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0xDbiatxmNpkENtkkGaZzi1T31aFqvg0pK9eB4zXySOTA7rrPFwh9QngrFi8t1jm1QE67U87Ty?gv=true"
+                  style="border: none; width: 100%; max-width: 1500px; height: 900px;"
+                  allowfullscreen>
+                </iframe>
+              </div>
+              
+              <script>
+                function toggleCalendar() {
+                  const calendar = document.getElementById('calendarEmbed');
+                  calendar.style.display = calendar.style.display === 'none' ? 'block' : 'none';
+                }
+              </script>
             </div>
           </div>
           <div>
