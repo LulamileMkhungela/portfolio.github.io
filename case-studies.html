@@ -81,9 +81,9 @@
       --neu-bg-secondary: #ffffff;
       --neu-shadow-light: rgba(255, 255, 255, 0.95);
       --neu-shadow-dark: rgba(174, 190, 205, 0.25);
-      --neu-border-radius: 20px;
-      --neu-border-radius-small: 12px;
-      --neu-border-radius-large: 30px;
+      --neu-border-radius: 16px;
+      --neu-border-radius-small: 8px;
+      --neu-border-radius-large: 20px;
       --neu-accent: #4a90e2;
       --neu-accent-hover: #357abd;
       --text-primary: #44476a;
@@ -102,27 +102,27 @@
       min-height: 100vh;
     }
 
-    /* Navbar Glassmorphic Styling */
+    /* Navbar Glassmorphic Styling - Reduced spacing */
     .navbar14_component {
       background: linear-gradient(145deg, var(--neu-bg-secondary), #f5f7f9) !important;
       box-shadow: 
-        8px 8px 20px var(--neu-shadow-dark),
-        -8px -8px 20px var(--neu-shadow-light) !important;
+        6px 6px 16px var(--neu-shadow-dark),
+        -6px -6px 16px var(--neu-shadow-light) !important;
       border-radius: var(--neu-border-radius-large) !important;
       backdrop-filter: blur(10px) !important;
       border: none !important;
       position: sticky;
-      top: 20px;
-      margin: 20px;
+      top: 10px;
+      margin: 10px;
       z-index: 100;
     }
 
     .navbar14_container {
-      padding: 15px 30px;
+      padding: 8px 20px;
     }
 
     .navbar14_link {
-      padding: 10px 20px !important;
+      padding: 6px 16px !important;
       border-radius: var(--neu-border-radius-small) !important;
       transition: all 0.3s ease !important;
       text-decoration: none !important;
@@ -134,11 +134,11 @@
     .navbar14_link.w--current {
       background: linear-gradient(145deg, #f5f7f9, var(--neu-bg-secondary)) !important;
       box-shadow: 
-        inset 4px 4px 8px var(--neu-shadow-dark),
-        inset -4px -4px 8px var(--neu-shadow-light) !important;
+        inset 3px 3px 6px var(--neu-shadow-dark),
+        inset -3px -3px 6px var(--neu-shadow-light) !important;
     }
 
-    /* Button Neumorphic Styling */
+    /* Button Neumorphic Styling - Reduced padding */
     .button,
     .w-button,
     .fs-cc-banner_button,
@@ -147,12 +147,12 @@
     a[href]:not(.navbar14_link):not(.footer1_link):not(.text-style-link):not(.navbar14_logo-link):not(.case-study-link) {
       background: linear-gradient(145deg, #f5f7f9, var(--neu-bg-secondary)) !important;
       box-shadow: 
-        inset 6px 6px 12px var(--neu-shadow-dark),
-        inset -6px -6px 12px var(--neu-shadow-light),
-        2px 2px 8px rgba(174, 190, 205, 0.15) !important;
+        inset 4px 4px 8px var(--neu-shadow-dark),
+        inset -4px -4px 8px var(--neu-shadow-light),
+        2px 2px 6px rgba(174, 190, 205, 0.15) !important;
       border-radius: var(--neu-border-radius-small) !important;
       border: none !important;
-      padding: 12px 24px !important;
+      padding: 8px 16px !important;
       color: var(--text-primary) !important;
       text-decoration: none !important;
       display: inline-block !important;
@@ -171,10 +171,10 @@
     a[href]:not(.navbar14_link):not(.footer1_link):not(.text-style-link):not(.navbar14_logo-link):not(.case-study-link):hover {
       background: linear-gradient(145deg, var(--neu-bg-secondary), #f5f7f9) !important;
       box-shadow: 
-        8px 8px 16px var(--neu-shadow-dark),
-        -8px -8px 16px var(--neu-shadow-light),
-        inset 2px 2px 6px rgba(255, 255, 255, 0.8) !important;
-      transform: translateY(-3px) !important;
+        6px 6px 12px var(--neu-shadow-dark),
+        -6px -6px 12px var(--neu-shadow-light),
+        inset 2px 2px 4px rgba(255, 255, 255, 0.8) !important;
+      transform: translateY(-2px) !important;
     }
 
     .button:active,
@@ -185,8 +185,8 @@
     a[href]:not(.navbar14_link):not(.footer1_link):not(.text-style-link):not(.navbar14_logo-link):not(.case-study-link):active {
       transform: translateY(-1px) !important;
       box-shadow: 
-        inset 8px 8px 16px var(--neu-shadow-dark),
-        inset -8px -8px 16px var(--neu-shadow-light) !important;
+        inset 6px 6px 12px var(--neu-shadow-dark),
+        inset -6px -6px 12px var(--neu-shadow-light) !important;
     }
 
     /* Primary Button Special Styling */
@@ -195,29 +195,29 @@
       background: linear-gradient(145deg, var(--neu-accent), var(--neu-accent-hover)) !important;
       color: white !important;
       box-shadow: 
-        inset 6px 6px 12px rgba(53, 122, 189, 0.3),
-        inset -6px -6px 12px rgba(255, 255, 255, 0.2),
-        4px 4px 12px rgba(74, 144, 226, 0.4) !important;
+        inset 4px 4px 8px rgba(53, 122, 189, 0.3),
+        inset -4px -4px 8px rgba(255, 255, 255, 0.2),
+        3px 3px 8px rgba(74, 144, 226, 0.4) !important;
     }
 
     .button.is-alternate.is-primary:hover,
     .w-button.is-alternate.is-primary:hover {
       box-shadow: 
-        8px 8px 20px rgba(74, 144, 226, 0.5),
-        -8px -8px 20px rgba(255, 255, 255, 0.3),
-        inset 2px 2px 8px rgba(255, 255, 255, 0.3) !important;
-      transform: translateY(-4px) !important;
+        6px 6px 16px rgba(74, 144, 226, 0.5),
+        -6px -6px 16px rgba(255, 255, 255, 0.3),
+        inset 2px 2px 6px rgba(255, 255, 255, 0.3) !important;
+      transform: translateY(-3px) !important;
     }
 
     .button.is-alternate.is-primary:active,
     .w-button.is-alternate.is-primary:active {
       box-shadow: 
-        inset 8px 8px 16px rgba(53, 122, 189, 0.4),
-        inset -8px -8px 16px rgba(255, 255, 255, 0.1) !important;
+        inset 6px 6px 12px rgba(53, 122, 189, 0.4),
+        inset -6px -6px 12px rgba(255, 255, 255, 0.1) !important;
       transform: translateY(-1px) !important;
     }
 
-    /* Header Section */
+    /* Header Section - Reduced padding */
     .section_header62 {
       background: linear-gradient(135deg, var(--neu-bg-primary) 0%, var(--neu-bg-secondary) 100%) !important;
     }
@@ -225,53 +225,53 @@
     .header62_component {
       background: linear-gradient(145deg, var(--neu-bg-secondary), #f5f7f9) !important;
       box-shadow: 
-        12px 12px 24px var(--neu-shadow-dark),
-        -12px -12px 24px var(--neu-shadow-light) !important;
+        8px 8px 16px var(--neu-shadow-dark),
+        -8px -8px 16px var(--neu-shadow-light) !important;
       border-radius: var(--neu-border-radius-large) !important;
-      padding: 3rem 2rem !important;
-      margin: 2rem 0 !important;
+      padding: 2rem 1.5rem !important;
+      margin: 1rem 0 !important;
     }
 
-    /* Case Study Cards */
+    /* Case Study Cards - Reduced spacing */
     .case-study-link {
       text-decoration: none !important;
       color: inherit !important;
       display: block !important;
-      margin-bottom: 2rem !important;
+      margin-bottom: 1rem !important;
     }
 
     .case-study-link.top-margin {
-      margin-top: 2rem !important;
+      margin-top: 1rem !important;
     }
 
     .cta1_component {
       background: linear-gradient(145deg, var(--neu-bg-secondary), #f5f7f9) !important;
       box-shadow: 
-        12px 12px 24px var(--neu-shadow-dark),
-        -12px -12px 24px var(--neu-shadow-light) !important;
+        8px 8px 16px var(--neu-shadow-dark),
+        -8px -8px 16px var(--neu-shadow-light) !important;
       border-radius: var(--neu-border-radius-large) !important;
-      padding: 2.5rem !important;
+      padding: 1.5rem !important;
       transition: all 0.3s ease !important;
       overflow: hidden !important;
     }
 
     .case-study-link:hover .cta1_component {
-      transform: translateY(-5px) !important;
+      transform: translateY(-3px) !important;
       box-shadow: 
-        16px 16px 32px var(--neu-shadow-dark),
-        -16px -16px 32px var(--neu-shadow-light) !important;
+        12px 12px 24px var(--neu-shadow-dark),
+        -12px -12px 24px var(--neu-shadow-light) !important;
     }
 
     .cta1_content {
-      padding-right: 2rem !important;
+      padding-right: 1rem !important;
     }
 
     .cta1_image-wrapper {
       border-radius: var(--neu-border-radius) !important;
       overflow: hidden !important;
       box-shadow: 
-        8px 8px 16px var(--neu-shadow-dark),
-        -8px -8px 16px var(--neu-shadow-light) !important;
+        6px 6px 12px var(--neu-shadow-dark),
+        -6px -6px 12px var(--neu-shadow-light) !important;
     }
 
     .cta1_image {
@@ -284,19 +284,19 @@
       transform: scale(1.02) !important;
     }
 
-    /* Tag styling */
+    /* Tag styling - Reduced padding */
     .text-style-tagline {
       background: linear-gradient(145deg, #f0f4f8, #e6f0ff) !important;
       box-shadow: 
         inset 2px 2px 4px rgba(174, 190, 205, 0.2),
         inset -2px -2px 4px rgba(255, 255, 255, 0.8) !important;
       border-radius: var(--neu-border-radius-small) !important;
-      padding: 0.5rem 1rem !important;
-      font-size: 0.875rem !important;
+      padding: 0.25rem 0.75rem !important;
+      font-size: 0.75rem !important;
       font-weight: 500 !important;
       color: var(--neu-accent) !important;
       display: inline-block !important;
-      margin: 0.25rem 0.5rem 0.25rem 0 !important;
+      margin: 0.125rem 0.25rem 0.125rem 0 !important;
     }
 
     /* Section backgrounds */
@@ -304,7 +304,7 @@
       background: linear-gradient(135deg, var(--neu-bg-primary) 0%, var(--neu-bg-secondary) 100%) !important;
     }
 
-    /* CTA Section */
+    /* CTA Section - Reduced padding */
     .section-cta {
       background: linear-gradient(135deg, var(--neu-bg-primary) 0%, var(--neu-bg-secondary) 100%) !important;
     }
@@ -312,10 +312,10 @@
     .layout-cta {
       background: linear-gradient(145deg, var(--neu-bg-secondary), #f5f7f9) !important;
       box-shadow: 
-        16px 16px 32px var(--neu-shadow-dark),
-        -16px -16px 32px var(--neu-shadow-light) !important;
+        12px 12px 24px var(--neu-shadow-dark),
+        -12px -12px 24px var(--neu-shadow-light) !important;
       border-radius: var(--neu-border-radius-large) !important;
-      padding: 4rem 3rem !important;
+      padding: 2.5rem 2rem !important;
       text-align: center !important;
       max-width: 900px !important;
       margin: 0 auto !important;
@@ -325,14 +325,14 @@
     .back-to-top {
       background: linear-gradient(145deg, var(--neu-bg-secondary), #f5f7f9) !important;
       box-shadow: 
-        8px 8px 16px var(--neu-shadow-dark),
-        -8px -8px 16px var(--neu-shadow-light) !important;
+        6px 6px 12px var(--neu-shadow-dark),
+        -6px -6px 12px var(--neu-shadow-light) !important;
       border-radius: 50% !important;
-      width: 60px !important;
-      height: 60px !important;
+      width: 50px !important;
+      height: 50px !important;
       position: fixed !important;
-      bottom: 30px !important;
-      right: 30px !important;
+      bottom: 20px !important;
+      right: 20px !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
@@ -351,46 +351,66 @@
     }
 
     .back-to-top:hover {
-      transform: translateY(-3px) !important;
+      transform: translateY(-2px) !important;
       box-shadow: 
-        12px 12px 24px var(--neu-shadow-dark),
-        -12px -12px 24px var(--neu-shadow-light) !important;
+        8px 8px 16px var(--neu-shadow-dark),
+        -8px -8px 16px var(--neu-shadow-light) !important;
     }
 
     .back-to-top:active {
       transform: translateY(0) !important;
       box-shadow: 
-        inset 4px 4px 8px var(--neu-shadow-dark),
-        inset -4px -4px 8px var(--neu-shadow-light) !important;
+        inset 3px 3px 6px var(--neu-shadow-dark),
+        inset -3px -3px 6px var(--neu-shadow-light) !important;
     }
 
     /* Menu button for mobile */
     .navbar14_menu-button {
       background: linear-gradient(145deg, #f5f7f9, var(--neu-bg-secondary)) !important;
       box-shadow: 
-        inset 3px 3px 6px var(--neu-shadow-dark),
-        inset -3px -3px 6px var(--neu-shadow-light) !important;
+        inset 2px 2px 4px var(--neu-shadow-dark),
+        inset -2px -2px 4px var(--neu-shadow-light) !important;
       border-radius: var(--neu-border-radius-small) !important;
       border: none !important;
-      padding: 10px !important;
+      padding: 8px !important;
       cursor: pointer !important;
+    }
+
+
+
+    .padding-section-small {
+      padding-top: 1.5rem !important;
+      padding-bottom: 1.5rem !important;
+    }
+
+    .padding-vertical {
+      padding-top: 2rem !important;
+      padding-bottom: 2rem !important;
+    }
+
+    .margin-bottom.margin-small {
+      margin-bottom: 0.75rem !important;
+    }
+
+    .margin-bottom.margin-medium {
+      margin-bottom: 1rem !important;
     }
 
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .navbar14_component {
-        margin: 10px !important;
+        margin: 5px !important;
         border-radius: var(--neu-border-radius) !important;
       }
 
       .header62_component {
-        padding: 2rem 1.5rem !important;
+        padding: 1.5rem 1rem !important;
       }
 
       .cta1_component {
-        padding: 2rem !important;
+        padding: 1.25rem !important;
         grid-template-columns: 1fr !important;
-        gap: 1.5rem !important;
+        gap: 1rem !important;
       }
 
       .cta1_content {
@@ -398,21 +418,31 @@
       }
 
       .layout-cta {
-        padding: 3rem 2rem !important;
+        padding: 2rem 1.5rem !important;
+      }
+
+      .padding-section-xxlarge {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
       }
     }
 
     @media (max-width: 479px) {
       .header62_component {
-        padding: 1.5rem 1rem !important;
+        padding: 1rem 0.75rem !important;
       }
 
       .cta1_component {
-        padding: 1.5rem !important;
+        padding: 1rem !important;
       }
 
       .layout-cta {
-        padding: 2rem 1.5rem !important;
+        padding: 1.5rem 1rem !important;
+      }
+
+      .padding-section-xxlarge {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
       }
     }
   </style>
@@ -435,8 +465,8 @@
         class="navbar14_menu w-nav-menu">
         <div class="navbar14_menu-link-wrapper">
           <div class="navbar14_menu-links"><a href="./index.html" 
-              class="navbar14_link w-nav-link w--current">Services</a><a href="./case-studies.html"
-              class="navbar14_link w-nav-link">Work</a><a href="./about-me.html" class="navbar14_link w-nav-link">About
+              class="navbar14_link w-nav-link">Services</a><a href="./case-studies.html"
+              class="navbar14_link w-nav-link w--current">Work</a><a href="./about-me.html" class="navbar14_link w-nav-link">About
             </a><a href="./resources.html" class="navbar14_link w-nav-link">Resources</a></div>
           <div id="w-node-_172216b1-dfd9-9eef-9495-a5d90db31316-0db31309" class="navbar14_button-wrapper"><a
               href="./contact.html" class="button is-alternate is-primary w-button">Start here</a></div>
@@ -532,8 +562,8 @@
                     </div>
                 </div>
             </a>
-            
-            <a href="ui-playground.html" class="case-study-link top-margin w-inline-block">
+
+            <a href="https://www.figma.com/design/SeCP6cuxXX8UyhnOn2wYcJ/Collection-Of-Projects?node-id=8911-3184&t=iYcLW2SGGKNUzMsQ-1" target="_blank" class="case-study-link top-margin w-inline-block">
               <div class="w-layout-grid cta1_component">
                   <div class="cta1_content">
                       <div class="margin-bottom margin-small">
@@ -555,7 +585,7 @@
           </div>
         </div>
     </section>
-    <footer class="footer1_component">
+        <footer class="footer1_component">
     <div class="padding-global-6">
       <div class="container-large">
         <div class="padding-vertical padding-xxlarge">
@@ -563,7 +593,7 @@
             <div class="w-layout-grid footer1_top-wrapper">
               <div class="footer3_left-wrapper">
                 <div class="max-width-large"><a href="./index.html"
-                    class="navbar14_logo-link margin-bottom margin-small w-nav-brand w--current"><img width="192"
+                    class="navbar14_logo-link margin-bottom margin-small w-nav-brand"><img width="192"
                       loading="lazy" alt=""
                       src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/black_logo.png?alt=media&token=e71d27d7-15b7-45b9-9c99-2b7f5b3c35ac"
                       class="navbar14_logo" /></a>
@@ -586,11 +616,11 @@
                   </div>
                 </div>
               </div>
-              <div id="w-node-_8887211e-55e1-82fc-c812-4e3f0494b617-0494b60c" class="footer1_link-list"><a href="#"
-                  aria-current="page" class="footer1_link w--current">Home</a><a href="./case-studies.html"
+              <div id="w-node-_8887211e-55e1-82fc-c812-4e3f0494b617-0494b60c" class="footer1_link-list"><a href="./index.html"
+                  aria-current="page" class="footer1_link">Home</a><a href="./case-studies.html"
                   class="footer1_link">Work</a><a
                   href="./resources.html" class="footer1_link">Resources</a></div>
-              <div id="w-node-_4023670b-f684-32f2-18f3-3804327eabad-0494b60c" class="footer1_link-list"><a href="./ux-sprint.html"
+              <div id="w-node-_4023670b-f684-32f2-18f3-3804327eabad-0494b60c" class="footer1_link-list"><a href="#"
                   class="footer1_link">UX Sprints</a><a href="./ui-playground.html" class="footer1_link">UI
                   Playground</a><a href="./contact.html"
                   class="footer1_link">Contact</a></div>

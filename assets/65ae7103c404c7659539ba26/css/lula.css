@@ -11971,19 +11971,6 @@ figcaption {
   display: flex
 }
 
-.padding-section-huge {
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-  display: flex
-}
-
-.padding-section-huge.less-bottom-padding {
-  height: auto;
-  padding-top: 12rem;
-  padding-bottom: 0
-}
-
 .lottie-animation {
   width: 40px;
   height: 40px
@@ -12236,15 +12223,6 @@ figcaption {
 
 .layout-grid-01-card {
   padding: 16px
-}
-
-.padding-section-xxlarge {
-  padding-top: 8rem;
-  padding-bottom: 8rem
-}
-
-.padding-section-xxlarge.extra-top {
-  padding-top: 10rem
 }
 
 .padding-section-xxlarge.less-bottom-padding.bottom-padding-4rem {
