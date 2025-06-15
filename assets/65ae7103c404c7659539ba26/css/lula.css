@@ -2194,8 +2194,8 @@ textarea.w-select {
   --background-color--background-error: var(--base-color-system--error-red-light);
   --text-color--text-error: var(--base-color-system--error-red);
   --border-color--border-secondary: var(--base-color-neutral--light-grey-1);
-  --light-blue: #ced8fa;
-  --lighter-blue: #f0f3fd;
+  --light-blue: #b2c2f6;
+  --lighter-blue: #b2c2f6;
   --base-color-neutral--light-grey-2: #dfdfdf;
   --tertiary-cream\<deleted\|variable-8ecb3ed9-b096-a584-07ae-3c126e01ad14\>: #ede8e2;
   --lighter-lemon: #fffadb;
@@ -2216,7 +2216,7 @@ textarea.w-select {
 .w-backgroundvideo-backgroundvideoplaypausebutton:focus-visible {
   outline-offset: 2px;
   border-radius: 50%;
-  outline: 2px solid #3b79c3
+  outline: 2px solid #7990d8
 }
 
 .w-layout-grid {
@@ -2261,16 +2261,16 @@ textarea.w-select {
 }
 
 .w-checkbox-input--inputType-custom.w--redirected-checked {
-  background-color: #3898ec;
+  background-color: #7990d8;
   background-image: url(https://d3e54v103j8qbb.cloudfront.net/static/custom-checkbox-checkmark.589d534424.svg);
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
-  border-color: #3898ec
+  border-color: #7990d8
 }
 
 .w-checkbox-input--inputType-custom.w--redirected-focus {
-  box-shadow: 0 0 3px 1px #3898ec
+  box-shadow: 0 0 3px 1px #7990d8
 }
 
 body {
