@@ -104,13 +104,6 @@
 
     /* Navbar Glassmorphic Styling */
     .navbar14_component {
-      background: linear-gradient(145deg, var(--neu-bg-secondary), #f5f7f9) !important;
-      box-shadow: 
-        8px 8px 20px var(--neu-shadow-dark),
-        -8px -8px 20px var(--neu-shadow-light) !important;
-      border-radius: var(--neu-border-radius-large) !important;
-      backdrop-filter: blur(10px) !important;
-      border: none !important;
       position: sticky;
       top: 20px;
       margin: 20px;
@@ -305,10 +298,11 @@
     .team20_content-left {
       background: linear-gradient(145deg, var(--neu-bg-secondary), #f5f7f9) !important;
       box-shadow: 
-        8px 8px 16px var(--neu-shadow-dark),
-        -8px -8px 16px var(--neu-shadow-light) !important;
+        8px 8px 8px var(--neu-shadow-dark),
+        -4px -4px 8px var(--neu-shadow-light) !important;
       border-radius: var(--neu-border-radius) !important;
       padding: 2rem !important;
+      margin-top: 12px;
     }
 
     .team20_content-right {
@@ -346,7 +340,6 @@
 
     /* Back to Top Button */
     .back-to-top {
-      background: linear-gradient(145deg, var(--neu-bg-secondary), #e8ecf0) !important;
       box-shadow: 
         8px 8px 16px var(--neu-shadow-dark),
         -8px -8px 16px var(--neu-shadow-light) !important;
@@ -465,30 +458,55 @@
 </head>
 
 <body class="body">
-  <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease"
-    role="banner" class="navbar14_component navbar-on-page w-nav">
-    <div class="navbar14_container"><a href="./index.html" class="navbar14_logo-link w-nav-brand w--current"><img
-          width="192" loading="lazy" alt="loading"
-          src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/default_logo.png?alt=media&token=194050ef-e4ef-45c0-8d51-ebf0cdf270fd"
-          class="navbar14_logo" /></a>
-      <nav role="navigation" id="w-node-_172216b1-dfd9-9eef-9495-a5d90db3130d-0db31309"
-        class="navbar14_menu w-nav-menu">
-        <div class="navbar14_menu-link-wrapper">
-          <div class="navbar14_menu-links"><a href="./index.html"
-              class="navbar14_link w-nav-link w--current">Services</a><a href="./case-studies.html"
-              class="navbar14_link w-nav-link">Work</a><a href="./about-me.html" class="navbar14_link w-nav-link">About
-            </a><a href="./resources.html" class="navbar14_link w-nav-link">Resources</a></div>
-          <div id="w-node-_172216b1-dfd9-9eef-9495-a5d90db31316-0db31309" class="navbar14_button-wrapper"><a
-              href="./contact.html" class="button is-alternate is-primary w-button">Start here</a></div>
+    <div
+      data-collapse="medium"
+      data-animation="default"
+      data-duration="400"
+      data-easing="ease"
+      data-easing2="ease"
+      role="banner"
+      class="navbar14_component navbar-on-page w-nav"
+    >
+      <div class="navbar14_container">
+        <a href="./index.html" class="navbar14_logo-link w-nav-brand"
+          ><img
+            width="192"
+            loading="lazy"
+            alt="loading"
+            src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/default_logo.png?alt=media&token=194050ef-e4ef-45c0-8d51-ebf0cdf270fd"
+            class="navbar14_logo"
+        /></a>
+        <nav
+          role="navigation"
+          id="w-node-_172216b1-dfd9-9eef-9495-a5d90db3130d-0db31309"
+          class="navbar14_menu w-nav-menu"
+        >
+          <div class="navbar14_menu-link-wrapper">
+            <div class="navbar14_menu-links">
+              <a href="./index.html" class="navbar14_link w-nav-link"
+                >Services</a
+              ><a href="./case-studies.html" class="navbar14_link w-nav-link w--current"
+                >Work</a
+              ><a href="./about-me.html" class="navbar14_link w-nav-link"
+                >About </a
+              ><a href="./resources.html" class="navbar14_link w-nav-link"
+                >Resources</a
+              >
+            </div>
+          </div>
+        </nav>
+        <div class="navbar14_menu-button w-nav-button">
+          <div class="menu-icon">
+            <img
+              src="https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677f6921e1a1b3796ba6ece4_menu.svg"
+              loading="lazy"
+              alt=""
+              class="icon-menu"
+            />
+          </div>
         </div>
-      </nav>
-      <div class="navbar14_menu-button w-nav-button">
-        <div class="menu-icon"><img
-            src="https://cdn.prod.website-files.com/resource/677f6921e1a1b3796ba6ece4_menu.svg"
-            loading="lazy" alt="" class="icon-menu" /></div>
       </div>
     </div>
-  </div>
   <header class="section_header15">
     <div class="padding-global-6">
       <div class="container-large">
@@ -497,7 +515,11 @@
             <div class="margin-bottom margin-xxlarge">
               <div class="w-layout-grid hero-grid">
                 <div class="header15_content-left">
-                  <h1 class="heading-2">Streamlined Doctor Consultation(Limited Features Due to NDA)</h1>
+<h1 class="heading-2">
+  <a href="https://play.google.com/store/apps/details?id=com.practo.fabric&hl=en" target="_blank" rel="noopener noreferrer">
+    Practo App →
+  </a> 
+</h1>
                 </div>
                 <div class="header15_content-right text-size-large">
                   <b>INTRODUCTION:</b> <br />
@@ -549,10 +571,10 @@
           <div class="layout401_component">
             <div class="w-layout-grid layout401_grid-list gap-16px">
               <div class="team20_content-left">
-                <p class="text-size-large"><b>OVERVIEW:</b> Cons-Doc App is designed to streamline the entire doctor
-                  visit process, eliminating long waits and uncertainties. With a focus on convenience, Cons-Doc allows
+                <p class="text-size-large"><b>OVERVIEW:</b> Practo App is designed to streamline the entire doctor
+                  visit process, eliminating long waits and uncertainties. With a focus on convenience, Practo allows
                   patients to easily book appointments, get real-time availability, and pay ahead of time. Whether
-                  checking a doctor's profile or receiving reminders, Cons-Doc puts patients in control, saving both
+                  checking a doctor's profile or receiving reminders, Practo puts patients in control, saving both
                   time and stress.</p>
               </div>
             </div>
@@ -628,7 +650,7 @@
       <div class="container-large">
         <div class="team20_content-left">
           <p class="text-size-large"><b>Primary Research:</b> Understanding patient pain points and
-          their needs was essential in shaping Cons-Doc.Therefore, I created a simple Form survey consisting of 11
+          their needs was essential in shaping Practo.Therefore, I created a simple Form survey consisting of 11
           questions to find out how people feel about doctor visits and the challenges they face. I got 23 responses from
           people aged 20–53, which helped me see how big the problem is.
           <br></br>
@@ -785,31 +807,20 @@
       </div>
     </div>
   </section>
-  
-  <section class="section-cta">
+    </section>
+
+  <!-- Case Study Navigation -->
+  <section class="section_layout401 cream-background">
     <div class="padding-global">
       <div class="container-large">
-        <div class="padding-section-small">
-          <div class="layout-cta">
-            <div class="margin-bottom">
-              <div class="layout-cta-content">
-                <div class="layout508_card-content">
-                  <div class="layout508_card-content-top">
-                    <div class="margin-bottom margin-xsmall">
-                      <h3 class="heading-2">Ready to scale your product to new heights?</h3>
-                    </div>
-                    <p class="text-size-large margin-bottom margin-xsmall margin-top">If world-class design and
-                      meticulous attention to every detail is what you &#x27;re looking for, then you &#x27;re in the
-                      right place. </p>
-                  </div>
-                </div>
-                <div id="w-node-_62fa75ac-7188-86f4-e29f-a0b72bef8591-2bef8581"
-                  class="margin-top left-aligned-no-margin">
-                  <div class="button-group">
-                    <a href="https://calendar.app.google/zaoQCaqAhrZmVM8D6" target="_blank" class="button w-button">Book
-                      a call →</a>
-                  </div>
-                </div>
+        <div class="padding-section-medium">
+          <div class="layout401_component">
+            <div class="w-layout-grid" style="grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+              <div style="text-align: left;">
+                <a href="./case-studies.html" class="button is-secondary w-button">← Go back (Case Studies)</a>
+              </div>
+              <div style="text-align: right;">
+                <a href="./banking-experience.html" class="button is-alternate is-primary w-button">Next Case Study (Banks Branch UX) →</a>
               </div>
             </div>
           </div>

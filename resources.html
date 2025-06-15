@@ -106,13 +106,6 @@
 
     /* Navbar Neumorphic Styling - Matching About Page */
     .navbar14_component {
-      background: linear-gradient(145deg, var(--neu-bg-secondary), #e8ecf0) !important;
-      box-shadow: 
-        8px 8px 20px var(--neu-shadow-dark),
-        -8px -8px 20px var(--neu-shadow-light) !important;
-      border-radius: var(--neu-border-radius-large) !important;
-      backdrop-filter: blur(10px) !important;
-      border: none !important;
       position: sticky;
       top: 20px;
       margin: 20px;
@@ -120,7 +113,7 @@
     }
 
     .navbar14_container {
-      padding: 15px 30px;
+      padding: 0px 30px;
     }
 
     .navbar14_link {
@@ -318,53 +311,43 @@
     }
 
     /* Back to Top Button */
-    .back-to-top {
-      background: linear-gradient(145deg, var(--neu-bg-secondary), #f5f7f9) !important;
-      box-shadow: 
-        6px 6px 12px var(--neu-shadow-dark),
-        -6px -6px 12px var(--neu-shadow-light) !important;
-      border-radius: 50% !important;
-      width: 50px !important;
-      height: 50px !important;
-      position: fixed !important;
-      bottom: 20px !important;
-      right: 20px !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      cursor: pointer !important;
-      transition: all 0.3s ease !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-      z-index: 1000 !important;
-      border: none !important;
-      color: var(--text-primary) !important;
-    }
+      .back-to-top {
+        box-shadow: 8px 8px 16px var(--neu-shadow-dark),
+          -8px -8px 16px var(--neu-shadow-light) !important;
+        border-radius: 50% !important;
+        width: 60px !important;
+        height: 60px !important;
+        position: fixed !important;
+        bottom: 30px !important;
+        right: 30px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        z-index: 1000 !important;
+        border: none !important;
+        color: var(--text-primary) !important;
+      }
 
-    .back-to-top.visible {
-      opacity: 1 !important;
-      visibility: visible !important;
-    }
+      .back-to-top.visible {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
 
-    .back-to-top:hover {
-      transform: translateY(-2px) !important;
-      box-shadow: 
-        8px 8px 16px var(--neu-shadow-dark),
-        -8px -8px 16px var(--neu-shadow-light) !important;
-    }
+      .back-to-top:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 12px 12px 24px var(--neu-shadow-dark),
+          -12px -12px 24px var(--neu-shadow-light) !important;
+      }
 
-    .back-to-top:active {
-      transform: translateY(0) !important;
-      box-shadow: 
-        inset 3px 3px 6px var(--neu-shadow-dark),
-        inset -3px -3px 6px var(--neu-shadow-light) !important;
-    }
-
-    .back-to-top-icon {
-      width: 20px !important;
-      height: 20px !important;
-    }
-
+      .back-to-top:active {
+        transform: translateY(0) !important;
+        box-shadow: inset 4px 4px 8px var(--neu-shadow-dark),
+          inset -4px -4px 8px var(--neu-shadow-light) !important;
+      }
     /* Reduced spacing utilities */
     .padding-section-xxlarge {
       padding-top: 3rem !important;
@@ -479,30 +462,56 @@
 </head>
 
 <body class="body">
- <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease"
-    role="banner" class="navbar14_component navbar-on-page w-nav">
-    <div class="navbar14_container"><a href="./index.html"
-        class="navbar14_logo-link w-nav-brand w--current"><img width="192" loading="lazy" alt="loading"
-          src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/default_logo.png?alt=media&token=194050ef-e4ef-45c0-8d51-ebf0cdf270fd"
-          class="navbar14_logo" /></a>
-      <nav role="navigation" id="w-node-_172216b1-dfd9-9eef-9495-a5d90db3130d-0db31309"
-        class="navbar14_menu w-nav-menu">
-        <div class="navbar14_menu-link-wrapper">
-          <div class="navbar14_menu-links"><a href="./index.html" 
-              class="navbar14_link w-nav-link w--current">Services</a><a href="./case-studies.html"
-              class="navbar14_link w-nav-link">Work</a><a href="./about-me.html" class="navbar14_link w-nav-link">About
-            </a><a href="./resources.html" class="navbar14_link w-nav-link">Resources</a></div>
-          <div id="w-node-_172216b1-dfd9-9eef-9495-a5d90db31316-0db31309" class="navbar14_button-wrapper"><a
-              href="./inquiry.html" class="button is-alternate is-primary w-button">Start here</a></div>
+     <div
+      data-collapse="medium"
+      data-animation="default"
+      data-duration="400"
+      data-easing="ease"
+      data-easing2="ease"
+      role="banner"
+      class="navbar14_component navbar-on-page w-nav"
+    >
+      <div class="navbar14_container">
+        <a href="./index.html" class="navbar14_logo-link w-nav-brand"
+          ><img
+            width="192"
+            loading="lazy"
+            alt="loading"
+            src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/default_logo.png?alt=media&token=194050ef-e4ef-45c0-8d51-ebf0cdf270fd"
+            class="navbar14_logo"
+        /></a>
+        <nav
+          role="navigation"
+          id="w-node-_172216b1-dfd9-9eef-9495-a5d90db3130d-0db31309"
+          class="navbar14_menu w-nav-menu"
+        >
+          <div class="navbar14_menu-link-wrapper">
+            <div class="navbar14_menu-links">
+              <a href="./index.html" class="navbar14_link w-nav-link "
+                >Services</a
+              ><a href="./case-studies.html" class="navbar14_link w-nav-link"
+                >Work</a
+              ><a href="./about-me.html" class="navbar14_link w-nav-link"
+                >About </a
+              ><a href="./resources.html" class="navbar14_link w-nav-link"
+                >Resources</a
+              >
+            </div>
+         
+          </div>
+        </nav>
+        <div class="navbar14_menu-button w-nav-button">
+          <div class="menu-icon">
+            <img
+              src="https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677f6921e1a1b3796ba6ece4_menu.svg"
+              loading="lazy"
+              alt=""
+              class="icon-menu"
+            />
+          </div>
         </div>
-      </nav>
-      <div class="navbar14_menu-button w-nav-button">
-        <div class="menu-icon"><img
-            src="https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677f6921e1a1b3796ba6ece4_menu.svg"
-            loading="lazy" alt="" class="icon-menu" /></div>
       </div>
     </div>
-  </div>
         <header class="section_header62">
             <div class="padding-global">
                 <div class="container-large">
@@ -530,6 +539,24 @@
                         <div class="layout401_component">
                             <div class="w-layout-grid layout401_grid-list gap-16px">
                                 <div id="w-node-ba360bfd-3d3e-b9ae-e739-40c8743ffc7e-36e61d9f" class="w-layout-grid layout401_row">
+                                    <div class="layout401_card white-background">
+                                        <div class="layout401_card-content with-image">
+                                            <div class="layout401_card-content-top">
+                                                <div class="margin-bottom margin-xsmall">
+                                                    <div class="text-style-tagline blue margin-right">Notion</div>
+                                                    <div class="text-style-tagline lemon">Article</div>
+                                                </div>
+                                                <div class="margin-bottom margin-xxsmall">
+                                                    <h3 class="heading-4 text-weight-semibold">All in One UX/UI Guide and Bookmarks</h3>
+                                                </div>
+                                                <p class="text-size-medium margin-top margin-xsmall">This is a curated library, that can help you find relevant information on your UX journey!</p>
+                                            </div>
+                                            <div class="margin-bottom margin-xsmall margin-top">
+                                                <img sizes="(max-width: 4251px) 100vw, 4251px" srcset="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w 2000w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w 2600w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w 3200w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w 4251w" alt="" src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w" loading="lazy" class="blog3_image-wrapper with-border"/>
+                                            </div>
+                                            <a href="https://decorous-spoonbill-a2b.notion.site/All-in-One-UX-UI-Guide-and-Bookmarks-1fc13a25a580813eaa61cb9b77a9bf63" target="_blank" class="button top-margin w-button">Read More</a>
+                                        </div>
+                                    </div>
                                 <div class="layout401_card white-background">
                                     <div class="layout401_card-content with-image">
                                         <div class="layout401_card-content-top">
@@ -580,9 +607,9 @@
                                                     Learn key steps to land your first tech role, build a standout portfolio.</p>
                                             </div>
                                             <div class="margin-bottom margin-xsmall margin-top">
-                                                <img sizes="(max-width: 4251px) 100vw, 4251px" srcset="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/Screenshot%202025-04-19%20at%2019.35.32.png?alt=media&token=87195bd1-7507-4b79-bb0f-ff8c8a0b130d 500w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/Screenshot%202025-04-19%20at%2019.35.32.png?alt=media&token=87195bd1-7507-4b79-bb0f-ff8c8a0b130d 800w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/Screenshot%202025-04-19%20at%2019.35.32.png?alt=media&token=87195bd1-7507-4b79-bb0f-ff8c8a0b130d 1080w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/Screenshot%202025-04-19%20at%2019.35.32.png?alt=media&token=87195bd1-7507-4b79-bb0f-ff8c8a0b130d 1600w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/Screenshot%202025-04-19%20at%2019.35.32.png?alt=media&token=87195bd1-7507-4b79-bb0f-ff8c8a0b130d 2000w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/Screenshot%202025-04-19%20at%2019.35.32.png?alt=media&token=87195bd1-7507-4b79-bb0f-ff8c8a0b130d 2600w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/Screenshot%202025-04-19%20at%2019.35.32.png?alt=media&token=87195bd1-7507-4b79-bb0f-ff8c8a0b130d 3200w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/Screenshot%202025-04-19%20at%2019.35.32.png?alt=media&token=87195bd1-7507-4b79-bb0f-ff8c8a0b130d 4251w" alt="" src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/Screenshot%202025-04-19%20at%2019.35.32.png?alt=media&token=87195bd1-7507-4b79-bb0f-ff8c8a0b130d" loading="lazy" class="blog3_image-wrapper with-border"/>
+                                                <img sizes="(max-width: 4251px) 100vw, 4251px" srcset="https://decorous-spoonbill-a2b.notion.site/image/https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Flunia-by-lulamile.appspot.com%2Fo%2Farts.png%3Falt%3Dmedia%26token%3D3cd28e9f-ffa6-41ec-9f52-aea42fe0d68c?table=block&id=1fc13a25-a580-8148-ab09-d8128fc1fe6b&spaceId=a5d13a25-a580-8117-ae90-0003c8d4bd90&width=2000&userId=&cache=v2500w, https://decorous-spoonbill-a2b.notion.site/image/https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Flunia-by-lulamile.appspot.com%2Fo%2Farts.png%3Falt%3Dmedia%26token%3D3cd28e9f-ffa6-41ec-9f52-aea42fe0d68c?table=block&id=1fc13a25-a580-8148-ab09-d8128fc1fe6b&spaceId=a5d13a25-a580-8117-ae90-0003c8d4bd90&width=2000&userId=&cache=v2800w, https://decorous-spoonbill-a2b.notion.site/image/https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Flunia-by-lulamile.appspot.com%2Fo%2Farts.png%3Falt%3Dmedia%26token%3D3cd28e9f-ffa6-41ec-9f52-aea42fe0d68c?table=block&id=1fc13a25-a580-8148-ab09-d8128fc1fe6b&spaceId=a5d13a25-a580-8117-ae90-0003c8d4bd90&width=2000&userId=&cache=v21080w, https://decorous-spoonbill-a2b.notion.site/image/https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Flunia-by-lulamile.appspot.com%2Fo%2Farts.png%3Falt%3Dmedia%26token%3D3cd28e9f-ffa6-41ec-9f52-aea42fe0d68c?table=block&id=1fc13a25-a580-8148-ab09-d8128fc1fe6b&spaceId=a5d13a25-a580-8117-ae90-0003c8d4bd90&width=2000&userId=&cache=v21600w, https://decorous-spoonbill-a2b.notion.site/image/https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Flunia-by-lulamile.appspot.com%2Fo%2Farts.png%3Falt%3Dmedia%26token%3D3cd28e9f-ffa6-41ec-9f52-aea42fe0d68c?table=block&id=1fc13a25-a580-8148-ab09-d8128fc1fe6b&spaceId=a5d13a25-a580-8117-ae90-0003c8d4bd90&width=2000&userId=&cache=v22000w, https://decorous-spoonbill-a2b.notion.site/image/https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Flunia-by-lulamile.appspot.com%2Fo%2Farts.png%3Falt%3Dmedia%26token%3D3cd28e9f-ffa6-41ec-9f52-aea42fe0d68c?table=block&id=1fc13a25-a580-8148-ab09-d8128fc1fe6b&spaceId=a5d13a25-a580-8117-ae90-0003c8d4bd90&width=2000&userId=&cache=v22600w, https://decorous-spoonbill-a2b.notion.site/image/https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Flunia-by-lulamile.appspot.com%2Fo%2Farts.png%3Falt%3Dmedia%26token%3D3cd28e9f-ffa6-41ec-9f52-aea42fe0d68c?table=block&id=1fc13a25-a580-8148-ab09-d8128fc1fe6b&spaceId=a5d13a25-a580-8117-ae90-0003c8d4bd90&width=2000&userId=&cache=v23200w, https://decorous-spoonbill-a2b.notion.site/image/https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Flunia-by-lulamile.appspot.com%2Fo%2Farts.png%3Falt%3Dmedia%26token%3D3cd28e9f-ffa6-41ec-9f52-aea42fe0d68c?table=block&id=1fc13a25-a580-8148-ab09-d8128fc1fe6b&spaceId=a5d13a25-a580-8117-ae90-0003c8d4bd90&width=2000&userId=&cache=v24251w" alt="" src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/Screenshot%202025-04-19%20at%2019.35.32.png?alt=media&token=87195bd1-7507-4b79-bb0f-ff8c8a0b130d" loading="lazy" class="blog3_image-wrapper with-border"/>
                                             </div>
-                                            <a href="https://chartreuse-scale-c4a.notion.site/d5ec0cf2fe9a42dabb2000b84f44e0bf?v=7de8a5b58d6e4ec1a6a565576fb612ba" target="_blank" class="button top-margin w-button">Read More</a>
+                                            <a href="https://decorous-spoonbill-a2b.notion.site/UX-UI-Project-Design-Check-Resources-1fc13a25a5808148ab09d8128fc1fe6b" target="_blank" class="button top-margin w-button">Read More</a>
                                         </div>
                                     </div>
                                     <!-- <div class="layout401_card white-background">
@@ -598,7 +625,7 @@
                                                 <p class="text-size-medium margin-top margin-xsmall">A design system provides guidelines and assets for consistent product/service design.</p>
                                             </div>
                                             <div class="margin-bottom margin-xsmall margin-top">
-                                                <img sizes="(max-width: 4251px) 100vw, 4251px" srcset="https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fdesign-systems.png?alt=media&token=6ba167e2-8568-4220-bff7-b42cb0e7db16 500w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fdesign-systems.png?alt=media&token=6ba167e2-8568-4220-bff7-b42cb0e7db16 800w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fdesign-systems.png?alt=media&token=6ba167e2-8568-4220-bff7-b42cb0e7db16 1080w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fdesign-systems.png?alt=media&token=6ba167e2-8568-4220-bff7-b42cb0e7db16 1600w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fdesign-systems.png?alt=media&token=6ba167e2-8568-4220-bff7-b42cb0e7db16 2000w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fdesign-systems.png?alt=media&token=6ba167e2-8568-4220-bff7-b42cb0e7db16 2600w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fdesign-systems.png?alt=media&token=6ba167e2-8568-4220-bff7-b42cb0e7db16 3200w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fdesign-systems.png?alt=media&token=6ba167e2-8568-4220-bff7-b42cb0e7db16 4251w" alt="" src="https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fdesign-systems.png?alt=media&token=6ba167e2-8568-4220-bff7-b42cb0e7db16" loading="lazy" class="blog3_image-wrapper with-border"/>
+                                                <img sizes="(max-width: 4251px) 100vw, 4251px" srcset="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w 1600w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w 2000w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w 2600w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w 3200w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w 4251w" alt="" src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w" loading="lazy" class="blog3_image-wrapper with-border"/>
                                             </div>
                                             <a href="./des-system-componets.html" class="button top-margin w-button">Read More</a>
                                         </div>
@@ -631,10 +658,10 @@
                                                 <div class="margin-bottom margin-xxsmall">
                                                     <h3 class="heading-4 text-weight-semibold">Figma Prototypes & Design Process</h3>
                                                 </div>
-                                                <p class="text-size-medium margin-top margin-xsmall">I believe the quickest way to improve my craft is doing designs, challenges given to me thus continuosly improve my design approach</p>
+                                                <p class="text-size-medium margin-top margin-xsmall">Design challenges, case studies, and Daily UI help me sharpen and evolve my approach.</p>
                                             </div>
                                             <div class="margin-bottom margin-xsmall margin-top">
-                                                <img sizes="(max-width: 4251px) 100vw, 4251px" srcset="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&h=300&fit=crop&auto=format&q=80 500w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80 800w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1080&h=648&fit=crop&auto=format&q=80 1080w, https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600&h=960&fit=crop&auto=format&q=80 1600w" alt="Figma Design Interface" src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=480&fit=crop&auto=format&q=80" loading="lazy" class="blog3_image-wrapper with-border"/>
+                                                <img sizes="(max-width: 4251px) 100vw, 4251px" srcset="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 500w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 800w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 1080w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 1600w" alt="Figma Design Interface" src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13" loading="lazy" class="blog3_image-wrapper with-border"/>
                                             </div>
                                             <a href="https://www.figma.com/design/SeCP6cuxXX8UyhnOn2wYcJ/Collection-Of-Projects?node-id=8911-3184&t=iYcLW2SGGKNUzMsQ-1" target="_blank" class="button top-margin w-button">View Files</a>
                                         </div>
@@ -703,7 +730,7 @@
                   aria-current="page" class="footer1_link">Home</a><a href="./case-studies.html"
                   class="footer1_link">Work</a><a
                   href="./resources.html" class="footer1_link">Resources</a></div>
-              <div id="w-node-_4023670b-f684-32f2-18f3-3804327eabad-0494b60c" class="footer1_link-list"><a href="#"
+              <div id="w-node-_4023670b-f684-32f2-18f3-3804327eabad-0494b60c" class="footer1_link-list"><a href="./index.html"
                   class="footer1_link">UX Sprints</a><a href="./ui-playground.html" class="footer1_link">UI
                   Playground</a><a href="./contact.html"
                   class="footer1_link">Contact</a></div>

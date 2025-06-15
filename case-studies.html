@@ -96,33 +96,26 @@
       -o-font-smoothing: antialiased;
     }
 
-    /* Body Background - Whiter */
+     /* Body Background - Whiter */
     body {
       background: linear-gradient(135deg, var(--neu-bg-primary) 0%, var(--neu-bg-secondary) 100%) !important;
       min-height: 100vh;
     }
 
-    /* Navbar Glassmorphic Styling - Reduced spacing */
+    /* Navbar Glassmorphic Styling */
     .navbar14_component {
-      background: linear-gradient(145deg, var(--neu-bg-secondary), #f5f7f9) !important;
-      box-shadow: 
-        6px 6px 16px var(--neu-shadow-dark),
-        -6px -6px 16px var(--neu-shadow-light) !important;
-      border-radius: var(--neu-border-radius-large) !important;
-      backdrop-filter: blur(10px) !important;
-      border: none !important;
       position: sticky;
-      top: 10px;
-      margin: 10px;
+      top: 20px;
+      margin: 20px;
       z-index: 100;
     }
 
     .navbar14_container {
-      padding: 8px 20px;
+      padding: 0px 30px;
     }
 
     .navbar14_link {
-      padding: 6px 16px !important;
+      padding: 10px 20px !important;
       border-radius: var(--neu-border-radius-small) !important;
       transition: all 0.3s ease !important;
       text-decoration: none !important;
@@ -132,10 +125,10 @@
 
     .navbar14_link:hover,
     .navbar14_link.w--current {
-      background: linear-gradient(145deg, #f5f7f9, var(--neu-bg-secondary)) !important;
+      background: linear-gradient(145deg, #e8ecf0, var(--neu-bg-secondary)) !important;
       box-shadow: 
-        inset 3px 3px 6px var(--neu-shadow-dark),
-        inset -3px -3px 6px var(--neu-shadow-light) !important;
+        inset 4px 4px 8px var(--neu-shadow-dark),
+        inset -4px -4px 8px var(--neu-shadow-light) !important;
     }
 
     /* Button Neumorphic Styling - Reduced padding */
@@ -323,7 +316,6 @@
 
     /* Back to Top Button */
     .back-to-top {
-      background: linear-gradient(145deg, var(--neu-bg-secondary), #f5f7f9) !important;
       box-shadow: 
         6px 6px 12px var(--neu-shadow-dark),
         -6px -6px 12px var(--neu-shadow-light) !important;
@@ -455,30 +447,55 @@
 </head>
 
 <body class="body">
-  <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease"
-    role="banner" class="navbar14_component navbar-on-page w-nav">
-    <div class="navbar14_container"><a href="./index.html"
-        class="navbar14_logo-link w-nav-brand w--current"><img width="192" loading="lazy" alt="loading"
-          src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/default_logo.png?alt=media&token=194050ef-e4ef-45c0-8d51-ebf0cdf270fd"
-          class="navbar14_logo" /></a>
-      <nav role="navigation" id="w-node-_172216b1-dfd9-9eef-9495-a5d90db3130d-0db31309"
-        class="navbar14_menu w-nav-menu">
-        <div class="navbar14_menu-link-wrapper">
-          <div class="navbar14_menu-links"><a href="./index.html" 
-              class="navbar14_link w-nav-link">Services</a><a href="./case-studies.html"
-              class="navbar14_link w-nav-link w--current">Work</a><a href="./about-me.html" class="navbar14_link w-nav-link">About
-            </a><a href="./resources.html" class="navbar14_link w-nav-link">Resources</a></div>
-          <div id="w-node-_172216b1-dfd9-9eef-9495-a5d90db31316-0db31309" class="navbar14_button-wrapper"><a
-              href="./contact.html" class="button is-alternate is-primary w-button">Start here</a></div>
+   <div
+      data-collapse="medium"
+      data-animation="default"
+      data-duration="400"
+      data-easing="ease"
+      data-easing2="ease"
+      role="banner"
+      class="navbar14_component navbar-on-page w-nav"
+    >
+      <div class="navbar14_container">
+        <a href="./index.html" class="navbar14_logo-link w-nav-brand"
+          ><img
+            width="192"
+            loading="lazy"
+            alt="loading"
+            src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/default_logo.png?alt=media&token=194050ef-e4ef-45c0-8d51-ebf0cdf270fd"
+            class="navbar14_logo"
+        /></a>
+        <nav
+          role="navigation"
+          id="w-node-_172216b1-dfd9-9eef-9495-a5d90db3130d-0db31309"
+          class="navbar14_menu w-nav-menu"
+        >
+          <div class="navbar14_menu-link-wrapper">
+            <div class="navbar14_menu-links">
+              <a href="./index.html" class="navbar14_link w-nav-link"
+                >Services</a
+              ><a href="./case-studies.html" class="navbar14_link w-nav-link w--current"
+                >Work</a
+              ><a href="./about-me.html" class="navbar14_link w-nav-link"
+                >About </a
+              ><a href="./resources.html" class="navbar14_link w-nav-link"
+                >Resources</a
+              >
+            </div>
+          </div>
+        </nav>
+        <div class="navbar14_menu-button w-nav-button">
+          <div class="menu-icon">
+            <img
+              src="https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677f6921e1a1b3796ba6ece4_menu.svg"
+              loading="lazy"
+              alt=""
+              class="icon-menu"
+            />
+          </div>
         </div>
-      </nav>
-      <div class="navbar14_menu-button w-nav-button">
-        <div class="menu-icon"><img
-            src="https://cdn.prod.website-files.com/resource/677f6921e1a1b3796ba6ece4_menu.svg"
-            loading="lazy" alt="" class="icon-menu" /></div>
       </div>
     </div>
-  </div>
   
   <header class="section_header62">
       <div class="padding-global">
@@ -524,11 +541,11 @@
                     </div>
                 </div>
             </a>
-                <a href="./cons-doc.html" class="case-study-link w-inline-block">
+                <a href="./practo.html" class="case-study-link w-inline-block">
                   <div class="w-layout-grid cta1_component">
                       <div class="cta1_content">
                           <div class="margin-bottom margin-small">
-                              <h3 class="heading-3">Takeda's client project- A Streamlined Doctor Consultation: Cons-Doc App(Work in progress)</h3>
+                              <h3 class="heading-3">Takeda's client project- A Streamlined Doctor Consultation: Practo App(Work in progress)</h3>
                           </div>
                           <div class="button-group no-space">
                               <p class="text-style-tagline blue margin-bottom margin-small margin-right margin-top">Service Design</p>
@@ -567,12 +584,12 @@
               <div class="w-layout-grid cta1_component">
                   <div class="cta1_content">
                       <div class="margin-bottom margin-small">
-                          <h3 class="heading-3">Visuals showcasing selected works in Product & UX/UI Design</h3>
+                          <h3 class="heading-3">Selected UX/UI Design case studies and Design Playground</h3>
                       </div>
                       <div class="button-group no-space">
                           <p class="text-style-tagline blue margin-bottom margin-small margin-right margin-top">product design</p>
-                          <p class="text-style-tagline blue margin-bottom margin-small margin-right margin-top">ux/ui</p>
-                          <p class="text-style-tagline blue margin-bottom margin-small margin-right margin-top">UI dev</p>
+                          <p class="text-style-tagline blue margin-bottom margin-small margin-right margin-top">ux/ui case studies</p>
+                          <p class="text-style-tagline blue margin-bottom margin-small margin-right margin-top">UI development</p>
                       </div>
                   </div>
                   <div id="w-node-_8a1baaaf-7f4e-e782-0926-f0d3b591d89f-445dfd32" class="cta1_image-wrapper">
