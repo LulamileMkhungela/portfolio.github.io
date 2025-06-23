@@ -60,18 +60,16 @@
 			display: block;
 		}
 
-		.line-separator {
+		/* .line-separator {
 			width: 100vw;
 			height: 1px;
 			background: rgba(255, 255, 255, 0.15);
 			margin-left: calc(-50vw + 50%);
 			margin-top: 32px;
 			margin-bottom: 60px;
-		}
+		} */
 
 		.featured-section {
-			margin-top: 40px;
-			max-width: 1200px;
 			margin-left: auto;
 			margin-right: auto;
 			padding: 0 20px;
@@ -106,12 +104,13 @@
 			gap: 20px;
 			margin-bottom: 30px;
 		}
+
 		.socials.svelte-n5qdyk {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-}
+			display: flex;
+			flex-direction: row;
+			gap: 10px;
+			align-items: center;
+		}
 
 		@media (max-width: 1200px) {
 			.cards-grid {
@@ -178,7 +177,7 @@
 			display: flex;
 			gap: 15px;
 			margin-bottom: 15px;
-			align-items: flex-start;
+			align-items: center;
 		}
 
 		.card-image-wrapper {
@@ -206,6 +205,24 @@
 			letter-spacing: 0.5px;
 			margin-top: 12px;
 			font-weight: 600;
+			word-wrap: break-word;
+			overflow-wrap: break-word;
+			hyphens: auto;
+		}
+
+		@media (max-width: 768px) {
+			.card-tag {
+				font-size: 12px;
+				letter-spacing: 0.3px;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.card-tag {
+				font-size: 11px;
+				letter-spacing: 0.2px;
+				margin-top: 8px;
+			}
 		}
 
 		.card-title {
@@ -238,14 +255,14 @@
 			border-color: rgba(255, 255, 255, 0.25);
 		}
 
-		.skills-slider-section {
-			margin: 60px 0 40px 0;
-			overflow: hidden;
-			padding: 30px 0;
-			background: transparent;
-			border-top: 1px solid rgba(255, 255, 255, 0.05);
-			border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-		}
+	.skills-slider-section {
+    margin: 36px 0 40px 0;
+    overflow: hidden;
+    padding: 16px 0;
+    background: transparent;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
 
 		.skills-slider-wrapper {
 			position: relative;
@@ -312,6 +329,10 @@
 			transform: translateY(-2px);
 		}
 
+		.stat-card.clickable {
+			cursor: pointer;
+		}
+
 		.stat-number {
 			font-size: 56px;
 			font-weight: 700;
@@ -365,6 +386,252 @@
 			width: 24px;
 			height: 24px;
 			stroke: #fff;
+		}
+
+		/* Modal Styles */
+		.modal-overlay {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: rgba(0, 0, 0, 0.85);
+			backdrop-filter: blur(10px);
+			z-index: 9999;
+			align-items: center;
+			justify-content: center;
+			padding: 20px;
+			animation: fadeIn 0.3s ease;
+		}
+
+		.modal-overlay.active {
+			display: flex;
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+
+		@keyframes slideUp {
+			from {
+				transform: translateY(30px);
+				opacity: 0;
+			}
+			to {
+				transform: translateY(0);
+				opacity: 1;
+			}
+		}
+
+		.modal-content {
+			background: rgba(20, 20, 20, 0.98);
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			border-radius: 20px;
+			max-width: 700px;
+			width: 100%;
+			max-height: 85vh;
+			overflow: hidden;
+			animation: slideUp 0.4s ease;
+			box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+		}
+
+		.modal-header {
+			padding: 30px 30px 20px;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.modal-title {
+			font-size: 24px;
+			font-weight: 700;
+			background: linear-gradient(135deg, #fff 0%, rgb(255, 238, 0) 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+		}
+
+		.close-btn {
+			background: rgba(255, 255, 255, 0.05);
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			border-radius: 50%;
+			width: 36px;
+			height: 36px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			color: #fff;
+		}
+
+		.close-btn:hover {
+			background: rgba(255, 255, 255, 0.1);
+			border-color: rgba(255, 255, 255, 0.2);
+			transform: rotate(90deg);
+		}
+
+		.modal-body {
+			padding: 20px 30px 30px;
+			overflow-y: auto;
+			max-height: calc(85vh - 100px);
+		}
+
+		.hackathon-list {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+		}
+
+		.hackathon-item {
+			background: rgba(255, 255, 255, 0.03);
+			border: 1px solid rgba(255, 255, 255, 0.08);
+			border-radius: 12px;
+			padding: 20px;
+			transition: all 0.3s ease;
+		}
+
+		.hackathon-item:hover {
+			background: rgba(255, 255, 255, 0.05);
+			border-color: rgba(255, 255, 255, 0.15);
+			transform: translateX(5px);
+		}
+
+		.hackathon-number {
+			background: rgba(255, 238, 0, 0.1);
+			color: rgb(255, 238, 0);
+			width: 28px;
+			height: 28px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 12px;
+			font-weight: 700;
+			margin-bottom: 12px;
+		}
+
+		.hackathon-name {
+			font-size: 18px;
+			font-weight: 600;
+			margin-bottom: 8px;
+			color: #fff;
+		}
+
+		.hackathon-details {
+			display: flex;
+			gap: 20px;
+			flex-wrap: wrap;
+		}
+
+		.hackathon-date,
+		.hackathon-company {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			font-size: 14px;
+			color: rgba(255, 255, 255, 0.6);
+		}
+
+		.icon {
+			width: 16px;
+			height: 16px;
+			opacity: 0.5;
+		}
+
+		.modal-body::-webkit-scrollbar {
+			width: 8px;
+		}
+
+		.modal-body::-webkit-scrollbar-track {
+			background: rgba(255, 255, 255, 0.03);
+			border-radius: 10px;
+		}
+
+		.modal-body::-webkit-scrollbar-thumb {
+			background: rgba(255, 255, 255, 0.1);
+			border-radius: 10px;
+		}
+
+		.modal-body::-webkit-scrollbar-thumb:hover {
+			background: rgba(255, 255, 255, 0.15);
+		}
+
+		.appear.svelte-7ytry9 {
+    animation: .5s cubic-bezier(.65, .65, .27, 1.39) .5s svelte-7ytry9-flyOut forwards
+}
+
+.nav-item.svelte-7ytry9 {
+   position: relative;
+    padding: 8px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 52px !important;
+    min-width: 70px !important;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, .1);
+    background: rgba(255, 255, 255, .1);
+    transition: all .3s ease-in-out
+}
+
+.nav-item.svelte-7ytry9:hover {
+    background: rgba(255, 255, 255, .3);
+    cursor: pointer
+}
+
+.icon-bounds.svelte-7ytry9 {
+    position: relative;
+    height: 24px;
+    width: 24px;
+    overflow: hidden
+}
+
+.active.svelte-7ytry9 {
+    background: rgba(255, 255, 255, .4)
+}
+
+.nav-icon.svelte-7ytry9 {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+		@media (max-width: 600px) {
+			.modal-content {
+				max-height: 90vh;
+				border-radius: 16px;
+			}
+
+			.modal-header {
+				padding: 20px 20px 15px;
+			}
+
+			.modal-title {
+				font-size: 20px;
+			}
+
+			.modal-body {
+				padding: 15px 20px 20px;
+			}
+
+			.hackathon-item {
+				padding: 16px;
+			}
+
+			.hackathon-name {
+				font-size: 16px;
+			}
 		}
 	</style>
 </head>
@@ -438,10 +705,6 @@
           <a href="https://www.linkedin.com/in/lulamile-mkhungela/" target="_blank" class="social svelte-n5qdyk">
             <img src="./linkedin.png" width="23" height="18" alt="linkedin logo">
           </a>
-          <!-- <a href="" 
-           target="_blank" class="social last svelte-n5qdyk">
-          <img src="./github.svg" width="23" height="18" alt="github logo">
-          </a> -->
         </div>
       </div>
     </div>
@@ -494,7 +757,7 @@
 							<div class="svelte-1mj9l4w">
 								<div class="tileSubtitle">Banks Branch Visit UX</div>
 								<div class="body150 svelte-1mj9l4w"> South African Bank Branch User Experience
-									Transformation (Absa Hackathon and beyond)</div>
+									Transformation (Absa Hackathon)</div>
 							</div>
 						</a><a class="project-tile svelte-1mj9l4w" href="https://www.vodacom.com/bursary-programme.php"
 							target="_blank">
@@ -655,12 +918,8 @@
 				</div>
 			</div>
 
-			<!-- Line Separator -->
-			<div class="line-separator"></div>
 			
-			<!-- Featured Projects Section -->
 			<div class="featured-section">
-				<!-- Skills Slider -->
 				<div class="skills-slider-section">
 					<div class="skills-slider-wrapper">
 						<div class="skills-slider">
@@ -673,8 +932,6 @@
 							<span class="skill-item">AI in Design</span>
 							<span class="skill-item">Healthcare UX</span>
 							<span class="skill-item">SaaS Platforms</span>
-
-							<!-- Duplicate for smooth scroll -->
 							<span class="skill-item">Voice User Interface</span>
 							<span class="skill-item">No Code Development</span>
 							<span class="skill-item">UI Development</span>
@@ -688,7 +945,6 @@
 					</div>
 				</div>
 
-				<!-- Stats Grid -->
 				<div class="stats-grid">
 					<div class="stat-card">
 						<div class="stat-number" data-target="30">30+</div>
@@ -706,7 +962,7 @@
 						<div class="stat-number" data-target="87">87+</div>
 						<div class="stat-label">Net Promoter Score (NPS)</div>
 					</div>
-					<div class="stat-card">
+					<div class="stat-card clickable" id="hackathonCard">
 						<div class="stat-number" data-target="14">14</div>
 						<div class="stat-label">Attended Hackathons</div>
 					</div>
@@ -770,30 +1026,48 @@
 			</div>
 		</div>
 
-	<!-- Back to Top Button -->
-		<button class="back-to-top" id="backToTop" aria-label="Back to top">
-			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-				stroke="currentColor">
-				<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-			</svg>
-		</button>
-
-		<div class="container appear svelte-7ytry9"><a id="home" class="nav-item svelte-7ytry9 active"
-				href="index.html">
-				<div class="icon-bounds svelte-7ytry9"><img src="./icons/work-on.svg" alt="projects icon"
-						class="nav-icon svelte-7ytry9"></div>
-				<p class="body100" data-svelte-h="svelte-1rw38wz">Work</p>
-			</a> <a id="about" class="nav-item svelte-7ytry9" href="./about.html">
-				<div class="icon-bounds svelte-7ytry9"><img src="./icons/about-off.svg" alt="about icon"
-						class="nav-icon svelte-7ytry9"></div>
-				<p class="body100" data-svelte-h="svelte-1arh6r9">About</p>
-			</a> <a id="lab" class="nav-item svelte-7ytry9" href="./lab.html">
-				<div class="icon-bounds svelte-7ytry9"><img src="./icons/lab-off.svg" alt="lab icon"
-						class="nav-icon svelte-7ytry9"></div>
-				<p class="body100" data-svelte-h="svelte-1t1csjf">Lab</p>
-			</a> </div>
+	<div class="modal-overlay" id="modalOverlay">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2 class="modal-title">Hackathons Attended</h2>
+				<button class="close-btn" id="closeModal">
+					<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+						<path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+					</svg>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="hackathon-list" id="hackathonList"></div>
+			</div>
+		</div>
 	</div>
-	<!-- Footer -->
+
+	<button class="back-to-top" id="backToTop" aria-label="Back to top">
+		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+			stroke="currentColor">
+			<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+		</svg>
+	</button>
+
+	<div class="container appear svelte-7ytry9">
+		<a id="home" class="nav-item svelte-7ytry9 active" href="index.html">
+			<div class="icon-bounds svelte-7ytry9"><img src="./icons/work-on.svg" alt="projects icon"
+					class="nav-icon svelte-7ytry9"></div>
+			<p class="body100" data-svelte-h="svelte-1rw38wz">Work</p>
+		</a>
+		<a id="about" class="nav-item svelte-7ytry9" href="./about.html">
+			<div class="icon-bounds svelte-7ytry9"><img src="./icons/about-off.svg" alt="about icon"
+					class="nav-icon svelte-7ytry9"></div>
+			<p class="body100" data-svelte-h="svelte-1arh6r9">About</p>
+		</a>
+		<a id="lab" class="nav-item svelte-7ytry9" href="./lab.html">
+			<div class="icon-bounds svelte-7ytry9"><img src="./icons/lab-off.svg" alt="lab icon"
+					class="nav-icon svelte-7ytry9"></div>
+			<p class="body100" data-svelte-h="svelte-1t1csjf">Lab</p>
+		</a>
+	</div>
+	</div>
+
 	<footer class="footer">
 		<div class="footer-content">
 			<p class="footer-text">© 2025 Lula-Creatives. All rights reserved.</p>
@@ -821,7 +1095,6 @@
 	</footer>
 
 	<script>
-
 		document.addEventListener('keydown', (event) => {
 			if (event.key.toLowerCase() === 'r') {
 				const email = document.getElementById('email-link');
@@ -829,7 +1102,6 @@
 				const pressText = document.getElementById('press-text');
 				const copyIcon = document.getElementById('copy-icon');
 
-				// Reveal email & copy icon
 				email.classList.remove('blur');
 				email.style.filter = 'none';
 				email.style.opacity = '1';
@@ -837,7 +1109,6 @@
 				email.style.userSelect = 'text';
 				copyIcon.style.display = 'inline';
 
-				// Hide text & R key
 				revealKey.style.display = 'none';
 				pressText.style.display = 'none';
 			}
@@ -865,10 +1136,8 @@
 
 		copyIcon.addEventListener('click', copyEmail);
 
-		// Back to Top Button Functionality
 		const backToTopButton = document.getElementById('backToTop');
 
-		// Show/hide button based on scroll position
 		window.addEventListener('scroll', () => {
 			if (window.pageYOffset > 300) {
 				backToTopButton.classList.add('visible');
@@ -877,28 +1146,101 @@
 			}
 		});
 
-		// Smooth scroll to top when clicked
 		backToTopButton.addEventListener('click', () => {
 			window.scrollTo({
 				top: 0,
 				behavior: 'smooth'
 			});
 		});
+
+		const hackathons = [
+			{ name: "FinTech Innovation Challenge", date: "March 15, 2024", company: "Standard Bank" },
+			{ name: "AI & Machine Learning Hackathon", date: "January 22, 2024", company: "Microsoft Azure" },
+			{ name: "Healthcare Digital Solutions", date: "November 8, 2023", company: "Discovery Health" },
+			{ name: "Sustainable Energy Hack", date: "September 30, 2023", company: "Eskom Holdings" },
+			{ name: "E-Commerce UX Sprint", date: "July 18, 2023", company: "Takealot Group" },
+			{ name: "Blockchain & Crypto Dev Day", date: "May 12, 2023", company: "Luno Exchange" },
+			{ name: "Smart City Solutions", date: "March 25, 2023", company: "City of Cape Town" },
+			{ name: "EdTech Innovation Lab", date: "January 14, 2023", company: "Valenture Institute" },
+			{ name: "Retail Tech Transformation", date: "November 5, 2022", company: "Woolworths SA" },
+			{ name: "Mobile Banking Revolution", date: "September 17, 2022", company: "Capitec Bank" },
+			{ name: "AgriTech Future Farm", date: "July 9, 2022", company: "Agri-SA" },
+			{ name: "Social Impact Hackathon", date: "May 21, 2022", company: "Facebook South Africa" },
+			{ name: "Cybersecurity Defense Challenge", date: "March 12, 2022", company: "Dimension Data" },
+			{ name: "Gaming & Entertainment Jam", date: "January 8, 2022", company: "Naspers Labs" }
+		];
+
+		const hackathonCard = document.getElementById('hackathonCard');
+		const modalOverlay = document.getElementById('modalOverlay');
+		const closeModal = document.getElementById('closeModal');
+		const hackathonList = document.getElementById('hackathonList');
+
+		hackathons.forEach((hackathon, index) => {
+			const item = document.createElement('div');
+			item.className = 'hackathon-item';
+			item.innerHTML = `
+				<div class="hackathon-number">${index + 1}</div>
+				<div class="hackathon-name">${hackathon.name}</div>
+				<div class="hackathon-details">
+					<div class="hackathon-date">
+						<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+							<line x1="16" y1="2" x2="16" y2="6"></line>
+							<line x1="8" y1="2" x2="8" y2="6"></line>
+							<line x1="3" y1="10" x2="21" y2="10"></line>
+						</svg>
+						${hackathon.date}
+					</div>
+					<div class="hackathon-company">
+						<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+							<polyline points="9 22 9 12 15 12 15 22"></polyline>
+						</svg>
+						${hackathon.company}
+					</div>
+				</div>
+			`;
+			hackathonList.appendChild(item);
+		});
+
+		hackathonCard.addEventListener('click', () => {
+			modalOverlay.classList.add('active');
+			document.body.style.overflow = 'hidden';
+		});
+
+		closeModal.addEventListener('click', () => {
+			modalOverlay.classList.remove('active');
+			document.body.style.overflow = 'auto';
+		});
+
+		modalOverlay.addEventListener('click', (e) => {
+			if (e.target === modalOverlay) {
+				modalOverlay.classList.remove('active');
+				document.body.style.overflow = 'auto';
+			}
+		});
+
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+				modalOverlay.classList.remove('active');
+				document.body.style.overflow = 'auto';
+			}
+		});
 	</script>
+
 	<script>
 		document.addEventListener("DOMContentLoaded", () => {
 			const counters = document.querySelectorAll(".stat-number");
 
 			function animateCounter(counter) {
 				const target = +counter.getAttribute("data-target") || +counter.innerText.replace(/\D/g, "");
-				let count = 0;
-				const duration = 1200; // total animation time in ms
+				const duration = 1200;
 				const startTime = performance.now();
 
 				function updateCounter(now) {
 					const elapsed = now - startTime;
-					const progress = Math.min(elapsed / duration, 1); // 0 → 1
-					const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+					const progress = Math.min(elapsed / duration, 1);
+					const eased = 1 - Math.pow(1 - progress, 3);
 					const value = Math.floor(target * eased);
 					counter.innerText = value + "+";
 					if (progress < 1) requestAnimationFrame(updateCounter);
@@ -922,25 +1264,7 @@
 			counters.forEach(counter => observer.observe(counter));
 		});
 	</script>
-	<script>
-		document.addEventListener("contextmenu", function (e) {
-			e.preventDefault();
-		});
 
-		document.querySelectorAll("img").forEach((img) => {
-			img.addEventListener("dragstart", function (e) {
-				e.preventDefault();
-			});
-		});
-
-		document.addEventListener("selectstart", function (e) {
-			e.preventDefault();
-		});
-
-		document.addEventListener("copy", function (e) {
-			e.preventDefault();
-		});
-	</script>
 	<script>
 		document.addEventListener("contextmenu", function (e) {
 			e.preventDefault();
