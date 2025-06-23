@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html
   data-wf-domain="www.Lula-Creatives.com"
   data-wf-page="669ba6c1333c4770b4f3157c"
@@ -226,12 +226,12 @@
       }
 
       /* Navbar Glassmorphic Styling */
-    .navbar14_component {
-      position: sticky;
-      top: 20px;
-      margin: 20px;
-      z-index: 100;
-    }
+      .navbar14_component {
+        position: sticky;
+        top: 20px;
+        margin: 20px;
+        z-index: 100;
+      }
 
       .navbar14_container {
         padding: 0px 18px;
@@ -425,7 +425,8 @@
           var(--neu-bg-secondary),
           #e8ecf0
         ) !important;
-    box-shadow: 8px 8px 0px var(--neu-shadow-dark), -8px -8px 0px var(--neu-shadow-light) !important;
+        box-shadow: 8px 8px 0px var(--neu-shadow-dark),
+          -8px -8px 0px var(--neu-shadow-light) !important;
         border-radius: var(--neu-border-radius-large) !important;
         padding: 20px !important;
         display: inline-block !important;
@@ -582,6 +583,155 @@
         transform: translateY(-3px) !important;
         box-shadow: 12px 12px 24px var(--neu-shadow-dark),
           -12px -12px 24px var(--neu-shadow-light) !important;
+      }
+
+      /* Skills Marquee Animation Styles - Alternating Direction */
+      .skills-marquee-container {
+        overflow: hidden !important;
+        width: 100% !important;
+        margin: 1rem 0 !important;
+        position: relative !important;
+        height: auto !important;
+      }
+
+      .skills-marquee-row {
+        display: flex !important;
+        width: 200% !important;
+        animation-duration: 15s !important;
+        animation-timing-function: ease-in-out !important;
+        animation-iteration-count: infinite !important;
+        animation-direction: alternate !important;
+        will-change: transform !important;
+      }
+
+      .skills-marquee-content {
+        display: flex !important;
+        align-items: center !important;
+        width: 50% !important;
+        flex-shrink: 0 !important;
+        gap: 1rem !important;
+      }
+
+      .skills-marquee-content .text-style-tagline {
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+        margin-right: 1rem !important;
+      }
+
+      /* Animation that alternates direction automatically */
+      .skills-marquee-right-to-left {
+        animation-name: alternate-slide-rtl !important;
+      }
+
+      .skills-marquee-left-to-right {
+        animation-name: alternate-slide-ltr !important;
+      }
+
+      @keyframes alternate-slide-rtl {
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      @keyframes alternate-slide-ltr {
+        0% {
+          transform: translateX(-50%);
+        }
+        100% {
+          transform: translateX(0%);
+        }
+      }
+
+      /* Products Slider Animation Styles - Alternating Direction */
+      .products-slider-container {
+        overflow: hidden !important;
+        width: 100% !important;
+        margin: 1rem 0 !important;
+        position: relative !important;
+      }
+
+      .products-slider-row {
+        display: flex !important;
+        width: 200% !important;
+        animation-duration: 20s !important;
+        animation-timing-function: ease-in-out !important;
+        animation-iteration-count: infinite !important;
+        animation-direction: alternate !important;
+        will-change: transform !important;
+      }
+
+      .products-slider-content {
+        display: flex !important;
+        width: 50% !important;
+        flex-shrink: 0 !important;
+        gap: 1rem !important;
+      }
+
+      /* Animation that alternates direction automatically */
+      .products-slider-left-to-right {
+        animation-name: alternate-products-ltr !important;
+      }
+
+      .products-slider-right-to-left {
+        animation-name: alternate-products-rtl !important;
+      }
+
+      @keyframes alternate-products-ltr {
+        0% {
+          transform: translateX(-50%);
+        }
+        100% {
+          transform: translateX(0%);
+        }
+      }
+
+      @keyframes alternate-products-rtl {
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      .products-slider-content > * {
+        flex: 1 !important;
+        min-width: 300px !important;
+        margin-right: 1rem !important;
+      }
+
+      /* Alternative approach for even more dynamic alternating */
+      .skills-marquee-row:nth-child(odd) {
+        animation-delay: 0s !important;
+      }
+
+      .skills-marquee-row:nth-child(even) {
+        animation-delay: 7.5s !important;
+      }
+
+      .products-slider-row:nth-child(odd) {
+        animation-delay: 0s !important;
+      }
+
+      .products-slider-row:nth-child(even) {
+        animation-delay: 10s !important;
+      }
+
+      /* Force override any grid layouts */
+      .skills-marquee-container,
+      .products-slider-container {
+        display: block !important;
+      }
+
+      .skills-marquee-container .w-layout-grid,
+      .products-slider-container .w-layout-grid {
+        display: flex !important;
+        grid-template-columns: none !important;
+        grid-template-rows: none !important;
+        grid-gap: 0 !important;
       }
 
       /* Service Tags */
@@ -939,6 +1089,19 @@
           padding-top: 1.5rem !important;
           padding-bottom: 1.5rem !important;
         }
+
+        .skills-marquee-right-to-left,
+        .skills-marquee-left-to-right {
+          animation-duration: 15s !important;
+        }
+
+        .products-slider-row {
+          animation-duration: 20s !important;
+        }
+
+        .products-slider-content > * {
+          min-width: 250px !important;
+        }
       }
     </style>
 
@@ -985,18 +1148,14 @@
               ><a href="./case-studies.html" class="navbar14_link w-nav-link"
                 >Design Portfolio</a
               ><a href="./about-me.html" class="navbar14_link w-nav-link"
-                >About </a
-              >
+                >About
+              </a>
             </div>
             <div
               id="w-node-_172216b1-dfd9-9eef-9495-a5d90db31316-0db31309"
               class="navbar14_button-wrapper"
             >
-              <a
-                href="./contact.html"
-                class=""
-                >Start here</a
-              >
+              <a href="./contact.html" class="">Start here</a>
             </div>
           </div>
         </nav>
@@ -1039,57 +1198,88 @@
                   </h1>
                 </div>
                 <p class="text-size-large">
-                  A blend of strategic UX, holistic human design, human centered/ AI-enhanced
-                  workflows.
+                  A blend of strategic UX, holistic human design, human
+                  centered/ AI-enhanced workflows.
                 </p>
                 <div
                   class="button-group is-center margin-top-3rem"
                   style="text-align: center"
                 >
-                <a href="./contact.html" class="contact-button">
-                  <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <a href="./contact.html" class="contact-button">
+                    <svg
+                      class="contact-icon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path
+                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                      ></path>
                       <polyline points="22,6 12,13 2,6"></polyline>
-                  </svg>
-                  Contact Me
-              </a>
-<!--                 
+                    </svg>
+                    Contact Me
+                  </a>
+                  <!--                 
                      <button onclick="toggleCalendar()" class="button w-button">
                       📞 Book a 15-min call
                     </button> -->
 
-                    <button href="https://calendly.com/lulamile_m/meet-lulamile" onclick="toggleCalendar()" class="button w-button">
-                      <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: scale(1) rotate(0deg);">
-                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                          <line x1="16" y1="2" x2="16" y2="6"></line>
-                          <line x1="8" y1="2" x2="8" y2="6"></line>
-                          <line x1="3" y1="10" x2="21" y2="10"></line>
-                          <path d="M8 14h.01"></path>
-                          <path d="M12 14h.01"></path>
-                          <path d="M16 14h.01"></path>
-                          <path d="M8 18h.01"></path>
-                          <path d="M12 18h.01"></path>
-                      </svg>
-                      Book a 15-min call
-                    </button>
-
+                  <button
+                    href="https://calendly.com/lulamile_m/meet-lulamile"
+                    onclick="toggleCalendar()"
+                    class="button w-button"
+                  >
+                    <svg
+                      class="contact-icon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      style="transform: scale(1) rotate(0deg)"
+                    >
+                      <rect
+                        x="3"
+                        y="4"
+                        width="18"
+                        height="18"
+                        rx="2"
+                        ry="2"
+                      ></rect>
+                      <line x1="16" y1="2" x2="16" y2="6"></line>
+                      <line x1="8" y1="2" x2="8" y2="6"></line>
+                      <line x1="3" y1="10" x2="21" y2="10"></line>
+                      <path d="M8 14h.01"></path>
+                      <path d="M12 14h.01"></path>
+                      <path d="M16 14h.01"></path>
+                      <path d="M8 18h.01"></path>
+                      <path d="M12 18h.01"></path>
+                    </svg>
+                    Book a 15-min call
+                  </button>
                 </div>
-                <div                   
-                id="calendarEmbed"                   
-                style="display: none; margin-top: 2rem; text-align: center"                 
-              >                   
-                <iframe                     
-                  src="https://calendly.com/lulamile_m/meet-lulamile"                     
-                  style="                       
-                    border: none;                       
-                    width: 100%;                       
-                    max-width: 1500px;                       
-                    height: 900px;                     
-                  "                     
-                  allowfullscreen                   
-                >                   
-                </iframe>                 
-              </div>
+                <div
+                  id="calendarEmbed"
+                  style="display: none; margin-top: 2rem; text-align: center"
+                >
+                  <iframe
+                    src="https://calendly.com/lulamile_m/meet-lulamile"
+                    style="
+                      border: none;
+                      width: 100%;
+                      max-width: 1500px;
+                      height: 900px;
+                    "
+                    allowfullscreen
+                  >
+                  </iframe>
+                </div>
 
                 <script>
                   function toggleCalendar() {
@@ -1222,17 +1412,20 @@
                       </h2>
                     </div>
                     <p class="text-size-large">
-                     Thoughts, articles, learnings, and case studies from my journey in design—where I fix frustrating UX, build MVPs, and make tech products easy to use.
+                      Thoughts, articles, learnings, and case studies from my
+                      journey in design—where I fix frustrating UX, build MVPs,
+                      and make tech products easy to use.
+                    </p>
                   </div>
                 </div>
               </div>
-              
+
               <div class="w-layout-grid layout401_grid-list gap-16px">
                 <div
                   id="w-node-_604e62b4-28ce-c885-cdda-c390f7e26d8b-b4f3157c"
                   class="w-layout-grid grid-packages"
                 >
-                 <div class="layout397_card-large cream-background">
+                  <div class="layout397_card-large cream-background">
                     <div class="layout397_card-large-content">
                       <div class="layout397_card-large-content-top">
                         <div
@@ -1241,24 +1434,34 @@
                           <h3 class="heading-4">Design Case Studies</h3>
                         </div>
                         <p class="text-size-medium">
-                          Design challenges, case studies, Daily UI help me sharpen and evolve my approach.
+                          Design challenges, case studies, Daily UI help me
+                          sharpen and evolve my approach.
                         </p>
                       </div>
                       <div class="layout397_card-large-image-wrapper">
-                          <img
+                        <img
                           width="264.5"
                           sizes="(max-width: 479px) 100vw, 264.5px"
                           alt="loading"
                           src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13"
                           loading="lazy"
-                          srcset="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 500w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 800w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 1080w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 1600w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 2000w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 2600w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 2970w"
+                          srcset="
+                            https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13  500w,
+                            https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13  800w,
+                            https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 1080w,
+                            https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 1600w,
+                            https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 2000w,
+                            https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 2600w,
+                            https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 2970w
+                          "
                           class="layout397_card-large-image corner-radius margin-top margin-medium"
                         />
                       </div>
                       <div class="margin-top margin-xsmall">
                         <div class="button-group">
                           <a
-                            href="https://www.figma.com/design/SeCP6cuxXX8UyhnOn2wYcJ/Collection-Of-Projects?node-id=8911-3184&t=iYcLW2SGGKNUzMsQ-1" target="_blank"
+                            href="https://www.figma.com/design/SeCP6cuxXX8UyhnOn2wYcJ/Collection-Of-Projects?node-id=8911-3184&t=iYcLW2SGGKNUzMsQ-1"
+                            target="_blank"
                             class="button is-secondary max-width-full w-inline-block"
                           >
                             <div>Request to access them</div>
@@ -1276,7 +1479,9 @@
                           <h3 class="heading-4">Successful Projects</h3>
                         </div>
                         <p class="text-size-medium">
-                        Read more on products that I did & focused more on real product impact for end users.</p>
+                          Read more on products that I did & focused more on
+                          real product impact for end users.
+                        </p>
                       </div>
                       <div class="layout397_card-large-image-wrapper">
                         <img
@@ -1295,36 +1500,52 @@
                             href="./case-studies.html"
                             class="button is-secondary max-width-full w-inline-block"
                           >
-                            <div>View All</div>
+                            <div>View All Portfolio(s)</div>
                           </a>
                         </div>
                       </div>
                     </div>
                   </div>
-                  
+
                   <div class="layout397_card-large cream-background">
                     <div class="layout397_card-large-content">
                       <div class="layout397_card-large-content-top">
-                        <div class="margin-bottom margin-xsmall align-horizontally">
+                        <div
+                          class="margin-bottom margin-xsmall align-horizontally"
+                        >
                           <h3 class="heading-4">UX&nbsp;Sprint</h3>
                         </div>
                         <p class="text-size-medium">
-                          Users are stuck? I'll fix one user flow in 3 days. Faster signups and less churn.
+                          Users are stuck? I'll fix one user flow in 3 days.
+                          Faster signups and less churn.
                         </p>
                       </div>
                       <div class="layout397_card-large-image-wrapper">
-                        <img alt="" src="./assets/resources/Frame 1.png" loading="lazy" class="layout397_card-large-image corner-radius margin-top margin-medium">                                             </div>
+                        <img
+                          alt=""
+                          src="./assets/resources/Frame 1.png"
+                          loading="lazy"
+                          class="layout397_card-large-image corner-radius margin-top margin-medium"
+                        />
+                      </div>
                       <div class="margin-top margin-xsmall">
-                        <p class="text-size-medium grey margin-bottom text-align-center">Starting at R450 p/hr</p>
+                        <p
+                          class="text-size-medium grey margin-bottom text-align-center"
+                        >
+                          Starting at R450 p/hr
+                        </p>
                         <div class="button-group">
-                          <a href="" target="_blank" class="button max-width-full w-inline-block">
+                          <a
+                            href=""
+                            target="_blank"
+                            class="button max-width-full w-inline-block"
+                          >
                             <div>coming soon →</div>
                           </a>
                         </div>
                       </div>
                     </div>
                   </div>
-                 
                 </div>
               </div>
             </div>
@@ -1365,6 +1586,8 @@
       </div>
       <div class="container-large"></div>
     </section>
+
+    <!-- Skills Section with Sliding Animation -->
     <section class="section_layout401 cream-background">
       <div class="padding-global">
         <div class="container-large">
@@ -1374,58 +1597,128 @@
                 <div class="text-align-center-2">
                   <div class="max-width-large align-center">
                     <div class="margin-bottom margin-xsmall">
-                      <div class="text-style-tagline blue">services and skills</div>
+                      <div class="text-style-tagline blue">
+                        services and skills
+                      </div>
                     </div>
                     <div class="margin-bottom margin-small">
                       <h2 class="heading-2">My Skills and Expertise</h2>
                     </div>
                     <p class="text-size-large">
-                      I possess a diverse set of skills and expertise to bring your design visions to life
+                      I possess a diverse set of skills and expertise to bring
+                      your design visions to life
                     </p>
                   </div>
                 </div>
               </div>
-              <div class="w-layout-grid layout401_grid-list">
-                <div
-                  id="w-node-_12458b23-aea7-e702-71bc-6a4da080c43f-b4f3157c"
-                  class="w-layout-grid grid services-grid"
-                >
-                  <div class="text-style-tagline basic animation-hover">
-                    UX/UI Design/Dev
+
+              <!-- Row 1: Right to Left -->
+              <div class="skills-marquee-container">
+                <div class="skills-marquee-row skills-marquee-right-to-left">
+                  <div class="skills-marquee-content">
+                    <div class="text-style-tagline basic animation-hover">
+                      UX/UI Design/Dev
+                    </div>
+                    <div class="text-style-tagline basic">Prototypes</div>
+                    <div class="text-style-tagline basic">
+                      Canvas App & PowerApps
+                    </div>
+                    <div class="text-style-tagline basic">User flows</div>
+                    <div class="text-style-tagline basic animation-hover">
+                      Strategy
+                    </div>
+                    <div class="text-style-tagline basic">User research</div>
+                    <div class="text-style-tagline basic">UX for growth</div>
                   </div>
-                  <div class="text-style-tagline basic">Prototypes</div>
-                  <div class="text-style-tagline basic">Canvas App & PowerApps</div>
-                  <div class="text-style-tagline basic">User flows</div>
-                  <div class="text-style-tagline basic animation-hover">
-                    Strategy
+                  <div class="skills-marquee-content">
+                    <div class="text-style-tagline basic animation-hover">
+                      UX/UI Design/Dev
+                    </div>
+                    <div class="text-style-tagline basic">Prototypes</div>
+                    <div class="text-style-tagline basic">
+                      Canvas App & PowerApps
+                    </div>
+                    <div class="text-style-tagline basic">User flows</div>
+                    <div class="text-style-tagline basic animation-hover">
+                      Strategy
+                    </div>
+                    <div class="text-style-tagline basic">User research</div>
+                    <div class="text-style-tagline basic">UX for growth</div>
                   </div>
-                  <div class="text-style-tagline basic">User research</div>
-                  <div class="text-style-tagline basic">UX for growth</div>
-                  <div class="text-style-tagline basic animation-hover">
-                    Visual identity
+                </div>
+              </div>
+
+              <!-- Row 2: Left to Right -->
+              <div class="skills-marquee-container">
+                <div class="skills-marquee-row skills-marquee-left-to-right">
+                  <div class="skills-marquee-content">
+                    <div class="text-style-tagline basic animation-hover">
+                      Visual identity
+                    </div>
+                    <div class="text-style-tagline basic">Design systems</div>
+                    <div class="text-style-tagline basic">Websites</div>
+                    <div class="text-style-tagline basic animation-hover">
+                      Mobile/Web Apps
+                    </div>
+                    <div class="text-style-tagline basic">
+                      SaaS multi-sided platform
+                    </div>
+                    <div class="text-style-tagline basic animation-hover">
+                      AI in UX/UI Design/Dev
+                    </div>
+                    <div class="text-style-tagline basic animation-hover">
+                      UX audits
+                    </div>
                   </div>
-                  <div class="text-style-tagline basic">Design systems</div>
-                  <div class="text-style-tagline basic">Websites</div>
-                  <div class="text-style-tagline basic animation-hover">
-                    Mobile/Web Apps
+                  <div class="skills-marquee-content">
+                    <div class="text-style-tagline basic animation-hover">
+                      Visual identity
+                    </div>
+                    <div class="text-style-tagline basic">Design systems</div>
+                    <div class="text-style-tagline basic">Websites</div>
+                    <div class="text-style-tagline basic animation-hover">
+                      Mobile/Web Apps
+                    </div>
+                    <div class="text-style-tagline basic">
+                      SaaS multi-sided platform
+                    </div>
+                    <div class="text-style-tagline basic animation-hover">
+                      AI in UX/UI Design/Dev
+                    </div>
+                    <div class="text-style-tagline basic animation-hover">
+                      UX audits
+                    </div>
                   </div>
-                  <div class="text-style-tagline basic">SaaS multi-sided platform</div>
-                  <div class="text-style-tagline basic animation-hover">
-                    AI in UX/UI Design/Dev
+                </div>
+              </div>
+
+              <!-- Row 3: Right to Left -->
+              <div class="skills-marquee-container">
+                <div class="skills-marquee-row skills-marquee-right-to-left">
+                  <div class="skills-marquee-content">
+                    <div class="text-style-tagline basic">Design sprints</div>
+                    <div class="text-style-tagline basic animation-hover">
+                      Low-code
+                    </div>
+                    <div class="text-style-tagline basic">Product demos</div>
+                    <div class="text-style-tagline basic animation-hover">
+                      Assets
+                    </div>
+                    <div class="text-style-tagline basic">Roadmaps</div>
+                    <div class="text-style-tagline basic">Pre-launch QA</div>
                   </div>
-                  <div class="text-style-tagline basic animation-hover">
-                    UX audits
+                  <div class="skills-marquee-content">
+                    <div class="text-style-tagline basic">Design sprints</div>
+                    <div class="text-style-tagline basic animation-hover">
+                      Low-code
+                    </div>
+                    <div class="text-style-tagline basic">Product demos</div>
+                    <div class="text-style-tagline basic animation-hover">
+                      Assets
+                    </div>
+                    <div class="text-style-tagline basic">Roadmaps</div>
+                    <div class="text-style-tagline basic">Pre-launch QA</div>
                   </div>
-                  <div class="text-style-tagline basic">Design sprints</div>
-                  <div class="text-style-tagline basic animation-hover">
-                    Low-code
-                  </div>
-                  <div class="text-style-tagline basic">Product demos</div>
-                  <div class="text-style-tagline basic animation-hover">
-                    Assets
-                  </div>
-                  <div class="text-style-tagline basic">Roadmaps</div>
-                  <div class="text-style-tagline basic">Pre-launch QA</div>
                 </div>
               </div>
             </div>
@@ -1433,8 +1726,8 @@
         </div>
       </div>
     </section>
-  
 
+    <!-- Products Section - Original Layout (Not Slideshow) -->
     <section class="section_layout401 cream-background">
       <div class="padding-global">
         <div class="container-large">
@@ -1562,7 +1855,7 @@
                   <div class="layout401_card primary-color">
                     <div class="layout401_card-content">
                       <div class="margin-bottom margin-xxsmall">
-                        <h3 class="heading-4">Internal Tool → SaaS </h3>
+                        <h3 class="heading-4">Internal Tool → SaaS</h3>
                       </div>
                       <p class="text-size-medium">
                         Transformed an internal tool into a powerhouse SaaS
@@ -1586,7 +1879,7 @@
               </div>
               <div class="button-group is-center margin-top-3rem">
                 <a href="./case-studies.html" class="button w-button"
-                  >See all case studies →</a
+                  >View all design portfolio(s) →</a
                 >
               </div>
             </div>
@@ -1594,6 +1887,7 @@
         </div>
       </div>
     </section>
+
     <section class="section_layout353">
       <div class="padding-global">
         <div class="container-large">
@@ -1613,26 +1907,57 @@
                 <div class="margin-top margin-medium">
                   <div class="button-group">
                     <a href="./contact.html" class="contact-button">
-        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-            <polyline points="22,6 12,13 2,6"></polyline>
-        </svg>
-        Contact Me
-    </a>
-                    <a href="https://calendly.com/lulamile_m/meet-lulamile" class="contact-button call-button">
-        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: scale(1) rotate(0deg);">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="16" y1="2" x2="16" y2="6"></line>
-            <line x1="8" y1="2" x2="8" y2="6"></line>
-            <line x1="3" y1="10" x2="21" y2="10"></line>
-            <path d="M8 14h.01"></path>
-            <path d="M12 14h.01"></path>
-            <path d="M16 14h.01"></path>
-            <path d="M8 18h.01"></path>
-            <path d="M12 18h.01"></path>
-        </svg>
-        Book a 15-min call
-    </a>
+                      <svg
+                        class="contact-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                        ></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                      </svg>
+                      Contact Me
+                    </a>
+                    <a
+                      href="https://calendly.com/lulamile_m/meet-lulamile"
+                      class="contact-button call-button"
+                    >
+                      <svg
+                        class="contact-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        style="transform: scale(1) rotate(0deg)"
+                      >
+                        <rect
+                          x="3"
+                          y="4"
+                          width="18"
+                          height="18"
+                          rx="2"
+                          ry="2"
+                        ></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                        <path d="M8 14h.01"></path>
+                        <path d="M12 14h.01"></path>
+                        <path d="M16 14h.01"></path>
+                        <path d="M8 18h.01"></path>
+                        <path d="M12 18h.01"></path>
+                      </svg>
+                      Book a 15-min call
+                    </a>
                   </div>
                 </div>
               </div>
@@ -2181,7 +2506,7 @@
           </div>
         </div>
       </div>
-    </section> 
+    </section>
     <footer class="footer1_component">
       <div class="padding-global-6">
         <div class="container-large">
@@ -2253,15 +2578,19 @@
                     aria-current="page"
                     class="footer1_link w--current"
                     >Home</a
-                  ><a href="./case-studies.html" class="footer1_link">Projects</a
+                  ><a href="./case-studies.html" class="footer1_link"
+                    >Projects</a
                   >
                 </div>
                 <div
                   id="w-node-_4023670b-f684-32f2-18f3-3804327eabad-0494b60c"
                   class="footer1_link-list"
                 >
-                  <a href="./case-studies.html#ui-playground" class="footer1_link">UI
-                  Playground</a><a href="./contact.html" class="footer1_link">Contact</a>
+                  <a
+                    href="./case-studies.html#ui-playground"
+                    class="footer1_link"
+                    >UI Playground</a
+                  ><a href="./contact.html" class="footer1_link">Contact</a>
                 </div>
               </div>
             </div>

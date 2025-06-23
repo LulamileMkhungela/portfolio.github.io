@@ -464,6 +464,34 @@
       height: auto;
     }
 
+    /* Process Image Styling */
+    .process-image {
+      border-radius: var(--neu-border-radius) !important;
+      box-shadow:
+        8px 8px 16px var(--neu-shadow-dark),
+        -8px -8px 16px var(--neu-shadow-light) !important;
+      transition: all 0.3s ease !important;
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      margin: 1.5rem 0;
+    }
+
+    .process-image:hover {
+      transform: translateY(-3px) !important;
+      box-shadow:
+        12px 12px 24px var(--neu-shadow-dark),
+        -12px -12px 24px var(--neu-shadow-light) !important;
+    }
+
+    .image-caption {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      text-align: center;
+      font-style: italic;
+      margin-top: 0.75rem;
+    }
+
     /* Enhanced Content Styles */
     .step-indicator {
       background: linear-gradient(145deg, var(--smartserve-orange), #c7461a);
@@ -909,11 +937,23 @@
       <div class="container-large">
         <div class="padding-section-small">
           <div class="layout401_component">
-            <div class="team20_content-left _100-width">
-              <p class="heading-4"><b>SmartServe: When Restaurant Tech Finally Gets It Right</b></p>
-              <p class="heading-5" style="color: var(--smartserve-orange);">Building a tableside ordering system that actually works in South Africa</p>
-              <p>After watching too many restaurant tech solutions crash and burn in the SA market (looking at you, imported iPad ordering systems), I decided to figure out why. Turns out, the problem wasn't South African restaurants being "behind" – it was tech companies not understanding how we actually eat, work, and live here.</p>
-              <p>This is the story of building SmartServe: restaurant technology that finally speaks our languages, works during load shedding, and respects the fact that good service is still about people, not just pixels.</p>
+            <div class="hero-grid">
+              <div class="header15_content-left">
+                <p class="heading-4"><b>SmartServe: When Restaurant Tech Finally Gets It Right</b></p>
+                <p class="heading-5" style="color: var(--smartserve-orange);">Building a tableside ordering system that actually works in South Africa</p>
+                <p>After watching too many restaurant tech solutions crash and burn in the SA market (looking at you, imported iPad ordering systems), I decided to figure out why. Turns out, the problem wasn't South African restaurants being "behind" – it was tech companies not understanding how we actually eat, work, and live here.</p>
+                <p>This is the story of building SmartServe: restaurant technology that finally speaks our languages, works during load shedding, and respects the fact that good service is still about people, not just pixels.</p>
+              </div>
+              <div class="header15_content-right">
+                <img 
+                  src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg" 
+                  alt="SmartServe restaurant technology interface" 
+                  class="process-image"
+                />
+                <p class="image-caption">
+                  Modern restaurant technology meeting traditional South African hospitality
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -968,6 +1008,15 @@
 
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
+              <img 
+                src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg" 
+                alt="Problem definition and research planning phase" 
+                class="process-image"
+              />
+              <p class="image-caption">
+                Identifying the core problems and defining project scope through stakeholder research
+              </p>
+
               <p class="heading-4"><b>The Problem That Wouldn't Go Away</b></p>
               <div class="quote-highlight">
                 "Every month, another restaurant would tell me about some expensive tech system they'd bought that was now gathering dust. I started to wonder: what if the problem isn't South African restaurants being 'difficult', but tech companies not understanding South Africa?"
@@ -1051,6 +1100,29 @@
 
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
+              <div class="grid-2">
+                <div>
+                  <img 
+                    src="https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg" 
+                    alt="Restaurant research and user interviews" 
+                    class="process-image"
+                  />
+                  <p class="image-caption">
+                    Deep-dive research sessions in actual restaurant environments
+                  </p>
+                </div>
+                <div>
+                  <img 
+                    src="https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg" 
+                    alt="Customer behavior observation and interviews" 
+                    class="process-image"
+                  />
+                  <p class="image-caption">
+                    Understanding diverse customer needs and cultural dining behaviors
+                  </p>
+                </div>
+              </div>
+
               <p class="heading-4"><b>How I Actually Did the Research</b></p>
 
               <div class="reality-check">
@@ -1148,6 +1220,29 @@
 
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
+              <div class="grid-2">
+                <div>
+                  <img 
+                    src="https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg" 
+                    alt="User persona development and analysis" 
+                    class="process-image"
+                  />
+                  <p class="image-caption">
+                    Creating detailed personas based on real user conversations and behaviors
+                  </p>
+                </div>
+                <div>
+                  <img 
+                    src="https://images.pexels.com/photos/1181233/pexels-photo-1181233.jpeg" 
+                    alt="Journey mapping and planning process" 
+                    class="process-image"
+                  />
+                  <p class="image-caption">
+                    Mapping complex customer journeys and identifying key pain points
+                  </p>
+                </div>
+              </div>
+
               <p class="heading-4"><b>The People Who Taught Me Everything</b></p>
 
               <div class="grid-3">
@@ -1235,6 +1330,29 @@
 
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
+              <div class="grid-2">
+                <div>
+                  <img 
+                    src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg" 
+                    alt="UI/UX design mockups and wireframes" 
+                    class="process-image"
+                  />
+                  <p class="image-caption">
+                    Designing interfaces that feel warm, welcoming, and culturally appropriate
+                  </p>
+                </div>
+                <div>
+                  <img 
+                    src="https://images.pexels.com/photos/265667/pexels-photo-265667.jpeg" 
+                    alt="Design system and color palette development" 
+                    class="process-image"
+                  />
+                  <p class="image-caption">
+                    Ubuntu-inspired design system with South African color palette and typography
+                  </p>
+                </div>
+              </div>
+
               <p class="heading-4"><b>Design Principles I Actually Followed</b></p>
 
               <div class="ubuntu-highlight">
@@ -1358,6 +1476,29 @@
 
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
+              <div class="grid-2">
+                <div>
+                  <img 
+                    src="https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg" 
+                    alt="Prototype development and testing" 
+                    class="process-image"
+                  />
+                  <p class="image-caption">
+                    Building working prototypes for real-world testing in restaurant environments
+                  </p>
+                </div>
+                <div>
+                  <img 
+                    src="https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg" 
+                    alt="Mobile app prototyping and iteration" 
+                    class="process-image"
+                  />
+                  <p class="image-caption">
+                    Iterating on mobile interfaces with real users during actual dining experiences
+                  </p>
+                </div>
+              </div>
+
               <p class="heading-4"><b>How I Actually Built and Tested</b></p>
 
               <div class="reality-check">
@@ -1466,6 +1607,29 @@
 
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
+              <div class="grid-2">
+                <div>
+                  <img 
+                    src="https://images.pexels.com/photos/3184394/pexels-photo-3184394.jpeg" 
+                    alt="User testing sessions and feedback collection" 
+                    class="process-image"
+                  />
+                  <p class="image-caption">
+                    Conducting real-world usability testing sessions with diverse user groups
+                  </p>
+                </div>
+                <div>
+                  <img 
+                    src="https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg" 
+                    alt="Restaurant staff testing and feedback sessions" 
+                    class="process-image"
+                  />
+                  <p class="image-caption">
+                    Testing with restaurant staff during actual service to validate workflows
+                  </p>
+                </div>
+              </div>
+
               <p class="heading-4"><b>Testing in the Real World</b></p>
 
               <div class="reality-check">
@@ -1550,6 +1714,29 @@
 
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
+              <div class="grid-2">
+                <div>
+                  <img 
+                    src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg" 
+                    alt="Product launch and deployment process" 
+                    class="process-image"
+                  />
+                  <p class="image-caption">
+                    Going live with phased rollout across multiple restaurant locations
+                  </p>
+                </div>
+                <div>
+                  <img 
+                    src="https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg" 
+                    alt="Staff training and onboarding sessions" 
+                    class="process-image"
+                  />
+                  <p class="image-caption">
+                    Training restaurant staff and ensuring smooth adoption of the new system
+                  </p>
+                </div>
+              </div>
+
               <p class="heading-4"><b>Rolling Out Without Rolling Over</b></p>
 
               <div class="reality-check">
@@ -1643,6 +1830,29 @@
 
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
+              <div class="grid-2">
+                <div>
+                  <img 
+                    src="https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg" 
+                    alt="Data analysis and continuous improvement" 
+                    class="process-image"
+                  />
+                  <p class="image-caption">
+                    Analyzing user data and feedback to drive continuous product improvements
+                  </p>
+                </div>
+                <div>
+                  <img 
+                    src="https://images.pexels.com/photos/1181243/pexels-photo-1181243.jpeg" 
+                    alt="Feature iteration and user feedback integration" 
+                    class="process-image"
+                  />
+                  <p class="image-caption">
+                    Iterating on features based on real usage patterns and user feedback
+                  </p>
+                </div>
+              </div>
+
               <p class="heading-4"><b>What Real Usage Taught Me</b></p>
 
               <div class="grid-2">
