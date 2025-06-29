@@ -269,14 +269,41 @@
         -6px -6px 12px var(--neu-shadow-light) !important;
     }
 
-    .cta1_image {
-      transition: transform 0.3s ease !important;
+    /* UNIFORM IMAGE SIZING - New CSS */
+    .layout397_card-large-image-wrapper {
+      height: 200px !important;
       width: 100% !important;
-      height: auto !important;
+      overflow: hidden !important;
+      border-radius: var(--neu-border-radius) !important;
+      box-shadow:
+        6px 6px 12px var(--neu-shadow-dark),
+        -6px -6px 12px var(--neu-shadow-light) !important;
     }
 
+    .layout397_card-large-image,
+    .cta1_image {
+      width: 100% !important;
+      height: 200px !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      transition: transform 0.3s ease !important;
+      border-radius: var(--neu-border-radius) !important;
+    }
+
+    .case-study-link:hover .layout397_card-large-image,
     .case-study-link:hover .cta1_image {
-      transform: scale(1.02) !important;
+      transform: scale(1.05) !important;
+    }
+
+    /* Ensure image wrapper for cta1 also has consistent height */
+    .cta1_image-wrapper {
+      height: 200px !important;
+      width: 100% !important;
+      overflow: hidden !important;
+      border-radius: var(--neu-border-radius) !important;
+      box-shadow:
+        6px 6px 12px var(--neu-shadow-dark),
+        -6px -6px 12px var(--neu-shadow-light) !important;
     }
 
     /* Tag styling - Reduced padding */
@@ -370,8 +397,6 @@
       cursor: pointer !important;
     }
 
-
-
     .padding-section-small {
       padding-top: 1.5rem !important;
       padding-bottom: 1.5rem !important;
@@ -419,6 +444,17 @@
         padding-top: 2rem !important;
         padding-bottom: 2rem !important;
       }
+
+      /* Mobile image adjustments */
+      .layout397_card-large-image-wrapper,
+      .cta1_image-wrapper {
+        height: 180px !important;
+      }
+
+      .layout397_card-large-image,
+      .cta1_image {
+        height: 180px !important;
+      }
     }
 
     @media (max-width: 479px) {
@@ -437,6 +473,17 @@
       .padding-section-xxlarge {
         padding-top: 1.5rem !important;
         padding-bottom: 1.5rem !important;
+      }
+
+      /* Small mobile image adjustments */
+      .layout397_card-large-image-wrapper,
+      .cta1_image-wrapper {
+        height: 160px !important;
+      }
+
+      .layout397_card-large-image,
+      .cta1_image {
+        height: 160px !important;
       }
     }
   </style>
@@ -475,27 +522,6 @@
     </div>
   </div>
 
-  <!-- <header class="section_header62">
-      <div class="padding-global">
-          <div class="container-large">
-              <div class="padding-section-xxlarge less-bottom-padding bottom-padding-4rem">
-                  <div class="header62_component">
-                      <div class="text-align-center-2">
-                          <div class="max-width-large align-center">
-                              <div class="margin-bottom margin-small">
-                                  <h1 class="heading-1 margin-top margin-small">Success Stories</h1>
-                              </div>
-                              <p class="text-size-large">
-                                  Selected case studies of products we worked on, crafting seamless user experiences. <br/>
-                              </p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </header> -->
-
   <section class="section_layout401 cream-background">
     <div class="padding-global">
       <div class="container-large">
@@ -529,6 +555,32 @@
                       </div>
                       <p class="text-size-medium">
                         Tableside Restaurant Ordering Application
+                        Market: South Africa</p>
+                    </div>
+                    <div class="layout397_card-large-image-wrapper">
+                      <img sizes="(max-width: 3960px) 100vw, 3960px"
+                      src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13"
+                      alt="loading"
+                        srcset="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 500w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 800w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 1080w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 1600w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 2000w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 2600w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 2970w"
+                        loading="lazy" class="layout397_card-large-image" />
+                    </div>
+                    <div class="margin-top margin-xsmall">
+                      <div class="button-group">
+                        <a href="./smart-serve.html" class="button is-secondary max-width-full w-inline-block">
+                          <div>Read More</div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="layout397_card-large cream-background">
+                  <div class="layout397_card-large-content">
+                    <div class="layout397_card-large-content-top">
+                      <div class="margin-bottom margin-xsmall align-horizontally">
+                        <h3 class="heading-4">SmartServe: By OpenSesyme</h3>
+                      </div>
+                      <p class="text-size-medium">
+                        Tableside Restaurant Ordering Application
                         Market: South Africa </p>
                     </div>
                     <div class="layout397_card-large-image-wrapper">
@@ -546,13 +598,13 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
                 <div class="layout397_card-large cream-background">
                   <div class="layout397_card-large-content">
                     <div class="layout397_card-large-content-top">
                       <div class="margin-bottom margin-xsmall align-horizontally">
-                        <h3 class="heading-4">Absa Hackathon: Banks Branch UX</h3>
+                        <h3 class="heading-4">Banks Branch Visit UX</h3>
                       </div>
                       <p class="text-size-medium">
                         South African Bank Branch User Experience Transformation(Absa Hackarthon and beyond)</p>
@@ -562,7 +614,7 @@
                         srcset="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 500w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 800w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 1080w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 1600w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 3960w"
                         alt="loading"
                         src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7"
-                        loading="lazy" class="cta1_image" />
+                        loading="lazy" class="layout397_card-large-image" />
                     </div>
                     <div class="margin-top margin-xsmall">
                       <div class="button-group">
@@ -588,7 +640,7 @@
                         srcset="https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/Screenshot%202025-06-29%20at%2014.50.32.png?alt=media&token=0150610b-5866-4ab0-a6dc-726d971d9e01 500w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/Screenshot%202025-06-29%20at%2014.50.32.png?alt=media&token=0150610b-5866-4ab0-a6dc-726d971d9e01 800w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/Screenshot%202025-06-29%20at%2014.50.32.png?alt=media&token=0150610b-5866-4ab0-a6dc-726d971d9e01 1080w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/Screenshot%202025-06-29%20at%2014.50.32.png?alt=media&token=0150610b-5866-4ab0-a6dc-726d971d9e01 1600w, https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/Screenshot%202025-06-29%20at%2014.50.32.png?alt=media&token=0150610b-5866-4ab0-a6dc-726d971d9e01 3960w"
                         alt="loading"
                         src="https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/Screenshot%202025-06-29%20at%2014.50.32.png?alt=media&token=0150610b-5866-4ab0-a6dc-726d971d9e01"
-                        loading="lazy" class="cta1_image" />
+                        loading="lazy" class="layout397_card-large-image" />
                     </div>
                     <div class="margin-top margin-xsmall">
                       <div class="button-group">
@@ -606,14 +658,15 @@
                         <h3 class="heading-4">Practo App</h3>
                       </div>
                       <p class="text-size-medium">
-                        Got an idea? I focus more on real product impact and build MVPs that wow users.</p>
+                        Streamline the entire doctor visit
+                  process, eliminating long waits and uncertainties</p>
                     </div>
                     <div class="layout397_card-large-image-wrapper">
                       <img sizes="(max-width: 3960px) 100vw, 3960px"
                         srcset="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 500w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 800w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 1080w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 1600w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 3960w"
                         alt="loading"
                         src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252"
-                        loading="lazy" class="cta1_image" />
+                        loading="lazy" class="layout397_card-large-image" />
                     </div>
                     <div class="margin-top margin-xsmall">
                       <div class="button-group">
@@ -636,88 +689,7 @@
     </div>
   </section>
 
-  <!-- <section class="section_cta1">
-    <div class="padding-global">
-        <div class="container-large">
-            <div class="padding-section-small">
-                
-                    <a href="#" class="case-study-link top-margin w-inline-block">
-                <div class="w-layout-grid cta1_component">
-                    <div class="cta1_content">
-                        <div class="margin-bottom margin-small">
-                            <h3 class="heading-3">Takeda: Powering personalized digital health journeys at scale</h3>
-                        </div>
-                        <div class="button-group no-space">
-                            <p class="text-style-tagline blue margin-bottom margin-small margin-right margin-top">saas</p>
-                            <p class="text-style-tagline blue margin-bottom margin-small margin-right margin-top">b2b</p>
-                            <p class="text-style-tagline blue margin-bottom margin-small margin-right margin-top">health tech</p>
-                        </div>
-                    </div>
-                    <div id="w-node-_86dff483-b73d-861b-1856-52fb195fff90-445dfd32" class="cta1_image-wrapper">
-                              <img sizes="(max-width: 2184px) 100vw, 2184px" srcset="https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/67865205301bfb810796450b_IM%20Studio-p-500.png 500w, https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/67865205301bfb810796450b_IM%20Studio-p-800.png 800w, https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/67865205301bfb810796450b_IM%20Studio-p-1080.png 1080w, https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/67865205301bfb810796450b_IM%20Studio-p-1600.png 1600w, https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/67865205301bfb810796450b_IM%20Studio-p-2000.png 2000w, https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/67865205301bfb810796450b_IM%20Studio.png 2184w" alt="loading" src="https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/67865205301bfb810796450b_IM%20Studio.png" loading="lazy" class="cta1_image"/>
-                    </div>
-                </div>
-            </a>
-                <a href="./practo.html" class="case-study-link w-inline-block">
-                  <div class="w-layout-grid cta1_component">
-                      <div class="cta1_content">
-                          <div class="margin-bottom margin-small">
-                              <h3 class="heading-3">Takeda's client project- A Streamlined Doctor Consultation: Practo App(Work in progress)</h3>
-                          </div>
-                          <div class="button-group no-space">
-                              <p class="text-style-tagline blue margin-bottom margin-small margin-right margin-top">Service Design</p>
-                              <p class="text-style-tagline blue margin-bottom margin-small margin-right margin-top">product design</p>
-                              <p class="text-style-tagline blue margin-bottom margin-small margin-right margin-top">health care</p>
-                          </div>
-                      </div>
-                      <div id="w-node-d4502c79-9b7d-8733-29e3-5921df0152b4-445dfd32" class="cta1_image-wrapper">
-                          <img sizes="(max-width: 3960px) 100vw, 3960px" srcset="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 500w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 800w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 1080w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 1600w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252 3960w" alt="loading" src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/consdoc.png?alt=media&token=f42161ff-6974-497c-9474-89b477e3a252" loading="lazy" class="cta1_image"/>
-                      </div>
-                  </div>
-              </a>
-           
-            
-            <a href="./banking-experience.html" class="case-study-link top-margin w-inline-block">
-                <div class="w-layout-grid cta1_component">
-                    <div class="cta1_content">
-                        <div class="margin-bottom margin-small">
-                            <h3 class="heading-3">Banks Branch User Experience.</h3>
-                        </div>
-                        <div class="button-group no-space">
-                            <p class="text-style-tagline blue margin-bottom margin-small margin-right margin-top">app Design</p>
-                            <p class="text-style-tagline blue margin-bottom margin-small margin-right margin-top">product design</p>
-                            <p class="text-style-tagline blue margin-bottom margin-small margin-right margin-top">banking experience</p>
-                        </div>
-                    </div>
-                    <div id="w-node-d4502c79-9b7d-8733-29e3-5921df0152b4-445dfd32" class="cta1_image-wrapper">
-                        <img sizes="(max-width: 3960px) 100vw, 3960px" srcset="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 500w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 800w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 1080w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 1600w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7 3960w" alt="loading" src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7" loading="lazy" class="cta1_image"/>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://www.figma.com/design/SeCP6cuxXX8UyhnOn2wYcJ/Collection-Of-Projects?node-id=8911-3184&t=iYcLW2SGGKNUzMsQ-1" target="_blank" class="case-study-link top-margin w-inline-block">
-              <div class="w-layout-grid cta1_component">
-                  <div class="cta1_content">
-                      <div class="margin-bottom margin-small">
-                          <h3 class="heading-3">Design challenges, case studies, Daily UI help me sharpen and evolve my approach.</h3>
-                      </div>
-                      <div class="button-group no-space">
-                          <p class="text-style-tagline blue margin-bottom margin-small margin-right margin-top">product design</p>
-                          <p class="text-style-tagline blue margin-bottom margin-small margin-right margin-top">ux/ui case studies</p>
-                          <p class="text-style-tagline blue margin-bottom margin-small margin-right margin-top">UI development</p>
-                      </div>
-                  </div>
-                  <div id="w-node-_8a1baaaf-7f4e-e782-0926-f0d3b591d89f-445dfd32" class="cta1_image-wrapper">
-                      <img sizes="(max-width: 1980px) 100vw, 1980px" srcset="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 500w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 800w, https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13 1980w" alt="loading" src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/designs.webp?alt=media&token=6912eefc-4376-44d6-a79c-762970c16e13" loading="lazy" class="cta1_image"/>
-                  </div>
-              </div>
-          </a>
-          
-            </div>
-          </div>
-        </div>
-    </section>
-        <footer class="footer1_component">
+  <footer class="footer1_component">
     <div class="padding-global-6">
       <div class="container-large">
         <div class="padding-vertical padding-xxlarge">
