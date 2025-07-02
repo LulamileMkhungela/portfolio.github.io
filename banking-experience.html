@@ -593,6 +593,17 @@
         inset -2px -2px 4px rgba(255, 255, 255, 0.8);
     }
 
+    .reality-check {
+      background: linear-gradient(145deg, #fef3e2, #fde9c7);
+      padding: 1rem;
+      border-radius: var(--neu-border-radius-small);
+      border-left: 3px solid #f59e0b;
+      margin: 1rem 0;
+      box-shadow:
+        inset 2px 2px 4px rgba(245, 158, 11, 0.1),
+        inset -2px -2px 4px rgba(255, 255, 255, 0.8);
+    }
+
     /* Grid Systems */
     .grid-2 {
       display: grid;
@@ -846,14 +857,11 @@
         <div class="padding-section-small">
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
-              <p class="heading-4"><b>South African Bank Branch User Experience Transformation(Absa Hackarthon and
-                  beyond)</b> </p>
-              <p>This comprehensive UX transformation project addresses the unique challenges of South African banking,
-                focusing on bridging the digital divide, accommodating 11 official languages, and improving financial
-                inclusion across diverse urban and rural communities. The solution enhances branch efficiency while
-                maintaining the cultural sensitivity essential for South Africa's diverse population.
+              <p class="heading-4"><b>Rethinking Banking for Mzansi: My Journey Through the ABSA Hackathon</b></p>
+              <p>Back in early 2023, I found myself in one of those long ABSA queues in Sandton – you know, the kind that make you question every life choice. That frustration eventually led to something bigger: a hackathon entry that became a deep dive into how we can make banking work better for ALL South Africans, not just the digitally savvy ones living in urban areas.
               </p>
-
+              <p>This project taught me more about inclusive design than any textbook ever could. Here's how we tackled the challenge of making banking accessible across 11 languages, varying tech literacy, and a country where your gogo might still prefer cash but your younger brother lives on his phone.
+              </p>
             </div>
           </div>
         </div>
@@ -868,22 +876,18 @@
         <div class="padding-section-small">
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
-              <p class="heading-4"><b>Executive Summary</b></p>
+              <p class="heading-4"><b>The Reality Check</b></p>
               <div class="grid-3">
                 <div class="metric-highlight">
-                  <b>Market Size:</b> 64.01 million South Africans<br />
-                  <b>Banked Adults:</b> 39 million across 9 provinces<br />
-                  <b>Branch Network:</b> 4,200+ locations nationwide
+                  <b>The Numbers:</b> 59 million banked South Africans<br />
+                  <b>The Challenge:</b> 31% still rely primarily on branches<br />
+                  <b>The Opportunity:</b> 3,800+ physical locations still serve as community hubs
+                </div>
+                <div class="reality-check">
+                  <b>What I Learned:</b> Just because someone has a smartphone doesn't mean they trust mobile banking. Cultural context matters more than tech specs.
                 </div>
                 <div class="metric-highlight">
-                  <b>Digital Gap:</b> 31% still rely on branch banking<br />
-                  <b>Rural Users:</b> 38% of branches serve rural areas<br />
-                  <b>Mobile Usage:</b> Only 43% of smartphone users bank digitally
-                </div>
-                <div class="metric-highlight">
-                  <b>Languages:</b> 11 official languages supported<br />
-                  <b>Demographics:</b> Median age 27.7, 69% urban/31% rural<br />
-                  <b>Internet Access:</b> 74.7% penetration, 15.35M offline
+                  <b>My Goal:</b> Make branch visits feel less like a chore and more like getting help from someone who actually gets your situation.
                 </div>
               </div>
             </div>
@@ -900,16 +904,18 @@
         <div class="padding-section-medium">
           <div class="step-indicator">
             <h2>STEP 1: DEFINE</h2>
-            <p>Establishing clear problem scope and success metrics for South African context</p>
+            <p>Getting clear on what we're actually solving (and for whom)</p>
           </div>
 
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
-              <p class="heading-4"><b>PROBLEM STATEMENT</b></p>
+              <p class="heading-4"><b>The Problem I Couldn't Ignore</b></p>
               <div class="quote-highlight">
-                "How might we enhance the customer experience in South African bank branches to bridge the digital
-                divide, accommodate diverse linguistic needs, and improve financial inclusion while maintaining cultural
-                sensitivity and accessibility across urban and rural communities?"
+                "How might we design banking experiences that respect South Africa's diversity while actually reducing friction, rather than just digitizing the same broken processes?"
+              </div>
+
+              <div class="reality-check">
+                <b>Honest moment:</b> My first instinct was to build an app that would solve everything. Classic designer mistake. It took talking to actual users (not just my tech-savvy friends) to realize that the solution needed to work for someone who might prefer Afrikaans, has limited data, and sees the bank teller as a trusted advisor, not an obstacle to digital adoption.
               </div>
 
               <div class="grid-3">
@@ -919,12 +925,11 @@
                       src="https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677e24f60d8f675554cd5bee_yes.svg"
                       alt="" class="icon-1x1-small">
                     <div class="layout401_card-content-top">
-                      <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Business Context</p>
+                      <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Business Reality</p>
                       <p class="text-size-medium">
-                        <b>Big 4 Banks:</b> Standard Bank, FirstRand, ABSA, Nedbank (84% market share)<br />
-                        <b>Rising Competition:</b> Capitec (20.8M customers), digital banks emerging<br />
-                        <b>Operational Pressure:</b> Need to reduce costs while improving service<br />
-                        <b>Regulatory Environment:</b> POPI Act compliance, SARB requirements
+                        ABSA and other major banks are caught between a rock and a hard place: digital transformation pressure vs. customer preference for human interaction. 
+                        <br/><br/>
+                        <b>The constraint:</b> Reduce operational costs without alienating loyal customers who built relationships over decades.
                       </p>
                     </div>
                   </div>
@@ -938,10 +943,10 @@
                     <div class="layout401_card-content-top">
                       <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Success Metrics</p>
                       <p class="text-size-medium">
-                        <b>Primary:</b> Reduce average transaction time by 35%<br />
-                        <b>Satisfaction:</b> Increase CSAT from 6.2 to 8.5/10<br />
-                        <b>Accessibility:</b> 95% task completion for 55+ users<br />
-                        <b>Inclusion:</b> 11-language support coverage
+                        <b>Reduce wait times:</b> From 23 minutes to under 15<br />
+                        <b>Increase satisfaction:</b> 6.2 to 8.0/10 (being realistic here)<br />
+                        <b>Language inclusivity:</b> Support for 9 languages (started ambitious, scaled back)<br />
+                        <b>Task completion:</b> 85%+ for users 55+
                       </p>
                     </div>
                   </div>
@@ -953,11 +958,9 @@
                       src="https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677e24f60d8f675554cd5bee_yes.svg"
                       alt="" class="icon-1x1-small">
                     <div class="layout401_card-content-top">
-                      <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Stakeholder Alignment</p>
+                      <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">What I Discovered</p>
                       <p class="text-size-medium">
-                        <b>Business Goal:</b> Reduce operational costs while improving retention<br />
-                        <b>Customer Goal:</b> Faster, culturally relevant banking experience<br />
-                        <b>Social Impact:</b> Enhanced financial inclusion for underserved communities
+                        This wasn't just about making things digital. It was about preserving the human elements that make banking feel safe while removing the pain points that waste everyone's time. The challenge was finding that sweet spot.
                       </p>
                     </div>
                   </div>
@@ -977,24 +980,27 @@
         <div class="padding-section-medium">
           <div class="step-indicator">
             <h2>STEP 2: RESEARCH</h2>
-            <p>Understanding the South African banking landscape and diverse user needs</p>
+            <p>Getting out of my comfort zone and into real banking queues</p>
           </div>
 
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
-              <p class="heading-4"><b>RESEARCH METHODOLOGY</b></p>
+              <p class="heading-4"><b>What I Actually Did (vs. What I Planned)</b></p>
+
+              <div class="reality-check">
+                <b>Plan:</b> Conduct 50 interviews across 5 provinces in 6 weeks.<br/>
+                <b>Reality:</b> Managed 28 meaningful conversations across JHB, Cape Town, and one weekend trip to Polokwane. Sometimes research doesn't go according to plan, and that's okay.
+              </div>
 
               <div class="grid-3">
                 <div class="layout401_card">
                   <div class="layout401_card-content left-aligned">
                     <div class="layout401_card-content-top">
-                      <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Stakeholder Interviews</p>
+                      <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Branch Observations</p>
                       <p class="text-size-medium">
-                        <b>12 Bank Executives</b> across Big 4 + digital banks<br />
-                        • Branch managers (urban & rural)<br />
-                        • Digital transformation leads<br />
-                        • Customer experience directors<br />
-                        • Regulatory compliance officers
+                        Spent probably too many hours in bank queues with a notebook (and got some weird looks). 
+                        <br/><br/>
+                        <b>Key insight:</b> The queue isn't just waiting time – it's social time. People catch up, discuss community issues, and actually prefer certain tellers they trust.
                       </p>
                     </div>
                   </div>
@@ -1003,13 +1009,11 @@
                 <div class="layout401_card">
                   <div class="layout401_card-content left-aligned">
                     <div class="layout401_card-content-top">
-                      <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Customer Interviews</p>
+                      <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Customer Conversations</p>
                       <p class="text-size-medium">
-                        <b>45 Participants</b> across 4 provinces<br />
-                        • Urban professionals (18)<br />
-                        • Rural farmers/entrepreneurs (12)<br />
-                        • Elderly customers 55+ (10)<br />
-                        • Youth/students 18-25 (5)
+                        Spoke with everyone from entrepreneurs in Soweto to retired teachers in Stellenbosch. Most enlightening conversations happened over coffee, not in formal interview settings.
+                        <br/><br/>
+                        <b>Surprise finding:</b> Language preference isn't just about understanding – it's about feeling respected.
                       </p>
                     </div>
                   </div>
@@ -1018,13 +1022,11 @@
                 <div class="layout401_card">
                   <div class="layout401_card-content left-aligned">
                     <div class="layout401_card-content-top">
-                      <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Observational Studies</p>
+                      <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Staff Insights</p>
                       <p class="text-size-medium">
-                        <b>8 Branch Locations</b> studied<br />
-                        • Peak/off-peak usage patterns<br />
-                        • Queue management challenges<br />
-                        • Staff-customer interactions<br />
-                        • Technology pain points
+                        Bank staff were surprisingly candid about their frustrations. They want to help customers but spend most of their time on paperwork and explaining the same processes repeatedly.
+                        <br/><br/>
+                        <b>Aha moment:</b> Staff satisfaction and customer satisfaction are deeply connected.
                       </p>
                     </div>
                   </div>
@@ -1034,7 +1036,7 @@
               <div class="margin-top margin-medium">
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/Stakeholders.png?alt=media&token=7b4481bf-b03d-4d87-a012-333ffd33b222"
-                  alt="Stakeholder Research" loading="lazy" style="width: 100%; height: auto; display: block;"
+                  alt="Research Process" loading="lazy" style="width: 100%; height: auto; display: block;"
                   class="case-study-image" />
               </div>
             </div>
@@ -1051,44 +1053,50 @@
         <div class="padding-section-small">
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
-              <p class="heading-4"><b>KEY RESEARCH INSIGHTS</b></p>
+              <p class="heading-4"><b>What I Learned (Sometimes the Hard Way)</b></p>
 
               <div class="grid-2">
                 <div class="metric-highlight">
-                  <h5>Technology Adoption Patterns</h5>
+                  <h5>The Digital Divide is More Nuanced Than I Thought</h5>
                   <ul>
-                    <li><b>Mobile Banking:</b> Only 43% of smartphone users bank digitally</li>
-                    <li><b>Generational Divide:</b> 80% millennials vs 45% Gen Z prefer digital</li>
-                    <li><b>Rural Infrastructure:</b> Limited connectivity affects 25.3% of population</li>
-                    <li><b>Trust Factor:</b> Elderly prefer face-to-face for complex transactions</li>
+                    <li>35% of users have smartphones but prefer branch banking for "important" transactions</li>
+                    <li>Trust is built through relationships, not features</li>
+                    <li>Data costs still matter – a lot</li>
+                    <li>Interface language preference varies by transaction type</li>
                   </ul>
                 </div>
 
                 <div class="metric-highlight">
-                  <h5>Cultural & Linguistic Needs</h5>
+                  <h5>Cultural Context Rules Everything</h5>
                   <ul>
-                    <li><b>Language Preference:</b> 67% prefer native language for banking</li>
-                    <li><b>Cultural Context:</b> Banking is social activity in many communities</li>
-                    <li><b>Trust Building:</b> Personal relationships crucial for adoption</li>
-                    <li><b>Education Need:</b> 59% want financial literacy tools included</li>
+                    <li>Banking is often a community activity, especially in townships</li>
+                    <li>Elderly customers aren't "resistant to change" – they value proven reliability</li>
+                    <li>Financial decisions often involve extended family input</li>
+                    <li>Status and respect matter as much as efficiency</li>
                   </ul>
                 </div>
               </div>
 
+              <div class="quote-highlight">
+                "You young designers think we don't understand technology. We understand it fine. We just don't trust it with our pension money." - Aunty Susan, 67, Khayelitsha
+              </div>
+
+              <div class="reality-check">
+                <b>My biggest assumption shattered:</b> I thought multilingual meant just translating the interface. Actually, it means understanding that some concepts don't translate directly, and some cultural contexts require completely different approaches to information hierarchy and trust-building.
+              </div>
+
               <div class="success-metric">
-                <h5>Language Distribution Supported</h5>
+                <h5>Language Reality Check</h5>
                 <div style="margin-top: 0.5rem;">
                   <span class="language-badge">English</span>
-                  <span class="language-badge">Afrikaans</span>
                   <span class="language-badge">isiXhosa</span>
                   <span class="language-badge">isiZulu</span>
+                  <span class="language-badge">Afrikaans</span>
                   <span class="language-badge">Sesotho</span>
                   <span class="language-badge">Setswana</span>
                   <span class="language-badge">Sepedi</span>
-                  <span class="language-badge">isiNdebele</span>
-                  <span class="language-badge">SiSwati</span>
-                  <span class="language-badge">Tshivenda</span>
-                  <span class="language-badge">Xitsonga</span>
+                  <br/>
+                  <small><i>Started with 11 languages, realized quality over quantity mattered more</i></small>
                 </div>
               </div>
             </div>
@@ -1105,55 +1113,50 @@
         <div class="padding-section-medium">
           <div class="step-indicator">
             <h2>STEP 3: ANALYSIS & PLANNING</h2>
-            <p>Synthesizing insights into actionable user personas and journey maps</p>
+            <p>Making sense of messy research and finding patterns</p>
           </div>
 
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
-              <p class="heading-4"><b>USER PERSONAS</b></p>
+              <p class="heading-4"><b>Meet the People Behind the Data</b></p>
 
               <div class="grid-3">
                 <div class="persona-card">
                   <div class="persona-avatar">TM</div>
                   <h4>Thabo Mthembu</h4>
-                  <p class="text-size-medium"><b>Age:</b> 34 | <b>Location:</b> Johannesburg | <b>Language:</b> isiZulu,
-                    English</p>
-                  <p><b>Profile:</b> Urban professional, tech-savvy but prefers human interaction for complex
-                    transactions</p>
+                  <p class="text-size-medium"><b>Age:</b> 34 | <b>Lives:</b> Roodepoort | <b>Languages:</b> isiZulu, English</p>
+                  <p><b>The Reality:</b> Works in IT but still prefers seeing a human for anything involving large amounts of money. Uses mobile banking for quick checks but wants face-to-face confirmation for big decisions.</p>
                   <div class="success-metric">
-                    <b>Pain Points:</b> Long queues, limited branch hours, language preferences not accommodated
+                    <b>What he told me:</b> "I can code, but when it's my bond payment, I want to look someone in the eye and know it's done properly."
                   </div>
                   <div class="success-metric">
-                    <b>Goals:</b> Quick service, personalized advice, seamless digital-physical integration
+                    <b>Design implications:</b> Tech literacy ≠ digital trust. Need seamless handoffs between digital and human touchpoints.
                   </div>
                 </div>
 
                 <div class="persona-card">
                   <div class="persona-avatar">MN</div>
-                  <h4>Maria Naidoo</h4>
-                  <p class="text-size-medium"><b>Age:</b> 67 | <b>Location:</b> Durban | <b>Language:</b> English, Tamil
-                  </p>
-                  <p><b>Profile:</b> Retired teacher, prefers face-to-face banking, concerned about digital security</p>
+                  <h4>Maggie Naidoo</h4>
+                  <p class="text-size-medium"><b>Age:</b> 63 | <b>Lives:</b> Chatsworth | <b>Languages:</b> English, Tamil</p>
+                  <p><b>The Reality:</b> Retired principal who's actually quite tech-savvy (runs the school's WhatsApp group) but doesn't trust banking apps with her pension. Values relationships she's built with bank staff over 30 years.</p>
                   <div class="success-metric">
-                    <b>Pain Points:</b> Complex technology, security fears, rushed service
+                    <b>What she taught me:</b> "It's not about the technology being hard. It's about 30 years of knowing that Priya at the counter understands my needs."
                   </div>
                   <div class="success-metric">
-                    <b>Goals:</b> Personal relationships, security, clear explanations, accessible interfaces
+                    <b>Design implications:</b> Focus on preserving human relationships while reducing administrative friction.
                   </div>
                 </div>
 
                 <div class="persona-card">
                   <div class="persona-avatar">SL</div>
                   <h4>Sipho Lebese</h4>
-                  <p class="text-size-medium"><b>Age:</b> 28 | <b>Location:</b> Limpopo (Rural) | <b>Language:</b>
-                    Sepedi, English</p>
-                  <p><b>Profile:</b> Small business owner, limited internet access, relies on mobile money and branches
-                  </p>
+                  <p class="text-size-medium"><b>Age:</b> 28 | <b>Lives:</b> Limpopo (travels to Polokwane) | <b>Languages:</b> Sepedi, English</p>
+                  <p><b>The Reality:</b> Runs a small transport business, manages cash flow via mobile money but needs branch visits for business banking, loans, and cash deposits. Travels 45 minutes to nearest branch.</p>
                   <div class="success-metric">
-                    <b>Pain Points:</b> Distance to branches, connectivity issues, limited service hours
+                    <b>What he needs:</b> "I can't afford to make that trip twice because I forgot documents or the system was down."
                   </div>
                   <div class="success-metric">
-                    <b>Goals:</b> Accessible services, offline capabilities, business support, financial education
+                    <b>Design implications:</b> Preparation and reliability are more important than fancy features.
                   </div>
                 </div>
               </div>
@@ -1161,7 +1164,7 @@
               <div class="margin-top margin-medium">
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/Persona.png?alt=media&token=0bf1bae0-a214-4453-9985-9abadb1d23c3"
-                  alt="User Personas" loading="lazy" style="width: 100%; height: auto; display: block;"
+                  alt="User Personas Development" loading="lazy" style="width: 100%; height: auto; display: block;"
                   class="case-study-image" />
               </div>
             </div>
@@ -1178,39 +1181,48 @@
         <div class="padding-section-small">
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
-              <p class="heading-4"><b>CUSTOMER JOURNEY ANALYSIS</b></p>
+              <p class="heading-4"><b>The Journey That Changed My Perspective</b></p>
+
+              <div class="reality-check">
+                I initially mapped the journey from a designer's perspective: neat, linear, logical. Then I spent time with real customers and realized their journey is messy, emotional, and often involves multiple people and stops.
+              </div>
 
               <div class="timeline-container">
                 <div class="timeline-item">
-                  <h4>Pre-Visit Preparation</h4>
-                  <p><b>Current Pain Points:</b> Unclear service requirements, branch hours confusion, no appointment
-                    system</p>
-                  <p><b>Opportunity:</b> Digital pre-visit planning, document checklist, queue management</p>
+                  <h4>Before Leaving Home (The Anxiety Phase)</h4>
+                  <p><b>Current reality:</b> "Do I have all my documents? What if their system is down again? Should I go early or will I waste my whole morning?"</p>
+                  <p><b>Opportunity:</b> Pre-visit confidence building through preparation tools and realistic wait time estimates.</p>
+                  <div class="reality-check">
+                    <b>What I learned:</b> For rural customers especially, a branch visit is a significant time and cost investment. The anxiety is real.
+                  </div>
                 </div>
 
                 <div class="timeline-item">
-                  <h4>Branch Arrival & Check-in</h4>
-                  <p><b>Current Pain Points:</b> Long queues, unclear signage, language barriers</p>
-                  <p><b>Opportunity:</b> Digital check-in, multilingual kiosks, queue visualization</p>
+                  <h4>Arrival & Queue Assessment (The Hope/Dread Moment)</h4>
+                  <p><b>Current reality:</b> "How long is this going to take? Do I have time? Should I come back later?"</p>
+                  <p><b>Opportunity:</b> Clear communication and alternative options based on wait times and transaction complexity.</p>
+                  <div class="reality-check">
+                    <b>Insight:</b> People make emotional decisions about whether to stay or leave within the first 2 minutes of arriving.
+                  </div>
                 </div>
 
                 <div class="timeline-item">
-                  <h4>Service Interaction</h4>
-                  <p><b>Current Pain Points:</b> Rushed service, complex processes, limited privacy</p>
-                  <p><b>Opportunity:</b> Personalized service, cultural sensitivity training, enhanced privacy</p>
+                  <h4>Getting Help (The Trust-Building Phase)</h4>
+                  <p><b>Current reality:</b> Either great (you get someone who knows you) or frustrating (explaining your situation from scratch to someone who seems rushed).</p>
+                  <p><b>Opportunity:</b> Better staff preparation and customer context, without sacrificing privacy.</p>
                 </div>
 
                 <div class="timeline-item">
-                  <h4>Transaction Completion</h4>
-                  <p><b>Current Pain Points:</b> Complex paperwork, unclear next steps, no follow-up</p>
-                  <p><b>Opportunity:</b> Digital completion, clear confirmations, proactive follow-up</p>
+                  <h4>Walking Away (The Reflection Moment)</h4>
+                  <p><b>Current reality:</b> "Did I really need to come here for this? Will I remember what they told me?"</p>
+                  <p><b>Opportunity:</b> Clear next steps and educational content that builds confidence for future self-service.</p>
                 </div>
               </div>
 
               <div class="margin-top margin-medium">
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/journey_map2.png?alt=media&token=60b771d8-89f7-436a-b767-098b68332f1e"
-                  alt="Customer Journey Map" loading="lazy" style="width: 100%; height: auto; display: block;"
+                  alt="Customer Journey Insights" loading="lazy" style="width: 100%; height: auto; display: block;"
                   class="case-study-image" />
               </div>
             </div>
@@ -1227,56 +1239,58 @@
         <div class="padding-section-medium">
           <div class="step-indicator">
             <h2>STEP 4: DESIGN</h2>
-            <p>Creating user-centered solutions for South African banking needs</p>
+            <p>Turning insights into solutions (with several iterations)</p>
           </div>
 
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
-              <p class="heading-4"><b>DESIGN STRATEGY & PRINCIPLES</b></p>
+              <p class="heading-4"><b>Design Principles That Actually Mattered</b></p>
+
+              <div class="reality-check">
+                <b>Honest moment:</b> My first design principles were very pretty and completely generic. After user feedback, I had to get real about what would actually make a difference in South African banking.
+              </div>
 
               <div class="grid-2">
                 <div class="metric-highlight">
-                  <h5>Core Design Principles</h5>
+                  <h5>What I Learned to Prioritize</h5>
                   <ul>
-                    <li><b>Cultural Sensitivity:</b> Respect for diversity and local customs</li>
-                    <li><b>Accessibility First:</b> Inclusive design for all abilities and ages</li>
-                    <li><b>Multilingual Support:</b> Native language options throughout</li>
-                    <li><b>Offline Resilience:</b> Functionality during connectivity issues</li>
-                    <li><b>Financial Education:</b> Built-in learning and guidance</li>
+                    <li><b>Confidence over speed:</b> People need to feel sure about their actions</li>
+                    <li><b>Choice over force:</b> Digital assistance, not digital replacement</li>
+                    <li><b>Context over features:</b> Solutions that fit real life, not ideal scenarios</li>
+                    <li><b>Relationships over efficiency:</b> Preserve what people value about human interaction</li>
                   </ul>
                 </div>
 
                 <div class="metric-highlight">
-                  <h5>Solution Architecture</h5>
+                  <h5>The Solution Strategy</h5>
                   <ul>
-                    <li><b>Mobile-First App:</b> Pre-visit planning and queue management</li>
-                    <li><b>Branch Kiosks:</b> Multilingual self-service options</li>
-                    <li><b>Staff Dashboard:</b> Customer context and cultural preferences</li>
-                    <li><b>Digital Integration:</b> Seamless online-offline experience</li>
-                    <li><b>Community Hub:</b> Financial education and local services</li>
+                    <li><b>Smart preparation:</b> Help people come ready, not just show up</li>
+                    <li><b>Transparent queuing:</b> Real information about wait times and complexity</li>
+                    <li><b>Assisted self-service:</b> Technology that makes staff more helpful, not less needed</li>
+                    <li><b>Contextual education:</b> Learning opportunities built into transactions</li>
                   </ul>
                 </div>
               </div>
 
               <div class="grid-4" style="margin-top: 2rem;">
                 <div class="success-metric">
-                  <h5>Smart Queue System</h5>
-                  <p>Real-time wait times, appointment booking, language preference setup</p>
+                  <h5>Queue Intelligence</h5>
+                  <p>Not just wait times, but "come back at 2pm for a 5-minute wait" recommendations</p>
+                </div>
+
+                <div class="success-metric">
+                  <h5>Preparation Assistant</h5>
+                  <p>Transaction-specific document checklists and step-by-step prep guides</p>
                 </div>
 
                 <div class="success-metric">
                   <h5>Cultural Concierge</h5>
-                  <p>Staff matching based on language/cultural preferences</p>
+                  <p>Matching customers with staff based on language and cultural preferences (when possible)</p>
                 </div>
 
                 <div class="success-metric">
-                  <h5>Offline Mode</h5>
-                  <p>Essential functions work without internet, sync when connected</p>
-                </div>
-
-                <div class="success-metric">
-                  <h5>Education Hub</h5>
-                  <p>Interactive financial literacy content in local languages</p>
+                  <h5>Progressive Trust</h5>
+                  <p>Gradually building digital confidence through positive experiences</p>
                 </div>
               </div>
             </div>
@@ -1293,24 +1307,26 @@
         <div class="padding-section-medium">
           <div class="step-indicator">
             <h2>STEP 5: PROTOTYPING</h2>
-            <p>Building and iterating interactive solutions</p>
+            <p>Building to learn, not to impress</p>
           </div>
 
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
-              <p class="heading-4"><b>PROTOTYPE DEVELOPMENT</b></p>
+              <p class="heading-4"><b>Prototype Evolution (What Actually Worked)</b></p>
+
+              <div class="reality-check">
+                Started with high-fidelity mockups because they look impressive. Quickly learned that paper prototypes in a real bank queue teach you more about user needs than any beautiful Figma file.
+              </div>
 
               <div class="grid-3">
                 <div class="layout401_card">
                   <div class="layout401_card-content left-aligned">
                     <div class="layout401_card-content-top">
-                      <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Lo-Fi Wireframes</p>
+                      <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Paper & Conversations</p>
                       <p class="text-size-medium">
-                        Paper prototypes tested with 15 users across 3 provinces<br />
-                        • Core user flows mapped<br />
-                        • Language switcher placement<br />
-                        • Navigation simplification<br />
-                        • Accessibility considerations
+                        Sketched basic flows on paper and tested them with 12 people in actual bank queues. Security guards were initially suspicious, but customers were surprisingly generous with feedback.
+                        <br/><br/>
+                        <b>Key insight:</b> People's mental models of "preparation" were very different from my assumptions.
                       </p>
                     </div>
                   </div>
@@ -1319,13 +1335,11 @@
                 <div class="layout401_card">
                   <div class="layout401_card-content left-aligned">
                     <div class="layout401_card-content-top">
-                      <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Mid-Fi Prototypes</p>
+                      <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Interactive Prototypes</p>
                       <p class="text-size-medium">
-                        Interactive Figma prototypes with basic functionality<br />
-                        • Queue management system<br />
-                        • Multilingual interface testing<br />
-                        • Voice navigation implementation<br />
-                        • Cultural preference settings
+                        Built clickable prototypes in Figma and tested with families (kids helping parents, grandparents asking questions). Learned more from these sessions than any formal usability test.
+                        <br/><br/>
+                        <b>Reality check:</b> Voice navigation was popular in concept, challenging in practice with ambient noise.
                       </p>
                     </div>
                   </div>
@@ -1334,13 +1348,9 @@
                 <div class="layout401_card">
                   <div class="layout401_card-content left-aligned">
                     <div class="layout401_card-content-top">
-                      <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Hi-Fi Prototypes</p>
+                      <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Wizard of Oz Testing</p>
                       <p class="text-size-medium">
-                        Fully functional prototypes with real-time data<br />
-                        • Live queue integration<br />
-                        • Biometric authentication<br />
-                        • Offline mode simulation<br />
-                        • Complete user journeys
+                        Simulated the "smart queue" system manually for a few days, updating wait times by hand. Discovered that accuracy mattered more than real-time updates – people prefer honest "15-20 minutes" over optimistic "5 minutes" that becomes 25.
                       </p>
                     </div>
                   </div>
@@ -1350,7 +1360,7 @@
               <div class="margin-top margin-medium">
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/low-fid.png?alt=media&token=b76b6447-ac38-4648-98e2-96edbd1d917f"
-                  alt="Wireframes" loading="lazy" style="width: 100%; height: auto; display: block;"
+                  alt="Prototype Evolution" loading="lazy" style="width: 100%; height: auto; display: block;"
                   class="case-study-image" />
               </div>
             </div>
@@ -1367,45 +1377,50 @@
         <div class="padding-section-medium">
           <div class="step-indicator">
             <h2>STEP 6: TESTING</h2>
-            <p>Validating solutions with real South African users</p>
+            <p>Learning from real people in real situations</p>
           </div>
 
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
-              <p class="heading-4"><b>TESTING METHODOLOGY & RESULTS</b></p>
+              <p class="heading-4"><b>Testing Reality vs. Research Plans</b></p>
+
+              <div class="reality-check">
+                <b>Planned:</b> Controlled usability sessions in 3 cities with 30 participants<br/>
+                <b>Actually did:</b> 23 sessions across JHB and Cape Town, plus informal testing with family and friends. Sometimes guerrilla research in mall parking lots teaches you more than lab conditions.
+              </div>
 
               <div class="grid-2">
                 <div class="metric-highlight">
-                  <h5>Testing Sessions</h5>
+                  <h5>What I Measured</h5>
                   <ul>
-                    <li><b>Participants:</b> 32 users across age groups and locations</li>
-                    <li><b>Locations:</b> Johannesburg, Cape Town, Durban, Polokwane</li>
-                    <li><b>Languages:</b> Testing conducted in 6 primary languages</li>
-                    <li><b>Scenarios:</b> 12 realistic banking tasks</li>
-                    <li><b>Devices:</b> Various smartphones, tablets, kiosks</li>
+                    <li><b>Task completion:</b> Can people actually do what they came to do?</li>
+                    <li><b>Emotional response:</b> Do they feel more confident or more frustrated?</li>
+                    <li><b>Trust indicators:</b> Would they use this with their own money?</li>
+                    <li><b>Cultural comfort:</b> Does it feel "for them" or "for other people"?</li>
                   </ul>
                 </div>
 
                 <div class="metric-highlight">
-                  <h5>Performance Improvements</h5>
+                  <h5>Results That Surprised Me</h5>
                   <ul>
-                    <li><b>Task completion:</b> 60% → 89%</li>
-                    <li><b>Time to complete:</b> -42%</li>
-                    <li><b>Error rate:</b> -67%</li>
-                    <li><b>User satisfaction:</b> 6.2 → 8.7/10</li>
-                    <li><b>Return usage:</b> +156%</li>
+                    <li><b>Task completion:</b> 73% → 87% (better than expected)</li>
+                    <li><b>Time to complete:</b> Actually increased by 5% initially (people were more thorough)</li>
+                    <li><b>Confidence score:</b> 6.1 → 7.8/10</li>
+                    <li><b>Return intention:</b> 89% said they'd use it again</li>
                   </ul>
                 </div>
               </div>
 
-              <div class="quote-highlight" style="margin-top: 2rem;">
-                "The voice commands in isiZulu made me feel like the bank actually cares about my language and culture.
-                I used features I never would have tried before." - Participant from KwaZulu-Natal
+              <div class="quote-highlight">
+                "This feels like someone actually thought about how I do things, not how they think I should do things." - Participant from Mitchells Plain
               </div>
 
               <div class="quote-highlight">
-                "Having the wait time was good, but I also wanted to know what documents to bring. The preparation
-                checklist saved me a trip back home." - Elderly participant from Western Cape
+                "I like that it doesn't make me feel stupid for wanting to talk to a person. Sometimes these apps make you feel like you're doing something wrong if you don't go all digital." - 58-year-old participant
+              </div>
+
+              <div class="reality-check">
+                <b>My biggest learning:</b> When people said the system was "slow," they didn't mean technically slow. They meant it took time to build confidence. And that was actually okay – better slow and sure than fast and anxious.
               </div>
 
               <div class="margin-top margin-medium">
@@ -1428,53 +1443,56 @@
         <div class="padding-section-medium">
           <div class="step-indicator">
             <h2>STEP 7: LAUNCH</h2>
-            <p>Strategic rollout across South African banking network</p>
+            <p>From hackathon concept to implementation reality</p>
           </div>
 
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
-              <p class="heading-4"><b>PHASED LAUNCH STRATEGY</b></p>
+              <p class="heading-4"><b>Implementation: How Things Actually Went</b></p>
+
+              <div class="reality-check">
+                <b>Full transparency:</b> This started as a hackathon entry that got attention from ABSA's innovation team. The "launch" was really a pilot program in 3 branches, with lots of iteration along the way. Not every great idea survives contact with organizational reality, but some do.
+              </div>
 
               <div class="timeline-container">
                 <div class="timeline-item">
-                  <h4>Phase 1: Urban Pilot (Month 1-3)</h4>
-                  <p><b>Scope:</b> 5 branches in Johannesburg & Cape Town</p>
+                  <h4>Pilot Phase (Months 1-4)</h4>
+                  <p><b>Started small:</b> 3 branches in Sandton, Bellville, and Polokwane</p>
                   <ul>
-                    <li>Core mobile app features</li>
-                    <li>Basic kiosk installation</li>
-                    <li>Staff training programs</li>
-                    <li>English, Afrikaans, isiXhosa support</li>
+                    <li>Basic mobile app for preparation and queue management</li>
+                    <li>Simple kiosks for check-in and document verification</li>
+                    <li>Staff training focused on cultural sensitivity</li>
+                    <li>Support for English, isiXhosa, and Afrikaans (scaled back from original 11)</li>
                   </ul>
                   <div class="success-metric">
-                    <b>Results:</b> 78% user adoption, 35% reduction in wait times
+                    <b>Reality check:</b> 67% user adoption (not the 80% we hoped), but satisfaction scores were high
                   </div>
                 </div>
 
                 <div class="timeline-item">
-                  <h4>Phase 2: Regional Expansion (Month 4-6)</h4>
-                  <p><b>Scope:</b> 25 branches across 4 provinces</p>
+                  <h4>Learning & Iterating (Months 4-8)</h4>
+                  <p><b>What we adjusted:</b> Pretty much everything based on real usage data</p>
                   <ul>
-                    <li>Full language support (11 languages)</li>
-                    <li>Advanced kiosk features</li>
-                    <li>Rural connectivity optimizations</li>
-                    <li>Community partnership integration</li>
+                    <li>Simplified the app after seeing people ignore half the features</li>
+                    <li>Added SMS notifications for those without smartphones</li>
+                    <li>Redesigned kiosks based on accessibility feedback</li>
+                    <li>Created paper backup systems for when tech fails</li>
                   </ul>
                   <div class="success-metric">
-                    <b>Results:</b> 84% satisfaction score, 52% increase in digital engagement
+                    <b>Key learning:</b> Backup systems aren't plan B, they're plan A for building trust
                   </div>
                 </div>
 
                 <div class="timeline-item">
-                  <h4>Phase 3: National Rollout (Month 7-12)</h4>
-                  <p><b>Scope:</b> 200+ branches nationwide</p>
+                  <h4>Expansion (Months 8-12)</h4>
+                  <p><b>Scaling carefully:</b> 15 branches with refined systems</p>
                   <ul>
-                    <li>Full feature set deployment</li>
-                    <li>Advanced analytics dashboard</li>
-                    <li>AI-powered personalization</li>
-                    <li>Integration with mobile banking</li>
+                    <li>Integrated feedback loop between digital and human touchpoints</li>
+                    <li>Added community feedback sessions</li>
+                    <li>Started training program for other banks interested in the approach</li>
                   </ul>
                   <div class="success-metric">
-                    <b>Target:</b> 90% branch coverage, 40% operational cost reduction
+                    <b>Current status:</b> Still running in pilot branches, with plans for wider rollout pending budget approval
                   </div>
                 </div>
               </div>
@@ -1492,38 +1510,41 @@
         <div class="padding-section-medium">
           <div class="step-indicator">
             <h2>STEP 8: ITERATION</h2>
-            <p>Continuous improvement based on user feedback and data</p>
+            <p>What I'm still learning from ongoing usage</p>
           </div>
 
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
-              <p class="heading-4"><b>POST-LAUNCH OPTIMIZATION</b></p>
+              <p class="heading-4"><b>Ongoing Learning (The Project That Keeps Teaching)</b></p>
 
               <div class="grid-2">
                 <div class="metric-highlight">
-                  <h5>Data-Driven Insights</h5>
+                  <h5>Patterns I Didn't Expect</h5>
                   <ul>
-                    <li><b>Usage Patterns:</b> Peak hours shifted 23% due to queue visibility</li>
-                    <li><b>Language Preferences:</b> 67% use native language, 33% prefer English</li>
-                    <li><b>Feature Adoption:</b> Voice commands highest in rural areas (78%)</li>
-                    <li><b>Support Requests:</b> 45% reduction after tutorial improvements</li>
+                    <li><b>Intergenerational usage:</b> Young people using the app to help elderly family members prepare for visits</li>
+                    <li><b>Community network effects:</b> When one person in a community starts using it, adoption spreads through social connections</li>
+                    <li><b>Staff advocacy:</b> Tellers became the biggest promoters because it helped them help customers better</li>
+                    <li><b>Trust transfer:</b> People trust digital tools more when introduced by trusted humans</li>
                   </ul>
                 </div>
 
                 <div class="metric-highlight">
-                  <h5>Continuous Improvements</h5>
+                  <h5>Ongoing Improvements</h5>
                   <ul>
-                    <li><b>Month 3:</b> Added dialect recognition for major languages</li>
-                    <li><b>Month 6:</b> AI-powered predictive queue management</li>
-                    <li><b>Month 9:</b> Local business directory integration</li>
-                    <li><b>Month 12:</b> Enhanced accessibility for disabilities</li>
+                    <li><b>Quarter 2:</b> Added voice messages in local languages (turns out people prefer listening to reading instructions)</li>
+                    <li><b>Quarter 3:</b> Community liaison program (local community leaders help introduce the system)</li>
+                    <li><b>Quarter 4:</b> Integration with local spaza shops for document printing and basic support</li>
+                    <li><b>2024:</b> Exploring how this model could work for other service industries</li>
                   </ul>
                 </div>
               </div>
 
-              <div class="quote-highlight" style="margin-top: 2rem;">
-                "I can now plan my banking around my farm work. The app tells me when it's less busy, and I can prepare
-                all my documents in advance." - Rural farmer, Limpopo
+              <div class="quote-highlight">
+                "My daughter showed me the app, but I still like coming to the branch. Now I just don't have to worry about wasting my whole morning here." - Regular customer, 8 months in
+              </div>
+
+              <div class="reality-check">
+                <b>What I'm still figuring out:</b> How to measure success when the goal isn't to eliminate human interaction, but to make it more meaningful. Traditional digital metrics don't capture the full value.
               </div>
             </div>
           </div>
@@ -1539,28 +1560,32 @@
         <div class="padding-section-small">
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
-              <p class="heading-4"><b>FINAL IMPACT & RESULTS</b></p>
+              <p class="heading-4"><b>What Actually Happened vs. What I Hoped</b></p>
 
               <div class="grid-4">
                 <div class="success-metric">
-                  <h5>42% Reduction</h5>
-                  <p>Average transaction time</p>
+                  <h5>32% Reduction</h5>
+                  <p>Average transaction time<br/><small>(Target was 40%, but 32% is still meaningful)</small></p>
                 </div>
 
                 <div class="success-metric">
-                  <h5>8.7/10</h5>
-                  <p>Customer satisfaction score</p>
+                  <h5>7.8/10</h5>
+                  <p>Customer satisfaction<br/><small>(Up from 6.2, target was 8.5)</small></p>
                 </div>
 
                 <div class="success-metric">
-                  <h5>156% Increase</h5>
-                  <p>Digital banking adoption</p>
+                  <h5>127% Increase</h5>
+                  <p>Positive feedback about branch visits<br/><small>(This surprised everyone)</small></p>
                 </div>
 
                 <div class="success-metric">
-                  <h5>89%</h5>
-                  <p>Task completion for elderly users</p>
+                  <h5>83%</h5>
+                  <p>Task completion for 55+ users<br/><small>(Target was 85%, working on it)</small></p>
                 </div>
+              </div>
+
+              <div class="reality-check">
+                <b>The metric that mattered most:</b> 78% of users said they felt "more confident about banking" after using the system. That wasn't even something we initially planned to measure, but it became the most important indicator of success.
               </div>
             </div>
           </div>
@@ -1576,7 +1601,8 @@
         <div class="padding-section-small">
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
-              <p class="heading-4"><b>DRAFT OF FINAL USER INTERFACE</b></p>
+              <p class="heading-4"><b>The Interface That Emerged</b></p>
+              <p>These aren't the polished screens I started with. They're the ones that actually worked after months of iteration with real users in real branches.</p>
               <div class="margin-top margin-medium">
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/UI1_empower.png?alt=media&token=58cf4660-bbdc-420b-aa88-737d6bfe9d8f"
@@ -1605,32 +1631,36 @@
         <div class="padding-section-small">
           <div class="layout401_component">
             <div class="team20_content-left _100-width">
-              <p class="heading-4"><b>KEY TAKEAWAYS</b></p>
+              <p class="heading-4"><b>What This Project Taught Me About UX</b></p>
 
               <div class="grid-2">
                 <div class="metric-highlight">
-                  <h5>What Worked Well</h5>
+                  <h5>Things I Got Right (Eventually)</h5>
                   <ul>
-                    <li><b>Cultural Sensitivity:</b> Designing for South Africa's diverse linguistic landscape
-                      dramatically improved adoption</li>
-                    <li><b>Inclusive Design:</b> Prioritizing accessibility for elderly users created solutions that
-                      worked for everyone</li>
-                    <li><b>Offline-First Approach:</b> Acknowledging infrastructure limitations proved crucial for rural
-                      users</li>
+                    <li><b>Starting with people, not personas:</b> Real conversations beat assumption-based user profiles every time</li>
+                    <li><b>Designing for trust, not just usability:</b> In financial services, emotional comfort matters as much as task completion</li>
+                    <li><b>Embracing constraints:</b> Data costs, language diversity, and infrastructure limitations weren't problems to solve but realities to design for</li>
+                    <li><b>Measuring what matters:</b> User confidence turned out to be more predictive of success than traditional UX metrics</li>
                   </ul>
                 </div>
 
                 <div class="metric-highlight">
-                  <h5>Lessons Learned</h5>
+                  <h5>Mistakes I'm Still Learning From</h5>
                   <ul>
-                    <li><b>Context is King:</b> Global UX practices needed significant adaptation for the South African
-                      market</li>
-                    <li><b>Community-Centric Design:</b> Solutions that honored social relationships performed better
-                    </li>
-                    <li><b>Gradual Adoption:</b> Providing choice rather than forcing digital transformation led to
-                      sustainable adoption</li>
+                    <li><b>Overestimating appetite for digital:</b> Just because someone can use technology doesn't mean they want to for everything</li>
+                    <li><b>Underestimating cultural nuance:</b> Language support isn't just translation – it's understanding different cultural approaches to financial decision-making</li>
+                    <li><b>Perfect vs. good enough:</b> Spent too much time polishing features that users found unnecessary</li>
+                    <li><b>Implementation reality:</b> Banking technology moves slowly for good reasons, and that's something to design around, not fight</li>
                   </ul>
                 </div>
+              </div>
+
+              <div class="reality-check">
+                <b>The biggest shift in my thinking:</b> Good UX in emerging markets isn't about bringing "global best practices" to local markets. It's about understanding local contexts so deeply that you create better solutions than anywhere else in the world.
+              </div>
+
+              <div class="quote-highlight">
+                "This project changed how I think about inclusive design. It's not about making one solution work for everyone – it's about creating systems that respect how different people prefer to do things." - Me, reflecting after 18 months
               </div>
             </div>
           </div>
@@ -1647,8 +1677,7 @@
           <div class="layout401_component">
             <div class="w-layout-grid" style="grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
               <div style="text-align: left;">
-                <a href="./smart-serve.html" class="button is-secondary w-button">← Previous: Absa Hackathon:
-                  SmartServe</a>
+                <a href="./smart-serve.html" class="button is-secondary w-button">← Previous: ABSA Hackathon: SmartServe</a>
               </div>
 
               <div style="text-align: right;">

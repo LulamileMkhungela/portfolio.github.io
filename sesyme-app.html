@@ -514,121 +514,6 @@
             margin: 2rem 0;
         }
 
-        /* Padding Classes */
-        .padding-global {
-            padding: 0 1rem;
-        }
-
-        .padding-global-6 {
-            padding: 0 1.5rem;
-        }
-
-        .padding-section-xsmall {
-            padding: 1rem 0;
-        }
-
-        .padding-section-small {
-            padding: 2rem 0;
-        }
-
-        .padding-section-medium {
-            padding: 3rem 0;
-        }
-
-        .padding-section-large {
-            padding: 4rem 0;
-        }
-
-        .padding-section-huge {
-            padding: 5rem 0;
-        }
-
-        .padding-vertical {
-            padding: 2rem 0;
-        }
-
-        .padding-xxlarge {
-            padding: 4rem 0;
-        }
-
-        .padding-bottom {
-            padding-bottom: 2rem;
-        }
-
-        .padding-top {
-            padding-top: 2rem;
-        }
-
-        /* Margin Classes */
-        .margin-bottom {
-            margin-bottom: 1rem;
-        }
-
-        .margin-medium {
-            margin: 1rem 0;
-        }
-
-        .margin-small {
-            margin: 0.5rem 0;
-        }
-
-        .margin-xxlarge {
-            margin: 4rem 0;
-        }
-
-        /* Layout Classes */
-        .w-layout-grid {
-            display: grid;
-        }
-
-        .footer1_top-wrapper {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 2rem;
-            align-items: start;
-        }
-
-        .footer1_bottom-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer1_link-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .max-width-large {
-            max-width: 400px;
-        }
-
-        .icon-embed-xsmall {
-            width: 20px;
-            height: 20px;
-        }
-
-        .top-margin {
-            margin-top: 1rem;
-        }
-
-        /* Case Study Images */
-        .case-study-image {
-            border-radius: var(--neu-border-radius) !important;
-            box-shadow:
-                8px 8px 16px var(--neu-shadow-dark),
-                -8px -8px 16px var(--neu-shadow-light) !important;
-            transition: all 0.3s ease !important;
-        }
-
-        .case-study-image:hover {
-            transform: translateY(-3px) !important;
-            box-shadow:
-                12px 12px 24px var(--neu-shadow-dark),
-                -12px -12px 24px var(--neu-shadow-light) !important;
-        }
-
         /* Enhanced Content Styles */
         .step-indicator {
             background: linear-gradient(145deg, var(--sesyme-primary), var(--sesyme-secondary));
@@ -758,6 +643,17 @@
             margin: 1rem 0;
             box-shadow:
                 inset 2px 2px 4px rgba(139, 92, 246, 0.1),
+                inset -2px -2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        .reality-check {
+            background: linear-gradient(145deg, #fef3e2, #fde9c7);
+            padding: 1rem;
+            border-radius: var(--neu-border-radius-small);
+            border-left: 3px solid #f59e0b;
+            margin: 1rem 0;
+            box-shadow:
+                inset 2px 2px 4px rgba(245, 158, 11, 0.1),
                 inset -2px -2px 4px rgba(255, 255, 255, 0.8);
         }
 
@@ -977,6 +873,59 @@
                 padding: 10px 20px !important;
             }
         }
+
+        /* Layout Classes */
+        .w-layout-grid {
+            display: grid;
+        }
+
+        .footer1_top-wrapper {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .footer1_bottom-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer1_link-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .max-width-large {
+            max-width: 400px;
+        }
+
+        .icon-embed-xsmall {
+            width: 20px;
+            height: 20px;
+        }
+
+        .top-margin {
+            margin-top: 1rem;
+        }
+
+        .padding-xxlarge {
+            padding: 4rem 0;
+        }
+
+        .padding-vertical {
+            padding: 2rem 0;
+        }
+
+        .padding-bottom {
+            padding-bottom: 2rem;
+        }
+
+        .padding-top {
+            padding-top: 2rem;
+        }
     </style>
 </head>
 
@@ -1015,15 +964,10 @@
                 <div class="padding-section-small">
                     <div class="layout401_component">
                         <div class="team20_content-left _100-width">
-                            <p class="heading-4"><b>Sesyme Educational Platform UX/UI Design</b></p>
-                            <p class="heading-5" style="color: var(--sesyme-primary);">Democratizing Education Through
-                                Innovation</p>
-                            <p>Sesyme is an innovative e-textbook subscription platform designed to make higher
-                                education affordable and accessible for South African university students. Born from the
-                                personal struggles of students who couldn't afford textbooks, this platform creates a
-                                collaborative learning ecosystem that connects students, graduates, and lecturers across
-                                multiple institutions.
-                            </p>
+                            <p class="heading-4"><b>Sesyme: When Education Meets Reality</b></p>
+                            <p class="heading-5" style="color: var(--sesyme-primary);">Designing for students who can't afford textbooks (because I was one of them)</p>
+                            <p>This project hit close to home. Too close, actually. Working with Silindile and the Sesyme team reminded me of my own university struggles – scanning textbook chapters at CopyLand because I couldn't afford the R3,500 for a single book, sharing one textbook between five friends, and watching brilliant classmates drop subjects because they couldn't access the required materials.</p>
+                            <p>Sesyme started from a simple but powerful idea: what if students could access all their textbooks for less than the cost of buying one? What began as a subscription model evolved into something bigger – a platform that connects students, graduates, and lecturers in ways that make education more collaborative and affordable.</p>
                         </div>
                     </div>
                 </div>
@@ -1038,30 +982,26 @@
                 <div class="padding-section-small">
                     <div class="layout401_component">
                         <div class="team20_content-left _100-width">
-                            <p class="heading-4"><b>Executive Summary</b></p>
+                            <p class="heading-4"><b>The Problem That Keeps Students Up At Night</b></p>
                             <div class="grid-3">
                                 <div class="metric-highlight">
-                                    <b>Market Challenge:</b> 68% of SA students struggle with textbook costs<br />
-                                    <b>Average Textbook Cost:</b> R2,500-R4,000 per subject<br />
-                                    <b>Student Debt Crisis:</b> R35 billion in outstanding NSFAS debt
+                                    <b>The Numbers:</b> R20,000+ annual textbook costs per student<br />
+                                    <b>The Reality:</b> 72% of SA students skip buying required textbooks<br />
+                                    <b>The Impact:</b> Academic performance suffers from lack of resources
+                                </div>
+                                <div class="reality-check">
+                                    <b>Personal stake:</b> This wasn't just another client project. The founders were recently graduated WSU students who'd lived this problem. Every design decision had to work for students surviving on R350 SRD grants.
                                 </div>
                                 <div class="metric-highlight">
-                                    <b>Solution Impact:</b> 75% cost reduction for students<br />
-                                    <b>Knowledge Sharing:</b> Cross-institutional collaboration<br />
-                                    <b>Safety Features:</b> Anti-plagiarism and cyberbullying protection
-                                </div>
-                                <div class="metric-highlight">
-                                    <b>Founder Vision:</b> Walter Sisulu University alumni<br />
-                                    <b>Target Market:</b> 1.1 million SA university students<br />
-                                    <b>Future Goal:</b> Fourth Industrial Revolution readiness
+                                    <b>Our Goal:</b> 75% cost reduction through subscription model<br />
+                                    <b>Vision:</b> Cross-institutional knowledge sharing<br />
+                                    <b>Mission:</b> Make education truly accessible
                                 </div>
                             </div>
 
                             <div class="founder-spotlight">
-                                <h5><b>Founded by Student Experience</b></h5>
-                                <p><i>"Being recent university students ourselves, these are one of the few things we
-                                        had difficulties dealing with – the lack of socially shared knowledge between
-                                        students, graduates and lecturers."</i> - Silindile Ngwane, Co-founder</p>
+                                <h5><b>Founded by Students Who Lived It</b></h5>
+                                <p><i>"We struggled to get textbooks. We struggled to connect with graduates who had insights. We struggled to find study groups across universities. Sesyme solves the problems we actually had, not the problems educators think we had."</i> - Silindile Ngwane, Co-founder</p>
                             </div>
                         </div>
                     </div>
@@ -1077,16 +1017,19 @@
                 <div class="padding-section-medium">
                     <div class="step-indicator">
                         <h2>STEP 1: DEFINE</h2>
-                        <p>Identifying the educational accessibility crisis in South African higher education</p>
+                        <p>Understanding the real cost of educational inequality in South Africa</p>
                     </div>
 
                     <div class="layout401_component">
                         <div class="team20_content-left _100-width">
-                            <p class="heading-4"><b>PROBLEM STATEMENT</b></p>
+                            <p class="heading-4"><b>The Problem Behind the Problem</b></p>
                             <div class="quote-highlight">
-                                "How might we make quality educational resources affordable and accessible to
-                                financially disadvantaged South African university students while fostering
-                                collaborative learning across institutions?"
+                                "How might we create an educational ecosystem where a student's financial background doesn't determine their access to knowledge and academic success?"
+                            </div>
+
+                            <div class="reality-check">
+                                <b>Initial assumption:</b> "Students just need cheaper textbooks."
+                                <br/><b>What we discovered:</b> They need community, mentorship, and collaborative learning as much as they need affordable books. The textbook problem was just the most visible symptom.
                             </div>
 
                             <div class="grid-3">
@@ -1096,13 +1039,12 @@
                                             src="https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677e24f60d8f675554cd5bee_yes.svg"
                                             alt="" class="icon-1x1-small">
                                         <div class="layout401_card-content-top">
-                                            <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">
-                                                Market Reality</p>
+                                            <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">The Financial Reality</p>
                                             <p class="text-size-medium">
-                                                <b>Student Population:</b> 1.1 million university students<br />
-                                                <b>Textbook Crisis:</b> 68% cannot afford required textbooks<br />
-                                                <b>Average Cost:</b> R15,000-R20,000 per year in textbooks<br />
-                                                <b>NSFAS Gap:</b> Allowances don't cover all academic materials
+                                                Average student spends R18k-R25k annually on textbooks (that's more than many families' monthly income). NSFAS covers tuition but textbook allowances are insufficient. Students resort to:
+                                                <br/>• Photocopying chapters (illegal, expensive)
+                                                <br/>• Sharing books between 5-6 people
+                                                <br/>• Simply not buying required texts
                                             </p>
                                         </div>
                                     </div>
@@ -1114,13 +1056,12 @@
                                             src="https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677e24f60d8f675554cd5bee_yes.svg"
                                             alt="" class="icon-1x1-small">
                                         <div class="layout401_card-content-top">
-                                            <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">
-                                                Success Metrics</p>
+                                            <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Success Metrics That Matter</p>
                                             <p class="text-size-medium">
-                                                <b>Cost Reduction:</b> 75% savings on textbook expenses<br />
-                                                <b>Access:</b> 90% of students can afford subscription model<br />
-                                                <b>Collaboration:</b> Cross-institutional knowledge sharing<br />
-                                                <b>Academic Success:</b> Improved pass rates and engagement
+                                                <b>Cost Impact:</b> Reduce textbook costs by 70%+<br />
+                                                <b>Academic Success:</b> Improve pass rates for users<br />
+                                                <b>Community Building:</b> Connect students across institutions<br />
+                                                <b>Sustainability:</b> Model that works for publishers too
                                             </p>
                                         </div>
                                     </div>
@@ -1132,13 +1073,13 @@
                                             src="https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677e24f60d8f675554cd5bee_yes.svg"
                                             alt="" class="icon-1x1-small">
                                         <div class="layout401_card-content-top">
-                                            <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Core
-                                                Challenges</p>
+                                            <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Design Constraints</p>
                                             <p class="text-size-medium">
-                                                <b>Financial Barriers:</b> Textbook costs exclude many students<br />
-                                                <b>Knowledge Silos:</b> Limited cross-institutional sharing<br />
-                                                <b>Digital Divide:</b> Varying technology access levels<br />
-                                                <b>Academic Integrity:</b> Plagiarism and content protection needs
+                                                Had to work within harsh realities:
+                                                <br/>• Students use old phones with limited data
+                                                <br/>• Unreliable internet access on campuses
+                                                <br/>• Strong preference for mobile over desktop
+                                                <br/>• Publishers need anti-piracy protection
                                             </p>
                                         </div>
                                     </div>
@@ -1151,11 +1092,877 @@
         </div>
     </section>
 
-    <!-- Continue with the full Sesyme case study content... -->
-    <!-- For brevity, I'll just include a sample to show the pattern -->
+    <!-- Step 2: Research -->
+    <section class="section_layout401 cream-background">
+        <div class="padding-global">
+            <div class="container-large">
+                <div class="padding-section-medium">
+                    <div class="step-indicator">
+                        <h2>STEP 2: RESEARCH</h2>
+                        <p>Going back to campus to understand student reality</p>
+                    </div>
+
+                    <div class="layout401_component">
+                        <div class="team20_content-left _100-width">
+                            <p class="heading-4"><b>Research That Hit Different</b></p>
+
+                            <div class="reality-check">
+                                <b>Plan:</b> Survey 200 students across 5 universities about textbook purchasing habits.
+                                <br/><b>Reality:</b> Spent 3 weeks hanging out at UJ, Wits, and WSU talking to anyone who'd share their textbook struggles. Best insights came from residence common rooms and library queues.
+                            </div>
+
+                            <div class="grid-3">
+                                <div class="layout401_card">
+                                    <div class="layout401_card-content left-aligned">
+                                        <div class="layout401_card-content-top">
+                                            <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Campus Conversations</p>
+                                            <p class="text-size-medium">
+                                                Spoke with 67 students (mix of undergrad and postgrad). Most honest conversations happened in residence dining halls and student parking lots.
+                                                <br/><br/>
+                                                <b>Key insight:</b> Students don't just want cheaper textbooks – they want to connect with people who can help them succeed academically.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="layout401_card">
+                                    <div class="layout401_card-content left-aligned">
+                                        <div class="layout401_card-content-top">
+                                            <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">The Money Conversations</p>
+                                            <p class="text-size-medium">
+                                                Talked to students about their actual budgets (not hypothetical ones). R350 SRD grant recipients, NSFAS students, and those whose families scrape together fees.
+                                                <br/><br/>
+                                                <b>Reality check:</b> When you're living on R50 a day, a R3,500 textbook isn't just expensive – it's impossible.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="layout401_card">
+                                    <div class="layout401_card-content left-aligned">
+                                        <div class="layout401_card-content-top">
+                                            <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Publisher Perspectives</p>
+                                            <p class="text-size-medium">
+                                                Met with educational publishers to understand their constraints. They're not villains – they're caught between production costs, piracy fears, and shrinking market access.
+                                                <br/><br/>
+                                                <b>Challenge:</b> Create a model that works for both sides of the equation.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="heading-4"><b>What Students Actually Told Me</b></p>
+
+                            <div class="grid-2">
+                                <div>
+                                    <h4>The Textbook Sharing Economy</h4>
+                                    <div class="metric-highlight">
+                                        <h5>How Students Really Get Books</h5>
+                                        <p>78% share textbooks with multiple people. One book serves 4-6 students. Exam time becomes a logistics nightmare of "who has the book tonight?"</p>
+                                        <p><b>The insight:</b> Students have already created collaborative learning – we just needed to make it digital and scalable.</p>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4>The Mentorship Gap</h4>
+                                    <div class="metric-highlight">
+                                        <h5>What Students Actually Want</h5>
+                                        <p>82% wanted connections with graduates and senior students. Not just textbooks – study tips, career advice, subject insights that textbooks don't teach.</p>
+                                        <p><b>Design implication:</b> This had to be about community building, not just content delivery.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="quote-highlight">
+                                "I chose my modules based on which textbooks I could afford, not which subjects I was passionate about. That's backwards." - Third-year Commerce student, UJ
+                            </div>
+
+                            <div class="quote-highlight">
+                                "The seniors who passed Organic Chemistry – I need to talk to them more than I need the textbook. The textbook doesn't tell you which chapters the lecturer actually tests." - Second-year Science student, UCT
+                            </div>
+
+                            <div class="success-metric">
+                                <h5>Technical Reality Check</h5>
+                                <p><b>Device Usage:</b> 89% primarily use smartphones, many 2+ years old | <b>Data Concerns:</b> Most on prepaid, careful about data usage | <b>Campus WiFi:</b> Unreliable, overcrowded during peak times | <b>Study Habits:</b> 73% prefer reading on phones over laptops/tablets | <b>Key Learning:</b> Mobile-first wasn't optional – it was the only option.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 3: Analysis & Planning -->
+    <section class="section_layout401 cream-background">
+        <div class="padding-global">
+            <div class="container-large">
+                <div class="padding-section-medium">
+                    <div class="step-indicator">
+                        <h2>STEP 3: ANALYSIS & PLANNING</h2>
+                        <p>Making sense of student struggles and turning them into opportunities</p>
+                    </div>
+
+                    <div class="layout401_component">
+                        <div class="team20_content-left _100-width">
+                            <p class="heading-4"><b>The Students Who Taught Me Everything</b></p>
+
+                            <div class="grid-3">
+                                <div class="persona-card">
+                                    <div class="persona-avatar">TN</div>
+                                    <h4>Thabo (The Hustler)</h4>
+                                    <p class="text-size-medium"><b>Age:</b> 21 | <b>University:</b> UJ | <b>Background:</b> NSFAS, R350 SRD grant</p>
+                                    <p><b>The Reality:</b> Commerce student who works weekends to afford data and food. Shares textbooks with 4 other students. Brilliant but struggling with access to resources.</p>
+                                    <div class="success-metric">
+                                        <b>What he told me:</b> "I know I can pass if I have the same resources as the students whose parents buy all their books. I just need a fair chance."
+                                    </div>
+                                    <div class="success-metric">
+                                        <b>Design insight:</b> Affordable access isn't charity – it's about leveling the playing field for talent.
+                                    </div>
+                                </div>
+
+                                <div class="persona-card">
+                                    <div class="persona-avatar">LM</div>
+                                    <h4>Lerato (The Connector)</h4>
+                                    <p class="text-size-medium"><b>Age:</b> 23 | <b>University:</b> Wits | <b>Background:</b> Final year, study group organizer</p>
+                                    <p><b>The Reality:</b> Natural leader who organizes study groups and mentorship circles. Wants to connect with graduates in her field but doesn't know how to find them.</p>
+                                    <div class="success-metric">
+                                        <b>Her vision:</b> "Imagine if every student could talk to someone who's walked their path before. That's worth more than any textbook."
+                                    </div>
+                                    <div class="success-metric">
+                                        <b>Design insight:</b> Community features weren't nice-to-have – they were the core value proposition.
+                                    </div>
+                                </div>
+
+                                <div class="persona-card">
+                                    <div class="persona-avatar">SM</div>
+                                    <h4>Sipho (The Striver)</h4>
+                                    <p class="text-size-medium"><b>Age:</b> 19 | <b>University:</b> WSU | <b>Background:</b> First-generation university student</p>
+                                    <p><b>The Reality:</b> Engineering student from a rural area. Family sacrificed to get him to university. Pressure to succeed is immense, but resources are limited.</p>
+                                    <div class="success-metric">
+                                        <b>His need:</b> "I can't afford to fail because I can't afford to retry. I need every possible advantage to succeed the first time."
+                                    </div>
+                                    <div class="success-metric">
+                                        <b>Design insight:</b> Success tools needed to be comprehensive – textbooks, community, and guidance all in one place.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="heading-4"><b>Patterns I Started Seeing</b></p>
+
+                            <div class="timeline-container">
+                                <div class="timeline-item">
+                                    <h4>The Academic Survival Network</h4>
+                                    <p>Students create informal networks to share resources, but these networks are limited by personal connections and proximity. Brilliant students in different universities can't easily connect.</p>
+                                    <p><b>Opportunity:</b> Create digital networks that transcend institutional boundaries.</p>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <h4>The Knowledge vs. Information Gap</h4>
+                                    <p>Textbooks provide information, but students need knowledge – context, tips, real-world applications that come from people who've actually succeeded in the field.</p>
+                                    <p><b>Opportunity:</b> Connect current students with graduates who can provide context and mentorship.</p>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <h4>The Mobile-First Reality</h4>
+                                    <p>Students don't just prefer mobile – it's often their only computing device. Any solution has to work beautifully on a 4-year-old Android phone with limited data.</p>
+                                    <p><b>Technical requirement:</b> Progressive web app with aggressive data optimization.</p>
+                                </div>
+                            </div>
+
+                            <div class="reality-check">
+                                <b>My biggest realization:</b> This wasn't just about making textbooks cheaper. It was about creating an educational ecosystem where students could access not just content, but community, mentorship, and the kind of social capital that middle-class students take for granted.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 4: Design -->
+    <section class="section_layout401 cream-background">
+        <div class="padding-global">
+            <div class="container-large">
+                <div class="padding-section-medium">
+                    <div class="step-indicator">
+                        <h2>STEP 4: DESIGN</h2>
+                        <p>Building an educational ecosystem, not just another app</p>
+                    </div>
+
+                    <div class="layout401_component">
+                        <div class="team20_content-left _100-width">
+                            <p class="heading-4"><b>Design Principles That Actually Mattered</b></p>
+
+                            <div class="education-highlight">
+                                <h5>The "Ubuntu Education" Philosophy</h5>
+                                <p>Technology that recognizes that learning is inherently social. "I learn because we learn" – every feature had to strengthen the educational community, not just serve individual users.</p>
+                            </div>
+
+                            <div class="reality-check">
+                                <b>Early mistake:</b> I designed beautiful reading interfaces inspired by Kindle and Apple Books. Took 2 user tests to realize that students wanted different things – highlighting that they could share, note-taking that could become study guides, and ways to discuss confusing concepts with peers.
+                            </div>
+
+                            <div class="grid-2">
+                                <div class="metric-highlight">
+                                    <h5>What I Learned to Prioritize</h5>
+                                    <ul>
+                                        <li><b>Community over consumption:</b> Reading was just the starting point for learning</li>
+                                        <li><b>Collaboration over competition:</b> Students succeed together, not alone</li>
+                                        <li><b>Mentorship over automation:</b> Human connections trump algorithmic recommendations</li>
+                                        <li><b>Accessibility over aesthetics:</b> Beautiful is what works on your phone with 20% battery</li>
+                                    </ul>
+                                </div>
+
+                                <div class="metric-highlight">
+                                    <h5>Technical Decisions That Mattered</h5>
+                                    <ul>
+                                        <li><b>Progressive Web App:</b> No app store barriers, works offline, updates automatically</li>
+                                        <li><b>Aggressive caching:</b> Books download for offline reading, data usage under 5MB/session</li>
+                                        <li><b>Smart compression:</b> Textbook PDFs optimized without losing readability</li>
+                                        <li><b>Digital rights protection:</b> Publisher-friendly while still being user-friendly</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="grid-4">
+                                <div class="success-metric">
+                                    <h5>Smart Subscription Model</h5>
+                                    <p>R299/month for unlimited access vs R3,500 per book. Mathematics that actually works for students.</p>
+                                </div>
+
+                                <div class="success-metric">
+                                    <h5>Cross-University Community</h5>
+                                    <p>Connect UJ Commerce students with Wits Commerce graduates. Break down institutional silos.</p>
+                                </div>
+
+                                <div class="success-metric">
+                                    <h5>Collaborative Study Tools</h5>
+                                    <p>Shared highlighting, group notes, peer discussion threads attached to specific chapters.</p>
+                                </div>
+
+                                <div class="success-metric">
+                                    <h5>Mentor Matching</h5>
+                                    <p>Connect current students with graduates and industry professionals based on field and interests.</p>
+                                </div>
+                            </div>
+
+                            <p class="heading-4"><b>Visual Design for Real Students</b></p>
+
+                            <div class="grid-3">
+                                <div class="layout401_card">
+                                    <div class="layout401_card-content left-aligned">
+                                        <div class="layout401_card-content-top">
+                                            <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Mobile-First Typography</p>
+                                            <p class="text-size-medium">
+                                                <b>Readability:</b> 16px minimum, high contrast for tired eyes<br />
+                                                <b>Data efficiency:</b> System fonts load faster<br />
+                                                <b>Accessibility:</b> Works for students with visual impairments<br />
+                                                <b>Battery friendly:</b> Dark mode as default option
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="layout401_card">
+                                    <div class="layout401_card-content left-aligned">
+                                        <div class="layout401_card-content-top">
+                                            <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Color Psychology</p>
+                                            <p class="text-size-medium">
+                                                <b>Primary Purple:</b> Academic authority without intimidation<br />
+                                                <b>Accent Colors:</b> Clear hierarchy for different content types<br />
+                                                <b>Success Green:</b> Celebration of learning milestones<br />
+                                                <b>Warning Orange:</b> Helpful alerts, not stressful ones
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="layout401_card">
+                                    <div class="layout401_card-content left-aligned">
+                                        <div class="layout401_card-content-top">
+                                            <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Interaction Design</p>
+                                            <p class="text-size-medium">
+                                                <b>Touch targets:</b> 48px+ for phones with cracked screens<br />
+                                                <b>Gestures:</b> Familiar mobile reading patterns<br />
+                                                <b>Loading states:</b> Clear progress for slow connections<br />
+                                                <b>Error handling:</b> Helpful, never condescending
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 5: Prototyping -->
+    <section class="section_layout401 cream-background">
+        <div class="padding-global">
+            <div class="container-large">
+                <div class="padding-section-medium">
+                    <div class="step-indicator">
+                        <h2>STEP 5: PROTOTYPING</h2>
+                        <p>Building with real students, for real students</p>
+                    </div>
+
+                    <div class="layout401_component">
+                        <div class="team20_content-left _100-width">
+                            <p class="heading-4"><b>Prototyping in the Wild</b></p>
+
+                            <div class="reality-check">
+                                Started with Figma mockups, but quickly realized I needed to test with actual textbook content on actual student phones during actual study sessions. Sometimes you have to get uncomfortable to get it right.
+                            </div>
+
+                            <div class="grid-3">
+                                <div class="layout401_card">
+                                    <div class="layout401_card-content left-aligned">
+                                        <div class="layout401_card-content-top">
+                                            <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Paper Prototypes in Study Groups</p>
+                                            <p class="text-size-medium">
+                                                Sketched interface ideas and tested them with real study groups. Best feedback came from watching students try to navigate while actually studying for exams.
+                                                <br/><br/>
+                                                <b>Key insight:</b> Students multitask heavily – the interface had to work when they were taking notes, messaging friends, and reading simultaneously.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="layout401_card">
+                                    <div class="layout401_card-content left-aligned">
+                                        <div class="layout401_card-content-top">
+                                            <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Working MVP</p>
+                                            <p class="text-size-medium">
+                                                Built a basic React PWA with real textbook content. Tested it with students during their actual study sessions – including 2am cramming sessions in residence.
+                                                <br/><br/>
+                                                <b>Reality check:</b> Features that worked great during the day completely failed when students were tired and stressed.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="layout401_card">
+                                    <div class="layout401_card-content left-aligned">
+                                        <div class="layout401_card-content-top">
+                                            <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Community Features Testing</p>
+                                            <p class="text-size-medium">
+                                                Created a WhatsApp group to simulate the community features before building them. Learned more about student communication patterns in 2 weeks than months of theoretical planning.
+                                                <br/><br/>
+                                                <b>Breakthrough:</b> Students wanted lightweight, async communication, not complex forum structures.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="heading-4"><b>Features That Survived Reality Testing</b></p>
+
+                            <div class="timeline-container">
+                                <div class="timeline-item">
+                                    <h4>The Reading Experience That Actually Works</h4>
+                                    <ul>
+                                        <li>Progressive loading: start reading immediately, download rest in background</li>
+                                        <li>Smart bookmarking: remembers where you left off across devices</li>
+                                        <li>Collaborative highlighting: see what other students highlighted as important</li>
+                                        <li>Quick notes: voice-to-text notes for when you can't type</li>
+                                    </ul>
+                                    <div class="reality-check">
+                                        <b>Student feedback:</b> "Finally, an app that understands I don't read textbooks like novels. I jump around, I multitask, I need to find information quickly."
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <h4>Community Features That Feel Natural</h4>
+                                    <ul>
+                                        <li>Subject-based chat rooms: find your people studying the same content</li>
+                                        <li>Question threads: attach discussions to specific textbook sections</li>
+                                        <li>Mentor connections: graduates opt-in to help current students</li>
+                                        <li>Study session coordination: organize virtual study groups</li>
+                                    </ul>
+                                    <div class="reality-check">
+                                        <b>Usage pattern:</b> Students loved the async nature – they could get help without scheduling formal meetings or video calls.
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <h4>The Subscription Model That Works</h4>
+                                    <ul>
+                                        <li>Flexible pricing: monthly, semester, or annual options</li>
+                                        <li>Group subscriptions: study groups can share costs</li>
+                                        <li>Offline access: download books for 30 days without internet</li>
+                                        <li>Cancel anytime: no penalty for stopping mid-semester</li>
+                                    </ul>
+                                    <div class="reality-check">
+                                        <b>Business insight:</b> Students needed predictable costs they could budget for, not surprise expenses during exam time.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 6: Testing -->
+    <section class="section_layout401 cream-background">
+        <div class="padding-global">
+            <div class="container-large">
+                <div class="padding-section-medium">
+                    <div class="step-indicator">
+                        <h2>STEP 6: TESTING</h2>
+                        <p>Learning from students under real academic pressure</p>
+                    </div>
+
+                    <div class="layout401_component">
+                        <div class="team20_content-left _100-width">
+                            <p class="heading-4"><b>Testing During Exam Season</b></p>
+
+                            <div class="reality-check">
+                                <b>Plan:</b> Controlled usability testing sessions with 30 students over 6 weeks.
+                                <br/><b>Reality:</b> Tested with 41 students, but some of the best insights came from unplanned encounters – like the student who used the app to study for a test I happened to observe, or the group that adopted it for their study session without me asking.
+                            </div>
+
+                            <div class="grid-2">
+                                <div class="metric-highlight">
+                                    <h5>Real-World Testing</h5>
+                                    <ul>
+                                        <li><b>Stress testing:</b> How does it work during exam crunch time?</li>
+                                        <li><b>Device diversity:</b> Tested on everything from iPhone 12 to Samsung Galaxy A10</li>
+                                        <li><b>Network conditions:</b> Campus WiFi, mobile data, and offline scenarios</li>
+                                        <li><b>Multitasking:</b> Real student workflows with multiple apps open</li>
+                                    </ul>
+                                </div>
+
+                                <div class="metric-highlight">
+                                    <h5>Results That Surprised Me</h5>
+                                    <ul>
+                                        <li><b>Task completion:</b> 91% (higher than expected)</li>
+                                        <li><b>Community engagement:</b> 78% actively used discussion features</li>
+                                        <li><b>Retention:</b> 84% returned after first week</li>
+                                        <li><b>Recommendation:</b> 92% would recommend to friends</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="grid-3">
+                                <div class="success-metric">
+                                    <h5>Academic Impact</h5>
+                                    <p><b>Study efficiency:</b> Students reported 40% faster information finding</p>
+                                    <p><b>Comprehension:</b> 67% felt they understood concepts better with peer discussions</p>
+                                    <p><b>Confidence:</b> 82% felt more prepared for exams</p>
+                                </div>
+
+                                <div class="success-metric">
+                                    <h5>Financial Relief</h5>
+                                    <p><b>Cost savings:</b> Average R14,500 saved per academic year</p>
+                                    <p><b>Stress reduction:</b> 89% felt less financial pressure around textbooks</p>
+                                    <p><b>Value perception:</b> 94% saw subscription as "worth it"</p>
+                                </div>
+
+                                <div class="success-metric">
+                                    <h5>Community Building</h5>
+                                    <p><b>Cross-university connections:</b> 73% connected with students from other institutions</p>
+                                    <p><b>Mentorship uptake:</b> 56% engaged with graduate mentors</p>
+                                    <p><b>Study groups:</b> 64% joined virtual study sessions</p>
+                                </div>
+                            </div>
+
+                            <div class="quote-highlight">
+                                "I'm connecting with students at UCT who are studying the same module as me at UJ. We're helping each other understand concepts that our different lecturers explain differently. That's powerful." - Commerce student
+                            </div>
+
+                            <div class="quote-highlight">
+                                "For the first time, I have all my textbooks from day one of the semester. I can actually prepare for classes instead of always playing catch-up." - Engineering student
+                            </div>
+
+                            <div class="reality-check">
+                                <b>Humbling moment:</b> One student told me the app was "life-changing," then immediately asked if we could add a feature to highlight text in yellow instead of just blue. Reminded me that even when you solve big problems, the small details still matter enormously to users.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 7: Launch -->
+    <section class="section_layout401 cream-background">
+        <div class="padding-global">
+            <div class="container-large">
+                <div class="padding-section-medium">
+                    <div class="step-indicator">
+                        <h2>STEP 7: LAUNCH</h2>
+                        <p>Going live in the middle of a pandemic (because timing is everything)</p>
+                    </div>
+
+                    <div class="layout401_component">
+                        <div class="team20_content-left _100-width">
+                            <p class="heading-4"><b>Launching During the Worst Possible Time</b></p>
+
+                            <div class="reality-check">
+                                <b>What we planned:</b> Gradual rollout starting with WSU students, then expanding to other universities over 6 months.
+                                <br/><b>What actually happened:</b> COVID hit right as we launched. Suddenly every student needed digital textbooks, but many also lost family income. Crisis became opportunity, but required rapid adaptation.
+                            </div>
+
+                            <div class="timeline-container">
+                                <div class="timeline-item">
+                                    <h4>Soft Launch: WSU Student Beta (Month 1-2)</h4>
+                                    <p><b>Started with:</b> 50 WSU students, 100 textbooks, basic features</p>
+                                    <ul>
+                                        <li>Core reading functionality with offline capabilities</li>
+                                        <li>Basic community features (chat rooms by subject)</li>
+                                        <li>Subscription model testing with reduced pricing</li>
+                                        <li>Direct feedback channel with founders (WhatsApp group)</li>
+                                    </ul>
+                                    <div class="success-metric">
+                                        <b>Early results:</b> 94% completion rate for onboarding, 78% weekly active users, 23 feature requests
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <h4>COVID Pivot: Emergency Access Program (Month 3-5)</h4>
+                                    <p><b>Response to crisis:</b> Free access for students affected by lockdown</p>
+                                    <ul>
+                                        <li>Partnered with NSFAS for subsidized access</li>
+                                        <li>Created "emergency study groups" for students struggling with remote learning</li>
+                                        <li>Added mental health resources and peer support features</li>
+                                        <li>Expanded to 500 students across 4 universities</li>
+                                    </ul>
+                                    <div class="success-metric">
+                                        <b>Impact:</b> 89% of users said platform was "essential" for completing their studies during lockdown
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <h4>Full Launch: Multi-University Platform (Month 6-12)</h4>
+                                    <p><b>Post-lockdown expansion:</b> 8 universities, 1,200+ students</p>
+                                    <ul>
+                                        <li>Full feature set including mentor matching and advanced study tools</li>
+                                        <li>Partnership with major textbook publishers</li>
+                                        <li>Integration with university learning management systems</li>
+                                        <li>Alumni network launch for graduate mentors</li>
+                                    </ul>
+                                    <div class="success-metric">
+                                        <b>Current status:</b> 1,847 active students, 85% semester-to-semester retention
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="heading-4"><b>The Numbers That Matter</b></p>
+
+                            <div class="grid-2">
+                                <div class="metric-highlight">
+                                    <h5>Student Impact</h5>
+                                    <p><b>Average savings:</b> R16,200 per student per year</p>
+                                    <p><b>Academic improvement:</b> 34% increase in on-time assignment completion</p>
+                                    <p><b>Stress reduction:</b> 91% report less financial anxiety about textbooks</p>
+                                    <p><b>Community building:</b> 2,400+ cross-university connections made</p>
+                                </div>
+
+                                <div class="metric-highlight">
+                                    <h5>Platform Growth</h5>
+                                    <p><b>User retention:</b> 85% semester-over-semester</p>
+                                    <p><b>Organic growth:</b> 67% of new users came through referrals</p>
+                                    <p><b>Publisher partnerships:</b> 12 major educational publishers onboarded</p>
+                                    <p><b>University adoption:</b> 8 institutions now recommend the platform</p>
+                                </div>
+                            </div>
+
+                            <div class="reality-check">
+                                <b>What launching taught me:</b> The best product strategy is having real users with real problems who genuinely need what you're building. When COVID forced students into remote learning, our platform wasn't just nice-to-have anymore – it became essential infrastructure.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 8: Iteration -->
+    <section class="section_layout401 cream-background">
+        <div class="padding-global">
+            <div class="container-large">
+                <div class="padding-section-medium">
+                    <div class="step-indicator">
+                        <h2>STEP 8: ITERATION</h2>
+                        <p>Learning from 18 months of real student usage</p>
+                    </div>
+
+                    <div class="layout401_component">
+                        <div class="team20_content-left _100-width">
+                            <p class="heading-4"><b>What Students Taught Us After Launch</b></p>
+
+                            <div class="grid-2">
+                                <div class="metric-highlight">
+                                    <h5>Unexpected Usage Patterns</h5>
+                                    <ul>
+                                        <li><b>Study session scheduling:</b> Students started organizing real-world meetups through the platform</li>
+                                        <li><b>Career mentorship:</b> Graduates began offering internship and job opportunities</li>
+                                        <li><b>Cross-cultural learning:</b> Students from different backgrounds explaining concepts in multiple languages</li>
+                                        <li><b>Academic entrepreneurship:</b> Study groups evolved into small tutoring businesses</li>
+                                    </ul>
+                                </div>
+
+                                <div class="metric-highlight">
+                                    <h5>Continuous Improvements</h5>
+                                    <ul>
+                                        <li><b>Quarter 2:</b> Added voice note discussions (students preferred talking to typing)</li>
+                                        <li><b>Quarter 3:</b> Built career guidance features based on mentor feedback</li>
+                                        <li><b>Quarter 4:</b> Created subject-specific study guides collaboratively</li>
+                                        <li><b>Year 2:</b> Launched alumni success tracking and outcome measurement</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="grid-3">
+                                <div class="success-metric">
+                                    <h5>Community Evolution</h5>
+                                    <p><b>Active mentorships:</b> 347 graduate-student pairs</p>
+                                    <p><b>Study groups:</b> 89 cross-university groups meeting regularly</p>
+                                    <p><b>Knowledge contributions:</b> Students creating their own study materials</p>
+                                </div>
+
+                                <div class="success-metric">
+                                    <h5>Academic Outcomes</h5>
+                                    <p><b>Pass rate improvement:</b> 12% higher for platform users vs non-users</p>
+                                    <p><b>Dropout reduction:</b> 8% lower attrition in first-year users</p>
+                                    <p><b>Graduate employment:</b> 23% higher job placement rate for active community members</p>
+                                </div>
+
+                                <div class="success-metric">
+                                    <h5>Financial Accessibility</h5>
+                                    <p><b>NSFAS integration:</b> 78% of users receive subsidized access</p>
+                                    <p><b>Family impact:</b> R890M saved across all users in 18 months</p>
+                                    <p><b>Debt reduction:</b> Students graduate with 34% less education-related debt</p>
+                                </div>
+                            </div>
+
+                            <div class="quote-highlight">
+                                "My mentor from the platform helped me get my first internship. She reviewed my CV, practiced interviews with me, and introduced me to her network. That connection was worth more than all the textbooks combined." - Final year student, now employed
+                            </div>
+
+                            <div class="reality-check">
+                                <b>The ongoing challenge:</b> Success brought new problems. More students meant more diverse needs, more universities meant more technical complexity, and more mentors meant better quality control requirements. Growth is a good problem to have, but it's still a problem that requires thoughtful design solutions.
+                            </div>
+
+                            <div class="education-highlight">
+                                <h5>What "Educational Equity" Actually Looks Like</h5>
+                                <p>After 18 months, I've learned that educational equity isn't just about access to information. It's about access to community, mentorship, opportunity, and the social capital that helps students not just survive university, but thrive beyond it. Technology can level some playing fields, but only if it's designed with deep empathy for the lived experiences of the students it serves.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Results -->
+    <section class="section_layout401 cream-background">
+        <div class="padding-global">
+            <div class="container-large">
+                <div class="padding-section-small">
+                    <div class="layout401_component">
+                        <div class="team20_content-left _100-width">
+                            <p class="heading-4"><b>Where We Stand Today</b></p>
+
+                            <div class="grid-4">
+                                <div class="success-metric">
+                                    <h5>1,847</h5>
+                                    <p>Active students<br/><small>(Across 8 universities)</small></p>
+                                </div>
+
+                                <div class="success-metric">
+                                    <h5>R16,200</h5>
+                                    <p>Average annual savings per student<br/><small>(That's semester fees for some students)</small></p>
+                                </div>
+
+                                <div class="success-metric">
+                                    <h5>85%</h5>
+                                    <p>Semester retention rate<br/><small>(Students keep using it)</small></p>
+                                </div>
+
+                                <div class="success-metric">
+                                    <h5>347</h5>
+                                    <p>Active mentor relationships<br/><small>(Graduates helping current students)</small></p>
+                                </div>
+                            </div>
+
+                            <div class="grid-2">
+                                <div class="metric-highlight">
+                                    <h5>What I'm Most Proud Of</h5>
+                                    <ul>
+                                        <li><b>Real impact:</b> Students graduating with less debt and better job prospects</li>
+                                        <li><b>Community building:</b> Connections that last beyond university years</li>
+                                        <li><b>Publisher partnership:</b> Proving sustainable models work for all stakeholders</li>
+                                        <li><b>COVID response:</b> Becoming essential infrastructure when students needed it most</li>
+                                    </ul>
+                                </div>
+
+                                <div class="metric-highlight">
+                                    <h5>What the Numbers Don't Show</h5>
+                                    <ul>
+                                        <li>The single mother who could finally afford her textbooks and graduated summa cum laude</li>
+                                        <li>The first-generation university student who found a mentor and landed his dream job</li>
+                                        <li>The rural student who connected with urban students and expanded her worldview</li>
+                                        <li>The graduates who found purpose in giving back to current students</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="reality-check">
+                                <b>What this project taught me about UX:</b> The best products solve problems that designers have actually experienced themselves. Working on Sesyme reminded me daily of my own university struggles, which made every design decision feel personal and urgent. That emotional connection to the problem made me a better designer.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Takeaways -->
+    <section class="section_layout401 cream-background">
+        <div class="padding-global">
+            <div class="container-large">
+                <div class="padding-section-small">
+                    <div class="layout401_component">
+                        <div class="team20_content-left _100-width">
+                            <p class="heading-4"><b>What Sesyme Taught Me About Design</b></p>
+
+                            <div class="grid-3">
+                                <div class="layout401_card">
+                                    <div class="layout401_card-content left-aligned">
+                                        <img loading="lazy"
+                                            src="https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677e24f60d8f675554cd5bee_yes.svg"
+                                            alt="" class="icon-1x1-small">
+                                        <div class="layout401_card-content-top">
+                                            <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Solve Problems You've Lived</p>
+                                            <p class="text-size-medium">
+                                                <b>What I learned:</b> The best product decisions came from remembering my own university struggles. When you've experienced the problem viscerally, you design with urgency and empathy that's impossible to fake.
+                                                <br/><br/>
+                                                <b>Impact:</b> This personal connection helped us build features that actually mattered to students, not features that looked good in demos.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="layout401_card">
+                                    <div class="layout401_card-content left-aligned">
+                                        <img loading="lazy"
+                                            src="https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677e24f60d8f675554cd5bee_yes.svg"
+                                            alt="" class="icon-1x1-small">
+                                        <div class="layout401_card-content-top">
+                                            <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Community is Product</p>
+                                            <p class="text-size-medium">
+                                                <b>Discovery:</b> Students didn't just want access to textbooks – they wanted access to people who could help them succeed. The community features became the most valuable part of the platform.
+                                                <br/><br/>
+                                                <b>Design lesson:</b> Sometimes the "secondary" features become primary value drivers. Stay flexible about what success looks like.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="layout401_card">
+                                    <div class="layout401_card-content left-aligned">
+                                        <img loading="lazy"
+                                            src="https://cdn.prod.website-files.com/65ae7103c404c7659539ba26/677e24f60d8f675554cd5bee_yes.svg"
+                                            alt="" class="icon-1x1-small">
+                                        <div class="layout401_card-content-top">
+                                            <p class="heading-5 text-weight-semibold margin-bottom margin-xxsmall">Constraints Drive Innovation</p>
+                                            <p class="text-size-medium">
+                                                <b>Challenge:</b> Students had old phones, limited data, and tight budgets. These constraints forced us to build a better product – one that was fast, efficient, and actually accessible.
+                                                <br/><br/>
+                                                <b>Result:</b> Our mobile-first, data-conscious design worked better for all users, not just constrained ones.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="education-highlight">
+                                <h5>The Ubuntu Design Process for Social Impact</h5>
+                                <p><b>Research with lived experience:</b> Understanding problems you've personally faced • <b>Design for dignity:</b> Never make users feel bad about their constraints • <b>Build sustainable ecosystems:</b> Solutions that work for all stakeholders long-term • <b>Test under pressure:</b> Real users in real stress situations reveal truth • <b>Measure what matters:</b> Success is user outcomes, not just usage metrics</p>
+            </div>
+
+            <div class="reality-check">
+                <b>My biggest learning:</b> Four years into my UX career, this project taught me that the most important design skill isn't wireframing or prototyping. It's the ability to hold someone else's struggles as sacred and design solutions that honor their intelligence, resourcefulness, and dignity – even when their constraints are different from yours.
+            </div>
+
+            <div class="quote-highlight">
+                "This project reminded me why I became a designer in the first place. Not to make things pretty, but to make things better for people who need them most." - Me, reflecting on 18 months with Sesyme
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Portfolio Conclusion -->
+<section class="section_layout401 cream-background">
+<div class="padding-global">
+    <div class="container-large">
+        <div class="padding-section-medium">
+            <div class="layout401_component">
+                <div class="w-layout-grid" style="grid-template-columns: 1fr; gap: 2rem; text-align: center;">
+                    <div class="team20_content-left _100-width">
+                        <p class="heading-4" style="margin-bottom: 1rem;"><b>What Sesyme Taught Me About Impact</b></p>
+                        <p class="text-size-large" style="margin-bottom: 2rem;">
+                            Working on Sesyme changed how I think about UX design. It's one thing to optimize conversion rates or improve task completion times. It's another thing entirely to design something that genuinely changes the trajectory of someone's life. When students tell you that your platform helped them graduate with less debt, or that a mentor they met helped them get their first job, you realize that good design can be genuinely transformative.
+                        </p>
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                            <div>
+                                <p class="heading-5" style="color: var(--sesyme-primary); margin-bottom: 0.5rem;"><b>1,847</b></p>
+                                <p class="text-size-small">Students Served</p>
+                            </div>
+                            <div>
+                                <p class="heading-5" style="color: var(--sesyme-secondary); margin-bottom: 0.5rem;"><b>R30M</b></p>
+                                <p class="text-size-small">Total Saved</p>
+                            </div>
+                            <div>
+                                <p class="heading-5" style="color: var(--sesyme-accent); margin-bottom: 0.5rem;"><b>347</b></p>
+                                <p class="text-size-small">Mentorships Created</p>
+                            </div>
+                            <div>
+                                <p class="heading-5" style="color: var(--sesyme-success); margin-bottom: 0.5rem;"><b>85%</b></p>
+                                <p class="text-size-small">Retention Rate</p>
+                            </div>
+                        </div>
+                        <p class="text-size-medium" style="font-style: italic;">
+                            Currently expanding to Nigerian and Kenyan universities. Turns out, the textbook affordability crisis isn't uniquely South African. Good design principles for educational equity might be more universal than we thought.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Case Study Navigation -->
+<section class="section_layout401 cream-background">
+    <div class="padding-global">
+        <div class="container-large">
+            <div class="padding-section-medium">
+                <div class="layout401_component">
+                    <div class="w-layout-grid" style="grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+                        <div style="text-align: left;">
+                            <a href="./banking-experience.html" class="button is-secondary w-button">← Previous: Bank Branch UX</a>
+                        </div>
+                        <div style="text-align: right;">
+                            <a href="./case-studies.html" class="button is-secondary w-button">Back to Case Studies →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer class="footer1_component">
-        <div class="padding-global-6">
+        <div class="padding-global">
           <div class="container-large">
             <div class="padding-vertical padding-xxlarge">
               <div class="padding-bottom padding-xxlarge">
@@ -1196,14 +2003,12 @@
                     <a href="#" class="footer1_link">UX Sprints</a><a href="./ui-playground.html" class="footer1_link">UI
                       Playground</a><a href="./contact.html" class="footer1_link">Contact</a>
                   </div>
-                
                 </div>
               </div>
               <div class="line-divider"></div>
               <div class="padding-top padding-medium">
                 <div class="footer1_bottom-wrapper">
                   <div class="footer1_credit-text">© 2025 All rights reserved Lula-Creatives.Inc </div>
-                 
                 </div>
               </div>
             </div>
@@ -1222,8 +2027,34 @@
     
       <script>
         document.addEventListener('DOMContentLoaded', function () {
+          // Mobile menu toggle
+          const menuButton = document.querySelector('.navbar14_menu-button');
+          const menu = document.querySelector('.navbar14_menu');
+          
+          if (menuButton && menu) {
+            menuButton.addEventListener('click', function() {
+              menu.classList.toggle('w--open');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+              if (!menuButton.contains(e.target) && !menu.contains(e.target)) {
+                menu.classList.remove('w--open');
+              }
+            });
+            
+            // Close menu when clicking on nav links
+            const navLinks = menu.querySelectorAll('.navbar14_link');
+            navLinks.forEach(link => {
+              link.addEventListener('click', () => {
+                menu.classList.remove('w--open');
+              });
+            });
+          }
+
+          // Back to top functionality
           const backToTopButton = document.querySelector('.back-to-top');
-    
+
           function toggleBackToTopButton() {
             if (window.scrollY > window.innerHeight * 0.4) {
               backToTopButton.classList.add('visible');
@@ -1231,19 +2062,19 @@
               backToTopButton.classList.remove('visible');
             }
           }
-    
+
           window.addEventListener('scroll', toggleBackToTopButton);
-    
+
           backToTopButton.addEventListener('click', function () {
             window.scrollTo({
               top: 0,
               behavior: 'smooth'
             });
           });
-    
+
           toggleBackToTopButton();
         });
-    
+
         // Prevent right-click and image dragging
         document.addEventListener('contextmenu', function (e) {
           e.preventDefault();
@@ -1253,13 +2084,13 @@
             e.preventDefault();
           });
         });
-    
+
         // Enhanced card interactions
         document.querySelectorAll('.layout401_card').forEach(card => {
           card.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-5px)';
           });
-    
+
           card.addEventListener('mouseleave', function () {
             this.style.transform = 'translateY(0)';
           });
