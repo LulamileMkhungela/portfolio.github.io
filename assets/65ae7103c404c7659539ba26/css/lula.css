@@ -4231,14 +4231,14 @@ figcaption {
 }
 
 .padding-section-medium {
-  padding-top: 6rem;
-  padding-bottom: 5rem
+  padding-top: 2rem;
+  padding-bottom: 2rem
 }
 
 .padding-section-large {
   background-color: #0000;
   padding-top: 1.5rem;
-  padding-bottom: 5rem;
+  padding-bottom: 2rem;
   font-family: Open Sauce One, sans-serif
 }
 
@@ -12944,7 +12944,7 @@ figcaption {
 
 @media screen and (min-width:1280px) {
   .margin-top.margin-small.grid-horizontal-text._12px-space {
-    margin-top: 2rem
+    margin-top: 1.6rem
   }
 
   .text-size-large.is-alternate {
@@ -12952,13 +12952,13 @@ figcaption {
   }
 
   .padding-section-medium {
-    padding-top: 5rem;
-    padding-bottom: 7rem
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem
   }
 
   .padding-section-large {
-    padding-top: 9rem;
-    padding-bottom: 9rem
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem
   }
 
   .section_header26 {
@@ -12966,8 +12966,8 @@ figcaption {
   }
 
   .padding-section-large-2 {
-    padding-top: 9rem;
-    padding-bottom: 9rem
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem
   }
 
   .heading-1.top-margin {
