@@ -147,6 +147,44 @@
       rel="stylesheet"
       href="./app/immutable/assets/10.26280b51.css"
     />
+    <style>
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+      }
+
+      .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-3px);
+      }
+
+      .back-to-top svg {
+        width: 24px;
+        height: 24px;
+        stroke: #fff;
+      }
+    </style>
   </head>
   <body data-sveltekit-preload-data="hover">
     <div>
@@ -280,7 +318,7 @@
             data-svelte-h="svelte-1rhhgji"
           >
           <p class="svelte-ylu9a7">
-            I’m currently working at
+            I'm currently working at
             <a
               href="https://ioco.tech"
               target="_blank"
@@ -310,7 +348,7 @@
             </p>
             <p class="svelte-ylu9a7">
               I recently finished projects for the Department of Public Service and Administration(e.g CAB Mmo, DecisionGrid, GEHS, SPRM, PNS, DMS). 
-              I’m the go-to consultant for 
+              I'm the go-to consultant for 
               <a href="https://www.nerdma.co.za/" target="_blank" class="grey-text">Nerdma(e.g ESG, BusaMed,etc) for any project</a> 
               on all design-related work, as well as for 
               <a href="https://novelmed.co.za/" target="_blank" class="grey-text">Novelmed for Novelswitch product</a>.
@@ -388,21 +426,30 @@
           </div>
           <div class="award svelte-ylu9a7">
             <div class="image-container svelte-ylu9a7">
-              <img src="awards/image.png" alt="figma logo" width="48px" height="48px"/>
+              <img src="awards/image.png" alt="jcse logo" width="48px" height="48px"/>
             </div>
-            <p class="serifSubtitle sveltre-ylu9a7">
+            <p class="serifSubtitle svelte-ylu9a7">
               Nominated at Tshimologong UX Awards
             </p>
           </div>
           <div class="award svelte-ylu9a7">
             <div class="image-container svelte-ylu9a7">
-              <img src="awards/image.png" alt="figma logo" width="48px" height="48px"/>
+              <img src="./arena.png" alt="arena logo" width="48px" height="48px"/>
             </div>
-            <p class="serifSubtitle sveltre-ylu9a7">
-              Sesyme selected for 
+            <p class="serifSubtitle svelte-ylu9a7">
+              Sesyme selected at Africa Arena 2019 Top 20 startups
             </p>
           </div>
+        </div>
       </div>
+
+      <!-- Back to Top Button -->
+      <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+        </svg>
+      </button>
+
       <div class="container appear svelte-7ytry9">
         <a id="home" class="nav-item svelte-7ytry9" href="index.html"
           ><div class="icon-bounds svelte-7ytry9">
@@ -435,7 +482,32 @@
           <p class="body100" data-svelte-h="svelte-1t1csjf">Lab</p></a
         >
       </div>
-
+<!-- Footer -->
+	<footer class="footer">
+		<div class="footer-content">
+			<p class="footer-text">© 2025 Lula-Creatives. All rights reserved.</p>
+			<div class="footer-socials">
+				<a href="https://www.linkedin.com/in/lulamile-mkhungela/" target="_blank" class="footer-social-link"
+					aria-label="LinkedIn">
+					<img src="./linkedin.png" alt="LinkedIn">
+				</a>
+				<a href="mailto:mkhungela.l@gmail.com" class="footer-social-link" aria-label="Email">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+						stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+						<polyline points="22,6 12,13 2,6"></polyline>
+					</svg>
+				</a>
+				<a href="https://github.com/LulamileMkhungela?tab=repositories" target="_blank"
+					class="footer-social-link" aria-label="GitHub">
+					<img src="./github.png" alt="GitHub">
+				</a>
+				<a href="https://wa.me/27837195064" target="_blank" class="footer-social-link" aria-label="WhatsApp">
+					<img src="./whatsapp.png" alt="WhatsApp" width="24" height="24">
+				</a>
+			</div>
+		</div>
+	</footer>
       <script>
         document.addEventListener('keydown', (event) => {
           if (event.key.toLowerCase() === 'r') {
@@ -479,6 +551,26 @@
         });
     
         copyIcon.addEventListener('click', copyEmail);
+
+        // Back to Top Button Functionality
+        const backToTopButton = document.getElementById('backToTop');
+
+        // Show/hide button based on scroll position
+        window.addEventListener('scroll', () => {
+          if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('visible');
+          } else {
+            backToTopButton.classList.remove('visible');
+          }
+        });
+
+        // Smooth scroll to top when clicked
+        backToTopButton.addEventListener('click', () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
       </script>
       <!-- Tab toggle script -->
       <script>
