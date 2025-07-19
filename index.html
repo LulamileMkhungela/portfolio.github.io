@@ -1,10 +1,11 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
 	<title>Lula-Creatives – Software Designer</title>
 	<meta charset="utf-8" />
 	<link rel="icon" href="./favicon.png" />
-	<link rel="stylesheet" href="global.css" />
+	<link rel="stylesheet" href="./global.css" />
 	<link rel="apple-touch-icon" hre="/apple-touch-icon.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="description"
@@ -26,6 +27,10 @@
 
 	<link href="./app/immutable/assets/3.557860cf.css" rel="stylesheet" />
 	<link href="./app/immutable/assets/9.485f453c.css" rel="stylesheet" />
+	<link href="./app/immutable/assets/changelog.a46c274f.css" rel="stylesheet" />
+	<link href="./app/immutable/assets/7.b8e58937.css" rel="stylesheet" />
+	<link href="./app/immutable/assets/10.26280b51.css" rel="stylesheet" />
+	
 	<!-- Google tag (gtag.js) -->
 	<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8KXPK42RRD"></script>
 	<script>
@@ -34,28 +39,27 @@
 			dataLayer.push(arguments);
 		}
 		gtag("js", new Date());
-
 		gtag("config", "G-8KXPK42RRD");
 	</script>
-	<link rel="modulepreload" as="script" crossorigin="" href="./_app/immutable/nodes/0.09ecce51.js" />
-	<link rel="modulepreload" as="script" crossorigin="" href="./_app/immutable/chunks/scheduler.b562018a.js" />
-	<link rel="modulepreload" as="script" crossorigin="" href="./_app/immutable/chunks/index.de50c87c.js" />
-	<link rel="modulepreload" as="script" crossorigin="" href="./_app/immutable/nodes/1.025c65fb.js" />
-	<link rel="modulepreload" as="script" crossorigin="" href="./_app/immutable/chunks/stores.df6fbc55.js" />
-	<link rel="modulepreload" as="script" crossorigin="" href="./_app/immutable/chunks/singletons.120dad3f.js" />
-	<link rel="modulepreload" as="script" crossorigin="" href="./_app/immutable/nodes/3.34e46ccb.js" />
-	<link rel="modulepreload" as="script" crossorigin="" href="./_app/immutable/chunks/index.deaa7321.js" />
-	<link rel="modulepreload" as="script" crossorigin="" href="./_app/immutable/chunks/each.6ac7216f.js" />
-	<link rel="modulepreload" as="script" crossorigin="" href="./_app/immutable/chunks/preload-helper.a4192956.js" />
-	<link rel="modulepreload" as="script" crossorigin="" href="./_app/immutable/nodes/9.7fd07b55.js" />
-	<link rel="modulepreload" as="script" crossorigin="" href="./_app/immutable/chunks/globals.7f7f1b26.js" />
-	<link rel="modulepreload" as="script" crossorigin="" href="./_app/immutable/nodes/7.921a4e83.js" />
-	<link rel="modulepreload" as="script" crossorigin="" href="./_app/immutable/chunks/changelog.fa66a424.js" />
-	<link rel="stylesheet" href="./app/immutable/assets/changelog.a46c274f.css" />
-	<link rel="stylesheet" href="./app/immutable/assets/7.b8e58937.css" />
-	<link rel="modulepreload" as="script" crossorigin="" href="./_app/immutable/nodes/10.6df81304.js" />
-	<link rel="stylesheet" href="./app/immutable/assets/10.26280b51.css" />
+	
 	<style>
+		/* FIX FOR PROJECT IMAGE HEIGHT CUT-OFF */
+		.project-tile.svelte-1mj9l4w .image.svelte-1mj9l4w {
+			width: 64px;
+			height: 64px;
+			border-radius: 8px;
+			overflow: hidden;
+			position: relative;
+			flex-shrink: 0;
+		}
+		
+		.project-tile.svelte-1mj9l4w .image.svelte-1mj9l4w img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+
 		.line-separator {
 			width: 100vw;
 			height: 1px;
@@ -85,7 +89,6 @@
 		.new-section-title {
 			font-size: 28px;
 			color: #fff !important;
-			font-weight: bold !important;
 			font-weight: 900 !important;
 		}
 
@@ -95,13 +98,11 @@
 			font-weight: normal;
 			opacity: 0.4;
 			margin-top: -14px;
-
 		}
 
 		.cards-grid {
 			display: grid;
 			grid-template-columns: repeat(4, 1fr);
-			/* Force 4 columns */
 			gap: 20px;
 			margin-bottom: 30px;
 		}
@@ -109,18 +110,21 @@
 		@media (max-width: 1200px) {
 			.cards-grid {
 				grid-template-columns: repeat(2, 1fr);
-				/* 2 cards per row on smaller screens */
+			}
+			.stats-grid {
+				grid-template-columns: repeat(3, 1fr) !important;
 			}
 		}
 
 		@media (max-width: 600px) {
 			.cards-grid {
 				grid-template-columns: 1fr;
-				/* 1 card per row on mobile */
+			}
+			.stats-grid {
+				grid-template-columns: 1fr !important;
 			}
 		}
 
-		/* --- RESET & LAYOUT FIX --- */
 		* {
 			margin: 0;
 			padding: 0;
@@ -228,7 +232,6 @@
 			border-color: rgba(255, 255, 255, 0.25);
 		}
 
-		/* Skills Slider Styles */
 		.skills-slider-section {
 			margin: 60px 0 40px 0;
 			overflow: hidden;
@@ -246,7 +249,7 @@
 
 		.skills-slider {
 			display: flex;
-			animation: scroll 6s linear infinite;
+			animation: scroll 30s linear infinite;
 			white-space: nowrap;
 		}
 
@@ -276,20 +279,17 @@
 			0% {
 				transform: translateX(0);
 			}
-
 			100% {
 				transform: translateX(-50%);
 			}
 		}
 
-		/* Stats Grid Styles */
 		.stats-grid {
 			display: grid;
 			grid-template-columns: repeat(5, 1fr);
 			gap: 20px;
 			margin-bottom: 30px;
 		}
-
 
 		.stat-card {
 			background: rgba(255, 255, 255, 0.03);
@@ -365,83 +365,91 @@
 
 <body data-sveltekit-preload-data="hover">
 	<div>
-		<div class="content appear svelte-n5qdyk">
-			<div class="head-left svelte-n5qdyk">
-				<div class="name-position svelte-n5qdyk" data-svelte-h="svelte-b0cjo8">
-					<a href="/">
-						<div class="name svelte-n5qdyk">Lula-Creatives</div>
-					</a>
-					<p class="svelte-n5qdyk">
-						Software Designer<br /><span class="grey-text">Currently at
-							<a href="https://ioco.tech" class="arrow svelte-n5qdyk" target="_blank">iOCO</a></span>
-					</p>
-				</div>
-				<div class="visitors-container svelte-n5qdyk">
-					<span class="grey-text visitor-label svelte-n5qdyk" data-svelte-h="svelte-1g5wkz">Hello,
-						visitor</span>
-					<span class="visitors svelte-n5qdyk"><span class="counter svelte-n5qdyk">
-							<div class="counter-number svelte-n5qdyk" style="margin-top: -177.5px">
-								0123456789
-							</div>
-						</span><span class="counter svelte-n5qdyk">
-							<div class="counter-number svelte-n5qdyk" style="margin-top: -319.5px">
-								0123456789
-							</div>
-						</span><span class="coma svelte-n5qdyk">,</span><span class="counter svelte-n5qdyk">
-							<div class="counter-number svelte-n5qdyk" style="margin-top: -248.5px">
-								0123456789
-							</div>
-						</span><span class="counter svelte-n5qdyk">
-							<div class="counter-number svelte-n5qdyk" style="margin-top: 0px">
-								0123456789
-							</div>
-						</span><span class="counter svelte-n5qdyk">
-							<div class="counter-number svelte-n5qdyk" style="margin-top: -248.5px">
-								0123456789
-							</div>
-						</span></span>
-				</div>
-			</div>
-			<div class="head-right svelte-n5qdyk">
-				<div class="info svelte-n5qdyk">
-					<p class="svelte-n5qdyk" data-svelte-h="svelte-jeecbg">
-						Researching, prototyping, designing and testing
-						<span class="grey-text">by day</span>, coding, no-coding, launching products
-						<span class="grey-text">by night</span>
-					</p>
+		
+	    <div class="content appear svelte-n5qdyk">
+      <div class="head-left svelte-n5qdyk">
+        <div class="name-position svelte-n5qdyk" data-svelte-h="svelte-b0cjo8">
+          <a href="/">
+            <div class="name svelte-n5qdyk">Lula-Creatives</div>
+          </a>
+          <p class="svelte-n5qdyk">
+            Software designer<br /><span class="grey-text">Currently at
+              <a href="https://ioco.tech" class="arrow svelte-n5qdyk" target="_blank">iOCO</a></span>
+          </p>
+        </div>
+        <div class="visitors-container svelte-n5qdyk">
+          <span class="grey-text visitor-label svelte-n5qdyk" data-svelte-h="svelte-1g5wkz">Hello,
+            visitor</span>
+          <span class="visitors svelte-n5qdyk"><span class="counter svelte-n5qdyk">
+              <div class="counter-number svelte-n5qdyk" style="margin-top: -177.5px">
+                0123456789
+              </div>
+            </span><span class="counter svelte-n5qdyk">
+              <div class="counter-number svelte-n5qdyk" style="margin-top: -319.5px">
+                0123456789
+              </div>
+            </span><span class="coma svelte-n5qdyk">,</span><span class="counter svelte-n5qdyk">
+              <div class="counter-number svelte-n5qdyk" style="margin-top: -248.5px">
+                0123456789
+              </div>
+            </span><span class="counter svelte-n5qdyk">
+              <div class="counter-number svelte-n5qdyk" style="margin-top: 0px">
+                0123456789
+              </div>
+            </span><span class="counter svelte-n5qdyk">
+              <div class="counter-number svelte-n5qdyk" style="margin-top: -248.5px">
+                0123456789
+              </div>
+            </span></span>
+        </div>
+      </div>
+      <div class="head-right svelte-n5qdyk">
+        <div class="info svelte-n5qdyk">
+          <p class="svelte-n5qdyk" data-svelte-h="svelte-jeecbg">
+            Researching, prototyping, designing and testing
+            <span class="grey-text">by day</span>, coding, no-coding, launching products
+            <span class="grey-text">by night</span>
+          </p>
 
-					<div class="press-to-reveal svelte-n5qdyk">
-						<div class="email-flex body100 svelte-n5qdyk">
-							<span id="press-text">
-								Press <span id="reveal-key" class="key svelte-n5qdyk"
-									style="background-image: url(./key.svg)"></span>
-								to reveal email
-							</span>
-							<a href="mailto:mkhungela.l@gmail.com" id="email-link"
-								class="tileSubtitle blur svelte-n5qdyk">mkhungela.l@gmail.com</a>
-							<img id="copy-icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png" alt="copy"
-								width="16" height="16" style="display:none; cursor:pointer;">
-						</div>
-					</div>
-				</div>
+          <div class="press-to-reveal svelte-n5qdyk">
+            <div class="email-flex body100 svelte-n5qdyk">
+              <span id="press-text">
+                Press <span id="reveal-key" class="key svelte-n5qdyk" style="background-image: url(./key.svg)"></span>
+                to reveal email
+              </span>
+              <a href="mailto:mkhungela.l@gmail.com" id="email-link"
+                class="tileSubtitle blur svelte-n5qdyk">mkhungela.l@gmail.com</a>
+              <img id="copy-icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png" alt="copy" width="16"
+                height="16" style="display:none; cursor:pointer;">
+            </div>
+          </div>
+        </div>
 
-				<div class="socials svelte-n5qdyk" data-svelte-h="svelte-1xo2f48">
-					<a href="https://github.com/LulamileMkhungela?tab=repositories" target="_blank"
-						class="social svelte-n5qdyk">
-						<img src="./github.png" width="23" height="18" alt="twitter logo">
-					</a>
-					<a href="https://www.linkedin.com/in/lulamile-mkhungela/" target="_blank"
-						class="social svelte-n5qdyk">
-						<img src="./linkedin.png" width="23" height="18" alt="linkedin logo">
-					</a>
-				</div>
-			</div>
-		</div>
-		<div data-svelte-h="svelte-kn0a89">
-			<div class="gradients noise svelte-n5qdyk"></div>
-			<div class="gradients fadeout svelte-n5qdyk"></div>
-			<div class="gradients gradient svelte-n5qdyk"></div>
-		</div>
+        <div class="socials svelte-n5qdyk" data-svelte-h="svelte-1xo2f48">
+          <a href="https://github.com/LulamileMkhungela?tab=repositories" target="_blank" class="social svelte-n5qdyk">
+            <img src="./github.png" width="23" height="18" alt="twitter logo">
+          </a>
+          <a href="https://www.linkedin.com/in/lulamile-mkhungela/" target="_blank" class="social svelte-n5qdyk">
+            <img src="./linkedin.png" width="23" height="18" alt="linkedin logo">
+          </a>
+          <!-- <a href="" 
+           target="_blank" class="social last svelte-n5qdyk">
+          <img src="./github.svg" width="23" height="18" alt="github logo">
+          </a> -->
+        </div>
+      </div>
+    </div>
+    <div data-svelte-h="svelte-kn0a89">
+      <div class="gradients noise svelte-n5qdyk"></div>
+      <div class="gradients fadeout svelte-n5qdyk"></div>
+      <div class="gradients gradient svelte-n5qdyk"></div>
+    </div>
+
+    <div data-svelte-h="svelte-kn0a89">
+      <div class="gradients noise svelte-n5qdyk"></div>
+      <div class="gradients fadeout svelte-n5qdyk"></div>
+      <div class="gradients gradient svelte-n5qdyk"></div>
+    </div>
 		<div class="wrapper appear svelte-n94jy9">
 			<div class="selected-projects body100"><span style="opacity: 0.4">10 selected projects</span></div>
 			<div class="wrapper svelte-5lpvxu">
@@ -457,7 +465,7 @@
 							<div class="left svelte-1mj9l4w">
 								<div class="image svelte-1mj9l4w"><span class="image-overlay svelte-1mj9l4w"></span>
 									<img src="https://firebasestorage.googleapis.com/v0/b/speakout-96083.appspot.com/o/blog-images%2Fwinning-gif.gif?alt=media&token=7d68abc1-9418-4a8a-9c29-2764c6a0b4d4"
-										alt="Sapera" width="64px" height="64px">
+										alt="HushEscape" width="64px" height="64px">
 								</div>
 								<div class="type svelte-1mj9l4w"><span class="bodyXSmall svelte-1mj9l4w">Product</span>
 								</div>
@@ -594,6 +602,7 @@
 							</div>
 						</a>
 					</div>
+					
 				</div>
 				<div class="changelog svelte-5lpvxu">
 					<h2 class="thoughtTileName svelte-5lpvxu">Nice Reads</h2>
@@ -631,7 +640,7 @@
 						<div class="entry svelte-1oitm8w">
 							<p class="bodySmall date svelte-1oitm8w">August 30, 2019</p>
 							<p class="bodySmall svelte-1oitm8w">
-								<a href="https://snbconsultancy.co.za/" target="_blank">SnB Consultancy
+								<a href="https://snbconsultancy.co.za/" target="_blank">SnB Consultancy</a>
 							</p>
 							<p class="bodyMono svelte-1oitm8w">SnB Consultancy Redesign</p>
 						</div>
@@ -642,6 +651,7 @@
 
 			<!-- Line Separator -->
 			<div class="line-separator"></div>
+			
 			<!-- Featured Projects Section -->
 			<div class="featured-section">
 				<!-- Skills Slider -->
@@ -650,7 +660,7 @@
 						<div class="skills-slider">
 							<span class="skill-item">Voice User Interface</span>
 							<span class="skill-item">No Code Development</span>
-							<span class="skill-item">UI Developement</span>
+							<span class="skill-item">UI Development</span>
 							<span class="skill-item">UX/UI/Product Design</span>
 							<span class="skill-item">Dashboard Design</span>
 							<span class="skill-item">Interaction Design</span>
@@ -661,14 +671,13 @@
 							<!-- Duplicate for smooth scroll -->
 							<span class="skill-item">Voice User Interface</span>
 							<span class="skill-item">No Code Development</span>
-							<span class="skill-item">UI Developement</span>
+							<span class="skill-item">UI Development</span>
 							<span class="skill-item">UX/UI/Product Design</span>
 							<span class="skill-item">Dashboard Design</span>
 							<span class="skill-item">Interaction Design</span>
 							<span class="skill-item">AI in Design</span>
 							<span class="skill-item">Healthcare UX</span>
 							<span class="skill-item">SaaS Platforms</span>
-
 						</div>
 					</div>
 				</div>
@@ -676,24 +685,24 @@
 				<!-- Stats Grid -->
 				<div class="stats-grid">
 					<div class="stat-card">
-						<div class="stat-number">30+</div>
+						<div class="stat-number" data-target="30">30+</div>
 						<div class="stat-label">Completed Projects</div>
 					</div>
 					<div class="stat-card">
-						<div class="stat-number">16+</div>
+						<div class="stat-number" data-target="16">16+</div>
 						<div class="stat-label">Happy Clients</div>
 					</div>
 					<div class="stat-card">
-						<div class="stat-number">8+</div>
+						<div class="stat-number" data-target="8">8+</div>
 						<div class="stat-label">Years of Experience</div>
 					</div>
 					<div class="stat-card">
-						<div class="stat-number">87+</div>
+						<div class="stat-number" data-target="87">87+</div>
 						<div class="stat-label">Net Promoter Score (NPS)</div>
 					</div>
 					<div class="stat-card">
-						<div class="stat-number">14</div>
-						<div class="stat-label">Attended Hackarthons</div>
+						<div class="stat-number" data-target="14">14</div>
+						<div class="stat-label">Attended Hackathons</div>
 					</div>
 				</div>
 
@@ -716,10 +725,10 @@
 							My design playground, fostering collaboration to craft stunning and innovative UI.</div>
 					</a>
 
-					<a href="https://www.framer.com" class="featured-card">
+					<a href="https://www.framer.com" target="_blank" class="featured-card">
 						<div class="card-header">
 							<div class="card-image-wrapper">
-								<img src="./framer.png" alt="Banks Branch Visit UX" class="tools-image">
+								<img src="./framer.png" alt="Framer" class="tools-image">
 							</div>
 							<span class="card-tag">Framer</span>
 						</div>
@@ -731,7 +740,7 @@
 					<a href="https://www.perplexity.ai" target="_blank" class="featured-card">
 						<div class="card-header">
 							<div class="card-image-wrapper">
-								<img src="./perplexity.png" alt="framer" class="tools-image">
+								<img src="./perplexity.png" alt="Perplexity" class="tools-image">
 							</div>
 							<span class="card-tag">Perplexity</span>
 						</div>
@@ -739,7 +748,8 @@
 							My intelligent guide for discovering precise answers and insights with unmatched clarity and
 							efficiency.</div>
 					</a>
-					<a href="" class="featured-card">
+					
+					<a href="#" class="featured-card">
 						<div class="card-header">
 							<div class="card-image-wrapper">
 								<img src="./hand-off.png" alt="hand off" class="tools-image">
@@ -754,7 +764,7 @@
 			</div>
 		</div>
 
-		<!-- Back to Top Button -->
+	<!-- Back to Top Button -->
 		<button class="back-to-top" id="backToTop" aria-label="Back to top">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
 				stroke="currentColor">
