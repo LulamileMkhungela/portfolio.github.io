@@ -120,7 +120,31 @@
 			}
 		}
 
+		/* --- RESET & LAYOUT FIX --- */
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
 
+		html,
+		body {
+			width: 100%;
+			overflow-x: hidden;
+			line-height: 1.6;
+			scroll-behavior: smooth;
+		}
+
+		img {
+			max-width: 100%;
+			height: auto;
+			display: block;
+		}
+
+		a {
+			text-decoration: none;
+			color: inherit;
+		}
 
 		.featured-card {
 			background: rgba(255, 255, 255, 0.03);
