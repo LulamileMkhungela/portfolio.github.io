@@ -420,4 +420,38 @@ p{
           user-select: none;         /* Standard */
         }
   
+        .skills-slider .skill-item:nth-child(1) {
+            color: #FF6B6B;
+          }
+          .skills-slider .skill-item:nth-child(2) {
+            color: #FFD93D;
+          }
+          .skills-slider .skill-item:nth-child(3) {
+            color: #6BCB77;
+          }
+          .skills-slider .skill-item:nth-child(4) {
+            color: #4D96FF;
+          }
+          .skills-slider .skill-item:nth-child(5) {
+            color: #C77DFF;
+          }
+          .skills-slider .skill-item:nth-child(6) {
+            color: #FFB6B9;
+          }
+          .skills-slider .skill-item:nth-child(7) {
+            color: #FFA41B;
+          }
+          .skills-slider .skill-item:nth-child(8) {
+            color: #00C2CB;
+          }
+          .skills-slider .skill-item:nth-child(9) {
+            color: #F85F73;
+          }
+          .skills-slider .skill-item:nth-child(10) {
+            color: #fff;
+          }
       
+          /* duplicated items for seamless scroll */
+          .skills-slider .skill-item:nth-child(n+13):nth-child(-n+22) {
+            opacity: 0.6;
+          }
