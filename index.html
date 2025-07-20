@@ -259,10 +259,11 @@
 		/* Stats Grid Styles */
 		.stats-grid {
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			grid-template-columns: repeat(5, 1fr);
 			gap: 20px;
 			margin-bottom: 30px;
 		}
+
 
 		.stat-card {
 			background: rgba(255, 255, 255, 0.03);
@@ -284,7 +285,7 @@
 			font-weight: 700;
 			line-height: 1;
 			margin-bottom: 12px;
-			background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.7) 100%);
+			background: linear-gradient(135deg, #fff 0%, rgb(255, 238, 0) 100%);
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 			background-clip: text;
@@ -664,6 +665,10 @@
 					<div class="stat-card">
 						<div class="stat-number">87+</div>
 						<div class="stat-label">Net Promoter Score (NPS)</div>
+					</div>
+					<div class="stat-card">
+						<div class="stat-number">14</div>
+						<div class="stat-label">Attended Hackarthons</div>
 					</div>
 				</div>
 
