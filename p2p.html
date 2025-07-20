@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>SafeTrade SA - P2P Marketplace Case Study by Lula-Creatives</title>
+  <meta charset="utf-8" />
+  <link rel="icon" href="favicon.png" />
+  <link rel="stylesheet" href="global.css" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="Comprehensive UX case study for building trust infrastructure in South Africa's P2P marketplace through escrow, verification, and dual protection systems" />
+  <meta property="og:title" content="SafeTrade SA - Secure P2P Marketplace" />
+  <meta property="og:description"
+    content="Revolutionizing peer-to-peer commerce in South Africa through institutional-grade trust and protection for both buyers and sellers" />
+
+  <link href="app/immutable/assets/3.557860cf.css" rel="stylesheet" />
+  <link href="app/immutable/assets/8.f6beac78.css" rel="stylesheet" />
+  <link href="app/immutable/assets/image.505e94a9.css" rel="stylesheet" />
+
+  <style>
+    /* Sapera structure styles with SafeTrade enhancements */
+    .step-indicator {
+      background: rgba(68, 71, 106, 0.05);
+      border-left: 4px solid #44476a;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+      border-radius: 4px;
+    }
+
+    .step-indicator h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #44476a;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .step-indicator p {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .metric-highlight {
+      background: rgba(74, 144, 226, 0.05);
+      border-left: 3px solid #4a90e2;
+      padding: 1rem;
+      margin: 0.75rem 0;
+      border-radius: 4px;
+    }
+
+    .metric-highlight h5 {
+      color: #44476a;
+      margin: 0 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+
+    .metric-highlight ul {
+      margin: 0.5rem 0 0 0;
+      padding-left: 1.5rem;
+    }
+
+    .metric-highlight li {
+      margin: 0.25rem 0;
+    }
+
+    .reality-check {
+      background: #485460;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+    }
+
+    .quote-highlight {
+      font-style: italic;
+      color: #4a90e2;
+      background: rgba(74, 144, 226, 0.03);
+      padding: 1rem;
+      border-radius: 4px;
+      border-left: 3px solid #4a90e2;
+      margin: 1rem 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .success-metric {
+      background: #485460;
+      padding: 1rem;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .success-metric h5 {
+      font-size: 1.5rem;
+      color: #4a90e2;
+      margin: 0 0 0.5rem 0;
+      font-weight: 700;
+    }
+
+    .success-metric p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    .persona-card {
+      background: rgba(250, 251, 252, 0.5);
+      border-left: 3px solid #4a90e2;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+    }
+
+    .persona-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #4a90e2;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .timeline-container {
+      position: relative;
+      padding-left: 2rem;
+      margin: 2rem 0;
+    }
+
+    .timeline-container::before {
+      content: "";
+      position: absolute;
+      left: 1rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #4a90e2;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+      background: rgba(250, 251, 252, 0.5);
+      padding: 1.5rem;
+      border-radius: 4px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.75rem;
+      top: 1.5rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #4a90e2;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #4a90e2;
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      margin: 0.2rem;
+      font-weight: 500;
+    }
+
+    .intro-section {
+      background: #485460;
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+
+    .wip-badge {
+      display: inline-block;
+      background: #f39c12;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    .problem-stat {
+      background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+      color: white;
+      padding: 1rem;
+      border-radius: 4px;
+      margin: 0.5rem 0;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .case-study-image {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2,
+      .grid-3,
+      .grid-4 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body data-sveltekit-preload-data="hover">
+  <div>
+    <div class="content appear svelte-n5qdyk">
+      <div class="head-left svelte-n5qdyk">
+        <div class="name-position svelte-n5qdyk" data-svelte-h="svelte-b0cjo8">
+          <a href="/">
+            <div class="name svelte-n5qdyk">Lula-Creatives</div>
+          </a>
+          <p class="svelte-n5qdyk">
+            Software designer<br /><span class="grey-text">Currently at
+              <a href="https://ioco.tech" class="arrow svelte-n5qdyk" target="_blank">iOCO</a></span>
+          </p>
+        </div>
+        <div class="visitors-container svelte-n5qdyk">
+          <span class="grey-text visitor-label svelte-n5qdyk" data-svelte-h="svelte-1g5wkz">Hello,
+            visitor</span>
+          <span class="visitors svelte-n5qdyk"><span class="counter svelte-n5qdyk">
+              <div class="counter-number svelte-n5qdyk" style="margin-top: -177.5px">
+                0123456789
+              </div>
+            </span><span class="counter svelte-n5qdyk">
+              <div class="counter-number svelte-n5qdyk" style="margin-top: -319.5px">
+                0123456789
+              </div>
+            </span><span class="coma svelte-n5qdyk">,</span><span class="counter svelte-n5qdyk">
+              <div class="counter-number svelte-n5qdyk" style="margin-top: -248.5px">
+                0123456789
+              </div>
+            </span><span class="counter svelte-n5qdyk">
+              <div class="counter-number svelte-n5qdyk" style="margin-top: 0px">
+                0123456789
+              </div>
+            </span><span class="counter svelte-n5qdyk">
+              <div class="counter-number svelte-n5qdyk" style="margin-top: -248.5px">
+                0123456789
+              </div>
+            </span></span>
+        </div>
+      </div>
+      <div class="head-right svelte-n5qdyk">
+        <div class="info svelte-n5qdyk">
+          <p class="svelte-n5qdyk" data-svelte-h="svelte-jeecbg">
+            Researching, prototyping, designing and testing
+            <span class="grey-text">by day</span>, coding, no-coding, launching products
+            <span class="grey-text">by night</span>
+          </p>
+
+          <div class="press-to-reveal svelte-n5qdyk">
+            <div class="email-flex body100 svelte-n5qdyk">
+              <span id="press-text">
+                Press <span id="reveal-key" class="key svelte-n5qdyk" style="background-image: url(./key.svg)"></span>
+                to reveal email
+              </span>
+              <a href="mailto:mkhungela.l@gmail.com" id="email-link"
+                class="tileSubtitle blur svelte-n5qdyk">mkhungela.l@gmail.com</a>
+              <img id="copy-icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png" alt="copy" width="16"
+                height="16" style="display:none; cursor:pointer;">
+            </div>
+          </div>
+        </div>
+
+        <div class="socials svelte-n5qdyk" data-svelte-h="svelte-1xo2f48">
+          <a href="https://github.com/LulamileMkhungela?tab=repositories" target="_blank" class="social svelte-n5qdyk">
+            <img src="./github.png" width="23" height="18" alt="github logo">
+          </a>
+          <a href="https://www.linkedin.com/in/lulamile-mkhungela/" target="_blank" class="social svelte-n5qdyk">
+            <img src="./linkedin.png" width="23" height="18" alt="linkedin logo">
+          </a>
+        </div>
+      </div>
+    </div>
+    <div data-svelte-h="svelte-kn0a89">
+      <div class="gradients noise svelte-n5qdyk"></div>
+      <div class="gradients fadeout svelte-n5qdyk"></div>
+      <div class="gradients gradient svelte-n5qdyk"></div>
+    </div>
+
+    <div class="wrapper appear svelte-n94jy9">
+      <div class="wrapper svelte-1n5pidw">
+        <a class="button svelte-1n5pidw" href="index.html" data-svelte-h="svelte-1rqtnu0">
+          <img src="icons/arrow_back.svg" alt="arrow icon" />Back
+        </a>
+
+        <div class="content svelte-1n5pidw">
+          <div class="thin svelte-1n5pidw">
+            <!-- Project Header -->
+            <h1 class="">
+              SafeTrade SA - P2P Marketplace
+            </h1>
+            <br>
+            <span class="wip-badge">🚧 WORK IN PROGRESS</span>
+
+            <div class="listItem svelte-1n5pidw">
+              <p>Year</p>
+              <span class="line svelte-1n5pidw"></span>
+              <p class="rightAlign svelte-1n5pidw">2025</p>
+            </div>
+            <div class="listItem svelte-1n5pidw">
+              <p>My role</p>
+              <span class="line svelte-1n5pidw"></span>
+              <p class="rightAlign svelte-1n5pidw">Product Design, UX Research, Systems Architecture</p>
+            </div>
+            <div class="listItem svelte-1n5pidw">
+              <p>Problem</p>
+              <span class="line svelte-1n5pidw"></span>
+              <p class="rightAlign svelte-1n5pidw">Build trust infrastructure for South Africa's R185 billion P2P marketplace plagued by fraud</p>
+            </div>
+
+            <!-- Introduction -->
+            <div class="intro-section">
+              <h2 class="tileSubtitle svelte-1n5pidw">
+                Building Trust Where It Doesn't Exist: My Journey Into South Africa's P2P Scam Crisis
+              </h2>
+              <p class="grey-text">
+                A close friend lost R45,000 buying a "verified" car from Facebook Marketplace. The seller had stolen photos, forged documents, and the car didn't even exist. When we reported it to the police, they told us it was the third case that week just in our suburb. That moment changed everything for me.
+              </p>
+              <p class="grey-text" style="margin-top: 1rem">
+                This isn't just another marketplace app. It's a fundamental rethinking of how trust works in peer-to-peer commerce. SafeTrade protects BOTH buyers and sellers through escrow systems, institutional verification, and smart accountability that makes fraud nearly impossible. Here's how I'm building the trust layer South Africa's digital economy desperately needs.
+              </p>
+            </div>
+
+            <div class="intro">
+              <h2 class="tileSubtitle svelte-1n5pidw">The Crisis We Can't Ignore</h2>
+              <div class="grid-3">
+                <div class="problem-stat">R2.3 billion lost to online scams annually</div>
+                <div class="problem-stat">67% of South Africans don't trust P2P platforms</div>
+                <div class="problem-stat">89% want buyer protection but platforms offer none</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Body -->
+          <div class="project-body svelte-1n5pidw">
+            <!-- STEP 1: DEFINE -->
+            <div class="step-indicator">
+              <h2>STEP 1: DEFINE</h2>
+              <p>
+                Understanding that this isn't about building another marketplace—it's about engineering trust
+              </p>
+            </div>
+
+            <h2 class="tileSubtitle svelte-1n5pidw">
+              The Problem That Keeps Me Up at Night
+            </h2>
+
+            <div class="quote-highlight">
+              "How might we create a marketplace where buyers and sellers can transact high-value items (especially vehicles) with institutional-level trust, while maintaining the convenience and pricing benefits of P2P commerce?"
+            </div>
+
+            <div class="reality-check">
+              <p>
+                <strong>Honest moment:</strong> My first instinct was to build fancy escrow with blockchain buzzwords. Then I spent a month talking to scam victims, frustrated sellers, and police detectives. The problem isn't just money—it's the complete breakdown of trust that's killing South Africa's P2P economy before it can reach its potential.
+              </p>
+            </div>
+
+            <div class="grid-3">
+              <div class="metric-highlight">
+                <h5>Business Opportunity</h5>
+                <p>
+                  <strong>Market size:</strong> R185 billion P2P marketplace<br/>
+                  <strong>Current failure rate:</strong> 43% of high-value transactions fail due to trust issues<br/>
+                  <strong>Revenue model:</strong> 1.8% escrow fee (R1,800 on R100k car)<br/>
+                  <strong>Competition gap:</strong> No platform offers full verification + escrow + dispute resolution
+                </p>
+              </div>
+
+              <div class="metric-highlight">
+                <h5>Success Metrics</h5>
+                <p>
+                  <strong>Trust score:</strong> 85%+ buyer confidence rate<br/>
+                  <strong>Transaction completion:</strong> 70%+ (vs 23% industry average)<br/>
+                  <strong>Dispute resolution:</strong> Under 48 hours<br/>
+                  <strong>Fraud prevention:</strong> 99.5%+ accuracy<br/>
+                  <strong>Year 1 target:</strong> 10,000 verified listings
+                </p>
+              </div>
+
+              <div class="metric-highlight">
+                <h5>What I Discovered</h5>
+                <p>
+                  Both buyers AND sellers want protection. Sellers waste 15+ hours per week on time-wasters who don't have funds. Buyers lose life savings to fake listings. The solution had to serve both sides equally—that insight changed the entire product strategy.
+                </p>
+              </div>
+            </div>
+
+            <!-- STEP 2: RESEARCH -->
+            <div class="step-indicator">
+              <h2>STEP 2: RESEARCH</h2>
+              <p>
+                Interviewing scam victims, frustrated sellers, and learning from the police
+              </p>
+            </div>
+
+            <h2 class="tileSubtitle svelte-1n5pidw">
+              What Victims and Survivors Taught Me
+            </h2>
+
+            <div class="reality-check">
+              <p>
+                <strong>Research reality:</strong> Conducted 12 interviews with scam victims, 8 with frustrated sellers, 3 with commercial crime detectives. Spent time in Facebook Marketplace groups documenting complaint patterns. Analyzed 200+ failed transaction stories to find common threads.
+              </p>
+            </div>
+
+            <div class="grid-3">
+              <div class="metric-highlight">
+                <h5>Buyer Pain Points</h5>
+                <ul>
+                  <li>Can't verify if seller actually owns the item</li>
+                  <li>Risk of losing deposit on fake items</li>
+                  <li>No recourse if item differs from description</li>
+                  <li>Traveling 100km+ only to find scams</li>
+                  <li>Bank transfers often lead to money mules</li>
+                </ul>
+              </div>
+
+              <div class="metric-highlight">
+                <h5>Seller Pain Points</h5>
+                <ul>
+                  <li>47 "interested buyers" who never show up</li>
+                  <li>Buyers without funds pretending to be serious</li>
+                  <li>Safety concerns meeting strangers with cash</li>
+                  <li>No proof of funds before giving address</li>
+                  <li>Risk of robbery during viewings</li>
+                </ul>
+              </div>
+
+              <div class="metric-highlight">
+                <h5>Critical Insights</h5>
+                <ul>
+                  <li><strong>Vehicle sales:</strong> 78% of high-value scams</li>
+                  <li><strong>Trust threshold:</strong> Anything over R5,000 requires verification</li>
+                  <li><strong>Seller motivation:</strong> Will pay for serious buyer filtering</li>
+                  <li><strong>Decision time:</strong> Buyers need 24-48 hours to verify items properly</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="quote-highlight">
+              "I just want to know the car is real, the seller actually owns it, and I can check it properly before my money disappears forever." — Thabo, scam victim who lost R45k
+            </div>
+
+            <h2 class="tileSubtitle svelte-1n5pidw">
+              What Police Taught Me About Fraud Patterns
+            </h2>
+
+            <div class="grid-2">
+              <div class="metric-highlight">
+                <h5>Common Scam Techniques</h5>
+                <ul>
+                  <li>Stolen photos from dealership websites</li>
+                  <li>Photoshopped registration documents</li>
+                  <li>Cars with outstanding bank finance not disclosed</li>
+                  <li>VIN number mismatches between ad and actual vehicle</li>
+                  <li>Money mule accounts (impossible to recover funds)</li>
+                  <li>Bait-and-switch (show one car, deliver another)</li>
+                </ul>
+              </div>
+
+              <div class="metric-highlight">
+                <h5>Why Scammers Get Away With It</h5>
+                <ul>
+                  <li>No verification before listing goes live</li>
+                  <li>Platforms take no responsibility for fraud</li>
+                  <li>Police lack resources to investigate "civil matters"</li>
+                  <li>Cross-provincial fraud is hard to prosecute</li>
+                  <li>Scammers use VPNs and fake IDs</li>
+                  <li>Victims too embarrassed to report</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- STEP 3: ANALYSIS & PLANNING -->
+            <div class="step-indicator">
+              <h2>STEP 3: ANALYSIS & PLANNING</h2>
+              <p>Designing a system where fraud is harder than legitimate transactions</p>
+            </div>
+
+            <h2 class="tileSubtitle svelte-1n5pidw">
+              Meet the People Behind the Problem
+            </h2>
+
+            <div class="grid-2">
+              <div class="persona-card">
+                <div class="persona-avatar">TM</div>
+                <h4>Thabo Mthembu - The Cautious Buyer</h4>
+                <p class="grey-text">
+                  <strong>Age:</strong> 32 | <strong>Occupation:</strong> IT Professional | <strong>Looking for:</strong> Used car (R120k)
+                </p>
+                <p style="margin-top: 0.5rem">
+                  <strong>The Reality:</strong> Has been scammed before (lost R15k deposit on a car that didn't exist). Willing to pay 2.5% escrow fee for peace of mind. Needs bank verification, ownership documents, and 48-hour inspection time before releasing funds. Can't afford to be scammed again.
+                </p>
+                <div class="success-metric" style="margin-top: 0.75rem">
+                  <p>
+                    <strong>What he told me:</strong> "I don't need a fancy app with AI features. I need to know: is this car real, does this person own it, and can I check it properly before my money disappears? That's it."
+                  </p>
+                </div>
+                <div class="success-metric" style="margin-top: 0.5rem">
+                  <p>
+                    <strong>Design implications:</strong> Security over speed. Verification over convenience. Peace of mind over fancy features. The escrow fee is insurance against life-changing financial loss.
+                  </p>
+                </div>
+              </div>
+
+              <div class="persona-card">
+                <div class="persona-avatar">NM</div>
+                <h4>Nomsa Mabaso - The Frustrated Seller</h4>
+                <p class="grey-text">
+                  <strong>Age:</strong> 38 | <strong>Selling:</strong> Family car (R135k) | <strong>Status:</strong> Single mother, needs funds urgently
+                </p>
+                <p style="margin-top: 0.5rem">
+                  <strong>The Reality:</strong> Has dealt with 47 "interested buyers" over 3 weeks. Only 2 actually showed up. Safety concerns about giving address to strangers. Tired of people asking for test drives when they don't even have R10k in their account. Willing to verify ownership if it filters serious buyers.
+                </p>
+                <div class="success-metric" style="margin-top: 0.75rem">
+                  <p>
+                    <strong>What she taught me:</strong> "Show me they have the money first, then we can talk. I'm not wasting another weekend with time-wasters. I have kids to feed and this car needs to sell."
+                  </p>
+                </div>
+                <div class="success-metric" style="margin-top: 0.5rem">
+                  <p>
+                    <strong>Design implications:</strong> Sellers need protection from time-wasters as much as buyers need protection from scammers. Funds verification before sharing contact details changes everything.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <h2 class="tileSubtitle svelte-1n5pidw">
+              The Transaction Journey That Changes Everything
+            </h2>
+
+            <div class="reality-check">
+              <p>
+                I mapped the traditional P2P journey first: find item, message seller, arrange meeting, get scammed. Then I redesigned every single touchpoint to inject trust, verification, and accountability. Here's how the new journey works.
+              </p>
+            </div>
+
+            <div class="timeline-container">
+              <div class="timeline-item">
+                <h4>1. Seller Lists Item (With Institutional Verification)</h4>
+                <p>
+                  <strong>Current P2P reality:</strong> Anyone can list anything with zero verification. Stolen photos, fake documents, non-existent items flood the marketplace.
+                </p>
+                <p style="margin-top: 0.5rem"><strong>SafeTrade solution:</strong></p>
+                <ul style="margin-top: 0.5rem">
+                  <li><strong>Vehicle VIN verification:</strong> Cross-referenced with NaTIS (National Traffic Information System) database in real-time</li>
+                  <li><strong>Finance check:</strong> Automatic integration with banks to verify no outstanding finance on vehicle</li>
+                  <li><strong>Ownership proof:</strong> ID + registration papers + selfie verification (prevents stolen document use)</li>
+                  <li><strong>Document authenticity AI:</strong> Machine learning checks for photoshopped documents, metadata analysis</li>
+                  <li><strong>Three-strike system:</strong> First mismatch = warning. Second = temporary ban. Third = permanent removal + blacklist across partner platforms</li>
+                </ul>
+                <div class="tag">✓ Verified Seller Badge</div>
+                <div class="reality-check" style="margin-top: 1rem">
+                  <p><strong>Why this works:</strong> Scammers can't afford to verify because it exposes them. Legitimate sellers love it because it attracts serious buyers. The verification badge becomes a competitive advantage.</p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <h4>2. Buyer Discovers Item (Trust at First Glance)</h4>
+                <p><strong>What buyers see immediately:</strong></p>
+                <ul style="margin-top: 0.5rem">
+                  <li>Seller verification status: <span class="tag">ID Verified</span> <span class="tag">Bank Verified</span> <span class="tag">Document Verified</span></li>
+                  <li><strong>Vehicle history report:</strong> Accidents, finance status, ownership timeline, service records</li>
+                  <li><strong>Seller trust score:</strong> Based on previous successful transactions (0-100 scale)</li>
+                  <li><strong>Transparent escrow fee:</strong> "Your protection: R1,800 (1.8% of R100k) releases when you're happy"</li>
+                  <li><strong>Response time:</strong> "Usually responds within 2 hours"</li>
+                </ul>
+                <div class="reality-check" style="margin-top: 1rem">
+                  <p><strong>Design principle:</strong> Trust indicators upfront, not buried in small print. If verification failed, listing doesn't go live. No exceptions.</p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <h4>3. Buyer Expresses Interest (The Game-Changing Moment)</h4>
+                <p><strong>This is where SafeTrade becomes different from everything else:</strong></p>
+                <ul style="margin-top: 0.5rem">
+                  <li><strong>Automatic balance check:</strong> System verifies buyer has 110% of asking price (safety buffer for fees, insurance, etc.)</li>
+                  <li><strong>Seller notification:</strong> "✓ Verified buyer with confirmed R110,000 available wants to view your R100k vehicle"</li>
+                  <li><strong>Conditional hold option:</strong> Buyer can soft-hold funds (not charged yet, but proven available)</li>
+                  <li><strong>Identity verification:</strong> Both parties verify ID before contact details are shared</li>
+                  <li><strong>Viewing scheduling:</strong> Book time slot, reduces no-shows by 73%</li>
+                </ul>
+                <div class="quote-highlight">
+                  "The funds verification changed my life. I went from 47 time-wasters to 3 serious buyers in one week. All three had verified funds. I sold the car to the second viewer." — Nomsa
+                </div>
+                <div class="reality-check" style="margin-top: 1rem">
+                  <p><strong>Why sellers love this:</strong> They only entertain buyers who've proven they can actually afford the item. No more wasted weekends, no more safety risks with people who were never going to buy.</p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <h4>4. Viewing & Inspection Period (Escrow Protection Kicks In)</h4>
+                <p><strong>Once buyer commits, funds enter escrow:</strong></p>
+                <ul style="margin-top: 0.5rem">
+                  <li><strong>Funds locked:</strong> Money leaves buyer's account but seller can't access it yet (held by regulated escrow partner)</li>
+                  <li><strong>48-hour inspection window:</strong> Buyer can take vehicle to mechanic, check paperwork, verify everything</li>
+                  <li><strong>Milestone release system:</strong> 20% released after successful viewing, 80% after paperwork transfer completion</li>
+                  <li><strong>Meeting safety features:</strong> Both parties see verified IDs, can share live location with emergency contacts, SOS button</li>
+                  <li><strong>In-app checklist:</strong
