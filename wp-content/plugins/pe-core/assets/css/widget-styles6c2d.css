@@ -26,6 +26,10 @@
     height: 100%;
 }
 
+.slider-test {
+    width: 100px !important;
+}
+
 .container--bg>.pe-video.n-self,
 .container--bg>.pe-video.n-self>div,
 .container--bg>.pe-video.n-self>div .plyr__video-wrapper,
@@ -479,7 +483,7 @@ span.bg--reverse-layer.rl-bottom.rl-right {
 }
 
 .site-branding>div img {
-    width: 100%;
+    width: 50% !important;
     display: block;
 }
 
