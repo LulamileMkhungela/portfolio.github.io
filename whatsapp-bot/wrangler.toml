@@ -1,0 +1,20 @@
+name = "lulasync-whatsapp-bot"
+main = "src/worker.js"
+compatibility_date = "2026-07-01"
+
+# Secrets (never commit — use `wrangler secret put`):
+#   VERIFY_TOKEN
+#   WHATSAPP_TOKEN
+#   PHONE_NUMBER_ID
+#   APP_SECRET              (optional)
+#   OWNER_NOTIFY_NUMBER     (optional, e.g. 27837195064)
+
+[vars]
+BUSINESS_NAME = "LulaSync"
+OWNER_NAME = "Lulamile"
+SITE_URL = "https://lulasync.app"
+SHOWCASE_URL = "https://lulasync.app/showcase.html"
+CASE_STUDIES_URL = "https://lulasync.app/showcase.html#portfolio"
+PRICING_URL = "https://lulasync.app/pricing.html"
+CONTACT_URL = "https://lulasync.app/contact.html"
+PORTFOLIO_URL = "https://lulasync.app/showcase.html#portfolio"

@@ -2,20 +2,6 @@
 <html lang="en" data-theme="dark">
 
 <head>
-    <link rel="icon" href="./assets/logo-ls.svg" type="image/svg+xml" />
-    <link rel="icon" href="./assets/icon-192.png" type="image/png" sizes="192x192" />
-    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
-
-    <script>
-      (function () {
-        try {
-          var t = localStorage.getItem('ls-theme') || 'dark';
-          document.documentElement.setAttribute('data-theme', t);
-          document.documentElement.style.colorScheme = t;
-        } catch (e) {}
-      })();
-    </script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0A0705" />
@@ -1970,6 +1956,10 @@
       animation: cat-scroll-left 30s linear infinite;
     }
 
+    .cat-slider-row.row-2 {
+      animation: cat-scroll-right 34s linear infinite;
+    }
+
     @keyframes cat-scroll-left {
       from {
         transform: translateX(0);
@@ -2199,19 +2189,7 @@
         padding: 0 20px 28px
       }
     }
-  
-/* GLOBAL THEME+RESPONSIVE HARDENING */
-html { color-scheme: dark; }
-html[data-theme="light"] { color-scheme: light; }
-.nav-actions { display:flex; align-items:center; gap:10px; flex-shrink:0; }
-body { overflow-x: hidden; -webkit-text-size-adjust: 100%; }
-img, video, svg, canvas { max-width: 100%; height: auto; }
-@media (max-width: 600px) {
-  .btn-wa, .btn-outline-gold, .btn-gold, .nav-cta { min-height: 44px; }
-  footer { padding-bottom: 100px; }
-}
-
-</style>
+  </style>
 </head>
 
 <body>
@@ -2224,10 +2202,10 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
       <div class="display" style="font-size:1.8rem;letter-spacing:1px;color:var(--paper);margin-bottom:8px">Demo Coming
         Soon!</div>
       <p style="font-size:.9rem;color:var(--dim);line-height:1.7;margin-bottom:24px" id="demoBody">We're putting the
-        finishing touches on this live demo. Contact us and we'll walk you through it personally — live, right now.</p>
-      <a id="demoWaBtn" href="./contact.html"
+        finishing touches on this live demo. WhatsApp us and we'll walk you through it personally — live, right now.</p>
+      <a id="demoWaBtn" href="https://wa.me/27837195064" target="_blank" rel="noopener noreferrer"
         style="display:flex;align-items:center;justify-content:center;gap:10px;background:var(--wa);color:#000;font-weight:800;font-size:.9rem;padding:14px;border-radius:8px;text-decoration:none;letter-spacing:.04em;box-shadow:0 6px 24px rgba(37,211,102,.2);">
-        💬 Contact us for a live walkthrough
+        💬 WhatsApp Us for a Live Walkthrough
       </a>
       <p style="font-size:.7rem;color:#444;margin-top:10px;text-align:center">No commitment · Responds fast · ZAR
         pricing</p>
@@ -2250,12 +2228,14 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
       <a href="./about.html" class="nav-link">About</a>
       <a href="./agents.html" class="nav-link">Agents</a>
       <a href="./contact.html" class="nav-link">Contact</a>
+      <a href="https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27d%20like%20to%20chat." target="_blank"
+        rel="noopener noreferrer" class="nav-cta" style="margin-left:8px">WhatsApp Us →</a>
     </div>
-    <div class="nav-actions"><button class="hamburger" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+    <button class="hamburger" id="menuBtn" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"
-      title="Toggle light mode">🌙</button></div>
+      title="Toggle light mode">🌙</button>
   </nav>
   <div class="grad-line"></div>
 
@@ -2269,7 +2249,9 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
       <a href="./agents.html" class="mobile-nav-link">Agents</a>
       <a href="./contact.html" class="mobile-nav-link">Contact</a>
     </div>
-        <a href="./contact.html" class="btn-wa" style="width:min(320px,80vw);justify-content:center">Contact Us →</a>
+    <a href="https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27d%20like%20to%20chat." target="_blank"
+      rel="noopener noreferrer" class="btn-wa" style="width:min(320px,80vw);justify-content:center">WhatsApp Us
+      →</a>
   </div>
 
   <main>
@@ -2530,9 +2512,9 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
 
     <div class="kente-strip"></div>
 
-    <!-- BUSINESS CATEGORY SLIDER (auto-scroll) -->
+    <!-- BUSINESS CATEGORY SLIDER (dual-row, auto-scroll) -->
     <div class="cat-slider-wrap" aria-label="Business types we serve">
-      <!-- Category pills — scrolls left -->
+      <!-- Row 1 — scrolls left -->
       <div class="cat-slider-row row-1">
         <span class="cat-pill"><span class="dot" style="background:#E04E14"></span>Spaza Shops</span>
         <span class="cat-pill"><span class="dot" style="background:#F0A500"></span>Shisa Nyama</span>
@@ -2560,7 +2542,34 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
         <span class="cat-pill"><span class="dot" style="background:#E04E14"></span>Fashion Retail</span>
         <span class="cat-pill"><span class="dot" style="background:#F0A500"></span>Tuck Shops</span>
       </div>
-
+      <!-- Row 2 — scrolls right -->
+      <div class="cat-slider-row row-2">
+        <span class="cat-pill"><span class="dot" style="background:#8B5CF6"></span>Clinics &amp; Practitioners</span>
+        <span class="cat-pill"><span class="dot" style="background:#25D366"></span>Beauty Studios</span>
+        <span class="cat-pill"><span class="dot" style="background:#00C2FF"></span>Tutors &amp; Coaches</span>
+        <span class="cat-pill"><span class="dot" style="background:#E04E14"></span>Driving Schools</span>
+        <span class="cat-pill"><span class="dot" style="background:#F0A500"></span>Pet Services</span>
+        <span class="cat-pill"><span class="dot" style="background:#8B5CF6"></span>Photography Studios</span>
+        <span class="cat-pill"><span class="dot" style="background:#25D366"></span>Cleaning Services</span>
+        <span class="cat-pill"><span class="dot" style="background:#00C2FF"></span>Logistics &amp; Delivery</span>
+        <span class="cat-pill"><span class="dot" style="background:#E04E14"></span>Gyms &amp; Fitness</span>
+        <span class="cat-pill"><span class="dot" style="background:#F0A500"></span>Day Spas</span>
+        <span class="cat-pill"><span class="dot" style="background:#8B5CF6"></span>Home Contractors</span>
+        <span class="cat-pill"><span class="dot" style="background:#25D366"></span>Catering Companies</span>
+        <!-- duplicate for seamless loop -->
+        <span class="cat-pill"><span class="dot" style="background:#8B5CF6"></span>Clinics &amp; Practitioners</span>
+        <span class="cat-pill"><span class="dot" style="background:#25D366"></span>Beauty Studios</span>
+        <span class="cat-pill"><span class="dot" style="background:#00C2FF"></span>Tutors &amp; Coaches</span>
+        <span class="cat-pill"><span class="dot" style="background:#E04E14"></span>Driving Schools</span>
+        <span class="cat-pill"><span class="dot" style="background:#F0A500"></span>Pet Services</span>
+        <span class="cat-pill"><span class="dot" style="background:#8B5CF6"></span>Photography Studios</span>
+        <span class="cat-pill"><span class="dot" style="background:#25D366"></span>Cleaning Services</span>
+        <span class="cat-pill"><span class="dot" style="background:#00C2FF"></span>Logistics &amp; Delivery</span>
+        <span class="cat-pill"><span class="dot" style="background:#E04E14"></span>Gyms &amp; Fitness</span>
+        <span class="cat-pill"><span class="dot" style="background:#F0A500"></span>Day Spas</span>
+        <span class="cat-pill"><span class="dot" style="background:#8B5CF6"></span>Home Contractors</span>
+        <span class="cat-pill"><span class="dot" style="background:#25D366"></span>Catering Companies</span>
+      </div>
     </div>
 
     <!-- MARQUEE -->
@@ -2645,9 +2654,10 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
                 <button class="btn-paction" style="background:var(--gold);color:var(--ink)"
                   onclick="openHiw('website')">Interested?</button>
                 <button class="btn-paction" style="background:#151515;color:var(--gold);border:1px solid #2a2000"
-                  onclick="openDemo('Website','🌐','./contact.html')">▶
+                  onclick="openDemo('Website','🌐','https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27m%20interested%20in%20a%20Website.')">▶
                   See Demo</button>
-                <a href="./contact.html" class="btn-wa-small">Contact us</a>
+                <a href="https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27m%20interested%20in%20a%20Website."
+                  target="_blank" rel="noopener noreferrer" class="btn-wa-small">💬 WhatsApp Us</a>
               </div>
             </div>
           </details>
@@ -2704,9 +2714,10 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
                 <button class="btn-paction" style="background:var(--fire);color:#fff"
                   onclick="openHiw('whatsapp')">Interested?</button>
                 <button class="btn-paction" style="background:#151515;color:var(--fire);border:1px solid #2a0a00"
-                  onclick="openDemo('WhatsApp Ordering System','💬','./contact.html')">▶
+                  onclick="openDemo('WhatsApp Ordering System','💬','https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27m%20interested%20in%20a%20WhatsApp%20Ordering%20System.')">▶
                   See Demo</button>
-                <a href="./contact.html" class="btn-wa-small">Contact us</a>
+                <a href="https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27m%20interested%20in%20a%20WhatsApp%20Ordering%20System."
+                  target="_blank" rel="noopener noreferrer" class="btn-wa-small">💬 WhatsApp Us</a>
               </div>
             </div>
           </details>
@@ -2762,9 +2773,10 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
                 <button class="btn-paction" style="background:var(--purple);color:#fff"
                   onclick="openHiw('voice')">Interested?</button>
                 <button class="btn-paction" style="background:#151515;color:var(--purple);border:1px solid #1a0a2a"
-                  onclick="openDemo('AI Voice Agents','🤖','./contact.html')">▶
+                  onclick="openDemo('AI Voice Agents','🤖','https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27m%20interested%20in%20AI%20Voice%20Agents.')">▶
                   See Demo</button>
-                <a href="./contact.html" class="btn-wa-small">Contact us</a>
+                <a href="https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27m%20interested%20in%20AI%20Voice%20Agents."
+                  target="_blank" rel="noopener noreferrer" class="btn-wa-small">💬 WhatsApp Us</a>
               </div>
             </div>
           </details>
@@ -2825,9 +2837,10 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
                 <button class="btn-paction" style="background:var(--wa);color:#000"
                   onclick="openHiw('content')">Interested?</button>
                 <button class="btn-paction" style="background:#151515;color:var(--wa);border:1px solid #0a2010"
-                  onclick="openDemo('Content & SaaS Dashboard','📊','./contact.html')">▶
+                  onclick="openDemo('Content & SaaS Dashboard','📊','https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27m%20interested%20in%20the%20Content%20Dashboard.')">▶
                   See Demo</button>
-                <a href="./contact.html" class="btn-wa-small">Contact us</a>
+                <a href="https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27m%20interested%20in%20the%20Content%20Dashboard."
+                  target="_blank" rel="noopener noreferrer" class="btn-wa-small">💬 WhatsApp Us</a>
               </div>
             </div>
           </details>
@@ -2881,9 +2894,10 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
                 <button class="btn-paction" style="background:var(--gold);color:var(--ink)"
                   onclick="openHiw('speedtolead')">Interested?</button>
                 <button class="btn-paction" style="background:#151515;color:var(--gold);border:1px solid #2a2000"
-                  onclick="openDemo('Speed to Lead','⚡','./contact.html')">▶
+                  onclick="openDemo('Speed to Lead','⚡','https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27m%20interested%20in%20Speed%20to%20Lead.')">▶
                   See Demo</button>
-                <a href="./contact.html" class="btn-wa-small">Contact us</a>
+                <a href="https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27m%20interested%20in%20Speed%20to%20Lead."
+                  target="_blank" rel="noopener noreferrer" class="btn-wa-small">💬 WhatsApp Us</a>
               </div>
             </div>
           </details>
@@ -2929,9 +2943,10 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
                 <button class="btn-paction" style="background:var(--cyan);color:var(--ink)"
                   onclick="openHiw('custom')">Interested?</button>
                 <button class="btn-paction" style="background:#151515;color:var(--cyan);border:1px solid #001a20"
-                  onclick="openDemo('Custom & Automated Services','⚙️','./contact.html')">▶
+                  onclick="openDemo('Custom & Automated Services','⚙️','https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27d%20like%20custom%20automated%20services.')">▶
                   See Demo</button>
-                <a href="./contact.html" class="btn-wa-small">Contact us</a>
+                <a href="https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27d%20like%20custom%20automated%20services."
+                  target="_blank" rel="noopener noreferrer" class="btn-wa-small">💬 WhatsApp Us</a>
               </div>
             </div>
           </details>
@@ -2979,9 +2994,10 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
                 <button class="btn-paction" style="background:var(--purple);color:#fff"
                   onclick="openHiw('uxui')">Interested?</button>
                 <button class="btn-paction" style="background:#151515;color:var(--purple);border:1px solid #1a0a2a"
-                  onclick="openDemo('UX / UI Design','🎨','./contact.html')">▶
+                  onclick="openDemo('UX / UI Design','🎨','https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27d%20like%20UX%2FUI%20design%20support.')">▶
                   See Demo</button>
-                <a href="./contact.html" class="btn-wa-small">Contact us</a>
+                <a href="https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27d%20like%20UX%2FUI%20design%20support."
+                  target="_blank" rel="noopener noreferrer" class="btn-wa-small">💬 WhatsApp Us</a>
               </div>
             </div>
           </details>
@@ -3038,9 +3054,10 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
                 <button class="btn-paction" style="background:var(--gold);color:var(--ink)"
                   onclick="openHiw('software')">Interested?</button>
                 <button class="btn-paction" style="background:#151515;color:var(--gold);border:1px solid #2a2000"
-                  onclick="openDemo('Software / App Development','💻','./contact.html')">▶
+                  onclick="openDemo('Software / App Development','💻','https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27m%20exploring%20software%20development.')">▶
                   See Demo</button>
-                <a href="./contact.html" class="btn-wa-small">Contact us</a>
+                <a href="https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27m%20exploring%20software%20development."
+                  target="_blank" rel="noopener noreferrer" class="btn-wa-small">💬 WhatsApp Us</a>
               </div>
             </div>
           </details>
@@ -3097,9 +3114,10 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
                 <button class="btn-paction" style="background:var(--fire);color:#fff"
                   onclick="openHiw('enterprise')">Interested?</button>
                 <button class="btn-paction" style="background:#151515;color:var(--fire);border:1px solid #2a0a00"
-                  onclick="openDemo('Enterprise Solutions','🏢','./contact.html')">▶
+                  onclick="openDemo('Enterprise Solutions','🏢','https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27d%20like%20to%20discuss%20enterprise%20solutions.')">▶
                   See Demo</button>
-                <a href="./contact.html" class="btn-wa-small">Contact us</a>
+                <a href="https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27d%20like%20to%20discuss%20enterprise%20solutions."
+                  target="_blank" rel="noopener noreferrer" class="btn-wa-small">💬 WhatsApp Us</a>
               </div>
             </div>
           </details>
@@ -3478,7 +3496,8 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
               style="color:var(--gold)">Sync</span></span></a>
         <p class="footer-desc">Websites, AI agents, custom software, automation, and enterprise systems for South
           African businesses — from startups to large enterprises. Priced in ZAR.</p>
-        <a href="./contact.html" class="btn-wa" style="font-size:.78rem;padding:9px 18px">💬 WhatsApp
+        <a href="https://wa.me/27837195064?text=Hi%20LulaSync!%20I%20want%20an%20app%20for%20my%20business."
+          target="_blank" rel="noopener noreferrer" class="btn-wa" style="font-size:.78rem;padding:9px 18px">💬 WhatsApp
           Us</a>
       </div>
       <div>
@@ -3492,11 +3511,11 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
       <div>
         <p class="footer-col-title">Company</p>
         <div class="footer-links">
-          <a href="./about.html" class="footer-link">About Me</a>
+          <a href="./about.html" class="footer-link">About Us</a>
           <a href="./contact.html" class="footer-link">Contact</a>
           <a href="./agents.html" class="footer-link">Become an Agent</a>
-          <a href="./terms.html" class="footer-link">Terms and Conditions</a>
-          <a href="./privacy.html" class="footer-link">Privacy Policy</a>
+          <a href="" class="footer-link">Terms and Conditions</a>
+          <a href="" class="footer-link">Privacy Policy</a>
 
         </div>
       </div>
@@ -3507,23 +3526,19 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
     </div>
   </footer>
 
-  <script src="./assets/chat-widget.js" defer></script>
+  <script src="assets/chat-widget.js" defer></script>
   <script>
     // ── THEME TOGGLE ──
     const themeToggle = document.getElementById('themeToggle');
     const html = document.documentElement;
     const saved = localStorage.getItem('ls-theme') || 'dark';
-    function applyTheme(next) {
-      html.setAttribute('data-theme', next);
-      html.style.colorScheme = next;
-      themeToggle.textContent = next === 'dark' ? '🌙' : '☀️';
-      localStorage.setItem('ls-theme', next);
-      try { document.querySelector('meta[name="theme-color"]').setAttribute('content', next === 'dark' ? '#0A0705' : '#F7F3EC'); } catch (e) {}
-    }
-    applyTheme(saved);
+    html.setAttribute('data-theme', saved);
+    themeToggle.textContent = saved === 'dark' ? '🌙' : '☀️';
     themeToggle.addEventListener('click', () => {
       const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      applyTheme(next);
+      html.setAttribute('data-theme', next);
+      themeToggle.textContent = next === 'dark' ? '🌙' : '☀️';
+      localStorage.setItem('ls-theme', next);
     });
     const SLIDE_LABELS = [
       'Live Demo · WhatsApp Ordering Chat',
@@ -3580,7 +3595,7 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
         steps: ['You send me your logo, colours, and a brief about your business via WhatsApp', 'I design and build your site — usually delivered within 5–7 business days', 'You review, request changes, and approve before it goes live', 'I host and maintain it on an ongoing monthly plan — you just run your business'],
         gets: ['Professional mobile-first design', 'Offline-capable PWA (installable)', 'WhatsApp contact button built-in', 'Google SEO ready', 'Push notifications to clients', 'You control your content'],
         price: 'from R1,500 setup + R300/mo',
-        wa: './contact.html'
+        wa: 'https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27m%20interested%20in%20a%20Website.'
       },
       whatsapp: {
         icon: '💬', accent: 'var(--fire)', badge: 'WhatsApp Ordering System · How It Works',
@@ -3590,7 +3605,7 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
         steps: ['You share your menu, pricing, and delivery zones with me via WhatsApp', 'I build your ordering bot, kitchen dashboard, and driver tracking UI', 'We test end-to-end: customer orders → kitchen receives → driver dispatched', 'Go live — customers order directly from your existing WhatsApp number'],
         gets: ['WhatsApp ordering bot (24/7)', 'Live kitchen order dashboard', 'Driver delivery tracking UI', 'Admin menu & stock management', 'Zero commission on all orders', 'Full sales reporting & history'],
         price: 'R3,000 setup + R1,000/mo',
-        wa: './contact.html'
+        wa: 'https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27m%20interested%20in%20a%20WhatsApp%20Ordering%20System.'
       },
       voice: {
         icon: '🤖', accent: 'var(--purple)', badge: 'AI Voice Agents · How It Works',
@@ -3600,7 +3615,7 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
         steps: ['You tell me your FAQs, booking process, and business hours in a WhatsApp voice note', 'I train and configure the AI agent on your specific business data', 'We test live calls together and refine the voice and responses', 'Go live — the agent answers every call while you focus on your work'],
         gets: ['SA phone number included', '24/7 automated call answering', 'Bookings direct into your calendar', 'WhatsApp follow-up after each call', 'Full call transcripts & summaries', 'Handles FAQs without human input'],
         price: 'from R2,500 setup + R1,500/mo',
-        wa: './contact.html'
+        wa: 'https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27m%20interested%20in%20AI%20Voice%20Agents.'
       },
       content: {
         icon: '📊', accent: 'var(--wa)', badge: 'Content & SaaS Dashboard · How It Works',
@@ -3610,7 +3625,7 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
         steps: ['Connect your social accounts and share your brand voice guidelines with me', 'I build your content scheduling dashboard and SaaS admin panel', 'You post to WhatsApp — AI writes captions and schedules across all platforms', 'Monitor analytics, manage subscriptions, and track billing from one place'],
         gets: ['Post to all platforms from WhatsApp', 'AI captions in your brand voice', 'Schedule content weeks ahead', 'SaaS admin: user & subscription mgmt', 'Billing, invoicing & payment hooks', 'KPI widgets: MRR, churn, active users'],
         price: 'R5,000 setup + R1,500/mo',
-        wa: './contact.html'
+        wa: 'https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27m%20interested%20in%20the%20Content%20%26%20SaaS%20Dashboard.'
       },
       speedtolead: {
         icon: '⚡', accent: 'var(--gold)', badge: 'Speed to Lead · How It Works',
@@ -3620,7 +3635,7 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
         steps: ['Connect your lead sources: website forms, Facebook ads, WhatsApp, or email', 'I build your qualification flow, response templates, and booking integration', 'We test the full journey from new enquiry to booked appointment', 'Go live — every lead gets a reply in under 60 seconds, 24/7'],
         gets: ['Replies in under 60 seconds', 'Works 24/7 including public holidays', 'Qualifies leads automatically', 'Books appointments without human input', 'Follows up cold leads automatically', 'Live lead pipeline dashboard'],
         price: 'R4,500 setup + from R1,000/mo',
-        wa: './contact.html'
+        wa: 'https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27m%20interested%20in%20Speed%20to%20Lead.'
       },
       custom: {
         icon: '⚙️', accent: 'var(--cyan)', badge: 'Custom & Automated Services · How It Works',
@@ -3630,7 +3645,7 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
         steps: ['You walk me through your process via WhatsApp voice note or a quick call', 'I scope the automation, propose a solution, and provide a quote', 'I build, test, and document the workflow end-to-end', 'Handover includes full docs so your team can operate it independently'],
         gets: ['Process mapped before any code', 'Integrates with tools you already use', 'Scheduled jobs, reminders & alerts', 'Validation, deduping & audit trails', 'Full handover documentation', 'Ongoing support available'],
         price: 'From quote — scoped to your build',
-        wa: './contact.html'
+        wa: 'https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27d%20like%20custom%20automated%20services.'
       },
       uxui: {
         icon: '🎨', accent: 'var(--purple)', badge: 'UX / UI Design · How It Works',
@@ -3640,7 +3655,7 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
         steps: ['Discovery: I review your existing product, analytics, and user feedback', 'IA mapping: I define the primary journeys for each user type (admin vs customer)', 'Design: UI kit, responsive layouts, and interactive clickable prototype', 'Handover: annotated designs, component specs, and developer-ready files'],
         gets: ['IA map: admin vs customer journeys', 'UI kit: buttons, tables, modals, filters', 'Responsive 360px–1440px layouts', 'Clickable prototype for sign-off', 'Accessibility audit: contrast & focus', 'Onboarding microcopy & error states'],
         price: 'From R4,000 — sprint-based',
-        wa: './contact.html'
+        wa: 'https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27d%20like%20UX%2FUI%20design%20support.'
       },
       software: {
         icon: '💻', accent: 'var(--gold)', badge: 'Software / App Development · How It Works',
@@ -3650,7 +3665,7 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
         steps: ['Discovery call: I learn your requirements, target users, and tech constraints', 'Proposal: I scope the build, stack, timeline, and cost clearly in ZAR', 'Development: iterative sprints with regular demos for your feedback', 'Delivery: deployed, documented, and fully handed over — the code is yours'],
         gets: ['PWA with offline & push notifications', 'Full-stack: React/Next.js + Node/Python', 'REST & GraphQL APIs, documented', 'Auth: JWT, OAuth, role-based access', 'Cloud deployment on your host of choice', 'Full code handover — no walled garden'],
         price: 'From R8,000 — optional retainer',
-        wa: './contact.html'
+        wa: 'https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27m%20exploring%20software%20development.'
       },
       enterprise: {
         icon: '🏢', accent: 'var(--fire)', badge: 'Enterprise Solutions · How It Works',
@@ -3660,7 +3675,7 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
         steps: ['Discovery workshop: I map your people, processes, data flows, and compliance needs', 'Architecture proposal: tech stack, integrations, security, and delivery phases', 'Phased delivery: core system first, enhancements next — you see progress early', 'Handover & SLA: staff training, documentation, and dedicated support retainer'],
         gets: ['Multi-branch & multi-tenant architecture', 'ERP/CRM integrations (SAP, Salesforce)', 'POPIA-compliant data & audit trails', 'SSO & enterprise-grade auth', 'Executive dashboards with drill-down', 'Dedicated SLA & support retainer'],
         price: 'Custom quote — retainer available',
-        wa: './contact.html'
+        wa: 'https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27d%20like%20to%20discuss%20enterprise%20solutions.'
       }
     };
 
@@ -3709,7 +3724,7 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
         <div class="hiw-price-label">Starting from</div>
         <div class="hiw-price-val" style="color:${d.accent}">${d.price}</div>
       </div>
-      <a class="hiw-cta-btn" href="${d.wa}" target="_blank" rel="noopener noreferrer">Contact us to get started</a>
+      <a class="hiw-cta-btn" href="${d.wa}" target="_blank" rel="noopener noreferrer">💬 WhatsApp Us to Get Started</a>
     </div>`;
       document.getElementById('hiwOverlay').classList.add('open');
       document.body.style.overflow = 'hidden';
@@ -3721,7 +3736,7 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
 
     function openDemo(name, icon, wa) {
       document.getElementById('demoIcon').textContent = icon;
-      document.getElementById('demoBody').textContent = "We're putting the finishing touches on the live " + name + " demo. In the meantime, Contact us and we'll walk you through it personally — live, right now.";
+      document.getElementById('demoBody').textContent = "We're putting the finishing touches on the live " + name + " demo. In the meantime, WhatsApp us and we'll walk you through it personally — live, right now.";
       document.getElementById('demoWaBtn').href = wa;
       document.getElementById('demoOverlay').classList.add('open');
       document.body.style.overflow = 'hidden';
