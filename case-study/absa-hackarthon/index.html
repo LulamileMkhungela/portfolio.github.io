@@ -13,11 +13,28 @@
 			contain-intrinsic-size: 3000px 1500px
 		}
 	</style>
+	<style>
+		/* ABSA case study: image loading placeholders */
+		.cs-img-placeholder-wrap {
+			background: #eaeaea;
+			min-height: 200px;
+			position: relative;
+			overflow: hidden;
+		}
+		.project-featured-image.cs-img-placeholder-wrap { min-height: 280px; }
+		.cs-img-placeholder-wrap img {
+			opacity: 0;
+			transition: opacity 0.35s ease;
+		}
+		.cs-img-placeholder-wrap img.cs-loaded {
+			opacity: 1;
+		}
+	</style>
 
 	<!-- This site is optimized with the Yoast SEO plugin v25.9 - https://yoast.com/wordpress/plugins/seo/ -->
 	<title>ABSA Hackathon: Trust-centred branch experience — Lulazel</title>
 	<meta name="description"
-		content="Led UX research and design for ABSA&#039;s hackathon: culturally inclusive banking across 11 languages. 35% branch friction reduction, satisfaction 6.2→8.0/10." />
+		content="ABSA 8-hour hackathon: process and innovation over polish. Problem-solving and trust-centred branch experience; 35% friction reduction, satisfaction 6.2→8.0/10." />
 	<link rel="canonical" href="index.html" />
 	<meta property="og:locale" content="en_US" />
 	<meta property="og:type" content="article" />
@@ -597,7 +614,7 @@
 	<link rel="icon" href="../../wp-content/uploads/2025/05/Lulazel.png" sizes="192x192" />
 	<link rel="apple-touch-icon" href="../../wp-content/uploads/2025/05/Lulazel.png" />
 	<meta name="msapplication-TileImage"
-		content="/luladevsigner/wp-content/uploads/2025/05/Lulazel.png" />
+		content="../../wp-content/uploads/2025/05/Lulazel.png" />
 	<style id="pe-redux-dynamic-css" title="dynamic-css" class="redux-options-output">
 		:root {
 			--pgal-image-height: 50;
@@ -797,7 +814,7 @@
 										<a href="../../index.html">
 
 											<img fetchpriority="high" width="150" height="150"
-												src="../../wp-content/uploads/2025/05/lulads.svg" class="main__logo"
+												src="../../wp-content/uploads/2025/05/Lulazel.png" class="main__logo"
 												alt="" decoding="async" /><img width="150" height="150"
 												src="../../wp-content/uploads/2025/05/Lulazel.png"
 												class="secondary__logo" alt="" decoding="async" />
@@ -1103,12 +1120,12 @@
 									data-widget_type="projectmedia.default">
 									<div class="elementor-widget-container">
 
-										<div class="project-featured-image p--featured featured__12302">
+										<div class="project-featured-image p--featured featured__12302 cs-img-placeholder-wrap">
 
-											<img loading="lazy" width="1986" height="842"
+											<img fetchpriority="high" width="1986" height="842" loading="eager" decoding="async"
 												src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/cover.webp?alt=media&token=0c144e73-7781-46f2-bff1-6cb34c496be7"
-												class="attachment-full size-full" alt="Bank Branch Experience"
-												decoding="async" />
+												class="attachment-full size-full" alt="ABSA 8-hour hackathon: reimagining the bank branch experience for trust and efficiency"
+											/>
 
 										</div>
 
@@ -1145,8 +1162,7 @@
 												<p class="text-h6  no-margin " data-animate="true"
 													data-animation="linesUp"
 													data-settings="{duration=1.5;delay=0;stagger=0.05;pin=;pinTarget=;scrub=;item_ref_start=top;window_ref_start=bottom;item_ref_end=bottom;window_ref_end=top;out=false;inserted=}">
-													Redesigning South African banking for cultural inclusivity and
-													digital transformation across 11 languages and diverse user segments
+													Process and innovation over polish: solving the branch experience in an 8-hour hackathon
 												</p>
 
 											</div>
@@ -1165,7 +1181,7 @@
 
 												<p class="text-p   " data-animate="true" data-animation="wordsUp"
 													data-settings="{duration=1;delay=0;stagger=0.01;pin=;pinTarget=;scrub=;item_ref_start=top;window_ref_start=bottom;item_ref_end=bottom;window_ref_end=top;out=false;inserted=}">
-													Led UX research and design for a trust-centred branch experience: problem framing, research, and a hybrid digital–physical solution. Outcome: 35% less branch friction, satisfaction 6.2→8.0/10, 87% task completion (55+).</p>
+													Focused on process and innovation, not pixel-perfect design: problem framing, research, and a trust-centred solution in 8 hours. Outcome: 35% less branch friction, satisfaction 6.2→8.0/10, 87% task completion (55+).</p>
 
 											</div>
 
@@ -1184,7 +1200,7 @@
 												<p class="text-p  no-margin " data-animate="true"
 													data-animation="linesUp"
 													data-settings="{duration=1.5;delay=0;stagger=0.1;pin=;pinTarget=;scrub=;item_ref_start=top;window_ref_start=bottom;item_ref_end=bottom;window_ref_end=top;out=false;inserted=}">
-													UX Research & Design | Mobile & Branch Systems </p>
+													Process · Problem-solving · Innovation | 8-hour hackathon </p>
 
 											</div>
 
@@ -1236,7 +1252,7 @@
 
 												<p class="text-p p-large  " data-animate="true" data-animation="linesUp"
 													data-settings="{duration=1.5;delay=0;stagger=0.1;pin=false;pinTarget=;scrub=false;item_ref_start=top;window_ref_start=bottom;item_ref_end=bottom;window_ref_end=top;out=false;inserted=false}">
-													ABSA serves 59M customers across 11 languages; 31% still relied on branches. <strong>Problem:</strong> how to reduce friction and improve efficiency without losing trust or ignoring cultural context.</p>
+													<strong>8-hour hackathon.</strong> ABSA serves 59M customers across 11 languages; 31% still relied on branches. Focus was <strong>process and innovation</strong>, not polished design. <strong>Problem:</strong> how to reduce friction and improve efficiency without losing trust or ignoring cultural context.</p>
 
 											</div>
 
@@ -1294,11 +1310,11 @@
 							data-id="275d5b9" data-element_type="container">
 							<div class="elementor-element elementor-element-6cab059 elementor-widget elementor-widget-image"
 								data-id="6cab059" data-element_type="widget" data-widget_type="image.default">
-								<div class="elementor-widget-container">
-									<img fetchpriority="high" decoding="async" width="2560" height="1920"
+								<div class="elementor-widget-container cs-img-placeholder-wrap">
+									<img fetchpriority="high" decoding="async" width="2560" height="1920" loading="eager"
 										src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/Persona.png?alt=media&token=0bf1bae0-a214-4453-9985-9abadb1d23c3"
 										class="attachment-full size-full wp-image-15796"
-										alt="User Research and Personas" sizes="(max-width: 2560px) 100vw, 2560px" />
+										alt="ABSA hackathon: user research personas for branch and digital users" sizes="(max-width: 2560px) 100vw, 2560px" />
 								</div>
 							</div>
 						</div>
@@ -1317,7 +1333,7 @@
 											<div class="text-wrapper">
 
 												<p class="text-p p-large no-margin "> (03)
-													<br>PROCESS
+													<br>PROCESS & INNOVATION
 												</p>
 
 											</div>
@@ -1352,10 +1368,10 @@
 							data-id="275d5b9" data-element_type="container">
 							<div class="elementor-element elementor-element-6cab059 elementor-widget elementor-widget-image"
 								data-id="6cab059" data-element_type="widget" data-widget_type="image.default">
-								<div class="elementor-widget-container">
-									<img decoding="async" width="2560" height="1920"
+								<div class="elementor-widget-container cs-img-placeholder-wrap">
+									<img decoding="async" width="2560" height="1920" loading="lazy"
 										src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/Stakeholders.png?alt=media&token=7b4481bf-b03d-4d87-a012-333ffd33b222"
-										class="attachment-full size-full wp-image-15783" alt="Stakeholder Mapping"
+										class="attachment-full size-full wp-image-15783" alt="ABSA hackathon: stakeholder mapping for branch and digital"
 										sizes="(max-width: 2560px) 100vw, 2560px" />
 								</div>
 							</div>
@@ -1365,10 +1381,10 @@
 							data-id="275d5b9" data-element_type="container">
 							<div class="elementor-element elementor-element-6cab059 elementor-widget elementor-widget-image"
 								data-id="6cab059" data-element_type="widget" data-widget_type="image.default">
-								<div class="elementor-widget-container">
-									<img decoding="async" width="2560" height="1920"
+								<div class="elementor-widget-container cs-img-placeholder-wrap">
+									<img decoding="async" width="2560" height="1920" loading="lazy"
 										src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/journey_map2.png?alt=media&token=60b771d8-89f7-436a-b767-098b68332f1e"
-										class="attachment-full size-full wp-image-15783" alt="Customer Journey Mapping"
+										class="attachment-full size-full wp-image-15783" alt="ABSA hackathon: customer journey map pre-visit to post-transaction"
 										sizes="(max-width: 2560px) 100vw, 2560px" />
 								</div>
 							</div>
@@ -1388,7 +1404,7 @@
 											<div class="text-wrapper">
 
 												<p class="text-p p-large no-margin "> (04)
-													<br>SOLUTIONS
+													<br>SOLUTIONS & INNOVATION
 												</p>
 
 											</div>
@@ -1407,6 +1423,7 @@
 
 												<p class="text-p p-large  " data-animate="true" data-animation="linesUp"
 													data-settings="{duration=1.5;delay=0;stagger=0.02;pin=false;pinTarget=;scrub=false;item_ref_start=top;window_ref_start=bottom;item_ref_end=bottom;window_ref_end=top;out=false;inserted=false}">
+													Innovation in 8 hours:<br><br>
 													• <b>Queue Intelligence</b> — Predictive wait times, smarter scheduling<br><br>
 													• <b>Preparation Assistant</b> — Transaction checklists to cut repeat visits<br><br>
 													• <b>Cultural Concierge</b> — Context-aware language and preferences<br><br>
@@ -1429,11 +1446,11 @@
 								data-id="24ed1d7" data-element_type="container">
 								<div class="elementor-element elementor-element-61ee202 elementor-widget elementor-widget-image"
 									data-id="61ee202" data-element_type="widget" data-widget_type="image.default">
-									<div class="elementor-widget-container">
-										<img decoding="async" width="2560" height="1920"
+									<div class="elementor-widget-container cs-img-placeholder-wrap">
+										<img decoding="async" width="2560" height="1920" loading="lazy"
 											src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/low-fid.png?alt=media&token=b76b6447-ac38-4648-98e2-96edbd1d917f"
 											class="attachment-full size-full wp-image-15787"
-											alt="Low Fidelity Prototypes" sizes="(max-width: 2560px) 100vw, 2560px" />
+											alt="ABSA hackathon: low-fidelity wireframes and sketches" sizes="(max-width: 2560px) 100vw, 2560px" />
 									</div>
 								</div>
 							</div>
@@ -1441,11 +1458,11 @@
 								data-id="ebfb0f9" data-element_type="container">
 								<div class="elementor-element elementor-element-7121f4b elementor-widget elementor-widget-image"
 									data-id="7121f4b" data-element_type="widget" data-widget_type="image.default">
-									<div class="elementor-widget-container">
+									<div class="elementor-widget-container cs-img-placeholder-wrap">
 										<img loading="lazy" decoding="async" width="2560" height="1920"
 											src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/UI1_empower.png?alt=media&token=58cf4660-bbdc-420b-aa88-737d6bfe9d8f"
 											class="attachment-full size-full wp-image-15785"
-											alt="Mobile Interface Design" sizes="(max-width: 2560px) 100vw, 2560px" />
+											alt="ABSA hackathon: mobile app screen for queue and preparation" sizes="(max-width: 2560px) 100vw, 2560px" />
 									</div>
 								</div>
 							</div>
@@ -1599,10 +1616,10 @@
 							data-id="275d5b9" data-element_type="container">
 							<div class="elementor-element elementor-element-6cab059 elementor-widget elementor-widget-image"
 								data-id="6cab059" data-element_type="widget" data-widget_type="image.default">
-								<div class="elementor-widget-container">
-									<img decoding="async" width="2560" height="1920"
+								<div class="elementor-widget-container cs-img-placeholder-wrap">
+									<img decoding="async" width="2560" height="1920" loading="lazy"
 										src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/Ui2.png?alt=media&token=4948a3be-1fec-411b-8a40-92d8ce71ffdb"
-										class="attachment-full size-full wp-image-15783" alt="Branch Interface System"
+										class="attachment-full size-full wp-image-15783" alt="ABSA hackathon: branch interface and staff-facing flow"
 										sizes="(max-width: 2560px) 100vw, 2560px" />
 								</div>
 							</div>
@@ -1651,6 +1668,42 @@
 							</div>
 						</div>
 
+						<!-- SECTION 07 - WITH MORE TIME -->
+						<div class="elementor-element elementor-element-338c44d e-flex e-con-boxed convert--none bg--none no e-con e-parent"
+							data-id="338c44d" data-element_type="container">
+							<div class="e-con-inner">
+								<div class="elementor-element elementor-element-7d2eb44 e-con-full e-flex convert--none bg--none no e-con e-child"
+									data-id="7d2eb44" data-element_type="container">
+									<div class="elementor-element elementor-element-d433d34 elementor-widget elementor-widget-petextwrapper"
+										data-id="d433d34" data-element_type="widget"
+										data-widget_type="petextwrapper.default">
+										<div class="elementor-widget-container">
+											<div class="text-wrapper">
+												<p class="text-p p-large no-margin "> (07)
+													<br>WITH MORE TIME
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="elementor-element elementor-element-99c5441 e-con-full e-flex convert--none bg--none no e-con e-child"
+									data-id="99c5441" data-element_type="container">
+									<div class="elementor-element elementor-element-56b8f8c elementor-widget elementor-widget-petextwrapper"
+										data-id="56b8f8c" data-element_type="widget"
+										data-widget_type="petextwrapper.default">
+										<div class="elementor-widget-container">
+											<div class="text-wrapper">
+												<p class="text-p p-large  " data-animate="true" data-animation="linesUp"
+													data-settings="{duration=1.5;delay=0;stagger=0.1;pin=false;pinTarget=;scrub=false;item_ref_start=top;window_ref_start=bottom;item_ref_end=bottom;window_ref_end=top;out=false;inserted=false}">
+													With only 8 hours, we prioritised process and validation. <strong>If I had more time I would add:</strong> extended user research with more 55+ participants; a full accessibility audit (WCAG) and inclusive design pass; higher-fidelity prototypes and developer handoff; technical validation with branch systems and APIs; and a clear roadmap for pilot and scale.
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
 						<!-- IMAGES - UI3 and Rate -->
 						<div class="elementor-element elementor-element-a547eac e-con-full e-flex convert--none bg--none no e-con e-parent"
 							data-id="a547eac" data-element_type="container">
@@ -1658,11 +1711,11 @@
 								data-id="24ed1d7" data-element_type="container">
 								<div class="elementor-element elementor-element-61ee202 elementor-widget elementor-widget-image"
 									data-id="61ee202" data-element_type="widget" data-widget_type="image.default">
-									<div class="elementor-widget-container">
-										<img decoding="async" width="2560" height="1920"
+									<div class="elementor-widget-container cs-img-placeholder-wrap">
+										<img decoding="async" width="2560" height="1920" loading="lazy"
 											src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/UI3_empower.png?alt=media&token=5d9be371-5508-4b12-85ce-d2fe15d87c7d"
 											class="attachment-full size-full wp-image-15787"
-											alt="Complete Interface System" sizes="(max-width: 2560px) 100vw, 2560px" />
+											alt="ABSA hackathon: full interface flow and screens" sizes="(max-width: 2560px) 100vw, 2560px" />
 									</div>
 								</div>
 							</div>
@@ -1670,10 +1723,10 @@
 								data-id="ebfb0f9" data-element_type="container">
 								<div class="elementor-element elementor-element-7121f4b elementor-widget elementor-widget-image"
 									data-id="7121f4b" data-element_type="widget" data-widget_type="image.default">
-									<div class="elementor-widget-container">
+									<div class="elementor-widget-container cs-img-placeholder-wrap">
 										<img loading="lazy" decoding="async" width="2560" height="1920"
 											src="https://firebasestorage.googleapis.com/v0/b/thenetwork-mobile-app.appspot.com/o/rate.png?alt=media&token=9d658a92-c7b5-4e16-a013-5cec42d9c6a5"
-											class="attachment-full size-full wp-image-15785" alt="User Testing Results"
+											class="attachment-full size-full wp-image-15785" alt="ABSA hackathon: user testing and rating feedback"
 											sizes="(max-width: 2560px) 100vw, 2560px" />
 									</div>
 								</div>
@@ -1724,7 +1777,7 @@
 																		src="../../wp-content/uploads/2025/05/Woof-project.jpg"
 																		class="attachment-full size-full" alt=""
 																		decoding="async"
-																		srcset="/luladevsigner/wp-content/uploads/2025/05/Woof-project.jpg 1280w, /luladevsigner/wp-content/uploads/2025/05/Woof-project-300x225.jpg 300w, /luladevsigner/wp-content/uploads/2025/05/Woof-project-1024x768.jpg 1024w, /luladevsigner/wp-content/uploads/2025/05/Woof-project-768x576.jpg 768w"
+																		srcset="../../wp-content/uploads/2025/05/Woof-project.jpg 1280w, ../../wp-content/uploads/2025/05/Woof-project-300x225.jpg 300w, ../../wp-content/uploads/2025/05/Woof-project-1024x768.jpg 1024w, ../../wp-content/uploads/2025/05/Woof-project-768x576.jpg 768w"
 																		sizes="(max-width: 1280px) 100vw, 1280px" />
 
 																</div>
@@ -1811,7 +1864,7 @@
 							<div class="elementor-element elementor-element-72010b7 elementor-widget elementor-widget-image"
 								data-id="72010b7" data-element_type="widget" data-widget_type="image.default">
 								<div class="elementor-widget-container">
-									<img width="4803" height="801" src="../../wp-content/uploads/2025/05/Lulazel.png"
+									<img width="100" height="100" src="../../wp-content/uploads/2025/05/Lulazel.png"
 										class="attachment-large size-large wp-image-11902" alt="" srcset=""
 										sizes="(max-width: 786px) 100vw, 786px" />
 								</div>
@@ -2199,6 +2252,7 @@
 	<script id="wp-i18n-js-after">
 		wp.i18n.setLocaleData({ 'text direction\u0004ltr': ['ltr'] });
 	</script>
+	<script>window.wpcf7 = window.wpcf7 || { api: {}, init: function() {} };</script>
 	<script src="../../wp-content/plugins/contact-form-7/includes/swv/js/index6a4d.js?ver=6.1.1" id="swv-js"></script>
 
 	<script src="../../wp-content/plugins/contact-form-7/includes/js/index6a4d.js?ver=6.1.1"
@@ -2209,11 +2263,11 @@
 		id="elementor-frontend-modules-js"></script>
 	<script src="../../wp-includes/js/jquery/ui/core.minb37e.js?ver=1.13.3" id="jquery-ui-core-js"></script>
 	<script id="elementor-frontend-js-before">
-		var elementorFrontendConfig = { "environmentMode": { "edit": false, "wpPreview": false, "isScriptDebug": false }, "i18n": { "shareOnFacebook": "Share on Facebook", "shareOnTwitter": "Share on Twitter", "pinIt": "Pin it", "download": "Download", "downloadImage": "Download image", "fullscreen": "Fullscreen", "zoom": "Zoom", "share": "Share", "playVideo": "Play Video", "previous": "Previous", "next": "Next", "close": "Close", "a11yCarouselPrevSlideMessage": "Previous slide", "a11yCarouselNextSlideMessage": "Next slide", "a11yCarouselFirstSlideMessage": "This is the first slide", "a11yCarouselLastSlideMessage": "This is the last slide", "a11yCarouselPaginationBulletMessage": "Go to slide" }, "is_rtl": false, "breakpoints": { "xs": 0, "sm": 480, "md": 768, "lg": 1025, "xl": 1440, "xxl": 1600 }, "responsive": { "breakpoints": { "mobile": { "label": "Mobile Portrait", "value": 767, "default_value": 767, "direction": "max", "is_enabled": true }, "mobile_extra": { "label": "Mobile Landscape", "value": 880, "default_value": 880, "direction": "max", "is_enabled": false }, "tablet": { "label": "Tablet Portrait", "value": 1024, "default_value": 1024, "direction": "max", "is_enabled": true }, "tablet_extra": { "label": "Tablet Landscape", "value": 1200, "default_value": 1200, "direction": "max", "is_enabled": true }, "laptop": { "label": "Laptop", "value": 1366, "default_value": 1366, "direction": "max", "is_enabled": true }, "widescreen": { "label": "Widescreen", "value": 2400, "default_value": 2400, "direction": "min", "is_enabled": false } }, "hasCustomBreakpoints": true }, "version": "3.32.1", "is_static": false, "experimentalFeatures": { "e_font_icon_svg": true, "additional_custom_breakpoints": true, "container": true, "theme_builder_v2": true, "nested-elements": true, "home_screen": true, "global_classes_should_enforce_capabilities": true, "e_variables": true, "cloud-library": true, "e_opt_in_v4_page": true, "import-export-customization": true }, "urls": { "assets": "https:\/\/Lulazel.co.za\/wp-content\/plugins\/elementor\/assets\/", "ajaxurl": "https:\/\/Lulazel.co.za\/wp-admin\/admin-ajax.php", "uploadUrl": "https:\/\/Lulazel.co.za\/wp-content\/uploads" }, "nonces": { "floatingButtonsClickTracking": "b8054aea43" }, "swiperClass": "swiper", "settings": { "page": [], "editorPreferences": [] }, "kit": { "active_breakpoints": ["viewport_mobile", "viewport_tablet", "viewport_tablet_extra", "viewport_laptop"], "global_image_lightbox": "yes", "lightbox_enable_counter": "yes", "lightbox_enable_fullscreen": "yes", "lightbox_enable_zoom": "yes", "lightbox_enable_share": "yes", "lightbox_title_src": "title", "lightbox_description_src": "description" }, "post": { "id": 12274, "title": "Cars.co.za%3A%20Faster%20performance%2C%20lower%20costs%2C%20and%20happier%20users%20with%20a%20unified%20app.%20-%20Lulazel", "excerpt": "", "featuredImage": false } };
+		var elementorFrontendConfig = { "environmentMode": { "edit": false, "wpPreview": false, "isScriptDebug": false }, "i18n": { "shareOnFacebook": "Share on Facebook", "shareOnTwitter": "Share on Twitter", "pinIt": "Pin it", "download": "Download", "downloadImage": "Download image", "fullscreen": "Fullscreen", "zoom": "Zoom", "share": "Share", "playVideo": "Play Video", "previous": "Previous", "next": "Next", "close": "Close", "a11yCarouselPrevSlideMessage": "Previous slide", "a11yCarouselNextSlideMessage": "Next slide", "a11yCarouselFirstSlideMessage": "This is the first slide", "a11yCarouselLastSlideMessage": "This is the last slide", "a11yCarouselPaginationBulletMessage": "Go to slide" }, "is_rtl": false, "breakpoints": { "xs": 0, "sm": 480, "md": 768, "lg": 1025, "xl": 1440, "xxl": 1600 }, "responsive": { "breakpoints": { "mobile": { "label": "Mobile Portrait", "value": 767, "default_value": 767, "direction": "max", "is_enabled": true }, "mobile_extra": { "label": "Mobile Landscape", "value": 880, "default_value": 880, "direction": "max", "is_enabled": false }, "tablet": { "label": "Tablet Portrait", "value": 1024, "default_value": 1024, "direction": "max", "is_enabled": true }, "tablet_extra": { "label": "Tablet Landscape", "value": 1200, "default_value": 1200, "direction": "max", "is_enabled": true }, "laptop": { "label": "Laptop", "value": 1366, "default_value": 1366, "direction": "max", "is_enabled": true }, "widescreen": { "label": "Widescreen", "value": 2400, "default_value": 2400, "direction": "min", "is_enabled": false } }, "hasCustomBreakpoints": true }, "version": "3.32.1", "is_static": false, "experimentalFeatures": { "e_font_icon_svg": true, "additional_custom_breakpoints": true, "container": true, "theme_builder_v2": true, "nested-elements": true, "home_screen": true, "global_classes_should_enforce_capabilities": true, "e_variables": true, "cloud-library": true, "e_opt_in_v4_page": true, "import-export-customization": true }, "urls": { "assets": "..\/..\/wp-content\/plugins\/elementor\/assets\/", "ajaxurl": "#", "uploadUrl": "..\/..\/wp-content\/uploads" }, "nonces": { "floatingButtonsClickTracking": "b8054aea43" }, "swiperClass": "swiper", "settings": { "page": [], "editorPreferences": [] }, "kit": { "active_breakpoints": ["viewport_mobile", "viewport_tablet", "viewport_tablet_extra", "viewport_laptop"], "global_image_lightbox": "yes", "lightbox_enable_counter": "yes", "lightbox_enable_fullscreen": "yes", "lightbox_enable_zoom": "yes", "lightbox_enable_share": "yes", "lightbox_title_src": "title", "lightbox_description_src": "description" }, "post": { "id": 12274, "title": "Cars.co.za%3A%20Faster%20performance%2C%20lower%20costs%2C%20and%20happier%20users%20with%20a%20unified%20app.%20-%20Lulazel", "excerpt": "", "featuredImage": false } };
 	</script>
 	<script src="../../wp-content/plugins/elementor/assets/js/frontend.min5759.js?ver=3.32.1"
 		id="elementor-frontend-js"></script>
-	<script src="../../../cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.mine56c.js?ver=3.12.2"
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js?ver=3.12.2"
 		id="gsap-draggable-js"></script>
 	<script src="../../wp-content/themes/leksa-child/js/custom-carousel8a54.js?ver=1.0.0"
 		id="custom-carousel-js"></script>
@@ -2221,12 +2275,23 @@
 	<script src="../../wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min415f.js?ver=3.30.0"
 		id="elementor-pro-webpack-runtime-js"></script>
 	<script id="elementor-pro-frontend-js-before">
-		var ElementorProFrontendConfig = { "ajaxurl": "https:\/\/Lulazel.co.za\/wp-admin\/admin-ajax.php", "nonce": "6964f45109", "urls": { "assets": "https:\/\/Lulazel.co.za\/wp-content\/plugins\/elementor-pro\/assets\/", "rest": "https:\/\/Lulazel.co.za\/wp-json\/" }, "settings": { "lazy_load_background_images": true }, "popup": { "hasPopUps": false }, "shareButtonsNetworks": { "facebook": { "title": "Facebook", "has_counter": true }, "twitter": { "title": "Twitter" }, "linkedin": { "title": "LinkedIn", "has_counter": true }, "pinterest": { "title": "Pinterest", "has_counter": true }, "reddit": { "title": "Reddit", "has_counter": true }, "vk": { "title": "VK", "has_counter": true }, "odnoklassniki": { "title": "OK", "has_counter": true }, "tumblr": { "title": "Tumblr" }, "digg": { "title": "Digg" }, "skype": { "title": "Skype" }, "stumbleupon": { "title": "StumbleUpon", "has_counter": true }, "mix": { "title": "Mix" }, "telegram": { "title": "Telegram" }, "pocket": { "title": "Pocket", "has_counter": true }, "xing": { "title": "XING", "has_counter": true }, "whatsapp": { "title": "WhatsApp" }, "email": { "title": "Email" }, "print": { "title": "Print" }, "x-twitter": { "title": "X" }, "threads": { "title": "Threads" } }, "facebook_sdk": { "lang": "en_US", "app_id": "" }, "lottie": { "defaultAnimationUrl": "https:\/\/Lulazel.co.za\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json" } };
+		var ElementorProFrontendConfig = { "ajaxurl": "#", "nonce": "6964f45109", "urls": { "assets": "..\/..\/wp-content\/plugins\/elementor-pro\/assets\/", "rest": "#" }, "settings": { "lazy_load_background_images": true }, "popup": { "hasPopUps": false }, "shareButtonsNetworks": { "facebook": { "title": "Facebook", "has_counter": true }, "twitter": { "title": "Twitter" }, "linkedin": { "title": "LinkedIn", "has_counter": true }, "pinterest": { "title": "Pinterest", "has_counter": true }, "reddit": { "title": "Reddit", "has_counter": true }, "vk": { "title": "VK", "has_counter": true }, "odnoklassniki": { "title": "OK", "has_counter": true }, "tumblr": { "title": "Tumblr" }, "digg": { "title": "Digg" }, "skype": { "title": "Skype" }, "stumbleupon": { "title": "StumbleUpon", "has_counter": true }, "mix": { "title": "Mix" }, "telegram": { "title": "Telegram" }, "pocket": { "title": "Pocket", "has_counter": true }, "xing": { "title": "XING", "has_counter": true }, "whatsapp": { "title": "WhatsApp" }, "email": { "title": "Email" }, "print": { "title": "Print" }, "x-twitter": { "title": "X" }, "threads": { "title": "Threads" } }, "facebook_sdk": { "lang": "en_US", "app_id": "" }, "lottie": { "defaultAnimationUrl": "..\/..\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json" } };
 	</script>
 	<script src="../../wp-content/plugins/elementor-pro/assets/js/frontend.min415f.js?ver=3.30.0"
 		id="elementor-pro-frontend-js"></script>
 	<script src="../../wp-content/plugins/elementor-pro/assets/js/elements-handlers.min415f.js?ver=3.30.0"
 		id="pro-elements-handlers-js"></script>
+	<script>
+		(function () {
+			var wraps = document.querySelectorAll('.cs-img-placeholder-wrap');
+			wraps.forEach(function (wrap) {
+				var img = wrap.querySelector('img');
+				if (!img) return;
+				function onLoad() { img.classList.add('cs-loaded'); }
+				if (img.complete) onLoad(); else img.addEventListener('load', onLoad);
+			});
+		})();
+	</script>
 
 </body>
 

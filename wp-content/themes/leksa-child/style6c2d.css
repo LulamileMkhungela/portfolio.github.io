@@ -471,3 +471,293 @@ footer .menu-item{
 	height: auto;
 	flex-shrink: 0;
 }
+
+/* ============================================================
+   RESPONSIVENESS & DEVICE FIXES (whole site)
+   - Prevent vertical letter stacking from text animations
+   - Ensure readable text flow on small viewports
+   - Safe overflow and touch targets
+   ============================================================ */
+
+/* Fix: text animation split (chars/words) must flow horizontally on all devices */
+.text-wrapper:has([data-animate="true"]),
+.text-wrapper:has(.has-anim-text) {
+	display: block !important;
+}
+[data-animate="true"],
+.has-anim-text {
+	display: block !important;
+	flex-direction: unset !important;
+}
+[data-animate="true"] .anim_line,
+.has-anim-text .anim_line {
+	display: block !important;
+}
+[data-animate="true"] .anim_word,
+[data-animate="true"] .anim_char,
+.has-anim-text .anim_word,
+.has-anim-text .anim_char {
+	display: inline-block !important;
+}
+/* Prevent parent flex column from stacking letters; keep text in one flow */
+.elementor-widget-petextwrapper .elementor-widget-container {
+	display: block !important;
+}
+@media (max-width: 767px) {
+	.elementor-widget-petextwrapper .elementor-widget-container {
+		min-width: min-content; /* prevent flex from squeezing to single-char width */
+	}
+}
+
+/* Same fix for ALL petextwrapper text (homepage "Concept", "Prototype", etc. may have no data-animate) */
+.elementor-widget-petextwrapper .text-wrapper {
+	display: block !important;
+	min-width: min-content; /* prevent flex from squeezing to single-char width on mobile */
+}
+.elementor-widget-petextwrapper .anim_line {
+	display: block !important;
+}
+.elementor-widget-petextwrapper .anim_word,
+.elementor-widget-petextwrapper .anim_char {
+	display: inline-block !important;
+}
+.elementor-widget-petextwrapper .anim_char > span,
+.elementor-widget-petextwrapper .anim_word > span {
+	display: inline-block !important;
+}
+
+/* Mobile: ensure body doesn't overflow and tap targets are usable */
+@media (max-width: 767px) {
+	body {
+		overflow-x: hidden;
+	}
+	#page {
+		min-width: 0;
+		overflow-x: hidden;
+	}
+	/* Hero/headings: allow text to wrap and scale down on very small screens */
+	.elementor-element .text-wrapper p,
+	.elementor-element .text-wrapper > * {
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+	}
+}
+
+/* Small phones (e.g. iPhone SE 375px) */
+@media (max-width: 480px) {
+	.elementor-widget-container {
+		min-width: 0;
+	}
+}
+
+/* ============================================================
+   MOBILE-FIRST RESPONSIVE (Touchfoundry-style behavior only)
+   - Consistent section padding and spacing
+   - Readable typography scale
+   - Touch-friendly targets; no horizontal scroll
+   - Single-column flow on small viewports
+   ============================================================ */
+
+/* Tablet: consistent horizontal padding */
+@media (max-width: 1024px) {
+	.e-con.e-con,
+	.e-con > .e-con-inner {
+		padding-left: max(20px, 5vw) !important;
+		padding-right: max(20px, 5vw) !important;
+	}
+	main#primary,
+	.site-main {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+/* Mobile: tighter gaps, wrap flex rows */
+@media (max-width: 767px) {
+	.e-con.e-flex > .e-con-inner {
+		flex-wrap: wrap;
+	}
+	/* Section padding */
+	.elementor .e-con.e-parent {
+		padding-top: clamp(24px, 6vw, 48px) !important;
+		padding-bottom: clamp(24px, 6vw, 48px) !important;
+		padding-left: clamp(16px, 4vw, 24px) !important;
+		padding-right: clamp(16px, 4vw, 24px) !important;
+	}
+	/* Touch targets */
+	a[href],
+	button:not([disabled]),
+	.pe--button a,
+	.accordion-toggle,
+	.menu-toggle {
+		min-height: 44px;
+		min-width: 44px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.pe--button a {
+		padding: 12px 20px;
+	}
+	/* Heading scale on mobile */
+	.text-h1, .text-wrapper h1, #page h1.entry-title {
+		font-size: clamp(2rem, 8vw, 3.5rem) !important;
+		line-height: 1.2 !important;
+	}
+	.text-h2, .text-wrapper h2 {
+		font-size: clamp(1.5rem, 6vw, 2.5rem) !important;
+		line-height: 1.25 !important;
+	}
+	.text-h3, .text-wrapper h3 {
+		font-size: clamp(1.25rem, 5vw, 2rem) !important;
+	}
+	.text-p, .text-wrapper p {
+		font-size: clamp(0.9375rem, 2.5vw, 1.125rem) !important;
+		line-height: 1.5 !important;
+	}
+}
+
+/* Very small phones: reduce gaps further */
+@media (max-width: 390px) {
+	.elementor .e-con.e-parent {
+		padding-left: 16px !important;
+		padding-right: 16px !important;
+	}
+	.e-con > .e-con-inner {
+		gap: 12px 12px !important;
+	}
+}
+
+/* ============================================================
+   TOUCHFOUNDRY-STYLE MOBILE: three sections only
+   - What I've been building (#recentInner)
+   - What I Love Doing (heading + intro + accordion)
+   - Wherever you are, I build from there (phase-carousel / models)
+   ============================================================ */
+
+@media (max-width: 767px) {
+	/* 1. What I've been building: stack title + subtitle + carousel; full-width carousel */
+	#recentInner {
+		flex-direction: column !important;
+		align-items: stretch !important;
+		gap: clamp(20px, 5vw, 32px) !important;
+		padding-left: clamp(16px, 4vw, 24px) !important;
+		padding-right: clamp(16px, 4vw, 24px) !important;
+	}
+	#recentInner > .e-con {
+		width: 100% !important;
+		max-width: 100% !important;
+		flex: none !important;
+	}
+	#recentInner .elementor-element-9faa1e4 {
+		flex-direction: column !important;
+		align-items: stretch !important;
+		gap: clamp(12px, 3vw, 20px) !important;
+	}
+	#recentInner .elementor-element-7971d15 {
+		width: 100% !important;
+		min-width: 0 !important;
+		overflow: hidden;
+	}
+	#recentInner .workscarousel .carousel--wrapper {
+		display: flex !important;
+		flex-wrap: nowrap !important;
+		overflow-x: auto !important;
+		-webkit-overflow-scrolling: touch;
+		gap: 16px !important;
+		padding-bottom: 8px;
+	}
+	#recentInner .carousel--item {
+		flex: 0 0 min(280px, 85vw) !important;
+		min-width: min(280px, 85vw) !important;
+	}
+
+	/* 2. What I Love Doing (What we do best): row stacks so heading + intro + accordion are full width */
+	.elementor-element-dbbd8bc {
+		flex-direction: column !important;
+		align-items: stretch !important;
+		gap: clamp(20px, 5vw, 32px) !important;
+	}
+	.elementor-element-dbbd8bc > .e-con {
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+	.elementor-element-ffe6dd2 {
+		flex-direction: column !important;
+		align-items: stretch !important;
+		width: 100% !important;
+		gap: clamp(16px, 4vw, 24px) !important;
+	}
+	.elementor-element-ffe6dd2 .elementor-widget-petextwrapper {
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+	.elementor-element-ffe6dd2 .elementor-widget-peaccordion {
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+
+	/* 3. Wherever you are: stack heading then vertical list of items (icon + label + description per row) */
+	.elementor-element-3cc0cf4 {
+		flex-direction: column !important;
+		align-items: stretch !important;
+		gap: clamp(20px, 5vw, 28px) !important;
+	}
+	.elementor-element-3cc0cf4 .elementor-element-a8c2936 {
+		width: 100% !important;
+	}
+	/* Phase-carousel: on mobile stack items vertically (touchfoundry-style) instead of horizontal scroll */
+	.elementor-element-3cc0cf4 .convert--carousel.phase-carousel.models,
+	.elementor-element-3cc0cf4 .elementor-element-d78483e {
+		display: flex !important;
+		flex-direction: column !important;
+		flex-wrap: nowrap !important;
+		overflow: visible !important;
+		width: 100% !important;
+		gap: clamp(16px, 4vw, 24px) !important;
+		padding: 0 !important;
+	}
+	/* Each carousel item (e.g. 9ff2cac): full width, row = icon + text block */
+	.elementor-element-3cc0cf4 .elementor-element-1d3267e > .e-con,
+	.elementor-element-3cc0cf4 .convert--carousel.phase-carousel .e-con.cr--item {
+		flex: none !important;
+		width: 100% !important;
+		min-width: 0 !important;
+		display: flex !important;
+		flex-direction: row !important;
+		flex-wrap: wrap !important;
+		align-items: flex-start !important;
+		gap: 12px 16px !important;
+	}
+	/* Icon (narrow) */
+	.elementor-element-3cc0cf4 .elementor-element-1d3267e > .e-con .elementor-widget-peicon,
+	.elementor-element-3cc0cf4 .cr--item .elementor-widget-peicon {
+		flex: 0 0 auto !important;
+		width: 48px !important;
+		min-width: 48px !important;
+	}
+	.elementor-element-3cc0cf4 .elementor-element-1d3267e > .e-con .pe--icon--wrap,
+	.elementor-element-3cc0cf4 .cr--item .pe--icon--wrap {
+		width: 48px !important;
+		height: 48px !important;
+	}
+	.elementor-element-3cc0cf4 .elementor-element-1d3267e > .e-con .elementor-widget-peicon svg,
+	.elementor-element-3cc0cf4 .cr--item .elementor-widget-peicon svg {
+		width: 100% !important;
+		height: 100% !important;
+	}
+	/* Text block next to icon (label + description) */
+	.elementor-element-3cc0cf4 .elementor-element-1d3267e > .e-con > .e-con,
+	.elementor-element-3cc0cf4 .cr--item > .e-con {
+		flex: 1 1 0% !important;
+		min-width: 0 !important;
+		width: auto !important;
+		flex-direction: column !important;
+		gap: 4px 0 !important;
+	}
+	.elementor-element-3cc0cf4 .elementor-element-1d3267e .elementor-widget-petextwrapper,
+	.elementor-element-3cc0cf4 .cr--item .elementor-widget-petextwrapper {
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+}
