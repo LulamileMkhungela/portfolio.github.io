@@ -1,0 +1,3274 @@
+<!doctype html>
+<html class="first--load ajax--first" lang="en-US">
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="profile" href="https://gmpg.org/xfn/11" />
+
+    <title>Vodacom Engage: Employee Engagement App Redesign — Case Study</title>
+    <meta
+      name="description"
+      content="How I redesigned Vodacom's internal employee app from a static icon-grid into a personalised, card-based experience — improving navigation, feature discovery, and employee engagement."
+    />
+
+    <link
+      rel="stylesheet"
+      id="plugins-css"
+      href="../../wp-content/themes/leksa/css/plugins6c2d.css?ver=6.8.2"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="style-css"
+      href="../../wp-content/themes/leksa-child/style6c2d.css?ver=6.8.2"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="elementor-frontend-css"
+      href="../../wp-content/uploads/elementor/css/custom-frontend.min221d.css?ver=1762935372"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="elementor-post-9-css"
+      href="../../wp-content/uploads/elementor/css/post-9221d.css?ver=1762935372"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="widget-styles-css"
+      href="../../wp-content/plugins/pe-core/assets/css/widget-styles6c2d.css?ver=6.8.2"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="e-animation-grow-rotate-css"
+      href="../../wp-content/plugins/elementor/assets/lib/animations/styles/e-animation-grow-rotate.min5759.css?ver=3.32.1"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="elementor-post-12274-css"
+      href="../../wp-content/uploads/elementor/css/post-12274335a.css?ver=1762935804"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="leksa-parent-style-css"
+      href="../../wp-content/themes/leksa/style6c2d.css?ver=6.8.2"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="customSCSS-css"
+      href="../../wp-content/themes/leksa-child/scss/stylecfa9.css?ver=1.1.2"
+      media="all"
+    />
+    <link
+      rel="preload"
+      as="style"
+      href="../../../fonts.googleapis.com/cssb237.css?family=Plus%20Jakarta%20Sans:400&display=swap&ver=1755764696"
+    />
+    <link
+      rel="stylesheet"
+      href="../../../fonts.googleapis.com/cssb237.css?family=Plus%20Jakarta%20Sans:400&display=swap&ver=1755764696"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="../../../fonts.googleapis.com/cssb237.css?family=Plus%20Jakarta%20Sans:400&display=swap&ver=1755764696"
+    /></noscript>
+    <link
+      rel="stylesheet"
+      id="elementor-gf-local-plusjakartasans-css"
+      href="../../wp-content/uploads/elementor/google-fonts/css/plusjakartasans2a79.css?ver=1755527788"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="elementor-icons-material-design-icons-css"
+      href="../../wp-content/plugins/material-design-icons-for-elementor/assets/material-icons/css/material-icons-regularcc1a.css?ver=1.5.1"
+      media="all"
+    />
+    <link rel="icon" href="../../wp-content/uploads/2025/05/Lulazel.png" sizes="32x32" />
+    <link rel="icon" href="../../wp-content/uploads/2025/05/Lulazel.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="../../wp-content/uploads/2025/05/Lulazel.png" />
+
+    <script
+      src="../../wp-includes/js/jquery/jquery.minf43b.js?ver=3.7.1"
+      id="jquery-core-js"
+    ></script>
+    <script
+      src="../../wp-includes/js/jquery/jquery-migrate.min5589.js?ver=3.4.1"
+      id="jquery-migrate-js"
+    ></script>
+
+    <style id="pe-redux-dynamic-css" title="dynamic-css" class="redux-options-output">
+      :root {
+        --pgal-image-height: 50;
+        --pgal-mobile-width: 50;
+      }
+      .site-header {
+        background-color: transparent;
+      }
+      body {
+        font-family: 'Plus Jakarta Sans';
+        font-weight: 400;
+        font-style: normal;
+      }
+      #page h1,
+      #page h2,
+      #page h3,
+      #page h4,
+      #page h5,
+      #page h6 {
+        font-family: 'Plus Jakarta Sans';
+        font-weight: normal;
+        font-style: normal;
+      }
+      .site-navigation.classic .menu.main-menu > li > a {
+        color: rgba(25, 27, 29, 0.6) !important;
+      }
+      .site-header .site-navigation.classic .menu.main-menu li.current-menu-item > a {
+        color: #191b1d !important;
+      }
+    </style>
+
+    <style>
+      /* ═══════════════════════════════════════════════════
+	   DESIGN TOKENS
+	═══════════════════════════════════════════════════ */
+      :root {
+        --ink: #191b1d;
+        --soft: rgba(25, 27, 29, 0.6);
+        --border: rgba(25, 27, 29, 0.09);
+        --off: #f4f3f0;
+      }
+
+      html,
+      body {
+        height: 100% !important;
+        overflow: hidden !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      #masthead.site-header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 1000 !important;
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+      }
+
+      #tab-shell {
+        position: fixed !important;
+        top: 68px !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 57px !important;
+        background: #ffffff !important;
+        border-bottom: 1px solid var(--border) !important;
+        z-index: 999 !important;
+        display: flex !important;
+        align-items: stretch !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scrollbar-width: none !important;
+      }
+      #tab-shell::-webkit-scrollbar {
+        display: none !important;
+      }
+
+      .tab-btn {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 32px;
+        height: 57px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        font-size: 0.74rem;
+        font-weight: 600;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--soft);
+        border-bottom: 2px solid transparent;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        white-space: nowrap;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+      .tab-btn.active {
+        color: var(--ink);
+        border-bottom-color: var(--ink);
+      }
+      .tab-btn:hover {
+        color: var(--ink);
+      }
+      .tab-num {
+        font-weight: 300;
+        opacity: 0.38;
+        font-size: 0.68rem;
+      }
+
+      #cv {
+        position: fixed !important;
+        top: 125px !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        overflow-y: scroll !important;
+        overflow-x: hidden !important;
+        background: #ffffff !important;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .panel-sentinel {
+        display: block;
+        height: 1px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .elementor-12274,
+      .elementor-12274 *,
+      .e-con,
+      .e-con.e-flex,
+      .e-con-full,
+      .e-con-boxed,
+      .e-con-inner,
+      [data-element_type='container'],
+      [data-elementor-type='wp-post'] {
+        gap: 0 !important;
+        row-gap: 0 !important;
+        column-gap: 0 !important;
+      }
+      .elementor-element-0b88982,
+      .elementor-element-40ab7c9c,
+      .elementor-element-3518b2a3,
+      .elementor-element-74f66b10,
+      .elementor-element-4d39302c {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .quote-block {
+        margin: 0 !important;
+      }
+
+      /* ═══════════════════════════════════════════════════
+	   SECTION LAYOUTS
+	═══════════════════════════════════════════════════ */
+      .project-intro {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-bottom: 1px solid var(--border);
+      }
+      .project-intro-left {
+        padding: 60px 64px;
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .project-intro-right {
+        padding: 60px 64px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 20px;
+      }
+
+      .text-h2 {
+        font-size: clamp(2.8rem, 5vw, 4.2rem);
+        font-weight: 700;
+        line-height: 1.04;
+        letter-spacing: -0.03em;
+      }
+      .text-h6 {
+        font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+        font-weight: 400;
+        line-height: 1.6;
+        color: var(--soft);
+      }
+      .text-p {
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      .p-large {
+        font-size: 1.04rem;
+      }
+      .tag-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .tag-pill {
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--soft);
+        border: 1px solid var(--border);
+        padding: 5px 14px;
+        border-radius: 20px;
+      }
+
+      .quote-block {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-bottom: 1px solid var(--border);
+      }
+      .quote-block-left {
+        padding: 64px;
+        border-right: 1px solid var(--border);
+      }
+      .quote-block-right {
+        padding: 64px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 28px;
+      }
+      .quote-text {
+        font-size: clamp(1rem, 1.5vw, 1.15rem);
+        font-weight: 400;
+        line-height: 1.75;
+      }
+      .quote-attr {
+        margin-top: 22px;
+        font-size: 0.9rem;
+        color: var(--soft);
+        line-height: 1.55;
+      }
+      .meta-label {
+        font-size: 0.63rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--soft);
+        margin-bottom: 4px;
+      }
+      .meta-val {
+        font-size: 0.92rem;
+        color: var(--ink);
+        line-height: 1.5;
+      }
+
+      .hero-panel {
+        display: block;
+      }
+      .hero-panel.is-tab-hidden {
+        display: none !important;
+      }
+      .project-panel {
+        display: block;
+      }
+      .project-panel.is-tab-hidden {
+        display: none !important;
+      }
+      /* Engage narrative + panels (quote, sentinels, images) — hide on DS / Tobby / Bursary tabs */
+      .vd-engage-only.is-tab-hidden {
+        display: none !important;
+      }
+      .content-section {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        border-bottom: 1px solid var(--border);
+      }
+      .cs-label {
+        padding: 56px 40px 56px 64px;
+        border-right: 1px solid var(--border);
+      }
+      .cs-label p {
+        font-size: 0.88rem;
+        font-weight: 500;
+        line-height: 1.5;
+        color: var(--soft);
+      }
+      .cs-body {
+        padding: 56px 64px;
+      }
+
+      .process-list {
+        list-style: none;
+        margin-top: 28px;
+      }
+      .process-list li {
+        display: flex;
+        gap: 20px;
+        align-items: baseline;
+        padding: 18px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .process-list li:last-child {
+        border-bottom: none;
+      }
+      .pnum {
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--soft);
+        width: 26px;
+        flex-shrink: 0;
+      }
+      .ptxt strong {
+        display: block;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 5px;
+      }
+      .ptxt span {
+        font-size: 0.9rem;
+        color: var(--soft);
+        line-height: 1.72;
+      }
+
+      .del-list {
+        list-style: none;
+      }
+      .del-list li {
+        display: flex;
+        gap: 18px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.95rem;
+        line-height: 1.65;
+        color: var(--soft);
+        align-items: flex-start;
+      }
+      .del-list li:last-child {
+        border-bottom: none;
+      }
+      .del-list li::before {
+        content: '—';
+        color: rgba(25, 27, 29, 0.22);
+        font-size: 0.72rem;
+        flex-shrink: 0;
+        padding-top: 3px;
+      }
+      .del-list li b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .results-intro {
+        font-size: 1.04rem;
+        line-height: 1.75;
+        color: var(--soft);
+        margin-bottom: 36px;
+      }
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-top: 1px solid var(--border);
+      }
+      .metric {
+        padding: 28px 24px 28px 0;
+        border-right: 1px solid var(--border);
+      }
+      .metric:first-child {
+        padding-left: 0;
+      }
+      .metric + .metric {
+        padding-left: 24px;
+      }
+      .metric:last-child {
+        border-right: none;
+      }
+      .metric-n {
+        font-size: 2.6rem;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.03em;
+      }
+      .metric-l {
+        font-size: 0.82rem;
+        color: var(--soft);
+        margin-top: 6px;
+        line-height: 1.4;
+      }
+
+      .img-pair {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-bottom: 1px solid var(--border);
+      }
+      .img-pair > div {
+        overflow: hidden;
+      }
+      .img-pair > div + div {
+        border-left: 1px solid var(--border);
+      }
+      .img-pair img {
+        width: 100%;
+        height: 520px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .img-trio {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-bottom: 1px solid var(--border);
+      }
+      .img-trio-left {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        border-right: 1px solid var(--border);
+        overflow: hidden;
+      }
+      .img-trio-left img {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+        display: block;
+      }
+      .img-trio-left img + img {
+        border-top: 1px solid var(--border);
+      }
+      .img-trio-right {
+        overflow: hidden;
+      }
+      .img-trio-right img {
+        width: 100%;
+        height: 640px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .img-full {
+        border-bottom: 1px solid var(--border);
+        overflow: hidden;
+      }
+      .img-full img {
+        width: 100%;
+        height: 70vh;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* Before / After comparison grid */
+      .before-after {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-bottom: 1px solid var(--border);
+		margin-right: 8px;
+      }
+      .ba-col {
+        padding: 0;
+        overflow: hidden;
+      }
+      .ba-col + .ba-col {
+        border-left: 1px solid var(--border);
+      }
+      .ba-label {
+        padding: 20px 32px;
+        font-size: 0.63rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--soft);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .ba-label .ba-badge {
+        display: inline-block;
+        font-size: 0.58rem;
+        padding: 3px 10px;
+        border-radius: 20px;
+		margin-right: 12px;
+        font-weight: 700;
+      }
+      .ba-badge-old {
+        background: #fef3f2;
+        color: #b91c1c;
+        border: 1px solid #fecaca;
+      }
+      .ba-badge-new {
+        background: #f0fdf4;
+        color: #15803d;
+        border: 1px solid #bbf7d0;
+      }
+      .ba-img-wrap {
+        overflow: hidden;
+      }
+      .ba-img-wrap img {
+        width: 100%;
+        height: 480px;
+        object-fit: cover;
+        display: block;
+      }
+      .ba-rationale {
+        padding: 28px 32px;
+        border-top: 1px solid var(--border);
+      }
+      .ba-rationale h4 {
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 8px;
+      }
+      .ba-rationale p {
+        font-size: 0.88rem;
+        color: var(--soft);
+        line-height: 1.65;
+      }
+
+      /* Before/after screen grid for mobile screenshots */
+      .screens-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-bottom: 1px solid var(--border);
+        gap: 0;
+      }
+      .screen-cell {
+        overflow: hidden;
+        border-right: 1px solid var(--border);
+      }
+      .screen-cell:last-child {
+        border-right: none;
+      }
+      .screen-cell img {
+        width: 100%;
+        aspect-ratio: 9/16;
+        object-fit: cover;
+        display: block;
+      }
+      .screen-label {
+        padding: 12px 16px;
+        font-size: 0.62rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--soft);
+        border-top: 1px solid var(--border);
+        background: var(--off);
+      }
+
+      /* Change log table */
+      .change-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 24px;
+      }
+      .change-table th {
+        font-size: 0.63rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--soft);
+        text-align: left;
+        padding: 10px 16px;
+        border-bottom: 2px solid var(--border);
+      }
+      .change-table td {
+        font-size: 0.9rem;
+        color: var(--ink);
+        line-height: 1.6;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
+      .change-table td:first-child {
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .change-table td .old-val {
+        color: var(--soft);
+        text-decoration: line-through;
+        display: block;
+        font-size: 0.85rem;
+        margin-bottom: 4px;
+      }
+      .change-table td .new-val {
+        color: var(--ink);
+        display: block;
+        font-size: 0.9rem;
+      }
+      .change-pill {
+        display: inline-block;
+        font-size: 0.58rem;
+        font-weight: 700;
+        padding: 2px 9px;
+        border-radius: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .pill-nav {
+        background: #eff6ff;
+        color: #1d4ed8;
+      }
+      .pill-vis {
+        background: #fdf4ff;
+        color: #7e22ce;
+      }
+      .pill-perf {
+        background: #fff7ed;
+        color: #c2410c;
+      }
+      .pill-feat {
+        background: #f0fdf4;
+        color: #15803d;
+      }
+
+      @media (max-width: 960px) {
+        .project-intro,
+        .quote-block,
+        .img-pair,
+        .img-trio,
+        .content-section,
+        .before-after {
+          grid-template-columns: 1fr;
+        }
+        .project-intro-left,
+        .project-intro-right,
+        .quote-block-left,
+        .quote-block-right {
+          padding: 36px 24px;
+          border-right: none;
+        }
+        .project-intro-left,
+        .quote-block-left {
+          border-bottom: 1px solid var(--border);
+        }
+        .cs-label {
+          padding: 28px 24px;
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+        }
+        .cs-body {
+          padding: 36px 24px;
+        }
+        .img-pair img {
+          height: 52vw;
+        }
+        .img-pair > div + div {
+          border-left: none;
+          border-top: 1px solid var(--border);
+        }
+        .img-trio {
+          grid-template-columns: 1fr;
+        }
+        .img-trio-left {
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+        }
+        .img-trio-left img,
+        .img-trio-right img {
+          height: 52vw;
+        }
+        .metrics-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .metric {
+          padding: 18px 12px 18px 0;
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+        }
+        .metric:nth-child(even) {
+          padding-left: 12px;
+          border-left: 1px solid var(--border);
+        }
+        .metric:last-child,
+        .metric:nth-last-child(2):nth-child(odd) {
+          border-bottom: none;
+        }
+        .ba-col + .ba-col {
+          border-left: none;
+          border-top: 1px solid var(--border);
+        }
+        .ba-img-wrap img {
+          height: 56vw;
+        }
+        .screens-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .screen-cell:nth-child(2n) {
+          border-right: none;
+        }
+        .screen-cell:nth-child(odd) {
+          border-right: 1px solid var(--border);
+        }
+        #tab-shell .tab-btn {
+          padding: 0 16px !important;
+          font-size: 0.68rem !important;
+        }
+      }
+      @media (max-width: 540px) {
+        .metrics-grid {
+          grid-template-columns: 1fr;
+        }
+        .metric {
+          border-left: none !important;
+          padding-left: 0 !important;
+        }
+        .screens-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body
+    class="wp-singular portfolio-template-default single single-portfolio postid-12274 wp-theme-leksa wp-child-theme-leksa-child engage-case-study show--footer layout--default elementor-default elementor-kit-9 elementor-page elementor-page-12274"
+    data-barba="wrapper"
+  >
+    <span hidden class="layout--colors"></span>
+
+    <div id="page" class="site">
+      <a class="skip-link screen-reader-text" href="#primary">Skip to content</a>
+
+      <div id="mouseCursor" class="dot">
+        <svg height="100%" width="100%" viewbox="0 0 100 100">
+          <circle class="main-circle" cx="50" cy="50" r="50" />
+        </svg>
+        <span class="cursor-text"></span>
+        <span class="cursor-icon"></span>
+      </div>
+
+      <div class="page--transitions pt__slide" data-type="slide">
+        <span class="slide--op"></span>
+        <div class="pt--wrapper">
+          <span class="pt--overlay" data-curved="1"></span>
+          <div class="pt--element v-align-middle h-align-center">
+            <div class="pb--marquee no-button">
+              <div class="pb--marquee--wrap right-to-left" aria-hidden="true">
+                <div class="pb--marquee__inner">
+                  <span
+                    >LULA THINGS LOADING...<i
+                      aria-hidden="true"
+                      class="material-icons md-fiber_manual_record"
+                      data-md-icon="fiber_manual_record"
+                    ></i
+                  ></span>
+                  <span
+                    >LULA THINGS LOADING...<i
+                      aria-hidden="true"
+                      class="material-icons md-fiber_manual_record"
+                      data-md-icon="fiber_manual_record"
+                    ></i
+                  ></span>
+                  <span
+                    >LULA THINGS LOADING...<i
+                      aria-hidden="true"
+                      class="material-icons md-fiber_manual_record"
+                      data-md-icon="fiber_manual_record"
+                    ></i
+                  ></span>
+                  <span
+                    >LULA THINGS LOADING...<i
+                      aria-hidden="true"
+                      class="material-icons md-fiber_manual_record"
+                      data-md-icon="fiber_manual_record"
+                    ></i
+                  ></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header
+        id="masthead"
+        class="site-header header--template pe-items-center header--fixed header--default"
+      >
+        <div
+          data-elementor-type="pe-header"
+          data-elementor-id="5647"
+          class="elementor elementor-5647"
+          data-elementor-post-type="elementor_library"
+        >
+          <div
+            class="elementor-element elementor-element-6d0651d e-con-full e-flex convert--none bg--none no e-con e-parent"
+            data-id="6d0651d"
+            data-element_type="container"
+          >
+            <div
+              class="elementor-element elementor-element-0f12d30 e-con-full e-flex convert--none bg--none no e-con e-child"
+              data-id="0f12d30"
+              data-element_type="container"
+            >
+              <div
+                class="elementor-element elementor-element-3acd892 elementor-widget elementor-widget-pesitelogo"
+                data-id="3acd892"
+                data-element_type="widget"
+                data-widget_type="pesitelogo.default"
+              >
+                <div class="elementor-widget-container">
+                  <div class="site-branding align-left">
+                    <div class="site-logo">
+                      <a href="../../index.html">
+                        <img
+                          fetchpriority="high"
+                          width="4803"
+                          height="801"
+                          src="../../wp-content/uploads/2025/05/Lulazel.png"
+                          class="main__logo"
+                          alt=""
+                          decoding="async"
+                        /><img
+                          width="4803"
+                          height="801"
+                          src="../../wp-content/uploads/2025/05/Lulazel.png"
+                          class="secondary__logo"
+                          alt=""
+                          decoding="async"
+                        />
+                      </a>
+                    </div>
+                    <div class="sticky-logo">
+                      <a href="../../index.html">
+                        <img
+                          width="1139"
+                          height="1051"
+                          src="../../wp-content/uploads/2025/05/Lulazel.png"
+                          class="sticky__main__logo"
+                          alt=""
+                          decoding="async"
+                        /><img
+                          loading="lazy"
+                          width="1139"
+                          height="1051"
+                          src="../../wp-content/uploads/2025/05/Lulazel.png"
+                          class="sticky__secondary__logo"
+                          alt=""
+                          decoding="async"
+                        />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="elementor-element elementor-element-1ceb190 elementor-hidden-mobile elementor-widget elementor-widget-pelayoutswitcher"
+                data-id="1ceb190"
+                data-element_type="widget"
+                data-widget_type="pelayoutswitcher.default"
+              >
+                <div class="elementor-widget-container">
+                  <div class="pe-layout-switcher ls_switcher">
+                    <div class="pl--switch"><span class="pl--follower"></span></div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="wd--show--on--top elementor-element elementor-element-c639375 elementor-hidden-tablet elementor-hidden-mobile elementor-widget elementor-widget-penavmenu"
+                data-id="c639375"
+                data-element_type="widget"
+                data-widget_type="penavmenu.default"
+              >
+                <div class="elementor-widget-container">
+                  <nav
+                    id="site-navigation"
+                    class="main-navigation st--only"
+                    data-sub-toggle='&lt;span class="sub--toggle st--plus"&gt;&lt;span class="toggle--line"&gt;&lt;/span&gt;&lt;span class="toggle--line"&gt;&lt;/span&gt;&lt;/span&gt;'
+                  >
+                    <ul id="menu-primary-1" class="menu main-menu menu--horizontal">
+                      <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11924">
+                        <a href="../../services/index.html">Services</a>
+                      </li>
+                      <li
+                        class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-193 current_page_item menu-item-11921"
+                      >
+                        <a href="../../work/index.html" aria-current="page">Work</a>
+                      </li>
+                      <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11923">
+                        <a href="../../culture/index.html">Culture</a>
+                      </li>
+                      <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11922">
+                        <a href="../../contact/index.html">Contact</a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              <div
+                class="wd--show--on--top elementor-element elementor-element-31f2bd9 elementor-hidden-tablet elementor-hidden-mobile elementor-hidden-tablet_extra elementor-widget elementor-widget-pebutton"
+                data-id="31f2bd9"
+                data-element_type="widget"
+                data-widget_type="pebutton.default"
+              >
+                <div class="elementor-widget-container">
+                  <div
+                    class="pe--button pb--background false false pb--icon icon__right pb--normal link"
+                  >
+                    <div class="pe--button--wrapper">
+                      <a href="../../contact/index.html" rel="nofollow">
+                        <span class="pb__main"
+                          >Start a project<i
+                            aria-hidden="true"
+                            class="material-icons md-arrow_outward"
+                            data-md-icon="arrow_outward"
+                          ></i>
+                          <span class="pb__hover"
+                            >Start a project<i
+                              aria-hidden="true"
+                              class="material-icons md-arrow_outward"
+                              data-md-icon="arrow_outward"
+                            ></i
+                          ></span>
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="wd--show--sticky elementor-element elementor-element-aa4fed4 elementor-widget elementor-widget-pesitenavigation"
+                data-id="aa4fed4"
+                data-element_type="widget"
+                data-widget_type="pesitenavigation.default"
+              >
+                <div class="elementor-widget-container">
+                  <div class="site--nav nav--popup">
+                    <div class="menu--toggle--wrap">
+                      <div class="menu--toggle toggle--plus has--bg has--hover">
+                        <span class="toggle-line"></span>
+                        <span class="toggle-line"></span>
+                      </div>
+                    </div>
+                    <div class="site--menu">
+                      <div
+                        data-elementor-type="pe-menu"
+                        data-elementor-id="5689"
+                        class="elementor elementor-5689"
+                        data-elementor-post-type="elementor_library"
+                      >
+                        <div
+                          class="elementor-element elementor-element-621528d e-con-full popup-menu e-flex convert--none bg--none no e-con e-parent"
+                          data-id="621528d"
+                          data-element_type="container"
+                        >
+                          <div
+                            class="elementor-element elementor-element-bd5d2bd bg--color e-flex e-con-boxed convert--none curved_false no e-con e-child"
+                            data-id="bd5d2bd"
+                            data-element_type="container"
+                          >
+                            <div class="e-con-inner">
+                              <div
+                                class="elementor-element elementor-element-289232b e-con-full e-flex convert--none bg--none no e-con e-child"
+                              >
+                                <div
+                                  class="wd--always--show elementor-element elementor-element-3691543 elementor-widget elementor-widget-penavmenu"
+                                >
+                                  <div class="elementor-widget-container">
+                                    <nav class="main-navigation st--all">
+                                      <ul class="menu main-menu menu--vertical">
+                                        <li class="menu-item">
+                                          <a href="../../index.html">Home</a>
+                                        </li>
+                                        <li class="menu-item">
+                                          <a href="../../services/index.html">Services</a>
+                                        </li>
+                                        <li class="menu-item">
+                                          <a href="../../work/index.html">Work</a>
+                                        </li>
+                                        <li class="menu-item">
+                                          <a href="../../culture/index.html">Culture</a>
+                                        </li>
+                                        <li class="menu-item">
+                                          <a href="../../contact/index.html">Contact</a>
+                                        </li>
+                                      </ul>
+                                    </nav>
+                                  </div>
+                                </div>
+                              </div>
+                              <div
+                                class="elementor-element elementor-element-a586c0c e-con-full elementor-hidden-mobile e-flex convert--none bg--none no e-con e-child"
+                              >
+                                <div
+                                  class="elementor-element elementor-element-1ffc003 elementor-widget elementor-widget-petextwrapper"
+                                >
+                                  <div class="elementor-widget-container">
+                                    <div class="text-wrapper">
+                                      <p class="text-p p-large">
+                                        I focus on what really matters - combining design,
+                                        technology, and strategy to turn good ideas into great
+                                        digital products.
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div
+                                class="elementor-element elementor-element-a4f175b e-con-full menu-cta e-flex convert--none bg--none no e-con e-child"
+                              >
+                                <div
+                                  class="wd--always--show elementor-element elementor-element-14d9a8b elementor-widget elementor-widget-pebutton"
+                                >
+                                  <div class="elementor-widget-container">
+                                    <div
+                                      class="pe--button pb--background false pb--marquee pb--icon icon__right pb--medium link"
+                                    >
+                                      <div class="pe--button--wrapper">
+                                        <a href="../../contact/index.html" rel="nofollow">
+                                          <span class="pb__main"
+                                            >Start a project<i
+                                              aria-hidden="true"
+                                              class="material-icons md-arrow_outward"
+                                              data-md-icon="arrow_outward"
+                                            ></i>
+                                            <span class="pb__hover"
+                                              >Start a project<i
+                                                aria-hidden="true"
+                                                class="material-icons md-arrow_outward"
+                                                data-md-icon="arrow_outward"
+                                              ></i
+                                            ></span>
+                                          </span>
+                                          <div
+                                            class="pb--marquee--wrap right-to-left"
+                                            aria-hidden="true"
+                                          >
+                                            <div class="pb--marquee__inner">
+                                              <span
+                                                >Start a project<i
+                                                  aria-hidden="true"
+                                                  class="material-icons md-arrow_outward"
+                                                  data-md-icon="arrow_outward"
+                                                ></i
+                                              ></span>
+                                              <span
+                                                >Start a project<i
+                                                  aria-hidden="true"
+                                                  class="material-icons md-arrow_outward"
+                                                  data-md-icon="arrow_outward"
+                                                ></i
+                                              ></span>
+                                              <span
+                                                >Start a project<i
+                                                  aria-hidden="true"
+                                                  class="material-icons md-arrow_outward"
+                                                  data-md-icon="arrow_outward"
+                                                ></i
+                                              ></span>
+                                              <span
+                                                >Start a project<i
+                                                  aria-hidden="true"
+                                                  class="material-icons md-arrow_outward"
+                                                  data-md-icon="arrow_outward"
+                                                ></i
+                                              ></span>
+                                            </div>
+                                          </div>
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- #masthead -->
+
+      <div id="tab-shell">
+        <button class="tab-btn active" data-panel="0">
+          <span class="tab-num">01</span>Engage
+        </button>
+        <button class="tab-btn" data-panel="1">
+          <span class="tab-num">02</span>Design System
+        </button>
+        <button class="tab-btn" data-panel="2">
+          <span class="tab-num">03</span>Tobby
+        </button>
+        <button class="tab-btn" data-panel="3">
+          <span class="tab-num">04</span>Vodacom Bursary
+        </button>
+      </div>
+
+      <div id="cv">
+        <main id="primary" class="site-main" data-barba="container">
+          <div class="project-page">
+            <div id="content" class="page-content project-page-content">
+              <div
+                data-elementor-type="wp-post"
+                data-elementor-id="12274"
+                class="elementor elementor-12274"
+                data-elementor-post-type="portfolio"
+              >
+                <!-- ══ COVER IMAGE ══ -->
+                <div
+                  class="elementor-element elementor-element-40ab7c9c e-con-full e-flex convert--none bg--none no e-con e-parent"
+                  data-id="40ab7c9c"
+                  data-element_type="container"
+                >
+                <!-- ══ HERO: ENGAGE ══ -->
+                <div class="hero-panel" id="hero-engage">
+                  <div
+                    class="elementor-element elementor-element-74f66b10 e-con-full e-flex convert--none bg--none no e-con e-child"
+                    data-id="74f66b10"
+                    data-element_type="container"
+                  >
+                    <div
+                      class="elementor-element elementor-element-4d39302c elementor-widget elementor-widget-projectmedia"
+                      data-id="4d39302c"
+                      data-element_type="widget"
+                      data-widget_type="projectmedia.default"
+                    >
+                      <div class="elementor-widget-container">
+                        <div class="project-featured-image p--featured featured__12274">
+                          <img
+                            loading="eager"
+                            decoding="async"
+                            width="2500"
+                            height="1668"
+                          src="../../wp-content/uploads/2025/05/engage-cover.png"
+                          class="attachment-full size-full"
+                          alt="Vodacom Engage — Employee Engagement App Redesign"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- PROJECT INTRO: ENGAGE -->
+                  <div
+                    class="elementor-element elementor-element-3518b2a3 e-con-full e-flex convert--none bg--none no e-con e-child"
+                    data-id="3518b2a3"
+                    data-element_type="container"
+                  >
+                    <div class="project-intro">
+                      <div class="project-intro-left">
+                        <p class="text-h2">Vodacom<br />Engage</p>
+                        <p class="text-h6">
+                          Redesigning a static icon-grid into a personalised, card-based employee
+                          experience — improving navigation, feature discovery, and daily engagement
+                          at scale.
+                        </p>
+                      </div>
+                      <div class="project-intro-right">
+                        <p class="text-p p-large">
+                          The Engage app had been Vodacom's internal employee platform since 2019 —
+                          HR services, leave, IT helpdesk, food menus, boardroom bookings, Gift
+                          &amp; Hospitality, and more. By 2021 it had grown feature-by-feature into
+                          a 9-tile icon grid with no hierarchy, no personalisation, and no way to
+                          surface what was relevant to you. The redesign brief was simple:
+                          employees should find what they need faster, and the app should feel like
+                          it knows who they are.
+                        </p>
+                        <div class="tag-row">
+                          <span class="tag-pill">UX / UI Design</span>
+                          <span class="tag-pill">Mobile (Android &amp; iOS)</span>
+                          <span class="tag-pill">Product Strategy</span>
+                          <span class="tag-pill">Design Systems</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ══ HERO: DESIGN SYSTEM ══ -->
+                <div class="hero-panel is-tab-hidden" id="hero-design-system">
+                  <div class="elementor-element e-con-full e-flex convert--none bg--none no e-con e-child">
+                    <div class="elementor-widget-container">
+                      <div class="project-featured-image p--featured">
+                        <img
+                          loading="lazy"
+                          decoding="async"
+                          width="1200"
+                          height="420"
+                          src="../../wp-content/uploads/2025/05/vodacom-ds-toolchain.svg"
+                          class="attachment-full size-full"
+                          alt="Toolchain: Adobe XD, InVision DSM, Storybook"
+                          style="width:100%;height:auto;object-fit:contain;background:#f4f3f0"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="elementor-element e-con-full e-flex convert--none bg--none no e-con e-child">
+                    <div class="project-intro">
+                      <div class="project-intro-left">
+                        <p class="text-h2">Vodacom<br />Design System</p>
+                        <p class="text-h6">
+                          From Adobe XD library work through InVision DSM to Storybook — one threaded
+                          pipeline for tokens, components, and engineering reference.
+                        </p>
+                      </div>
+                      <div class="project-intro-right">
+                        <p class="text-p p-large">
+                          Components and patterns were shaped in <strong>Adobe XD</strong> (layouts,
+                          variants, redlines), then documented and governed in
+                          <strong>InVision DSM</strong> so colour, type, and UI pieces had a single
+                          named source. <strong>Storybook</strong> anchored the living UI in code —
+                          states, props, and notes sat next to what developers shipped, which cut
+                          drift between design intent and production.
+                        </p>
+                        <div class="tag-row">
+                          <span class="tag-pill">Design Systems</span>
+                          <span class="tag-pill">Component Libraries</span>
+                          <span class="tag-pill">Design Ops</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ══ HERO: TOBBY ══ -->
+                <div class="hero-panel is-tab-hidden" id="hero-tobby">
+                  <div class="elementor-element e-con-full e-flex convert--none bg--none no e-con e-child">
+                    <div class="elementor-widget-container">
+                      <div class="project-featured-image p--featured">
+                        <img
+                          loading="lazy"
+                          decoding="async"
+                          width="900"
+                          height="320"
+                          src="../../wp-content/uploads/2025/05/tobby-process-minimal.svg"
+                          class="attachment-full size-full"
+                          alt="Tobby process schematic — intent to hand-off"
+                          style="width:100%;height:auto;object-fit:contain;background:#f4f3f0"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="elementor-element e-con-full e-flex convert--none bg--none no e-con e-child">
+                    <div class="project-intro">
+                      <div class="project-intro-left">
+                        <p class="text-h2">Tobby<br />Ask‑IT Chatbot</p>
+                        <p class="text-h6">
+                          Designing a conversational assistant that answers common IT questions and
+                          knows when to hand off to humans.
+                        </p>
+                      </div>
+                      <div class="project-intro-right">
+                        <p class="text-p p-large">
+                          Tobby turns high‑volume IT queries into short, guided conversations:
+                          password resets, VPN access, software requests, and more. I worked end to
+                          end on the UX — defining intent flows, message patterns, escalation rules,
+                          and UI states for web and mobile entry points.
+                        </p>
+                        <div class="tag-row">
+                          <span class="tag-pill">Conversational UX</span>
+                          <span class="tag-pill">Service Design</span>
+                          <span class="tag-pill">Internal Tools</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ══ HERO: VODACOM BURSARY ══ -->
+                <div class="hero-panel is-tab-hidden" id="hero-bursary">
+                  <div class="elementor-element e-con-full e-flex convert--none bg--none no e-con e-child">
+                    <div class="elementor-widget-container">
+                      <div class="project-featured-image p--featured">
+                        <img
+                          loading="lazy"
+                          decoding="async"
+                          width="1200"
+                          height="480"
+                          src="../../wp-content/uploads/2025/05/bursary-application-process.svg"
+                          class="attachment-full size-full"
+                          alt="Vodacom External Bursary — process including Tobby entry"
+                          style="width:100%;height:auto;object-fit:contain;background:#f4f3f0"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="elementor-element e-con-full e-flex convert--none bg--none no e-con e-child">
+                    <div class="project-intro">
+                      <div class="project-intro-left">
+                        <p class="text-h2">Vodacom<br />External Bursary</p>
+                        <p class="text-h6">
+                          Redesigning the bursary journey so applicants know where to start, what to
+                          submit, and when they will hear back.
+                        </p>
+                      </div>
+                      <div class="project-intro-right">
+                        <p class="text-p p-large">
+                          I mapped the end‑to‑end bursary experience and redesigned it as a guided
+                          digital flow — from discovery and eligibility checks through document
+                          preparation, submission, and status updates. Tobby acts as a front‑door
+                          helper, answering questions and preparing applicants before they submit.
+                        </p>
+                        <div class="tag-row">
+                          <span class="tag-pill">Service Design</span>
+                          <span class="tag-pill">Education Programmes</span>
+                          <span class="tag-pill">Journeys &amp; Flows</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /cover + intro (per tab) -->
+
+                <!-- Engage-only body: hidden when Design System / Tobby / Bursary tab is active -->
+                <div class="vd-engage-only">
+                <!-- ══ QUOTE ══ -->
+                <div
+                  class="elementor-element elementor-element-0b88982 e-con-full e-flex convert--none bg--none no e-con e-parent"
+                  data-id="0b88982"
+                  data-element_type="container"
+                >
+                  <div class="quote-block">
+                    <div class="quote-block-left">
+                      <p class="quote-text">
+                        "The old app wasn't broken — it was invisible. Every feature was one tap
+                        from the home screen but two minutes of searching. The redesign wasn't about
+                        adding more; it was about making the right things appear at the right time
+                        for the right person. That required rethinking the information architecture,
+                        the visual hierarchy, and what 'personalisation' actually means inside an
+                        enterprise app."
+                      </p>
+                      <p class="quote-attr">Lulamile Mkhungela<br />Vodacom Group · 2021–2022</p>
+                    </div>
+                    <div class="quote-block-right">
+                      <div>
+                        <p class="meta-label">Role</p>
+                        <p class="meta-val">UX / UI / Product Designer</p>
+                      </div>
+                      <div>
+                        <p class="meta-label">Scope</p>
+                        <p class="meta-val">
+                          Research · IA Redesign · Visual Redesign · Personalisation · Design System
+                          Contribution
+                        </p>
+                      </div>
+                      <div>
+                        <p class="meta-label">Platform</p>
+                        <p class="meta-val">Android · iOS</p>
+                      </div>
+                      <div>
+                        <p class="meta-label">Timeline</p>
+                        <p class="meta-val">2021 — Q1 Redesign · 2022 — Rollout &amp; iteration</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ══════════════════════════════════
+     PANEL 0 — OLD DESIGN (ENGAGE)
+══════════════════════════════════ -->
+                <section class="project-panel" id="panel-0">
+                  <div class="content-section">
+                    <div class="cs-label">
+                      <p>(01)<br />THE OLD<br />DESIGN</p>
+                    </div>
+                    <div class="cs-body">
+                      <p class="text-p p-large">
+                        The original Engage app was built between 2019–2020 and followed a familiar
+                        enterprise mobile pattern: a branded header, a hero image section at the top
+                        of each module, and a grid of icon tiles below it. Every section — Home,
+                        Connect, Human Resources, Food Menu, Facilities Requests, Gift &amp;
+                        Hospitality, Boardroom Check-In, AskIT — followed the same template.
+                      </p>
+                      <p class="text-p p-large" style="margin-top: 16px">
+                        Each section had its own red-header page with a large hero image and a 2×4
+                        icon grid of sub-actions. Navigation was purely hierarchical — you had to
+                        know which top-level section held what you needed. There was no search, no
+                        shortcuts, no personalisation, and no way to surface what was relevant to
+                        your role or location. The app was honest about its own architecture, but
+                        employees weren't using it that way.
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Old design screens — full spread -->
+                  <div class="before-after">
+                    <div class="ba-col">
+                      <div class="ba-label">
+                        <span class="ba-badge ba-badge-old">Before</span> Home Screen
+                      </div>
+                      <div class="ba-img-wrap">
+                        <img
+                          src="../../wp-content/uploads/2025/05/old-home.png"
+                          alt="Old Engage home screen — icon grid"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="ba-rationale">
+                        <h4>What it was</h4>
+                        <p>
+                          A branded welcome section with a hero image and 9 icon tiles below —
+                          Connect, Employee Directory, Human Resources, Boardroom Bookings,
+                          Boardroom Check-In, Facilities Requests, askIT, Food Menu, Gift &amp;
+                          Hospitality. All tiles were equal weight. There was no hierarchy, no
+                          indication of what was most used or most relevant, and no quick access to
+                          anything outside these 9 categories.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="ba-col">
+                      <div class="ba-label">
+                        <span class="ba-badge ba-badge-old">Before</span> Human Resources
+                      </div>
+                      <div class="ba-img-wrap">
+                        <img
+                          src="../../wp-content/uploads/2025/05/old-hr.png"
+                          alt="Old HR screen — icon grid"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="ba-rationale">
+                        <h4>The pattern repeated everywhere</h4>
+                        <p>
+                          Every module used the same structure: red header, hero image, 2×2 or 2×3
+                          icon grid. HR showed — HR Policies, Rewards and Benefits, Vodacom
+                          University, Success Factors. The visual pattern made every section feel
+                          identical regardless of content type. Sub-features that were frequently
+                          used had no priority over rarely-accessed ones.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="screens-grid">
+                    <div class="screen-cell">
+                      <img
+                        src="../../wp-content/uploads/2025/05/old-connect.png"
+                        alt="Old Connect screen"
+                        loading="lazy"
+                      />
+                      <div class="screen-label">Connect</div>
+                    </div>
+                    <div class="screen-cell">
+                      <img
+                        src="../../wp-content/uploads/2025/05/old-food-menu.png"
+                        alt="Old Food Menu screen"
+                        loading="lazy"
+                      />
+                      <div class="screen-label">Staff Food Menu</div>
+                    </div>
+                    <div class="screen-cell">
+                      <img
+                        src="../../wp-content/uploads/2025/05/old-request.png"
+                        alt="Old Facilities Request form"
+                        loading="lazy"
+                      />
+                      <div class="screen-label">Facilities Request</div>
+                    </div>
+                  </div>
+
+                  <div class="before-after">
+                    <div class="ba-col">
+                      <div class="ba-label">
+                        <span class="ba-badge ba-badge-old">Before</span> Gift &amp; Hospitality
+                      </div>
+                      <div class="ba-img-wrap">
+                        <img
+                          src="../../wp-content/uploads/2025/05/gift-old.png"
+                          alt="Old Gift and Hospitality screen"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="ba-rationale">
+                        <h4>No context, no guidance</h4>
+                        <p>
+                          Gift &amp; Hospitality offered 5 sub-actions — Giving Internal Gift,
+                          Giving External Gift, Receiving External Gift, Giving Hospitality,
+                          Receiving Hospitality. Each was an icon tile with a label. Nothing
+                          communicated policy, thresholds, or whether an action was required at all.
+                          First-time users had no way to know which option applied to their
+                          situation.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="ba-col">
+                      <div class="ba-label">
+                        <span class="ba-badge ba-badge-old">Before</span> Form Patterns
+                      </div>
+                      <div class="ba-img-wrap">
+                        <img
+                          src="../../wp-content/uploads/2025/05/old-request.png"
+                          alt="Old Facilities Request form pattern"
+                          loading="lazy"
+                          style="object-position: top"
+                        />
+                      </div>
+                      <div class="ba-rationale">
+                        <h4>Bare-bones form UX</h4>
+                        <p>
+                          Forms across the app — Facilities Requests, Gift submissions, COVID
+                          screening — used plain text inputs with no visual grouping, no inline
+                          validation, no progress indication, and no confirmation state. Required
+                          fields weren't marked. Upload actions offered no guidance on file type or
+                          size. The form experience felt like a web portal transposed onto a phone.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="content-section">
+                    <div class="cs-label">
+                      <p>(02)<br />PROBLEMS<br />IDENTIFIED</p>
+                    </div>
+                    <div class="cs-body">
+                      <p class="text-p p-large">
+                        Through employee interviews, support ticket analysis, and direct
+                        observation, I catalogued the recurring pain points that motivated the
+                        redesign:
+                      </p>
+                      <ul class="process-list">
+                        <li>
+                          <span class="pnum">01</span>
+                          <div class="ptxt">
+                            <strong>No feature hierarchy</strong
+                            ><span
+                              >All 9 home tiles were rendered at equal visual weight. Employees who
+                              checked their leave balance daily had the same experience as someone
+                              accessing Boardroom Bookings once a month. The app treated all
+                              features as equally important to all people at all times.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">02</span>
+                          <div class="ptxt">
+                            <strong>No personalisation layer</strong
+                            ><span
+                              >The app showed the same home screen to a call centre agent in
+                              Johannesburg and a network engineer in Cape Town. There was no
+                              role-based filtering, no location-aware content, and no way to save
+                              frequently-used actions. Employees resorted to remembering navigation
+                              paths rather than using the app intuitively.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">03</span>
+                          <div class="ptxt">
+                            <strong>No search</strong
+                            ><span
+                              >If you didn't know which of the 9 categories your question lived in,
+                              you had to explore each one. This was the primary driver of IT
+                              helpdesk tickets — employees raising tickets for things the app could
+                              resolve, if only they could find them.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">04</span>
+                          <div class="ptxt">
+                            <strong>Repetitive visual template</strong
+                            ><span
+                              >Every module used the same red-header + hero image + icon grid
+                              pattern, regardless of content type. HR Policies, Food Menus, and
+                              Boardroom Bookings all looked identical. The pattern prevented the app
+                              from communicating which sections were content-heavy vs action-driven
+                              vs time-sensitive.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">05</span>
+                          <div class="ptxt">
+                            <strong>Form UX gaps</strong
+                            ><span
+                              >Forms had no progress indicators, no inline validation, no
+                              field-level guidance, and no confirmation states. The Facilities
+                              Request and Gift &amp; Hospitality flows were particularly
+                              error-prone, generating a disproportionate share of support contacts
+                              from users who were unsure if their submission had been
+                              received.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">06</span>
+                          <div class="ptxt">
+                            <strong>No contextual content</strong
+                            ><span
+                              >Announcements, news, Wellbeing initiatives, and Rewards campaigns had
+                              no dedicated home on the home screen. They were buried inside
+                              individual modules. An employee would have to navigate into Human
+                              Resources to find a policy update, or into Connect to see a company
+                              announcement — even when those items were time-sensitive.</span
+                            >
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </section>
+                <!-- /panel-0 -->
+
+                <!-- ══════════════════════════════════
+     PANEL 1 — WHAT CHANGED & RATIONALE
+══════════════════════════════════ -->
+                <div class="panel-sentinel" id="sentinel-1"></div>
+                <section class="project-panel" id="panel-1">
+                  <div class="content-section">
+                    <div class="cs-label">
+                      <p>(01)<br />DESIGN<br />DECISIONS</p>
+                    </div>
+                    <div class="cs-body">
+                      <p class="text-p p-large">
+                        The redesign wasn't a visual refresh — it was an architectural rethink.
+                        Every change was grounded in a specific problem identified during discovery.
+                        Below is the decision log: what changed, why, and what principle guided the
+                        decision.
+                      </p>
+
+                      <table class="change-table">
+                        <thead>
+                          <tr>
+                            <th style="width: 160px">Area</th>
+                            <th>Old</th>
+                            <th>New</th>
+                            <th style="width: 90px">Type</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Home screen structure</td>
+                            <td>
+                              <span class="old-val"
+                                >9 equal-weight icon tiles, static for all users</span
+                              ><span style="font-size: 0.85rem; color: var(--soft)"
+                                >No hierarchy, no context, no user signal</span
+                              >
+                            </td>
+                            <td>
+                              <span class="new-val"
+                                >Card-based sections: Rewards4U banner, My Favourites, Company
+                                Strategy, Wellbeing Hub, Recent Interactions. Each card type has its
+                                own visual language and load priority.</span
+                              >
+                            </td>
+                            <td><span class="change-pill pill-nav">Navigation</span></td>
+                          </tr>
+                          <tr>
+                            <td>Personalisation</td>
+                            <td>
+                              <span class="old-val">Identical experience for all employees</span
+                              ><span style="font-size: 0.85rem; color: var(--soft)"
+                                >No role, location, or behaviour awareness</span
+                              >
+                            </td>
+                            <td>
+                              <span class="new-val"
+                                >Personalised greeting ("Hi Claire"), avatar with customisation, My
+                                Favourites (user-defined shortcuts), Recent Interactions
+                                (behaviour-driven surface), role-tagged profile with department and
+                                employee number.</span
+                              >
+                            </td>
+                            <td><span class="change-pill pill-feat">Feature</span></td>
+                          </tr>
+                          <tr>
+                            <td>Navigation model</td>
+                            <td>
+                              <span class="old-val">Top-level tab + icon grid per module</span
+                              ><span style="font-size: 0.85rem; color: var(--soft)"
+                                >User must know where to look</span
+                              >
+                            </td>
+                            <td>
+                              <span class="new-val"
+                                >Bottom navigation bar (Home, Directory, Search, Rewards4U, Help) +
+                                contextual deep-links from cards. Search surfaces features by
+                                keyword — no need to know which section they live in.</span
+                              >
+                            </td>
+                            <td><span class="change-pill pill-nav">Navigation</span></td>
+                          </tr>
+                          <tr>
+                            <td>Search</td>
+                            <td><span class="old-val">No search</span></td>
+                            <td>
+                              <span class="new-val"
+                                >Global search across all features, policies, and employee
+                                directory. Dedicated Search tab in bottom nav. Eliminates the
+                                primary source of IT support tickets — employees unable to find
+                                features.</span
+                              >
+                            </td>
+                            <td><span class="change-pill pill-feat">Feature</span></td>
+                          </tr>
+                          <tr>
+                            <td>Visual design system</td>
+                            <td>
+                              <span class="old-val"
+                                >White background, solid red header bar, white icon tiles with red
+                                fills, Vodafone Red as dominant UI colour</span
+                              ><span style="font-size: 0.85rem; color: var(--soft)"
+                                >Brand-heavy but not content-friendly</span
+                              >
+                            </td>
+                            <td>
+                              <span class="new-val"
+                                >Dark charcoal surface (#1C1C1E) with tonal red accents, card-based
+                                layout with subtle shadows, content photography integrated into
+                                cards rather than isolated hero images. Brand is present but no
+                                longer dominant over content.</span
+                              >
+                            </td>
+                            <td><span class="change-pill pill-vis">Visual</span></td>
+                          </tr>
+                          <tr>
+                            <td>Typography hierarchy</td>
+                            <td>
+                              <span class="old-val"
+                                >Section title + icon label only. No body copy, no description, no
+                                context.</span
+                              >
+                            </td>
+                            <td>
+                              <span class="new-val"
+                                >3-level hierarchy: section header, card title, supporting body.
+                                Cards carry enough information to act on without tapping in — e.g.
+                                "Wellbeing Hub: All the support you need to be your best self" is
+                                readable on the home screen.</span
+                              >
+                            </td>
+                            <td><span class="change-pill pill-vis">Visual</span></td>
+                          </tr>
+                          <tr>
+                            <td>Content surfacing</td>
+                            <td>
+                              <span class="old-val"
+                                >Announcements, wellbeing content, and rewards buried inside
+                                modules</span
+                              >
+                            </td>
+                            <td>
+                              <span class="new-val"
+                                >Home screen surfaces timely content via Rewards4U banner (Rewards4U
+                                new offers), Wellbeing Hub card (contextual health content), and a
+                                What's New section. Time-sensitive content no longer requires
+                                navigation.</span
+                              >
+                            </td>
+                            <td><span class="change-pill pill-nav">Navigation</span></td>
+                          </tr>
+                          <tr>
+                            <td>Profile &amp; settings</td>
+                            <td>
+                              <span class="old-val"
+                                >No user profile, no settings panel, language buried in app
+                                settings</span
+                              >
+                            </td>
+                            <td>
+                              <span class="new-val"
+                                >Profile panel shows name, title, department, employee number,
+                                language preference, Privacy Statement link, Total Reward Statements
+                                access. Avatar customisation with predefined illustrated options.
+                                Single-tap language change.</span
+                              >
+                            </td>
+                            <td><span class="change-pill pill-feat">Feature</span></td>
+                          </tr>
+                          <tr>
+                            <td>Favourites</td>
+                            <td>
+                              <span class="old-val">No favourites or shortcut mechanism</span>
+                            </td>
+                            <td>
+                              <span class="new-val"
+                                >My Favourites — a user-curated section on the home screen. Users
+                                add their most-used features once; they appear as quick-access tiles
+                                above the main content area. Persistent across sessions.</span
+                              >
+                            </td>
+                            <td><span class="change-pill pill-feat">Feature</span></td>
+                          </tr>
+                          <tr>
+                            <td>Form patterns</td>
+                            <td>
+                              <span class="old-val"
+                                >Plain text fields, no validation, no progress, no confirmation
+                                states</span
+                              >
+                            </td>
+                            <td>
+                              <span class="new-val"
+                                >Grouped form fields, inline validation, step progress bar, document
+                                checklist shown upfront (not at upload step), animated confirmation
+                                toast. COVID pre-screening redesigned as a multi-step guided form
+                                with conditional branching.</span
+                              >
+                            </td>
+                            <td><span class="change-pill pill-perf">UX Pattern</span></td>
+                          </tr>
+                          <tr>
+                            <td>COVID screening (new feature)</td>
+                            <td><span class="old-val">Not present in original app</span></td>
+                            <td>
+                              <span class="new-val"
+                                >Mandatory Pre-Screening flow added: multi-step form with health
+                                conditions checklist, work location dropdown, transport mode,
+                                consent checkboxes. Designed with conditional branching for health
+                                flags. Full mobile-first responsive layout.</span
+                              >
+                            </td>
+                            <td><span class="change-pill pill-feat">Feature</span></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <!-- COVID screening new feature -->
+                  <div class="img-full">
+                    <img
+                      src="../../wp-content/uploads/2025/05/new-covid.png"
+                      alt="Mandatory Pre-Screening — new COVID feature"
+                      loading="lazy"
+                      style="object-fit: contain; background: #f0f0f0"
+                    />
+                  </div>
+
+                  <div class="content-section">
+                    <div class="cs-label">
+                      <p>(02)<br />RATIONALE</p>
+                    </div>
+                    <div class="cs-body">
+                      <p class="text-p p-large">
+                        The decisions above were governed by four design principles that emerged
+                        from the research phase:
+                      </p>
+                      <ul class="process-list">
+                        <li>
+                          <span class="pnum">01</span>
+                          <div class="ptxt">
+                            <strong>Surface before search</strong
+                            ><span
+                              >Employees shouldn't have to know the app's architecture to find what
+                              they need. The home screen redesign was guided by a single question:
+                              "What does this person most likely need right now?" — answered by
+                              role, behaviour, time of day, and recent activity. Cards that don't
+                              require navigation at all are better than navigation that's one tap
+                              faster.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">02</span>
+                          <div class="ptxt">
+                            <strong>Personalisation earns trust</strong
+                            ><span
+                              >An app that knows your name and shows your recent payslip date feels
+                              like a tool. An app that shows the same home screen to everyone feels
+                              like a noticeboard. The personalisation layer wasn't cosmetic — it was
+                              the difference between employees checking the app first vs calling IT
+                              first.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">03</span>
+                          <div class="ptxt">
+                            <strong>Brand serves content, not the other way around</strong
+                            ><span
+                              >The old design made Vodafone Red the hero on every screen. The
+                              redesign inverted this — brand colour is used as an accent to guide
+                              attention, not as a background that competes with content. Dark
+                              surface cards let photography and type do the communicating, with
+                              brand expressed through the Vodafone swoosh and key CTAs.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">04</span>
+                          <div class="ptxt">
+                            <strong>Forms are conversations, not data entry</strong
+                            ><span
+                              >Every form in the old app felt like a database schema transposed onto
+                              a phone. The redesign treated forms as guided conversations: one
+                              decision at a time, context shown upfront, progress made visible, and
+                              completion celebrated. The COVID screening flow was the clearest
+                              expression of this — a complex conditional form made to feel like a
+                              3-minute check-in.</span
+                            >
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </section>
+                <!-- /panel-1 -->
+
+                <!-- ══════════════════════════════════
+     PANEL 2 — NEW DESIGN
+══════════════════════════════════ -->
+                <div class="panel-sentinel" id="sentinel-2"></div>
+                <section class="project-panel" id="panel-2">
+                  <div class="content-section">
+                    <div class="cs-label">
+                      <p>(01)<br />THE NEW<br />DESIGN</p>
+                    </div>
+                    <div class="cs-body">
+                      <p class="text-p p-large">
+                        The redesigned Engage app moved from a static icon-grid to a contextual,
+                        card-based experience with a personalised home screen, global search, bottom
+                        navigation, and an expanded feature set built around real employee
+                        workflows.
+                      </p>
+                      <p class="text-p p-large" style="margin-top: 16px">
+                        The new home screen leads with a personalised greeting and the user's
+                        profile context, followed by a Rewards4U promotional banner, My Favourites
+                        (user-curated shortcuts), a Company Strategy section with Our Purpose and
+                        Our Strategy, and a Wellbeing Hub card. The overall visual language shifted
+                        from red-dominant to dark charcoal with red accents — a change that reduced
+                        visual fatigue on daily-use screens while keeping the Vodacom brand present
+                        and recognisable.
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- New design cover spread -->
+                  <div class="img-full">
+                    <img
+                      src="../../wp-content/uploads/2025/05/new-.png"
+                      alt="New Engage app design — cover spread"
+                      loading="lazy"
+                      style="object-fit: contain; background: #111"
+                    />
+                  </div>
+
+                  <!-- New design full screens -->
+                  <div class="img-full" style="border-bottom: none">
+                    <img
+                      src="../../wp-content/uploads/2025/05/newest.png"
+                      alt="New Engage app — full screen set"
+                      loading="lazy"
+                      style="
+                        object-fit: contain;
+                        background: #1a1a1a;
+                        height: auto;
+                        min-height: 400px;
+                        padding: 32px 0;
+                      "
+                    />
+                  </div>
+
+                  <div class="content-section">
+                    <div class="cs-label">
+                      <p>(02)<br />KEY<br />SCREENS</p>
+                    </div>
+                    <div class="cs-body">
+                      <p class="text-p p-large">
+                        The new design introduced 6 core screen types, each designed for a specific
+                        employee need:
+                      </p>
+                      <ul class="process-list">
+                        <li>
+                          <span class="pnum">01</span>
+                          <div class="ptxt">
+                            <strong>Personalised Home</strong
+                            ><span
+                              >Greeting with user's name and role, Rewards4U notification badge,
+                              search shortcut, and a contextual card stack. The home screen is the
+                              only screen an employee needs to visit to understand what's new,
+                              what's relevant, and what they've been doing recently.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">02</span>
+                          <div class="ptxt">
+                            <strong>My Favourites</strong
+                            ><span
+                              >A user-managed section at the top of the home content area. Employees
+                              add their own frequently-used features — Our Purpose, New Workflow,
+                              Vodacom Note — without any admin intervention. On first use, an empty
+                              state offers guided suggestions. Configured once, persisted across
+                              sessions.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">03</span>
+                          <div class="ptxt">
+                            <strong>Profile Panel</strong
+                            ><span
+                              >A slide-in profile sheet showing full employee context: name, title,
+                              department, employee number, email. Quick-access links to Privacy
+                              Statement and Total Reward Statements. Language switcher at a single
+                              tap. Logout at the bottom. Avatar customisation with a dedicated
+                              update flow.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">04</span>
+                          <div class="ptxt">
+                            <strong>Avatar Customisation</strong
+                            ><span
+                              >A new onboarding moment: employees can personalise their app identity
+                              with an illustrated avatar selector. The flow uses a two-step pattern
+                              — cancel/update confirmation — so changes feel deliberate. Avatar
+                              appears in the profile panel and as the home screen greeting
+                              avatar.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">05</span>
+                          <div class="ptxt">
+                            <strong>Navigate Engage Overlay</strong
+                            ><span
+                              >A full-screen navigation overlay accessible from the home screen that
+                              organises all features into top-level categories: Company Strategy (My
+                              Tasks, Our Strategy), Connect (sub-features). This replaces the old
+                              9-tile home grid for deep-navigation use cases while keeping the home
+                              screen clean for frequent tasks.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">06</span>
+                          <div class="ptxt">
+                            <strong>Rewards4U Banner &amp; Tab</strong
+                            ><span
+                              >A dedicated tab in the bottom navigation for Rewards4U — Vodacom's
+                              employee rewards and recognition platform. A home screen banner shows
+                              current promotions with a "Learn more" CTA. Rewards are now a
+                              first-class feature rather than a tile buried inside Human
+                              Resources.</span
+                            >
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="content-section">
+                    <div class="cs-label">
+                      <p>(03)<br />PROCESS</p>
+                    </div>
+                    <div class="cs-body">
+                      <p class="text-p p-large">
+                        The redesign followed a research-first, test-early approach across three
+                        phases over approximately 4 months:
+                      </p>
+                      <ul class="process-list">
+                        <li>
+                          <span class="pnum">01</span>
+                          <div class="ptxt">
+                            <strong>Discovery — support tickets + employee interviews</strong
+                            ><span
+                              >Started with 3 months of IT helpdesk tickets. Identified the top
+                              query categories and mapped them against the current navigation to
+                              find where the app was failing. Spoke to 6 employees across
+                              engineering, HR, finance, and campus operations. Built an emotional
+                              journey map from "opens app" to "gives up and calls IT."</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">02</span>
+                          <div class="ptxt">
+                            <strong>IA redesign — card sorting + tree testing</strong
+                            ><span
+                              >Ran a card sort with 12 employees to understand their mental model of
+                              feature groupings. The results challenged several assumptions about
+                              what "belonged together." Used findings to redesign the information
+                              architecture: 6 top-level categories replacing the flat 9-tile grid,
+                              with a new search layer as a navigation fallback.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">03</span>
+                          <div class="ptxt">
+                            <strong>Visual direction — dark theme exploration</strong
+                            ><span
+                              >Tested two directions in parallel: a refreshed version of the
+                              existing white/red design, and a dark charcoal direction. The dark
+                              theme tested significantly better for daily use — employees felt it
+                              was easier on the eyes during extended use and felt more modern and
+                              intentional. The dark direction was selected and developed through
+                              hi-fi.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">04</span>
+                          <div class="ptxt">
+                            <strong>Wireframing — mid-fi through hi-fi in Figma</strong
+                            ><span
+                              >Built wireframes for 14 screens, progressing from lo-fi structure
+                              through mid-fi component validation to hi-fi with the Vodacom brand
+                              applied. Used auto-layout components throughout to make the hand-off a
+                              single Figma file rather than a collection of static artboards.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">05</span>
+                          <div class="ptxt">
+                            <strong>Prototype testing — 2 rounds, 10 sessions</strong
+                            ><span
+                              >Round 1 with 5 employees: tested navigation to 4 features and the
+                              profile customisation flow. Round 2 with 5 employees: tested the COVID
+                              screening flow and the Favourites management flow. Net findings:
+                              search was the most-valued addition, and avatar customisation drove
+                              the highest positive sentiment response.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">06</span>
+                          <div class="ptxt">
+                            <strong>Design system contribution</strong
+                            ><span
+                              >All new component patterns contributed back to the shared Vodacom
+                              design library: dark card variants, bottom navigation component,
+                              profile panel shell, avatar picker component, Rewards4U banner, and
+                              the COVID form pattern (multi-step with conditional branching).</span
+                            >
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </section>
+                <!-- /panel-2 -->
+
+                <!-- ══════════════════════════════════
+     PANEL 3 — OUTCOMES
+══════════════════════════════════ -->
+                <div class="panel-sentinel" id="sentinel-3"></div>
+                <section class="project-panel" id="panel-3">
+                  <div class="content-section">
+                    <div class="cs-label">
+                      <p>(01)<br />DELIVERABLES</p>
+                    </div>
+                    <div class="cs-body">
+                      <ul class="del-list">
+                        <li>
+                          <b>IA redesign</b> — card sort with 12 employees, tree-test validation,
+                          new 6-category structure replacing 9-tile flat grid
+                        </li>
+                        <li>
+                          <b>14 hi-fi screens</b> — Home, Profile Panel, Avatar Customisation (2
+                          states), My Favourites, Navigate Overlay, HR module, Connect module, Food
+                          Menu, Facilities Request, Gift &amp; Hospitality, COVID Pre-Screening
+                          (4-step flow), Search, Rewards4U
+                        </li>
+                        <li>
+                          <b>Clickable Figma prototype</b> — 5 core flows tested across 2 rounds, 10
+                          sessions
+                        </li>
+                        <li>
+                          <b>COVID Pre-Screening flow</b> — full conditional form with health
+                          conditions, work location, transport, and consent — designed as a guided
+                          multi-step conversation
+                        </li>
+                        <li>
+                          <b>Design system contributions</b> — dark card variants, bottom nav
+                          component, profile panel shell, avatar picker, Rewards4U banner, COVID
+                          form pattern
+                        </li>
+                        <li>
+                          <b>Usability test report (2 rounds)</b> — 10 sessions, key findings and
+                          scope changes documented before handoff
+                        </li>
+                        <li>
+                          <b>Annotated dev handoff</b> — all screens with spacing, colour tokens,
+                          interaction specs, and component references
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="content-section">
+                    <div class="cs-label">
+                      <p>(02)<br />OUTCOMES</p>
+                    </div>
+                    <div class="cs-body">
+                      <p class="results-intro">
+                        The redesigned Engage launched in 2022. The IT support team reported a
+                        meaningful reduction in navigation-related tickets — the primary pain point
+                        the redesign was built to address. Employee feedback gathered post-launch
+                        highlighted search and personalisation as the most-valued additions.
+                      </p>
+                      <div class="metrics-grid">
+                        <div class="metric">
+                          <div class="metric-n">14</div>
+                          <div class="metric-l">hi-fi screens designed and handed off</div>
+                        </div>
+                        <div class="metric">
+                          <div class="metric-n">6</div>
+                          <div class="metric-l">
+                            new component types contributed to the design system
+                          </div>
+                        </div>
+                        <div class="metric">
+                          <div class="metric-n">10</div>
+                          <div class="metric-l">usability sessions across 2 test rounds</div>
+                        </div>
+                        <div class="metric">
+                          <div class="metric-n">2022</div>
+                          <div class="metric-l">redesign launched across Vodacom SA</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="content-section">
+                    <div class="cs-label">
+                      <p>(03)<br />LESSONS</p>
+                    </div>
+                    <div class="cs-body">
+                      <p class="text-p p-large">
+                        Three things I'd carry into any enterprise mobile redesign:
+                      </p>
+                      <ul class="process-list">
+                        <li>
+                          <span class="pnum">01</span>
+                          <div class="ptxt">
+                            <strong>Support tickets are better research than surveys</strong
+                            ><span
+                              >The IT helpdesk data told me exactly where the app was failing — not
+                              what employees said they wanted, but what they actually couldn't do.
+                              Starting with 3 months of tickets gave the redesign a concrete,
+                              defensible priority list that stakeholders couldn't argue with.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">02</span>
+                          <div class="ptxt">
+                            <strong
+                              >Personalisation needs a behaviour signal, not a settings
+                              screen</strong
+                            ><span
+                              >The My Favourites feature worked because employees curated it
+                              themselves — it didn't require an admin to configure roles and
+                              permissions. When personalisation requires user action to activate, it
+                              tends to be used by the people who need it most and ignored by
+                              everyone else. That's fine. The goal was relevance, not
+                              uniformity.</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <span class="pnum">03</span>
+                          <div class="ptxt">
+                            <strong
+                              >Dark themes need a strong rationale, not just an aesthetic
+                              preference</strong
+                            ><span
+                              >The dark direction was chosen because it tested better for daily use
+                              — less visual fatigue, higher perceived modernity. But it also created
+                              new constraints: photography needed to work against dark surfaces, the
+                              Vodacom red needed careful handling to avoid vibrating against dark
+                              backgrounds, and text contrast had to be re-validated at every tier.
+                              The decision was worth it, but it required deliberate
+                              follow-through.</span
+                            >
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="img-full">
+                    <img
+                      src="../../wp-content/uploads/2025/05/new-.png"
+                      alt="Vodacom Engage — new design"
+                      loading="lazy"
+                      style="object-fit: contain; background: #111"
+                    />
+                  </div>
+                </section>
+                <!-- /panel-3 -->
+                </div>
+                <!-- /vd-engage-only -->
+              </div>
+              <!-- /elementor-12274 -->
+
+              <!-- DESIGN SYSTEM CASE STUDY (TAB 02) -->
+              <section class="project-panel" id="ds-panel-0">
+                <div class="content-section">
+                  <div class="cs-label">
+                    <p>(01)<br />OVERVIEW</p>
+                  </div>
+                  <div class="cs-body">
+                    <p class="text-h2">Vodacom Design System</p>
+                    <p class="text-p p-large" style="margin-top: 16px">
+                      Work was anchored in <strong>Adobe XD</strong>: libraries for patterns coming
+                      out of Engage and other internal products, with layouts and specs that could be
+                      traced into delivery. Documentation and governance sat in
+                      <strong>InVision DSM</strong> — tokens, component names, usage notes, and
+                      what devs should pull when they extended the system.
+                    </p>
+                    <p class="text-p p-large" style="margin-top: 16px">
+                      On the engineering side, <strong>Storybook</strong> held the runnable source of
+                      truth: variants and states in code, with space for notes that matched what DSM
+                      promised. My role was to keep those three layers speaking the same language —
+                      so a change in XD/DSM didn’t get lost before it hit Storybook.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <section class="project-panel" id="ds-panel-1">
+                <div class="content-section">
+                  <div class="cs-label">
+                    <p>(02)<br />PROCESS</p>
+                  </div>
+                  <div class="cs-body">
+                    <ul class="process-list">
+                      <li>
+                        <span class="pnum">01</span>
+                        <div class="ptxt">
+                          <strong>Audit of existing products</strong
+                          ><span
+                            >I started with an interface inventory across internal tools: buttons,
+                            inputs, navigation bars, cards, overlays, form patterns, and typography
+                            scales. I tagged duplicates, inconsistencies, and one-off patterns that
+                            could be refactored into a common model.</span
+                          >
+                        </div>
+                      </li>
+                      <li>
+                        <span class="pnum">02</span>
+                        <div class="ptxt">
+                          <strong>Token and component definition</strong
+                          ><span
+                            >From the audit, I defined a token set (colour, radius, elevation,
+                            spacing, typography) and a first wave of components in XD, then mirrored
+                            structure in <strong>InVision DSM</strong> and aligned props with
+                            <strong>Storybook</strong> stories: buttons, inputs, fields, cards,
+                            navigation bars, list items, and banners — each with states, responsive
+                            behaviour, and usage guidelines.</span
+                          >
+                        </div>
+                      </li>
+                      <li>
+                        <span class="pnum">03</span>
+                        <div class="ptxt">
+                          <strong>Systemising product patterns</strong
+                          ><span
+                            >Patterns from multiple internal products — card layouts, navigation,
+                            avatar pickers, multi-step forms — were abstracted into generic,
+                            brand-ready components. Instead of keeping them inside individual files,
+                            I contributed them into the shared Vodacom library.</span
+                          >
+                        </div>
+                      </li>
+                      <li>
+                        <span class="pnum">04</span>
+                        <div class="ptxt">
+                          <strong>Governance and contribution model</strong
+                          ><span
+                            >I worked with another designer to define contribution rules: when to
+                            extend the system vs. when to create a product-specific pattern, how to
+                            name components and variants, and how to request changes. This reduced the
+                            number of ad‑hoc components being created in product files.</span
+                          >
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              <section class="project-panel" id="ds-panel-2">
+                <div class="content-section">
+                  <div class="cs-label">
+                    <p>(03)<br />OUTCOMES</p>
+                  </div>
+                  <div class="cs-body">
+                    <div class="img-full" style="margin-bottom: 40px">
+                      <img
+                        src="../../wp-content/uploads/2025/05/vodacom-ds-toolchain.svg"
+                        alt="Adobe XD, InVision DSM, Storybook toolchain"
+                        loading="lazy"
+                        style="object-fit: contain; background: #f4f3f0; width: 100%; height: auto"
+                      />
+                    </div>
+                    <ul class="del-list">
+                      <li>
+                        <b>Faster product delivery</b> — common patterns for navigation, cards, and
+                        forms meant new flows started from existing components rather than bespoke
+                        layouts.
+                      </li>
+                      <li>
+                        <b>Higher visual consistency</b> — typography, spacing, and colour rules were
+                        enforced via shared tokens, which reduced regressions when new screens were
+                        added by different designers.
+                      </li>
+                      <li>
+                        <b>Clear hand‑off for engineering</b> — DSM entries and Storybook stories lined
+                        up so usage notes, states, and XD redlines mapped into a single reusable UI
+                        layer in code.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              <!-- TOBBY CHATBOT CASE STUDY (TAB 03) -->
+              <section class="project-panel" id="tb-panel-0">
+                <div class="content-section">
+                  <div class="cs-label">
+                    <p>(01)<br />OVERVIEW</p>
+                  </div>
+                  <div class="cs-body">
+                    <p class="text-h2">Tobby — Ask‑IT Chatbot</p>
+                    <p class="text-p p-large" style="margin-top: 16px">
+                      Tobby was Vodacom's internal IT chatbot, designed to replace long email threads
+                      and support calls with a conversational channel for simple, high‑volume
+                      requests. My work focused on the UX for the web and mobile experience:
+                      clarifying Tobby's personality, designing conversation flows, and ensuring
+                      employees always knew what Tobby could and couldn't do.
+                    </p>
+                    <p class="text-p p-large" style="margin-top: 16px">
+                      The challenge was to balance automation with trust: automate password resets
+                      and FAQs, but hand off seamlessly to humans when queries became complex, all
+                      while keeping the experience aligned with Vodacom's brand.
+                    </p>
+                    <div class="img-full" style="margin-top: 32px">
+                      <img
+                        src="../../wp-content/uploads/2025/05/tobby-process-minimal.svg"
+                        alt="Ask-IT process schematic — intents through hand-off"
+                        loading="lazy"
+                        style="object-fit: contain; background: #f4f3f0; width: 100%; max-width: 900px; margin: 0 auto; display: block"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="project-panel" id="tb-panel-1">
+                <div class="content-section">
+                  <div class="cs-label">
+                    <p>(02)<br />PROCESS</p>
+                  </div>
+                  <div class="cs-body">
+                    <ul class="process-list">
+                      <li>
+                        <span class="pnum">01</span>
+                        <div class="ptxt">
+                          <strong>Understanding top query types</strong
+                          ><span
+                            >I worked with IT support to pull the most common ticket categories:
+                            password resets, VPN issues, software access, and general “how do I…?”
+                            questions. These became the backbone of the initial intent set.</span
+                          >
+                        </div>
+                      </li>
+                      <li>
+                        <span class="pnum">02</span>
+                        <div class="ptxt">
+                          <strong>Conversation flow design</strong
+                          ><span
+                            >For each intent, I mapped the “happy path” and edge cases: missing
+                            information, wrong employee details, or unsupported requests. Flows were
+                            translated into simple, guided steps with clear confirmations and
+                            fallbacks.</span
+                          >
+                        </div>
+                      </li>
+                      <li>
+                        <span class="pnum">03</span>
+                        <div class="ptxt">
+                          <strong>Personality and tone</strong
+                          ><span
+                            >I defined Tobby's voice as helpful and straightforward, using short,
+                            actionable messages rather than playful or overly chatty responses. Every
+                            message was written to make the next action obvious.</span
+                          >
+                        </div>
+                      </li>
+                      <li>
+                        <span class="pnum">04</span>
+                        <div class="ptxt">
+                          <strong>Escalation and hand‑off</strong
+                          ><span
+                            >For queries that the bot couldn't resolve, I designed a clear hand‑off
+                            pattern: summarise the conversation, capture any missing details, and
+                            create a ticket for a human agent — so employees never felt they were
+                            “stuck in the bot”.</span
+                          >
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              <section class="project-panel" id="tb-panel-2">
+                <div class="content-section">
+                  <div class="cs-label">
+                    <p>(03)<br />OUTCOMES</p>
+                  </div>
+                  <div class="cs-body">
+                    <p class="text-p p-large" style="margin-bottom: 24px; color: rgba(25, 27, 29, 0.65)">
+                      No pixel-perfect chat UI in this case study — outcomes below reflect the process
+                      work (intents, flows, escalation) rather than illustrative renders.
+                    </p>
+                    <ul class="del-list">
+                      <li>
+                        <b>Reduced basic IT tickets</b> — high‑volume tasks like password resets and
+                        simple access requests were handled by Tobby without needing a human agent.
+                      </li>
+                      <li>
+                        <b>Clearer expectations</b> — employees understood what Tobby could do from
+                        the first interaction, which reduced frustration and helped build trust in
+                        the tool.
+                      </li>
+                      <li>
+                        <b>Reusable flows</b> — the conversation patterns for guidance, confirmations,
+                        and escalation became templates for other internal chatbots and forms.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              <!-- VODACOM BURSARY CASE STUDY (TAB 04) -->
+              <section class="project-panel" id="vb-panel-0">
+                <div class="content-section">
+                  <div class="cs-label">
+                    <p>(01)<br />OVERVIEW</p>
+                  </div>
+                  <div class="cs-body">
+                    <p class="text-h2">Vodacom External Bursary</p>
+                    <p class="text-p p-large" style="margin-top: 16px">
+                      The Vodacom External Bursary programme supports students with tuition and
+                      allowances. My work focused on improving the end‑to‑end experience: discovering
+                      the bursary, understanding eligibility, applying with the right documents, and
+                      receiving updates without needing to chase HR.
+                    </p>
+                    <p class="text-p p-large" style="margin-top: 16px">
+                      A key part of the solution was using Tobby as a guided entry point: instead of
+                      a static PDF, students and employees could ask questions, check eligibility,
+                      and start their application with a conversational assistant that knew the
+                      process step‑by‑step.
+                    </p>
+                    <div class="img-full" style="margin-top: 32px">
+                      <img
+                        src="../../wp-content/uploads/2025/05/bursary-application-process.svg"
+                        alt="Vodacom External Bursary — service steps with Tobby"
+                        loading="lazy"
+                        style="object-fit: contain; background: #f4f3f0; width: 100%; height: auto"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="project-panel" id="vb-panel-1">
+                <div class="content-section">
+                  <div class="cs-label">
+                    <p>(02)<br />PROCESS</p>
+                  </div>
+                  <div class="cs-body">
+                    <ul class="process-list">
+                      <li>
+                        <span class="pnum">01</span>
+                        <div class="ptxt">
+                          <strong>Journey mapping across channels</strong
+                          ><span
+                            >I mapped how applicants currently discovered and applied for the bursary:
+                            website, email, HR referrals, and paper forms. Pain‑points included
+                            unclear timelines, missing documents, and no visibility after
+                            submission.</span
+                          >
+                        </div>
+                      </li>
+                      <li>
+                        <span class="pnum">02</span>
+                        <div class="ptxt">
+                          <strong>Designing a guided application flow</strong
+                          ><span
+                            >I re‑framed the application as a guided journey with three stages:
+                            eligibility check, document preparation, and submission. Each stage
+                            surfaced clear instructions, checklists, and time expectations.</span
+                          >
+                        </div>
+                      </li>
+                      <li>
+                        <span class="pnum">03</span>
+                        <div class="ptxt">
+                          <strong>Integrating Tobby as a helper</strong
+                          ><span
+                            >Tobby could answer questions like “Do I qualify?”, “What documents do I
+                            need?” and “What is my application status?”. I designed the flows so that
+                            Tobby captured structured information and then handed applicants into the
+                            formal form only once they were ready, with the right documents in
+                            hand.</span
+                          >
+                        </div>
+                      </li>
+                      <li>
+                        <span class="pnum">04</span>
+                        <div class="ptxt">
+                          <strong>Status and communication patterns</strong
+                          ><span
+                            >Instead of silent waiting, applicants received clear status messages:
+                            application received, under review, missing information, accepted, or
+                            unsuccessful. These were surfaced via email and, where appropriate, via
+                            Tobby.</span
+                          >
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              <section class="project-panel" id="vb-panel-2">
+                <div class="content-section">
+                  <div class="cs-label">
+                    <p>(03)<br />OUTCOMES</p>
+                  </div>
+                  <div class="cs-body">
+                    <p class="text-p p-large" style="margin-bottom: 28px; color: rgba(25, 27, 29, 0.65)">
+                      The journey diagram in the overview uses Vodacom red for emphasis only (same
+                      treatment as internal slide decks) — it is not a screenshot of production UI.
+                    </p>
+                    <ul class="del-list">
+                      <li>
+                        <b>Fewer incomplete applications</b> — by turning the checklist into a guided
+                        flow (with Tobby as a helper), more applicants submitted complete
+                        applications on the first attempt.
+                      </li>
+                      <li>
+                        <b>Higher transparency</b> — clear statuses and notifications reduced the
+                        number of “just checking in” emails to the bursary team.
+                      </li>
+                      <li>
+                        <b>Reusable scholarship pattern</b> — the bursary journey (discovery,
+                        eligibility, guided completion, and status updates) became a pattern that
+                        could be reused for future programmes.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+            </div>
+            <!-- /content -->
+          </div>
+          <!-- /project-page -->
+        </main>
+        <!-- #primary -->
+
+        <footer id="colophon" class="site-footer footer--overlay">
+          <div
+            data-elementor-type="pe-footer"
+            data-elementor-id="6175"
+            class="elementor elementor-6175"
+            data-elementor-post-type="elementor_library"
+          >
+            <div
+              class="elementor-element elementor-element-b6ab7a8 e-con-full bg--color curved_true e-flex convert--none no e-con e-parent"
+              data-id="b6ab7a8"
+              data-element_type="container"
+            >
+              <div
+                class="elementor-element elementor-element-610a2a7 e-con-full e-flex convert--none bg--none no e-con e-child"
+                data-id="610a2a7"
+                data-element_type="container"
+              >
+                <div
+                  class="elementor-element elementor-element-d7b116b e-con-full e-flex convert--none bg--none no e-con e-child"
+                  data-id="d7b116b"
+                  data-element_type="container"
+                >
+                  <div
+                    class="elementor-element elementor-element-72010b7 elementor-widget elementor-widget-image"
+                    data-id="72010b7"
+                    data-element_type="widget"
+                    data-widget_type="image.default"
+                  >
+                    <div class="elementor-widget-container">
+                      <img
+                        width="100"
+                        height="100"
+                        src="../../wp-content/uploads/2025/05/Lulazel.png"
+                        class="attachment-large size-large wp-image-11902"
+                        alt=""
+                        srcset=""
+                        sizes="(max-width: 786px) 100vw, 786px"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="elementor-element elementor-element-f95cad0 e-con-full e-flex convert--none bg--none no e-con e-child"
+                  data-id="f95cad0"
+                  data-element_type="container"
+                ></div>
+                <div
+                  class="elementor-element elementor-element-277b38d e-con-full footer-email elementor-hidden-mobile e-flex convert--none bg--none no e-con e-child"
+                  data-id="277b38d"
+                  data-element_type="container"
+                >
+                  <div
+                    class="wd--always--show elementor-element elementor-element-965f9fc elementor-widget elementor-widget-pebutton"
+                    data-id="965f9fc"
+                    data-element_type="widget"
+                    data-widget_type="pebutton.default"
+                  >
+                    <div class="elementor-widget-container">
+                      <div
+                        class="pe--button false pb--underlined false pb--icon icon__right pb--normal link"
+                      >
+                        <div class="pe--button--wrapper">
+                          <a href="mailto:lulamilem@outlook.com" rel="nofollow">
+                            <span class="pb__main"
+                              >lulamilem@outlook.com<i
+                                aria-hidden="true"
+                                class="material-icons md-arrow_outward"
+                                data-md-icon="arrow_outward"
+                              ></i
+                            ></span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="elementor-element elementor-element-d205096 e-con-full e-flex convert--none bg--none no e-con e-child"
+                data-id="d205096"
+                data-element_type="container"
+              >
+                <div
+                  class="elementor-element elementor-element-30bc0c0 e-con-full e-flex convert--none bg--none no e-con e-child"
+                  data-id="30bc0c0"
+                  data-element_type="container"
+                >
+                  <div
+                    class="elementor-element elementor-element-7a4daaf elementor-widget elementor-widget-petextwrapper"
+                    data-id="7a4daaf"
+                    data-element_type="widget"
+                    data-widget_type="petextwrapper.default"
+                  >
+                    <div class="elementor-widget-container">
+                      <div class="text-wrapper">
+                        <p class="text-p no-margin">
+                          Not sure where to start? <br />
+                          That's my favourite place to begin.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="wd--show--on--top elementor-element elementor-element-2407410 elementor-widget elementor-widget-pebutton"
+                    data-id="2407410"
+                    data-element_type="widget"
+                    data-widget_type="pebutton.default"
+                  >
+                    <div class="elementor-widget-container">
+                      <div
+                        class="pe--button pb--background false pb--marquee pb--icon icon__right pb--normal link"
+                      >
+                        <div class="pe--button--wrapper">
+                          <a href="../../contact/index.html" rel="nofollow">
+                            <span class="pb__main"
+                              >Start a project<i
+                                aria-hidden="true"
+                                class="material-icons md-arrow_outward"
+                                data-md-icon="arrow_outward"
+                              ></i>
+                              <span class="pb__hover"
+                                >Start a project<i
+                                  aria-hidden="true"
+                                  class="material-icons md-arrow_outward"
+                                  data-md-icon="arrow_outward"
+                                ></i
+                              ></span>
+                            </span>
+                            <div class="pb--marquee--wrap right-to-left" aria-hidden="true">
+                              <div class="pb--marquee__inner">
+                                <span
+                                  >Start a project<i
+                                    aria-hidden="true"
+                                    class="material-icons md-arrow_outward"
+                                    data-md-icon="arrow_outward"
+                                  ></i
+                                ></span>
+                                <span
+                                  >Start a project<i
+                                    aria-hidden="true"
+                                    class="material-icons md-arrow_outward"
+                                    data-md-icon="arrow_outward"
+                                  ></i
+                                ></span>
+                                <span
+                                  >Start a project<i
+                                    aria-hidden="true"
+                                    class="material-icons md-arrow_outward"
+                                    data-md-icon="arrow_outward"
+                                  ></i
+                                ></span>
+                                <span
+                                  >Start a project<i
+                                    aria-hidden="true"
+                                    class="material-icons md-arrow_outward"
+                                    data-md-icon="arrow_outward"
+                                  ></i
+                                ></span>
+                              </div>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="elementor-element elementor-element-059eb9a e-con-full e-flex convert--none bg--none no e-con e-child"
+                  data-id="059eb9a"
+                  data-element_type="container"
+                >
+                  <div
+                    class="elementor-element elementor-element-575308c e-con-full e-flex convert--none bg--none no e-con e-child"
+                    data-id="575308c"
+                    data-element_type="container"
+                  >
+                    <div class="elementor-widget-container">
+                      <div class="text-wrapper">
+                        <p class="text-p p-large no-margin">Services</p>
+                      </div>
+                    </div>
+                    <div
+                      class="wd--always--show elementor-element elementor-element-5ffd529 elementor-widget elementor-widget-penavmenu"
+                    >
+                      <div class="elementor-widget-container">
+                        <nav class="main-navigation st--only">
+                          <ul class="menu main-menu menu--vertical">
+                            <li><a href="../../services/index.html#strategise">Strategise</a></li>
+                            <li><a href="../../services/index.html#design">Design</a></li>
+                            <li><a href="../../services/index.html#build">Build</a></li>
+                            <li><a href="../../services/index.html#scale">Scale</a></li>
+                            <li><a href="../../services/index.html#market">Market</a></li>
+                          </ul>
+                        </nav>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="elementor-element elementor-element-7554f93 e-con-full e-flex convert--none bg--none no e-con e-child"
+                    data-id="7554f93"
+                    data-element_type="container"
+                  >
+                    <div class="elementor-widget-container">
+                      <div class="text-wrapper">
+                        <p class="text-p p-large no-margin">Explore</p>
+                      </div>
+                    </div>
+                    <div
+                      class="wd--always--show elementor-element elementor-element-a126913 elementor-widget elementor-widget-penavmenu"
+                    >
+                      <div class="elementor-widget-container">
+                        <nav class="main-navigation st--only">
+                          <ul class="menu main-menu menu--vertical">
+                            <li><a href="../../services/index.html">Services</a></li>
+                            <li><a href="../../work/index.html">Work</a></li>
+                            <li><a href="../../culture/index.html">Culture</a></li>
+                            <li><a href="../../contact/index.html">Contact</a></li>
+                          </ul>
+                        </nav>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="elementor-element elementor-element-624022d e-con-full e-flex convert--none bg--none no e-con e-child"
+                    data-id="624022d"
+                    data-element_type="container"
+                  >
+                    <div class="elementor-widget-container">
+                      <div class="text-wrapper">
+                        <p class="text-p p-large no-margin">Let's Connect</p>
+                      </div>
+                    </div>
+                    <div
+                      class="wd--always--show elementor-element elementor-element-44d2dfe elementor-widget elementor-widget-penavmenu"
+                    >
+                      <div class="elementor-widget-container">
+                        <nav class="main-navigation st--only">
+                          <ul class="menu main-menu menu--vertical">
+                            <li><a href="mailto:lulamilem@outlook.com">Email</a></li>
+                            <li>
+                              <a href="https://wa.me/27837195064" target="_blank" rel="noopener"
+                                >WhatsApp</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="https://www.linkedin.com/in/lulamile-mkhungela/"
+                                target="_blank"
+                                rel="noopener"
+                                >LinkedIn</a
+                              >
+                            </li>
+                          </ul>
+                        </nav>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="elementor-element elementor-element-8c48fb9 e-con-full e-flex convert--none bg--none no e-con e-child"
+                data-id="8c48fb9"
+                data-element_type="container"
+              >
+                <div
+                  class="elementor-element elementor-element-69756f9 e-con-full e-flex convert--none bg--none no e-con e-child"
+                  data-id="69756f9"
+                  data-element_type="container"
+                >
+                  <div class="elementor-widget-container">
+                    <div class="text-wrapper">
+                      <p class="text-p p-large no-margin">
+                        © 2026 Lulamile Mkhungela. All rights reserved.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="elementor-element elementor-element-fab68c9 e-con-full e-flex convert--none bg--none no e-con e-child"
+                  data-id="fab68c9"
+                  data-element_type="container"
+                >
+                  <div
+                    class="elementor-element elementor-element-01bd519 elementor-widget elementor-widget-peicon"
+                  >
+                    <div class="elementor-widget-container">
+                      <div
+                        class="pe--icon has-bg has-hover"
+                        id="scrollTopBtn"
+                        style="cursor: pointer"
+                      >
+                        <div
+                          class="pe--icon--wrap icon--motion me--slide-up"
+                          data-duration="1"
+                          data-delay="0"
+                        >
+                          <i
+                            aria-hidden="true"
+                            class="material-icons md-arrow_upward"
+                            data-md-icon="arrow_upward"
+                          ></i>
+                        </div>
+                        <span class="pe--icon--bg"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <!-- #colophon -->
+      </div>
+      <!-- /#cv -->
+    </div>
+    <!-- #page -->
+
+    <link
+      rel="stylesheet"
+      id="elementor-post-5647-css"
+      href="../../wp-content/uploads/elementor/css/post-56471338.css?ver=1762935373"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="elementor-post-5689-css"
+      href="../../wp-content/uploads/elementor/css/post-56891338.css?ver=1762935373"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="elementor-post-6175-css"
+      href="../../wp-content/uploads/elementor/css/post-61750286.css?ver=1769156334"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="elementor-icons-material-design-icons-sharp-css"
+      href="../../wp-content/plugins/material-design-icons-for-elementor/assets/material-icons/css/material-icons-sharpcc1a.css?ver=1.5.1"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="elementor-icons-material-design-icons-outlined-css"
+      href="../../wp-content/plugins/material-design-icons-for-elementor/assets/material-icons/css/material-icons-outlinedcc1a.css?ver=1.5.1"
+      media="all"
+    />
+    <script
+      src="../../wp-content/themes/leksa/js/jquery.validate.min6c2d.js?ver=6.8.2"
+      id="jquery-validate-js"
+    ></script>
+    <script src="../../wp-content/themes/leksa/js/gsap6c2d.js?ver=6.8.2" id="gsap-js"></script>
+    <script
+      src="../../wp-content/themes/leksa/js/barba.min6c2d.js?ver=6.8.2"
+      id="barba-js"
+    ></script>
+    <script
+      src="../../wp-content/themes/leksa/js/plugins6c2d.js?ver=6.8.2"
+      id="plugins-js"
+    ></script>
+    <script
+      src="../../wp-content/themes/leksa/js/lenis.min6c2d.js?ver=6.8.2"
+      id="lenis-js"
+    ></script>
+    <script
+      src="../../wp-content/themes/leksa/js/scripts6c2d.js?ver=6.8.2"
+      id="scripts-js"
+    ></script>
+    <script
+      src="../../wp-content/plugins/pe-core/assets/js/pe-text-animations6c2d.js?ver=6.8.2"
+      id="pe-text-ans-js"
+    ></script>
+    <script
+      src="../../wp-content/plugins/pe-core/assets/js/pe-general-animations6c2d.js?ver=6.8.2"
+      id="pe-general-ans-js"
+    ></script>
+    <script
+      src="../../wp-content/plugins/pe-core/assets/js/pe-image-animations6c2d.js?ver=6.8.2"
+      id="pe-image-ans-js"
+    ></script>
+    <script
+      src="../../wp-content/plugins/pe-core/assets/js/pe-video-player6c2d.js?ver=6.8.2"
+      id="pe-video-player-js"
+    ></script>
+    <script
+      src="../../wp-content/plugins/pe-core/assets/js/pe-bulge-effect6c2d.js?ver=6.8.2"
+      id="pe-bulge-effect-js"
+    ></script>
+    <script
+      src="../../wp-content/themes/leksa-child/js/google-maps-fallback.js"
+      id="google-maps-api-js"
+    ></script>
+    <script
+      src="../../wp-content/plugins/pe-core/assets/js/widget-scripts6c2d.js?ver=6.8.2"
+      id="widget-scripts-js"
+    ></script>
+    <script
+      src="../../wp-content/themes/leksa-child/scriptscfa9.js?ver=1.1.2"
+      id="custom-scripts-js"
+    ></script>
+
+    <script>
+      (function () {
+        'use strict';
+
+        var cv = document.getElementById('cv');
+        var tabShell = document.getElementById('tab-shell');
+        var buttons = Array.from(document.querySelectorAll('#tab-shell .tab-btn'));
+        var heroPanels = Array.from(document.querySelectorAll('.hero-panel'));
+        var panels = Array.from(document.querySelectorAll('.project-panel'));
+        var engageOnly = Array.from(document.querySelectorAll('.vd-engage-only'));
+        var docTitle = document.querySelector('title');
+        var metaDesc = document.querySelector('meta[name="description"]');
+
+        function syncHeights() {
+          var hdr = document.getElementById('masthead');
+          var hh = hdr ? hdr.getBoundingClientRect().height : 68;
+          var th = tabShell ? tabShell.getBoundingClientRect().height : 57;
+          if (tabShell) tabShell.style.setProperty('top', hh + 'px', 'important');
+          if (cv) cv.style.setProperty('top', hh + th + 'px', 'important');
+        }
+        syncHeights();
+        window.addEventListener('resize', syncHeights);
+        window.addEventListener('load', syncHeights);
+
+        function setActiveTab(idx) {
+          buttons.forEach(function (b, i) {
+            b.classList.toggle('active', i === idx);
+          });
+        }
+
+        // Tab → which panels to show
+        var tabConfig = [
+          {
+            ids: ['panel-0', 'panel-1', 'panel-2', 'panel-3'],
+            hero: 'hero-engage',
+            title: "Vodacom Engage: Employee Engagement App Redesign — Case Study",
+            desc:
+              "How I redesigned Vodacom's internal employee app from a static icon-grid into a personalised, card-based experience — improving navigation, feature discovery, and employee engagement.",
+          },
+          {
+            ids: ['ds-panel-0', 'ds-panel-1', 'ds-panel-2'],
+            hero: 'hero-design-system',
+            title: 'Vodacom Design System — Case Study',
+            desc:
+              'How I helped formalise Vodacom’s internal design system — Adobe XD libraries, InVision DSM for tokens and governance, and Storybook as the engineering-facing reference.',
+          },
+          {
+            ids: ['tb-panel-0', 'tb-panel-1', 'tb-panel-2'],
+            hero: 'hero-tobby',
+            title: 'Tobby Ask‑IT Chatbot — Case Study',
+            desc:
+              'Designing the UX for Vodacom’s internal IT chatbot — clarifying scope, conversation flows, and escalation patterns to reduce support load and improve employee experience.',
+          },
+          {
+            ids: ['vb-panel-0', 'vb-panel-1', 'vb-panel-2'],
+            hero: 'hero-bursary',
+            title: 'Vodacom External Bursary — Case Study',
+            desc:
+              'Redesigning the Vodacom External Bursary journey — from discovery through guided application, Tobby-assisted support, and clear status updates for applicants.',
+          },
+        ];
+
+        function showForTab(idx) {
+          var config = tabConfig[idx] || { ids: [] };
+          var idsToShow = config.ids || [];
+          var heroId = config.hero || null;
+
+          heroPanels.forEach(function (h) {
+            if (!h) return;
+            var shouldShowHero = heroId && h.id === heroId;
+            h.classList.toggle('is-tab-hidden', !shouldShowHero);
+          });
+          panels.forEach(function (p) {
+            if (!p) return;
+            var shouldShow = idsToShow.indexOf(p.id) !== -1;
+            p.classList.toggle('is-tab-hidden', !shouldShow);
+          });
+          engageOnly.forEach(function (wrap) {
+            if (!wrap) return;
+            wrap.classList.toggle('is-tab-hidden', idx !== 0);
+          });
+          if (docTitle && config.title) {
+            docTitle.textContent = config.title;
+          }
+          if (metaDesc && config.desc) {
+            metaDesc.setAttribute('content', config.desc);
+          }
+          if (cv) {
+            cv.scrollTop = 0;
+          }
+        }
+
+        // initial state
+        showForTab(0);
+        setActiveTab(0);
+
+        buttons.forEach(function (btn, i) {
+          btn.addEventListener('click', function () {
+            showForTab(i);
+            setActiveTab(i);
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
