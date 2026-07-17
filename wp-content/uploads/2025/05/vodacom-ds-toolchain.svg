@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="t1">
+  <title id="t1">Design toolkit chain: Adobe XD, InVision DSM, Storybook</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff5f5"/>
+      <stop offset="100%" stop-color="#f3f4f8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="420" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="8" fill="#e60000"/>
+  <circle cx="1075" cy="60" r="36" fill="#e60000" opacity="0.12"/>
+  <text x="600" y="46" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="700" letter-spacing="0.08em" fill="#191b1d">VODACOM - SYSTEM DELIVERY (TOOLCHAIN)</text>
+  <text x="600" y="74" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#585c66">Adobe XD -> InVision DSM -> Storybook</text>
+  <path d="M 290 210 L 430 210" stroke="#e60000" stroke-width="2.5"/>
+  <polygon points="430,210 415,202 415,218" fill="#e60000"/>
+  <path d="M 570 210 L 710 210" stroke="#e60000" stroke-width="2.5"/>
+  <polygon points="710,210 695,202 695,218" fill="#e60000"/>
+  <path d="M 850 210 L 990 210" stroke="#e60000" stroke-width="2.5"/>
+  <polygon points="990,210 975,202 975,218" fill="#e60000"/>
+  <rect x="80" y="130" width="210" height="170" rx="10" fill="#ffffff" stroke="#f0c9c9"/>
+  <rect x="80" y="130" width="210" height="40" rx="10" fill="#e60000"/>
+  <text x="185" y="156" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="700" fill="#fff">ADOBE XD</text>
+  <rect x="102" y="186" width="34" height="22" rx="4" fill="#ffe8e8"/>
+  <text x="100" y="224" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#191b1d">- Layouts and specs</text>
+  <text x="100" y="246" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#191b1d">- Component structure</text>
+  <text x="100" y="268" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#191b1d">- Redlines for hand-off</text>
+  <rect x="450" y="130" width="210" height="170" rx="10" fill="#ffffff" stroke="#f0c9c9"/>
+  <rect x="450" y="130" width="210" height="40" rx="10" fill="#e60000"/>
+  <text x="555" y="156" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="700" fill="#fff">INVISION DSM</text>
+  <circle cx="474" cy="198" r="10" fill="#ffe8e8"/>
+  <text x="470" y="224" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#191b1d">- Tokens (colour, type)</text>
+  <text x="470" y="246" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#191b1d">- Component library</text>
+  <text x="470" y="268" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#191b1d">- Usage and governance</text>
+  <rect x="820" y="130" width="300" height="170" rx="10" fill="#ffffff" stroke="#f0c9c9"/>
+  <rect x="820" y="130" width="300" height="40" rx="10" fill="#e60000"/>
+  <text x="970" y="156" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="700" fill="#fff">STORYBOOK</text>
+  <rect x="840" y="186" width="28" height="20" rx="3" fill="#ffe8e8"/>
+  <text x="840" y="224" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#191b1d">- Live UI states for dev and QA</text>
+  <text x="840" y="246" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#191b1d">- Docs next to implementations</text>
+  <text x="840" y="268" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#191b1d">- Single reference in code</text>
+  <text x="600" y="372" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#6c7078">Vodacom-inspired red accents for case-study communication only.</text>
+</svg>

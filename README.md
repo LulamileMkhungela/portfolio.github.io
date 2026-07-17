@@ -1,3 +1,1 @@
-# LulaSync
-
-Personal site and portfolio case studies.
+# portfolio.github.io

@@ -1,9 +1,0 @@
-# Case study path aliases (old nested URLs → root)
-/case-studies/vodacom-engage.html    /vodacom-engage.html    301
-/case-studies/angular-design-system.html /angular-design-system.html 301
-/case-studies/absa-hackathon.html    /absa-hackathon.html    301
-/case-studies/stance-insurance.html  /stance-insurance.html  301
-/case-studies/articles-hackathons.html /articles-hackathons.html 301
-/case-studies/tobby-bursary.html     /tobby-bursary.html     301
-/case-studies/process.html           /process.html           301
-/case-studies/*                      /showcase.html#portfolio 302
