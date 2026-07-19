@@ -3871,7 +3871,10 @@
       background: linear-gradient(135deg, #fff7e8, #f0ebe0 60%, #ead9b9);
       color: #9b6200;
     }
-  </style>
+  
+    html.ls-is-scrolling .ambient-layer, html.ls-is-scrolling .hero, html.ls-is-scrolling #products, html.ls-is-scrolling .live-builds-section, html.ls-is-scrolling .innov-section, html.ls-is-scrolling .biztype-section, html.ls-is-scrolling .cta-section { animation-play-state:paused !important; }
+
+</style>
 </head>
 
 <body>
@@ -3909,7 +3912,7 @@
     <div class="nav-links" role="menubar">
       <a href="./index.html" class="nav-link active">Home</a>
       <a href="./showcase.html" class="nav-link">Showcase</a>
-      <a href="./pricing.html" class="nav-link">Pricing</a>
+      <a href="./services.html" class="nav-link">Services</a>
       <a href="./about.html" class="nav-link">About</a>
       <a href="./contact.html" class="nav-link">Contact</a>
     </div>
@@ -3928,7 +3931,7 @@
     <div style="text-align:center">
       <a href="./index.html" class="mobile-nav-link active">Home</a>
       <a href="./showcase.html" class="mobile-nav-link">Showcase</a>
-      <a href="./pricing.html" class="mobile-nav-link">Pricing</a>
+      <a href="./services.html" class="mobile-nav-link">Services</a>
       <a href="./about.html" class="mobile-nav-link">About</a>
       <a href="./contact.html" class="mobile-nav-link">Contact</a>
     </div>
@@ -3959,7 +3962,7 @@
           <div class="kente-strip short"></div>
           <p class="hero-desc">I design and build websites, AI voice agents, automation, content dashboards, custom
             software and enterprise
-            systems for South African businesses of every size. Priced in ZAR.</p>
+            systems for South African businesses of every size..</p>
           <div class="hero-btns">
             <a href="./contact.html" class="btn-fire">Get a Quote →</a>
             <a href="./showcase.html" class="btn-outline" style="color:var(--gold);border-color:var(--gold)">See Live
@@ -4873,8 +4876,7 @@
       <p class="section-eyebrow">// Live Builds</p>
       <h2 class="section-h2" style="margin-bottom:12px">REAL APPS.<br /><span style="color:var(--gold)">LIVE NOW.</span>
       </h2>
-      <p style="font-size:.9rem;color:var(--dim);line-height:1.7;max-width:520px;margin-bottom:40px">Every app below is
-        live and running for a real business. Click to see what I can build for you.</p>
+      <p style="font-size:.9rem;color:var(--dim);line-height:1.7;max-width:520px;margin-bottom:40px">Selected live apps and current builds. Open a live project to see what I can build for you.</p>
       <div class="live-builds-grid">
 
         <a href="https://king-cutter-s-royal-web.vercel.app/" target="_blank" rel="noopener noreferrer"
@@ -4888,16 +4890,15 @@
           <div class="live-build-badge">Live</div>
         </a>
 
-        <a href="https://foodiezone-eight.vercel.app/" target="_blank" rel="noopener noreferrer"
-          class="live-build-card">
+        <div class="live-build-card">
           <div class="live-build-num">02 · Food Delivery · Johannesburg</div>
           <div class="live-build-emoji">🍔</div>
           <div class="live-build-name">Foodiezone</div>
           <div class="live-build-type">Full Menu · Online Ordering · Delivery Tracking</div>
           <div class="live-build-desc">A complete food ordering platform with live delivery tracking, full menu
             management, and customer accounts.</div>
-          <div class="live-build-badge">Live</div>
-        </a>
+          <div class="live-build-badge" style="background:rgba(240,165,0,.1);border-color:rgba(240,165,0,.3);color:var(--gold)">In Progress</div>
+        </div>
 
         <a href="https://wandies.vercel.app/" target="_blank" rel="noopener noreferrer" class="live-build-card">
           <div class="live-build-num">03 · Restaurant · Soweto</div>
@@ -4940,6 +4941,7 @@
         </a>
 
       </div>
+      <div style="display:flex;justify-content:center;margin-top:26px"><a class="btn-gold-outline" href="./showcase.html#realapps">View more →</a></div>
     </section>
 
     <div class="kente-strip"></div>
@@ -5084,43 +5086,6 @@
         </div>
       </div>
 
-      <div class="case-study-proof" aria-label="Selected case studies">
-        <div class="case-study-proof-head">
-          <div>
-            <p class="section-eyebrow" style="margin-bottom:8px">// Selected product work</p>
-            <h3>Apps are one part of the craft.</h3>
-            <p>See the UX/UI, product strategy, design-system and frontend work behind the thinking.</p>
-          </div>
-          <a class="btn-gold-outline" href="./showcase.html#portfolio">View case studies →</a>
-        </div>
-        <div class="case-study-slider" aria-label="Selected case studies slideshow">
-          <button type="button" class="case-slider-arrow" id="casePrev" aria-label="Previous case study">←</button>
-          <div class="case-study-slider-window">
-            <div class="case-study-slider-track" id="caseStudyTrack">
-              <a class="case-study-proof-card" href="./vodacom-engage.html"><img
-                  src="./assets/portfolio/engage-cover.png" alt="Vodacom Engage case study" loading="lazy"><span>Vodacom
-                  Engage</span><small>Enterprise UX · Native apps</small></a>
-              <a class="case-study-proof-card" href="./angular-design-system.html"><img
-                  src="./assets/portfolio/design-ops.png" alt="DesignOps to Angular case study"
-                  loading="lazy"><span>DesignOps → Angular</span><small>Design systems · Frontend</small></a>
-              <a class="case-study-proof-card" href="./stance-insurance.html"><img
-                  src="./assets/portfolio/stance-cover.png" alt="Stance Insurance case study"
-                  loading="lazy"><span>Stance Insurance</span><small>Product strategy · UX/UI</small></a>
-              <a class="case-study-proof-card" href="./absa-hackathon.html"><img src="./assets/portfolio/cover.webp"
-                  alt="ABSA inclusive UX case study" loading="lazy"><span>ABSA Hackathon</span><small>Inclusive UX ·
-                  Service design</small></a>
-            </div>
-          </div>
-          <button type="button" class="case-slider-arrow" id="caseNext" aria-label="Next case study">→</button>
-        </div>
-        <div class="case-slider-dots" id="caseSliderDots" aria-label="Choose a case study">
-          <button type="button" class="active" data-case-slide="0" aria-label="Show Vodacom Engage"></button><button
-            type="button" data-case-slide="1" aria-label="Show DesignOps"></button><button type="button"
-            data-case-slide="2" aria-label="Show Stance Insurance"></button><button type="button" data-case-slide="3"
-            aria-label="Show ABSA Hackathon"></button>
-        </div>
-      </div>
-      </div>
     </section>
 
     <div class="kente-strip"></div>
@@ -5134,7 +5099,7 @@
         <h2 class="cta-h2">Your business deserves<br /><span style="color:var(--gold)">a proper digital
             foundation.</span></h2>
         <p class="cta-desc">Whether you need a website, an AI agent, a custom app, or a full enterprise system — I
-          scope it, build it, and support it. Priced in ZAR, no contracts.</p>
+          scope it, build it, and support it. No contracts.</p>
         <div class="cta-btns">
           <a href="./contact.html" class="btn-fire">Get a Free Quote →</a>
           <a href="./showcase.html" class="btn-gold-outline">See Live Apps →</a>
@@ -5154,26 +5119,24 @@
               style="color:var(--gold)">Sync</span></span></a>
         <p class="footer-desc">I design and build websites, AI agents, custom software, automation, and enterprise
           systems for
-          South African businesses — from startups to large enterprises. Priced in ZAR.</p>
+          South African businesses — from startups to large enterprises..</p>
         <a href="./contact.html" class="btn-wa"
           style="font-size:.78rem;padding:9px 18px;background:var(--gold);color:#0A0705">Contact →</a>
       </div>
       <div>
-        <p class="footer-col-title">Products</p>
+        <p class="footer-col-title">Explore</p>
         <div class="footer-links">
           <a href="./showcase.html" class="footer-link">App showcase</a>
           <a href="./showcase.html#portfolio" class="footer-link">Case studies</a>
-          <a href="./pricing.html" class="footer-link">Pricing &amp; catalogue</a>
-          <a href="./index.html#products" class="footer-link">Solutions (home)</a>
+          <a href="./services.html" class="footer-link">Services</a>
+          <a href="./services.html" class="footer-link">What I do</a>
         </div>
       </div>
       <div>
-        <p class="footer-col-title">Company</p>
+        <p class="footer-col-title">Discover</p>
         <div class="footer-links">
           <a href="./about.html" class="footer-link">About Me</a>
           <a href="./contact.html" class="footer-link">Contact</a>
-          <a href="./terms.html" class="footer-link">Terms and Conditions</a>
-          <a href="./privacy.html" class="footer-link">Privacy Policy</a>
           <a href="https://www.linkedin.com/in/lulamile-mkhungela/" class="footer-link" target="_blank"
             rel="noopener noreferrer">LinkedIn</a>
 
@@ -5255,7 +5218,7 @@
         icon: '🌐', accent: 'var(--gold)', badge: 'Website · How It Works',
         title: 'Website', sub: 'Single Page PWA · Full Site · Business Online',
         prob: 'You don\'t have a professional online presence. Customers can\'t find you, and you\'re losing business to competitors who have websites.',
-        sol: 'A fast, mobile-first website (PWA) that looks great, loads on any network, works offline, and is built and hosted for you — priced in ZAR.',
+        sol: 'A fast, mobile-first website (PWA) that looks great, loads on any network, works offline, and is built and hosted for you — .',
         steps: ['You send me your logo, colours, and a brief about your business via WhatsApp', 'I design and build your site — usually delivered within 5–7 business days', 'You review, request changes, and approve before it goes live', 'I host and maintain it on an ongoing monthly plan — you just run your business'],
         gets: ['Professional mobile-first design', 'Offline-capable PWA (installable)', 'WhatsApp contact button built-in', 'Google SEO ready', 'Push notifications to clients', 'You control your content'],
         price: 'from R1,500 setup + R300/mo',
