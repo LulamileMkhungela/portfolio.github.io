@@ -3871,10 +3871,67 @@
       background: linear-gradient(135deg, #fff7e8, #f0ebe0 60%, #ead9b9);
       color: #9b6200;
     }
-  
-    html.ls-is-scrolling .ambient-layer, html.ls-is-scrolling .hero, html.ls-is-scrolling #products, html.ls-is-scrolling .live-builds-section, html.ls-is-scrolling .innov-section, html.ls-is-scrolling .biztype-section, html.ls-is-scrolling .cta-section { animation-play-state:paused !important; }
 
-</style>
+    html.ls-is-scrolling .ambient-layer,
+    html.ls-is-scrolling .hero,
+    html.ls-is-scrolling #products,
+    html.ls-is-scrolling .live-builds-section,
+    html.ls-is-scrolling .innov-section,
+    html.ls-is-scrolling .biztype-section,
+    html.ls-is-scrolling .cta-section {
+      animation-play-state: paused !important;
+    }
+
+
+    /* Consistent card alignment: content starts on the same left edge. */
+    .live-builds-grid,
+    .innov-grid,
+    .who-grid,
+    .case-study-slider-track {
+      align-items: stretch;
+    }
+
+    .live-build-card,
+    .innov-card,
+    .who-card,
+    .case-study-proof-card {
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    .live-build-card {
+      min-height: 250px;
+    }
+
+    .live-build-card .live-build-num,
+    .live-build-card .live-build-name,
+    .live-build-card .live-build-type,
+    .live-build-card .live-build-desc {
+      width: 100%;
+      text-align: left;
+    }
+
+    .live-build-card .live-build-desc {
+      flex: 1;
+    }
+
+    .live-build-card .live-build-badge {
+      margin-top: auto;
+      align-self: flex-start;
+    }
+
+    .live-build-card[style*="align-items:center"] {
+      align-items: flex-start !important;
+      text-align: left !important;
+    }
+
+    .case-study-proof-card span,
+    .case-study-proof-card small {
+      text-align: left;
+      align-self: flex-start;
+      width: 100%;
+    }
+  </style>
 </head>
 
 <body>
@@ -3947,12 +4004,12 @@
         <div class="hero-text">
           <div class="studio-status" aria-label="Studio availability">
             <span class="studio-dot" aria-hidden="true"></span>
-            <span class="studio-line"><strong>Studio open</strong> · Johannesburg, ZA</span>
+            <span class="studio-line"><strong>I LulaSync</strong> · in Johannesburg, ZA</span>
             <span class="studio-sep">·</span>
             <span class="studio-line" id="studioTime">12:40 SAST · reply within ~30 min</span>
             <span class="studio-pill">Taking new projects</span>
           </div>
-          <p class="hero-eyebrow">// LulaSync · Digital Product Studio</p>
+          <p class="hero-eyebrow">// LulaSync · Your Digital Product Partner</p>
           <h1 class="hero-h1 display">
             <span style="color:var(--paper);display:block">I BUILD</span>
             <span style="color:var(--paper);display:block">THE TOOLS.</span>
@@ -4876,7 +4933,8 @@
       <p class="section-eyebrow">// Live Builds</p>
       <h2 class="section-h2" style="margin-bottom:12px">REAL APPS.<br /><span style="color:var(--gold)">LIVE NOW.</span>
       </h2>
-      <p style="font-size:.9rem;color:var(--dim);line-height:1.7;max-width:520px;margin-bottom:40px">Selected live apps and current builds. Open a live project to see what I can build for you.</p>
+      <p style="font-size:.9rem;color:var(--dim);line-height:1.7;max-width:520px;margin-bottom:40px">Selected live apps
+        and current builds. Open a live project to see what I can build for you.</p>
       <div class="live-builds-grid">
 
         <a href="https://king-cutter-s-royal-web.vercel.app/" target="_blank" rel="noopener noreferrer"
@@ -4897,7 +4955,8 @@
           <div class="live-build-type">Full Menu · Online Ordering · Delivery Tracking</div>
           <div class="live-build-desc">A complete food ordering platform with live delivery tracking, full menu
             management, and customer accounts.</div>
-          <div class="live-build-badge" style="background:rgba(240,165,0,.1);border-color:rgba(240,165,0,.3);color:var(--gold)">In Progress</div>
+          <div class="live-build-badge"
+            style="background:rgba(240,165,0,.1);border-color:rgba(240,165,0,.3);color:var(--gold)">In Progress</div>
         </div>
 
         <a href="https://wandies.vercel.app/" target="_blank" rel="noopener noreferrer" class="live-build-card">
@@ -4941,7 +5000,8 @@
         </a>
 
       </div>
-      <div style="display:flex;justify-content:center;margin-top:26px"><a class="btn-gold-outline" href="./showcase.html#realapps">View more →</a></div>
+      <div style="display:flex;justify-content:center;margin-top:26px"><a class="btn-gold-outline"
+          href="./showcase.html#realapps">View more →</a></div>
     </section>
 
     <div class="kente-strip"></div>
@@ -5554,6 +5614,7 @@
     })();
   </script>
 
+  <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'a1e3b6f08f307412',t:'MTc4NDU2ODg0NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
 </body>
 
 </html>

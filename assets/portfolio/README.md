@@ -21,10 +21,10 @@ All site images and video are referenced from this folder:
 
 ## Articles / hackathon collection filenames
 
-- `fnbapph.jpg` — AI inventory / AI + AR native app concept
+- `fnbapph.png` — AI inventory / AI + AR native app concept
 - `winning-gif.gif` — GBV hackathon project
-- `farmers-funding.jpg` — Farmers and cooperatives funding platform
-- `ux-resources.jpg` — Lula Creatives UX resources library
+- `farmers-funding.png` — Farmers and cooperatives funding platform
+- `ux-resources.png` — Lula Creatives UX resources library
 - `Woof-project.jpg` — Woof Project CSR work
 - `delta-scaled.webp` — Delta Skills Academy, in progress
 - `End-to-End User Navigation.png` — Tertiary academic reporting & NSFAS integration, in progress

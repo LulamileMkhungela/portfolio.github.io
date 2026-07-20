@@ -2,26 +2,26 @@
 <html lang="en" data-theme="dark">
 
 <head>
-    <link rel="icon" href="./assets/portfolio/icon-192.png" type="image/png" />
-    <link rel="icon" href="./assets/portfolio/icon-192.png" type="image/png" sizes="192x192" />
-    <link rel="apple-touch-icon" href="./assets/portfolio/icon-192.png" />
+  <link rel="icon" href="./assets/portfolio/icon-192.png" type="image/png" />
+  <link rel="icon" href="./assets/portfolio/icon-192.png" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="./assets/portfolio/icon-192.png" />
 
-    <script>
-      (function () {
-        try {
-          var t = localStorage.getItem('ls-theme') || 'dark';
-          document.documentElement.setAttribute('data-theme', t);
-          document.documentElement.style.colorScheme = t;
-        } catch (e) {}
-      })();
-    </script>
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('ls-theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', t);
+        document.documentElement.style.colorScheme = t;
+      } catch (e) { }
+    })();
+  </script>
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0A0705" />
   <title>Get Started — LulaSync</title>
   <meta name="description"
-    content="Tell me about your business. We'll WhatsApp you within the hour with your options and pricing." />
+    content="Tell me about your business. I'll WhatsApp you within the hour with your options and pricing." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800;900&display=swap"
@@ -368,41 +368,172 @@
       background: #161008;
       color: var(--paper)
     }
-  
-/* GLOBAL THEME+RESPONSIVE HARDENING */
-html { color-scheme: dark; }
-html[data-theme="light"] { color-scheme: light; }
-.nav-actions { display:flex; align-items:center; gap:10px; flex-shrink:0; }
-body { overflow-x: hidden; -webkit-text-size-adjust: 100%; }
-img, video, svg, canvas { max-width: 100%; height: auto; }
-@media (max-width: 600px) {
-  .btn-wa, .btn-outline-gold, .btn-gold, .nav-cta { min-height: 44px; }
-  footer { padding-bottom: 100px; }
-}
+
+    /* GLOBAL THEME+RESPONSIVE HARDENING */
+    html {
+      color-scheme: dark;
+    }
+
+    html[data-theme="light"] {
+      color-scheme: light;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    body {
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    img,
+    video,
+    svg,
+    canvas {
+      max-width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 600px) {
+
+      .btn-wa,
+      .btn-outline-gold,
+      .btn-gold,
+      .nav-cta {
+        min-height: 44px;
+      }
+
+      footer {
+        padding-bottom: 100px;
+      }
+    }
 
 
     /* Quiet, theme-aware motion behind the contact content */
-    main::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 84% 12%,rgba(240,165,0,.09),transparent 27%),radial-gradient(circle at 8% 78%,rgba(224,78,20,.07),transparent 30%);animation:contact-breathe 14s ease-in-out infinite alternate}
-    @keyframes contact-breathe{to{opacity:.45;transform:scale(1.04)}}
-    [data-theme="light"] main::before{background:radial-gradient(circle at 84% 12%,rgba(196,127,0,.12),transparent 27%),radial-gradient(circle at 8% 78%,rgba(192,58,8,.08),transparent 30%)}
-    @media(prefers-reduced-motion:reduce){main::before{animation:none}}
+    main::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 84% 12%, rgba(240, 165, 0, .09), transparent 27%), radial-gradient(circle at 8% 78%, rgba(224, 78, 20, .07), transparent 30%);
+      animation: contact-breathe 14s ease-in-out infinite alternate
+    }
+
+    @keyframes contact-breathe {
+      to {
+        opacity: .45;
+        transform: scale(1.04)
+      }
+    }
+
+    [data-theme="light"] main::before {
+      background: radial-gradient(circle at 84% 12%, rgba(196, 127, 0, .12), transparent 27%), radial-gradient(circle at 8% 78%, rgba(192, 58, 8, .08), transparent 30%)
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      main::before {
+        animation: none
+      }
+    }
 
 
     /* Canonical LulaSync footer — shared across every page */
-    footer { background:var(--card) !important; border-top:1px solid var(--border) !important; padding:56px 5vw 32px !important; }
-    footer .footer-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:40px; max-width:1100px; margin:0 auto 48px; }
-    footer .footer-desc { font-size:.8rem; color:var(--dim) !important; line-height:1.6; margin:12px 0 20px; max-width:320px; }
-    footer .footer-col-title { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
-    footer .footer-links { display:flex; flex-direction:column; gap:10px; }
-    footer .footer-link { font-size:.8rem; color:var(--dim) !important; text-decoration:none; transition:color .15s; }
-    footer .footer-link:hover { color:var(--gold) !important; }
-    footer .footer-bottom { max-width:1100px; margin:0 auto; border-top:1px solid var(--border); padding-top:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
-    footer .footer-copy { font-size:.65rem; color:var(--dim) !important; }
-    [data-theme="light"] footer { background:#fff !important; border-top-color:#E0D8C8 !important; }
-    [data-theme="light"] footer .footer-link, [data-theme="light"] footer .footer-desc, [data-theme="light"] footer .footer-copy { color:rgba(26,18,8,.62) !important; }
-    @media (max-width:600px) { footer { padding:36px 4vw 100px !important; } footer .footer-grid { gap:24px; margin-bottom:36px; } footer .footer-bottom { align-items:flex-start; flex-direction:column; } }
+    footer {
+      background: var(--card) !important;
+      border-top: 1px solid var(--border) !important;
+      padding: 56px 5vw 32px !important;
+    }
 
-</style>
+    footer .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto 48px;
+    }
+
+    footer .footer-desc {
+      font-size: .8rem;
+      color: var(--dim) !important;
+      line-height: 1.6;
+      margin: 12px 0 20px;
+      max-width: 320px;
+    }
+
+    footer .footer-col-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    footer .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    footer .footer-link {
+      font-size: .8rem;
+      color: var(--dim) !important;
+      text-decoration: none;
+      transition: color .15s;
+    }
+
+    footer .footer-link:hover {
+      color: var(--gold) !important;
+    }
+
+    footer .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    footer .footer-copy {
+      font-size: .65rem;
+      color: var(--dim) !important;
+    }
+
+    [data-theme="light"] footer {
+      background: #fff !important;
+      border-top-color: #E0D8C8 !important;
+    }
+
+    [data-theme="light"] footer .footer-link,
+    [data-theme="light"] footer .footer-desc,
+    [data-theme="light"] footer .footer-copy {
+      color: rgba(26, 18, 8, .62) !important;
+    }
+
+    @media (max-width:600px) {
+      footer {
+        padding: 36px 4vw 100px !important;
+      }
+
+      footer .footer-grid {
+        gap: 24px;
+        margin-bottom: 36px;
+      }
+
+      footer .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 
 <body data-page="contact">
@@ -412,12 +543,12 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
         src="./assets/portfolio/icon-192.png" width="36" height="36" alt="LulaSync" /><span>Lula<span
           style="color:var(--gold)">Sync</span></span></a>
     <div class="nav-links" role="menubar">
-            <a href="./index.html" class="nav-link">Home</a>
-            <a href="./showcase.html" class="nav-link">Showcase</a>
-            <a href="./services.html" class="nav-link">Services</a>
-            <a href="./about.html" class="nav-link">About</a>
-            <a href="./contact.html" class="nav-link active">Contact</a>
-        </div>
+      <a href="./index.html" class="nav-link">Home</a>
+      <a href="./showcase.html" class="nav-link">Showcase</a>
+      <a href="./services.html" class="nav-link">Services</a>
+      <a href="./about.html" class="nav-link">About</a>
+      <a href="./contact.html" class="nav-link active">Contact</a>
+    </div>
     <div class="nav-actions">
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">🌙</button>
       <button class="hamburger" id="menuBtn" aria-label="Open menu" aria-expanded="false">
@@ -431,14 +562,15 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
   <div class="mobile-overlay" id="mobileOverlay" role="dialog" aria-label="Mobile navigation">
     <button class="close-btn" id="closeBtn" aria-label="Close menu">✕</button>
     <div style="text-align:center">
-            <a href="./index.html" class="mobile-nav-link">Home</a>
-            <a href="./showcase.html" class="mobile-nav-link">Showcase</a>
-            <a href="./services.html" class="mobile-nav-link">Services</a>
-            <a href="./about.html" class="mobile-nav-link">About</a>
-            <a href="./contact.html" class="mobile-nav-link active">Contact</a>
-        </div>
-        <a href="https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27d%20like%20to%20chat." target="_blank"
-      rel="noopener noreferrer" class="btn-wa" style="width:min(320px,80vw);justify-content:center">Message me on WhatsApp
+      <a href="./index.html" class="mobile-nav-link">Home</a>
+      <a href="./showcase.html" class="mobile-nav-link">Showcase</a>
+      <a href="./services.html" class="mobile-nav-link">Services</a>
+      <a href="./about.html" class="mobile-nav-link">About</a>
+      <a href="./contact.html" class="mobile-nav-link active">Contact</a>
+    </div>
+    <a href="https://wa.me/27837195064?text=Hi%20LulaSync!%20I%27d%20like%20to%20chat." target="_blank"
+      rel="noopener noreferrer" class="btn-wa" style="width:min(320px,80vw);justify-content:center">Message me on
+      WhatsApp
       →</a>
   </div>
 
@@ -464,7 +596,8 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
             <span style="font-size:1.5rem">💬</span>
             <div style="flex:1;min-width:200px">
               <p style="font-size:.88rem;font-weight:700;color:var(--paper);margin-bottom:2px">Prefer to just chat?</p>
-              <p style="font-size:.8rem;color:var(--dim)">Prefer WhatsApp? Message me here. I work solo by default — specialists only when needed. On-site chat is available.</p>
+              <p style="font-size:.8rem;color:var(--dim)">Prefer WhatsApp? Message me here. I work solo by default —
+                specialists only when needed. On-site chat is available.</p>
             </div>
             <a href="https://wa.me/27837195064?text=Hi!%20I%20want%20an%20app%20for%20my%20business." target="_blank"
               rel="noopener noreferrer"
@@ -477,10 +610,12 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
             <h2 class="display" style="font-size:1.1rem;margin-bottom:12px;color:var(--gold)">Visit &amp; contact</h2>
             <p style="font-size:.88rem;color:var(--dim);margin-bottom:8px"><strong style="color:var(--paper)">41 Juta
                 Street</strong>, Braamfontein, Johannesburg</p>
-            
+
             <p style="font-size:.88rem">Phone: <a href="tel:+27837195064"
                 style="color:var(--gold);text-decoration:none">+27 83 719 5064</a></p>
-            <p style="font-size:.88rem;margin-top:8px">LinkedIn: <a href="https://www.linkedin.com/in/lulamile-mkhungela/" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none">Lulamile Mkhungela ↗</a></p>
+            <p style="font-size:.88rem;margin-top:8px">LinkedIn: <a
+                href="https://www.linkedin.com/in/lulamile-mkhungela/" target="_blank" rel="noopener noreferrer"
+                style="color:var(--gold);text-decoration:none">Lulamile Mkhungela ↗</a></p>
           </div>
           <div
             style="border-radius:16px;overflow:hidden;border:1px solid var(--border);aspect-ratio:4/3;min-height:220px;background:#111">
@@ -621,15 +756,17 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
           style="display:flex;align-items:center;gap:10px; margin-bottom: 14px !important;"><img
             src="./assets/portfolio/icon-192.png" width="36" height="36" alt="LulaSync" /><span>Lula<span
               style="color:var(--gold)">Sync</span></span></a>
-        <p class="footer-desc">I design and build websites, AI agents, custom software, automation, and enterprise systems for
+        <p class="footer-desc">I design and build websites, AI agents, custom software, automation, and enterprise
+          systems for
           South African businesses — from startups to large enterprises..</p>
-        <a href="./contact.html" class="btn-wa" style="font-size:.78rem;padding:9px 18px;background:var(--gold);color:#0A0705">Contact →</a>
+        <a href="./contact.html" class="btn-wa"
+          style="font-size:.78rem;padding:9px 18px;background:var(--gold);color:#0A0705">Contact →</a>
       </div>
       <div>
         <p class="footer-col-title">Explore</p>
         <div class="footer-links">
           <a href="./showcase.html" class="footer-link">App showcase</a>
-                    <a href="./showcase.html#portfolio" class="footer-link">Case studies</a>
+          <a href="./showcase.html#portfolio" class="footer-link">Case studies</a>
           <a href="./services.html" class="footer-link">Services</a>
           <a href="./services.html" class="footer-link">What I do</a>
         </div>
@@ -639,7 +776,8 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
         <div class="footer-links">
           <a href="./about.html" class="footer-link">About Me</a>
           <a href="./contact.html" class="footer-link">Contact</a>
-          <a href="https://www.linkedin.com/in/lulamile-mkhungela/" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/lulamile-mkhungela/" class="footer-link" target="_blank"
+            rel="noopener noreferrer">LinkedIn</a>
 
         </div>
       </div>
@@ -668,7 +806,7 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
       htmlEl.style.colorScheme = next;
       themeToggle.textContent = next === 'dark' ? '🌙' : '☀️';
       localStorage.setItem('ls-theme', next);
-      try { document.querySelector('meta[name="theme-color"]').setAttribute('content', next === 'dark' ? '#0A0705' : '#F7F3EC'); } catch (e) {}
+      try { document.querySelector('meta[name="theme-color"]').setAttribute('content', next === 'dark' ? '#0A0705' : '#F7F3EC'); } catch (e) { }
     }
     applyTheme(savedTheme);
     themeToggle.addEventListener('click', () => {

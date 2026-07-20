@@ -1,32 +1,450 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0A0705" />
   <title>Services | LulaSync by Lulamile Mkhungela</title>
-  <meta name="description" content="UX/UI, CX, product design, design systems, frontend/UI development and digital product delivery by Lulamile Mkhungela." />
+  <meta name="description"
+    content="UX/UI, CX, product design, design systems, frontend/UI development and digital product delivery by Lulamile Mkhungela." />
   <link rel="icon" href="./assets/portfolio/icon-192.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet" />
   <style>
-    :root{--ink:#0A0705;--paper:#F5EDD8;--gold:#F0A500;--fire:#E04E14;--dim:rgba(245,237,216,.58);--card:#0f0f0f;--border:#1a1a1a}
-    [data-theme="light"]{--ink:#F7F3EC;--paper:#1a1208;--gold:#C47F00;--fire:#C03A08;--dim:rgba(26,18,8,.62);--card:#fff;--border:#E0D8C8}
-    *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--ink);color:var(--paper);font-family:Inter,sans-serif;line-height:1.6}.display{font-family:'Bebas Neue';letter-spacing:1px}
-    nav{position:sticky;top:0;z-index:5;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(10,7,5,.94);border-bottom:1px solid var(--border);backdrop-filter:blur(16px)}[data-theme="light"] nav{background:rgba(247,243,236,.96)}.nav-logo{display:flex;align-items:center;gap:10px;color:var(--paper);text-decoration:none;font-family:'Bebas Neue';font-size:1.4rem;letter-spacing:2px}.nav-logo img{width:36px;height:36px;border-radius:10px}.nav-links{display:flex;gap:4px}.nav-link{color:var(--dim);font-size:.72rem;font-weight:700;text-decoration:none;padding:5px 8px}.nav-link:hover,.nav-link.active{color:var(--gold)}.nav-actions{display:flex;gap:10px}.theme-toggle,.hamburger{width:32px;height:32px;border:1px solid var(--border);border-radius:50%;background:none;color:var(--paper);cursor:pointer}.hamburger{display:none;border-radius:8px}.grad-line{height:1px;background:linear-gradient(90deg,transparent,var(--fire),var(--gold),var(--fire),transparent)}
-    main{max-width:1120px;margin:0 auto;padding:80px 5vw}.eyebrow{font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}.eyebrow span{color:var(--fire)}h1{font-size:clamp(3.2rem,10vw,6rem);line-height:.9;margin-bottom:18px} .lead{max-width:620px;color:var(--dim);font-size:1rem;line-height:1.75;margin-bottom:42px}.services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.service{display:block;padding:24px;border:1px solid var(--border);border-radius:14px;background:var(--card);color:var(--paper);text-decoration:none;border-top:2px solid var(--accent,var(--gold));transition:transform .2s,border-color .2s}.service:hover{transform:translateY(-3px);border-color:var(--gold)}.service-number{font-family:'Bebas Neue';font-size:2.5rem;color:rgba(240,165,0,.25);line-height:1}.service h2{font-family:'Bebas Neue';font-size:1.65rem;line-height:1;margin:10px 0 8px}.service p{color:var(--dim);font-size:.83rem;line-height:1.6}.service-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}.service-tags span{font-size:.65rem;color:var(--dim);border:1px solid var(--border);border-radius:999px;padding:4px 8px}.cta{margin-top:26px;padding:24px;border:1px solid rgba(240,165,0,.3);border-radius:14px;background:linear-gradient(135deg,rgba(240,165,0,.1),rgba(224,78,20,.05))}.cta h2{font-family:'Bebas Neue';font-size:2rem;line-height:1;margin-bottom:8px}.cta p{color:var(--dim);font-size:.85rem;margin-bottom:16px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:11px 17px;border-radius:999px;text-decoration:none;font-size:.82rem;font-weight:800;margin-right:8px}.btn-gold{background:var(--gold);color:#000}.btn-outline{border:1px solid var(--gold);color:var(--gold)}footer{background:var(--card);border-top:1px solid var(--border);padding:56px 5vw 32px}.footer-grid{max-width:1100px;margin:0 auto 44px;display:grid;grid-template-columns:repeat(3,1fr);gap:36px}.footer-desc{max-width:310px;color:var(--dim);font-size:.8rem;line-height:1.6;margin-top:10px}.footer-title{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);font-weight:800;margin-bottom:14px}.footer-links{display:flex;flex-direction:column;gap:9px}.footer-link{font-size:.8rem;color:var(--dim);text-decoration:none}.footer-link:hover{color:var(--gold)}.footer-bottom{max-width:1100px;margin:0 auto;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;color:var(--dim);font-size:.68rem}
-    @media(max-width:800px){.nav-links{display:none}.hamburger{display:block}.services,.footer-grid{grid-template-columns:1fr}}@media(max-width:600px){main{padding:58px 4vw}.btn{width:100%;margin:4px 0}footer{padding:36px 4vw 80px}.footer-bottom{flex-direction:column}}
+    :root {
+      --ink: #0A0705;
+      --paper: #F5EDD8;
+      --gold: #F0A500;
+      --fire: #E04E14;
+      --dim: rgba(245, 237, 216, .58);
+      --card: #0f0f0f;
+      --border: #1a1a1a
+    }
+
+    [data-theme="light"] {
+      --ink: #F7F3EC;
+      --paper: #1a1208;
+      --gold: #C47F00;
+      --fire: #C03A08;
+      --dim: rgba(26, 18, 8, .62);
+      --card: #fff;
+      --border: #E0D8C8
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--ink);
+      color: var(--paper);
+      font-family: Inter, sans-serif;
+      line-height: 1.6
+    }
+
+    .display {
+      font-family: 'Bebas Neue';
+      letter-spacing: 1px
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      background: rgba(10, 7, 5, .94);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px)
+    }
+
+    [data-theme="light"] nav {
+      background: rgba(247, 243, 236, .96)
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--paper);
+      text-decoration: none;
+      font-family: 'Bebas Neue';
+      font-size: 1.4rem;
+      letter-spacing: 2px
+    }
+
+    .nav-logo img {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 4px
+    }
+
+    .nav-link {
+      color: var(--dim);
+      font-size: .72rem;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 5px 8px
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--gold)
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px
+    }
+
+    .theme-toggle,
+    .hamburger {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: none;
+      color: var(--paper);
+      cursor: pointer
+    }
+
+    .hamburger {
+      display: none;
+      border-radius: 8px
+    }
+
+    .grad-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--fire), var(--gold), var(--fire), transparent)
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 80px 5vw
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px
+    }
+
+    .eyebrow span {
+      color: var(--fire)
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 10vw, 6rem);
+      line-height: .9;
+      margin-bottom: 18px
+    }
+
+    .lead {
+      max-width: 620px;
+      color: var(--dim);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 42px
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px
+    }
+
+    .service {
+      display: block;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--card);
+      color: var(--paper);
+      text-decoration: none;
+      border-top: 2px solid var(--accent, var(--gold));
+      transition: transform .2s, border-color .2s
+    }
+
+    .service:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold)
+    }
+
+    .service-number {
+      font-family: 'Bebas Neue';
+      font-size: 2.5rem;
+      color: rgba(240, 165, 0, .25);
+      line-height: 1
+    }
+
+    .service h2 {
+      font-family: 'Bebas Neue';
+      font-size: 1.65rem;
+      line-height: 1;
+      margin: 10px 0 8px
+    }
+
+    .service p {
+      color: var(--dim);
+      font-size: .83rem;
+      line-height: 1.6
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px
+    }
+
+    .service-tags span {
+      font-size: .65rem;
+      color: var(--dim);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 8px
+    }
+
+    .cta {
+      margin-top: 26px;
+      padding: 24px;
+      border: 1px solid rgba(240, 165, 0, .3);
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(240, 165, 0, .1), rgba(224, 78, 20, .05))
+    }
+
+    .cta h2 {
+      font-family: 'Bebas Neue';
+      font-size: 2rem;
+      line-height: 1;
+      margin-bottom: 8px
+    }
+
+    .cta p {
+      color: var(--dim);
+      font-size: .85rem;
+      margin-bottom: 16px
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 11px 17px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: .82rem;
+      font-weight: 800;
+      margin-right: 8px
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #000
+    }
+
+    .btn-outline {
+      border: 1px solid var(--gold);
+      color: var(--gold)
+    }
+
+    footer {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      padding: 56px 5vw 32px
+    }
+
+    .footer-grid {
+      max-width: 1100px;
+      margin: 0 auto 44px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px
+    }
+
+    .footer-desc {
+      max-width: 310px;
+      color: var(--dim);
+      font-size: .8rem;
+      line-height: 1.6;
+      margin-top: 10px
+    }
+
+    .footer-title {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--gold);
+      font-weight: 800;
+      margin-bottom: 14px
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 9px
+    }
+
+    .footer-link {
+      font-size: .8rem;
+      color: var(--dim);
+      text-decoration: none
+    }
+
+    .footer-link:hover {
+      color: var(--gold)
+    }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--dim);
+      font-size: .68rem
+    }
+
+    @media(max-width:800px) {
+      .nav-links {
+        display: none
+      }
+
+      .hamburger {
+        display: block
+      }
+
+      .services,
+      .footer-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:600px) {
+      main {
+        padding: 58px 4vw
+      }
+
+      .btn {
+        width: 100%;
+        margin: 4px 0
+      }
+
+      footer {
+        padding: 36px 4vw 80px
+      }
+
+      .footer-bottom {
+        flex-direction: column
+      }
+    }
   </style>
 </head>
+
 <body>
-<nav><a class="nav-logo" href="./index.html"><img src="./assets/portfolio/icon-192.png" alt="LulaSync"><span>Lula<span style="color:var(--gold)">Sync</span></span></a><div class="nav-links"><a class="nav-link" href="./index.html">Home</a><a class="nav-link" href="./showcase.html">Showcase</a><a class="nav-link active" href="./services.html">Services</a><a class="nav-link" href="./about.html">About</a><a class="nav-link" href="./contact.html">Contact</a></div><div class="nav-actions"><button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button><button class="hamburger" id="menuBtn">☰</button></div></nav><div class="grad-line"></div>
-<main><p class="eyebrow"><span>//</span> What I do</p><h1 class="display">SERVICES THAT<br/><span style="color:var(--gold)">MOVE PRODUCTS</span><br/>FORWARD.</h1><p class="lead">I help teams and businesses turn unclear problems into useful, testable and buildable digital products — from first direction to frontend-ready delivery.</p><div class="services">
-<a class="service" style="--accent:var(--gold)" href="./contact.html"><span class="service-number">01</span><h2>Product strategy &amp; discovery</h2><p>Frame the right problem, users, outcomes and constraints before design or development begins.</p><div class="service-tags"><span>Problem framing</span><span>Research</span><span>Product direction</span></div></a>
-<a class="service" style="--accent:var(--fire)" href="./contact.html"><span class="service-number">02</span><h2>UX / UI &amp; CX design</h2><p>Design journeys, information architecture, service flows and interfaces people can understand and finish.</p><div class="service-tags"><span>UX research</span><span>CX / service design</span><span>Prototypes</span></div></a>
-<a class="service" style="--accent:var(--purple)" href="./contact.html"><span class="service-number">03</span><h2>Design systems &amp; DesignOps</h2><p>Build the tokens, components and governance that connect design decisions to production UI.</p><div class="service-tags"><span>Figma Variables</span><span>Angular</span><span>Storybook</span></div></a>
-<a class="service" style="--accent:var(--cyan)" href="./contact.html"><span class="service-number">04</span><h2>Frontend / UI development</h2><p>Responsive, accessible interfaces and frontend-ready handoff with the technical detail developers need.</p><div class="service-tags"><span>HTML/CSS/JS</span><span>Angular</span><span>Responsive UI</span></div></a>
-<a class="service" style="--accent:var(--wa)" href="./contact.html"><span class="service-number">05</span><h2>Websites, PWAs &amp; apps</h2><p>Useful digital products for businesses: websites, installable PWAs, dashboards and custom web applications.</p><div class="service-tags"><span>Web apps</span><span>PWA</span><span>Dashboards</span></div></a>
-<a class="service" style="--accent:var(--gold)" href="./contact.html"><span class="service-number">06</span><h2>Automation &amp; AI products</h2><p>Conversational flows, AI voice agents, WhatsApp-first tools and workflows that reduce repetitive work.</p><div class="service-tags"><span>Conversational UX</span><span>Automation</span><span>AI workflows</span></div></a>
-</div><div class="cta"><h2>Have a product problem?</h2><p>Send me the context, the users and what needs to change. I’ll respond with a clear next step.</p><a class="btn btn-gold" href="./contact.html">Start an enquiry →</a><a class="btn btn-outline" href="./showcase.html#portfolio">See the work</a></div></main>
-<footer><div class="footer-grid"><div><a class="nav-logo" href="./index.html"><img src="./assets/portfolio/icon-192.png" alt="LulaSync"><span>Lula<span style="color:var(--gold)">Sync</span></span></a><p class="footer-desc">LulaSync is the studio of Lulamile Mkhungela — UX/UI, CX, product design and UI development.</p></div><div><p class="footer-title">Explore</p><div class="footer-links"><a class="footer-link" href="./showcase.html">Showcase</a><a class="footer-link" href="./showcase.html#portfolio">Case studies</a><a class="footer-link" href="./services.html">Services</a></div></div><div><p class="footer-title">Discover</p><div class="footer-links"><a class="footer-link" href="./about.html">About</a><a class="footer-link" href="./process.html">Process</a><a class="footer-link" href="./contact.html">Contact</a><a class="footer-link" href="https://www.linkedin.com/in/lulamile-mkhungela/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></div></div><div class="footer-bottom"><span>© 2026 LulaSync · Lulamile Mkhungela · South Africa 🇿🇦</span><span>UX/UI · CX · Product · UI Development</span></div></footer>
-<script src="./assets/chat-widget.js" defer></script><script>const h=document.documentElement,t=document.getElementById('themeToggle'),saved=localStorage.getItem('ls-theme')||'dark';function apply(n){h.setAttribute('data-theme',n);h.style.colorScheme=n;t.textContent=n==='dark'?'🌙':'☀️';localStorage.setItem('ls-theme',n)}apply(saved);t.addEventListener('click',()=>apply(h.dataset.theme==='dark'?'light':'dark'));const o=document.getElementById('mobileOverlay');document.getElementById('menuBtn').addEventListener('click',()=>o.classList.add('open'));document.getElementById('closeBtn')?.addEventListener('click',()=>o.classList.remove('open'));</script>
-</body></html>
+  <nav><a class="nav-logo" href="./index.html"><img src="./assets/portfolio/icon-192.png" alt="LulaSync"><span>Lula<span
+          style="color:var(--gold)">Sync</span></span></a>
+    <div class="nav-links"><a class="nav-link" href="./index.html">Home</a><a class="nav-link"
+        href="./showcase.html">Showcase</a><a class="nav-link active" href="./services.html">Services</a><a
+        class="nav-link" href="./about.html">About</a><a class="nav-link" href="./contact.html">Contact</a></div>
+    <div class="nav-actions"><button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button><button
+        class="hamburger" id="menuBtn">☰</button></div>
+  </nav>
+  <div class="grad-line"></div>
+  <main>
+    <p class="eyebrow"><span>//</span> What I do</p>
+    <h1 class="display">SERVICES THAT<br /><span style="color:var(--gold)">MOVE PRODUCTS</span><br />FORWARD.</h1>
+    <p class="lead">I help teams and businesses turn unclear problems into useful, testable and buildable digital
+      products — from first direction to frontend-ready delivery.</p>
+    <div class="services">
+      <a class="service" style="--accent:var(--gold)" href="./contact.html"><span class="service-number">01</span>
+        <h2>Product strategy &amp; discovery</h2>
+        <p>Frame the right problem, users, outcomes and constraints before design or development begins.</p>
+        <div class="service-tags"><span>Problem framing</span><span>Research</span><span>Product direction</span></div>
+      </a>
+      <a class="service" style="--accent:var(--fire)" href="./contact.html"><span class="service-number">02</span>
+        <h2>UX / UI/ CX/ Product &amp; Web design</h2>
+        <p>Design journeys, information architecture, service flows and interfaces people can understand and finish.</p>
+        <div class="service-tags"><span>UX research</span><span>UI design</span><span>Interactive Prototypes</span><span>Web design</span></div>
+      </a>
+      <a class="service" style="--accent:var(--purple)" href="./contact.html"><span class="service-number">03</span>
+        <h2>Design systems &amp; DesignOps</h2>
+        <p>Build the tokens, components and governance that connect design decisions to production UI.</p>
+        <div class="service-tags"><span>Design Tokens</span><span>Angular/React</span><span>Storybook</span><span>MCP</span></div>
+      </a>
+      <a class="service" style="--accent:var(--cyan)" href="./contact.html"><span class="service-number">04</span>
+        <h2>Frontend / UI development</h2>
+        <p>Responsive, accessible interfaces and frontend-ready handoff with the technical detail developers need.</p>
+        <div class="service-tags"><span>HTML/CSS/JS/TS</span><span>Angular/React/Android/Ionic</span><span>Responsive UI</span></div>
+      </a>
+      <a class="service" style="--accent:var(--wa)" href="./contact.html"><span class="service-number">05</span>
+        <h2>Websites, PWAs &amp; apps</h2>
+        <p>Useful digital products for businesses: websites, installable PWAs, dashboards and custom web applications.
+        </p>
+        <div class="service-tags"><span>Web/Mobile apps</span><span>PWA</span><span>Dashboards</span></div>
+      </a>
+      <a class="service" style="--accent:var(--gold)" href="./contact.html"><span class="service-number">06</span>
+        <h2>Automation &amp; AI products</h2>
+        <p>Conversational flows, AI voice agents, WhatsApp-first tools and workflows that reduce repetitive work.</p>
+        <div class="service-tags"><span>Conversational UX</span><span>Automation</span><span>AI workflows</span></div>
+      </a>
+    </div>
+    <div class="cta">
+      <h2>Have a product problem?</h2>
+      <p>Send me the context, the users and what needs to change. I’ll respond with a clear next step.</p><a
+        class="btn btn-gold" href="./contact.html">Start an enquiry →</a><a class="btn btn-outline"
+        href="./showcase.html#portfolio">See the work</a>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-grid">
+      <div><a class="nav-logo" href="./index.html"><img src="./assets/portfolio/icon-192.png"
+            alt="LulaSync"><span>Lula<span style="color:var(--gold)">Sync</span></span></a>
+        <p class="footer-desc">LulaSync is the studio of Lulamile Mkhungela — UX/UI, CX, product design and UI
+          development.</p>
+      </div>
+      <div>
+        <p class="footer-title">Explore</p>
+        <div class="footer-links"><a class="footer-link" href="./showcase.html">Showcase</a><a class="footer-link"
+            href="./showcase.html#portfolio">Case studies</a><a class="footer-link" href="./services.html">Services</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-title">Discover</p>
+        <div class="footer-links"><a class="footer-link" href="./about.html">About</a><a class="footer-link"
+            href="./process.html">Process</a><a class="footer-link" href="./contact.html">Contact</a><a
+            class="footer-link" href="https://www.linkedin.com/in/lulamile-mkhungela/" target="_blank"
+            rel="noopener noreferrer">LinkedIn</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 LulaSync · Lulamile Mkhungela · South Africa 🇿🇦</span><span>UX/UI · CX ·
+        Product · UI Development</span></div>
+  </footer>
+  <script src="./assets/chat-widget.js" defer></script>
+  <script>const h = document.documentElement, t = document.getElementById('themeToggle'), saved = localStorage.getItem('ls-theme') || 'dark'; function apply(n) { h.setAttribute('data-theme', n); h.style.colorScheme = n; t.textContent = n === 'dark' ? '🌙' : '☀️'; localStorage.setItem('ls-theme', n) } apply(saved); t.addEventListener('click', () => apply(h.dataset.theme === 'dark' ? 'light' : 'dark')); const o = document.getElementById('mobileOverlay'); document.getElementById('menuBtn').addEventListener('click', () => o.classList.add('open')); document.getElementById('closeBtn')?.addEventListener('click', () => o.classList.remove('open'));</script>
+</body>
+
+</html>
