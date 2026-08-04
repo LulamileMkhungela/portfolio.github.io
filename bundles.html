@@ -419,66 +419,74 @@
       text-transform: uppercase;
       white-space: nowrap;
     }
-
     /* FOOTER */
     footer {
-      background: #080604;
+      background: var(--card);
       border-top: 1px solid var(--border);
+      padding: 56px 5vw 32px
     }
 
     .footer-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 40px;
-      padding: 56px 5vw 8px;
+      margin-bottom: 48px
+    }
+
+    .footer-brand-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      margin-bottom: 12px
     }
 
     .footer-desc {
       font-size: .8rem;
-      color: var(--dim);
-      line-height: 1.7;
-      margin: 14px 0 18px;
-      max-width: 280px;
+      color: rgba(245, 237, 216, .4);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      max-width: 240px
     }
 
     .footer-col-title {
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: .14em;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
       text-transform: uppercase;
-      color: var(--dim);
-      margin-bottom: 18px;
+      color: var(--gold);
+      margin-bottom: 16px
     }
 
     .footer-links {
       display: flex;
       flex-direction: column;
-      gap: 11px;
+      gap: 10px
     }
 
     .footer-link {
-      font-size: .82rem;
-      color: var(--dim);
+      font-size: .8rem;
+      color: rgba(245, 237, 216, .4);
       text-decoration: none;
-      transition: color .15s;
+      transition: color .15s
     }
 
     .footer-link:hover {
-      color: var(--gold);
+      color: var(--gold)
     }
 
     .footer-bottom {
-      padding: 22px 5vw;
       border-top: 1px solid var(--border);
+      padding-top: 24px;
       display: flex;
-      flex-direction: column;
-      gap: 4px;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px
     }
 
     .footer-copy {
       font-size: .65rem;
-      color: var(--dim);
-      letter-spacing: .04em;
+      color: rgba(245, 237, 216, .2)
     }
 
     @media (max-width: 820px) {
@@ -544,66 +552,6 @@
       <a href="./contact.html" class="mobile-nav-link">Contact</a>
     </div>
     <a href="./contact.html" class="btn-wa" style="width:min(320px,80vw);justify-content:center">Contact me →</a>
-  </div>
-
-
-  <!-- EQUAL UX/UI/CX/PRODUCT DESIGN + UI DEV FRONTEND PROCESS -->
-  <div class="e2e-process-breakdown"
-    style="margin:28px 0 36px;padding:28px;background:var(--ink,#14100E);border:1px solid rgba(240,165,0,0.35);border-radius:16px;">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
-      <span
-        style="background:rgba(240,165,0,0.15);color:var(--gold);font-size:0.75rem;font-weight:800;padding:4px 12px;border-radius:999px;border:1px solid rgba(240,165,0,0.4);">E2E
-        HYBRID PROCESS</span>
-      <span style="color:var(--dim);font-size:0.8rem;font-weight:700;">// UX / UI / CX / PRODUCT DESIGNER = UI DEV /
-        FRONTEND DEVELOPER</span>
-    </div>
-    <h3 style="font-size:1.35rem;color:var(--paper);margin-bottom:12px;font-weight:900;">6-STAGE PRODUCT DESIGN &amp;
-      FRONTEND DEV WORKFLOW</h3>
-    <p style="color:var(--dim);font-size:0.88rem;line-height:1.6;margin-bottom:20px;">Reviewing the complete lifecycle:
-      every project unites human-centered discovery and Customer Experience (CX) mapping with clean, performant frontend
-      engineering.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;">
-      <div style="background:rgba(255,255,255,0.03);padding:14px;border-radius:10px;border-left:3px solid #B293FF;">
-        <div style="font-size:0.72rem;color:#B293FF;font-weight:800;">01 // DISCOVERY &amp; CONTEXT</div>
-        <div style="font-size:0.92rem;color:var(--paper);font-weight:700;margin:4px 0;">Problem &amp; Business Alignment
-        </div>
-        <div style="font-size:0.8rem;color:var(--dim);line-height:1.4;">Defining KPI targets, user friction points, and
-          stakeholder constraints.</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.03);padding:14px;border-radius:10px;border-left:3px solid #B293FF;">
-        <div style="font-size:0.72rem;color:#B293FF;font-weight:800;">02 // RESEARCH &amp; CX OPS</div>
-        <div style="font-size:0.92rem;color:var(--paper);font-weight:700;margin:4px 0;">Journey Mapping &amp; SA
-          Realities</div>
-        <div style="font-size:0.8rem;color:var(--dim);line-height:1.4;">Empathy maps, intent triage, low-data usage
-          &amp; low-end Android device constraints.</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.03);padding:14px;border-radius:10px;border-left:3px solid #B293FF;">
-        <div style="font-size:0.72rem;color:#B293FF;font-weight:800;">03 // STRATEGY &amp; IA</div>
-        <div style="font-size:0.92rem;color:var(--paper);font-weight:700;margin:4px 0;">Information Architecture</div>
-        <div style="font-size:0.8rem;color:var(--dim);line-height:1.4;">Task flows, multi-language navigation, error
-          recovery &amp; WCAG accessibility.</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.03);padding:14px;border-radius:10px;border-left:3px solid #00C2FF;">
-        <div style="font-size:0.72rem;color:#00C2FF;font-weight:800;">04 // UI &amp; DESIGN SYSTEMS</div>
-        <div style="font-size:0.92rem;color:var(--paper);font-weight:700;margin:4px 0;">Figma UI &amp; Token
-          Architecture</div>
-        <div style="font-size:0.8rem;color:var(--dim);line-height:1.4;">High-contrast components, interactive prototypes
-          &amp; fintech/banking visual specs.</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.03);padding:14px;border-radius:10px;border-left:3px solid #00C2FF;">
-        <div style="font-size:0.72rem;color:#00C2FF;font-weight:800;">05 // FRONTEND DEV</div>
-        <div style="font-size:0.92rem;color:var(--paper);font-weight:700;margin:4px 0;">Angular / React Engineering
-        </div>
-        <div style="font-size:0.8rem;color:var(--dim);line-height:1.4;">Component libraries, API integration,
-          offline-first PWA caching &amp; clean Git handoff.</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.03);padding:14px;border-radius:10px;border-left:3px solid #1DB954;">
-        <div style="font-size:0.72rem;color:#1DB954;font-weight:800;">06 // TESTING &amp; RESULTS</div>
-        <div style="font-size:0.92rem;color:var(--paper);font-weight:700;margin:4px 0;">QA Validation &amp; Impact</div>
-        <div style="font-size:0.8rem;color:var(--dim);line-height:1.4;">Usability testing, reduced data payloads, ticket
-          deflection &amp; shippable MVP delivery.</div>
-      </div>
-    </div>
   </div>
 
   <main>
@@ -777,11 +725,14 @@
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-grid">
       <div>
-        <a href="./index.html" class="nav-logo"><img src="./assets/portfolio/icon-192.png" width="36" height="36"
-            alt="LulaSync" />Lula<span style="color:var(--gold)">Sync</span></a>
+        <a href="./index.html" class="nav-logo"
+          style="display:flex;align-items:center;gap:10px; margin-bottom: 14px !important;"><img
+            src="./assets/portfolio/icon-192.png" width="36" height="36" alt="LulaSync" /><span>Lula<span
+              style="color:var(--gold)">Sync</span></span></a>
         <p class="footer-desc">Lulamile Mkhungela — Equal craft from research to shipped interface.<br>I build any tech
           tools. You focus in running your business.</p>
         <a href="./contact.html" class="btn-wa"
@@ -793,7 +744,6 @@
           <a href="./showcase.html" class="footer-link">App showcase</a>
           <a href="./showcase.html#portfolio" class="footer-link">Case studies</a>
           <a href="./services.html" class="footer-link">Services</a>
-          <a href="./bundles.html" class="footer-link">Bundles</a>
         </div>
       </div>
       <div>
@@ -803,14 +753,15 @@
           <a href="./contact.html" class="footer-link">Contact</a>
           <a href="https://www.linkedin.com/in/lulamile-mkhungela/" class="footer-link" target="_blank"
             rel="noopener noreferrer">LinkedIn</a>
+
         </div>
       </div>
       <div>
         <p class="footer-col-title">Bundles</p>
         <div class="footer-links">
-          <a href="./bundles.html#starter-presence" class="footer-link">Starter Presence</a>
-          <a href="./bundles.html#growth-bundle" class="footer-link">Growth Bundle</a>
-          <a href="./bundles.html#full-digital-suite" class="footer-link">Full Digital Suite</a>
+          <a class="footer-link" href="./bundles.html#starter-presence">Starter Presence</a>
+          <a class="footer-link" href="./bundles.html#growth-bundle">Growth Bundle</a>
+          <a class="footer-link" href="./bundles.html#full-digital-suite">Full Digital Suite</a>
         </div>
       </div>
     </div>
