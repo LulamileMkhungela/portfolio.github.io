@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="440" viewBox="0 0 800 440">
+  <rect width="800" height="440" fill="#111111"/>
+  <rect x="60" y="160" width="120" height="120" rx="20" fill="#F5C400"/>
+  <text x="120" y="238" font-family="serif" font-size="58" text-anchor="middle" fill="#111">🔥</text>
+  <text x="460" y="210" font-family="Arial Black,sans-serif" font-size="52" font-weight="900" fill="#F5C400" text-anchor="middle">AFRICA CUISINE</text>
+  <text x="460" y="260" font-family="Arial,sans-serif" font-size="24" fill="#888888" text-anchor="middle">WE KNOW YOUR TASTE</text>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="440" viewBox="0 0 800 440">
+  <rect width="800" height="440" fill="#F5F0E8"/>
+  <text x="400" y="205" font-family="Georgia,serif" font-size="76" font-weight="bold" fill="#1A1009" text-anchor="middle">Wandies</text>
+  <circle cx="400" cy="232" r="8" fill="#C0441C"/>
+  <text x="400" y="285" font-family="Georgia,serif" font-size="60" font-style="italic" fill="#C0441C" text-anchor="middle">Place</text>
+</svg>
