@@ -231,6 +231,23 @@
     })();
   </script>
 <style id="lula-logo-fix">
+    
+    /* ── wordmark logo ── */
+    .navbar-logo_wr img[alt="LulaSync"] {
+      height: 22px !important;
+      width: auto !important;
+      max-width: none !important;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: none;
+    }
+    .navbar-logo_wr > div:first-child {
+      width: auto !important;
+      height: auto !important;
+      overflow: visible !important;
+    }
+
     /* ── navbar logo text fix ── */
     .navbar_logo-wrap,
     .logo-text-flex,
@@ -270,19 +287,8 @@
         <div animation="navbar-content" class="padding-global is-tiny">
           <div class="navbar_component">
             <a href="../index.html" class="navbar-logo_wr w-inline-block">
-              <div class="menu_logo-wr"><img src="../assets/lulasync-logo.svg" loading="lazy" alt="logo"
-                  class="menu_logo" /></div>
-              <div href="#" class="navbar_logo-wrap">
-                <div class="logo-text-flex">
-                  <div class="navbar_logo-anim">
-                    <div class="navbar_logo-anim_text">Product designer &amp; strategist</div>
-                    <div class="navbar_logo-anim_text is-abs">UI/UX &amp; brand design</div>
-                    <div class="navbar_logo-anim_text is-abs">SaaS, AI &amp; EdTech</div>
-                    <div class="navbar_logo-anim_text is-abs">Johannesburg, South Africa</div>
-                  </div>
-                </div>
-              </div>
-            </a>
+              <div style="display:flex;align-items:center;"><img src="../assets/lulasync-wordmark.png" loading="lazy" alt="LulaSync" style="height:22px;width:auto;max-width:none;display:block;visibility:visible;opacity:1;" /></div>
+              </a>
             <div class="navbar_links">
             <div class="navbar_links-wrap"><a href="../services/product-uiux-design.html"
                 class="navbar_link w-inline-block">
@@ -345,7 +351,7 @@
         <div class="menu_items">
           <div class="menu_links">
             <a href="../index.html" class="menu_logo-wrap w-inline-block"><img loading="lazy"
-                src="../assets/lulasync-logo.svg" alt="LulaSync logo" class="menu_logo" /></a>
+                src="../assets/lulasync-wordmark.png" alt="LulaSync logo" class="menu_logo" style="height:20px;width:auto;max-width:none;display:block;visibility:visible!important;opacity:1!important;" /></a>
             <div class="menu_col-1">
               <div class="menu_links-wrap">
                 <a href="../services/product-uiux-design.html" class="menu_link w-inline-block">
@@ -551,8 +557,8 @@
                             href="https://www.google.com/maps/search/?api=1&query=41%20Juta%20Street%2C%20Braamfontein%2C%20Johannesburg"
                             target="_blank" rel="noopener" class="footer_link w-inline-block">
                             <div class="footer_link-texts">
-                              <p class="footer_link-text _1">Find me at</p>
-                              <p class="footer_link-text _2">Find me at</p>
+                              <p class="footer_link-text _1">Find me — 41 Juta St, Braamfontein, JHB</p>
+                              <p class="footer_link-text _2">Find me — 41 Juta St, Braamfontein, JHB</p>
                             </div>
                             <div class="footer_link-dot"></div>
                           </a><a href="#" onclick="return openContactForm()" class="footer_link w-inline-block">
@@ -567,7 +573,7 @@
                     <div id="w-node-_0c480b83-389e-8cec-b163-4fac9d347eb6-bantuzel" class="footer_links-group">
                       <div class="text-color-grey-400">
                         <div class="text-size-regular">Let's get down to business:</div>
-                        <div class="email"><a href="tel:+27837195064" class="footer_link big-2 w-inline-block">
+                        <div class="email"><div class="text-style-label-caption" style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:4px;">Call me</div><a href="tel:+27837195064" class="footer_link big-2 w-inline-block">
                             <div class="footer_link-texts big-3">
                               <p fs-copyclip-element="copy-this" class="footer_link-text _1 big-4">+27 83 719 5064</p>
                               <p class="footer_link-text _2 big-5">+27 83 719 5064</p>
@@ -591,7 +597,7 @@
                             </div>
                           </button></div>
                         <div class="spacer-xsmall"></div>
-                        <div class="email"><a href="mailto:mkhungela.l@gmail.com"
+                        <div class="email"><div class="text-style-label-caption" style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:4px;">Email me</div><a href="mailto:mkhungela.l@gmail.com"
                             class="footer_link big-2 w-inline-block">
                             <div class="footer_link-texts big-3">
                               <p fs-copyclip-element="copy-this" class="footer_link-text _1 big-4">mkhungela.l@gmail.com

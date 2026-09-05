@@ -286,6 +286,24 @@
     }
 
 
+
+    /* ── wordmark logo ── */
+    .navbar-logo_wr img[alt="LulaSync"] {
+      height: 22px !important;
+      width: auto !important;
+      max-width: none !important;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: none;
+    }
+
+    .navbar-logo_wr>div:first-child {
+      width: auto !important;
+      height: auto !important;
+      overflow: visible !important;
+    }
+
     /* ── navbar logo text fix ── */
     .navbar_logo-wrap,
     .logo-text-flex,
@@ -294,11 +312,13 @@
       white-space: nowrap;
       max-width: 260px;
     }
+
     .navbar_logo-anim_text {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
     .navbar-logo_wr {
       min-width: 0;
       flex-shrink: 1;
@@ -381,18 +401,9 @@
         <div animation="navbar-content" class="padding-global is-tiny">
           <div class="navbar_component"><a href="index.html" aria-current="page"
               class="navbar-logo_wr w-inline-block w--current">
-              <div class="menu_logo-wr"><img src="assets/lulasync-logo.svg" loading="lazy" alt="logo"
-                  class="menu_logo" /></div>
-              <div href="#" class="navbar_logo-wrap">
-                <div class="logo-text-flex">
-                  <div class="navbar_logo-anim">
-                    <div class="navbar_logo-anim_text">Product designer &amp; strategist</div>
-                    <div class="navbar_logo-anim_text is-abs">UI/UX &amp; brand design</div>
-                    <div class="navbar_logo-anim_text is-abs">SaaS, AI &amp; EdTech</div>
-                    <div class="navbar_logo-anim_text is-abs">Johannesburg, South Africa</div>
-                  </div>
-                </div>
-              </div>
+              <div style="display:flex;align-items:center;"><img src="assets/lulasync-wordmark.png" loading="lazy"
+                  alt="LulaSync"
+                  style="height:22px;width:auto;max-width:none;display:block;visibility:visible;opacity:1;" /></div>
             </a>
             <div class="navbar_links">
               <div class="navbar_links-wrap"><a href="services/product-uiux-design.html"
@@ -451,8 +462,8 @@
         <div class="menu_content">
           <div class="menu_items">
             <div class="menu_links"><a href="index.html" aria-current="page"
-                class="menu_logo-wrap w-inline-block w--current"><img loading="lazy" src="assets/lulasync-logo.svg"
-                  alt="LulaSync logo" class="menu_logo" /></a>
+                class="menu_logo-wrap w-inline-block w--current"><img loading="lazy" src="assets/lulasync-wordmark.png"
+                  alt="LulaSync logo" class="menu_logo" style="height:20px;width:auto;max-width:none;display:block;visibility:visible!important;opacity:1!important;" /></a>
               <div class="menu_col-1">
                 <div class="menu_links-wrap"><a href="services/product-uiux-design.html"
                     class="menu_link w-inline-block">
@@ -664,6 +675,63 @@
         </style>
       </div>
     </nav>
+    <!-- ── Wordmark hero (cosmos-style) ── -->
+    <style>
+      /* kill any top gap from Webflow main-wrapper */
+      .main-wrapper,
+      .sticky-wr,
+      .section_home-header,
+      .home-header_content {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+      }
+
+      .lula-wordmark-hero {
+        width: 100%;
+        background: transparent;
+        padding: 64px 0 24px;
+        margin: 0;
+        line-height: 0;
+        font-size: 0;
+        display: block;
+        overflow: hidden;
+      }
+
+      .lula-wordmark-hero img {
+        display: block;
+        width: 100%;
+        height: auto;
+        transform-origin: center top;
+        will-change: transform, opacity;
+        pointer-events: none;
+        visibility: visible !important;
+        opacity: 1 !important;
+        vertical-align: top;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <div class="lula-wordmark-hero" id="lula-wordmark-hero">
+      <img src="assets/lulasync-wordmark.png" id="lula-wordmark-img" alt="LulaSync" loading="eager" />
+    </div>
+    <script>
+      (function () {
+        var hero = document.getElementById('lula-wordmark-hero');
+        var img = document.getElementById('lula-wordmark-img');
+        if (!hero || !img) return;
+        function update() {
+          var scrollY = window.scrollY || window.pageYOffset;
+          var heroH = hero.offsetHeight || 1;
+          var progress = Math.min(scrollY / heroH, 1);
+          var scale = 1 - progress * 0.12;
+          var opacity = Math.max(1 - progress * 1.6, 0);
+          img.style.transform = 'scale(' + scale + ')';
+          img.style.opacity = opacity;
+        }
+        window.addEventListener('scroll', update, { passive: true });
+        update();
+      })();
+    </script>
     <main class="main-wrapper">
       <div class="sticky-wr">
         <header class="section_home-header">
@@ -740,8 +808,8 @@
                   <!-- Header cover: replaces Clutch logo + company name with LulaSync branding -->
                   <div
                     style="position:absolute;top:0;left:0;right:0;height:48px;background:#fff;z-index:5;display:flex;align-items:center;gap:9px;padding:0 14px;border-bottom:1px solid #e8e8e8;pointer-events:none">
-                    <img src="assets/lulasync-logo.svg" alt="LulaSync"
-                      style="width:22px;height:22px;display:block;flex-shrink:0" />
+                    <img src="assets/lulasync-wordmark.png" alt="LulaSync"
+                      style="height:20px;width:auto;max-width:none;display:block;visibility:visible;opacity:1;margin-right:never;height:22px;display:block;flex-shrink:0" />
                     <span
                       style="font-weight:700;font-size:12.5px;color:#0f1011;letter-spacing:-.01em;white-space:nowrap">LulaSync
                       Clients Review</span>
@@ -2358,8 +2426,8 @@
                             href="https://www.google.com/maps/search/?api=1&query=41%20Juta%20Street%2C%20Braamfontein%2C%20Johannesburg"
                             target="_blank" rel="noopener" class="footer_link w-inline-block">
                             <div class="footer_link-texts">
-                              <p class="footer_link-text _1">Find me at</p>
-                              <p class="footer_link-text _2">Find me at</p>
+                              <p class="footer_link-text _1">Find me — 41 Juta St, Braamfontein, JHB</p>
+                              <p class="footer_link-text _2">Find me — 41 Juta St, Braamfontein, JHB</p>
                             </div>
                             <div class="footer_link-dot"></div>
                           </a><a href="#" onclick="return openContactForm()" class="footer_link w-inline-block">
@@ -2371,58 +2439,37 @@
                           </a></div>
                       </div>
                     </div>
-                    <div id="w-node-_0c480b83-389e-8cec-b163-4fac9d347eb6-1f0f9ecf" class="footer_links-group">
-                      <div class="text-color-grey-400">
-                        <div class="text-size-regular">Let’s get down to business:</div>
-                        <div class="email"><a href="tel:+27837195064" class="footer_link big-2 w-inline-block">
-                            <div class="footer_link-texts big-3">
-                              <p fs-copyclip-element="copy-this" class="footer_link-text _1 big-4">+27 83 719 5064</p>
-                              <p class="footer_link-text _2 big-5">+27 83 719 5064</p>
-                            </div>
-                            <div class="footer_link-dot big-7"></div>
-                          </a><button fs-copyclip-element="click" fs-copyclip-duration="1200"
-                            fs-copyclip-activeclass="active" class="copy-icon"><svg xmlns="http://www.w3.org/2000/svg"
-                              width="100%" viewBox="0 0 24 24" fill="none">
-                              <path
-                                d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z"
-                                stroke="CurrentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                              </path>
-                              <path
-                                d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9"
-                                stroke="CurrentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                              </path>
-                            </svg>
-                            <div class="tooltip">
-                              <div>Copied</div>
-                              <div class="tooltip-tail"></div>
-                            </div>
-                          </button></div>
-                        <div class="spacer-xsmall"></div>
-                        <div class="email"><a href="mailto:mkhungela.l@gmail.com"
-                            class="footer_link big-2 w-inline-block">
-                            <div class="footer_link-texts big-3">
-                              <p fs-copyclip-element="copy-this" class="footer_link-text _1 big-4">mkhungela.l@gmail.com
-                              </p>
-                              <p class="footer_link-text _2 big-5">mkhungela.l@gmail.com</p>
-                            </div>
-                            <div class="footer_link-dot big-7"></div>
-                          </a><button fs-copyclip-element="click" fs-copyclip-duration="1200"
-                            fs-copyclip-activeclass="active" class="copy-icon"><svg xmlns="http://www.w3.org/2000/svg"
-                              width="100%" viewBox="0 0 24 24" fill="none">
-                              <path
-                                d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z"
-                                stroke="CurrentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                              </path>
-                              <path
-                                d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9"
-                                stroke="CurrentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                              </path>
-                            </svg>
-                            <div class="tooltip">
-                              <div>Copied</div>
-                              <div class="tooltip-tail"></div>
-                            </div>
-                          </button></div>
+                    <div id="w-node-_0c480b83-389e-8cec-b163-4fac9d347eb6-1f0f9ecf" class="footer_links-group" style="min-width:0;">
+                      <div style="display:flex;flex-direction:column;gap:20px;">
+                        <!-- Call me -->
+                        <div style="display:flex;flex-direction:column;gap:4px;">
+                          <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);line-height:1;">Call me</div>
+                          <div style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;">
+                            <a href="tel:+27837195064" style="font-size:clamp(18px,3vw,32px);font-weight:700;color:#fff;text-decoration:none;line-height:1.2;white-space:nowrap;">+27 83 719 5064</a>
+                            <button fs-copyclip-element="click" fs-copyclip-duration="1200" fs-copyclip-activeclass="active" class="copy-icon" style="flex-shrink:0;background:none;border:none;cursor:pointer;padding:4px;color:rgba(255,255,255,.4);display:flex;align-items:center;">
+                              <p fs-copyclip-element="copy-this" style="display:none;">+27837195064</p>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                              <div class="tooltip"><div>Copied</div><div class="tooltip-tail"></div></div>
+                            </button>
+                          </div>
+                        </div>
+                        <!-- Email me -->
+                        <div style="display:flex;flex-direction:column;gap:4px;">
+                          <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);line-height:1;">Email me</div>
+                          <div style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;">
+                            <a href="mailto:mkhungela.l@gmail.com" style="font-size:clamp(14px,2vw,22px);font-weight:600;color:#fff;text-decoration:none;line-height:1.2;white-space:nowrap;">mkhungela.l@gmail.com</a>
+                            <button fs-copyclip-element="click" fs-copyclip-duration="1200" fs-copyclip-activeclass="active" class="copy-icon" style="flex-shrink:0;background:none;border:none;cursor:pointer;padding:4px;color:rgba(255,255,255,.4);display:flex;align-items:center;">
+                              <p fs-copyclip-element="copy-this" style="display:none;">mkhungela.l@gmail.com</p>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                              <div class="tooltip"><div>Copied</div><div class="tooltip-tail"></div></div>
+                            </button>
+                          </div>
+                        </div>
+                        <!-- Find me -->
+                        <div style="display:flex;flex-direction:column;gap:4px;">
+                          <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);line-height:1;">Find me</div>
+                          <a href="https://www.google.com/maps/search/?api=1&query=41%20Juta%20Street%2C%20Braamfontein%2C%20Johannesburg" target="_blank" rel="noopener" style="font-size:clamp(13px,1.5vw,16px);font-weight:500;color:rgba(255,255,255,.7);text-decoration:none;line-height:1.4;">41 Juta Street, Braamfontein,<br/>Johannesburg, South Africa</a>
+                        </div>
                       </div>
                     </div>
                   </div><img src="assets/lulasync-wordmark.png" alt="LulaSync"
@@ -2834,64 +2881,76 @@ let marquee = gsap.timeline({ repeat: -1 }).fromTo(
     })();
   </script>
 
-<!-- Back to top button -->
-<style>
-  #btt-btn {
-    position: fixed;
-    bottom: 32px;
-    right: 32px;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: #fff;
-    color: #0F1011;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,.25);
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity .25s ease, transform .25s ease, box-shadow .25s ease;
-    z-index: 9999;
-    pointer-events: none;
-  }
-  #btt-btn.btt-visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-  #btt-btn:hover {
-    box-shadow: 0 8px 28px rgba(0,0,0,.35);
-    transform: translateY(-2px);
-  }
-  #btt-btn svg { display:block; }
-  @media (max-width: 767px) {
-    #btt-btn { bottom: 20px; right: 20px; width: 44px; height: 44px; }
-  }
-</style>
-<button id="btt-btn" aria-label="Back to top">
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-    <path d="M10 15V5M10 5L5.5 9.5M10 5L14.5 9.5" stroke="#0F1011" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</button>
-<script>
-(function(){
-  var btn = document.getElementById('btt-btn');
-  if (!btn) return;
-  window.addEventListener('scroll', function(){
-    if (window.scrollY > 400) {
-      btn.classList.add('btt-visible');
-    } else {
-      btn.classList.remove('btt-visible');
+  <!-- Back to top button -->
+  <style>
+    #btt-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #fff;
+      color: #0F1011;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .25);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .25s ease, transform .25s ease, box-shadow .25s ease;
+      z-index: 9999;
+      pointer-events: none;
     }
-  }, { passive: true });
-  btn.addEventListener('click', function(){
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-})();
-</script>
+
+    #btt-btn.btt-visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    #btt-btn:hover {
+      box-shadow: 0 8px 28px rgba(0, 0, 0, .35);
+      transform: translateY(-2px);
+    }
+
+    #btt-btn svg {
+      display: block;
+    }
+
+    @media (max-width: 767px) {
+      #btt-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+      }
+    }
+  </style>
+  <button id="btt-btn" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M10 15V5M10 5L5.5 9.5M10 5L14.5 9.5" stroke="#0F1011" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById('btt-btn');
+      if (!btn) return;
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 400) {
+          btn.classList.add('btt-visible');
+        } else {
+          btn.classList.remove('btt-visible');
+        }
+      }, { passive: true });
+      btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
 
 </body>
 

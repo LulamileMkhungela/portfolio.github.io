@@ -294,6 +294,23 @@
     })();
   </script>
   <style id="lula-logo-fix">
+    
+    /* ── wordmark logo ── */
+    .navbar-logo_wr img[alt="LulaSync"] {
+      height: 22px !important;
+      width: auto !important;
+      max-width: none !important;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: none;
+    }
+    .navbar-logo_wr > div:first-child {
+      width: auto !important;
+      height: auto !important;
+      overflow: visible !important;
+    }
+
     /* ── navbar logo text fix ── */
     .navbar_logo-wrap,
     .logo-text-flex,
@@ -334,19 +351,8 @@
       <div class="navbar_content">
         <div animation="navbar-content" class="padding-global is-tiny">
           <div class="navbar_component"><a href="../index.html" class="navbar-logo_wr w-inline-block">
-              <div class="menu_logo-wr"><img src="../assets/lulasync-logo.svg" loading="lazy" alt="logo"
-                  class="menu_logo" /></div>
-              <div href="#" class="navbar_logo-wrap">
-                <div class="logo-text-flex">
-                  <div class="navbar_logo-anim">
-                    <div class="navbar_logo-anim_text">Product designer &amp; strategist</div>
-                    <div class="navbar_logo-anim_text is-abs">UI/UX &amp; brand design</div>
-                    <div class="navbar_logo-anim_text is-abs">SaaS, AI &amp; EdTech</div>
-                    <div class="navbar_logo-anim_text is-abs">Johannesburg, South Africa</div>
-                  </div>
-                </div>
-              </div>
-            </a>
+              <div style="display:flex;align-items:center;"><img src="../assets/lulasync-wordmark.png" loading="lazy" alt="LulaSync" style="height:22px;width:auto;max-width:none;display:block;visibility:visible;opacity:1;" /></div>
+              </a>
             <div class="navbar_links">
               <div class="navbar_links-wrap"><a href="../services/product-uiux-design.html"
                   class="navbar_link w-inline-block">
@@ -404,7 +410,7 @@
         <div class="menu_content">
           <div class="menu_items">
             <div class="menu_links"><a href="../index.html" class="menu_logo-wrap w-inline-block"><img loading="lazy"
-                  src="../assets/lulasync-logo.svg" alt="LulaSync logo" class="menu_logo" /></a>
+                  src="../assets/lulasync-wordmark.png" alt="LulaSync logo" class="menu_logo" style="height:20px;width:auto;max-width:none;display:block;visibility:visible!important;opacity:1!important;" /></a>
               <div class="menu_col-1">
                 <div class="menu_links-wrap"><a href="../services/product-uiux-design.html"
                     class="menu_link w-inline-block">
@@ -2161,8 +2167,8 @@
                           href="https://www.google.com/maps/search/?api=1&query=41%20Juta%20Street%2C%20Braamfontein%2C%20Johannesburg"
                           target="_blank" rel="noopener" class="footer_link w-inline-block">
                           <div class="footer_link-texts">
-                            <p class="footer_link-text _1">Find me at</p>
-                            <p class="footer_link-text _2">Find me at</p>
+                            <p class="footer_link-text _1">Find me — 41 Juta St, Braamfontein, JHB</p>
+                            <p class="footer_link-text _2">Find me — 41 Juta St, Braamfontein, JHB</p>
                           </div>
                           <div class="footer_link-dot"></div>
                         </a><a href="#" onclick="return openContactForm()" class="footer_link w-inline-block">
@@ -2174,60 +2180,39 @@
                         </a></div>
                     </div>
                   </div>
-                  <div id="w-node-_0c480b83-389e-8cec-b163-4fac9d347eb6-1f0f9ecf" class="footer_links-group">
-                    <div class="text-color-grey-400">
-                      <div class="text-size-regular">Let’s get down to business:</div>
-                      <div class="email"><a href="tel:+27837195064" class="footer_link big-2 w-inline-block">
-                          <div class="footer_link-texts big-3">
-                            <p fs-copyclip-element="copy-this" class="footer_link-text _1 big-4">+27 83 719 5064</p>
-                            <p class="footer_link-text _2 big-5">+27 83 719 5064</p>
+                  <div id="w-node-_0c480b83-389e-8cec-b163-4fac9d347eb6-1f0f9ecf" class="footer_links-group" style="min-width:0;">
+                      <div style="display:flex;flex-direction:column;gap:20px;">
+                        <!-- Call me -->
+                        <div style="display:flex;flex-direction:column;gap:4px;">
+                          <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);line-height:1;">Call me</div>
+                          <div style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;">
+                            <a href="tel:+27837195064" style="font-size:clamp(18px,3vw,32px);font-weight:700;color:#fff;text-decoration:none;line-height:1.2;white-space:nowrap;">+27 83 719 5064</a>
+                            <button fs-copyclip-element="click" fs-copyclip-duration="1200" fs-copyclip-activeclass="active" class="copy-icon" style="flex-shrink:0;background:none;border:none;cursor:pointer;padding:4px;color:rgba(255,255,255,.4);display:flex;align-items:center;">
+                              <p fs-copyclip-element="copy-this" style="display:none;">+27837195064</p>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                              <div class="tooltip"><div>Copied</div><div class="tooltip-tail"></div></div>
+                            </button>
                           </div>
-                          <div class="footer_link-dot big-7"></div>
-                        </a><button fs-copyclip-element="click" fs-copyclip-duration="1200"
-                          fs-copyclip-activeclass="active" class="copy-icon"><svg xmlns="http://www.w3.org/2000/svg"
-                            width="100%" viewBox="0 0 24 24" fill="none">
-                            <path
-                              d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z"
-                              stroke="CurrentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            </path>
-                            <path
-                              d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9"
-                              stroke="CurrentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            </path>
-                          </svg>
-                          <div class="tooltip">
-                            <div>Copied</div>
-                            <div class="tooltip-tail"></div>
+                        </div>
+                        <!-- Email me -->
+                        <div style="display:flex;flex-direction:column;gap:4px;">
+                          <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);line-height:1;">Email me</div>
+                          <div style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;">
+                            <a href="mailto:mkhungela.l@gmail.com" style="font-size:clamp(14px,2vw,22px);font-weight:600;color:#fff;text-decoration:none;line-height:1.2;white-space:nowrap;">mkhungela.l@gmail.com</a>
+                            <button fs-copyclip-element="click" fs-copyclip-duration="1200" fs-copyclip-activeclass="active" class="copy-icon" style="flex-shrink:0;background:none;border:none;cursor:pointer;padding:4px;color:rgba(255,255,255,.4);display:flex;align-items:center;">
+                              <p fs-copyclip-element="copy-this" style="display:none;">mkhungela.l@gmail.com</p>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                              <div class="tooltip"><div>Copied</div><div class="tooltip-tail"></div></div>
+                            </button>
                           </div>
-                        </button></div>
-                      <div class="spacer-xsmall"></div>
-                      <div class="email"><a href="mailto:mkhungela.l@gmail.com"
-                          class="footer_link big-2 w-inline-block">
-                          <div class="footer_link-texts big-3">
-                            <p fs-copyclip-element="copy-this" class="footer_link-text _1 big-4">mkhungela.l@gmail.com
-                            </p>
-                            <p class="footer_link-text _2 big-5">mkhungela.l@gmail.com</p>
-                          </div>
-                          <div class="footer_link-dot big-7"></div>
-                        </a><button fs-copyclip-element="click" fs-copyclip-duration="1200"
-                          fs-copyclip-activeclass="active" class="copy-icon"><svg xmlns="http://www.w3.org/2000/svg"
-                            width="100%" viewBox="0 0 24 24" fill="none">
-                            <path
-                              d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z"
-                              stroke="CurrentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            </path>
-                            <path
-                              d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9"
-                              stroke="CurrentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            </path>
-                          </svg>
-                          <div class="tooltip">
-                            <div>Copied</div>
-                            <div class="tooltip-tail"></div>
-                          </div>
-                        </button></div>
+                        </div>
+                        <!-- Find me -->
+                        <div style="display:flex;flex-direction:column;gap:4px;">
+                          <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);line-height:1;">Find me</div>
+                          <a href="https://www.google.com/maps/search/?api=1&query=41%20Juta%20Street%2C%20Braamfontein%2C%20Johannesburg" target="_blank" rel="noopener" style="font-size:clamp(13px,1.5vw,16px);font-weight:500;color:rgba(255,255,255,.7);text-decoration:none;line-height:1.4;">41 Juta Street, Braamfontein,<br/>Johannesburg, South Africa</a>
+                        </div>
+                      </div>
                     </div>
-                  </div>
                 </div><img src="../assets/lulasync-wordmark.png" alt="LulaSync"
                   style="display:block;width:100%;height:auto;margin:0 auto;max-width:3444px" />
               </div>
