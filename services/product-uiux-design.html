@@ -293,6 +293,27 @@
       document.addEventListener('cut', function (e) { e.preventDefault(); return false; });
     })();
   </script>
+  <style id="lula-logo-fix">
+    /* ── navbar logo text fix ── */
+    .navbar_logo-wrap,
+    .logo-text-flex,
+    .navbar_logo-anim {
+      overflow: hidden;
+      white-space: nowrap;
+      max-width: 260px;
+    }
+
+    .navbar_logo-anim_text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .navbar-logo_wr {
+      min-width: 0;
+      flex-shrink: 1;
+    }
+  </style>
 </head>
 
 <body>
@@ -327,21 +348,53 @@
               </div>
             </a>
             <div class="navbar_links">
-            <div class="navbar_links-wrap"><a href="../services/product-uiux-design.html"
-                class="navbar_link w-inline-block">
-                <div class="navbar_link-texts">
-                  <p class="navbar_link-text _1">Services</p>
-                  <p class="navbar_link-text _2">Services</p>
-                </div>
-                <div class="nav_link-dot"></div>
-              </a><a href="../projects.html" class="navbar_link w-inline-block">
-                <div class="navbar_link-texts">
-                  <p class="navbar_link-text _1">Works</p>
-                  <p class="navbar_link-text _2">Works</p>
-                </div>
-                <div class="nav_link-dot"></div>
-              </a></div>
-          </div>
+              <div class="navbar_links-wrap"><a href="../services/product-uiux-design.html"
+                  class="navbar_link w-inline-block">
+                  <div class="navbar_link-texts">
+                    <p class="navbar_link-text _1">Services</p>
+                    <p class="navbar_link-text _2">Services</p>
+                  </div>
+                  <div class="nav_link-dot"></div>
+                </a><a href="../projects.html" class="navbar_link w-inline-block">
+                  <div class="navbar_link-texts">
+                    <p class="navbar_link-text _1">Works</p>
+                    <p class="navbar_link-text _2">Works</p>
+                  </div>
+                  <div class="nav_link-dot"></div>
+                </a></div>
+            </div>
+            <div class="navbar_contact">
+              <div class="navbar-contact">
+                <div data-wf--talk-to--variant="base"><a href="https://calendly.com/lulamile_m/meet-lulamile"
+                    target="_blank" class="navbar_talk-to w-inline-block"><img loading="lazy" src="../assets/meew.jpeg"
+                      alt="Lulamile Mkhungela" class="navbar_contact-pic" />
+                    <div class="navbar_contact-texts">
+                      <div class="relative">
+                        <div class="nav_contact-name">Contact - Lulamile</div>
+                        <div class="online"></div>
+                      </div>
+                      <div class="home-header_position">Strategist</div>
+                    </div>
+                  </a></div>
+              </div>
+              <div fs-scrolldisable-media="(max-width: 767px)" fs-scrolldisable-element="toggle"
+                class="navbar_menu-open"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"
+                  fill="none" class="menu-icon">
+                  <path d="M3 5H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path d="M3 12H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path d="M3 19H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg></div>
+              <div><a data-wf--button--variant="small-light" href="https://calendly.com/lulamile_m/meet-lulamile"
+                  target="_blank" class="button w-inline-block">
+                  <div class="button-in">
+                    <div class="button_texts">
+                      <div class="button_text _1">Book a Call</div>
+                      <div class="button_text _2">Talk to me</div>
+                    </div>
+                  </div>
                 </a></div>
             </div>
           </div>
@@ -2554,64 +2607,76 @@
     }
   </script>
 
-<!-- Back to top button -->
-<style>
-  #btt-btn {
-    position: fixed;
-    bottom: 32px;
-    right: 32px;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: #fff;
-    color: #0F1011;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,.25);
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity .25s ease, transform .25s ease, box-shadow .25s ease;
-    z-index: 9999;
-    pointer-events: none;
-  }
-  #btt-btn.btt-visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-  #btt-btn:hover {
-    box-shadow: 0 8px 28px rgba(0,0,0,.35);
-    transform: translateY(-2px);
-  }
-  #btt-btn svg { display:block; }
-  @media (max-width: 767px) {
-    #btt-btn { bottom: 20px; right: 20px; width: 44px; height: 44px; }
-  }
-</style>
-<button id="btt-btn" aria-label="Back to top">
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-    <path d="M10 15V5M10 5L5.5 9.5M10 5L14.5 9.5" stroke="#0F1011" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</button>
-<script>
-(function(){
-  var btn = document.getElementById('btt-btn');
-  if (!btn) return;
-  window.addEventListener('scroll', function(){
-    if (window.scrollY > 400) {
-      btn.classList.add('btt-visible');
-    } else {
-      btn.classList.remove('btt-visible');
+  <!-- Back to top button -->
+  <style>
+    #btt-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #fff;
+      color: #0F1011;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .25);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .25s ease, transform .25s ease, box-shadow .25s ease;
+      z-index: 9999;
+      pointer-events: none;
     }
-  }, { passive: true });
-  btn.addEventListener('click', function(){
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-})();
-</script>
+
+    #btt-btn.btt-visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    #btt-btn:hover {
+      box-shadow: 0 8px 28px rgba(0, 0, 0, .35);
+      transform: translateY(-2px);
+    }
+
+    #btt-btn svg {
+      display: block;
+    }
+
+    @media (max-width: 767px) {
+      #btt-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+      }
+    }
+  </style>
+  <button id="btt-btn" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M10 15V5M10 5L5.5 9.5M10 5L14.5 9.5" stroke="#0F1011" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </svg>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById('btt-btn');
+      if (!btn) return;
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 400) {
+          btn.classList.add('btt-visible');
+        } else {
+          btn.classList.remove('btt-visible');
+        }
+      }, { passive: true });
+      btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
 
 </body>
 

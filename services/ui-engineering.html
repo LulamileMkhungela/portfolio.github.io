@@ -74,6 +74,25 @@ body{background:#0f1011;color:#fff;font-family:-apple-system,BlinkMacSystemFont,
 #btt-btn.btt-visible{opacity:1;transform:translateY(0);pointer-events:auto;}
 #btt-btn:hover{box-shadow:0 8px 28px rgba(0,0,0,.35);transform:translateY(-2px);}
 </style>
+<style id="lula-logo-fix">
+    /* ── navbar logo text fix ── */
+    .navbar_logo-wrap,
+    .logo-text-flex,
+    .navbar_logo-anim {
+      overflow: hidden;
+      white-space: nowrap;
+      max-width: 260px;
+    }
+    .navbar_logo-anim_text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .navbar-logo_wr {
+      min-width: 0;
+      flex-shrink: 1;
+    }
+</style>
 </head>
 <body>
 <nav style="position:sticky;top:0;z-index:1000;background:rgba(15,16,17,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);">

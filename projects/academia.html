@@ -70,7 +70,26 @@ img{pointer-events:none !important}
 .lula-mega-item-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:2px;}
 .lula-mega-item-desc{font-size:12px;color:rgba(255,255,255,.45);line-height:1.4;}
 @media(max-width:991px){.lula-nav-links,.lula-persona-wrap{display:none!important;}}
-</style></head>
+</style><style id="lula-logo-fix">
+    /* ── navbar logo text fix ── */
+    .navbar_logo-wrap,
+    .logo-text-flex,
+    .navbar_logo-anim {
+      overflow: hidden;
+      white-space: nowrap;
+      max-width: 260px;
+    }
+    .navbar_logo-anim_text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .navbar-logo_wr {
+      min-width: 0;
+      flex-shrink: 1;
+    }
+</style>
+</head>
 <body>
 <!-- Back to top button -->
 <style>

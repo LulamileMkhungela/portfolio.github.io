@@ -239,6 +239,25 @@
       document.addEventListener('cut', function (e) { e.preventDefault(); return false; });
     })();
   </script>
+<style id="lula-logo-fix">
+    /* ── navbar logo text fix ── */
+    .navbar_logo-wrap,
+    .logo-text-flex,
+    .navbar_logo-anim {
+      overflow: hidden;
+      white-space: nowrap;
+      max-width: 260px;
+    }
+    .navbar_logo-anim_text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .navbar-logo_wr {
+      min-width: 0;
+      flex-shrink: 1;
+    }
+</style>
 </head>
 
 <body style="background:#000">
@@ -288,6 +307,41 @@
                 <div class="nav_link-dot"></div>
               </a></div>
           </div>
+                </a></div>
+            </div>
+          
+            <div class="navbar_contact">
+              <div class="navbar-contact">
+                <div data-wf--talk-to--variant="base"><a href="https://calendly.com/lulamile_m/meet-lulamile"
+                    target="_blank" class="navbar_talk-to w-inline-block"><img loading="lazy" src="../assets/meew.jpeg"
+                      alt="Lulamile Mkhungela" class="navbar_contact-pic" />
+                    <div class="navbar_contact-texts">
+                      <div class="relative">
+                        <div class="nav_contact-name">Contact - Lulamile</div>
+                        <div class="online"></div>
+                      </div>
+                      <div class="home-header_position">Strategist</div>
+                    </div>
+                  </a></div>
+              </div>
+              <div fs-scrolldisable-media="(max-width: 767px)" fs-scrolldisable-element="toggle"
+                class="navbar_menu-open"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"
+                  fill="none" class="menu-icon">
+                  <path d="M3 5H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path d="M3 12H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path d="M3 19H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg></div>
+              <div><a data-wf--button--variant="small-light" href="https://calendly.com/lulamile_m/meet-lulamile"
+                  target="_blank" class="button w-inline-block">
+                  <div class="button-in">
+                    <div class="button_texts">
+                      <div class="button_text _1">Book a Call</div>
+                      <div class="button_text _2">Talk to me</div>
+                    </div>
+                  </div>
                 </a></div>
             </div>
           </div>
