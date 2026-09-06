@@ -286,6 +286,7 @@
   overflow: hidden !important;
 }
 </style>
+<style id="lula-cover-fix">.main-wrapper.is-works{padding-top:0!important;margin-top:0!important;}#case-body{margin-top:0!important;padding-top:0!important;}</style>
 </head>
 
 <body style="background:#ffffff">
@@ -325,9 +326,6 @@
                 <div class="nav_link-dot"></div>
               </a></div>
           </div>
-                </a>
-              </div>
-            </div>
             <div class="navbar_contact">
               <div class="navbar-contact">
                 <div data-wf--talk-to--variant="base"><a href="https://calendly.com/lulamile_m/meet-lulamile"
@@ -422,10 +420,8 @@
                 <div class="menu_legal-links">
                   <a href="https://www.linkedin.com/in/lulamile-mkhungela/" target="_blank" rel="noopener"
                     class="menu_legal-link">LinkedIn</a>
-                  <a href="mailto:mkhungela.l@gmail.com" class="menu_legal-link">mkhungela.l@gmail.com</a>
-                  <a href="tel:+27837195064" class="menu_legal-link">+27 83 719 5064</a>
                   <a href="https://www.google.com/maps/search/?api=1&query=41%20Juta%20Street%2C%20Braamfontein%2C%20Johannesburg"
-                    target="_blank" rel="noopener" class="menu_legal-link">Find me at — 41 Juta Street, Braamfontein</a>
+                    target="_blank" rel="noopener" class="menu_legal-link">Find me</a>
                 </div>
               </div>
             </div>
@@ -443,59 +439,181 @@
     </div>
     <div class="menu_bg"></div>
 
-    <main class="main-wrapper is-works" style="background:#ffffff">
+    <!-- ── Vertical case-study nav ── -->
+<style>
+  .lcs-wrap {
+    position: fixed;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4000;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    pointer-events: none;
+  }
+  .lcs-btn {
+    pointer-events: all;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 0;
+    text-align: left;
+  }
+  .lcs-dot {
+    flex-shrink: 0;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.25);
+    transition: background .25s, transform .25s;
+    display: block;
+  }
+  .lcs-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .05em;
+    color: rgba(255,255,255,0);
+    white-space: nowrap;
+    transition: color .25s;
+    pointer-events: none;
+  }
+  .lcs-btn:hover .lcs-dot,
+  .lcs-btn.active .lcs-dot {
+    background: #a78bfa;
+    transform: scale(1.5);
+  }
+  .lcs-btn:hover .lcs-label,
+  .lcs-btn.active .lcs-label {
+    color: rgba(255,255,255,.9);
+  }
+  /* on dark pages the labels need a subtle shadow */
+  .lcs-label {
+    text-shadow: 0 1px 4px rgba(0,0,0,.8);
+  }
+  @media(max-width:767px) {
+    .lcs-wrap { left: 8px; }
+    .lcs-label { display: none; }
+  }
+</style>
+<div class="lcs-wrap" id="lcs-wrap">
+    <button class="lcs-btn" data-target="bantuzel-cover" data-idx="0" onclick="lcsGo('bantuzel-cover',0)">
+      <span class="lcs-dot"></span>
+      <span class="lcs-label">Cover</span>
+    </button>
+    <button class="lcs-btn" data-target="bantuzel-p2" data-idx="1" onclick="lcsGo('bantuzel-p2',1)">
+      <span class="lcs-dot"></span>
+      <span class="lcs-label">Discovery</span>
+    </button>
+    <button class="lcs-btn" data-target="bantuzel-p4" data-idx="2" onclick="lcsGo('bantuzel-p4',2)">
+      <span class="lcs-dot"></span>
+      <span class="lcs-label">UX Design</span>
+    </button>
+    <button class="lcs-btn" data-target="bantuzel-p7" data-idx="3" onclick="lcsGo('bantuzel-p7',3)">
+      <span class="lcs-dot"></span>
+      <span class="lcs-label">UI Design</span>
+    </button>
+    <button class="lcs-btn" data-target="bantuzel-p14" data-idx="4" onclick="lcsGo('bantuzel-p14',4)">
+      <span class="lcs-dot"></span>
+      <span class="lcs-label">Branding</span>
+    </button>
+    <button class="lcs-btn" data-target="bantuzel-p20" data-idx="5" onclick="lcsGo('bantuzel-p20',5)">
+      <span class="lcs-dot"></span>
+      <span class="lcs-label">Prototype</span>
+    </button>
+    <button class="lcs-btn" data-target="bantuzel-p24" data-idx="6" onclick="lcsGo('bantuzel-p24',6)">
+      <span class="lcs-dot"></span>
+      <span class="lcs-label">Delivery</span>
+    </button>
+</div>
+<script>
+(function(){
+  var steps = ['bantuzel-cover', 'bantuzel-p2', 'bantuzel-p4', 'bantuzel-p7', 'bantuzel-p14', 'bantuzel-p20', 'bantuzel-p24'];
+  var btns  = document.querySelectorAll('.lcs-btn');
+
+  window.lcsGo = function(id, idx) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var top = el.getBoundingClientRect().top + window.scrollY - 20;
+    window.scrollTo({top: top, behavior: 'smooth'});
+    setActive(idx);
+  };
+
+  function setActive(idx) {
+    btns.forEach(function(b,i){ b.classList.toggle('active', i===idx); });
+  }
+
+  function onScroll() {
+    var best = 0;
+    for (var i = 0; i < steps.length; i++) {
+      var el = document.getElementById(steps[i]);
+      if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.4) {
+        best = i;
+      }
+    }
+    setActive(best);
+  }
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+<main class="main-wrapper is-works" style="background:#ffffff">
       <section id="case-body" style="background:#ffffff;margin:0;padding:0;line-height:0">
-        <img src="../assets/bantuzel/cover.png" alt="BantuZel cover" loading="eager" decoding="async"
+        <img id="bantuzel-cover" src="../assets/bantuzel/cover.png" alt="BantuZel cover" loading="eager" decoding="async"
           style="display:block;width:100%;height:auto;margin:0;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 2 edited.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p2" src="../assets/bantuzel/Page 2 edited.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 3.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p3" src="../assets/bantuzel/Page 3.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 4.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p4" src="../assets/bantuzel/Page 4.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 5.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p5" src="../assets/bantuzel/Page 5.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 6.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p6" src="../assets/bantuzel/Page 6.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 7.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p7" src="../assets/bantuzel/Page 7.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 8.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p8" src="../assets/bantuzel/Page 8.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 9.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p9" src="../assets/bantuzel/Page 9.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 10.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p10" src="../assets/bantuzel/Page 10.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 11.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p11" src="../assets/bantuzel/Page 11.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 12.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p12" src="../assets/bantuzel/Page 12.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 13.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p13" src="../assets/bantuzel/Page 13.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 14.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p14" src="../assets/bantuzel/Page 14.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 15.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p15" src="../assets/bantuzel/Page 15.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 16.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p16" src="../assets/bantuzel/Page 16.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 17.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p17" src="../assets/bantuzel/Page 17.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 18.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p18" src="../assets/bantuzel/Page 18.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 19.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p19" src="../assets/bantuzel/Page 19.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 20.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p20" src="../assets/bantuzel/Page 20.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 21.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p21" src="../assets/bantuzel/Page 21.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 22.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p22" src="../assets/bantuzel/Page 22.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 23.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p23" src="../assets/bantuzel/Page 23.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 24-1.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p24" src="../assets/bantuzel/Page 24-1.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Page 25.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-p25" src="../assets/bantuzel/Page 25.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
-        <img src="../assets/bantuzel/Frame 443.png" alt="" loading="lazy" decoding="async"
+        <img id="bantuzel-frame" src="../assets/bantuzel/Frame 443.png" alt="" loading="lazy" decoding="async"
           style="display:block;width:100%;max-width:2571px;height:auto;margin:0 auto;border:0;border-radius:0;box-shadow:none;background:transparent" />
         
 </section>
@@ -579,8 +697,8 @@
                             href="https://www.google.com/maps/search/?api=1&query=41%20Juta%20Street%2C%20Braamfontein%2C%20Johannesburg"
                             target="_blank" rel="noopener" class="footer_link w-inline-block">
                             <div class="footer_link-texts">
-                              <p class="footer_link-text _1">Find me — 41 Juta St, Braamfontein, JHB</p>
-                              <p class="footer_link-text _2">Find me — 41 Juta St, Braamfontein, JHB</p>
+                              <p class="footer_link-text _1">Find me</p>
+                              <p class="footer_link-text _2">Find me</p>
                             </div>
                             <div class="footer_link-dot"></div>
                           </a><a href="#" onclick="return openContactForm()" class="footer_link w-inline-block">
@@ -594,48 +712,42 @@
                     </div>
                     <div id="w-node-_0c480b83-389e-8cec-b163-4fac9d347eb6-1f0f9ecf" class="footer_links-group" style="min-width:0;max-width:100%;">
                       <style>
-                        .lula-contact-row{display:flex;flex-direction:column;gap:6px;}
-                        .lula-contact-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38);}
-                        .lula-contact-value{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-                        .lula-contact-text{font-size:clamp(13px,2.5vw,18px);font-weight:600;color:#fff;line-height:1.3;word-break:break-all;}
-                        .lula-contact-text.phone{font-size:clamp(18px,3.5vw,28px);}
-                        .lula-copy-btn{flex-shrink:0;background:none;border:none;cursor:pointer;padding:4px;color:rgba(255,255,255,.4);display:inline-flex;align-items:center;position:relative;}
-                        .lula-copy-btn:hover{color:#fff;}
-                        .lula-copy-toast{position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);background:#333;color:#fff;font-size:11px;padding:3px 8px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;}
-                        .lula-copy-btn.copied .lula-copy-toast{opacity:1;}
-                        .lula-contact-address{font-size:clamp(12px,2vw,14px);font-weight:500;color:rgba(255,255,255,.6);line-height:1.5;}
-                        .lula-contact-address a{color:rgba(255,255,255,.6);text-decoration:underline;text-underline-offset:3px;}
-                        .lula-footer-contact-wrap{display:flex;flex-direction:column;gap:24px;}
-                        @media(max-width:479px){.lula-contact-text.phone{font-size:22px;}}
+                        .lfc{display:flex;flex-direction:column;gap:6px;}
+                        .lfc-lbl{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38);}
+                        .lfc-val{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+                        .lfc-link{font-size:clamp(13px,2.5vw,18px);font-weight:600;color:#fff;text-decoration:none;line-height:1.3;word-break:break-all;cursor:pointer;}
+                        .lfc-link.phone{font-size:clamp(18px,3.5vw,28px);}
+                        .lfc-link:hover{text-decoration:underline;text-underline-offset:3px;}
+                        .lfc-copy{flex-shrink:0;background:none;border:none;cursor:pointer;padding:4px;color:rgba(255,255,255,.4);display:inline-flex;align-items:center;position:relative;}
+                        .lfc-copy:hover{color:#fff;}
+                        .lfc-toast{position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);background:#333;color:#fff;font-size:11px;padding:3px 8px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;}
+                        .lfc-copy.copied .lfc-toast{opacity:1;}
+                        .lfc-wrap{display:flex;flex-direction:column;gap:24px;}
+                        @media(max-width:479px){.lfc-link.phone{font-size:22px;}}
                       </style>
-                      <div class="lula-footer-contact-wrap">
-                        <!-- Call me -->
-                        <div class="lula-contact-row">
-                          <div class="lula-contact-label">Call me</div>
-                          <div class="lula-contact-value">
-                            <span class="lula-contact-text phone" id="lula-phone">+27 83 719 5064</span>
-                            <button class="lula-copy-btn" onclick="lulaFooterCopy('lula-phone',this)" aria-label="Copy phone">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                              <span class="lula-copy-toast">Copied</span>
+                      <div class="lfc-wrap">
+                        <div class="lfc">
+                          <div class="lfc-lbl">Call me</div>
+                          <div class="lfc-val">
+                            <a href="tel:+27837195064" class="lfc-link phone" id="lfc-phone">+27 83 719 5064</a>
+                            <button class="lfc-copy" onclick="lfcCopy('lfc-phone',this)" aria-label="Copy phone">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lfc-toast">Copied</span>
                             </button>
                           </div>
                         </div>
-                        <!-- Email me -->
-                        <div class="lula-contact-row">
-                          <div class="lula-contact-label">Email me</div>
-                          <div class="lula-contact-value">
-                            <span class="lula-contact-text" id="lula-email">mkhungela.l@gmail.com</span>
-                            <button class="lula-copy-btn" onclick="lulaFooterCopy('lula-email',this)" aria-label="Copy email">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                              <span class="lula-copy-toast">Copied</span>
+                        <div class="lfc">
+                          <div class="lfc-lbl">Email me</div>
+                          <div class="lfc-val">
+                            <a href="mailto:mkhungela.l@gmail.com" class="lfc-link" id="lfc-email">mkhungela.l@gmail.com</a>
+                            <button class="lfc-copy" onclick="lfcCopy('lfc-email',this)" aria-label="Copy email">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lfc-toast">Copied</span>
                             </button>
                           </div>
                         </div>
-                        <!-- Find me -->
-                        <div class="lula-contact-row">
-                          <div class="lula-contact-label">Find me</div>
-                          <div class="lula-contact-address">
-                            <a href="https://www.google.com/maps/search/?api=1&query=41%20Juta%20Street%2C%20Braamfontein%2C%20Johannesburg" target="_blank" rel="noopener">41 Juta Street, Braamfontein,<br/>Johannesburg, South Africa</a>
+                        <div class="lfc">
+                          <div class="lfc-lbl">Find me</div>
+                          <div class="lfc-val">
+                            <a href="https://www.google.com/maps/search/?api=1&query=41%20Juta%20Street%2C%20Braamfontein%2C%20Johannesburg" target="_blank" rel="noopener" class="lfc-link">Find me</a>
                           </div>
                         </div>
                       </div>
@@ -746,6 +858,15 @@
 })();
 </script>
 
+<script id="lfc-js">
+function lfcCopy(id,btn){
+  var el=document.getElementById(id);if(!el)return;
+  var txt=el.tagName==='A'?el.textContent.trim():el.textContent.trim();
+  if(navigator.clipboard){navigator.clipboard.writeText(txt);}
+  else{var t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);}
+  btn.classList.add('copied');setTimeout(function(){btn.classList.remove('copied');},1400);
+}
+</script>
 </body>
 
 </html>

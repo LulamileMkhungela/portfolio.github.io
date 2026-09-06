@@ -115,9 +115,9 @@
     },
     {
       "@type": "CreativeWork",
-      "name": "ServiceWaze",
-      "url": "https://github.com/LulamileMkhungela/ServiceWaze",
-      "image": "/assets/servicewaze.webp",
+      "name": "WeStudySync",
+      "url": "https://github.com/LulamileMkhungela/WeStudySync",
+      "image": "/assets/westudysync-cover.svg",
       "about": [
         "Frontend dev",
         "Frontend"
@@ -342,6 +342,18 @@
   overflow: hidden !important;
 }
 </style>
+<style id="lula-works-card-fix">
+  .works_card .works_label {
+    background: linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0,.72)) !important;
+    opacity: 0;
+    transition: opacity .25s ease;
+  }
+  .works_card:hover .works_label { opacity: 1 !important; }
+  .works_label .works_name,
+  .works_label .text-size-tiny,
+  .works_label .text-color-white { color: #fff !important; }
+  .works_label .about_label-infos img { opacity: .9; }
+</style>
 </head>
 
 <body>
@@ -469,11 +481,9 @@
               </div>
               <div class="menu_legal">
                 <div class="menu_legal-links"><a href="https://www.linkedin.com/in/lulamile-mkhungela/" target="_blank"
-                    rel="noopener" class="menu_legal-link">LinkedIn</a><a href="mailto:mkhungela.l@gmail.com"
-                    class="menu_legal-link">mkhungela.l@gmail.com</a><a href="tel:+27837195064"
-                    class="menu_legal-link">+27 83 719 5064</a><a
+                    rel="noopener" class="menu_legal-link">LinkedIn</a><a
                     href="https://www.google.com/maps/search/?api=1&query=41%20Juta%20Street%2C%20Braamfontein%2C%20Johannesburg"
-                    target="_blank" rel="noopener" class="menu_legal-link">Find me at — 41 Juta Street, Braamfontein</a>
+                    target="_blank" rel="noopener" class="menu_legal-link">Find me</a>
                 </div>
               </div>
             </div>
@@ -2696,42 +2706,6 @@
                   </div>
                 </div>
                 <div role="listitem" class="works_item w-dyn-item" data-svc="Frontend dev">
-                  <div class="works_card-wrap"><a href="https://github.com/LulamileMkhungela/ServiceWaze"
-                      class="works_card w-inline-block">
-                      <div class="works_label">
-                        <div class="about_label-infos"><img src="assets/servicewaze.webp" loading="lazy" alt=""
-                            class="works_pic" />
-                          <h3 fs-list-field="title" class="works_name">ServiceWaze</h3>
-                        </div>
-                        <div class="see-works_divider"></div>
-                        <div class="text-size-tiny text-color-white">See work</div>
-                      </div><img src="assets/servicewaze.webp" loading="lazy" alt="Project cover image"
-                        class="works_image" />
-                    </a>
-                    <div class="works_infos">
-                      <div class="works_infos-group">
-                        <div class="text-color-grey-400">
-                          <div class="text-style-label-caption">Year</div>
-                        </div>
-                        <div class="works_info">2026</div>
-                      </div>
-                      <div class="works_infos-group right">
-                        <div class="text-color-grey-400">
-                          <div class="text-style-label-caption no-underline">Niche</div>
-                        </div>
-                        <div fs-list-field="industry" class="works_info">Frontend</div>
-                        <div class="hidden w-dyn-list">
-                          <div role="list" class="w-dyn-items">
-                            <div role="listitem" class="w-dyn-item">
-                              <div fs-list-field="service">Frontend dev</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div role="listitem" class="works_item w-dyn-item" data-svc="Frontend dev">
                   <div class="works_card-wrap"><a href="https://github.com/LulamileMkhungela/WeStudySync"
                       class="works_card w-inline-block">
                       <div class="works_label">
@@ -2767,32 +2741,7 @@
                     </div>
                   </div>
                 </div>
-                <div role="listitem" class="works_item w-dyn-item" data-svc="Frontend dev">
-                  <div class="works_card-wrap"><a href="#" class="works_card w-inline-block">
-                      <div class="works_label">
-                        <div class="about_label-infos"><img src="assets/coming.png" loading="lazy" alt=""
-                            class="works_pic" />
-                          <h3 fs-list-field="title" class="works_name">LulaUnifid Market</h3>
-                        </div>
-                        <div class="see-works_divider"></div>
-                        <div class="text-size-tiny text-color-white">See work</div>
-                      </div><img src="assets/coming.png" loading="lazy" alt="Project cover image" class="works_image" />
-                    </a>
-                    <div class="works_infos">
-                      <div class="works_infos-group">
-                        <div class="text-color-grey-400">
-                          <div class="text-style-label-caption">Year</div>
-                        </div>
-                        <div class="works_info">2026</div>
-                      </div>
-                      <div class="works_infos-group right">
-                        <div class="text-color-grey-400">
-                          <div class="text-style-label-caption no-underline">Niche</div>
-                        </div>
-                        <div fs-list-field="industry" class="works_info">Frontend</div>
-                        <div class="hidden w-dyn-list">
-                          <div role="list" class="w-dyn-items">
-                            <div role="listitem" class="w-dyn-item">
+                <div role="listitem" class="w-dyn-item">
                               <div fs-list-field="service">Frontend dev</div>
                             </div>
                           </div>
@@ -2801,32 +2750,7 @@
                     </div>
                   </div>
                 </div>
-                <div role="listitem" class="works_item w-dyn-item" data-svc="Frontend dev">
-                  <div class="works_card-wrap"><a href="#" class="works_card w-inline-block">
-                      <div class="works_label">
-                        <div class="about_label-infos"><img src="assets/coming.png" loading="lazy" alt=""
-                            class="works_pic" />
-                          <h3 fs-list-field="title" class="works_name">LinkPips</h3>
-                        </div>
-                        <div class="see-works_divider"></div>
-                        <div class="text-size-tiny text-color-white">See work</div>
-                      </div><img src="assets/coming.png" loading="lazy" alt="Project cover image" class="works_image" />
-                    </a>
-                    <div class="works_infos">
-                      <div class="works_infos-group">
-                        <div class="text-color-grey-400">
-                          <div class="text-style-label-caption">Year</div>
-                        </div>
-                        <div class="works_info">2026</div>
-                      </div>
-                      <div class="works_infos-group right">
-                        <div class="text-color-grey-400">
-                          <div class="text-style-label-caption no-underline">Niche</div>
-                        </div>
-                        <div fs-list-field="industry" class="works_info">Frontend</div>
-                        <div class="hidden w-dyn-list">
-                          <div role="list" class="w-dyn-items">
-                            <div role="listitem" class="w-dyn-item">
+                <div role="listitem" class="w-dyn-item">
                               <div fs-list-field="service">Frontend dev</div>
                             </div>
                           </div>
@@ -2835,33 +2759,7 @@
                     </div>
                   </div>
                 </div>
-                <div role="listitem" class="works_item w-dyn-item" data-svc="Frontend dev">
-                  <div class="works_card-wrap"><a href="#" class="works_card w-inline-block">
-                      <div class="works_label">
-                        <div class="about_label-infos"><img src="assets/portfolio/sesyme.png" loading="lazy" alt=""
-                            class="works_pic" />
-                          <h3 fs-list-field="title" class="works_name">Sesyme</h3>
-                        </div>
-                        <div class="see-works_divider"></div>
-                        <div class="text-size-tiny text-color-white">See work</div>
-                      </div><img src="assets/portfolio/sesyme.png" loading="lazy" alt="Project cover image"
-                        class="works_image" />
-                    </a>
-                    <div class="works_infos">
-                      <div class="works_infos-group">
-                        <div class="text-color-grey-400">
-                          <div class="text-style-label-caption">Year</div>
-                        </div>
-                        <div class="works_info">2020</div>
-                      </div>
-                      <div class="works_infos-group right">
-                        <div class="text-color-grey-400">
-                          <div class="text-style-label-caption no-underline">Niche</div>
-                        </div>
-                        <div fs-list-field="industry" class="works_info">Frontend</div>
-                        <div class="hidden w-dyn-list">
-                          <div role="list" class="w-dyn-items">
-                            <div role="listitem" class="w-dyn-item">
+                <div role="listitem" class="w-dyn-item">
                               <div fs-list-field="service">Frontend dev</div>
                             </div>
                           </div>
@@ -2870,32 +2768,16 @@
                     </div>
                   </div>
                 </div>
-                <div role="listitem" class="works_item w-dyn-item" data-svc="Frontend dev">
-                  <div class="works_card-wrap"><a href="#" class="works_card w-inline-block">
-                      <div class="works_label">
-                        <div class="about_label-infos"><img src="assets/coming.png" loading="lazy" alt=""
-                            class="works_pic" />
-                          <h3 fs-list-field="title" class="works_name">Entrehive</h3>
+                <div role="listitem" class="w-dyn-item">
+                              <div fs-list-field="service">Frontend dev</div>
+                            </div>
+                          </div>
                         </div>
-                        <div class="see-works_divider"></div>
-                        <div class="text-size-tiny text-color-white">See work</div>
-                      </div><img src="assets/coming.png" loading="lazy" alt="Project cover image" class="works_image" />
-                    </a>
-                    <div class="works_infos">
-                      <div class="works_infos-group">
-                        <div class="text-color-grey-400">
-                          <div class="text-style-label-caption">Year</div>
-                        </div>
-                        <div class="works_info">2019</div>
                       </div>
-                      <div class="works_infos-group right">
-                        <div class="text-color-grey-400">
-                          <div class="text-style-label-caption no-underline">Niche</div>
-                        </div>
-                        <div fs-list-field="industry" class="works_info">Frontend</div>
-                        <div class="hidden w-dyn-list">
-                          <div role="list" class="w-dyn-items">
-                            <div role="listitem" class="w-dyn-item">
+                    </div>
+                  </div>
+                </div>
+                <div role="listitem" class="w-dyn-item">
                               <div fs-list-field="service">Frontend dev</div>
                             </div>
                           </div>
@@ -2906,7 +2788,7 @@
                 </div>
                 <div role="listitem" class="works_item w-dyn-item" data-svc="Frontend dev">
                   <div class="works_card-wrap"><a
-                      href="https://lulamilemkhungela.github.io/portfolio.github.io/angular-design-system.html"
+                      href="projects/design-ops.html"
                       class="works_card w-inline-block">
                       <div class="works_label">
                         <div class="about_label-infos"><img src="assets/design-op.png" loading="lazy" alt=""
@@ -3759,8 +3641,8 @@
                             href="https://www.google.com/maps/search/?api=1&query=41%20Juta%20Street%2C%20Braamfontein%2C%20Johannesburg"
                             target="_blank" rel="noopener" class="footer_link w-inline-block">
                             <div class="footer_link-texts">
-                              <p class="footer_link-text _1">Find me — 41 Juta St, Braamfontein, JHB</p>
-                              <p class="footer_link-text _2">Find me — 41 Juta St, Braamfontein, JHB</p>
+                              <p class="footer_link-text _1">Find me</p>
+                              <p class="footer_link-text _2">Find me</p>
                             </div>
                             <div class="footer_link-dot"></div>
                           </a><a href="#" onclick="return openContactForm()" class="footer_link w-inline-block">
@@ -3774,48 +3656,42 @@
                     </div>
                     <div id="w-node-_0c480b83-389e-8cec-b163-4fac9d347eb6-1f0f9ecf" class="footer_links-group" style="min-width:0;max-width:100%;">
                       <style>
-                        .lula-contact-row{display:flex;flex-direction:column;gap:6px;}
-                        .lula-contact-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38);}
-                        .lula-contact-value{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-                        .lula-contact-text{font-size:clamp(13px,2.5vw,18px);font-weight:600;color:#fff;line-height:1.3;word-break:break-all;}
-                        .lula-contact-text.phone{font-size:clamp(18px,3.5vw,28px);}
-                        .lula-copy-btn{flex-shrink:0;background:none;border:none;cursor:pointer;padding:4px;color:rgba(255,255,255,.4);display:inline-flex;align-items:center;position:relative;}
-                        .lula-copy-btn:hover{color:#fff;}
-                        .lula-copy-toast{position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);background:#333;color:#fff;font-size:11px;padding:3px 8px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;}
-                        .lula-copy-btn.copied .lula-copy-toast{opacity:1;}
-                        .lula-contact-address{font-size:clamp(12px,2vw,14px);font-weight:500;color:rgba(255,255,255,.6);line-height:1.5;}
-                        .lula-contact-address a{color:rgba(255,255,255,.6);text-decoration:underline;text-underline-offset:3px;}
-                        .lula-footer-contact-wrap{display:flex;flex-direction:column;gap:24px;}
-                        @media(max-width:479px){.lula-contact-text.phone{font-size:22px;}}
+                        .lfc{display:flex;flex-direction:column;gap:6px;}
+                        .lfc-lbl{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38);}
+                        .lfc-val{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+                        .lfc-link{font-size:clamp(13px,2.5vw,18px);font-weight:600;color:#fff;text-decoration:none;line-height:1.3;word-break:break-all;cursor:pointer;}
+                        .lfc-link.phone{font-size:clamp(18px,3.5vw,28px);}
+                        .lfc-link:hover{text-decoration:underline;text-underline-offset:3px;}
+                        .lfc-copy{flex-shrink:0;background:none;border:none;cursor:pointer;padding:4px;color:rgba(255,255,255,.4);display:inline-flex;align-items:center;position:relative;}
+                        .lfc-copy:hover{color:#fff;}
+                        .lfc-toast{position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);background:#333;color:#fff;font-size:11px;padding:3px 8px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;}
+                        .lfc-copy.copied .lfc-toast{opacity:1;}
+                        .lfc-wrap{display:flex;flex-direction:column;gap:24px;}
+                        @media(max-width:479px){.lfc-link.phone{font-size:22px;}}
                       </style>
-                      <div class="lula-footer-contact-wrap">
-                        <!-- Call me -->
-                        <div class="lula-contact-row">
-                          <div class="lula-contact-label">Call me</div>
-                          <div class="lula-contact-value">
-                            <span class="lula-contact-text phone" id="lula-phone">+27 83 719 5064</span>
-                            <button class="lula-copy-btn" onclick="lulaFooterCopy('lula-phone',this)" aria-label="Copy phone">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                              <span class="lula-copy-toast">Copied</span>
+                      <div class="lfc-wrap">
+                        <div class="lfc">
+                          <div class="lfc-lbl">Call me</div>
+                          <div class="lfc-val">
+                            <a href="tel:+27837195064" class="lfc-link phone" id="lfc-phone">+27 83 719 5064</a>
+                            <button class="lfc-copy" onclick="lfcCopy('lfc-phone',this)" aria-label="Copy phone">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lfc-toast">Copied</span>
                             </button>
                           </div>
                         </div>
-                        <!-- Email me -->
-                        <div class="lula-contact-row">
-                          <div class="lula-contact-label">Email me</div>
-                          <div class="lula-contact-value">
-                            <span class="lula-contact-text" id="lula-email">mkhungela.l@gmail.com</span>
-                            <button class="lula-copy-btn" onclick="lulaFooterCopy('lula-email',this)" aria-label="Copy email">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                              <span class="lula-copy-toast">Copied</span>
+                        <div class="lfc">
+                          <div class="lfc-lbl">Email me</div>
+                          <div class="lfc-val">
+                            <a href="mailto:mkhungela.l@gmail.com" class="lfc-link" id="lfc-email">mkhungela.l@gmail.com</a>
+                            <button class="lfc-copy" onclick="lfcCopy('lfc-email',this)" aria-label="Copy email">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lfc-toast">Copied</span>
                             </button>
                           </div>
                         </div>
-                        <!-- Find me -->
-                        <div class="lula-contact-row">
-                          <div class="lula-contact-label">Find me</div>
-                          <div class="lula-contact-address">
-                            <a href="https://www.google.com/maps/search/?api=1&query=41%20Juta%20Street%2C%20Braamfontein%2C%20Johannesburg" target="_blank" rel="noopener">41 Juta Street, Braamfontein,<br/>Johannesburg, South Africa</a>
+                        <div class="lfc">
+                          <div class="lfc-lbl">Find me</div>
+                          <div class="lfc-val">
+                            <a href="https://www.google.com/maps/search/?api=1&query=41%20Juta%20Street%2C%20Braamfontein%2C%20Johannesburg" target="_blank" rel="noopener" class="lfc-link">Find me</a>
                           </div>
                         </div>
                       </div>
@@ -4356,6 +4232,15 @@
       if (empty) empty.style.display = 'none';
     });
   </script>
+<script id="lfc-js">
+function lfcCopy(id,btn){
+  var el=document.getElementById(id);if(!el)return;
+  var txt=el.tagName==='A'?el.textContent.trim():el.textContent.trim();
+  if(navigator.clipboard){navigator.clipboard.writeText(txt);}
+  else{var t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);}
+  btn.classList.add('copied');setTimeout(function(){btn.classList.remove('copied');},1400);
+}
+</script>
 </body>
 
 </html>
