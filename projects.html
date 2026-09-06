@@ -136,7 +136,7 @@
     {
       "@type": "CreativeWork",
       "name": "Collection of Projects",
-      "url": "https://www.figma.com/design/SeCP6cuxXX8UyhnOn2wYcJ/Collection-Of-Projects?node-id=8949-77053&amp;p=f",
+      "url": "https://www.figma.com/design/z28iI0zJV1u1cL1wQ4HMrx/Lula-Fig-Studio?node-id=0-1&amp;t=nvDf0oI0q4B7eTvy-1",
       "image": "/assets/figma.png",
       "about": [
         "Figma builds",
@@ -322,6 +322,26 @@
       document.addEventListener('cut', function (e) { e.preventDefault(); return false; });
     })();
   </script>
+<style id="lula-menu-fix">
+.menu_legal-link {
+  word-break: break-all !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  display: block !important;
+  max-width: 100% !important;
+}
+.menu_legal-links {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+.menu_col-1 {
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+</style>
 </head>
 
 <body>
@@ -2960,7 +2980,7 @@
                 </div>
                 <div role="listitem" class="works_item w-dyn-item" data-svc="Figma builds">
                   <div class="works_card-wrap"><a
-                      href="https://www.figma.com/design/SeCP6cuxXX8UyhnOn2wYcJ/Collection-Of-Projects?node-id=8949-77053&amp;p=f"
+                      href="https://www.figma.com/design/z28iI0zJV1u1cL1wQ4HMrx/Lula-Fig-Studio?node-id=0-1&amp;t=nvDf0oI0q4B7eTvy-1"
                       class="works_card w-inline-block">
                       <div class="works_label">
                         <div class="about_label-infos"><img src="assets/figma.png" loading="lazy" alt=""
@@ -3752,36 +3772,51 @@
                           </a></div>
                       </div>
                     </div>
-                    <div id="w-node-_0c480b83-389e-8cec-b163-4fac9d347eb6-1f0f9ecf" class="footer_links-group" style="min-width:0;">
-                      <div style="display:flex;flex-direction:column;gap:20px;">
+                    <div id="w-node-_0c480b83-389e-8cec-b163-4fac9d347eb6-1f0f9ecf" class="footer_links-group" style="min-width:0;max-width:100%;">
+                      <style>
+                        .lula-contact-row{display:flex;flex-direction:column;gap:6px;}
+                        .lula-contact-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38);}
+                        .lula-contact-value{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+                        .lula-contact-text{font-size:clamp(13px,2.5vw,18px);font-weight:600;color:#fff;line-height:1.3;word-break:break-all;}
+                        .lula-contact-text.phone{font-size:clamp(18px,3.5vw,28px);}
+                        .lula-copy-btn{flex-shrink:0;background:none;border:none;cursor:pointer;padding:4px;color:rgba(255,255,255,.4);display:inline-flex;align-items:center;position:relative;}
+                        .lula-copy-btn:hover{color:#fff;}
+                        .lula-copy-toast{position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);background:#333;color:#fff;font-size:11px;padding:3px 8px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;}
+                        .lula-copy-btn.copied .lula-copy-toast{opacity:1;}
+                        .lula-contact-address{font-size:clamp(12px,2vw,14px);font-weight:500;color:rgba(255,255,255,.6);line-height:1.5;}
+                        .lula-contact-address a{color:rgba(255,255,255,.6);text-decoration:underline;text-underline-offset:3px;}
+                        .lula-footer-contact-wrap{display:flex;flex-direction:column;gap:24px;}
+                        @media(max-width:479px){.lula-contact-text.phone{font-size:22px;}}
+                      </style>
+                      <div class="lula-footer-contact-wrap">
                         <!-- Call me -->
-                        <div style="display:flex;flex-direction:column;gap:4px;">
-                          <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);line-height:1;">Call me</div>
-                          <div style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;">
-                            <a href="tel:+27837195064" style="font-size:clamp(18px,3vw,32px);font-weight:700;color:#fff;text-decoration:none;line-height:1.2;white-space:nowrap;">+27 83 719 5064</a>
-                            <button fs-copyclip-element="click" fs-copyclip-duration="1200" fs-copyclip-activeclass="active" class="copy-icon" style="flex-shrink:0;background:none;border:none;cursor:pointer;padding:4px;color:rgba(255,255,255,.4);display:flex;align-items:center;">
-                              <p fs-copyclip-element="copy-this" style="display:none;">+27837195064</p>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                              <div class="tooltip"><div>Copied</div><div class="tooltip-tail"></div></div>
+                        <div class="lula-contact-row">
+                          <div class="lula-contact-label">Call me</div>
+                          <div class="lula-contact-value">
+                            <span class="lula-contact-text phone" id="lula-phone">+27 83 719 5064</span>
+                            <button class="lula-copy-btn" onclick="lulaFooterCopy('lula-phone',this)" aria-label="Copy phone">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                              <span class="lula-copy-toast">Copied</span>
                             </button>
                           </div>
                         </div>
                         <!-- Email me -->
-                        <div style="display:flex;flex-direction:column;gap:4px;">
-                          <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);line-height:1;">Email me</div>
-                          <div style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;">
-                            <a href="mailto:mkhungela.l@gmail.com" style="font-size:clamp(14px,2vw,22px);font-weight:600;color:#fff;text-decoration:none;line-height:1.2;white-space:nowrap;">mkhungela.l@gmail.com</a>
-                            <button fs-copyclip-element="click" fs-copyclip-duration="1200" fs-copyclip-activeclass="active" class="copy-icon" style="flex-shrink:0;background:none;border:none;cursor:pointer;padding:4px;color:rgba(255,255,255,.4);display:flex;align-items:center;">
-                              <p fs-copyclip-element="copy-this" style="display:none;">mkhungela.l@gmail.com</p>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                              <div class="tooltip"><div>Copied</div><div class="tooltip-tail"></div></div>
+                        <div class="lula-contact-row">
+                          <div class="lula-contact-label">Email me</div>
+                          <div class="lula-contact-value">
+                            <span class="lula-contact-text" id="lula-email">mkhungela.l@gmail.com</span>
+                            <button class="lula-copy-btn" onclick="lulaFooterCopy('lula-email',this)" aria-label="Copy email">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                              <span class="lula-copy-toast">Copied</span>
                             </button>
                           </div>
                         </div>
                         <!-- Find me -->
-                        <div style="display:flex;flex-direction:column;gap:4px;">
-                          <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);line-height:1;">Find me</div>
-                          <a href="https://www.google.com/maps/search/?api=1&query=41%20Juta%20Street%2C%20Braamfontein%2C%20Johannesburg" target="_blank" rel="noopener" style="font-size:clamp(13px,1.5vw,16px);font-weight:500;color:rgba(255,255,255,.7);text-decoration:none;line-height:1.4;">41 Juta Street, Braamfontein,<br/>Johannesburg, South Africa</a>
+                        <div class="lula-contact-row">
+                          <div class="lula-contact-label">Find me</div>
+                          <div class="lula-contact-address">
+                            <a href="https://www.google.com/maps/search/?api=1&query=41%20Juta%20Street%2C%20Braamfontein%2C%20Johannesburg" target="_blank" rel="noopener">41 Juta Street, Braamfontein,<br/>Johannesburg, South Africa</a>
+                          </div>
                         </div>
                       </div>
                     </div>

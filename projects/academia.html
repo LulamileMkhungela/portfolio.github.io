@@ -2,171 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <title>Academia — LulaSync</title>
-  <meta http-equiv="refresh" content="0;url=https://www.figma.com/design/YsutUkv4q0CunhY0FZqQvm/Academia?node-id=449-59695&t=d8Gd0cRv1qIozpqu-1"/>
-  <script>window.location.replace("https://www.figma.com/design/YsutUkv4q0CunhY0FZqQvm/Academia?node-id=449-59695&t=d8Gd0cRv1qIozpqu-1");</script>
-<style id="lula-protect">
-*{
-  -webkit-user-select:none !important;
-  -moz-user-select:none !important;
-  -ms-user-select:none !important;
-  user-select:none !important;
-}
-img{pointer-events:none !important}
-</style>
-<script id="lula-protect-js">
-(function(){
-  // Block right-click
-  document.addEventListener('contextmenu', function(e){ e.preventDefault(); return false; });
-  // Block Ctrl+C, Ctrl+A, Ctrl+S, Ctrl+U (view source), Ctrl+P (print)
-  document.addEventListener('keydown', function(e){
-    var ctrl = e.ctrlKey || e.metaKey;
-    if(ctrl && ['c','a','s','u','p','x'].indexOf(e.key.toLowerCase()) > -1){
-      e.preventDefault(); return false;
-    }
-    // Block F12 / DevTools
-    if(e.key === 'F12'){ e.preventDefault(); return false; }
-    // Block Ctrl+Shift+I/J/C (DevTools)
-    if(ctrl && e.shiftKey && ['i','j','c'].indexOf(e.key.toLowerCase()) > -1){
-      e.preventDefault(); return false;
-    }
-  });
-  // Block drag of images
-  document.addEventListener('dragstart', function(e){ e.preventDefault(); return false; });
-  // Block text selection on double-click
-  document.addEventListener('selectstart', function(e){ e.preventDefault(); return false; });
-  // Block copy event
-  document.addEventListener('copy', function(e){ e.preventDefault(); return false; });
-  // Block cut event  
-  document.addEventListener('cut', function(e){ e.preventDefault(); return false; });
-})();
-</script>
-<style id="lula-navbar-v2">
-.lula-persona-pill{display:flex;align-items:center;gap:6px;padding:5px 12px 5px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);cursor:pointer;position:relative;user-select:none;font-size:13px;font-weight:500;color:#fff;white-space:nowrap;transition:background .2s;}
-.lula-persona-pill:hover{background:rgba(255,255,255,.14);}
-.lula-persona-pill .pill-dot{width:8px;height:8px;border-radius:50%;background:#a78bfa;flex-shrink:0;}
-.lula-persona-pill .pill-chevron{width:14px;height:14px;opacity:.7;transition:transform .2s;}
-.lula-persona-pill.open .pill-chevron{transform:rotate(180deg);}
-.lula-persona-dropdown{position:absolute;top:calc(100% + 8px);left:0;min-width:200px;background:#1a1b1e;border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:8px;z-index:10000;display:none;box-shadow:0 16px 40px rgba(0,0,0,.5);}
-.lula-persona-dropdown.open{display:block;}
-.lula-persona-option{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:500;color:#fff;transition:background .15s;}
-.lula-persona-option:hover{background:rgba(255,255,255,.08);}
-.lula-persona-option.active{background:rgba(255,255,255,.06);}
-.lula-persona-option .opt-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
-.lula-persona-option .opt-check{margin-left:auto;opacity:.7;font-size:13px;}
-.lula-nav-links{display:flex;align-items:center;gap:2px;}
-.lula-nav-link{position:relative;display:flex;align-items:center;gap:5px;padding:7px 13px;border-radius:999px;font-size:14px;font-weight:500;color:rgba(255,255,255,.75);text-decoration:none;cursor:pointer;white-space:nowrap;transition:color .2s,background .2s;background:transparent;border:none;}
-.lula-nav-link:hover,.lula-nav-link.open{color:#fff;background:rgba(255,255,255,.08);}
-.lula-nav-link .ln-dot{width:5px;height:5px;border-radius:50%;background:#a78bfa;flex-shrink:0;}
-.lula-nav-link .ln-chevron{width:14px;height:14px;opacity:.55;transition:transform .2s;}
-.lula-nav-link.open .ln-chevron{transform:rotate(180deg);}
-.lula-mega{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);background:#18191c;border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px;z-index:9999;display:none;box-shadow:0 20px 60px rgba(0,0,0,.55);min-width:480px;}
-.lula-mega.open{display:block;}
-.lula-mega-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px;}
-.lula-mega-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;}
-.lula-mega-item{display:flex;align-items:flex-start;gap:12px;padding:12px;border-radius:10px;text-decoration:none;transition:background .15s;}
-.lula-mega-item:hover{background:rgba(255,255,255,.06);}
-.lula-mega-icon{font-size:20px;line-height:1;margin-top:1px;flex-shrink:0;}
-.lula-mega-item-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:2px;}
-.lula-mega-item-desc{font-size:12px;color:rgba(255,255,255,.45);line-height:1.4;}
-@media(max-width:991px){.lula-nav-links,.lula-persona-wrap{display:none!important;}}
-</style><style id="lula-logo-fix">
-    
-    /* ── wordmark logo ── */
-    .navbar-logo_wr img[alt="LulaSync"] {
-      height: 22px !important;
-      width: auto !important;
-      max-width: none !important;
-      display: block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-      pointer-events: none;
-    }
-    .navbar-logo_wr > div:first-child {
-      width: auto !important;
-      height: auto !important;
-      overflow: visible !important;
-    }
-
-    /* ── navbar logo text fix ── */
-    .navbar_logo-wrap,
-    .logo-text-flex,
-    .navbar_logo-anim {
-      overflow: hidden;
-      white-space: nowrap;
-      max-width: 260px;
-    }
-    .navbar_logo-anim_text {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .navbar-logo_wr {
-      min-width: 0;
-      flex-shrink: 1;
-    }
-</style>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Academia | LulaSync</title>
+  <link href="../assets/lulasync-favicon.svg" rel="icon" type="image/svg+xml"/>
+  <link href="https://cdn.prod.website-files.com/69f9c76884333229e651e7bc/css/cosmoss-nordic-template.webflow.shared.25e4359e6.min.css" rel="stylesheet" crossorigin="anonymous"/>
+  <style>
+    body{background:#0f1011;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;margin:0;}
+    *{-webkit-font-smoothing:antialiased;}
+  </style>
 </head>
 <body>
-<!-- Back to top button -->
-<style>
-  #btt-btn {
-    position: fixed;
-    bottom: 32px;
-    right: 32px;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: #fff;
-    color: #0F1011;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,.25);
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity .25s ease, transform .25s ease, box-shadow .25s ease;
-    z-index: 9999;
-    pointer-events: none;
-  }
-  #btt-btn.btt-visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-  #btt-btn:hover {
-    box-shadow: 0 8px 28px rgba(0,0,0,.35);
-    transform: translateY(-2px);
-  }
-  #btt-btn svg { display:block; }
-  @media (max-width: 767px) {
-    #btt-btn { bottom: 20px; right: 20px; width: 44px; height: 44px; }
-  }
-</style>
-<button id="btt-btn" aria-label="Back to top">
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-    <path d="M10 15V5M10 5L5.5 9.5M10 5L14.5 9.5" stroke="#0F1011" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</button>
-<script>
-(function(){
-  var btn = document.getElementById('btt-btn');
-  if (!btn) return;
-  window.addEventListener('scroll', function(){
-    if (window.scrollY > 400) {
-      btn.classList.add('btt-visible');
-    } else {
-      btn.classList.remove('btt-visible');
-    }
-  }, { passive: true });
-  btn.addEventListener('click', function(){
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-})();
-</script>
-
-<script id="lula-nav-js">(function(){var p=localStorage.getItem('lula-persona')||'me';function apply(persona){p=persona;localStorage.setItem('lula-persona',persona);var pl=document.getElementById('lula-pill-label'),wl=document.getElementById('lula-whatwedo-label'),ml=document.getElementById('lula-whatwedo-mega-label'),al=document.getElementById('lula-about-link'),cm=document.getElementById('lula-check-me'),pill=document.getElementById('lula-pill');if(persona==='me'){if(pl)pl.textContent='For Me';if(wl)wl.textContent='What I do';if(ml)ml.textContent='What I do';if(al)al.textContent='About Me';if(cm)cm.style.display='';if(pill)pill.querySelector('.pill-dot').style.background='#a78bfa';document.querySelectorAll('.lula-persona-option').forEach(function(o,i){o.classList.toggle('active',i===0);});}else{if(pl)pl.textContent='For Business';if(wl)wl.textContent='What we do';if(ml)ml.textContent='What we do';if(al)al.textContent='About us';if(cm)cm.style.display='none';if(pill)pill.querySelector('.pill-dot').style.background='#38bdf8';document.querySelectorAll('.lula-persona-option').forEach(function(o,i){o.classList.toggle('active',i===1);});}}window.lulaTogglePill=function(){var pill=document.getElementById('lula-pill'),menu=document.getElementById('lula-persona-menu');if(pill)pill.classList.toggle('open');if(menu)menu.classList.toggle('open');};window.lulaSetPersona=function(persona,e){if(e)e.stopPropagation();apply(persona);var pill=document.getElementById('lula-pill'),menu=document.getElementById('lula-persona-menu');if(pill)pill.classList.remove('open');if(menu)menu.classList.remove('open');};window.lulaToggleMega=function(id,trigger){var mega=document.getElementById(id);if(!mega)return;var wasOpen=mega.classList.contains('open');document.querySelectorAll('.lula-mega').forEach(function(m){m.classList.remove('open');});document.querySelectorAll('.lula-nav-link').forEach(function(l){l.classList.remove('open');});if(!wasOpen){mega.classList.add('open');if(trigger)trigger.classList.add('open');}};document.addEventListener('click',function(e){if(!e.target.closest('.lula-persona-wrap')){var pill=document.getElementById('lula-pill'),menu=document.getElementById('lula-persona-menu');if(pill)pill.classList.remove('open');if(menu)menu.classList.remove('open');}if(!e.target.closest('.lula-nav-link')){document.querySelectorAll('.lula-mega').forEach(function(m){m.classList.remove('open');});document.querySelectorAll('.lula-nav-link').forEach(function(l){l.classList.remove('open');});}});document.addEventListener('DOMContentLoaded',function(){apply(p);});})();</script>
+<nav style="position:sticky;top:0;z-index:1000;background:rgba(15,16,17,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);">
+  <div style="max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px;">
+    <a href="../index.html" style="text-decoration:none;"><img src="../assets/lulasync-wordmark.png" alt="LulaSync" style="height:20px;width:auto;display:block;visibility:visible;opacity:1;"/></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../projects.html" style="font-size:14px;color:rgba(255,255,255,.7);text-decoration:none;">Works</a>
+      <a href="https://calendly.com/lulamile_m/meet-lulamile" target="_blank" style="display:inline-flex;align-items:center;padding:10px 20px;border-radius:999px;background:#fff;color:#0f1011;font-size:13px;font-weight:700;text-decoration:none;">Book a Call</a>
+    </div>
+  </div>
+</nav>
+<main>
+  <section style="padding:100px 24px 80px;text-align:center;">
+    <div style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:20px;">Case Study</div>
+    <h1 style="font-size:clamp(36px,6vw,72px);font-weight:800;margin:0 0 16px;line-height:1.05;">Academia</h1>
+    <p style="font-size:18px;color:rgba(255,255,255,.55);max-width:520px;margin:0 auto 48px;line-height:1.6;">EdTech LMS platform — full product UI/UX design covering student portal, course management and mobile experience.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;">
+      <a href="https://www.figma.com/proto/z28iI0zJV1u1cL1wQ4HMrx/Lula-Fig-Studio?node-id=847-77193&t=nvDf0oI0q4B7eTvy-1" target="_blank" rel="noopener" style="display:inline-block;padding:16px 36px;border-radius:999px;background:#fff;color:#000;font-weight:700;font-size:15px;text-decoration:none;">View Full Design in Figma</a>
+      <a href="https://www.figma.com/proto/z28iI0zJV1u1cL1wQ4HMrx/Lula-Fig-Studio?node-id=1098-84642&t=nvDf0oI0q4B7eTvy-1" target="_blank" rel="noopener" style="display:inline-block;padding:14px 32px;border-radius:999px;background:transparent;color:#fff;font-weight:600;font-size:15px;text-decoration:none;border:1.5px solid rgba(255,255,255,.35);">View Case Study in Figma</a>
+    </div>
+  </section>
+  <section style="padding:0 24px 80px;text-align:center;">
+    <img src="../assets/Academia-cover.png" alt="Academia cover" style="width:100%;max-width:960px;border-radius:16px;display:block;margin:0 auto;box-shadow:0 24px 64px rgba(0,0,0,.5);"/>
+  </section>
+</main>
+<footer style="padding:48px 24px;text-align:center;border-top:1px solid rgba(255,255,255,.08);">
+  <div style="font-size:13px;color:rgba(255,255,255,.35);">© 2026 LulaSync</div>
+</footer>
 </body>
 </html>
