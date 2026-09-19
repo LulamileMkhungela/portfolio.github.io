@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /nvhc9u4gxsagNjlmOWM3Njg4NDMzMzIyOWU2NTFlN2Jj/
+
+Sitemap: https://lulamilemkhungela.github.io/portfolio.github.io/sitemap.xml
