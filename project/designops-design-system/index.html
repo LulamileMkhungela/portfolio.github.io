@@ -689,6 +689,39 @@
     </section>
 
     <section>
+      <p class="eyebrow rv">Product design &amp; front-end process</p>
+      <h2 class="rv">How the system <span class="acc">got built</span>.</h2>
+      <div class="steps rv">
+        <div class="step">
+          <h3>Discovery</h3>
+          <p>Mapped where design and code drift apart, and for whom: the designer who specs 16px and the developer
+            who types 15px at 11pm. Re-typed values, improvised styles, per-stack rebuilds, requests lost in Slack and
+            rotting docs each became a requirement.</p>
+        </div>
+        <div class="step">
+          <h3>Audit &amp; token model</h3>
+          <p>Audited which tokens were real and which had drifted, then defined primitives, semantic roles and
+            component values so one name means the same thing in Figma, CSS and TypeScript.</p>
+        </div>
+        <div class="step">
+          <h3>Pipeline &amp; generation</h3>
+          <p>Tokens JSON as the single source of truth, a Style Dictionary transform per target, and generated
+            components for fourteen frameworks, kept in step with design changes rather than copied by hand.</p>
+        </div>
+        <div class="step">
+          <h3>Interface design &amp; docs</h3>
+          <p>A dashboard that puts the pipeline on screen: search across tokens, components and frameworks, a
+            request board (dev asks, designer designs, one approval ships), and Storybook docs beside the code.</p>
+        </div>
+        <div class="step">
+          <h3>Validation &amp; ship</h3>
+          <p>Smoke tests and the token build gate every release, and @designops/lint checks shipped code against the
+            system. Every gap a developer hits becomes a tracked request, not a workaround.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
       <p class="eyebrow rv">The pipeline</p>
       <h2 class="rv">Every component travels <span class="acc">all five stages</span>.</h2>
       <p class="lede rv">DesignOps is not a file — it's a pipeline. One design in Figma enters at the top and exits as

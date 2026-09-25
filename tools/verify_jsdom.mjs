@@ -107,7 +107,7 @@ async function main() {
       href: a.getAttribute('href'), target: a.getAttribute('target'),
     }));
     const snb = cards.find(c => /SNB/.test(c.t));
-    check('WD: SNB card -> live site redirect', !!snb && snb.href === 'https://www.snbconsultancy.co.za' && snb.target === '_blank',
+    check('WD: SNB card -> internal case study', !!snb && /\/project\/snb-website$/.test(snb.href || '') && !snb.target,
       snb ? JSON.stringify(snb) : JSON.stringify(cards.map(c => c.t)));
     const ux = cards.find(c => /UX Resource/.test(c.t));
     check('WD: UX Resource -> Notion', !!ux && (ux.href || '').includes('notion.site'), ux ? ux.href : '');
@@ -124,11 +124,11 @@ async function main() {
     const { doc, win, errors, jsdomErrors } = await loadRoute('/project/nerdma-website/');
     const text = doc.body.textContent;
     check('Nerdma: renders', text.length > 2000);
-    check('Nerdma: process steps 01/02/04/05',
-      /01 · Discovery/.test(text) && /02 · Structure/.test(text) && /04 · Build/.test(text) && /05 · Launch/.test(text));
-    check('Nerdma: no old 03/04 numbering', !/<h3>03 · Build/.test(doc.body.innerHTML) && !/<h3>04 · Launch/.test(doc.body.innerHTML));
+    const nSteps = [...doc.querySelectorAll('.steps .step h3')].map(h => h.textContent);
+    check('Nerdma: full website design process (5 steps, design included)',
+      nSteps.join('|') === 'Discovery|Structure & wireframes|Interface design|Build|Launch & measure', nSteps.join(' | '));
     const css = [...doc.querySelectorAll('style')].map(x => x.textContent).join('\n');
-    check('Nerdma: counter jump rule present', css.includes('counter-increment: st 2'));
+    check('Nerdma: no counter jump (numbers come from CSS in order)', !css.includes('counter-increment: st 2'));
     check('Nerdma: no script errors', errors.length === 0 && jsdomErrors.filter(e => !/navigation/.test(e)).length === 0,
       (errors.concat(jsdomErrors).slice(0, 3)).join(' | '));
     win.close();
@@ -139,18 +139,21 @@ async function main() {
     const { doc, win, errors, jsdomErrors } = await loadRoute('/project/addmoredigital-website/');
     const text = doc.body.textContent;
     check('Addmore: renders', text.length > 2000);
-    check('Addmore: process steps 01/02/04/05',
-      /01 · Discovery/.test(text) && /02 · Structure/.test(text) && /04 · Build/.test(text) && /05 · Launch/.test(text));
+    const aSteps = [...doc.querySelectorAll('.steps .step h3')].map(h => h.textContent);
+    check('Addmore: full website design process (5 steps, design included)',
+      aSteps.join('|') === 'Discovery|Structure & wireframes|Interface design|Build, SEO & CRM|Launch & measure', aSteps.join(' | '));
     const css = [...doc.querySelectorAll('style')].map(x => x.textContent).join('\n');
-    check('Addmore: counter jump rule present', css.includes('counter-increment: st 2'));
+    check('Addmore: no counter jump (numbers come from CSS in order)', !css.includes('counter-increment: st 2'));
     win.close();
   }
 
-  // ── 6. SNB case study redirect (patch) ──
+  // ── 6. SNB is a full case study (no redirect to the live site) ──
   {
     const { doc, win, errors, jsdomErrors } = await loadRoute('/project/snb-website/');
     const redirected = jsdomErrors.some(e => /navigation/.test(e));
-    check('SNB: page triggers external redirect', redirected, jsdomErrors.slice(0, 3).join(' | '));
+    check('SNB: case study renders, no external redirect', !redirected && /SNB/.test(doc.querySelector('h1')?.textContent || ''),
+      jsdomErrors.slice(0, 3).join(' | '));
+    check('SNB: live-site button on the case study', !!doc.querySelector('.lm-live-btn a[href*="snbconsultancy"]'));
     win.close();
   }
 

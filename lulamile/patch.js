@@ -1,4 +1,5 @@
-// LulaMile-HalfMachine — site behaviour layer v35
+// LulaMile-HalfMachine — site behaviour layer v36
+// v36: SNB is a full case study again (no longer redirected to the live site).
 // Adds: screen-aware FAQ headings, project-unique process wording, external-link tags,
 // real certificate covers + scrollable multi-page certificate popup (ascending), plus a
 // client-route SEO layer (document.title, meta description, canonical & OG) and an
@@ -55,12 +56,12 @@
     'toyota-remote':  'https://play.google.com/store/apps/details?id=za.co.toyota.toyotaremote&hl=en_ZA&pli=1',
     'toyota-app':     'https://play.google.com/store/apps/details?id=com.eliance.toyotamobile&hl=en_ZA',
     'wandisplace-pwa':'https://wandies.vercel.app/',
-    'sk-finds-pwa':   'https://skautos.vercel.app/',
-    'snb-website':    'https://www.snbconsultancy.co.za'
+    'sk-finds-pwa':   'https://skautos.vercel.app/'
   };
 
   // ─── Projects with case studies + live URL ───────────────────────────────
   var LIVE_STUDY_URLS = {
+    'snb-website':              { url: 'https://www.snbconsultancy.co.za',                                       label: 'Visit live website' },
     'africa-cuisine-pwa':       { url: 'https://africa-cuisine-pro.vercel.app',                                  label: 'Open live PWA' },
     'nerdma-website':           { url: 'https://www.nerdma.co.za',                                               label: 'Visit live website' },
     'addmoredigital-website':   { url: 'https://addmoredigital.co.za/',                                          label: 'Visit live website' },
@@ -71,13 +72,6 @@
     'foodiezone-pwa':           { url: 'https://loux91.github.io/foodiezone/',                                   label: 'Open live PWA' }
   };
 
-  // ─── SNB: not a case study — the URL itself redirects to the live site ──
-  function snbRedirect() {
-    var p = window.location.pathname || '';
-    if (p.indexOf('/project/snb-website') > -1) {
-      window.location.replace(DIRECT_REDIRECT_APPS['snb-website']);
-    }
-  }
 
   // ─── NDA: disable links ──────────────────────────────────────────────────
   var NDA_PROJECTS = ['digital-visitors', 'engage-admin'];
@@ -1786,7 +1780,6 @@
     });
 
     // Apply all functions
-    snbRedirect();
     ensureLogosColors();
     fixInternalLinks();
     flagRedirectCards();

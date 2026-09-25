@@ -297,13 +297,14 @@
       </section>
 
       <section id="the-process">
-        <p class="eyebrow rv">The process</p>
+        <p class="eyebrow rv">Product design &amp; front-end process</p>
         <h2 class="rv">How a <span class="accent">public board</span> gets built.</h2>
         <div class="steps rv">
+          <div class="step"><h3>Listen</h3><p>Started with the people the national feed leaves behind: what residents need to know about their own suburb, where they look now, and why it fails them. Least likely to have data, a car or an English-only interface; most likely to need the answer offline, on a phone.</p></div>
           <div class="step"><h3>Map the sources</h3><p>Eskom GetStatus, City Power, Joburg Water, reservoir dashboards, Open-Meteo, transport agencies — each with its own format, cadence and failure mode.</p></div>
           <div class="step"><h3>Draw the board</h3><p>One screen per suburb, five streams, status colour everyone understands. The area chip replaced the login on the second sketch.</p></div>
           <div class="step"><h3>Write the scraper</h3><p>Each source gets a puller with its own timestamp and confidence rule. Headlines are claims; scraped bodies are facts. The board shows the difference.</p></div>
-          <div class="step"><h3>Localise</h3><p>isiZulu, Xhosa and Sesotho from day one — "read alerts aloud" included, because some of the most important alerts should be heard, not read.</p></div>
+          <div class="step"><h3>Localise &amp; test</h3><p>isiZulu, Xhosa and Sesotho from day one — "read alerts aloud" included, because some of the most important alerts should be heard, not read. Each suburb board was checked against the official source it scraped.</p></div>
           <div class="step"><h3>Ship the PWA</h3><p>Installable, offline-cached, push-enabled. Then watch the board fail in the wild and fix the pullers that break first.</p></div>
         </div>
       </section>
