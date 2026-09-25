@@ -1,71 +1,87 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <script src="../../lulamile/base-path-fix.js"></script>
 
-<head>
-  <script src="../../lulamile/base-path-fix.js"></script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SNB — Website Design for a Chartered Accountancy | LulaMile-HalfMachine</title>
-  <meta name="robots" content="noindex, noarchive, noai, noimageai" />
-  <meta name="description" content="You were heading to the SNB Consultancy website. Opening the live site now." />
-  <meta http-equiv="refresh" content="0; url=https://www.snbconsultancy.co.za" />
-  <link rel="canonical" href="https://www.snbconsultancy.co.za" />
-  <style>
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-      background: #0c100e;
-      color: #f0ede8;
-      font-family: Inter, system-ui, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 24px;
-      box-sizing: border-box
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function(){try{var d=document.documentElement,c=d.classList;c.remove('light','dark');var e=localStorage.getItem('theme');if(e){c.add(e|| '')}else{c.add('light');}if(e==='light'||e==='dark'||!e)d.style.colorScheme=e||'light'}catch(t){}})();
+    </script>
 
-    h1 {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 10px
-    }
+    <link rel="icon" href="../../favicon.webp?v=2" type="image/webp" />
+    <link rel="apple-touch-icon" href="../../favicon.webp?v=2" />
 
-    p {
-      color: #9ca39b;
-      font-size: 14px;
-      max-width: 32rem;
-      line-height: 1.65;
-      margin-top: 8px
-    }
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-    a {
-      color: #4ade80;
-      font-weight: 600;
-      text-decoration: none
-    }
+    <title>SNB — Website Design for a Chartered Accountancy</title>
+    <meta name="description" content="Pure website design and build for SnB Chartered Accountants & Auditors — content audit, sitemap, page structure, interface design and build." />
+    <meta name="author" content="LulaMile-HalfMachine" />
+    <meta name="keywords" content="LulaMile-HalfMachine, Lulamile Mkhungela, product designer, UX designer, PWA development, website design, CRM implementation, brand strategy, Johannesburg, South Africa, portfolio" />
+    <link rel="canonical" href="https://lulamilemkhungela.github.io/portfolio.github.io/project/snb-website/" />
 
-    .k {
-      font-size: 11px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: #4ade80;
-      font-weight: 700;
-      margin-bottom: 16px;
-      display: block
-    }
-  </style>
-</head>
+    <meta property="og:title" content="SNB — Website Design for a Chartered Accountancy" />
+    <meta property="og:description" content="Pure website design and build for SnB Chartered Accountants & Auditors — content audit, sitemap, page structure, interface design and build." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lulamilemkhungela.github.io/portfolio.github.io/project/snb-website/" />
+    <meta property="og:image" content="https://lulamilemkhungela.github.io/portfolio.github.io/projects/lulamile/snb-cover.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_ZA" />
+    <meta property="og:site_name" content="LulaMile-HalfMachine Portfolio" />
 
-<body>
-  <div>
-    <span class="k">LulaMile-HalfMachine</span>
-    <h1>Opening the live site…</h1>
-    <p>Taking you to the SnB Consultancy website now.</p>
-    <p><a href="https://www.snbconsultancy.co.za">Continue to www.snbconsultancy.co.za ↗</a></p>
-  </div>
-  <script>location.replace("https://www.snbconsultancy.co.za");</script>
-</body>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SNB — Website Design for a Chartered Accountancy" />
+    <meta name="twitter:description" content="Pure website design and build for SnB Chartered Accountants & Auditors — content audit, sitemap, page structure, interface design and build." />
+    <meta name="twitter:image" content="https://lulamilemkhungela.github.io/portfolio.github.io/projects/lulamile/snb-cover.png" />
+    <meta name="twitter:site" content="@lulamile_m" />
+    <meta name="twitter:creator" content="@lulamile_m" />
 
+    <meta name="geo.region" content="ZA-GP" />
+    <meta name="geo.placename" content="Johannesburg, South Africa" />
+    <meta name="ICBM" content="-26.2041, 28.0473" />
+
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1, noai, noimageai" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "LulaMile-HalfMachine",
+        "alternateName": "Lulamile Mkhungela",
+        "url": "https://lulamilemkhungela.github.io/portfolio.github.io/",
+        "image": "https://lulamilemkhungela.github.io/portfolio.github.io/lulamile/meew.jpeg",
+        "jobTitle": "Product Designer & Strategist",
+        "email": "mkhungela.l@gmail.com",
+        "telephone": "+27 83 719 5064",
+        "address": { "@type": "PostalAddress", "addressLocality": "Johannesburg", "addressCountry": "ZA" },
+        "description": "Pure website design and build for SnB Chartered Accountants & Auditors — content audit, sitemap, page structure, interface design and build.",
+        "knowsAbout": ["Product Design", "UX Design", "Information Architecture", "Progressive Web Apps", "Website Design", "CRM Implementation", "Brand Strategy"],
+        "nationality": "South African",
+        "sameAs": ["https://www.linkedin.com/in/lulamile-mkhungela/"]
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "LulaMile-HalfMachine Portfolio",
+        "url": "https://lulamilemkhungela.github.io/portfolio.github.io/",
+        "description": "Portfolio of LulaMile-HalfMachine — product design, websites, PWAs and CRM systems built end to end.",
+        "inLanguage": "en-ZA",
+        "author": { "@type": "Person", "name": "LulaMile-HalfMachine" }
+      }
+    </script>
+
+    <script type="module" crossorigin src="../../assets/index-DL0drac2.js?v=22"></script>
+    <link rel="stylesheet" crossorigin href="../../assets/index-DtPIUu2L.css?v=6">
+    <script src="../../lulamile/edits.js?v=17"></script>
+    <script src="../../lulamile/patch.js?v=36"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
 </html>
