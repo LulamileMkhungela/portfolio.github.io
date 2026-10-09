@@ -1,0 +1,1539 @@
+:root {
+	--case-paper: #f4f2ed;
+	--case-white: #fbfaf7;
+	--case-ink: #191918;
+	--case-line: rgba(25, 25, 24, 0.16);
+	--case-accent: #745461;
+	--case-eyebrow-heading-gap: clamp(40px, 7vw, 110px);
+	--case-eyebrow-heading-gap-compact: clamp(24px, 3vw, 40px);
+}
+
+html.is-embedded,
+html.is-embedded body,
+body.is-embedded {
+	width: 100%;
+	min-height: 100%;
+	margin-top: 0 !important;
+	padding-top: 0 !important;
+	overflow-x: hidden;
+	background-color: #fff !important;
+}
+
+/* The embedded document owns exactly one native viewport scrollbar. Keep the
+ * root height content-driven: a fixed 100% root becomes a separately sized
+ * scroll layer in Chromium and can retain stale wheel hit-testing when a
+ * resizable iframe becomes shorter. The browser viewport still supplies the
+ * root scrollbar, while the document height follows the case-study content. */
+html.is-embedded {
+	height: auto;
+	min-height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	scrollbar-color: rgba(60, 60, 67, 0.42) transparent;
+	scrollbar-width: thin;
+}
+
+html.is-embedded body,
+body.is-embedded {
+	height: auto;
+	min-height: 100%;
+	overflow: visible;
+}
+
+html.is-embedded::-webkit-scrollbar {
+	width: 10px;
+}
+
+html.is-embedded::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+html.is-embedded::-webkit-scrollbar-thumb {
+	border: 3px solid transparent;
+	border-radius: 999px;
+	background: rgba(60, 60, 67, 0.38);
+	background-clip: padding-box;
+}
+
+html.is-embedded .header,
+html.is-embedded .side-navigation-wrapper,
+html.is-embedded .side-navigation,
+html.is-embedded .navigation,
+html.is-embedded .aux-navigation,
+html.is-embedded .contact-collaboration,
+html.is-embedded .reveal-side-navigation > .header,
+html.is-embedded .menu-toggle-portal,
+html.is-embedded .tlc-project-pagination,
+html.is-embedded .project-pagination,
+html.is-embedded .project-nav,
+html.is-embedded .next-prev-projects,
+html.is-embedded .pagination-portfolio,
+html.is-embedded .portfolio-pagination,
+html.is-embedded .project-navigation {
+	display: none !important;
+}
+
+html.is-embedded body,
+html.is-embedded .wrapper,
+html.is-embedded .wrapper-inner,
+html.is-embedded .content,
+html.is-embedded .header + .content,
+html.is-embedded main {
+	margin-top: 0 !important;
+	padding-top: 0 !important;
+	transform: none !important;
+}
+
+html.is-embedded .content > :first-child,
+html.is-embedded main.content > :first-child {
+	margin-top: 0 !important;
+}
+
+/*
+ * Embedded project heroes begin close to the modal chrome. These rules only
+ * remove spacing inherited from the hidden site header; later section rhythm
+ * remains untouched.
+ */
+html.is-embedded .tlc-hero,
+html.is-embedded .fc-hero {
+	min-height: auto !important;
+	margin-top: 0 !important;
+	padding-top: 0 !important;
+	align-items: stretch;
+}
+
+html.is-embedded .tlc-hero__copy,
+html.is-embedded .fc-hero__copy {
+	min-height: auto !important;
+	justify-content: flex-start !important;
+	padding-top: clamp(48px, 5vw, 64px) !important;
+	padding-bottom: 72px !important;
+}
+
+html.is-embedded .tlc-hero__media,
+html.is-embedded .fc-hero__media {
+	height: min(62vh, 520px) !important;
+	min-height: 320px !important;
+}
+
+/* The hospitality family uses one composed opening canvas in project windows.
+ * On wide canvases the copy and image share the same viewport-height row; on
+ * narrower canvases they return to the original stacked reading order. */
+@media (min-width: 1101px) {
+	html.is-embedded .tlc-hero {
+		height: var(--project-host-viewport-height, 640px) !important;
+		min-height: var(--project-host-viewport-height, 640px) !important;
+		grid-template-columns: minmax(360px, 0.9fr) minmax(0, 1.1fr);
+		padding-top: 0 !important;
+	}
+
+	html.is-embedded .tlc-hero__copy {
+		height: 100%;
+		min-height: 0 !important;
+		justify-content: center !important;
+		padding: clamp(48px, 5vw, 76px) clamp(42px, 5.4vw, 84px) !important;
+		box-sizing: border-box;
+	}
+
+	html.is-embedded .tlc-hero h1 {
+		max-width: 9.8em;
+		font-size: clamp(54px, 5.4vw, 86px);
+		line-height: 0.92;
+		text-wrap: balance;
+	}
+
+	html.is-embedded .tlc-hero .tlc-eyebrow {
+		margin-bottom: clamp(28px, 4vh, 46px);
+	}
+
+	html.is-embedded .tlc-hero__lede {
+		margin-top: clamp(28px, 4vh, 46px);
+		margin-bottom: 28px;
+	}
+
+	html.is-embedded .tlc-hero__media {
+		height: 100% !important;
+		min-height: 0 !important;
+	}
+}
+
+@media (max-width: 1100px) {
+	html.is-embedded .tlc-hero {
+		height: auto !important;
+		min-height: auto !important;
+		grid-template-columns: 1fr;
+	}
+
+	html.is-embedded .tlc-hero__copy {
+		min-height: min(66vh, 620px) !important;
+		justify-content: center !important;
+		padding: clamp(48px, 7vw, 78px) clamp(28px, 7vw, 64px) !important;
+	}
+
+	html.is-embedded .tlc-hero h1 {
+		font-size: clamp(52px, 10vw, 82px);
+		line-height: 0.92;
+		text-wrap: balance;
+	}
+
+	html.is-embedded .tlc-hero__media {
+		height: clamp(340px, 68vw, 680px) !important;
+		min-height: 340px !important;
+	}
+}
+
+html.is-embedded .editorial-hero {
+	min-height: min(100dvh, 640px) !important;
+	margin-top: 0 !important;
+}
+
+html.is-embedded .editorial-hero__inner {
+	justify-content: flex-start !important;
+	padding-top: clamp(48px, 5vw, 64px) !important;
+	padding-bottom: 72px !important;
+}
+
+html.is-embedded .case-study-hero--slider {
+	min-height: 360px !important;
+	height: 360px !important;
+	margin-top: 0 !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+
+html.is-embedded .case-study-hero--slider .tm-slider-container,
+html.is-embedded .case-study-hero--slider .tms-slides,
+html.is-embedded .case-study-hero--slider .tms-slide {
+	min-height: 360px !important;
+	height: 360px !important;
+}
+
+html.is-embedded .case-study-hero--slider .tms-content-inner {
+	padding-top: clamp(48px, 5vw, 64px) !important;
+	padding-bottom: 64px !important;
+	vertical-align: top !important;
+}
+
+html.is-embedded .case-study-hero--stacked {
+	min-height: auto !important;
+	height: auto !important;
+	margin-top: 0 !important;
+	padding-top: clamp(48px, 5vw, 64px) !important;
+	padding-bottom: 72px !important;
+}
+
+html.is-embedded .case-study-hero--stacked.intro-title-2 .title-container,
+html.is-embedded .case-study-hero--stacked.intro-title-2 .title-container-inner {
+	height: auto !important;
+	display: block !important;
+	vertical-align: top !important;
+}
+
+html.is-embedded .case-study-hero--stacked.feature-2 .feature-content,
+html.is-embedded .case-study-hero--stacked.feature-2 .feature-image {
+	height: auto !important;
+}
+
+html.is-embedded .case-study-hero--stacked.feature-2 .feature-content-inner,
+html.is-embedded .case-study-hero--stacked.feature-2 .feature-image-inner {
+	height: auto !important;
+	display: block !important;
+	vertical-align: top !important;
+}
+
+/* Page-top header with automatic contrast; it scrolls away with the hero. */
+.portfolio-case-updated .header,
+.portfolio-case-updated .header.header-background,
+.portfolio-case-updated .header.header-sticky,
+.mobile.portfolio-case-updated .header {
+	position: absolute !important;
+	z-index: 900 !important;
+	top: 0 !important;
+	left: 0;
+	background: transparent !important;
+	box-shadow: none !important;
+	color: #fff !important;
+	mix-blend-mode: difference;
+	transform: none !important;
+}
+
+.portfolio-case-updated .header .header-inner,
+.portfolio-case-updated .header.header-background .header-inner,
+.portfolio-case-updated .header.header-sticky .header-inner,
+.mobile.portfolio-case-updated .header .header-inner {
+	position: relative !important;
+	top: auto !important;
+	left: auto !important;
+	background: transparent !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	transform: none !important;
+	transition: none !important;
+}
+
+.portfolio-case-updated .header.header-hide,
+.portfolio-case-updated .header.header-out,
+.portfolio-case-updated .header.header-positioned {
+	opacity: 1 !important;
+	visibility: visible !important;
+	transform: none !important;
+}
+
+.portfolio-case-updated .header .logo img {
+	filter: invert(1);
+}
+
+.portfolio-case-updated .header a,
+.portfolio-case-updated .header .contact-collaboration,
+.portfolio-case-updated .header .navigation a,
+.portfolio-case-updated .header .nav-icon {
+	color: #fff !important;
+}
+
+.portfolio-case-updated .header svg,
+.portfolio-case-updated .header svg path {
+	stroke: currentColor;
+}
+
+.portfolio-case-updated .menu-toggle-portal {
+	color: #fff !important;
+	mix-blend-mode: difference;
+}
+
+.portfolio-case-updated .menu-toggle-portal svg,
+.portfolio-case-updated .menu-toggle-portal svg path {
+	stroke: currentColor;
+}
+
+body.portfolio-case-updated.menu-icon-open .header,
+body.portfolio-case-updated.menu-icon-closing .header {
+	opacity: 0 !important;
+	visibility: hidden !important;
+	pointer-events: none !important;
+}
+
+body.portfolio-case-updated.menu-icon-open a.menu-toggle-portal,
+body.portfolio-case-updated.menu-icon-closing a.menu-toggle-portal,
+body.portfolio-case-updated.menu-icon-open a.menu-toggle-portal:hover,
+body.portfolio-case-updated.menu-icon-closing a.menu-toggle-portal:hover {
+	color: #1f1f1f !important;
+	mix-blend-mode: normal !important;
+	filter: none !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+}
+
+body.portfolio-case-updated.menu-icon-open a.menu-toggle-portal svg,
+body.portfolio-case-updated.menu-icon-closing a.menu-toggle-portal svg,
+body.portfolio-case-updated.menu-icon-open a.menu-toggle-portal svg path,
+body.portfolio-case-updated.menu-icon-closing a.menu-toggle-portal svg path {
+	color: #1f1f1f !important;
+	stroke: #1f1f1f !important;
+	opacity: 1 !important;
+}
+
+/* Brand-led footer palette. */
+.hyatt-page { --case-accent: #151f6d; }
+.att-minor-materials-page { --case-accent: #0057b8; }
+.calvin-klein-page { --case-accent: #202020; }
+.david-nazaire-page { --case-accent: #202b43; }
+.dress-barn-page { --case-accent: #4a3437; }
+.elle-indonesia-page { --case-accent: #b51f2d; }
+.swim-campaign-page { --case-accent: #30275e; }
+.wpp-cocacola-page { --case-accent: #d71920; }
+
+/* Full-page fallback when a case study is opened outside the desktop modal. */
+.wpp-cocacola-page .wpp-cocacola-hero {
+	height: clamp(480px, 62vh, 640px) !important;
+	min-height: 480px !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+
+.wpp-cocacola-page .wpp-cocacola-hero .title-container,
+.wpp-cocacola-page .wpp-cocacola-hero .title-container-inner {
+	height: 100% !important;
+}
+
+.wpp-cocacola-page .wpp-cocacola-hero .title-container {
+	display: table !important;
+}
+
+.wpp-cocacola-page .wpp-cocacola-hero .title-container-inner {
+	display: table-cell !important;
+	vertical-align: middle !important;
+}
+
+/* Large opening canvas when a case study is viewed as a normal browser page. */
+.portfolio-case-updated .case-study-hero--expanded {
+	position: relative;
+	height: clamp(560px, 78vh, 760px) !important;
+	min-height: 560px !important;
+}
+
+.portfolio-case-updated .case-study-hero--expanded.case-study-hero--slider .tm-slider-container,
+.portfolio-case-updated .case-study-hero--expanded.case-study-hero--slider .tms-slides,
+.portfolio-case-updated .case-study-hero--expanded.case-study-hero--slider .tms-slide {
+	height: 100% !important;
+	min-height: 560px !important;
+}
+
+/* The iframe viewport is already the modal's usable content area. */
+html.is-embedded .portfolio-case-updated .case-study-hero--expanded {
+	position: relative;
+	height: 100dvh !important;
+	min-height: 100dvh !important;
+	margin-top: 0 !important;
+	padding: clamp(40px, 6vh, 72px) clamp(20px, 5vw, 64px) clamp(72px, 10vh, 104px) !important;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+html.is-embedded .portfolio-case-updated .case-study-hero--expanded + * {
+	scroll-margin-top: 16px;
+}
+
+html.is-embedded .portfolio-case-updated .case-study-hero--expanded.case-study-hero--slider .tm-slider-container,
+html.is-embedded .portfolio-case-updated .case-study-hero--expanded.case-study-hero--slider .tms-slides,
+html.is-embedded .portfolio-case-updated .case-study-hero--expanded.case-study-hero--slider .tms-slide {
+	width: 100% !important;
+	height: 100% !important;
+	min-height: 0 !important;
+}
+
+html.is-embedded .portfolio-case-updated .case-study-hero-content {
+	width: 100%;
+	max-width: var(--project-hero-max-width, 1180px);
+	height: 100% !important;
+	margin: auto;
+	display: flex !important;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: center;
+	box-sizing: border-box;
+}
+
+html.is-embedded .portfolio-case-updated .case-study-hero--slider .tms-content-inner {
+	width: 100%;
+	height: auto !important;
+	padding: 0 !important;
+	display: block !important;
+	vertical-align: middle !important;
+}
+
+html.is-embedded .hyatt-page .hyatt-hero {
+	padding: 0 !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+html.is-embedded .hyatt-page .hyatt-hero .tm-slider-container,
+html.is-embedded .hyatt-page .hyatt-hero .tms-slides,
+html.is-embedded .hyatt-page .hyatt-hero .tms-slide,
+html.is-embedded .hyatt-page .hyatt-hero-content {
+	width: 100% !important;
+	height: 100% !important;
+	max-width: none;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+html.is-embedded .hyatt-page .hyatt-hero .tms-content-inner {
+	width: 100% !important;
+	height: 100% !important;
+	padding: 0 !important;
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+}
+
+html.is-embedded .hyatt-page .hyatt-hero .tms-content-inner > .row {
+	width: 100%;
+}
+
+html.is-embedded .hyatt-page .hyatt-hero-copy {
+	width: min(100%, 1000px);
+	margin: 0 auto !important;
+	padding: 0 24px;
+	float: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+html.is-embedded .hyatt-page .hyatt-hero-copy h2 {
+	margin: 0 0 24px !important;
+}
+
+html.is-embedded .hyatt-page .hyatt-hero-copy p {
+	margin: 0 !important;
+}
+
+/* AT&T uses the shared full-viewport modal hero without duplicating its
+   existing title, subtitle, or category pill. */
+html.is-embedded body.att-minor-materials-page .att-hero.case-study-hero--expanded {
+	position: relative;
+	width: 100%;
+	height: 100dvh !important;
+	min-height: 100dvh !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	place-items: center;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+html.is-embedded .att-minor-materials-page .att-hero .tm-slider-container,
+html.is-embedded .att-minor-materials-page .att-hero .tms-slides,
+html.is-embedded .att-minor-materials-page .att-hero .tms-slide,
+html.is-embedded .att-minor-materials-page .att-hero .tms-content,
+html.is-embedded .att-minor-materials-page .att-hero .tms-content-inner {
+	width: 100% !important;
+	height: 100% !important;
+	min-height: 0 !important;
+	margin: 0 !important;
+}
+
+html.is-embedded .att-minor-materials-page .att-hero .tm-slider-container {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+html.is-embedded .att-minor-materials-page .att-hero .tms-content-inner {
+	padding: 0 !important;
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+}
+
+html.is-embedded .att-minor-materials-page .att-hero .tms-content-inner > .row {
+	width: 100%;
+}
+
+html.is-embedded .att-minor-materials-page .att-hero-content {
+	width: 100%;
+	max-width: none;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+html.is-embedded .att-minor-materials-page .att-hero-copy {
+	width: min(calc(100% - 48px), 1180px) !important;
+	max-width: 1000px;
+	margin: 0 auto !important;
+	padding: clamp(52px, 7vh, 76px) 24px clamp(92px, 13vh, 124px);
+	float: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+html.is-embedded .att-minor-materials-page .att-hero-copy h2,
+html.is-embedded .att-minor-materials-page .att-hero-copy p {
+	text-align: center;
+}
+
+html.is-embedded .att-minor-materials-page .att-hero-copy > .clear {
+	display: none;
+}
+
+html.is-embedded .att-minor-materials-page .att-hero-copy > .tms-caption {
+	margin: 0;
+}
+
+html.is-embedded .att-minor-materials-page .att-hero-copy h2 {
+	max-width: 1000px;
+	margin: 0 !important;
+	font-size: clamp(56px, 7vw, 96px) !important;
+	line-height: 0.92;
+	letter-spacing: -0.055em;
+	text-wrap: balance;
+}
+
+html.is-embedded .att-minor-materials-page .att-hero-copy > .tms-caption:nth-child(3) {
+	margin-top: clamp(24px, 3.5vh, 38px);
+}
+
+html.is-embedded .att-minor-materials-page .att-hero-copy > .tms-caption:nth-child(5) {
+	margin-top: clamp(30px, 5vh, 50px);
+}
+
+html.is-embedded .att-minor-materials-page .att-hero-copy .mb-20,
+html.is-embedded .att-minor-materials-page .att-hero-copy .att-hero-focus {
+	margin: 0 !important;
+}
+
+html.is-embedded .att-minor-materials-page .att-hero .case-study-scroll-cue {
+	bottom: 26px;
+	display: grid !important;
+	visibility: visible !important;
+	opacity: 1 !important;
+}
+
+html.is-embedded .att-minor-materials-page .att-hero .case-study-scroll-cue img {
+	width: 22px;
+	height: 22px;
+	filter: none;
+	opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+	html.is-embedded .att-minor-materials-page .att-hero-copy h2 {
+		margin-bottom: 18px !important;
+		font-size: clamp(34px, 10vw, 50px) !important;
+		line-height: 1.02;
+	}
+
+	html.is-embedded .att-minor-materials-page .att-hero-copy .mb-20 {
+		max-width: 38rem;
+		margin-bottom: 12px !important;
+		font-size: clamp(1.35rem, 4.4vw, 1.8rem);
+		line-height: 1.42;
+	}
+}
+
+/* Priority editorial heroes keep their original identity while responding to
+ * the actual Safari-style project-window canvas. */
+html.is-embedded .verizon-passkey-page .pk-hero,
+html.is-embedded .lm-case-page .pk-hero {
+	min-height: var(--project-host-viewport-height, 640px);
+	padding-top: clamp(48px, 6vh, 72px) !important;
+	padding-bottom: clamp(44px, 6vh, 68px);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+html.is-embedded .verizon-passkey-page .pk-hero > .pk-shell,
+html.is-embedded .lm-case-page .pk-hero > .pk-shell {
+	width: min(100%, 1240px);
+	max-width: 1240px;
+	margin-inline: auto;
+	flex: 0 0 min(100%, 1240px);
+	box-sizing: border-box;
+}
+
+html.is-embedded .verizon-passkey-page .pk-display,
+html.is-embedded .lm-case-page .pk-display {
+	font-size: clamp(52px, 6.8vw, 88px);
+	line-height: 0.91;
+}
+
+html.is-embedded .verizon-passkey-page .pk-lede,
+html.is-embedded .lm-case-page .pk-lede {
+	margin-top: clamp(30px, 4.5vh, 48px);
+}
+
+html.is-embedded .verizon-passkey-page .pk-hero__grid,
+html.is-embedded .lm-case-page .pk-hero__grid {
+	grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+	gap: clamp(48px, 6vw, 84px);
+}
+
+html.is-embedded .medable-page .m-hero {
+	min-height: var(--project-host-viewport-height, 640px);
+	padding: clamp(72px, 10vh, 76px) 0 clamp(36px, 5vh, 48px) !important;
+	display: block;
+	box-sizing: border-box;
+}
+
+html.is-embedded .medable-page .m-hero-copy {
+	margin: 0 auto !important;
+	padding-top: 0 !important;
+}
+
+html.is-embedded .medable-page .m-display {
+	font-size: clamp(52px, 6.5vw, 84px);
+	line-height: .94;
+}
+
+@media (min-width: 1400px) {
+	html.is-embedded .medable-page .m-hero {
+		padding-top: clamp(44px, 7vh, 56px) !important;
+	}
+}
+
+@media (max-width: 820px) {
+	html.is-embedded .verizon-passkey-page .pk-hero,
+html.is-embedded .lm-case-page .pk-hero {
+		min-height: auto;
+		display: block;
+	}
+
+	html.is-embedded .verizon-passkey-page .pk-hero__grid,
+html.is-embedded .lm-case-page .pk-hero__grid {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 32px;
+	}
+
+	html.is-embedded .medable-page .m-hero {
+		min-height: auto;
+		padding: clamp(76px, 14vw, 112px) 0 clamp(60px, 10vw, 80px) !important;
+	}
+}
+
+html.is-embedded .medable-page .medable-hero {
+	width: 100%;
+	margin: 0 !important;
+	padding: clamp(52px, 8vh, 92px) clamp(24px, 6vw, 80px) clamp(82px, 11vh, 110px) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: #edebe9 !important;
+	box-shadow: none !important;
+	text-align: center;
+}
+
+html.is-embedded .medable-page .medable-hero .tm-slider-container,
+html.is-embedded .medable-page .medable-hero .tms-slides,
+html.is-embedded .medable-page .medable-hero .tms-slide,
+html.is-embedded .medable-page .medable-hero .tms-content,
+html.is-embedded .medable-page .medable-hero .tms-content-inner {
+	width: 100% !important;
+	max-width: none !important;
+	margin: 0 !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: #edebe9 !important;
+	box-shadow: none !important;
+}
+
+html.is-embedded .medable-page .medable-hero-content {
+	max-width: 900px;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+html.is-embedded .wpp-cocacola-page .wpp-cocacola-hero .title-container,
+html.is-embedded .wpp-cocacola-page .wpp-cocacola-hero .title-container-inner {
+	height: 100% !important;
+}
+
+html.is-embedded .wpp-cocacola-page .wpp-cocacola-hero .title-container {
+	display: table !important;
+}
+
+html.is-embedded .wpp-cocacola-page .wpp-cocacola-hero .title-container-inner {
+	display: table-cell !important;
+	vertical-align: middle !important;
+}
+
+button.case-study-scroll-cue {
+	all: unset;
+	box-sizing: border-box;
+	position: absolute;
+	z-index: 20;
+	left: 50%;
+	bottom: clamp(18px, 3vh, 30px);
+	width: 36px;
+	height: 36px;
+	display: grid;
+	place-items: center;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	color: currentColor;
+	background: transparent !important;
+	box-shadow: none !important;
+	-webkit-appearance: none;
+	appearance: none;
+	transform: translateX(-50%);
+	cursor: pointer;
+}
+
+button.case-study-scroll-cue:hover,
+button.case-study-scroll-cue:active,
+button.case-study-scroll-cue:focus,
+button.case-study-scroll-cue:focus-visible {
+	padding: 0 !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	outline: none !important;
+}
+
+button.case-study-scroll-cue::before,
+button.case-study-scroll-cue::after,
+button.case-study-scroll-cue:hover::before,
+button.case-study-scroll-cue:hover::after,
+button.case-study-scroll-cue:focus::before,
+button.case-study-scroll-cue:focus::after {
+	content: none !important;
+	display: none !important;
+	background: transparent !important;
+	border: 0 !important;
+	box-shadow: none !important;
+}
+
+.case-study-scroll-cue img,
+.case-study-scroll-cue svg {
+	width: 20px;
+	height: 20px;
+	display: block;
+	object-fit: contain;
+	background: transparent !important;
+	box-shadow: none !important;
+	opacity: 0.82;
+	pointer-events: none;
+	animation: projectChevronHint 1.8s ease-in-out infinite;
+	transition: none;
+}
+
+.case-study-scroll-cue--light img {
+	filter: invert(1);
+	opacity: 0.92;
+}
+
+@keyframes projectChevronHint {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.case-study-scroll-cue img {
+		animation: none;
+		transition: none;
+	}
+}
+.medable-page,
+.medable-app-page { --case-accent: #6445d7; }
+.verizon-passkey-page { --case-accent: #ee0000; }
+
+.tlc-project-pagination {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	width: 100%;
+	margin: 0;
+	background: var(--case-paper);
+}
+
+.tlc-project-pagination__item {
+	position: relative;
+	display: block;
+	height: clamp(380px, 27vw, 560px);
+	overflow: hidden;
+	color: #fff;
+}
+
+.tlc-project-pagination__item > img {
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	filter: saturate(0.82) contrast(0.98);
+	transform: scale(1.12);
+	transition: transform 750ms cubic-bezier(0.22, 1, 0.36, 1), filter 650ms ease;
+}
+
+.tlc-project-pagination__shade {
+	position: absolute;
+	inset: 0;
+	background: rgba(10, 10, 10, 0.62);
+	transition: background-color 650ms ease;
+}
+
+.tlc-project-pagination__content {
+	position: absolute;
+	z-index: 1;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: clamp(28px, 4vw, 72px);
+	font-family: "Satoshi", "Helvetica Neue", Arial, sans-serif;
+	text-align: center;
+	transition: opacity 550ms ease, transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tlc-project-pagination__direction {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 18px;
+	color: rgba(255, 255, 255, 0.72);
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.tlc-project-pagination__content strong {
+	font-size: clamp(25px, 2vw, 34px);
+	font-weight: 600;
+	line-height: 0.98;
+	letter-spacing: 0.035em;
+	text-transform: uppercase;
+}
+
+.tlc-project-pagination__category {
+	margin-top: 14px;
+	color: rgba(255, 255, 255, 0.76);
+	font-size: 14px;
+	font-style: italic;
+	letter-spacing: 0.04em;
+}
+
+.tlc-project-pagination__item:hover,
+.tlc-project-pagination__item:focus-visible {
+	color: #fff;
+	text-decoration: none;
+	outline: none;
+}
+
+.tlc-project-pagination__item:focus-visible > img {
+	filter: saturate(1) contrast(1);
+	transform: scale(1);
+}
+
+.tlc-project-pagination__item:focus-visible .tlc-project-pagination__shade {
+	background: rgba(10, 10, 10, 0.54);
+}
+
+.tlc-project-pagination__item:focus-visible::after {
+	position: absolute;
+	z-index: 2;
+	inset: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	content: "";
+}
+
+.tlc-project-pagination__all {
+	grid-column: 1 / -1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	min-height: 76px;
+	border-bottom: 1px solid var(--case-line);
+	background: var(--case-paper);
+	color: var(--case-ink);
+	font-family: "Satoshi", "Helvetica Neue", Arial, sans-serif;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+.tlc-project-pagination__all:hover,
+.tlc-project-pagination__all:focus-visible {
+	background: var(--case-ink);
+	color: var(--case-white);
+	text-decoration: none;
+	outline: none;
+}
+
+.footer.tlc-footer .footer-top {
+	padding: clamp(90px, 11vw, 150px) 0;
+	background: var(--case-accent);
+}
+
+.cool-america-page .footer.tlc-footer .footer-top {
+	background: #000;
+}
+
+.elle-indonesia-page .footer.tlc-footer .footer-top {
+	background: #1c1c1c;
+}
+
+.footer.tlc-footer .footer-top .row {
+	width: min(100% - 36px, 1280px);
+	margin-inline: auto;
+}
+
+.footer.tlc-footer h4 {
+	max-width: 850px;
+	margin: 26px auto 34px;
+	color: #fff;
+	font-family: "Satoshi", "Helvetica Neue", Arial, sans-serif;
+	font-size: clamp(44px, 6vw, 82px);
+	font-weight: 400;
+	line-height: 1;
+	letter-spacing: -0.055em;
+}
+
+.tlc-footer__eyebrow {
+	margin: 0;
+	color: rgba(255, 255, 255, 0.68);
+	font-family: "Satoshi", "Helvetica Neue", Arial, sans-serif;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 1.3;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.footer.tlc-footer .footer-top a.tlc-footer__email {
+	display: inline-block;
+	padding-bottom: 9px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.82);
+	color: #fff;
+	font-family: "Satoshi", "Helvetica Neue", Arial, sans-serif;
+	font-size: clamp(16px, 1.35vw, 20px);
+	font-weight: 500;
+	letter-spacing: 0.01em;
+}
+
+.footer.tlc-footer .footer-top a.tlc-footer__email:hover,
+.footer.tlc-footer .footer-top a.tlc-footer__email:focus-visible {
+	border-bottom-color: #fff;
+	color: #fff;
+	text-decoration: none;
+	opacity: 0.82;
+}
+
+.footer.tlc-footer .social-list {
+	margin-top: 30px;
+}
+
+.project-linkedin-icon {
+	display: block;
+	width: 18px;
+	height: 18px;
+	fill: currentColor;
+}
+
+.footer.tlc-footer .social-list a {
+	display: inline-grid;
+	place-items: center;
+}
+
+html.is-embedded .footer.tlc-footer {
+	min-height: 100dvh;
+	margin: 0 !important;
+}
+
+html.is-embedded .footer.tlc-footer .footer-top {
+	min-height: 100dvh;
+	padding: clamp(48px, 8vh, 80px) 0;
+	display: grid;
+	place-items: center;
+	box-sizing: border-box;
+}
+
+html.is-embedded .footer.tlc-footer .footer-top .row {
+	min-height: 0;
+	margin-block: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+html.is-embedded .footer.tlc-footer .footer-top .column,
+html.is-embedded .footer.tlc-footer .footer-top .widget {
+	width: 100%;
+}
+
+.tlc-scroll-top {
+	position: fixed;
+	z-index: 800;
+	right: 28px;
+	bottom: 28px;
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	min-width: 0;
+	margin: 0;
+	padding: 12px 16px;
+	border: 1px solid rgba(25, 25, 24, 0.18);
+	border-radius: 999px;
+	background: rgba(244, 242, 237, 0.9);
+	box-shadow: 0 12px 34px rgba(25, 25, 24, 0.12);
+	color: var(--case-ink);
+	font-family: "Satoshi", "Helvetica Neue", Arial, sans-serif;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	backdrop-filter: blur(14px);
+	cursor: pointer;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(12px);
+	transition: opacity 240ms ease, visibility 240ms ease, transform 240ms ease, background-color 240ms ease;
+}
+
+.tlc-scroll-top > span:first-child {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1;
+}
+
+.tlc-scroll-top.is-visible {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+.tlc-scroll-top:hover,
+.tlc-scroll-top:focus-visible {
+	border-color: var(--case-ink);
+	background: var(--case-ink);
+	color: var(--case-white);
+	outline: none;
+}
+
+.wpp-cocacola-page .thumbnail > video {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1080 / 1162;
+	display: block;
+	object-fit: contain;
+	background: #111;
+}
+
+@media (hover: hover) {
+	.tlc-project-pagination__item:hover > img {
+		filter: saturate(1) contrast(1);
+		transform: scale(1);
+	}
+
+	.tlc-project-pagination__item:hover .tlc-project-pagination__shade {
+		background: rgba(10, 10, 10, 0.16);
+	}
+
+	.tlc-project-pagination__item:hover .tlc-project-pagination__content {
+		opacity: 0;
+		transform: scale(0.985);
+	}
+}
+
+@media (max-width: 768px) {
+	.wpp-cocacola-page .wpp-cocacola-hero {
+		height: 520px !important;
+		min-height: 520px !important;
+	}
+
+	.portfolio-case-updated .case-study-hero--expanded,
+	.portfolio-case-updated .case-study-hero--expanded.case-study-hero--slider .tm-slider-container,
+	.portfolio-case-updated .case-study-hero--expanded.case-study-hero--slider .tms-slides,
+	.portfolio-case-updated .case-study-hero--expanded.case-study-hero--slider .tms-slide {
+		height: 520px !important;
+		min-height: 520px !important;
+	}
+
+	html.is-embedded .portfolio-case-updated .case-study-hero--expanded {
+		height: 100dvh !important;
+		min-height: 100dvh !important;
+		padding: 36px 20px 76px !important;
+	}
+
+	html.is-embedded .portfolio-case-updated .case-study-hero--expanded.case-study-hero--slider .tm-slider-container,
+	html.is-embedded .portfolio-case-updated .case-study-hero--expanded.case-study-hero--slider .tms-slides,
+	html.is-embedded .portfolio-case-updated .case-study-hero--expanded.case-study-hero--slider .tms-slide {
+		height: 100% !important;
+		min-height: 0 !important;
+	}
+
+	.case-study-scroll-cue {
+		bottom: 18px;
+	}
+
+	/* The header overlays the opening section on phones. Give every case-study
+	   hero a shared visual safe area so its first content clears the controls. */
+	.portfolio-case-updated .case-study-hero--slider .tms-content-inner {
+		padding-top: 9rem !important;
+	}
+
+	.portfolio-case-updated .case-study-hero--stacked {
+		padding-top: 18rem;
+	}
+
+	.portfolio-case-updated .case-study-hero--stacked.feature-2 {
+		padding-bottom: 9rem;
+	}
+
+	.portfolio-case-updated .case-study-hero--stacked.intro-title-2 {
+		padding-bottom: 13rem;
+	}
+}
+
+@media (max-width: 700px) {
+	.tlc-project-pagination {
+		grid-template-columns: 1fr;
+	}
+
+	.tlc-project-pagination__item {
+		height: 68vw;
+		min-height: 330px;
+	}
+
+	.tlc-project-pagination__all {
+		grid-column: auto;
+	}
+
+	.tlc-scroll-top {
+		right: 18px;
+		bottom: 18px;
+		width: 46px;
+		height: 46px;
+		justify-content: center;
+		padding: 0;
+	}
+
+	.tlc-scroll-top > span:last-child {
+		display: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+
+	.tlc-project-pagination__item > img,
+	.tlc-project-pagination__shade,
+	.tlc-project-pagination__content {
+		transition: none;
+	}
+}
+
+/* Parent-owned project scrolling pilot. The same-origin document remains an
+   isolated rendering host, but its root can no longer become a scroll layer.
+   Full-viewport sections use the stable Safari-window content height instead
+   of the content-height-driven host frame. */
+html.is-embedded.is-parent-scroll-host {
+	height: auto !important;
+	min-height: 0 !important;
+	overflow: hidden !important;
+	overscroll-behavior: auto !important;
+	scrollbar-width: none !important;
+}
+
+html.is-embedded.is-parent-scroll-host::-webkit-scrollbar {
+	display: none !important;
+}
+
+html.is-embedded.is-parent-scroll-host body,
+body.is-embedded.is-parent-scroll-host {
+	height: auto !important;
+	min-height: 0 !important;
+	overflow: visible !important;
+	overscroll-behavior: auto !important;
+}
+
+html.is-embedded.is-parent-scroll-host .portfolio-case-updated .case-study-hero--expanded,
+html.is-embedded.is-parent-scroll-host .portfolio-case-updated .case-study-hero--expanded.case-study-hero--slider .tm-slider-container,
+html.is-embedded.is-parent-scroll-host .portfolio-case-updated .case-study-hero--expanded.case-study-hero--slider .tms-slides,
+html.is-embedded.is-parent-scroll-host .portfolio-case-updated .case-study-hero--expanded.case-study-hero--slider .tms-slide {
+	height: var(--project-host-viewport-height, 640px) !important;
+	min-height: var(--project-host-viewport-height, 640px) !important;
+}
+
+html.is-embedded.is-parent-scroll-host .footer.tlc-footer,
+html.is-embedded.is-parent-scroll-host .footer.tlc-footer .footer-top {
+	height: var(--project-host-viewport-height, 640px) !important;
+	min-height: var(--project-host-viewport-height, 640px) !important;
+	box-sizing: border-box;
+}
+
+html.is-embedded.is-parent-scroll-host .footer.tlc-footer .footer-top {
+	place-items: center;
+}
+
+html.is-embedded.is-parent-scroll-host .footer.tlc-footer .footer-top .row {
+	margin-block: auto !important;
+}
+
+html.is-embedded.is-parent-scroll-host .tlc-scroll-top {
+	display: none !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Storytelling case-study layer
+   Hero states the project name, a tagline and a scroll cue; a single lead
+   paragraph carries context, seniority and the headline result; the story
+   runs as prose; outcomes close it out as five short blocks.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.lm-case-page .pk-display--name {
+	font-size: clamp(56px, 9vw, 140px);
+	line-height: .86;
+	letter-spacing: -.055em;
+}
+
+.lm-case-page .pk-hero__tagline {
+	max-width: 620px;
+	margin: clamp(20px, 2.4vw, 32px) 0 0;
+	font-size: clamp(22px, 2.3vw, 34px);
+	line-height: 1.16;
+	letter-spacing: -.03em;
+	font-weight: 600;
+	color: #1c1c1c;
+}
+
+.lm-case-page .pk-hero__tagline .pk-accent {
+	font-style: normal;
+	color: var(--pk-red, #e60000);
+}
+
+.lm-case-page .pk-hero .pk-lede {
+	margin-top: 22px;
+	font-size: clamp(17px, 1.35vw, 20px);
+	line-height: 1.62;
+	color: #4a4a4a;
+}
+
+.lm-case-page .pk-scrollcue {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	margin-top: clamp(28px, 3vw, 44px);
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: #6b6b6b;
+	text-decoration: none;
+}
+
+.lm-case-page .pk-scrollcue:hover { color: var(--pk-red, #e60000); }
+
+.lm-case-page .pk-scrollcue svg {
+	width: 18px;
+	height: 18px;
+	animation: pk-scrollcue-bob 1.9s ease-in-out infinite;
+}
+
+@keyframes pk-scrollcue-bob {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(5px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.lm-case-page .pk-scrollcue svg { animation: none; }
+}
+
+/* The lead: one paragraph that sets the context, the seniority and the result */
+.lm-case-page .pk-lead-section { padding-block: clamp(52px, 6vw, 88px); }
+
+.lm-case-page .pk-lead {
+	max-width: 920px;
+	margin: 0;
+	font-size: clamp(20px, 1.95vw, 29px);
+	line-height: 1.5;
+	letter-spacing: -.02em;
+	color: #1f1f1f;
+}
+
+/* Quieter section labels so the statements lead, the way a story should */
+.lm-case-page .pk-eyebrow {
+	font-size: 11px;
+	letter-spacing: .2em;
+	font-weight: 700;
+	color: #8d8d8d;
+}
+
+.lm-case-page .pk-eyebrow:before { width: 18px; height: 1px; }
+
+/* Outcomes: five short blocks, headline first */
+.lm-case-page .pk-results { background: var(--pk-surface, #f5f5f5); }
+
+.lm-case-page .pk-results__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 1px;
+	margin-top: clamp(36px, 4vw, 56px);
+	background: #dedede;
+	border: 1px solid #dedede;
+	border-radius: 20px;
+	overflow: hidden;
+}
+
+.lm-case-page .pk-result {
+	padding: clamp(26px, 3vw, 40px);
+	background: #fff;
+}
+
+.lm-case-page .pk-result strong {
+	display: block;
+	font-size: clamp(21px, 1.9vw, 27px);
+	line-height: 1.12;
+	letter-spacing: -.03em;
+	color: var(--pk-black, #0a0a0a);
+}
+
+.lm-case-page .pk-result p {
+	margin: 14px 0 0;
+	font-size: 15.5px;
+	line-height: 1.6;
+	color: #5a5a5a;
+}
+
+@media (max-width: 640px) {
+	.lm-case-page .pk-hero__tagline { font-size: clamp(20px, 6.4vw, 26px); }
+	.lm-case-page .pk-lead { font-size: 18.5px; line-height: 1.55; }
+	.lm-case-page .pk-results__grid { border-radius: 14px; }
+}
+
+/* Captions under the real project images */
+.lm-case-page .pk-media figcaption {
+	padding: 16px clamp(18px, 2.4vw, 28px) 20px;
+	font-size: 13.5px;
+	line-height: 1.55;
+	color: #6b6b6b;
+	background: #fff;
+	border-top: 1px solid #e6e6e6;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Dark appearance for case-study pages
+   The desktop passes ?appearance=dark when it opens a project, and sends a
+   message when the switch is flipped while the window is open. Light remains
+   the default; nothing here applies without .is-dark on <html>.
+   ───────────────────────────────────────────────────────────────────────── */
+
+html.is-dark body.lm-case-page,
+html.is-dark .lm-case-page .content,
+html.is-dark .lm-case-page .pk-media-section,
+html.is-dark .lm-case-page .pk-conclusion {
+	background: #121212;
+	color: #d7d7d9;
+}
+
+html.is-dark .lm-case-page .pk-hero {
+	background: linear-gradient(180deg, #121212 0%, #121212 72%, #181818 72%, #181818 100%);
+}
+
+html.is-dark .lm-case-page .pk-display,
+html.is-dark .lm-case-page .pk-h2,
+html.is-dark .lm-case-page .pk-h3,
+html.is-dark .lm-case-page .pk-hero__tagline,
+html.is-dark .lm-case-page .pk-overview__statement,
+html.is-dark .lm-case-page .pk-lead,
+html.is-dark .lm-case-page .pk-role__list,
+html.is-dark .lm-case-page .pk-meta__value,
+html.is-dark .lm-case-page .pk-card h3,
+html.is-dark .lm-case-page .pk-result strong,
+html.is-dark .lm-case-page .pk-closing strong { color: #f4f4f5; }
+
+html.is-dark .lm-case-page .pk-copy,
+html.is-dark .lm-case-page .pk-lede,
+html.is-dark .lm-case-page .pk-card p,
+html.is-dark .lm-case-page .pk-card li,
+html.is-dark .lm-case-page .pk-result p,
+html.is-dark .lm-case-page .pk-closing span,
+html.is-dark .lm-case-page .pk-media figcaption { color: #b2b2b5; }
+
+html.is-dark .lm-case-page .pk-eyebrow,
+html.is-dark .lm-case-page .pk-meta__label,
+html.is-dark .lm-case-page .pk-scrollcue,
+html.is-dark .lm-case-page .pk-disclaimer,
+html.is-dark .lm-case-page .pk-card__meta { color: #909093; }
+
+html.is-dark .lm-case-page .pk-meta,
+html.is-dark .lm-case-page .pk-card,
+html.is-dark .lm-case-page .pk-result {
+	background: #1a1a1b;
+	border-color: #2c2c2e;
+}
+
+html.is-dark .lm-case-page .pk-meta { border-top-color: #2c2c2e; border-bottom-color: #2c2c2e; }
+html.is-dark .lm-case-page .pk-meta__item { border-right-color: #2c2c2e; }
+html.is-dark .lm-case-page .pk-meta__item:nth-child(-n+2) { border-bottom-color: #2c2c2e; }
+html.is-dark .lm-case-page .pk-role { border-top-color: #2c2c2e; }
+
+html.is-dark .lm-case-page .pk-strategy,
+html.is-dark .lm-case-page .pk-results,
+html.is-dark .lm-case-page .pk-closing { background: #161617; }
+
+html.is-dark .lm-case-page .pk-results__grid {
+	background: #2c2c2e;
+	border-color: #2c2c2e;
+}
+
+html.is-dark .lm-case-page .pk-media,
+html.is-dark .lm-case-page .pk-media--wire { background: #1a1a1b; }
+
+html.is-dark .lm-case-page .pk-media figcaption {
+	background: #161617;
+	border-top-color: #2c2c2e;
+}
+
+html.is-dark .lm-case-page .pk-button,
+html.is-dark .lm-case-page .tlc-scroll-top {
+	color: #f4f4f5;
+	background: #242426;
+	border-color: #343436;
+}
+
+html.is-dark .lm-case-page #contact-lightbox {
+	background: #161617;
+	color: #d7d7d9;
+}
+
+html.is-dark .lm-case-page #contact-lightbox input,
+html.is-dark .lm-case-page #contact-lightbox textarea,
+html.is-dark .lm-case-page #contact-lightbox select {
+	color: #f4f4f5;
+	background: #1f1f21;
+	border-color: #343436;
+}
+
+html.is-dark .lm-case-page #contact-lightbox input::placeholder,
+html.is-dark .lm-case-page #contact-lightbox textarea::placeholder { color: #8a8a8d; }
+
+html.is-dark .lm-case-page .header,
+html.is-dark .lm-case-page .header-inner,
+html.is-dark .lm-case-page .side-navigation { background: #121212; color: #f4f4f5; }
+
+html.is-dark .lm-case-page .contact-collaboration { color: #f4f4f5; }
+
+html.is-dark .lm-case-page .footer.tlc-footer,
+html.is-dark .lm-case-page .tlc-footer .footer-top { background: #0e0e0f; color: #d7d7d9; }
+
+html.is-dark .lm-case-page .tlc-footer__eyebrow { color: #909093; }
+html.is-dark .lm-case-page .tlc-footer__email { color: #f4f4f5; }
+
+/* Screenshots of the live product: wide view next to the phone view */
+.lm-case-page .pk-live-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1.55fr) minmax(0, .85fr);
+	gap: clamp(16px, 2vw, 28px);
+	align-items: start;
+	margin-top: clamp(36px, 4vw, 56px);
+}
+
+.lm-case-page .pk-live-grid .pk-media img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.lm-case-page .pk-media--phone { background: #ececec; }
+
+@media (max-width: 820px) {
+	.lm-case-page .pk-live-grid { grid-template-columns: minmax(0, 1fr); }
+	.lm-case-page .pk-media--phone { max-width: 420px; }
+}
+
+/* ── Live product redirect cards (merged Toyota case study, KINTO band) ─── */
+.pk-live { background: var(--pk-surface); }
+.pk-live__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 48px; }
+.pk-live__card { background: #fff; border: 1px solid #e3e3e3; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; }
+.pk-live__card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top center; display: block; }
+.pk-live__body { padding: 22px 22px 26px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.pk-live__body h3 { margin: 0; font-size: 22px; letter-spacing: -.02em; color: var(--pk-black); }
+.pk-live__body p { margin: 0; color: #555; font-size: 14.5px; line-height: 1.6; flex: 1; }
+.pk-live__body .pk-button { align-self: flex-start; margin-top: 6px; }
+@media (max-width: 900px) { .pk-live__grid { grid-template-columns: 1fr; } }
