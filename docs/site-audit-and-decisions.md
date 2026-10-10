@@ -31,7 +31,7 @@ the case studies share a consistent section order (problem, goals, personas, pro
 | Digital Academy (2018 to 2019) | Intern, not Lead. Now "UI/UX and Android development intern, 1 Aug 2018 to 31 Jan 2019", matching the Portfolio of Evidence (`_poe_out`) and the reference in `testimonials-data.js`. |
 | IntellehubSA and UluntuXd (2025 to 2026) | Freelance, after hours alongside iOCO, as you confirmed. Titles are "Freelance UI/UX Designer" and "Freelance UX Facilitator and Coach". |
 | FoodieZone (2025) | Freelance. Role "Freelance Lead Product Designer & Front-End Developer" on the case study and CV. |
-| Hypothetical Objective Systems (2020 to 2021) | **Not changed.** Its end date overlaps the start of iOCO (2021). Please confirm the dates. |
+| Hypothetical Objective Systems (2020 to 2021) | Freelance, as you confirmed. Title is now "Freelance Senior UI/UX Designer and Developer Coach". Dates kept as in the CV. |
 
 ## 4. Missing clients (presented anonymised)
 - Takeda, Sasol, AGSA and Old Mutual are now named by sector in the CV line and About text: "a global pharmaceutical company", "a listed energy group", "a national audit institution", "a financial services group".
@@ -55,9 +55,13 @@ The services quote attribution was changed the same way.
 ## 7. Still open (case-study rewrite)
 The nine full case studies still use their original long-form copy. The storytelling rewrite (context, role and boundaries, 3 to 5 decisions with trade-offs, outcome and evidence, one-line "what changed") needs two things first:
 1. Facts for Takeda, Sasol, AGSA and Old Mutual (problem, your role, decisions, measured outcome, or agreement to keep them as sector-only entries).
-2. Confirmation of the Hypothetical Objective Systems dates in section 3.
 Metrics in the CV and case studies (92% UAT, 65%, 35%, 32% checkout, 60% discoverability, and others) are kept as written. Each needs a source before it goes in a rewritten case study.
 
 ## 8. Claims checked against the repo
 - Checkout completion +32%, order value +18%, 7-step flow to 3: appears only in the CV text (`js/desktop.js`). No case study supports it, so it stays CV-only until a source is given.
 - Digital Academy references naming people: unchanged, awaiting your decision.
+
+## 9. Latest decisions
+- **Checkout +32%, order value +18%, 7-step flow to 3:** the git history (6 commits) and the initial site contain no case study for this, and no deleted case-study files. It remains a CV highlight, which is the only public place it appears. Give me the project name to write a case study for it.
+- **Digital Academy references:** shown with names, as you asked. They appear in the Messages app.
+- **Four missing clients:** added as one anonymised page, `portfolio/enterprise-engagements-anonymised.html`, built only from CV facts (sector, iOCO 2021 to present, and the audit-platform highlight). It is linked from the CV window. No client names appear anywhere on the page. Full case studies need your project facts.

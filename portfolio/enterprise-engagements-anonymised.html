@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script>
+		(function () {
+			const params = new URLSearchParams(window.location.search);
+			if (params.get("embedded") !== "1") return;
+			document.documentElement.classList.add("is-embedded");
+			document.addEventListener("DOMContentLoaded", function () {
+				document.body.classList.add("is-embedded");
+			});
+		})();
+	</script>
+	<script>
+		(function () {
+			const root = document.documentElement;
+			const setMode = function (mode) { root.classList.toggle("is-dark", mode === "dark"); };
+			setMode(new URLSearchParams(window.location.search).get("appearance"));
+			window.addEventListener("message", function (event) {
+				if (event.data && event.data.type === "lm-appearance") setMode(event.data.mode);
+			});
+		})();
+	</script>
+	<meta charset="UTF-8" />
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0" name="viewport">
+	<meta name="twitter:widgets:theme" content="light">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Enterprise engagements (anonymised) — Lulamile Mkhungela">
+	<meta property="og:description" content="Four enterprise engagements through iOCO since 2021, presented by sector.">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Vodacom Engage — Lulamile Mkhungela">
+	<meta name="twitter:description" content="Rebuilt navigation, search and information architecture for the employee engagement app used across the group — turning a wall of tiles into a product people can find things in.">
+	<meta name="description" content="Four enterprise engagements through iOCO since 2021, presented by sector. Client names withheld.">
+	<meta name="theme-color" content="#ffffff">
+
+	<title>Enterprise engagements (anonymised) — Lulamile Mkhungela</title>
+	<link rel="icon" href="../favicon.ico" sizes="any">
+	<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+	<link rel="manifest" href="../site.webmanifest">
+
+	<!-- Font -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="../fonts/Satoshi/css/satoshi.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato|Montserrat:300" rel="stylesheet">
+
+	<!-- Css -->
+	<link rel="stylesheet" href="../css/core.min.css" />
+	<link rel="stylesheet" href="../css/case-study-skin.css?v=10" />
+	<link rel="stylesheet" href="../css/avalanche.css" />
+	<link rel="stylesheet" href="../css/snowbridge.css" />
+	<link rel="stylesheet" href="../css/modern-menu.css?v=161" />
+	<link rel="stylesheet" href="../css/portfolio-case-shared.css?v=33" />
+
+<style id="lm-case-study">
+:root{--lm-accent:#e60000}
+:root{
+  --pk-red:var(--lm-accent,#ee0000);--pk-black:#0a0a0a;--pk-ink:#161616;--pk-muted:#666;--pk-line:#dedede;
+  --pk-surface:#f5f5f5;--pk-white:#fff;--pk-max:1240px;--pk-copy:760px;
+  --pk-s1:8px;--pk-s2:16px;--pk-s3:24px;--pk-s4:32px;--pk-s5:48px;--pk-s6:64px;--pk-s7:96px;--pk-s8:128px;
+}
+.lm-case-page .content{background:var(--pk-white);overflow:hidden}
+.lm-case-page .content *{box-sizing:border-box}
+.pk-shell{width:100%;max-width:var(--pk-max);margin:0 auto;padding-inline:clamp(24px,4vw,64px)}
+.pk-section{padding-block:clamp(64px,7vw,104px)}
+.pk-section--tight{padding-block:clamp(48px,5vw,72px)}
+.pk-eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--pk-muted)}
+.pk-eyebrow:has(+ .pk-h2),.pk-eyebrow:has(+ .pk-h3){margin-bottom:var(--case-eyebrow-heading-gap-compact,clamp(24px,3vw,40px))}
+.pk-eyebrow:before{content:"";width:24px;height:2px;background:var(--pk-red);flex:0 0 auto}
+.pk-display{margin:0;font-size:clamp(52px,8.2vw,126px);line-height:.88;letter-spacing:-.065em;font-weight:700;color:var(--pk-black)}
+.pk-display em{display:block;color:var(--pk-red);font-style:normal}
+.pk-h2{margin:0;font-size:clamp(36px,4.4vw,68px);line-height:.98;letter-spacing:-.045em;font-weight:700;color:var(--pk-black)}
+.pk-h3{margin:0;font-size:clamp(26px,2.6vw,42px);line-height:1.04;letter-spacing:-.035em;font-weight:700;color:var(--pk-black)}
+.pk-lede{max-width:800px;margin:28px 0 0;font-size:clamp(19px,1.65vw,25px);line-height:1.45;color:#333}
+.pk-copy{max-width:var(--pk-copy);font-size:17px;line-height:1.75;color:#3b3b3b;overflow-wrap:anywhere}
+.pk-copy p{margin:0}
+.pk-hero{padding-top:clamp(92px,7.5vw,116px);background:linear-gradient(180deg,#fff 0%,#fff 72%,#f5f5f5 72%,#f5f5f5 100%)}
+.pk-hero__grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);gap:clamp(36px,6vw,80px);align-items:center}
+.pk-hero__visual{position:relative;min-height:clamp(430px,40vw,560px);display:flex;align-items:flex-end;justify-content:center}
+.pk-hero__visual:before{content:"";position:absolute;inset:9% 0 0 10%;background:var(--pk-red);border-radius:999px 999px 0 0;transform:rotate(-7deg)}
+.pk-hero__visual img{position:relative;z-index:1;max-width:min(100%,620px);max-height:620px;object-fit:contain;filter:drop-shadow(0 28px 34px rgba(0,0,0,.16))}
+.pk-meta{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--pk-line);border-bottom:1px solid var(--pk-line);background:#fff}
+.pk-meta__item{padding:28px 30px;border-right:1px solid var(--pk-line)}.pk-meta__item:last-child{border-right:0}
+.pk-meta__label{display:block;margin-bottom:8px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#777;font-weight:700}
+.pk-meta__value{font-size:16px;line-height:1.35;color:#171717;font-weight:600}
+.pk-overview{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(48px,8vw,120px);align-items:start}
+.pk-overview__statement{font-size:clamp(28px,3vw,46px);line-height:1.08;letter-spacing:-.035em;font-weight:650;color:var(--pk-black)}
+.pk-overview__statement strong{color:var(--pk-red)}
+.pk-dark{background:var(--pk-black);color:#fff}.pk-dark .pk-h2,.pk-dark .pk-h3{color:#fff}.pk-dark .pk-copy{color:#c9c9c9}.pk-dark .pk-eyebrow{color:#aaa}
+.pk-problem-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(56px,9vw,140px);align-items:start}
+.pk-outcomes{margin-top:48px;border-top:1px solid #343434}
+.pk-outcome{display:grid;grid-template-columns:68px 1fr;gap:24px;padding:30px 0;border-bottom:1px solid #343434;align-items:start}
+.pk-outcome__num{font-size:13px;color:#777;font-weight:700}.pk-outcome__text{font-size:clamp(20px,2vw,30px);line-height:1.22;letter-spacing:-.025em;color:#fff}
+.pk-strategy{background:var(--pk-surface)}
+.pk-strategy__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:56px}
+.pk-card{background:#fff;border:1px solid #e3e3e3;border-radius:20px;padding:clamp(28px,4vw,48px);min-height:260px;display:flex;flex-direction:column;justify-content:space-between}
+.pk-card__index{font-size:12px;letter-spacing:.14em;color:var(--pk-red);font-weight:800}.pk-card h3{font-size:clamp(24px,2.3vw,36px);line-height:1.05;letter-spacing:-.03em;margin:38px 0 16px}.pk-card p{margin:0;color:#555;font-size:16px;line-height:1.65}
+.pk-role{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(48px,8vw,120px);padding-top:56px;margin-top:64px;border-top:1px solid #d8d8d8}
+.pk-role__list{font-size:clamp(20px,2vw,29px);line-height:1.45;letter-spacing:-.02em;color:#111}
+.pk-media-section{background:#fff}
+.pk-section-head{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(48px,8vw,120px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+.pk-media-stack{display:grid;gap:24px}.pk-media{margin:0;background:#ececec;border-radius:24px;overflow:hidden}.pk-media img{display:block;width:100%;height:auto}.pk-media--wire{padding:clamp(18px,3vw,38px);background:#f1f1f1}
+.pk-research{background:var(--pk-red);color:#fff}.pk-research .pk-eyebrow{color:#fff}.pk-research .pk-eyebrow:before{background:#fff}.pk-research .pk-h2{color:#fff}.pk-research__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.65fr);gap:clamp(56px,9vw,140px);align-items:end}
+.pk-research__copy{font-size:clamp(19px,1.7vw,25px);line-height:1.55;max-width:760px;color:#fff}
+.pk-stat{border-left:1px solid rgba(255,255,255,.55);padding-left:clamp(32px,5vw,64px)}.pk-stat__number{display:block;font-size:clamp(78px,10vw,150px);line-height:.8;letter-spacing:-.075em;font-weight:750}.pk-stat__label{display:block;margin-top:24px;max-width:310px;font-size:16px;line-height:1.5}
+.pk-design{background:#111}.pk-design .pk-eyebrow,.pk-design .pk-h2{color:#fff}.pk-design .pk-media{background:#1b1b1b;border:1px solid #2c2c2c}
+.pk-design-intro{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(48px,8vw,120px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}.pk-design-intro p{color:#bcbcbc}
+.pk-conclusion{background:#fff}.pk-conclusion__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(48px,8vw,120px);align-items:start}
+.pk-closing{margin-top:72px;padding:clamp(40px,6vw,72px);background:var(--pk-surface);border-radius:24px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}.pk-closing strong{font-size:clamp(26px,3vw,42px);line-height:1.1;letter-spacing:-.035em}.pk-closing span{display:block;margin-top:10px;color:#666;font-size:15px}
+html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp(48px,5vw,64px)!important}
+@media(max-width:1080px){.pk-display{font-size:clamp(52px,7.8vw,84px)}.pk-hero__grid{grid-template-columns:minmax(0,1fr) minmax(300px,.78fr);gap:36px}.pk-hero__visual{min-height:400px}}
+@media(max-width:820px){.pk-hero{padding-top:88px}.pk-hero__grid,.pk-overview,.pk-problem-grid,.pk-section-head,.pk-research__grid,.pk-design-intro,.pk-conclusion__grid,.pk-role{grid-template-columns:minmax(0,1fr)}.pk-hero__grid{gap:32px}.pk-hero__visual{min-height:clamp(340px,64vw,480px);max-width:620px;width:100%;margin-inline:auto}.pk-meta{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-meta__item:nth-child(2){border-right:0}.pk-meta__item:nth-child(-n+2){border-bottom:1px solid var(--pk-line)}.pk-strategy__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-stat{border-left:0;border-top:1px solid rgba(255,255,255,.55);padding:40px 0 0}.pk-role{gap:32px;margin-top:48px;padding-top:48px}.pk-closing{grid-template-columns:1fr}}
+@media(max-width:640px){.pk-shell{padding-inline:20px}.pk-section{padding-block:clamp(52px,15vw,68px)}.pk-hero{padding-top:82px}.pk-display{font-size:clamp(44px,15vw,68px);line-height:.91;letter-spacing:-.055em}.pk-h2{font-size:clamp(34px,10vw,48px)}.pk-lede{margin-top:22px;font-size:18px;line-height:1.5}.pk-hero__grid{gap:24px}.pk-hero__visual{min-height:clamp(280px,84vw,390px)}.pk-hero__visual:before{inset:6% 3% 0 12%}.pk-meta{grid-template-columns:1fr}.pk-meta__item{border-right:0;border-bottom:1px solid var(--pk-line)!important;padding:20px}.pk-meta__item:last-child{border-bottom:0!important}.pk-strategy__grid{grid-template-columns:1fr;margin-top:40px}.pk-card{min-height:0}.pk-card h3{margin-top:28px}.pk-media-stack{gap:14px}.pk-media{border-radius:14px}.pk-media--wire{padding:14px}.pk-outcome{grid-template-columns:38px minmax(0,1fr);gap:10px;padding:24px 0}.pk-closing{margin-top:40px;border-radius:14px;padding:28px}.pk-role{gap:24px;margin-top:40px;padding-top:40px}}
+@media(max-width:380px){.pk-shell{padding-inline:16px}.pk-hero{padding-top:76px}.pk-display{font-size:clamp(40px,14.5vw,54px)}.pk-eyebrow{gap:10px;margin-bottom:18px}.pk-hero__visual{min-height:260px}.pk-meta__item{padding:18px 16px}.pk-card{padding:24px}.pk-outcome__text{font-size:19px}}
+.lm-case-page{--case-accent:var(--lm-accent)}
+.pk-copy p+p{margin-top:1em}
+.pk-research .pk-h2+.pk-research__copy{margin-top:28px}
+.pk-research__copy+.pk-research__copy{margin-top:16px}
+.pk-display em{color:var(--pk-red)}
+.pk-lede--small{font-size:clamp(17px,1.35vw,21px)}
+.pk-outcome__text small{display:block;margin-top:12px;font-size:16px;line-height:1.65;letter-spacing:0;color:#bdbdbd}
+.pk-outcome__text small b{display:block;margin:14px 0 4px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#8a8a8a;font-weight:700}
+.pk-card ul{margin:0;padding:0;list-style:none}
+.pk-card li{position:relative;padding-left:20px;margin:0 0 12px;color:#555;font-size:16px;line-height:1.6}
+.pk-card li:before{content:"";position:absolute;left:0;top:.72em;width:9px;height:2px;background:var(--pk-red)}
+.pk-card p+p{margin-top:12px}
+.pk-card__meta{display:block;margin:18px 0 6px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#888;font-weight:700}
+.pk-grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:56px}
+.pk-grid-3 .pk-card{min-height:0;justify-content:flex-start}
+.pk-grid-3.pk-grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pk-grid-3 .pk-card h3{margin-top:28px}
+.pk-dark .pk-card{background:#141414;border-color:#2c2c2c}.pk-dark .pk-card h3{color:#fff}.pk-dark .pk-card p{color:#bdbdbd}
+.pk-steps{display:grid;gap:clamp(40px,5vw,64px)}
+.pk-step{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,96px);align-items:start;padding-top:clamp(32px,4vw,48px);border-top:1px solid var(--pk-line)}
+.pk-step__index{display:block;margin-bottom:18px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--pk-red);font-weight:800}
+.pk-step .pk-media{margin-top:28px}
+.pk-list{margin:40px 0 0;padding:0;list-style:none;border-top:1px solid var(--pk-line)}
+.pk-list li{display:grid;grid-template-columns:68px 1fr;gap:24px;padding:24px 0;border-bottom:1px solid var(--pk-line);font-size:clamp(17px,1.4vw,21px);line-height:1.5;color:#222}
+.pk-list li span{font-size:13px;color:#999;font-weight:700;padding-top:4px}
+.pk-design .pk-list{border-color:#2c2c2c}.pk-design .pk-list li{border-color:#2c2c2c;color:#e6e6e6}
+.pk-research__grid--solo{grid-template-columns:minmax(0,1fr)}
+.pk-figcaption{margin:14px 4px 0;font-size:14px;line-height:1.5;color:#777}
+.pk-dark .pk-figcaption,.pk-design .pk-figcaption{color:#9a9a9a}
+.pk-media-stack+.pk-copy,.pk-copy+.pk-media-stack{margin-top:40px}
+.pk-disclaimer{margin-top:24px!important;font-size:14px;line-height:1.6;color:#8a8a8a}
+.pk-actions{display:flex;flex-wrap:wrap;gap:12px}
+.pk-button{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;background:var(--pk-red);color:#fff!important;font-size:15px;font-weight:700;line-height:1;text-decoration:none!important;white-space:nowrap}
+.pk-button--ghost{background:#fff;color:#111!important;border:1px solid #cfcfcf}
+.pk-related{margin-top:28px;font-size:16px;line-height:1.6;color:#555}.pk-related a{color:var(--pk-red);font-weight:700}
+@media(max-width:820px){.pk-grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-step{grid-template-columns:minmax(0,1fr);gap:20px}}
+@media(max-width:640px){.pk-grid-3,.pk-grid-3.pk-grid-2{grid-template-columns:1fr;margin-top:40px}.pk-list li{grid-template-columns:38px minmax(0,1fr);gap:10px}.pk-actions{flex-direction:column;align-items:stretch}.pk-button{justify-content:center}}
+</style>
+
+</head>
+<body class="portfolio-case-updated lm-case-page">
+
+<!-- Side Navigation Menu -->
+	<aside class="side-navigation-wrapper enter-right" data-no-scrollbar data-animation="reveal">
+		<div class="side-navigation-scroll-pane">
+			<div class="side-navigation-inner">
+				<div class="side-navigation-header">
+					<div class="navigation-hide side-nav-hide">
+						<a href="#">
+							<span class="icon-cancel medium"></span>
+						</a>
+					</div>
+				</div>
+				<nav class="side-navigation center">
+					<ul>
+						<li class="current">
+							<a href="../index.html">Portfolio</a>
+						</li>
+						<li>
+							<a href="../index.html">About</a>
+						</li>
+						<li>
+							<a href="../index.html">Testimonials</a>
+						</li>
+						<li>
+							<a href="#" class="contains-sub-menu">Honors &amp; Awards</a>
+							<ul class="sub-menu">
+								<li>
+									<a href="../index.html">Empire Foundation Hackathon — Winning Team</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+				<div class="side-navigation-footer">
+					<ul class="social-list list-horizontal">
+						<li><a href="https://www.linkedin.com/in/lulamile-mkhungela/"><span class="icon-linkedin small"></span></a></li>
+					</ul>
+					<p class="copyright no-margin-bottom">&copy; 2026 L M</p>
+				</div>
+			</div>
+		</div>
+	</aside>
+	<!-- Side Navigation Menu End -->
+
+	<div class="wrapper reveal-side-navigation">
+		<div class="wrapper-inner">
+
+			<!-- Header -->
+			<header class="header header-fixed-on-mobile" data-sticky-threshold="0" data-bkg-threshold="100">
+				<div class="header-inner">
+					<div class="row nav-bar">
+						<div class="column width-12 nav-bar-inner">
+							<div class="logo">
+								<div class="logo-inner">
+									<a href="../index.html"><img src="../images/lm-logo.png" alt="L M logo" /></a>
+									<a href="../index.html"><img src="../images/lm-logo.png" alt="L M logo" /></a>
+								</div>
+							</div>
+							<nav class="navigation nav-block secondary-navigation nav-right">
+								<ul>
+									<li>
+										<!-- Contact Button -->
+										<div class="v-align-middle">
+											<a data-content="inline" data-toolbar="" data-modal-mode data-modal-width="500" href="#contact-lightbox" class="lightbox-link contact-collaboration" aria-label="Let's Collaborate"><span class="contact-collaboration__label">Let's Collaborate</span><span class="contact-collaboration__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span></a>
+										</div>
+									</li>
+									<!-- Aux Navigation -->
+									<li class="aux-navigation">
+										<a href="#" class="navigation-show side-nav-show nav-icon">
+											<svg class="menu-toggle__svg" viewBox="0 0 32 32" aria-hidden="true">
+												<path class="menu-toggle__path" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+												<path d="M7 16 27 16"></path>
+											</svg>
+										</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</header>
+			<!-- Header End -->
+
+			<!-- Content -->
+			<div class="content clearfix">
+
+				<section class="pk-hero" aria-labelledby="case-title">
+					<div class="pk-shell">
+						<h1 id="case-title" class="pk-display pk-display--name">Enterprise engagements</h1>
+						<p class="pk-hero__tagline">Four clients, <em class="pk-accent">presented by sector.</em></p>
+					</div>
+					<div class="pk-shell">
+						<div class="pk-meta" aria-label="Engagement details">
+							<div class="pk-meta__item"><span class="pk-meta__label">Client</span><span class="pk-meta__value">Confidential enterprise clients, via iOCO</span></div>
+							<div class="pk-meta__item"><span class="pk-meta__label">Role</span><span class="pk-meta__value">Embedded design and development authority</span></div>
+							<div class="pk-meta__item"><span class="pk-meta__label">Sectors</span><span class="pk-meta__value">Pharma · Energy · Financial services · Public audit</span></div>
+							<div class="pk-meta__item"><span class="pk-meta__label">Period</span><span class="pk-meta__value">2021 — present</span></div>
+						</div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-section--tight pk-lead-section" id="lead">
+					<div class="pk-shell">
+						<p class="pk-lead">Since 2021 I have been embedded through iOCO with enterprise clients whose work is confidential. These four engagements are shown by sector, not by name. Everything on this page comes from my CV; the detail behind each one is available in a private technical interview.</p>
+					</div>
+				</section>
+
+				<section class="pk-section" id="engagements">
+					<div class="pk-shell">
+						<p class="pk-eyebrow">The engagements</p>
+						<div class="pk-grid-3">
+							<article class="pk-card"><span class="pk-card__index">01</span><div><h3>Global pharmaceutical company</h3><p>Embedded design and development authority through iOCO, 2021 to present.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">02</span><div><h3>Listed energy group</h3><p>Embedded design and development authority through iOCO, 2021 to present.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">03</span><div><h3>Financial services group</h3><p>Embedded design and development authority through iOCO, 2021 to present.</p></div></article>
+						</div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-results" id="shipped">
+					<div class="pk-shell">
+						<p class="pk-eyebrow">Shipped work (from the CV)</p>
+						<div class="pk-copy"><p>Shipped a six-micro-frontend architecture and a thirteen-endpoint notifications system for a national audit platform.</p></div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-conclusion" id="conclusion">
+					<div class="pk-shell">
+						<p class="pk-disclaimer">Client names are withheld under confidentiality. Full detail, including roles, decisions and outcomes, can be walked through in a private technical interview.</p>
+					</div>
+				</section>
+
+			</div>
+			<!-- Content End -->
+
+			<!-- Footer -->
+			<footer class="footer tlc-footer">
+				<div class="footer-top"><div class="row flex"><div class="column width-12 center"><div class="widget">
+					<p class="tlc-footer__eyebrow">Have a project in mind?</p>
+					<h4>Let's make something meaningful.</h4>
+					<a class="tlc-footer__email" href="mailto:mkhungela.l@gmail.com">mkhungela.l@gmail.com</a>
+					<ul class="social-list list-horizontal"><li><a href="https://www.linkedin.com/in/lulamile-mkhungela/" aria-label="LinkedIn"><span class="icon-linkedin small"></span></a></li></ul>
+				</div></div></div></div>
+			</footer>
+			<!-- Footer End -->
+
+		</div>
+	</div>
+
+	<!-- Js -->
+		<button class="tlc-scroll-top" type="button" aria-label="Back to top"><span aria-hidden="true">↑</span><span>Back to top</span></button>
+
+	<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.retinize.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.horizon.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.snowbridge.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.swipe.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.avalanche.min.js"></script>
+
+	<script src="../js/timber.master.min.js"></script>
+	<script src="../js/modern-menu.js?v=41"></script>
+
+	<script src="../js/luxury-collection-modern.js?v=4"></script>
+	<script src="../js/contact-form-fallback.js?v=2"></script>
+</body>
+</html>
