@@ -1779,4 +1779,59 @@ html.is-dark .case-nav.is-strip { background: rgba(14, 14, 15, .86); border-bott
 .case-nav.is-hosted.is-strip { position: sticky; top: 0; height: auto; margin-left: 0; }
 .case-nav.is-hosted.is-strip .case-nav__progress { height: 2px; width: 100%; }
 
+/* Close / reopen controls */
+.case-nav__close {
+	align-self: flex-end;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 22px;
+	height: 22px;
+	margin: 0 2px 4px 0;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: rgba(10, 132, 255, .08);
+	color: #0a84ff;
+	cursor: pointer;
+	transition: background .18s, color .18s, transform .18s;
+}
+.case-nav__close:hover { background: linear-gradient(135deg, #0a84ff 0%, #5ac8fa 100%); color: #fff; transform: rotate(90deg); }
+.case-nav__close:focus-visible { outline: 2px solid #0a84ff; outline-offset: 2px; }
+.case-nav__open {
+	display: none;
+	align-items: center;
+	gap: 7px;
+	padding: 7px 11px 7px 9px;
+	border: 1px solid rgba(10, 132, 255, .18);
+	border-radius: 999px;
+	background: rgba(255, 255, 255, .9);
+	-webkit-backdrop-filter: blur(14px) saturate(1.4);
+	backdrop-filter: blur(14px) saturate(1.4);
+	box-shadow: 0 8px 24px rgba(10, 61, 145, .14);
+	font: 700 10.5px/1 "Satoshi", -apple-system, BlinkMacSystemFont, sans-serif;
+	letter-spacing: .02em;
+	cursor: pointer;
+	color: #0a84ff;
+}
+.case-nav__open-num { font-size: 10px; letter-spacing: .08em; font-variant-numeric: tabular-nums; color: #0a84ff; }
+.case-nav__open-label {
+	background: linear-gradient(135deg, #0a3d91 0%, #0a84ff 55%, #5ac8fa 100%);
+	-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.case-nav__open:hover { border-color: #0a84ff; }
+.case-nav__open:focus-visible { outline: 2px solid #0a84ff; outline-offset: 2px; }
+.case-nav.is-closed .case-nav__progress,
+.case-nav.is-closed .case-nav__list { display: none; }
+.case-nav.is-closed .case-nav__open { display: inline-flex; }
+.case-nav.is-closed { pointer-events: none; }
+.case-nav.is-closed .case-nav__open { pointer-events: auto; }
+/* Strip mode: close sits at the end of the row; reopen tab docks top-left */
+.case-nav.is-strip .case-nav__close { align-self: center; order: 99; margin: 0 0 0 4px; flex: 0 0 22px; position: sticky; right: 0; }
+.case-nav.is-strip.is-closed { background: none; border: 0; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.case-nav.is-strip.is-closed .case-nav__open { margin: 8px 12px; }
+.case-nav.is-hosted.is-closed { height: 0; }
+.case-nav.is-hosted.is-closed .case-nav__open { position: relative; top: 0; }
+html.is-dark .case-nav__open { background: rgba(20, 20, 22, .9); border-color: rgba(90, 200, 250, .25); }
+
 @media print { .case-nav { display: none; } }

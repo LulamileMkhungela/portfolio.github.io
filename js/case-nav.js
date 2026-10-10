@@ -105,6 +105,31 @@
     nav.appendChild(progress);
     nav.appendChild(list);
 
+    /* Close / reopen. Closed state collapses the rail to a small "Steps" tab. */
+    var closeBtn = doc.createElement("button");
+    closeBtn.type = "button";
+    closeBtn.className = "case-nav__close";
+    closeBtn.setAttribute("aria-label", "Hide process steps");
+    closeBtn.title = "Hide steps";
+    closeBtn.innerHTML = '<svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg>';
+    var openBtn = doc.createElement("button");
+    openBtn.type = "button";
+    openBtn.className = "case-nav__open";
+    openBtn.setAttribute("aria-label", "Show process steps");
+    openBtn.innerHTML = '<span class="case-nav__open-num">01</span><span class="case-nav__open-label">Steps</span>';
+    list.insertBefore(closeBtn, list.firstChild);
+    nav.appendChild(openBtn);
+    var CLOSED_KEY = "lm-case-nav-closed";
+    function readClosed() { try { return sessionStorage.getItem(CLOSED_KEY) === "1"; } catch (e) { return false; } }
+    function setClosed(closed) {
+      nav.classList.toggle("is-closed", closed);
+      try { sessionStorage.setItem(CLOSED_KEY, closed ? "1" : "0"); } catch (e) {}
+      (closed ? openBtn : closeBtn).focus({ preventScroll: true });
+    }
+    closeBtn.addEventListener("click", function () { setClosed(true); });
+    openBtn.addEventListener("click", function () { setClosed(false); });
+    nav.classList.toggle("is-closed", readClosed());
+
     if (hosted) {
       /* The theme's .wrapper-inner is overflow:hidden, which would stop a sticky
          rail. Mount at the very top of the hosted body instead. */
@@ -129,6 +154,8 @@
     function setActive(i) {
       if (i === current) return;
       current = i;
+      var openNum = nav.querySelector(".case-nav__open-num");
+      if (openNum) openNum.textContent = String(i + 1).padStart(2, "0") + "/" + String(links.length).padStart(2, "0");
       links.forEach(function (a, j) {
         a.classList.toggle("is-active", j === i);
         a.classList.toggle("is-done", j < i);
