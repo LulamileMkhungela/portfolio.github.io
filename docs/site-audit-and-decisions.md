@@ -89,3 +89,7 @@ Metrics in the CV and case studies (92% UAT, 65%, 35%, 32% checkout, 60% discove
 - Verified against the user LinkedIn experience list. Year conflicts resolved: Vodacom 2021 to 2023 and Toyota 2023 to 2025 on the case-study pages. Supersedes sections 3 and 12.
 - CV dates corrected: AddMoreDigital to Oct 2022, Hypothetical Objective Systems to Jan 2022, mLab to Mar 2018.
 - Open: Eskom is not on LinkedIn. Some titles differ from LinkedIn (see docs/cv/CV-review-notes.md).
+
+## 14. IntellehubSA and Eskom (user, latest)
+- IntellehubSA: dates Feb 2025 to Feb 2026 confirmed as correct. Freelance. No case study page (none exists or will be added). The site window now reads Freelance UI/UX Designer (2025 to 2026).
+- Eskom: current role (Aug 2026 to present), shown as current in the CV window. The CV already lists it as current. Eskom still has no public case study page.
