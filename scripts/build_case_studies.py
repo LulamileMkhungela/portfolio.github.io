@@ -618,7 +618,7 @@ def body_for(case, index):
         for i, (t, d) in enumerate(case["outcomes"], 1)
     )
     parts.append(
-        '\t\t\t\t<section class="pk-section pk-results" id="outcomes" aria-labelledby="outcomes-title">\n'
+        '\t\t\t\t<section class="pk-section pk-results pk-dark" id="outcomes" aria-labelledby="outcomes-title">\n'
         '\t\t\t\t\t<div class="pk-shell"><p class="pk-eyebrow" id="outcomes-title">Outcome and evidence</p>'
         '<p class="pk-disclaimer">Figures are shown only where they were published. Other results are described qualitatively.</p>'
         f'<div class="pk-outcomes">{results}</div></div>\n'

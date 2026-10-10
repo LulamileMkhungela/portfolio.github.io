@@ -428,23 +428,26 @@ NEW_CASES = [
              "Each brand explained what the service did, not who it was for or why it mattered against the alternatives."),
         ],
         "role": (
-            "I was the senior designer on the brand programme. I set the positioning, built the identity system, wrote the rules "
-            "for using it, and applied the system to product interfaces, campaign and retail. The work followed the brand process "
-            "end to end, as set out below."
+            "I was the senior designer on the brand programme and I developed the frontend. I led the brand identity revamp, "
+            "built the design system, and applied the changes across the designs and the frontend monorepos (Ionic/Angular)."
         ),
         "decisions": [
-            ("1. Strategy and positioning",
-             "One ecosystem story for three audiences: subscription, connected car and owner care."),
-            ("2. Identity system",
-             "Logo lock-ups, colour, type and motion rules for each brand in the family. KINTO blue #00708D sits with Toyota identity colours."),
-            ("3. Application",
-             "Product screens, retail collateral, campaign and app-store assets."),
-            ("4. Guidelines and rollout",
-             "Usage rules agreed with marketing, product and retail, then enforced by audit."),
+            ("1. Brand identity revamp",
+             "Reviewed the identity across KINTO, the Toyota App and Toyota Remote, set the positioning, and rebuilt the identity system: logo lock-ups, colour, type and motion rules."),
+            ("2. Align with the Toyota global brand team",
+             "Aligned the identity and its rules with the Toyota global brand team and the design teams before they were used for launches."),
+            ("3. Design system",
+             "Built the design system from the identity: tokens for colour, type and spacing, and the components the products use. Documented how each component is used."),
+            ("4. Adding missing components",
+             "Compared the product screens with the system to find components that were missing, designed each one, reviewed it with the design teams, then added it with usage notes. The list of components added is to confirm."),
+            ("5. Apply across designs and monorepos",
+             "Updated the Figma designs and the frontend monorepos so the products use the same components and tokens. I developed the frontend, so the changes were made in code as well as in design."),
+            ("6. Guidelines and rollout",
+             "Agreed usage rules with marketing, product and retail, then enforced them by audit."),
         ],
         "checks": [
-            "Usage rules were agreed with marketing, product and retail before rollout, as stated on the brand programme page.",
-            "To confirm: how the brand guide was updated after each launch, and how the design system was versioned.",
+            "Each new component was reviewed with the design teams before it was added to the system, as the process above sets out.",
+            "To confirm: the list of missing components added, the number of monorepos updated, and how the brand guide was updated after each launch.",
         ],
         "outcomes": [
             ("Published on Google Play",
@@ -456,7 +459,7 @@ NEW_CASES = [
             "Three mobility products now share one identity system and one set of usage rules, applied across product, campaign and retail."
         ),
         "next": (
-            "Confirm the brand guide update process, the design system version history, and add the KINTO landing page screenshots to this case study."
+            "Confirm the missing components added, the brand guide update process, and add the KINTO landing page screenshots to this case study."
         ),
         "links": [("KINTO One page", "https://toyota.co.za/kinto-personal")],
         "figures": [
