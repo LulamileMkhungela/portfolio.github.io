@@ -51,8 +51,8 @@ const projects = [
   },
   {
     id: "africa-cuisine-pwa", number: "AC", title: "Africa Cuisine", subtitle: "Restaurant PWA",
-    category: "Impact", tags: ["PWA", "Small Business"], modal: "redirect", external: true,
-    url: "https://africa-cuisine-pro.vercel.app", icon: "./public/icons/project-folder.png",
+    category: "Impact", tags: ["PWA", "Small Business"], modal: "project",
+    url: "./portfolio/africa-cuisine-pwa.html?embedded=1", icon: "./public/icons/project-folder.png",
     position: { left: "12%", top: "33%" }, colors: ["#b45309", "#e0b798"], ariaLabel: "Open the live Africa Cuisine site"
   },
   {

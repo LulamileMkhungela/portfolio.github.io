@@ -539,6 +539,9 @@ CASES = [
     },
 ]
 
+from case_data_documents import NEW_CASES  # noqa: E402
+
+CASES = CASES + NEW_CASES
 ORDER = [c["file"] for c in CASES]
 
 
@@ -657,9 +660,12 @@ def body_for(case, index):
 
 def rebuild(case, index):
     path = PAGES / case["file"]
-    src = path.read_text(encoding="utf-8")
     start_marker = '\t\t\t<div class="content clearfix">'
     footer_marker = '\t\t\t<!-- Footer -->'
+    src = path.read_text(encoding="utf-8") if path.exists() else ""
+    if start_marker not in src:
+        # New page, or a redirect stub: use the SnB page's head, nav and footer as the shell.
+        src = (PAGES / "snb-website.html").read_text(encoding="utf-8")
     i = src.index(start_marker)
     j = src.index(footer_marker)
     prefix = src[:i]

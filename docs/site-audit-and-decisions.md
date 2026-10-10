@@ -93,3 +93,10 @@ Metrics in the CV and case studies (92% UAT, 65%, 35%, 32% checkout, 60% discove
 ## 14. IntellehubSA and Eskom (user, latest)
 - IntellehubSA: dates Feb 2025 to Feb 2026 confirmed as correct. Freelance. No case study page (none exists or will be added). The site window now reads Freelance UI/UX Designer (2025 to 2026).
 - Eskom: current role (Aug 2026 to present), shown as current in the CV window. The CV already lists it as current. Eskom still has no public case study page.
+
+## 15. Publishing the document case studies and the Africa Cuisine case (user approved)
+- Seven document-based case studies published as pages (portfolio/doc-*.html), built from docs/case-studies-from-documents.md by scripts/case_data_documents.py. Outcomes stay marked not yet evidenced. The draft gate still applies: check each against its NDA before going live on main, and remove the source documents from main as planned.
+- Open items carried on the pages as to confirm: UI scope for Eskom and Sasol; Timeline View client; EntreHive team, event and result; Year fields.
+- EntreHive conflict: the draft says a team project for a competition. The CV says Lead UI/UX Designer for EntreHive fintech and training platforms (Digital Academy, 2018 to 2019). Confirm which is right before going live.
+- Africa Cuisine: case study written from the live site (restaurant with menu, ordering, daily special, hours, Braamfontein location) and the owner brief. The process and decision rationale are my reconstruction and must be confirmed. The desktop entry now opens the case study instead of the redirect.
+- Homepage featured set (user chose the mixed set): Vodacom Engage, Toyota Connected Apps, DesignOps, plus Africa Cuisine. Not yet applied to the desktop. The other projects still show as folders.
