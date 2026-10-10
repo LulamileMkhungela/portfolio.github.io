@@ -484,6 +484,14 @@ window.LIBRARY_DATA = {
       description: "Live restaurant PWA, Braamfontein."
     },
     {
+      id: "archive-media-scanning",
+      name: "Media scanning for audit",
+      url: "./portfolio/doc-media-scanning-audit.html",
+      category: "archive",
+      noPreview: true,
+      description: "Case study: public-sector media intelligence for audit planning."
+    },
+    {
       id: "archive-sk-finds",
       name: "SK Finds",
       url: "https://skautos.vercel.app/",

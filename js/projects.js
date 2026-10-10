@@ -67,10 +67,4 @@ const projects = [
     url: "https://wandies.vercel.app/", icon: "./public/icons/project-folder.png",
     position: { left: "88%", top: "81%" }, colors: ["#9a3412", "#d5aa9b"], ariaLabel: "Open the live WandisPlace site"
   },
-  {
-    id: "doc-media-scanning-audit", number: "MS", title: "Media scanning for audit", subtitle: "Public sector · Media intelligence",
-    category: "Product", tags: ["Enterprise"], modal: "project",
-    url: "./portfolio/doc-media-scanning-audit.html?embedded=1", icon: "./public/icons/project-folder.png",
-    position: { left: "30%", top: "47%" }, colors: ["#334155", "#cbd5e1"], ariaLabel: "Open Media scanning for audit planning case study"
-  },
 ];
