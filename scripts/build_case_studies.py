@@ -730,3 +730,5 @@ if __name__ == "__main__":
             continue
         out = rebuild(case, idx)
         print("rebuilt", out.relative_to(ROOT))
+    print("\nNote: rebuilt pages are plaintext. Re-encrypt the protected studies with\n"
+          "  CASE_STUDY_PASSWORD='...' python3 scripts/lock_case_studies.py")

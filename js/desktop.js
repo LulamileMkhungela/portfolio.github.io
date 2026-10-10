@@ -40,6 +40,9 @@ const WINDOW_PLACEMENT = {
   messages: 21,
   instagram: 6
 };
+// The current CV, hosted on Google Drive. Change it here only.
+const CV_URL = "https://drive.google.com/file/d/1nCqtTe9LVwj_LeQX67L4f90zd1IYYeRE/view?usp=sharing";
+
 const NOTES_APP = {
   id: "notes-about",
   number: "N",
@@ -73,11 +76,11 @@ const NOTES_DATA = {
         <p>I enjoy turning complicated workflows into interfaces that feel obvious, and then writing the front end so nothing gets lost between the file and the screen.</p>
         <h2>Currently</h2><p>Eskom (Aug 2026 – present) and AGSA (May 2026 – present), embedded through iOCO as design and front-end authority. Select freelance product, web and brand work directly with founders and teams.</p>
         <h2>Selected highlights</h2><ul><li>92% UAT acceptance on the Vodacom Engage employee app — the highest score in that digital portfolio at the time.</li><li>Cut UI inconsistencies by 65% with a new design system and Design Authority governance at Vodacom.</li><li>Lifted sprint velocity 35% with a shared component library across two products, delivered freelance for AddmoreDigital.</li><li>Increased checkout completion 32% and average order value 18% by taking a 7-step flow down to 3.</li><li>Shipped a 6-micro-frontend architecture and a 13-endpoint notifications system for a national audit platform.</li></ul>
-        <h2>Experience</h2><ul><li>iOCO — embedded design and development authority for Eskom, a national audit institution, a financial services group, a global pharmaceutical company, Toyota South Africa, a listed energy group and Vodacom (2021–present). <a class="notes-cv-link" href="portfolio/enterprise-engagements-anonymised.html?embedded=1" target="_blank" rel="noopener noreferrer">Enterprise engagements, anonymised →</a></li><li>UluntuXd — Freelance UX Facilitator and Coach, after hours alongside iOCO (2025–2026)</li><li>IntellehubSA — Freelance UI/UX Designer (2025–2026)</li><li>FoodieZone — Freelance Lead Product Designer &amp; Front-End Developer (2025)</li><li>Nerdma — Freelance UI/UX Designer, after hours alongside iOCO (2023)</li><li>AddmoreDigital — UI/UX Designer, then Lead UI/UX Designer, after hours alongside iOCO (2021–2022)</li><li>Hypothetical Objective Systems — Freelance Senior UI/UX Designer and Developer Coach (2020–2022)</li><li>Sesyme and SmartServe — UI/UX and Android Developer (2019–2020)</li><li>The Digital Academy — Lead UI/UX Designer, 1 Aug 2018 to 31 Jan 2019</li><li>mLab — UI/UX and Android Developer (2017–2018)</li></ul>
+        <h2>Experience</h2><ul><li>iOCO — embedded design and development authority for Eskom, a national audit institution, a financial services group, a global pharmaceutical company, Toyota South Africa, a listed energy group and Vodacom (2021–present). <a class="notes-cv-link" href="portfolio/enterprise-engagements-anonymised.html?embedded=1" target="_blank" rel="noopener noreferrer">Enterprise engagements, anonymised →</a></li><li>UluntuXd — Freelance UX Facilitator and Coach, after hours alongside iOCO (2025–2026)</li><li>IntellehubSA — Freelance UI/UX Designer (2025–2026)</li><li>FoodieZone — Freelance Lead Product Designer and Front-End Developer (2025)</li><li>Nerdma — Freelance UI/UX Designer, after hours alongside iOCO (2023)</li><li>AddmoreDigital — UI/UX Designer, then Lead UI/UX Designer, after hours alongside iOCO (2021–2022)</li><li>Hypothetical Objective Systems — Freelance Senior UI/UX Designer and Developer Coach (2020–2022)</li><li>Sesyme and SmartServe — UI/UX and Android Developer (2019–2020)</li><li>The Digital Academy — Lead UI/UX Designer, 1 Aug 2018 to 31 Jan 2019</li><li>mLab — UI/UX and Android Developer (2017–2018)</li></ul>
         <h2>Tools</h2><p>Figma for design, systems and prototypes. VS Code for the build — React, Angular, Ionic, TypeScript. GitHub for everything else. Short list on purpose.</p>
         <h2>Education</h2><p>Full-Stack Development — FNB App of the Year Academy, 2025 (Distinction, 92.7%) · NQF Level 5 Mobile and Web Development — MTN Business App Academy, 2021 · UX/UI Design — Wits JCSE, 2017 · Google UX Design Professional Certificate. Certificates are listed in the Certificates app.</p>
         <p>For a printable version, download the CV as a PDF.</p>
-        <a class="notes-cv-link" href="docs/cv/Lulamile-Mkhungela-CV.pdf" target="_blank" rel="noopener noreferrer">Download CV (PDF) →</a>
+        <a class="notes-cv-link" href="${CV_URL}" target="_blank" rel="noopener noreferrer">View CV (PDF) →</a>
       </div>`
   },
   interests: {
@@ -90,7 +93,7 @@ const NOTES_DATA = {
         <h2>Building</h2><ul><li>Progressive web apps</li><li>React and Angular front ends</li><li>Micro-frontends</li><li>Design-to-code workflows</li><li>Data visualisation</li></ul>
       <h2>AI and emerging tech</h2><ul><li>Generative AI and RAG</li><li>Claude Code and Cursor</li><li>MCP agents</li><li>Vibe coding — prompting with intent, reviewing like an engineer</li><li>Decision-support tools</li></ul>
       <h2>Community and impact</h2><ul><li>Civic tech for South Africa</li><li>Mentoring upcoming designers &amp; front-end developers</li><li>Entrepreneurship</li><li>Hackathons</li></ul>
-      <h2>Beyond the screen</h2><ul><li>Sunday league football — PepeCafe FC, JHB Metro league</li><li>Ambient and sentimental jazz</li><li>Lo-fi and peaceful piano</li><li>Modern classical</li><li>Mid-century furniture and industrial design</li></ul>
+      <h2>Beyond the screen</h2><ul><li>Sunday league football — PepeCafe FC, JHB Metro league</li><li>Ambient and sentimental jazz</li><li>Lo-fi and peaceful piano</li><li>Modern classical</li></ul>
       </div>`
   }
 };
@@ -1266,13 +1269,17 @@ mobileViewport.addEventListener("change", event => {
     `<button class="collections-menu-item${extraClass}" type="button" role="menuitemradio" aria-checked="false" data-filter="${filter}"><span class="collections-check" aria-hidden="true">${checkSvg}</span><span>${escape(filter)}</span></button>`;
   const sheetItem = (filter, extraClass = "") =>
     `<button class="collections-sheet-option${extraClass}" type="button" role="menuitemradio" data-filter="${filter}" aria-checked="false"><span aria-hidden="true">${checkSvg}</span><span>${escape(filter)}</span></button>`;
+  // The menu stays short on purpose: All Work, Recent, the four categories,
+  // Clear. Project tags are kept in the data for search and matching, but are
+  // not listed here (set SHOW_TAG_FILTERS to true to bring them back).
+  const SHOW_TAG_FILTERS = false;
+  const tagFilters = SHOW_TAG_FILTERS ? tags.filter(tag => tag !== "Recent") : [];
   const menuBlocks = [
     menuItem(ALL_WORK_FILTER, " is-active"),
     menuItem("Recent"),
     `<div class="collections-separator" role="separator"></div>`,
     ...categories.map(filter => menuItem(filter)),
-    `<div class="collections-separator" role="separator"></div>`,
-    ...tags.filter(tag => tag !== "Recent").map(filter => menuItem(filter)),
+    ...(tagFilters.length ? [`<div class="collections-separator" role="separator"></div>`, ...tagFilters.map(filter => menuItem(filter))] : []),
     `<div class="collections-separator" role="separator"></div>`,
     menuItem(CLEAR_FILTER_LABEL, " collections-menu-clear")
   ];
@@ -1281,8 +1288,7 @@ mobileViewport.addEventListener("change", event => {
     sheetItem("Recent"),
     `<div class="collections-sheet-separator" aria-hidden="true"></div>`,
     ...categories.map(filter => sheetItem(filter)),
-    `<div class="collections-sheet-separator" aria-hidden="true"></div>`,
-    ...tags.filter(tag => tag !== "Recent").map(filter => sheetItem(filter)),
+    ...(tagFilters.length ? [`<div class="collections-sheet-separator" aria-hidden="true"></div>`, ...tagFilters.map(filter => sheetItem(filter))] : []),
     `<div class="collections-sheet-separator" aria-hidden="true"></div>`,
     sheetItem(CLEAR_FILTER_LABEL, " collections-sheet-clear")
   ];
@@ -3381,6 +3387,7 @@ async function mountHostedProjectDocument(host, source, scrollContainer) {
   const htmlShell = document.createElement("html");
   htmlShell.className = `${parsed.documentElement.className} is-embedded is-parent-scroll-host`.trim();
   htmlShell.style.setProperty("--project-host-viewport-height", `${Math.max(1, scrollContainer.clientHeight)}px`);
+  host.style.setProperty("--project-host-viewport-height", `${Math.max(1, scrollContainer.clientHeight)}px`);
   const bodyShell = document.createElement("body");
   bodyShell.className = `${parsed.body.className} is-embedded is-parent-scroll-host`.trim();
   [...parsed.body.attributes].forEach(({ name, value }) => {
@@ -3401,10 +3408,14 @@ async function mountHostedProjectDocument(host, source, scrollContainer) {
   initializeHostedProjectMedia(bodyShell);
   const disposeEditorialGallery = initializeHostedEditorialGallery(bodyShell);
   const disposeAttExperience = initializeHostedAttExperience(bodyShell);
+  // Process stepper: the hosted document has no scripts, so mount it from here.
+  const hostedCaseNav = window.LMCaseNav?.mount(bodyShell, scrollContainer) || null;
   await document.fonts.ready;
+  hostedCaseNav?.refresh();
 
   const syncViewportHeight = () => {
     htmlShell.style.setProperty("--project-host-viewport-height", `${Math.max(1, scrollContainer.clientHeight)}px`);
+    host.style.setProperty("--project-host-viewport-height", `${Math.max(1, scrollContainer.clientHeight)}px`);
   };
   const viewportResizeObserver = typeof ResizeObserver === "function"
     ? new ResizeObserver(syncViewportHeight)
@@ -3543,6 +3554,7 @@ async function mountHostedProjectDocument(host, source, scrollContainer) {
       viewportResizeObserver?.disconnect();
       disposeEditorialGallery();
       disposeAttExperience();
+      hostedCaseNav?.destroy();
       closeLightbox();
       shadow.replaceChildren();
     }
@@ -4361,7 +4373,7 @@ const LIBRARY_APP = {
   number: "VB",
   title: "Vision Bin",
   heading: "Vision Bin",
-  subheading: "Tools and references for everyday productivity, design, development and integration — plus featured stories, hackathon work and project imagery.",
+  subheading: "Selected projects and pictures on the board; on the toolkit, where I find inspiration, what I read, the frameworks I align to, how I hand over, and the tools I use from discovery to release.",
   dockSelector: "#dock-vision-bin",
   windowClass: "vision-bin-window library-window",
   colors: ["#8e8e93", "#d1d1d6"]
@@ -4396,17 +4408,35 @@ function libraryFallbackTile(item) {
   return `<span class="library-card-fallback" style="--library-hue:${hue}" aria-hidden="true">${escape((item.name || "?").slice(0, 1).toUpperCase())}</span>`;
 }
 
+const LIBRARY_LOCK_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>`;
+
+/* No local screenshot? Show the tool's own logo (favicon service) on a soft
+   tile; if even that fails the lettered tile takes over (see wireLibrary). */
+function libraryLogoTile(item) {
+  const host = libraryHost(item.url);
+  if (!host) return libraryFallbackTile(item);
+  const seed = [...String(item.id)].reduce((total, character) => total + character.charCodeAt(0), 0);
+  return `<span class="library-card-logo" style="--library-hue:${seed % 360}" aria-hidden="true">
+    <img src="https://www.google.com/s2/favicons?domain=${encodeURIComponent(host)}&sz=128" alt="" loading="lazy" decoding="async" draggable="false" data-library-logo>
+  </span>`;
+}
+
 function createLibraryCard(item, index, categoryLabels, options = {}) {
-  const shape = libraryShape(item.id, index);
+  /* Project covers are 4:3; everything else staggers like a pinboard. */
+  const shape = item.image && item.type !== "image" ? "4 / 3" : libraryShape(item.id, index);
   const label = categoryLabels.get(item.category) || "";
   /* Site previews are looked up by name, so adding a picture is just a matter
      of dropping images/library/<id>.webp next to the others. */
   const preview = item.image || (!options.noPreview && item.noPreview !== true && item.url ? `./images/library/${item.id}.webp` : "");
+  const lock = item.locked
+    ? `<span class="library-card-lock" title="Password protected">${LIBRARY_LOCK_ICON}<span>Password</span></span>`
+    : "";
   const media = `
     <span class="library-card-media" style="aspect-ratio:${item.type === "image" ? "auto" : shape}">
       ${preview
         ? `<img src="${escape(preview)}" alt="" loading="${index < 8 ? "eager" : "lazy"}" decoding="async" draggable="false">`
-        : libraryFallbackTile(item)}
+        : libraryLogoTile(item)}
+      ${lock}
     </span>`;
 
   if (item.type === "image") {
@@ -4419,8 +4449,8 @@ function createLibraryCard(item, index, categoryLabels, options = {}) {
   }
 
   return `
-    <a class="library-card" href="${escape(item.url)}" target="_blank" rel="noopener noreferrer"
-      data-category="${escape(item.category)}">
+    <a class="library-card${item.locked ? " library-card--locked" : ""}" href="${escape(item.url)}" target="_blank" rel="noopener noreferrer"
+      data-category="${escape(item.category)}"${item.locked ? ' aria-description="Password protected"' : ""}>
       ${media}
       <span class="library-card-body">
         <span class="library-card-title">${escape(item.name)}</span>
@@ -4440,20 +4470,24 @@ function resourcesData() {
   return { categories, items };
 }
 
+function libraryChips(categories, items, pane) {
+  return [{ id: "all", label: "All" }, ...categories]
+    .map(category => {
+      const count = category.id === "all" ? items.length : items.filter(item => item.category === category.id).length;
+      if (!count) return "";
+      return `<button class="library-chip${category.id === "all" ? " is-active" : ""}" type="button"
+        data-category="${escape(category.id)}" data-library-pane-chip="${pane}" aria-pressed="${category.id === "all"}">${escape(category.label)}<span>${count}</span></button>`;
+    })
+    .join("");
+}
+
 function buildLibraryMarkup(app) {
   const { categories, items } = libraryData();
   const categoryLabels = new Map(categories.map(category => [category.id, category.label]));
-  const chips = [{ id: "all", label: "All" }, ...categories]
-    .map(category => {
-      const count = category.id === "all" ? items.length : items.filter(item => item.category === category.id).length;
-      return `<button class="library-chip${category.id === "all" ? " is-active" : ""}" type="button"
-        data-category="${escape(category.id)}" aria-pressed="${category.id === "all"}">${escape(category.label)}<span>${count}</span></button>`;
-    })
-    .join("");
   const resources = resourcesData();
   const resourceLabels = new Map(resources.categories.map(category => [category.id, category.label]));
   const resourceCards = resources.items
-    .map((item, index) => createLibraryCard(item, index, resourceLabels, { noPreview: true }))
+    .map((item, index) => createLibraryCard(item, index, resourceLabels))
     .join("");
 
   return `
@@ -4465,14 +4499,16 @@ function buildLibraryMarkup(app) {
         </div>
         <label class="library-search">
           <img src="./assets/icons/sf/magnifyingglass.svg" alt="" aria-hidden="true">
-          <input type="search" placeholder="Search tools, resources &amp; pictures" aria-label="Search tools, resources and pictures" spellcheck="false">
+          <input type="search" placeholder="Search projects, tools &amp; pictures" aria-label="Search projects, tools and pictures" spellcheck="false">
         </label>
+        <a class="library-cv-link" href="${escape(CV_URL)}" target="_blank" rel="noopener noreferrer">My CV ↗</a>
       </header>
       <nav class="library-tabs" role="tablist" aria-label="Vision Bin sections">
         <button class="library-tab is-active" type="button" role="tab" aria-selected="true" data-library-tab="vision">Vision Board</button>
-        <button class="library-tab" type="button" role="tab" aria-selected="false" data-library-tab="resources">Resources I Recommend</button>
+        <button class="library-tab" type="button" role="tab" aria-selected="false" data-library-tab="resources">Toolkit</button>
       </nav>
-      <nav class="library-filters" aria-label="Filter by category">${chips}</nav>
+      <nav class="library-filters" data-library-filters="vision" aria-label="Filter the vision board">${libraryChips(categories, items, "vision")}</nav>
+      <nav class="library-filters" data-library-filters="resources" aria-label="Filter the toolkit" hidden>${libraryChips(resources.categories, resources.items, "resources")}</nav>
       <main class="library-scroll-area" tabindex="0">
         <div class="library-grid" data-library-pane="vision">${items.map((item, index) => createLibraryCard(item, index, categoryLabels)).join("")}</div>
         <div class="library-grid library-grid--resources" data-library-pane="resources" hidden>${resourceCards}</div>
@@ -4494,7 +4530,7 @@ function wireLibrary(element) {
   const resourceItems = resourcesData().items;
   const visionGrid = element.querySelector('[data-library-pane="vision"]') || element.querySelector(".library-grid");
   const resourcesGrid = element.querySelector('[data-library-pane="resources"]');
-  const filtersNav = element.querySelector(".library-filters");
+  const filterNavs = [...element.querySelectorAll(".library-filters")];
   const tabs = [...element.querySelectorAll(".library-tab")];
   const empty = element.querySelector(".library-empty");
   const chips = [...element.querySelectorAll(".library-chip")];
@@ -4503,7 +4539,7 @@ function wireLibrary(element) {
   const resourceCards = [...(resourcesGrid?.querySelectorAll(".library-card") || [])];
   const lightbox = element.querySelector(".library-lightbox");
   const lightboxImage = lightbox?.querySelector(".photos-lightbox-image");
-  let activeCategory = "all";
+  const activeCategories = { vision: "all", resources: "all" };
   let activeTab = "vision";
 
   const applyFilter = () => {
@@ -4511,10 +4547,11 @@ function wireLibrary(element) {
     const onResources = activeTab === "resources";
     const list = onResources ? resourceCards : cards;
     const source = onResources ? resourceItems : items;
+    const activeCategory = activeCategories[activeTab];
     let visible = 0;
     list.forEach((card, index) => {
       const item = source[index] || {};
-      const matchesCategory = onResources || activeCategory === "all" || card.dataset.category === activeCategory;
+      const matchesCategory = activeCategory === "all" || card.dataset.category === activeCategory;
       const haystack = `${item.name || ""} ${item.description || ""} ${item.url || ""} ${item.category || ""}`.toLowerCase();
       const matchesTerm = !term || haystack.includes(term);
       const show = matchesCategory && matchesTerm;
@@ -4534,14 +4571,15 @@ function wireLibrary(element) {
     });
     if (visionGrid) visionGrid.hidden = tab !== "vision";
     if (resourcesGrid) resourcesGrid.hidden = tab !== "resources";
-    if (filtersNav) filtersNav.hidden = tab !== "vision";
+    filterNavs.forEach(nav => { nav.hidden = nav.dataset.libraryFilters !== tab; });
     applyFilter();
   };
   tabs.forEach(tab => tab.addEventListener("click", () => setLibraryTab(tab.dataset.libraryTab)));
 
   chips.forEach(chip => chip.addEventListener("click", () => {
-    activeCategory = chip.dataset.category;
-    chips.forEach(other => {
+    const pane = chip.dataset.libraryPaneChip || "vision";
+    activeCategories[pane] = chip.dataset.category;
+    chips.filter(other => other.dataset.libraryPaneChip === pane).forEach(other => {
       const isActive = other === chip;
       other.classList.toggle("is-active", isActive);
       other.setAttribute("aria-pressed", String(isActive));
@@ -4570,17 +4608,20 @@ function wireLibrary(element) {
 
   /* A screenshot that never arrived should not leave a grey hole: the card
      falls back to a lettered colour tile instead. */
-  cards.forEach((card, index) => {
+  [[cards, items], [resourceCards, resourceItems]].forEach(([list, source]) => list.forEach((card, index) => {
     const image = card.querySelector(".library-card-media img");
     if (!image) return;
+    const target = image.closest(".library-card-logo") || image;
     const swap = () => {
-      if (!image.isConnected) return;
-      image.insertAdjacentHTML("afterend", libraryFallbackTile(items[index] || {}));
-      image.remove();
+      if (!target.isConnected) return;
+      target.insertAdjacentHTML("afterend", libraryFallbackTile(source[index] || {}));
+      target.remove();
     };
     image.addEventListener("error", swap, { once: true });
+    /* The favicon service answers a 16px globe when it has nothing; treat that as missing. */
+    image.addEventListener("load", () => { if (image.hasAttribute("data-library-logo") && image.naturalWidth <= 16) swap(); }, { once: true });
     if (image.complete && image.naturalWidth === 0) swap();
-  });
+  }));
 
   applyFilter();
   return { closeLightbox };

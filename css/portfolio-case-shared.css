@@ -1537,3 +1537,301 @@ html.is-dark .lm-case-page .tlc-footer__email { color: #f4f4f5; }
 .pk-live__body p { margin: 0; color: #555; font-size: 14.5px; line-height: 1.6; flex: 1; }
 .pk-live__body .pk-button { align-self: flex-start; margin-top: 6px; }
 @media (max-width: 900px) { .pk-live__grid { grid-template-columns: 1fr; } }
+
+.lm-case-page .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* ── Password-protected case studies ─────────────────────────────────────
+   The body of a locked study is encrypted (scripts/lock_case_studies.py).
+   Until the right passphrase is entered, this is the whole page. */
+.pk-lock {
+	min-height: clamp(520px, 72vh, 760px);
+	display: grid;
+	place-items: center;
+	padding: clamp(96px, 10vw, 140px) clamp(20px, 4vw, 64px) clamp(64px, 8vw, 112px);
+	background: linear-gradient(180deg, #fff 0%, #f5f5f5 100%);
+}
+html.is-embedded .lm-case-page .pk-lock { padding-top: clamp(48px, 6vw, 72px); min-height: 70vh; }
+.pk-lock__card {
+	width: min(100%, 520px);
+	background: #fff;
+	border: 1px solid #e3e3e3;
+	border-radius: 24px;
+	padding: clamp(28px, 4vw, 44px);
+	box-shadow: 0 24px 60px rgba(0, 0, 0, .08);
+	text-align: left;
+}
+.pk-lock.is-shaking .pk-lock__card { animation: pk-lock-shake .42s cubic-bezier(.36, .07, .19, .97); }
+@keyframes pk-lock-shake {
+	10%, 90% { transform: translateX(-1px); }
+	20%, 80% { transform: translateX(2px); }
+	30%, 50%, 70% { transform: translateX(-4px); }
+	40%, 60% { transform: translateX(4px); }
+}
+.pk-lock__icon {
+	width: 52px; height: 52px; border-radius: 16px;
+	display: grid; place-items: center;
+	background: var(--pk-red, #2f6b3a); color: #fff;
+	margin-bottom: 22px;
+}
+.pk-lock__icon svg { width: 24px; height: 24px; }
+.pk-lock__eyebrow { margin: 0 0 10px; font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #777; }
+.pk-lock__title { margin: 0; font-size: clamp(26px, 3vw, 36px); line-height: 1.05; letter-spacing: -.035em; font-weight: 700; color: #0a0a0a; }
+.pk-lock__copy { margin: 14px 0 26px; font-size: 15.5px; line-height: 1.6; color: #555; }
+.pk-lock__form { display: grid; gap: 12px; }
+.pk-lock__field { position: relative; }
+.pk-lock__field input {
+	width: 100%; height: 54px; padding: 0 16px; margin: 0;
+	border: 1px solid #d6d6d6; border-radius: 14px; background: #fafafa;
+	font: inherit; font-size: 16px; color: #111; outline: none;
+	transition: border-color .15s, box-shadow .15s, background .15s;
+}
+.pk-lock__field input:focus { border-color: var(--pk-red, #2f6b3a); background: #fff; box-shadow: 0 0 0 4px color-mix(in srgb, var(--pk-red, #2f6b3a) 18%, transparent); }
+.pk-lock__field input::placeholder { color: #9a9a9a; }
+.pk-lock__submit {
+	height: 54px; border: 0; border-radius: 14px; cursor: pointer;
+	background: #0a0a0a; color: #fff; font: inherit; font-size: 15.5px; font-weight: 700; letter-spacing: -.01em;
+	display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+	transition: transform .15s, opacity .15s, background .15s;
+}
+.pk-lock__submit:hover { background: var(--pk-red, #2f6b3a); }
+.pk-lock__submit:active { transform: translateY(1px); }
+.pk-lock__submit:disabled { opacity: .6; cursor: progress; }
+.pk-lock__message { min-height: 22px; margin: 0; font-size: 14px; line-height: 1.5; color: #666; }
+.pk-lock__message[data-tone="error"] { color: #b42318; }
+.pk-lock__foot { margin: 22px 0 0; padding-top: 18px; border-top: 1px solid #eee; font-size: 13.5px; line-height: 1.55; color: #777; }
+.pk-lock__foot a { color: #111; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+html.is-case-locked .tlc-scroll-top { display: none !important; }
+
+html.is-dark .lm-case-page .pk-lock { background: linear-gradient(180deg, #0e0e0f 0%, #141416 100%); }
+html.is-dark .lm-case-page .pk-lock__card { background: #1b1b1e; border-color: #2c2c30; box-shadow: 0 24px 60px rgba(0, 0, 0, .45); }
+html.is-dark .lm-case-page .pk-lock__title { color: #f4f4f5; }
+html.is-dark .lm-case-page .pk-lock__eyebrow { color: #909093; }
+html.is-dark .lm-case-page .pk-lock__copy, html.is-dark .lm-case-page .pk-lock__message { color: #b8b8bc; }
+html.is-dark .lm-case-page .pk-lock__field input { background: #101012; border-color: #35353a; color: #f4f4f5; }
+html.is-dark .lm-case-page .pk-lock__field input:focus { background: #0c0c0e; }
+html.is-dark .lm-case-page .pk-lock__submit { background: #f4f4f5; color: #0a0a0a; }
+html.is-dark .lm-case-page .pk-lock__submit:hover { background: var(--pk-red, #2f6b3a); color: #fff; }
+html.is-dark .lm-case-page .pk-lock__foot { border-color: #2c2c30; color: #909093; }
+html.is-dark .lm-case-page .pk-lock__foot a { color: #f4f4f5; }
+
+@media (max-width: 640px) {
+	.pk-lock { padding-top: 88px; }
+	.pk-lock__card { border-radius: 18px; }
+}
+
+/* ── Case-study process navigator (js/case-nav.js) ──────────────────────
+   Wide screens: a numbered rail fixed to the left, with a progress line.
+   Narrow screens and embedded windows: a sticky horizontal strip. */
+.case-nav {
+	position: fixed;
+	left: clamp(20px, 2.4vw, 44px);
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 40;
+	display: flex;
+	gap: 14px;
+	max-height: calc(100vh - 160px);
+	font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+}
+.case-nav__progress {
+	position: relative;
+	width: 2px;
+	flex: 0 0 2px;
+	border-radius: 2px;
+	background: rgba(0, 0, 0, .1);
+	overflow: hidden;
+}
+.case-nav__progress::after {
+	content: "";
+	position: absolute;
+	left: 0; top: 0; width: 100%;
+	height: var(--case-nav-progress, 0%);
+	background: linear-gradient(180deg, #0a84ff 0%, #5ac8fa 100%);
+	transition: height .35s ease;
+}
+.case-nav__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	overflow: auto;
+	scrollbar-width: none;
+}
+.case-nav__list::-webkit-scrollbar { display: none; }
+.case-nav__link {
+	display: flex;
+	align-items: baseline;
+	gap: 10px;
+	padding: 6px 10px 6px 8px;
+	border-radius: 10px;
+	text-decoration: none !important;
+	color: #8a8a8e;
+	font-size: 10.5px;
+	line-height: 1.3;
+	letter-spacing: -.005em;
+	white-space: nowrap;
+	transition: color .18s, background .18s, transform .18s;
+}
+.case-nav__num {
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: .08em;
+	font-variant-numeric: tabular-nums;
+	color: #b4b4b8;
+	flex: 0 0 auto;
+}
+.case-nav__label {
+	font-weight: 600;
+	background: linear-gradient(135deg, #0a3d91 0%, #0a84ff 55%, #5ac8fa 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	color: #0a84ff;
+	opacity: .78;
+}
+.case-nav__link:hover { background: rgba(10, 132, 255, .08); }
+.case-nav__link:hover .case-nav__label { opacity: 1; }
+.case-nav__link.is-done .case-nav__label { opacity: 1; }
+.case-nav__link.is-done .case-nav__num { color: #0a84ff; }
+.case-nav__link.is-active .case-nav__label { background: none; -webkit-text-fill-color: #fff; color: #fff; opacity: 1; }
+.case-nav__link.is-active { color: #fff; background: linear-gradient(135deg, #0a84ff 0%, #3b6cf4 55%, #5ac8fa 100%); box-shadow: 0 6px 18px rgba(10, 132, 255, .28); transform: translateX(2px); }
+.case-nav__link.is-active .case-nav__label { font-weight: 700; }
+.case-nav__link.is-active .case-nav__num { color: rgba(255, 255, 255, .85); }
+
+/* Strip mode */
+.case-nav.is-strip {
+	position: sticky;
+	top: 0;
+	left: 0;
+	transform: none;
+	max-height: none;
+	width: 100%;
+	gap: 0;
+	flex-direction: column;
+	background: rgba(255, 255, 255, .86);
+	backdrop-filter: saturate(160%) blur(14px);
+	-webkit-backdrop-filter: saturate(160%) blur(14px);
+	border-bottom: 1px solid rgba(0, 0, 0, .07);
+}
+.case-nav.is-strip .case-nav__progress { width: 100%; height: 2px; flex: 0 0 2px; order: 2; }
+.case-nav.is-strip .case-nav__progress::after { height: 100%; width: var(--case-nav-progress, 0%); background: linear-gradient(90deg, #0a84ff 0%, #5ac8fa 100%); transition: width .35s ease; }
+.case-nav.is-strip .case-nav__list {
+	flex-direction: row;
+	gap: 4px;
+	padding: 8px clamp(14px, 3vw, 32px);
+	overflow-x: auto;
+	overscroll-behavior-x: contain;
+	scroll-snap-type: x proximity;
+}
+.case-nav.is-strip .case-nav__link { scroll-snap-align: center; padding: 7px 11px; border-radius: 999px; font-size: 10.5px; }
+.case-nav.is-strip .case-nav__link.is-active { transform: none; }
+
+/* Compact rail (720px to 1480px, including embedded desktop windows):
+   vertical, numbers only; the current step unfolds its label. */
+.case-nav.is-compact { left: clamp(10px, 1.2vw, 18px); gap: 10px; }
+.case-nav.is-compact .case-nav__link { padding: 6px 7px; gap: 0; }
+.case-nav.is-compact .case-nav__label { max-width: 0; overflow: hidden; opacity: 0; transition: max-width .25s ease, opacity .2s ease, margin .25s ease; }
+.case-nav.is-compact .case-nav__link.is-active .case-nav__label,
+.case-nav.is-compact .case-nav__link:hover .case-nav__label,
+.case-nav.is-compact .case-nav__link:focus-visible .case-nav__label { max-width: 180px; opacity: 1; margin-left: 8px; }
+.case-nav.is-strip { z-index: 60; }
+
+/* Dark appearance */
+html.is-dark .case-nav__progress { background: rgba(255, 255, 255, .14); }
+html.is-dark .case-nav__link { color: #8e8e93; }
+html.is-dark .case-nav__num { color: #5f5f64; }
+html.is-dark .case-nav__link:hover { color: #f4f4f5; background: rgba(255, 255, 255, .07); }
+html.is-dark .case-nav__link.is-done { color: #b8b8bc; }
+html.is-dark .case-nav__link.is-active { color: #fff; }
+html.is-dark .case-nav.is-strip { background: rgba(14, 14, 15, .86); border-bottom-color: rgba(255, 255, 255, .08); }
+
+
+/* Hosted inside a desktop window: the window scrolls, so the rail is sticky
+   (fixed would pin it to the whole browser viewport). Zero height keeps it
+   out of the flow; the list overflows visibly beside the content. */
+.case-nav.is-hosted {
+	position: sticky;
+	top: 20px;
+	left: auto;
+	transform: none;
+	height: 0;
+	overflow: visible;
+	margin-left: clamp(10px, 1.2vw, 18px);
+	max-height: none;
+	align-items: flex-start;
+	z-index: 50;
+}
+/* Frosted panel so the rail reads clearly over hosted content */
+.case-nav.is-hosted .case-nav__list {
+	padding: 8px 6px;
+	border-radius: 14px;
+	background: rgba(255, 255, 255, .86);
+	-webkit-backdrop-filter: blur(14px) saturate(1.4);
+	backdrop-filter: blur(14px) saturate(1.4);
+	border: 1px solid rgba(10, 132, 255, .14);
+	box-shadow: 0 10px 30px rgba(10, 61, 145, .12);
+}
+.case-nav.is-hosted .case-nav__progress { margin-top: 8px; }
+.case-nav.is-hosted .case-nav__progress { height: calc(var(--project-host-viewport-height, 640px) - 60px); flex: 0 0 2px; align-self: flex-start; }
+.case-nav.is-hosted .case-nav__list { max-height: calc(var(--project-host-viewport-height, 640px) - 60px); }
+.case-nav.is-hosted.is-strip { position: sticky; top: 0; height: auto; margin-left: 0; }
+.case-nav.is-hosted.is-strip .case-nav__progress { height: 2px; width: 100%; }
+
+/* Close / reopen controls */
+.case-nav__close {
+	align-self: flex-end;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 22px;
+	height: 22px;
+	margin: 0 2px 4px 0;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: rgba(10, 132, 255, .08);
+	color: #0a84ff;
+	cursor: pointer;
+	transition: background .18s, color .18s, transform .18s;
+}
+.case-nav__close:hover { background: linear-gradient(135deg, #0a84ff 0%, #5ac8fa 100%); color: #fff; transform: rotate(90deg); }
+.case-nav__close:focus-visible { outline: 2px solid #0a84ff; outline-offset: 2px; }
+.case-nav__open {
+	display: none;
+	align-items: center;
+	gap: 7px;
+	padding: 7px 11px 7px 9px;
+	border: 1px solid rgba(10, 132, 255, .18);
+	border-radius: 999px;
+	background: rgba(255, 255, 255, .9);
+	-webkit-backdrop-filter: blur(14px) saturate(1.4);
+	backdrop-filter: blur(14px) saturate(1.4);
+	box-shadow: 0 8px 24px rgba(10, 61, 145, .14);
+	font: 700 10.5px/1 "Satoshi", -apple-system, BlinkMacSystemFont, sans-serif;
+	letter-spacing: .02em;
+	cursor: pointer;
+	color: #0a84ff;
+}
+.case-nav__open-num { font-size: 10px; letter-spacing: .08em; font-variant-numeric: tabular-nums; color: #0a84ff; }
+.case-nav__open-label {
+	background: linear-gradient(135deg, #0a3d91 0%, #0a84ff 55%, #5ac8fa 100%);
+	-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.case-nav__open:hover { border-color: #0a84ff; }
+.case-nav__open:focus-visible { outline: 2px solid #0a84ff; outline-offset: 2px; }
+.case-nav.is-closed .case-nav__progress,
+.case-nav.is-closed .case-nav__list { display: none; }
+.case-nav.is-closed .case-nav__open { display: inline-flex; }
+.case-nav.is-closed { pointer-events: none; }
+.case-nav.is-closed .case-nav__open { pointer-events: auto; }
+/* Strip mode: close sits at the end of the row; reopen tab docks top-left */
+.case-nav.is-strip .case-nav__close { align-self: center; order: 99; margin: 0 0 0 4px; flex: 0 0 22px; position: sticky; right: 0; }
+.case-nav.is-strip.is-closed { background: none; border: 0; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.case-nav.is-strip.is-closed .case-nav__open { margin: 8px 12px; }
+.case-nav.is-hosted.is-closed { height: 0; }
+.case-nav.is-hosted.is-closed .case-nav__open { position: relative; top: 0; }
+html.is-dark .case-nav__open { background: rgba(20, 20, 22, .9); border-color: rgba(90, 200, 250, .25); }
+
+@media print { .case-nav { display: none; } }

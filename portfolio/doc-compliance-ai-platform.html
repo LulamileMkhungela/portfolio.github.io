@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="is-case-locked">
 <head>
+	<script src="../js/content-guard.js?v=1"></script>
 	<script>
 		(function () {
 			const params = new URLSearchParams(window.location.search);
@@ -26,11 +27,17 @@
 	<meta name="twitter:widgets:theme" content="light">
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="Compliance AI assistant — Lulamile Mkhungela">
-	<meta property="og:description" content="Phase 1 extends an existing compliance agent into a multi-agent system for the client&#x27;s compliance function. Analysts, risk managers and auditors need answers they can check against sources, inside the client&#x27;s security and governance requirements.">
+	<meta property="og:description" content="A password-protected case study from a confidential client engagement. Ask Lulamile for access.">
 	<meta name="twitter:card" content="summary_large_image">
+	<meta property="og:image" content="https://lulamilemkhungela.github.io/portfolio.github.io/images/social/lm-og.jpg">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:url" content="https://lulamilemkhungela.github.io/portfolio.github.io/portfolio/doc-compliance-ai-platform.html">
+	<meta name="twitter:image" content="https://lulamilemkhungela.github.io/portfolio.github.io/images/social/lm-og.jpg">
 	<meta name="twitter:title" content="Compliance AI assistant — Lulamile Mkhungela">
-	<meta name="twitter:description" content="Phase 1 extends an existing compliance agent into a multi-agent system for the client&#x27;s compliance function. Analysts, risk managers and auditors need answers they can check against sources, inside the client&#x27;s security and governance requirements.">
-	<meta name="description" content="Phase 1 extends an existing compliance agent into a multi-agent system for the client&#x27;s compliance function. Analysts, risk managers and auditors need answers they can check against sources, inside the client&#x27;s security and governance requirements.">
+	<meta name="twitter:description" content="A password-protected case study from a confidential client engagement. Ask Lulamile for access.">
+	<meta name="description" content="A password-protected case study from a confidential client engagement. Ask Lulamile for access.">
+	<meta name="robots" content="noindex, nofollow">
 	<meta name="theme-color" content="#ffffff">
 
 	<title>Compliance AI assistant — Lulamile Mkhungela</title>
@@ -51,7 +58,7 @@
 	<link rel="stylesheet" href="../css/avalanche.css" />
 	<link rel="stylesheet" href="../css/snowbridge.css" />
 	<link rel="stylesheet" href="../css/modern-menu.css?v=161" />
-	<link rel="stylesheet" href="../css/portfolio-case-shared.css?v=33" />
+	<link rel="stylesheet" href="../css/portfolio-case-shared.css?v=39" />
 
 <style id="lm-case-study">
 :root{--lm-accent:#2f6b3a}
@@ -244,39 +251,95 @@ html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp
 
 			<!-- Content -->
 			<div class="content clearfix">
-
-				<section class="pk-hero" aria-labelledby="case-title">
-					<div class="pk-shell">
-						<p class="pk-eyebrow">Financial services · AI assistant with cited answers</p>
-						<h1 id="case-title" class="pk-display pk-display--name">Compliance AI assistant</h1>
-						<p class="pk-hero__tagline">An AI answer you can<em class="pk-accent"> check against its source.</em></p>
+				<section class="pk-lock" data-case-lock aria-labelledby="case-lock-title">
+					<div class="pk-lock__card">
+						<div class="pk-lock__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></div>
+						<p class="pk-lock__eyebrow">Protected case study</p>
+						<h1 class="pk-lock__title" id="case-lock-title">Compliance AI assistant</h1>
+						<p class="pk-lock__copy">This work was done under a confidentiality agreement, so the full write-up is encrypted on this page and opens only with a password. If you have one, enter it below.</p>
+						<form class="pk-lock__form" autocomplete="off" novalidate>
+							<label class="sr-only" for="case-lock-password">Password</label>
+							<div class="pk-lock__field"><input id="case-lock-password" type="password" name="password" placeholder="Password" autocapitalize="off" autocorrect="off" spellcheck="false" required></div>
+							<button class="pk-lock__submit" type="submit">Unlock case study</button>
+							<p class="pk-lock__message" data-lock-message aria-live="polite"></p>
+						</form>
+						<p class="pk-lock__foot">Don’t have a password? <a href="mailto:mkhungela.l@gmail.com?subject=Access%20to%20a%20protected%20case%20study">Email Lulamile</a> and say which study you would like to read.</p>
 					</div>
-					<div class="pk-shell"><div class="pk-meta" aria-label="Project details"><div class="pk-meta__item"><span class="pk-meta__label">Client</span><span class="pk-meta__value">Financial services group</span></div><div class="pk-meta__item"><span class="pk-meta__label">Role</span><span class="pk-meta__value">Devsigner: full ownership of UX/UI design and frontend</span></div><div class="pk-meta__item"><span class="pk-meta__label">Industry</span><span class="pk-meta__value">Financial services</span></div><div class="pk-meta__item"><span class="pk-meta__label">Year</span><span class="pk-meta__value">To confirm</span></div></div></div>
 				</section>
-				<section class="pk-section pk-section--tight pk-lead-section" id="context">
-					<div class="pk-shell"><p class="pk-lead">Phase 1 extends an existing compliance agent into a multi-agent system for the client's compliance function. Analysts, risk managers and auditors need answers they can check against sources, inside the client's security and governance requirements.</p></div>
-				</section>
-				<section class="pk-section pk-dark" id="problem">
-					<div class="pk-shell"><div class="pk-problem-grid"><div><p class="pk-eyebrow">The problem</p><h2 class="pk-h2">Answers that cannot be checked</h2></div><div><div class="pk-outcomes"><div class="pk-outcome"><span class="pk-outcome__num">01</span><span class="pk-outcome__text">Answers that cannot be checked<small>Analysts, risk managers and auditors need to verify an answer against its source before relying on it.</small></span></div><div class="pk-outcome"><span class="pk-outcome__num">02</span><span class="pk-outcome__text">Security and governance limits<small>The system must work inside the client's security and governance requirements.</small></span></div><div class="pk-outcome"><span class="pk-outcome__num">03</span><span class="pk-outcome__text">Who can see what<small>The knowledge base queried and the documents a user can upload depend on their role.</small></span></div></div></div></div></div>
-				</section>
-				<section class="pk-section" id="role">
-					<div class="pk-shell"><div class="pk-overview"><div><p class="pk-eyebrow">My role and boundaries</p></div><div><div class="pk-copy"><p>I owned the chat interface and the frontend that presents agent answers. Agent orchestration, retrieval and verification services belong to the platform team.</p></div></div></div></div>
-				</section>
-				<section class="pk-section" id="decisions">
-					<div class="pk-shell"><p class="pk-eyebrow">Key decisions</p><div class="pk-grid-3"><article class="pk-card"><span class="pk-card__index">01</span><div><h3>Show citations with every answer</h3><p>Analysts can verify a response rather than trust it.</p></div></article><article class="pk-card"><span class="pk-card__index">02</span><div><h3>Verify before showing</h3><p>The interface shows a loading state while checks run, never an unverified draft. Trade-off accepted: answers take longer to appear.</p></div></article><article class="pk-card"><span class="pk-card__index">03</span><div><h3>Make the active role visible</h3><p>Role decides which knowledge base is queried and which documents can be uploaded, so the interface shows the active role at all times.</p></div></article><article class="pk-card"><span class="pk-card__index">04</span><div><h3>Adapt an established multi-agent framework</h3><p>The framework is adapted to the client's environment rather than built from scratch. Trade-off accepted: the client's security and integration constraints shape the design.</p></div></article></div></div>
-				</section>
-<section class="pk-section" id="checks"><div class="pk-shell"><p class="pk-eyebrow">How I checked the work</p><div class="pk-copy"><p>Every answer passes a verification step before it is shown, and the frontend handles the loading state while checks run.</p><p>Production-grade authentication is a release condition in the documents.</p></div></div></section>
-				<section class="pk-section pk-results pk-dark" id="outcomes" aria-labelledby="outcomes-title">
-					<div class="pk-shell"><p class="pk-eyebrow" id="outcomes-title">Outcome and evidence</p><p class="pk-disclaimer">Figures are shown only where they were published. Other results are described qualitatively.</p><div class="pk-outcomes"><div class="pk-outcome"><span class="pk-outcome__num">01</span><span class="pk-outcome__text">Not yet evidenced<small>Rollout status, user adoption and any measured answer quality are not in the source documents. Production-grade authentication is a release condition in the documents.</small></span></div></div></div>
-				</section>
-				<section class="pk-section pk-media-section" id="work">
-					<div class="pk-shell"><div class="pk-media-stack"></div></div>
-				</section>
-				<section class="pk-section pk-conclusion" id="conclusion">
-					<div class="pk-shell"><p class="pk-lead">The assistant presents cited, verified answers and shows the active role. The documents specify this; delivery status is not yet evidenced.</p><p class="pk-copy"><strong>What I would do next:</strong> Record answer quality and adoption after rollout. These are not yet in the documents.</p></div>
-				</section>
-				<nav class="tlc-project-pagination" aria-label="More projects"><a class="tlc-project-pagination__item" href="doc-coal-stockpile-forecasting.html"><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction">← Previous project</span><strong>Coal stockpile forecasting</strong><span class="tlc-project-pagination__category">Energy · Machine-learning decision support</span></span></a><a class="tlc-project-pagination__item" href="doc-media-scanning-audit.html"><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction">Next project →</span><strong>Media scanning for audit planning</strong><span class="tlc-project-pagination__category">Public sector · Media intelligence for audit</span></span></a></nav>
-			</div>
+				<script id="case-lock-payload" type="text/plain" data-meta="{&quot;salt&quot;: &quot;OGupZkvDbp8gpGO8LViH7w==&quot;, &quot;iv&quot;: &quot;QSY00P4zZo66bF69&quot;, &quot;iterations&quot;: 310000}">
+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
+b0xRxPHA
+				</script>
 			<!-- Content End -->
 
 			<!-- Footer -->
@@ -308,5 +371,7 @@ html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp
 
 	<script src="../js/luxury-collection-modern.js?v=4"></script>
 	<script src="../js/contact-form-fallback.js?v=2"></script>
+	<script src="../js/case-lock.js?v=1"></script>
+	<script src="../js/case-nav.js?v=5"></script>
 </body>
 </html>

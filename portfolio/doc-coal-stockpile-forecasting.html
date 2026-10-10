@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="is-case-locked">
 <head>
+	<script src="../js/content-guard.js?v=1"></script>
 	<script>
 		(function () {
 			const params = new URLSearchParams(window.location.search);
@@ -26,11 +27,17 @@
 	<meta name="twitter:widgets:theme" content="light">
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="Coal stockpile forecasting — Lulamile Mkhungela">
-	<meta property="og:description" content="A national power utility runs several power stations and must keep coal stock at optimal levels. Its planning model was a static formula, closing stock = opening stock + supply − burn, which ignores weather, inter-station dynamics and coal-price movements.">
+	<meta property="og:description" content="A password-protected case study from a confidential client engagement. Ask Lulamile for access.">
 	<meta name="twitter:card" content="summary_large_image">
+	<meta property="og:image" content="https://lulamilemkhungela.github.io/portfolio.github.io/images/social/lm-og.jpg">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:url" content="https://lulamilemkhungela.github.io/portfolio.github.io/portfolio/doc-coal-stockpile-forecasting.html">
+	<meta name="twitter:image" content="https://lulamilemkhungela.github.io/portfolio.github.io/images/social/lm-og.jpg">
 	<meta name="twitter:title" content="Coal stockpile forecasting — Lulamile Mkhungela">
-	<meta name="twitter:description" content="A national power utility runs several power stations and must keep coal stock at optimal levels. Its planning model was a static formula, closing stock = opening stock + supply − burn, which ignores weather, inter-station dynamics and coal-price movements.">
-	<meta name="description" content="A national power utility runs several power stations and must keep coal stock at optimal levels. Its planning model was a static formula, closing stock = opening stock + supply − burn, which ignores weather, inter-station dynamics and coal-price movements.">
+	<meta name="twitter:description" content="A password-protected case study from a confidential client engagement. Ask Lulamile for access.">
+	<meta name="description" content="A password-protected case study from a confidential client engagement. Ask Lulamile for access.">
+	<meta name="robots" content="noindex, nofollow">
 	<meta name="theme-color" content="#ffffff">
 
 	<title>Coal stockpile forecasting — Lulamile Mkhungela</title>
@@ -51,7 +58,7 @@
 	<link rel="stylesheet" href="../css/avalanche.css" />
 	<link rel="stylesheet" href="../css/snowbridge.css" />
 	<link rel="stylesheet" href="../css/modern-menu.css?v=161" />
-	<link rel="stylesheet" href="../css/portfolio-case-shared.css?v=33" />
+	<link rel="stylesheet" href="../css/portfolio-case-shared.css?v=39" />
 
 <style id="lm-case-study">
 :root{--lm-accent:#2f6b3a}
@@ -244,39 +251,96 @@ html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp
 
 			<!-- Content -->
 			<div class="content clearfix">
-
-				<section class="pk-hero" aria-labelledby="case-title">
-					<div class="pk-shell">
-						<p class="pk-eyebrow">Energy · Machine-learning decision support</p>
-						<h1 id="case-title" class="pk-display pk-display--name">Coal stockpile forecasting</h1>
-						<p class="pk-hero__tagline">Planning coal stock<em class="pk-accent"> with forecasts, not formulas.</em></p>
+				<section class="pk-lock" data-case-lock aria-labelledby="case-lock-title">
+					<div class="pk-lock__card">
+						<div class="pk-lock__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></div>
+						<p class="pk-lock__eyebrow">Protected case study</p>
+						<h1 class="pk-lock__title" id="case-lock-title">Coal stockpile forecasting</h1>
+						<p class="pk-lock__copy">This work was done under a confidentiality agreement, so the full write-up is encrypted on this page and opens only with a password. If you have one, enter it below.</p>
+						<form class="pk-lock__form" autocomplete="off" novalidate>
+							<label class="sr-only" for="case-lock-password">Password</label>
+							<div class="pk-lock__field"><input id="case-lock-password" type="password" name="password" placeholder="Password" autocapitalize="off" autocorrect="off" spellcheck="false" required></div>
+							<button class="pk-lock__submit" type="submit">Unlock case study</button>
+							<p class="pk-lock__message" data-lock-message aria-live="polite"></p>
+						</form>
+						<p class="pk-lock__foot">Don’t have a password? <a href="mailto:mkhungela.l@gmail.com?subject=Access%20to%20a%20protected%20case%20study">Email Lulamile</a> and say which study you would like to read.</p>
 					</div>
-					<div class="pk-shell"><div class="pk-meta" aria-label="Project details"><div class="pk-meta__item"><span class="pk-meta__label">Client</span><span class="pk-meta__value">National power utility</span></div><div class="pk-meta__item"><span class="pk-meta__label">Role</span><span class="pk-meta__value">Devsigner: full ownership of UX/UI design and frontend</span></div><div class="pk-meta__item"><span class="pk-meta__label">Industry</span><span class="pk-meta__value">Energy</span></div><div class="pk-meta__item"><span class="pk-meta__label">Year</span><span class="pk-meta__value">To confirm</span></div></div></div>
 				</section>
-				<section class="pk-section pk-section--tight pk-lead-section" id="context">
-					<div class="pk-shell"><p class="pk-lead">A national power utility runs several power stations and must keep coal stock at optimal levels. Its planning model was a static formula, closing stock = opening stock + supply − burn, which ignores weather, inter-station dynamics and coal-price movements.</p></div>
-				</section>
-				<section class="pk-section pk-dark" id="problem">
-					<div class="pk-shell"><div class="pk-problem-grid"><div><p class="pk-eyebrow">The problem</p><h2 class="pk-h2">A static formula</h2></div><div><div class="pk-outcomes"><div class="pk-outcome"><span class="pk-outcome__num">01</span><span class="pk-outcome__text">A static formula<small>Closing stock was calculated as opening stock plus supply minus burn. It ignored weather, inter-station dynamics and coal-price movements.</small></span></div><div class="pk-outcome"><span class="pk-outcome__num">02</span><span class="pk-outcome__text">Planners had no safe middle<small>Planners either ordered too little and faced stockouts, or ordered too much and carried excess inventory or triggered urgent procurement.</small></span></div><div class="pk-outcome"><span class="pk-outcome__num">03</span><span class="pk-outcome__text">Stations were planned in isolation<small>The forecast did not account for how one power station's stock depends on the others.</small></span></div></div></div></div></div>
-				</section>
-				<section class="pk-section" id="role">
-					<div class="pk-shell"><div class="pk-overview"><div><p class="pk-eyebrow">My role and boundaries</p></div><div><div class="pk-copy"><p>I owned the UX/UI design and frontend for the planning tool. The machine-learning model and data pipeline sit outside my scope. UI scope to confirm: the source documents are specifications with no UI deliverable.</p></div></div></div></div>
-				</section>
-				<section class="pk-section" id="decisions">
-					<div class="pk-shell"><p class="pk-eyebrow">Key decisions</p><div class="pk-grid-3"><article class="pk-card"><span class="pk-card__index">01</span><div><h3>Replace one formula with per-station forecasts</h3><p>The forecasts account for inter-station dependency. Alternative: keep the static formula and adjust it by hand. Trade-off accepted: a model that needs maintained data and retraining.</p></div></article><article class="pk-card"><span class="pk-card__index">02</span><div><h3>Filter every view by time, data source and station</h3><p>Planners compare stations without rebuilding views. The requirements call for these filters.</p></div></article><article class="pk-card"><span class="pk-card__index">03</span><div><h3>Surface early-warning indicators, not just forecasts</h3><p>The documents aim at identifying supply-chain disruptions early, so the interface highlights risk.</p></div></article><article class="pk-card"><span class="pk-card__index">04</span><div><h3>Restrict data access by role</h3><p>Access is limited to authorised personnel based on their responsibilities.</p></div></article></div></div>
-				</section>
-<section class="pk-section" id="checks"><div class="pk-shell"><p class="pk-eyebrow">How I checked the work</p><div class="pk-copy"><p>Requirements define the planning filters (time, data source, station) and the role-based access rules. No UI test results are in the source documents.</p></div></div></section>
-				<section class="pk-section pk-results pk-dark" id="outcomes" aria-labelledby="outcomes-title">
-					<div class="pk-shell"><p class="pk-eyebrow" id="outcomes-title">Outcome and evidence</p><p class="pk-disclaimer">Figures are shown only where they were published. Other results are described qualitatively.</p><div class="pk-outcomes"><div class="pk-outcome"><span class="pk-outcome__num">01</span><span class="pk-outcome__text">Not yet evidenced<small>Forecast accuracy, planner adoption and any reduction in stockouts or urgent-procurement events are not in the source documents. Add them only with a source.</small></span></div></div></div>
-				</section>
-				<section class="pk-section pk-media-section" id="work">
-					<div class="pk-shell"><div class="pk-media-stack"></div></div>
-				</section>
-				<section class="pk-section pk-conclusion" id="conclusion">
-					<div class="pk-shell"><p class="pk-lead">The planning tool moves from a single static formula to per-station forecasts, with filters and early-warning indicators designed into the interface. The documents specify this; results are not yet evidenced.</p><p class="pk-copy"><strong>What I would do next:</strong> Record forecast accuracy and stockout events once the model is in use. These are not yet in the documents.</p></div>
-				</section>
-				<nav class="tlc-project-pagination" aria-label="More projects"><a class="tlc-project-pagination__item" href="lula-gazette.html"><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction">← Previous project</span><strong>LulaGazette</strong><span class="tlc-project-pagination__category">Legal intelligence · Civic technology</span></span></a><a class="tlc-project-pagination__item" href="doc-compliance-ai-platform.html"><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction">Next project →</span><strong>Compliance AI assistant</strong><span class="tlc-project-pagination__category">Financial services · AI assistant with cited answers</span></span></a></nav>
-			</div>
+				<script id="case-lock-payload" type="text/plain" data-meta="{&quot;salt&quot;: &quot;lKL3WalutB9QdU2UULuDQQ==&quot;, &quot;iv&quot;: &quot;2E0ykb9yqBwu4OGQ&quot;, &quot;iterations&quot;: 310000}">
+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
+				</script>
 			<!-- Content End -->
 
 			<!-- Footer -->
@@ -308,5 +372,7 @@ html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp
 
 	<script src="../js/luxury-collection-modern.js?v=4"></script>
 	<script src="../js/contact-form-fallback.js?v=2"></script>
+	<script src="../js/case-lock.js?v=1"></script>
+	<script src="../js/case-nav.js?v=5"></script>
 </body>
 </html>
