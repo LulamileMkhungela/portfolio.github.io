@@ -27,7 +27,7 @@ const projects = [
   },
   {
     id: "lula-gazette", number: "LG", title: "LulaGazette", subtitle: "Legal Intelligence",
-    category: "Impact", tags: ["Recent", "Civic Tech", "Open Source"], modal: "project",
+    category: "Impact", tags: ["Recent", "Civic Tech"], modal: "project",
     url: "./portfolio/lula-gazette.html?embedded=1", icon: "./public/icons/project-folder.png",
     position: { left: "22%", top: "13%" }, colors: ["#a16207", "#d8bd97"], ariaLabel: "Open LulaGazette"
   },

@@ -1618,3 +1618,117 @@ html.is-dark .lm-case-page .pk-lock__foot a { color: #f4f4f5; }
 	.pk-lock { padding-top: 88px; }
 	.pk-lock__card { border-radius: 18px; }
 }
+
+/* ── Case-study process navigator (js/case-nav.js) ──────────────────────
+   Wide screens: a numbered rail fixed to the left, with a progress line.
+   Narrow screens and embedded windows: a sticky horizontal strip. */
+.case-nav {
+	position: fixed;
+	left: clamp(20px, 2.4vw, 44px);
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 40;
+	display: flex;
+	gap: 14px;
+	max-height: calc(100vh - 160px);
+	font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+}
+.case-nav__progress {
+	position: relative;
+	width: 2px;
+	flex: 0 0 2px;
+	border-radius: 2px;
+	background: rgba(0, 0, 0, .1);
+	overflow: hidden;
+}
+.case-nav__progress::after {
+	content: "";
+	position: absolute;
+	left: 0; top: 0; width: 100%;
+	height: var(--case-nav-progress, 0%);
+	background: var(--pk-red, #2f6b3a);
+	transition: height .35s ease;
+}
+.case-nav__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	overflow: auto;
+	scrollbar-width: none;
+}
+.case-nav__list::-webkit-scrollbar { display: none; }
+.case-nav__link {
+	display: flex;
+	align-items: baseline;
+	gap: 10px;
+	padding: 6px 10px 6px 8px;
+	border-radius: 10px;
+	text-decoration: none !important;
+	color: #8a8a8e;
+	font-size: 12.5px;
+	line-height: 1.3;
+	letter-spacing: -.005em;
+	white-space: nowrap;
+	transition: color .18s, background .18s, transform .18s;
+}
+.case-nav__num {
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: .08em;
+	font-variant-numeric: tabular-nums;
+	color: #b4b4b8;
+	flex: 0 0 auto;
+}
+.case-nav__label { font-weight: 500; }
+.case-nav__link:hover { color: #111; background: rgba(0, 0, 0, .05); }
+.case-nav__link.is-done { color: #5c5c60; }
+.case-nav__link.is-done .case-nav__num { color: var(--pk-red, #2f6b3a); }
+.case-nav__link.is-active { color: #0a0a0a; background: rgba(0, 0, 0, .06); transform: translateX(2px); }
+.case-nav__link.is-active .case-nav__label { font-weight: 700; }
+.case-nav__link.is-active .case-nav__num { color: var(--pk-red, #2f6b3a); }
+
+/* Strip mode */
+.case-nav.is-strip {
+	position: sticky;
+	top: 0;
+	left: 0;
+	transform: none;
+	max-height: none;
+	width: 100%;
+	gap: 0;
+	flex-direction: column;
+	background: rgba(255, 255, 255, .86);
+	backdrop-filter: saturate(160%) blur(14px);
+	-webkit-backdrop-filter: saturate(160%) blur(14px);
+	border-bottom: 1px solid rgba(0, 0, 0, .07);
+}
+.case-nav.is-strip .case-nav__progress { width: 100%; height: 2px; flex: 0 0 2px; order: 2; }
+.case-nav.is-strip .case-nav__progress::after { height: 100%; width: var(--case-nav-progress, 0%); transition: width .35s ease; }
+.case-nav.is-strip .case-nav__list {
+	flex-direction: row;
+	gap: 4px;
+	padding: 8px clamp(14px, 3vw, 32px);
+	overflow-x: auto;
+	overscroll-behavior-x: contain;
+	scroll-snap-type: x proximity;
+}
+.case-nav.is-strip .case-nav__link { scroll-snap-align: center; padding: 7px 11px; border-radius: 999px; font-size: 12.5px; }
+.case-nav.is-strip .case-nav__link.is-active { transform: none; background: #0a0a0a; color: #fff; }
+.case-nav.is-strip .case-nav__link.is-active .case-nav__num { color: #9fe0a8; }
+.case-nav.is-strip { z-index: 60; }
+
+/* Dark appearance */
+html.is-dark .case-nav__progress { background: rgba(255, 255, 255, .14); }
+html.is-dark .case-nav__link { color: #8e8e93; }
+html.is-dark .case-nav__num { color: #5f5f64; }
+html.is-dark .case-nav__link:hover { color: #f4f4f5; background: rgba(255, 255, 255, .07); }
+html.is-dark .case-nav__link.is-done { color: #b8b8bc; }
+html.is-dark .case-nav__link.is-active { color: #fff; background: rgba(255, 255, 255, .09); }
+html.is-dark .case-nav.is-strip { background: rgba(14, 14, 15, .86); border-bottom-color: rgba(255, 255, 255, .08); }
+html.is-dark .case-nav.is-strip .case-nav__link.is-active { background: #f4f4f5; color: #0a0a0a; }
+html.is-dark .case-nav.is-strip .case-nav__link.is-active .case-nav__num { color: #2f6b3a; }
+
+@media print { .case-nav { display: none; } }
