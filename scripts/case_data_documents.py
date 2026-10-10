@@ -406,88 +406,67 @@ NEW_CASES = [
         "figures": [],
     },
     {
-        "file": "nerdscore-dashboards.html",
-        "title": "NerdScore",
-        "category": "Sustainability management · ESG platform dashboards",
-        "tagline": ["One ESG view", " across the organisation."],
+        "file": "toyota-mobility-brand.html",
+        "title": "Toyota Mobility Brand",
+        "category": "Brand · Design system · Connected apps",
+        "tagline": ["One brand system,", " three mobility products."],
         "meta": [
-            ("Client", "Nerdma Systems"),
-            ("Role", "Dashboard designer, alongside the Nerdma site (to confirm)"),
-            ("Industry", "Sustainability and ESG"),
-            ("Year", "2023"),
+            ("Client", "Toyota South Africa · via iOCO"),
+            ("Role", "Senior UI/UX Designer on the brand programme, via iOCO"),
+            ("Industry", "Automotive and mobility"),
+            ("Year", "2023 — 2025"),
         ],
         "lead": (
-            "NerdScore is the sustainability management platform in the Nerdma Systems suite. It gives an organisation one "
-            "structure for environmental, social and governance performance, with industry modules built on a general framework."
+            "Toyota South Africa was taking KINTO, the Toyota App and Toyota Remote to market at the same time, and each was "
+            "drawing its own identity. I set the positioning, built the identity system and wrote the rules for using it, so the "
+            "products could launch in the same voice. The Lexus app sits in the same connected-apps work."
         ),
         "problems": [
-            ("One structure for many divisions",
-             "Heterogeneous organisations need a single ESG view across divisions, locations and business units (product page)."),
-            ("Sector depth without losing the whole",
-             "Industry modules, such as banking, mining and utilities, add sector metrics on top of the general framework (product page)."),
+            ("Every product spoke its own language",
+             "Three customer-facing expressions of one business, with different type, colour, tone and words for the same thing."),
+            ("Positioning was a product list",
+             "Each brand explained what the service did, not who it was for or why it mattered against the alternatives."),
         ],
         "role": (
-            "I designed the NerdScore dashboards alongside the Nerdma site. The Nerdma case study describes the reading order I used. "
-            "The detailed scope of my role is to confirm."
+            "I was the senior designer on the brand programme. I set the positioning, built the identity system, wrote the rules "
+            "for using it, and applied the system to product interfaces, campaign and retail. The work followed the brand process "
+            "end to end, as set out below."
         ),
         "decisions": [
-            ("One primary number per view",
-             "Each view leads with one number, then the trend behind it, then the factors that contribute to it."),
-            ("One reading order across the suite",
-             "NerdScore, NerdGrid and NerdGrow use the same structure, so an analyst and an executive read the same data in the same order."),
+            ("1. Strategy and positioning",
+             "One ecosystem story for three audiences: subscription, connected car and owner care."),
+            ("2. Identity system",
+             "Logo lock-ups, colour, type and motion rules for each brand in the family. KINTO blue #00708D sits with Toyota identity colours."),
+            ("3. Application",
+             "Product screens, retail collateral, campaign and app-store assets."),
+            ("4. Guidelines and rollout",
+             "Usage rules agreed with marketing, product and retail, then enforced by audit."),
+        ],
+        "checks": [
+            "Usage rules were agreed with marketing, product and retail before rollout, as stated on the brand programme page.",
+            "To confirm: how the brand guide was updated after each launch, and how the design system was versioned.",
         ],
         "outcomes": [
-            ("Not yet evidenced",
-             "No outcome for the NerdScore dashboards is recorded in the sources. Add a result only with a source."),
+            ("Published on Google Play",
+             "The MyToyota listing shows 500K+ downloads and the Toyota Remote (Africa) listing shows 1K+ downloads, as displayed on the listings. These are published product figures, not a measured result of this work."),
+            ("Launches stopped rebuilding identity",
+             "A qualitative outcome stated on the brand programme page. It is not measured."),
         ],
         "what_changed": (
-            "A dashboard design for an ESG platform with one reading order across its views. Not yet evidenced beyond the design."
+            "Three mobility products now share one identity system and one set of usage rules, applied across product, campaign and retail."
         ),
-        "links": [("NerdScore product page", "https://nerdma.co.za/what-we-offer/nerdscore")],
-        "figures": [],
-    },
-    {
-        "file": "nerdgrid-dashboards.html",
-        "title": "NerdGrid",
-        "category": "Infrastructure and utilities · Dashboards",
-        "tagline": ["Infrastructure and utilities", " in one view."],
-        "meta": [
-            ("Client", "Nerdma Systems"),
-            ("Role", "Dashboard designer, alongside the Nerdma site (to confirm)"),
-            ("Industry", "Infrastructure and utilities"),
-            ("Year", "2023"),
-        ],
-        "lead": (
-            "NerdGrid is the infrastructure and engineering division of Nerdma Systems. It supplies and installs infrastructure, "
-            "monitors water and energy with smart meters and sensors, and sends that data to NerdScore for ESG tracking."
+        "next": (
+            "Confirm the brand guide update process, the design system version history, and add the KINTO landing page screenshots to this case study."
         ),
-        "problems": [
-            ("Operational data needs a clear reading",
-             "Smart meters and sensors track water and energy use in real time, so the dashboard has to show what needs attention (product page)."),
-            ("Infrastructure data feeds ESG reporting",
-             "Water and energy data is transmitted to NerdScore for ESG tracking and reporting (product page)."),
+        "links": [("KINTO One page", "https://toyota.co.za/kinto-personal")],
+        "figures": [
+            ("../images/work/brand-strategy-cover.webp", "Toyota mobility brands programme overview",
+             "Brand programme overview: KINTO, Toyota Remote, AutoMark and Toyota App."),
+            ("../images/work/toyota-app-cover.webp", "MyToyota listing on Google Play",
+             "MyToyota on Google Play, the Toyota App's published listing."),
+            ("../images/work/toyota-remote-cover.webp", "Toyota Remote listing on Google Play",
+             "Toyota Remote (Africa) on Google Play, the connected-car app."),
         ],
-        "role": (
-            "I designed the NerdGrid dashboards alongside the Nerdma site. The detailed scope of my role is to confirm."
-        ),
-        "decisions": [
-            ("Same reading order as NerdScore",
-             "The primary number, its trend and the contributing factors come first, so the dashboards match the rest of the suite."),
-            ("Dashboards designed with the site",
-             "The dashboards were designed alongside the Nerdma site so the marketing site never promised something the product could not show."),
-        ],
-        "outcomes": [
-            ("Not yet evidenced",
-             "No outcome for the NerdGrid dashboards is recorded in the sources. Add a result only with a source."),
-        ],
-        "what_changed": (
-            "Dashboards for infrastructure and utilities data, using the same reading order as the rest of the suite. Not yet evidenced beyond the design."
-        ),
-        "links": [
-            ("NerdGrid product page", "https://nerdma.co.za/what-we-offer/nerdgrid"),
-            ("NerdGrid website", "https://nerdgrid.co.za/"),
-        ],
-        "figures": [],
     },
 ]
 
