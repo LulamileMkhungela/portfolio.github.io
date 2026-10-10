@@ -463,7 +463,12 @@ NEW_CASES = [
         "next": (
             "Confirm the missing components added, the brand guide update process, and add the KINTO landing page screenshots to this case study."
         ),
-        "links": [("KINTO One page", "https://toyota.co.za/kinto-personal")],
+        "links": [
+            ("MyToyota on Google Play", "https://play.google.com/store/apps/details?id=com.eliance.toyotamobile&hl=en_ZA"),
+            ("Toyota Remote on Google Play", "https://play.google.com/store/apps/details?id=za.co.toyota.toyotaremote&hl=en_ZA"),
+            ("Lexus app on Google Play", "https://play.google.com/store/apps/details?id=com.eliance.lexusmobile&hl=en_ZA&gl=US"),
+            ("KINTO One page", "https://www.toyota.co.za/kinto-personal"),
+        ],
         "figures": [
             ("../images/work/brand-strategy-cover.webp", "Toyota mobility brands programme overview",
              "Brand programme overview: KINTO, Toyota Remote, AutoMark and Toyota App."),
