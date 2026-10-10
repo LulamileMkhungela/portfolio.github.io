@@ -56,15 +56,15 @@ const projects = [
     position: { left: "88%", top: "57%" }, colors: ["#2f6b3a", "#a8c1ac"], ariaLabel: "Open SNB"
   },
   {
-    id: "nerdma-nerdscore", number: "NS", title: "NerdScore", subtitle: "Sustainability · Dashboards",
+    id: "nerdscore-dashboards", number: "NS", title: "NerdScore", subtitle: "Sustainability · Dashboards",
     category: "Product", tags: ["Enterprise"], modal: "project",
-    url: "./portfolio/nerdma-website.html?embedded=1", icon: "./public/icons/project-folder.png",
-    position: { left: "6%", top: "47%" }, colors: ["#0f766e", "#9ac5c2"], ariaLabel: "Open NerdScore dashboard, Nerdma case study"
+    url: "./portfolio/nerdscore-dashboards.html?embedded=1", icon: "./public/icons/project-folder.png",
+    position: { left: "6%", top: "47%" }, colors: ["#0f766e", "#9ac5c2"], ariaLabel: "Open NerdScore case study"
   },
   {
-    id: "nerdma-nerdgrid", number: "NG", title: "NerdGrid", subtitle: "Infrastructure · Dashboards",
+    id: "nerdgrid-dashboards", number: "NG", title: "NerdGrid", subtitle: "Infrastructure · Dashboards",
     category: "Product", tags: ["Enterprise"], modal: "project",
-    url: "./portfolio/nerdma-website.html?embedded=1", icon: "./public/icons/project-folder.png",
-    position: { left: "18%", top: "47%" }, colors: ["#0f766e", "#9ac5c2"], ariaLabel: "Open NerdGrid dashboard, Nerdma case study"
+    url: "./portfolio/nerdgrid-dashboards.html?embedded=1", icon: "./public/icons/project-folder.png",
+    position: { left: "18%", top: "47%" }, colors: ["#0f766e", "#9ac5c2"], ariaLabel: "Open NerdGrid case study"
   }
 ];

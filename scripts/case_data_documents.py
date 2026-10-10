@@ -405,6 +405,90 @@ NEW_CASES = [
         ),
         "figures": [],
     },
+    {
+        "file": "nerdscore-dashboards.html",
+        "title": "NerdScore",
+        "category": "Sustainability management · ESG platform dashboards",
+        "tagline": ["One ESG view", " across the organisation."],
+        "meta": [
+            ("Client", "Nerdma Systems"),
+            ("Role", "Dashboard designer, alongside the Nerdma site (to confirm)"),
+            ("Industry", "Sustainability and ESG"),
+            ("Year", "2023"),
+        ],
+        "lead": (
+            "NerdScore is the sustainability management platform in the Nerdma Systems suite. It gives an organisation one "
+            "structure for environmental, social and governance performance, with industry modules built on a general framework."
+        ),
+        "problems": [
+            ("One structure for many divisions",
+             "Heterogeneous organisations need a single ESG view across divisions, locations and business units (product page)."),
+            ("Sector depth without losing the whole",
+             "Industry modules, such as banking, mining and utilities, add sector metrics on top of the general framework (product page)."),
+        ],
+        "role": (
+            "I designed the NerdScore dashboards alongside the Nerdma site. The Nerdma case study describes the reading order I used. "
+            "The detailed scope of my role is to confirm."
+        ),
+        "decisions": [
+            ("One primary number per view",
+             "Each view leads with one number, then the trend behind it, then the factors that contribute to it."),
+            ("One reading order across the suite",
+             "NerdScore, NerdGrid and NerdGrow use the same structure, so an analyst and an executive read the same data in the same order."),
+        ],
+        "outcomes": [
+            ("Not yet evidenced",
+             "No outcome for the NerdScore dashboards is recorded in the sources. Add a result only with a source."),
+        ],
+        "what_changed": (
+            "A dashboard design for an ESG platform with one reading order across its views. Not yet evidenced beyond the design."
+        ),
+        "links": [("NerdScore product page", "https://nerdma.co.za/what-we-offer/nerdscore")],
+        "figures": [],
+    },
+    {
+        "file": "nerdgrid-dashboards.html",
+        "title": "NerdGrid",
+        "category": "Infrastructure and utilities · Dashboards",
+        "tagline": ["Infrastructure and utilities", " in one view."],
+        "meta": [
+            ("Client", "Nerdma Systems"),
+            ("Role", "Dashboard designer, alongside the Nerdma site (to confirm)"),
+            ("Industry", "Infrastructure and utilities"),
+            ("Year", "2023"),
+        ],
+        "lead": (
+            "NerdGrid is the infrastructure and engineering division of Nerdma Systems. It supplies and installs infrastructure, "
+            "monitors water and energy with smart meters and sensors, and sends that data to NerdScore for ESG tracking."
+        ),
+        "problems": [
+            ("Operational data needs a clear reading",
+             "Smart meters and sensors track water and energy use in real time, so the dashboard has to show what needs attention (product page)."),
+            ("Infrastructure data feeds ESG reporting",
+             "Water and energy data is transmitted to NerdScore for ESG tracking and reporting (product page)."),
+        ],
+        "role": (
+            "I designed the NerdGrid dashboards alongside the Nerdma site. The detailed scope of my role is to confirm."
+        ),
+        "decisions": [
+            ("Same reading order as NerdScore",
+             "The primary number, its trend and the contributing factors come first, so the dashboards match the rest of the suite."),
+            ("Dashboards designed with the site",
+             "The dashboards were designed alongside the Nerdma site so the marketing site never promised something the product could not show."),
+        ],
+        "outcomes": [
+            ("Not yet evidenced",
+             "No outcome for the NerdGrid dashboards is recorded in the sources. Add a result only with a source."),
+        ],
+        "what_changed": (
+            "Dashboards for infrastructure and utilities data, using the same reading order as the rest of the suite. Not yet evidenced beyond the design."
+        ),
+        "links": [
+            ("NerdGrid product page", "https://nerdma.co.za/what-we-offer/nerdgrid"),
+            ("NerdGrid website", "https://nerdgrid.co.za/"),
+        ],
+        "figures": [],
+    },
 ]
 
 
