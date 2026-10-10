@@ -92,7 +92,9 @@
       setActive(i);
     }
     function layout() {
-      nav.classList.toggle("is-strip", window.innerWidth < 1480);
+      var w = window.innerWidth;
+      nav.classList.toggle("is-strip", w < 720);
+      nav.classList.toggle("is-compact", w >= 720 && w < 1480);
     }
     var ticking = false;
     window.addEventListener("scroll", function () {
