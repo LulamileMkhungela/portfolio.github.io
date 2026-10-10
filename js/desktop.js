@@ -40,6 +40,9 @@ const WINDOW_PLACEMENT = {
   messages: 21,
   instagram: 6
 };
+// The current CV, hosted on Google Drive. Change it here only.
+const CV_URL = "https://drive.google.com/file/d/1nCqtTe9LVwj_LeQX67L4f90zd1IYYeRE/view?usp=sharing";
+
 const NOTES_APP = {
   id: "notes-about",
   number: "N",
@@ -77,7 +80,7 @@ const NOTES_DATA = {
         <h2>Tools</h2><p>Figma for design, systems and prototypes. VS Code for the build — React, Angular, Ionic, TypeScript. GitHub for everything else. Short list on purpose.</p>
         <h2>Education</h2><p>Full-Stack Development — FNB App of the Year Academy, 2025 (Distinction, 92.7%) · NQF Level 5 Mobile and Web Development — MTN Business App Academy, 2021 · UX/UI Design — Wits JCSE, 2017 · Google UX Design Professional Certificate. Certificates are listed in the Certificates app.</p>
         <p>For a printable version, download the CV as a PDF.</p>
-        <a class="notes-cv-link" href="docs/cv/Lulamile-Mkhungela-CV.pdf" target="_blank" rel="noopener noreferrer">Download CV (PDF) →</a>
+        <a class="notes-cv-link" href="${CV_URL}" target="_blank" rel="noopener noreferrer">View CV (PDF) →</a>
       </div>`
   },
   interests: {
@@ -4401,6 +4404,17 @@ function libraryFallbackTile(item) {
 
 const LIBRARY_LOCK_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>`;
 
+/* No local screenshot? Show the tool's own logo (favicon service) on a soft
+   tile; if even that fails the lettered tile takes over (see wireLibrary). */
+function libraryLogoTile(item) {
+  const host = libraryHost(item.url);
+  if (!host) return libraryFallbackTile(item);
+  const seed = [...String(item.id)].reduce((total, character) => total + character.charCodeAt(0), 0);
+  return `<span class="library-card-logo" style="--library-hue:${seed % 360}" aria-hidden="true">
+    <img src="https://www.google.com/s2/favicons?domain=${encodeURIComponent(host)}&sz=128" alt="" loading="lazy" decoding="async" draggable="false" data-library-logo>
+  </span>`;
+}
+
 function createLibraryCard(item, index, categoryLabels, options = {}) {
   /* Project covers are 4:3; everything else staggers like a pinboard. */
   const shape = item.image && item.type !== "image" ? "4 / 3" : libraryShape(item.id, index);
@@ -4415,7 +4429,7 @@ function createLibraryCard(item, index, categoryLabels, options = {}) {
     <span class="library-card-media" style="aspect-ratio:${item.type === "image" ? "auto" : shape}">
       ${preview
         ? `<img src="${escape(preview)}" alt="" loading="${index < 8 ? "eager" : "lazy"}" decoding="async" draggable="false">`
-        : libraryFallbackTile(item)}
+        : libraryLogoTile(item)}
       ${lock}
     </span>`;
 
@@ -4481,6 +4495,7 @@ function buildLibraryMarkup(app) {
           <img src="./assets/icons/sf/magnifyingglass.svg" alt="" aria-hidden="true">
           <input type="search" placeholder="Search projects, tools &amp; pictures" aria-label="Search projects, tools and pictures" spellcheck="false">
         </label>
+        <a class="library-cv-link" href="${escape(CV_URL)}" target="_blank" rel="noopener noreferrer">My CV ↗</a>
       </header>
       <nav class="library-tabs" role="tablist" aria-label="Vision Bin sections">
         <button class="library-tab is-active" type="button" role="tab" aria-selected="true" data-library-tab="vision">Vision Board</button>
@@ -4590,12 +4605,15 @@ function wireLibrary(element) {
   [[cards, items], [resourceCards, resourceItems]].forEach(([list, source]) => list.forEach((card, index) => {
     const image = card.querySelector(".library-card-media img");
     if (!image) return;
+    const target = image.closest(".library-card-logo") || image;
     const swap = () => {
-      if (!image.isConnected) return;
-      image.insertAdjacentHTML("afterend", libraryFallbackTile(source[index] || {}));
-      image.remove();
+      if (!target.isConnected) return;
+      target.insertAdjacentHTML("afterend", libraryFallbackTile(source[index] || {}));
+      target.remove();
     };
     image.addEventListener("error", swap, { once: true });
+    /* The favicon service answers a 16px globe when it has nothing; treat that as missing. */
+    image.addEventListener("load", () => { if (image.hasAttribute("data-library-logo") && image.naturalWidth <= 16) swap(); }, { once: true });
     if (image.complete && image.naturalWidth === 0) swap();
   }));
 

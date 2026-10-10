@@ -162,21 +162,33 @@ window.LIBRARY_DATA = {
 
     /* ── Pictures (ux process.jpg is reserved for case studies) ─────── */
     { id: "vision-da-team", type: "image", category: "pictures", name: "Digital Academy team", image: "./vision/DA.jpg" },
+    { id: "vision-sesyme-portrait", type: "image", category: "pictures", name: "Sesyme portrait", image: "./vision/_DSC0421.JPG" },
     { id: "vision-absa-hackathon", type: "image", category: "pictures", name: "ABSA hackathon event", image: "./vision/absa-hac.jpg" },
+    { id: "vision-bursary-interface", type: "image", category: "pictures", name: "Bursary interface", image: "./vision/bursary.jpg" },
     { id: "vision-co-w-app", type: "image", category: "pictures", name: "Co-W mobile experience", image: "./vision/co-w.png" },
+    { id: "vision-da-profile", type: "image", category: "pictures", name: "Digital Academy profile", image: "./vision/da-2.jpg" },
     { id: "vision-childrens-home", type: "image", category: "pictures", name: "Johannesburg Children's Home outreach", image: "./vision/don.jpg" },
     { id: "vision-sesyme-session", type: "image", category: "pictures", name: "Sesyme working session", image: "./vision/dsesy.jpg" },
+    { id: "vision-fieldwork", type: "image", category: "pictures", name: "Outdoor fieldwork", image: "./vision/ei.jpg" },
     { id: "vision-engineering-design", type: "image", category: "pictures", name: "Design and engineering workspace", image: "./vision/eng-des.jpg" },
+    { id: "vision-gk-post", type: "image", category: "pictures", name: "GK community post", image: "./vision/gk.jpg" },
+    { id: "vision-hush-community", type: "image", category: "pictures", name: "Hush community update", image: "./vision/hush-2.jpg" },
     { id: "vision-hush-design", type: "image", category: "pictures", name: "Hush interface design", image: "./vision/hush.jpg" },
+    { id: "vision-hushscape", type: "image", category: "pictures", name: "Hushscape identity", image: "./vision/hushscape.jpg" },
     { id: "vision-gbv-campaign", type: "image", category: "pictures", name: "Gender-based violence campaign", image: "./vision/hushy.jpg" },
     { id: "vision-lunia-listing", type: "image", category: "pictures", name: "Lunia — app I developed in 2023 (Google Play listing)", image: "./vision/lun.jpg" },
     { id: "vision-lunia-mobile", type: "image", category: "pictures", name: "Lunia — app I developed in 2023 (mobile screen)", image: "./vision/lunia.jpg" },
+    { id: "vision-sesyme-at-work", type: "image", category: "pictures", name: "Sesyme at work", image: "./vision/mee.jpg" },
     { id: "vision-mpilo-feature", type: "image", category: "pictures", name: "Mpilo community feature", image: "./vision/mpilo.jpg" },
     { id: "vision-technology-feature", type: "image", category: "pictures", name: "Technology taken to the next level", image: "./vision/news.jpg" },
+    { id: "vision-ply-project", type: "image", category: "pictures", name: "Ply project display", image: "./vision/ply.jpg" },
     { id: "vision-sesyme-platform", type: "image", category: "pictures", name: "Sesyme co-learning platform", image: "./vision/ses.jpg" },
     { id: "vision-sesyme-mockups", type: "image", category: "pictures", name: "Sesyme product mockups", image: "./vision/sesyme.jpeg" },
+    { id: "vision-community-sport", type: "image", category: "pictures", name: "Community sports activity", image: "./vision/soc.jpg" },
+    { id: "vision-star-card", type: "image", category: "pictures", name: "Recognition card", image: "./vision/star.jpg" },
     { id: "vision-takeda-design", type: "image", category: "pictures", name: "Pharmaceutical client design workspace (anonymised)", image: "./vision/takeda.jpg" },
-    { id: "vision-team-workshop", type: "image", category: "pictures", name: "Team workshop", image: "./vision/vd.jpg" }
+    { id: "vision-team-workshop", type: "image", category: "pictures", name: "Team workshop", image: "./vision/vd.jpg" },
+    { id: "vision-video-call", type: "image", category: "pictures", name: "Virtual project meeting", image: "./vision/vv.jpg" },
   ]
 };
 
@@ -193,7 +205,8 @@ window.LIBRARY_RESOURCES = {
     { id: "discover", label: "Discover & define" },
     { id: "design", label: "Design" },
     { id: "build", label: "Build" },
-    { id: "test", label: "Test & ship" }
+    { id: "test", label: "Test & ship" },
+    { id: "measure", label: "Measure & learn" }
   ],
   items: [
     /* ── Inspiration: where I look before I open Figma or VS Code ──── */
@@ -259,8 +272,6 @@ window.LIBRARY_RESOURCES = {
     /* ── Discover and define ────────────────────────────────────────── */
     { id: "miro", name: "Miro", url: "https://miro.com", category: "discover",
       description: "Workshops, journey maps and affinity sorting with the client in the room or remote." },
-    { id: "hotjar", name: "Hotjar", url: "https://www.hotjar.com", category: "discover", noPreview: true,
-      description: "Heatmaps, recordings and short surveys to see where people struggle on the live product." },
     { id: "maze", name: "Maze", url: "https://maze.co", category: "discover", noPreview: true,
       description: "Unmoderated usability tests on prototypes, with task success and time on task." },
     { id: "notion", name: "Notion", url: "https://www.notion.so", category: "discover",
@@ -310,6 +321,18 @@ window.LIBRARY_RESOURCES = {
     { id: "vercel", name: "Vercel", url: "https://vercel.com", category: "test",
       description: "Preview deployments on every pull request, then production." },
     { id: "netlify", name: "Netlify", url: "https://www.netlify.com", category: "test",
-      description: "Static hosting and forms for client sites." }
+      description: "Static hosting and forms for client sites." },
+
+    /* ── Measure and learn: analytics after release ─────────────────── */
+    { id: "google-analytics", name: "Google Analytics 4", url: "https://analytics.google.com", category: "measure", noPreview: true,
+      description: "Traffic, events and conversion funnels. The baseline numbers on every site I ship." },
+    { id: "microsoft-clarity", name: "Microsoft Clarity", url: "https://clarity.microsoft.com", category: "measure", noPreview: true,
+      description: "Free heatmaps and session recordings, with rage-click and dead-click detection." },
+    { id: "hotjar", name: "Hotjar", url: "https://www.hotjar.com", category: "measure", noPreview: true,
+      description: "Heatmaps, recordings and short on-page surveys to see where people struggle." },
+    { id: "looker-studio", name: "Looker Studio", url: "https://lookerstudio.google.com", category: "measure", noPreview: true,
+      description: "Dashboards on top of GA4 and spreadsheets, so clients see the numbers without logging in anywhere." },
+    { id: "search-console", name: "Google Search Console", url: "https://search.google.com/search-console", category: "measure", noPreview: true,
+      description: "Search impressions, indexing and Core Web Vitals field data for the SEO work." }
   ]
 };
