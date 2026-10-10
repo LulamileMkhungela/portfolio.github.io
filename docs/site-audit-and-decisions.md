@@ -72,3 +72,9 @@ Metrics in the CV and case studies (92% UAT, 65%, 35%, 32% checkout, 60% discove
 - **Repo-wide search for "Lead" and "AddMoreDigital":** no live page still says "Lead UI/UX Designer" for AddmoreDigital. The remaining "Lead" hits are the FoodieZone title (agreed), testimonial job titles, and design-language comments. The AddmoreDigital project card and case study use the client name, as the case study always has.
 - **Open:** the CV highlights (92% UAT, 65%, 35%, 32% checkout, 18% order value, 6-micro-frontend, 13-endpoint) still have no source in the repo. The CV also names clients (Eskom, Toyota South Africa, Vodacom) in the Experience list. Both need a decision before publication.
 - **Decision (user, this session):** the CV metrics (92% UAT, 65%, 35%, 32%, 18%, and the architecture figures) and the CV client names (Eskom, Toyota South Africa, Vodacom) are kept as written. The user confirmed these as accurate and publishable. This is the user's confirmation, not a source in the repo.
+
+## 11. Role titles updated (user, latest)
+- **AddmoreDigital:** "UI/UX Designer, then Lead UI/UX Designer", after hours alongside iOCO (2021 to 2022). Supersedes the "Freelance UI/UX Designer" entry in section 3.
+- **The Digital Academy:** "Lead UI/UX Designer", 1 Aug 2018 to 31 Jan 2019. Supersedes the "intern" entry in section 3.
+- **Nerdma and FoodieZone:** left off the revised CV at the user's request. They stay on the site.
+- The revised CV is in `docs/cv/` (see `CV-review-notes.md`). It is built from `Lulamile_Mkhungela_2026.pdf`, which is on the root of `main`.

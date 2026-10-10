@@ -188,7 +188,7 @@ INDEPENDENT = [
      ["Applied a design-thinking process and designed six interactive prototypes for government platforms from scratch, "
       "in Figma for Power Pages and Canvas Apps. The designs follow South African government branding standards, and the "
       "internal team received a system they could maintain independently."]),
-    ("AddMoreDigital", "Lead UI/UX Designer",
+    ("AddMoreDigital", "UI/UX Designer, then Lead UI/UX Designer",
      "Sep 2021 – Sep 2022 · After-hours contract, concurrent with full-time role at iOCO",
      ["Designed and delivered Aziza, a GBV emergency-response app with real-time officer dispatch, a station dashboard, and "
       "live map tracking. Led concurrent Agile sprints across two products, managing five developers and three designers. "
