@@ -41,34 +41,32 @@ if(p.get("appearance")==="dark"){document.documentElement.classList.add("is-dark
 <div><b>Stack</b>W3C DTCG tokens, Style Dictionary, React, Tailwind, ESLint, Oxlint</div>
 </div>
 
-<section><h2>The problem</h2>
-<p>Every team says it has a design system. Most have a Figma file that quietly drifts from what is in production.</p>
-<div class="cols">
-<div><b>Design and code drift apart</b><br>A token changes in Figma, a value gets hard-coded in one app, and within a release or two nobody can say what the real spacing scale is.</div>
-<div><b>Every framework needs the same tokens, differently</b><br>CSS custom properties, Tailwind config, SCSS maps and TypeScript constants all express one design decision four different ways.</div>
-<div><b>Nobody can find the component they need</b><br>Components are scattered across files, stories and tickets, with no single place to search by name, token or framework.</div>
-<div><b>Documentation is the last thing updated</b><br>Usage rules live in people's heads or in a document from two renames ago.</div>
-</div></section>
+<section><h2>Context and stakes</h2>
+<p>Every team says it has a design system. Most have a Figma file that quietly drifts from what is in production. A token changes in Figma, a value gets hard-coded in one app, and within a release or two nobody can say what the real spacing scale is.</p>
+<p>It hits three people: the design-system maintainer who has to answer "what is the value now?", the front-end developer who hard-codes a hex that will be wrong next quarter, and the engineering lead who has to stop a release because two screens disagree.</p>
+<p><b>What would have happened if nothing changed:</b> inconsistent interfaces and design reviews that turn into archaeology.</p></section>
 
-<section><h2>Who it is for</h2>
-<div class="cols">
-<div><b>The design system maintainer</b><br>Owns the tokens and components, and wants to publish a decision once and know every framework picks it up.</div>
-<div><b>The front-end developer</b><br>Wants the right token, in the right format, with the usage rules attached, instead of a hard-coded hex.</div>
-<div><b>The engineering lead</b><br>Wants to see that a UI change came from the token source rather than a hand edit.</div>
-</div></section>
+<section><h2>My role and boundaries</h2>
+<p>I was the lead product designer and front-end developer. I designed the token model, wrote the pipeline, built the dashboard and linter, and documented the system. It was self-initiated, so I set the scope and the approach.</p></section>
 
-<section><h2>Decisions</h2>
+<section><h2>Three decisions</h2>
 <div class="callout"><h3>1. One source of truth: the tokens</h3>
-<p>Figma variables are the input, and <code>tokens.json</code> is the single source of truth. Style Dictionary builds the output for every target from that one file. The model is 41 W3C DTCG tokens, covering primitives, semantic roles and component-level values, so one name means the same thing in Figma, CSS and TypeScript.</p></div>
+<p><b>Options considered:</b> keeping values in each framework's own files, such as CSS variables, Tailwind config and TypeScript constants, and syncing them by hand.</p>
+<p><b>Chose:</b> Figma variables as the input and <code>tokens.json</code> as the single source. Style Dictionary builds the output for every target. The model is 41 W3C DTCG tokens, so one name means the same thing in Figma, CSS and TypeScript.</p>
+<p><b>Trade-off accepted:</b> the token model has to be designed and maintained up front, before any component is built.</p></div>
 <div class="callout"><h3>2. The advisory proposes; it never writes</h3>
-<p>A design-intelligence catalogue turns a direction, such as "dark fintech dashboard", into a token proposal. Each proposal includes a map of where each token came from, seven WCAG contrast checks, and a record of what was deliberately not made into a token. A person approves the proposal before it touches the source.</p></div>
+<p><b>Options considered:</b> letting a direction, such as "dark fintech dashboard", write tokens straight into the source.</p>
+<p><b>Chose:</b> the advisory produces a proposal with a map of where each token came from, seven WCAG contrast checks, and a record of what was not made into a token. A person approves it before it touches the source.</p>
+<p><b>Trade-off accepted:</b> every new direction needs a human approval step, so it is slower than automatic generation.</p></div>
 <div class="callout"><h3>3. When the advisory and the linter disagree, the linter wins</h3>
-<p><code>@designops/lint</code> runs six rules in ESLint and Oxlint: no restyling system components, no raw colours, no arbitrary values, no inline styles, no unknown classes, and no unreadable class values. Each diagnostic explains itself and suggests a fix from the team's own theme.</p></div>
+<p><b>Options considered:</b> trusting the advisory's output and checking only in code review.</p>
+<p><b>Chose:</b> <code>@designops/lint</code>, with six rules in ESLint and Oxlint: no restyling system components, no raw colours, no arbitrary values, no inline styles, no unknown classes, no unreadable class values. Each diagnostic explains itself and suggests a fix from the team's theme.</p>
+<p><b>Trade-off accepted:</b> strict rules can block a change that looks reasonable, so developers have to fix or justify it.</p></div>
 </section>
 
 <section><h2>Process</h2>
 <div class="cols">
-<div><b>1. Discovery</b><br>Mapped where design and development drift apart, and for whom.</div>
+<div><b>1. Discovery</b><br>Mapped where design and development drift apart.</div>
 <div><b>2. Audit and token model</b><br>Found which tokens were real and which had drifted.</div>
 <div><b>3. Advise</b><br>Turned a direction into a token proposal.</div>
 <div><b>4. Build</b><br>One source, fourteen framework targets.</div>
@@ -78,23 +76,23 @@ if(p.get("appearance")==="dark"){document.documentElement.classList.add("is-dark
 <figure><img src="../images/work/design-ops-flow.webp" alt="DesignOps token pipeline diagram" loading="lazy"><figcaption>From Figma variables to tokens.json to every framework target.</figcaption></figure>
 </section>
 
-<section><h2>In the product</h2>
-<p>The dashboard is the workspace where the pipeline is visible. It has ten views with no build step, covering tokens and components, the advisory catalogue, the demo gallery, a live lint playground and the request board. Search reaches components, tokens, frameworks and requests in one place.</p>
-<figure><img src="../images/work/live/designops-desktop.webp" alt="DesignOps overview on desktop" loading="lazy"><figcaption>The overview as it loads.</figcaption></figure>
-<figure><img src="../images/work/live/designops-lint.webp" alt="DesignOps lint view" loading="lazy"><figcaption>The lint view: each diagnostic explains its own fix.</figcaption></figure>
-<figure><img src="../images/work/live/designops-demo-site.webp" alt="One of forty generated demo sites" loading="lazy"><figcaption>One of the forty demo sites, built from the components and linted clean.</figcaption></figure>
-<figure><img src="../images/work/live/designops-mobile.webp" alt="DesignOps on a phone" loading="lazy"><figcaption>The same workspace on a phone.</figcaption></figure>
-</section>
-
-<section><h2>Outcome</h2>
-<p>A design change is a commit rather than a conversation, and a lint failure is a design decision caught by the pipeline instead of in review.</p>
+<section><h2>Outcome and evidence</h2>
+<p>A design change is a commit rather than a conversation, and a lint failure is a design decision caught by the pipeline instead of in review. The dashboard documents the system as it actually is.</p>
 <div class="stats">
 <div class="stat"><strong>41</strong><span>W3C DTCG tokens in the pipeline</span></div>
 <div class="stat"><strong>14</strong><span>framework targets from one source</span></div>
 <div class="stat"><strong>6</strong><span>lint rules across ESLint and Oxlint</span></div>
 <div class="stat"><strong>40</strong><span>generated demo sites, zero lint findings</span></div>
 </div>
-<p>The source files, the working product and the code are available on request.</p>
+<p>Method: the sites are generated from the components, and each is checked by the linter and by measured contrast on every build. The source files, the working product and the code are available on request.</p>
+</section>
+
+<section><h2>In the product</h2>
+<p>The dashboard has ten views with no build step, covering tokens and components, the advisory catalogue, the demo gallery, a live lint playground and the request board. Search reaches components, tokens, frameworks and requests in one place.</p>
+<figure><img src="../images/work/live/designops-desktop.webp" alt="DesignOps overview on desktop" loading="lazy"><figcaption>The overview as it loads.</figcaption></figure>
+<figure><img src="../images/work/live/designops-lint.webp" alt="DesignOps lint view" loading="lazy"><figcaption>The lint view: each diagnostic explains its own fix.</figcaption></figure>
+<figure><img src="../images/work/live/designops-demo-site.webp" alt="One of forty generated demo sites" loading="lazy"><figcaption>One of the forty demo sites, built from the components and linted clean.</figcaption></figure>
+<figure><img src="../images/work/live/designops-mobile.webp" alt="DesignOps on a phone" loading="lazy"><figcaption>The same workspace on a phone.</figcaption></figure>
 </section>
 
 <div class="next"><b>Next:</b> <a href="toyota-connected-apps.html?embedded=1">Toyota Connected Apps →</a></div>
