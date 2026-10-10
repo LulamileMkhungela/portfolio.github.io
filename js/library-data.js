@@ -25,7 +25,6 @@ window.LIBRARY_DATA = {
   items: [
     /* ── Archive: earlier and side projects (moved from the homepage) ── */
     { id: "archive-service-waze", name: "ServiceWaze", url: "https://lulamilemkhungela.github.io/ServiceWaze/", category: "archive", noPreview: true, description: "Civic Tech PWA (open source)" },
-    { id: "archive-brand-strategy-programme", name: "Toyota Brand Programme", url: "portfolio/brand-strategy-programme.html", category: "archive", noPreview: true, description: "Brand strategy · KINTO" },
     { id: "archive-foodiezone-pwa", name: "FoodieZone", url: "portfolio/foodiezone-pwa.html", category: "archive", noPreview: true, description: "Ordering PWA" },
     { id: "archive-designops-design-system", name: "DesignOps", url: "portfolio/designops-design-system.html", category: "archive", noPreview: true, description: "Design system" },
     { id: "archive-lula-gazette", name: "LulaGazette", url: "portfolio/lula-gazette.html", category: "archive", noPreview: true, description: "Legal intelligence" },
