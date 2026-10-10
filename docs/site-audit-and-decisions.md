@@ -65,3 +65,9 @@ Metrics in the CV and case studies (92% UAT, 65%, 35%, 32% checkout, 60% discove
 - **Checkout +32%, order value +18%, 7-step flow to 3:** the git history (6 commits) and the initial site contain no case study for this, and no deleted case-study files. It remains a CV highlight, which is the only public place it appears. Give me the project name to write a case study for it.
 - **Digital Academy references:** shown with names, as you asked. They appear in the Messages app.
 - **Four missing clients:** added as one anonymised page, `portfolio/enterprise-engagements-anonymised.html`, built only from CV facts (sector, iOCO 2021 to present, and the audit-platform highlight). It is linked from the CV window. No client names appear anywhere on the page. Full case studies need your project facts.
+
+## 10. Checks completed (SnB site, repo-wide search)
+- **SnB website** (https://www.snbconsultancy.co.za/) confirms: 100% black-owned network founded 2015; 50+ clients, 12+ services, 3 offices (Johannesburg, Mthatha, Pongola); audit, accounting and taxation service lists. The page's client facts now match the source.
+- **"Sesyme"** does not appear on the SnB site. It is the employer name from the CV, so it stays on the page as written. Confirm the spelling and wording with the employer before publication.
+- **Repo-wide search for "Lead" and "AddMoreDigital":** no live page still says "Lead UI/UX Designer" for AddmoreDigital. The remaining "Lead" hits are the FoodieZone title (agreed), testimonial job titles, and design-language comments. The AddmoreDigital project card and case study use the client name, as the case study always has.
+- **Open:** the CV highlights (92% UAT, 65%, 35%, 32% checkout, 18% order value, 6-micro-frontend, 13-endpoint) still have no source in the repo. The CV also names clients (Eskom, Toyota South Africa, Vodacom) in the Experience list. Both need a decision before publication.
