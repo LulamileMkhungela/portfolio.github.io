@@ -164,6 +164,11 @@ NEW_CASES = [
             "Auditors review newly captured articles in one register, and alerts reach only the people linked to each "
             "auditee. Results are not yet evidenced."
         ),
+        "tradeoffs": [
+            ("Limit alerts to users linked to the affected auditee", "Fewer people receive each alert, so a reviewer outside the link may miss one. (Stated on the page: a design and a security choice.)"),
+            ("Trace every scenario to a requirement and an MVP flag", "Eleven scenarios with expected and actual results take time to keep current. To confirm: who maintains the workbook."),
+            ("Make the register the single review point", "One review point means the register is the bottleneck for every article. To confirm: how review load is shared."),
+        ],
         "figures": [],
     },
     {
@@ -211,6 +216,10 @@ NEW_CASES = [
             "The scoring rules are written out as fixed values, with roles beside them. The source contains no results, "
             "so none are shown."
         ),
+        "tradeoffs": [
+            ("Keep the scoring rules explicit", "Fixed scores are easy to audit but do not adjust to context. (Stated in the checks: a fixed score table.)"),
+            ("Document roles alongside the numbers", "Every figure needs its owner recorded, so the workbook takes more upkeep. To confirm: who keeps the owners current."),
+        ],
         "figures": [],
     },
     {
@@ -403,6 +412,12 @@ NEW_CASES = [
             "One restaurant website and PWA with the menu, daily special, hours and online ordering together. Results "
             "are not yet evidenced."
         ),
+        "tradeoffs": [
+            ("Lead with the menu", "Menu-first pushes the location and the story lower on the page. To confirm: how visitors found the address."),
+            ("Keep ordering one tap from the menu", "The Add action appears in two places, so the same action is repeated. To confirm: whether the repetition caused confusion."),
+            ("Show hours and location on the home page", "More information on the home page makes the first screen longer. To confirm: how the home page reads on a phone."),
+            ("Give the daily special its own card", "A dedicated card adds a block to the home page, and the special has a time window. To confirm: how the card is updated."),
+        ],
         "figures": [],
     },
     {
@@ -468,6 +483,11 @@ NEW_CASES = [
             ("Toyota Remote on Google Play", "https://play.google.com/store/apps/details?id=za.co.toyota.toyotaremote&hl=en_ZA"),
             ("Lexus app on Google Play", "https://play.google.com/store/apps/details?id=com.eliance.lexusmobile&hl=en_ZA&gl=US"),
             ("KINTO One page", "https://www.toyota.co.za/kinto-personal"),
+        ],
+        "tradeoffs": [
+            ("Align with the Toyota global brand team", "Global review adds approval time before each launch. To confirm: how long the review took."),
+            ("Adding missing components", "Each new component needs design-team review, which slows the system's growth. (Stated in the checks: each component was reviewed with the design teams.)"),
+            ("Universal brand and design system", "One shared system gives local teams less room to vary the brand. To confirm: how much local variation was allowed."),
         ],
         "figures": [
             ("../images/work/brand-strategy-cover.webp", "Toyota mobility brands programme overview",

@@ -612,6 +612,17 @@ def body_for(case, index):
             '<div class="pk-copy">' + "".join(f"<p>{e(c)}</p>" for c in case["checks"]) + '</div></div></section>\n'
         )
     parts.append(checks_html)
+    if case.get("tradeoffs"):
+        tcards = "".join(
+            f'<article class="pk-card"><span class="pk-card__index">{i:02d}</span>'
+            f'<div><h3>{e(t)}</h3><p>{e(d)}</p></div></article>'
+            for i, (t, d) in enumerate(case["tradeoffs"], 1)
+        )
+        parts.append(
+            '\t\t\t\t<section class="pk-section pk-section--tight" id="tradeoffs"><div class="pk-shell">'
+            '<p class="pk-eyebrow">Trade-offs</p>'
+            f'<div class="pk-grid-3">{tcards}</div></div></section>\n'
+        )
     results = "".join(
         f'<div class="pk-outcome"><span class="pk-outcome__num">{i:02d}</span>'
         f'<span class="pk-outcome__text">{e(t)}<small>{e(d)}</small></span></div>'
