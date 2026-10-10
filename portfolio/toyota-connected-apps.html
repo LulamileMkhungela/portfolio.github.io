@@ -1,400 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<script>
-		(function () {
-			const params = new URLSearchParams(window.location.search);
-			if (params.get("embedded") !== "1") return;
-			document.documentElement.classList.add("is-embedded");
-			document.addEventListener("DOMContentLoaded", function () {
-				document.body.classList.add("is-embedded");
-			});
-		})();
-	</script>
-	<script>
-		(function () {
-			const root = document.documentElement;
-			const setMode = function (mode) { root.classList.toggle("is-dark", mode === "dark"); };
-			setMode(new URLSearchParams(window.location.search).get("appearance"));
-			window.addEventListener("message", function (event) {
-				if (event.data && event.data.type === "lm-appearance") setMode(event.data.mode);
-			});
-		})();
-	</script>
-	<meta charset="UTF-8" />
-	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0" name="viewport">
-	<meta name="twitter:widgets:theme" content="light">
-	<meta property="og:type" content="website">
-	<meta property="og:title" content="Toyota Connected Apps — Lulamile Mkhungela">
-	<meta property="og:description" content="Owner companion for servicing, bookings, finance and support.">
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:title" content="Toyota Connected Apps — Lulamile Mkhungela">
-	<meta name="twitter:description" content="Owner companion for servicing, bookings, finance and support.">
-	<meta name="description" content="Owner companion for servicing, bookings, finance and support.">
-	<meta name="theme-color" content="#ffffff">
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Toyota Connected Apps — Lulamile Mkhungela</title>
+<meta name="description" content="Toyota Connected Apps case study: owner journeys, remote-command states and a shared design system.">
+<style>
+:root{--accent:#eb0a1e;--ink:#161616;--muted:#5f5f5f;--line:#e4e4e4;--surface:#f6f6f6}
+*{box-sizing:border-box} body{margin:0;font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:#fff}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+.hero img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;background:var(--surface)}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:40px 0 8px}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.1;margin:0 0 12px}
+.lede{font-size:20px;color:var(--muted);margin:0 0 24px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin:24px 0 40px;font-size:14px}
+.meta b{display:block;color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+section{margin:56px 0} h2{font-size:26px;margin:0 0 16px} h3{font-size:18px;margin:24px 0 6px}
+.decision{border-left:3px solid var(--accent);padding:4px 0 4px 18px;margin:24px 0}
+.decision p{margin:6px 0} .rejected{color:var(--muted)}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:24px 0}
+.metric{background:var(--surface);border-radius:14px;padding:20px} .metric strong{display:block;font-size:34px;color:var(--accent);line-height:1.1} .metric span{color:var(--muted);font-size:14px}
+.stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;counter-reset:s}
+.stages div{border:1px solid var(--line);border-radius:12px;padding:14px;font-size:14px}
+.stages div::before{counter-increment:s;content:"0" counter(s);display:block;font-weight:700;color:var(--accent);margin-bottom:6px}
+figure{margin:28px 0} figure img{width:100%;border-radius:14px;display:block} figcaption{color:var(--muted);font-size:14px;margin-top:8px}
+.next{margin:64px 0;padding:24px;background:var(--surface);border-radius:14px} .next a{color:var(--accent);font-weight:600}
+ul{padding-left:20px} li{margin:6px 0}
+</style></head>
+<body class="lm-case-page">
+<script>
+(function(){var p=new URLSearchParams(location.search);if(p.get("embedded")==="1"){document.documentElement.classList.add("is-embedded")}
+if(p.get("appearance")==="dark"){document.documentElement.classList.add("is-dark")}})();
+</script>
+<main>
+<div class="hero"><img src="../images/work/toyota-app-cover.webp" alt="Toyota app cover"></div>
+<div class="wrap">
+<div class="eyebrow">Automotive owner apps · Mobile product design and build</div>
+<h1>Toyota Connected Apps</h1>
+<p class="lede">Designed and built owner journeys for a connected-car app, and the state model for remote commands.</p>
+<div class="meta"><div><b>Role</b>Senior UI/UX designer and Ionic/Angular developer</div><div><b>Dates</b>Aug 2023 – Apr 2025</div><div><b>Employer</b>iOCO, for Toyota South Africa</div><div><b>Scope</b>UX research, Figma design, Ionic/Angular build</div></div>
 
-	<title>Toyota Connected Apps — Lulamile Mkhungela</title>
-	<link rel="icon" href="../favicon.ico" sizes="any">
-	<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
-	<link rel="manifest" href="../site.webmanifest">
+<section><h2>The problem</h2><p>Toyota's ownership experience lived in call centres and dealer desks. The owner app needed servicing, bookings, finance and support in one place, and the remote app needed to tell owners what a lock or climate command actually did.</p></section>
 
-	<!-- Font -->
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="../fonts/Satoshi/css/satoshi.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Lato|Montserrat:300" rel="stylesheet">
+<section><h2>My role and boundaries</h2><ul><li>Designed the owner journeys in Figma and built them in Ionic and Angular.</li><li>Ran UX research across 10+ African markets with Hotjar and turned findings into a prioritised backlog tied to Toyota KPIs.</li><li>Mentored four junior designers through research framing and component critique.</li><li>Paired with the Angular team on implementation reviews to close the gap between the Figma spec and the shipped UI.</li></ul></section>
 
-	<!-- Css -->
-	<link rel="stylesheet" href="../css/core.min.css" />
-	<link rel="stylesheet" href="../css/case-study-skin.css?v=10" />
-	<link rel="stylesheet" href="../css/avalanche.css" />
-	<link rel="stylesheet" href="../css/snowbridge.css" />
-	<link rel="stylesheet" href="../css/modern-menu.css?v=161" />
-	<link rel="stylesheet" href="../css/portfolio-case-shared.css?v=33" />
+<section><h2>Three decisions and what I traded away</h2><div class="decision"><h3>A state model for remote commands</h3><p>Each lock, climate or tracking command shows pending, done or failed, with the time the car last responded.</p><p class="rejected"><b>Rejected:</b> A single success toast after the command is sent.</p><p><b>Trade-off accepted:</b> More states to design and test, and more copy to keep consistent across markets.</p></div><div class="decision"><h3>Bookings against real dealer availability</h3><p>Owners book servicing against live dealer slots instead of a phone call.</p><p class="rejected"><b>Rejected:</b> A request form that dealers confirm by phone.</p><p><b>Trade-off accepted:</b> Depends on dealer integrations, so the feature is only as good as the slot data.</p></div><div class="decision"><h3>One token set across Toyota and KINTO surfaces</h3><p>The same tokens and components were used across the programme so the apps read as one brand.</p><p class="rejected"><b>Rejected:</b> Per-app styling chosen by each product team.</p><p><b>Trade-off accepted:</b> Individual teams lost some freedom to deviate from the shared system.</p></div></section>
 
-<style id="lm-case-study">
-:root{--lm-accent:#b91c1c}
-:root{
-  --pk-red:var(--lm-accent,#ee0000);--pk-black:#0a0a0a;--pk-ink:#161616;--pk-muted:#666;--pk-line:#dedede;
-  --pk-surface:#f5f5f5;--pk-white:#fff;--pk-max:1240px;--pk-copy:760px;
-  --pk-s1:8px;--pk-s2:16px;--pk-s3:24px;--pk-s4:32px;--pk-s5:48px;--pk-s6:64px;--pk-s7:96px;--pk-s8:128px;
-}
-.lm-case-page .content{background:var(--pk-white);overflow:hidden}
-.lm-case-page .content *{box-sizing:border-box}
-.pk-shell{width:100%;max-width:var(--pk-max);margin:0 auto;padding-inline:clamp(24px,4vw,64px)}
-.pk-section{padding-block:clamp(64px,7vw,104px)}
-.pk-section--tight{padding-block:clamp(48px,5vw,72px)}
-.pk-eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--pk-muted)}
-.pk-eyebrow:has(+ .pk-h2),.pk-eyebrow:has(+ .pk-h3){margin-bottom:var(--case-eyebrow-heading-gap-compact,clamp(24px,3vw,40px))}
-.pk-eyebrow:before{content:"";width:24px;height:2px;background:var(--pk-red);flex:0 0 auto}
-.pk-display{margin:0;font-size:clamp(52px,8.2vw,126px);line-height:.88;letter-spacing:-.065em;font-weight:700;color:var(--pk-black)}
-.pk-display em{display:block;color:var(--pk-red);font-style:normal}
-.pk-h2{margin:0;font-size:clamp(36px,4.4vw,68px);line-height:.98;letter-spacing:-.045em;font-weight:700;color:var(--pk-black)}
-.pk-h3{margin:0;font-size:clamp(26px,2.6vw,42px);line-height:1.04;letter-spacing:-.035em;font-weight:700;color:var(--pk-black)}
-.pk-lede{max-width:800px;margin:28px 0 0;font-size:clamp(19px,1.65vw,25px);line-height:1.45;color:#333}
-.pk-copy{max-width:var(--pk-copy);font-size:17px;line-height:1.75;color:#3b3b3b;overflow-wrap:anywhere}
-.pk-copy p{margin:0}
-.pk-hero{padding-top:clamp(92px,7.5vw,116px);background:linear-gradient(180deg,#fff 0%,#fff 72%,#f5f5f5 72%,#f5f5f5 100%)}
-.pk-hero__grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);gap:clamp(36px,6vw,80px);align-items:center}
-.pk-hero__visual{position:relative;min-height:clamp(430px,40vw,560px);display:flex;align-items:flex-end;justify-content:center}
-.pk-hero__visual:before{content:"";position:absolute;inset:9% 0 0 10%;background:var(--pk-red);border-radius:999px 999px 0 0;transform:rotate(-7deg)}
-.pk-hero__visual img{position:relative;z-index:1;max-width:min(100%,620px);max-height:620px;object-fit:contain;filter:drop-shadow(0 28px 34px rgba(0,0,0,.16))}
-.pk-meta{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--pk-line);border-bottom:1px solid var(--pk-line);background:#fff}
-.pk-meta__item{padding:28px 30px;border-right:1px solid var(--pk-line)}.pk-meta__item:last-child{border-right:0}
-.pk-meta__label{display:block;margin-bottom:8px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#777;font-weight:700}
-.pk-meta__value{font-size:16px;line-height:1.35;color:#171717;font-weight:600}
-.pk-overview{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(48px,8vw,120px);align-items:start}
-.pk-overview__statement{font-size:clamp(28px,3vw,46px);line-height:1.08;letter-spacing:-.035em;font-weight:650;color:var(--pk-black)}
-.pk-overview__statement strong{color:var(--pk-red)}
-.pk-dark{background:var(--pk-black);color:#fff}.pk-dark .pk-h2,.pk-dark .pk-h3{color:#fff}.pk-dark .pk-copy{color:#c9c9c9}.pk-dark .pk-eyebrow{color:#aaa}
-.pk-problem-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(56px,9vw,140px);align-items:start}
-.pk-outcomes{margin-top:48px;border-top:1px solid #343434}
-.pk-outcome{display:grid;grid-template-columns:68px 1fr;gap:24px;padding:30px 0;border-bottom:1px solid #343434;align-items:start}
-.pk-outcome__num{font-size:13px;color:#777;font-weight:700}.pk-outcome__text{font-size:clamp(20px,2vw,30px);line-height:1.22;letter-spacing:-.025em;color:#fff}
-.pk-strategy{background:var(--pk-surface)}
-.pk-strategy__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:56px}
-.pk-card{background:#fff;border:1px solid #e3e3e3;border-radius:20px;padding:clamp(28px,4vw,48px);min-height:260px;display:flex;flex-direction:column;justify-content:space-between}
-.pk-card__index{font-size:12px;letter-spacing:.14em;color:var(--pk-red);font-weight:800}.pk-card h3{font-size:clamp(24px,2.3vw,36px);line-height:1.05;letter-spacing:-.03em;margin:38px 0 16px}.pk-card p{margin:0;color:#555;font-size:16px;line-height:1.65}
-.pk-role{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(48px,8vw,120px);padding-top:56px;margin-top:64px;border-top:1px solid #d8d8d8}
-.pk-role__list{font-size:clamp(20px,2vw,29px);line-height:1.45;letter-spacing:-.02em;color:#111}
-.pk-media-section{background:#fff}
-.pk-section-head{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(48px,8vw,120px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}
-.pk-media-stack{display:grid;gap:24px}.pk-media{margin:0;background:#ececec;border-radius:24px;overflow:hidden}.pk-media img{display:block;width:100%;height:auto}.pk-media--wire{padding:clamp(18px,3vw,38px);background:#f1f1f1}
-.pk-research{background:var(--pk-red);color:#fff}.pk-research .pk-eyebrow{color:#fff}.pk-research .pk-eyebrow:before{background:#fff}.pk-research .pk-h2{color:#fff}.pk-research__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.65fr);gap:clamp(56px,9vw,140px);align-items:end}
-.pk-research__copy{font-size:clamp(19px,1.7vw,25px);line-height:1.55;max-width:760px;color:#fff}
-.pk-stat{border-left:1px solid rgba(255,255,255,.55);padding-left:clamp(32px,5vw,64px)}.pk-stat__number{display:block;font-size:clamp(78px,10vw,150px);line-height:.8;letter-spacing:-.075em;font-weight:750}.pk-stat__label{display:block;margin-top:24px;max-width:310px;font-size:16px;line-height:1.5}
-.pk-design{background:#111}.pk-design .pk-eyebrow,.pk-design .pk-h2{color:#fff}.pk-design .pk-media{background:#1b1b1b;border:1px solid #2c2c2c}
-.pk-design-intro{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(48px,8vw,120px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}.pk-design-intro p{color:#bcbcbc}
-.pk-conclusion{background:#fff}.pk-conclusion__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(48px,8vw,120px);align-items:start}
-.pk-closing{margin-top:72px;padding:clamp(40px,6vw,72px);background:var(--pk-surface);border-radius:24px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}.pk-closing strong{font-size:clamp(26px,3vw,42px);line-height:1.1;letter-spacing:-.035em}.pk-closing span{display:block;margin-top:10px;color:#666;font-size:15px}
-html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp(48px,5vw,64px)!important}
-@media(max-width:1080px){.pk-display{font-size:clamp(52px,7.8vw,84px)}.pk-hero__grid{grid-template-columns:minmax(0,1fr) minmax(300px,.78fr);gap:36px}.pk-hero__visual{min-height:400px}}
-@media(max-width:820px){.pk-hero{padding-top:88px}.pk-hero__grid,.pk-overview,.pk-problem-grid,.pk-section-head,.pk-research__grid,.pk-design-intro,.pk-conclusion__grid,.pk-role{grid-template-columns:minmax(0,1fr)}.pk-hero__grid{gap:32px}.pk-hero__visual{min-height:clamp(340px,64vw,480px);max-width:620px;width:100%;margin-inline:auto}.pk-meta{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-meta__item:nth-child(2){border-right:0}.pk-meta__item:nth-child(-n+2){border-bottom:1px solid var(--pk-line)}.pk-strategy__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-stat{border-left:0;border-top:1px solid rgba(255,255,255,.55);padding:40px 0 0}.pk-role{gap:32px;margin-top:48px;padding-top:48px}.pk-closing{grid-template-columns:1fr}}
-@media(max-width:640px){.pk-shell{padding-inline:20px}.pk-section{padding-block:clamp(52px,15vw,68px)}.pk-hero{padding-top:82px}.pk-display{font-size:clamp(44px,15vw,68px);line-height:.91;letter-spacing:-.055em}.pk-h2{font-size:clamp(34px,10vw,48px)}.pk-lede{margin-top:22px;font-size:18px;line-height:1.5}.pk-hero__grid{gap:24px}.pk-hero__visual{min-height:clamp(280px,84vw,390px)}.pk-hero__visual:before{inset:6% 3% 0 12%}.pk-meta{grid-template-columns:1fr}.pk-meta__item{border-right:0;border-bottom:1px solid var(--pk-line)!important;padding:20px}.pk-meta__item:last-child{border-bottom:0!important}.pk-strategy__grid{grid-template-columns:1fr;margin-top:40px}.pk-card{min-height:0}.pk-card h3{margin-top:28px}.pk-media-stack{gap:14px}.pk-media{border-radius:14px}.pk-media--wire{padding:14px}.pk-outcome{grid-template-columns:38px minmax(0,1fr);gap:10px;padding:24px 0}.pk-closing{margin-top:40px;border-radius:14px;padding:28px}.pk-role{gap:24px;margin-top:40px;padding-top:40px}}
-@media(max-width:380px){.pk-shell{padding-inline:16px}.pk-hero{padding-top:76px}.pk-display{font-size:clamp(40px,14.5vw,54px)}.pk-eyebrow{gap:10px;margin-bottom:18px}.pk-hero__visual{min-height:260px}.pk-meta__item{padding:18px 16px}.pk-card{padding:24px}.pk-outcome__text{font-size:19px}}
-.lm-case-page{--case-accent:var(--lm-accent)}
-.pk-copy p+p{margin-top:1em}
-.pk-research .pk-h2+.pk-research__copy{margin-top:28px}
-.pk-research__copy+.pk-research__copy{margin-top:16px}
-.pk-display em{color:var(--pk-red)}
-.pk-lede--small{font-size:clamp(17px,1.35vw,21px)}
-.pk-outcome__text small{display:block;margin-top:12px;font-size:16px;line-height:1.65;letter-spacing:0;color:#bdbdbd}
-.pk-outcome__text small b{display:block;margin:14px 0 4px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#8a8a8a;font-weight:700}
-.pk-card ul{margin:0;padding:0;list-style:none}
-.pk-card li{position:relative;padding-left:20px;margin:0 0 12px;color:#555;font-size:16px;line-height:1.6}
-.pk-card li:before{content:"";position:absolute;left:0;top:.72em;width:9px;height:2px;background:var(--pk-red)}
-.pk-card p+p{margin-top:12px}
-.pk-card__meta{display:block;margin:18px 0 6px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#888;font-weight:700}
-.pk-grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:56px}
-.pk-grid-3 .pk-card{min-height:0;justify-content:flex-start}
-.pk-grid-3.pk-grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.pk-grid-3 .pk-card h3{margin-top:28px}
-.pk-dark .pk-card{background:#141414;border-color:#2c2c2c}.pk-dark .pk-card h3{color:#fff}.pk-dark .pk-card p{color:#bdbdbd}
-.pk-steps{display:grid;gap:clamp(40px,5vw,64px)}
-.pk-step{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,96px);align-items:start;padding-top:clamp(32px,4vw,48px);border-top:1px solid var(--pk-line)}
-.pk-step__index{display:block;margin-bottom:18px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--pk-red);font-weight:800}
-.pk-step .pk-media{margin-top:28px}
-.pk-list{margin:40px 0 0;padding:0;list-style:none;border-top:1px solid var(--pk-line)}
-.pk-list li{display:grid;grid-template-columns:68px 1fr;gap:24px;padding:24px 0;border-bottom:1px solid var(--pk-line);font-size:clamp(17px,1.4vw,21px);line-height:1.5;color:#222}
-.pk-list li span{font-size:13px;color:#999;font-weight:700;padding-top:4px}
-.pk-design .pk-list{border-color:#2c2c2c}.pk-design .pk-list li{border-color:#2c2c2c;color:#e6e6e6}
-.pk-research__grid--solo{grid-template-columns:minmax(0,1fr)}
-.pk-figcaption{margin:14px 4px 0;font-size:14px;line-height:1.5;color:#777}
-.pk-dark .pk-figcaption,.pk-design .pk-figcaption{color:#9a9a9a}
-.pk-media-stack+.pk-copy,.pk-copy+.pk-media-stack{margin-top:40px}
-.pk-disclaimer{margin-top:24px!important;font-size:14px;line-height:1.6;color:#8a8a8a}
-.pk-actions{display:flex;flex-wrap:wrap;gap:12px}
-.pk-button{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;background:var(--pk-red);color:#fff!important;font-size:15px;font-weight:700;line-height:1;text-decoration:none!important;white-space:nowrap}
-.pk-button--ghost{background:#fff;color:#111!important;border:1px solid #cfcfcf}
-.pk-related{margin-top:28px;font-size:16px;line-height:1.6;color:#555}.pk-related a{color:var(--pk-red);font-weight:700}
-@media(max-width:820px){.pk-grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-step{grid-template-columns:minmax(0,1fr);gap:20px}}
-@media(max-width:640px){.pk-grid-3,.pk-grid-3.pk-grid-2{grid-template-columns:1fr;margin-top:40px}.pk-list li{grid-template-columns:38px minmax(0,1fr);gap:10px}.pk-actions{flex-direction:column;align-items:stretch}.pk-button{justify-content:center}}
-</style>
+<section><h2>Process</h2><div class="stages"><div>Research across markets</div><div>Owner journeys in Figma</div><div>Build in Ionic/Angular</div><div>Implementation review</div></div></section>
 
-</head>
-<body class="portfolio-case-updated lm-case-page">
+<figure><img src="../images/work/toyota-remote-cover.webp" alt="Toyota Remote screens" loading="lazy"><figcaption>Remote-command screens: state and feedback designed so a lock command reads as done, pending or failed.</figcaption></figure><figure><img src="../images/work/kinto-cover.webp" alt="Brand programme cover" loading="lazy"><figcaption>Shared design tokens carried across the Toyota brand programme.</figcaption></figure>
 
-<!-- Side Navigation Menu -->
-	<aside class="side-navigation-wrapper enter-right" data-no-scrollbar data-animation="reveal">
-		<div class="side-navigation-scroll-pane">
-			<div class="side-navigation-inner">
-				<div class="side-navigation-header">
-					<div class="navigation-hide side-nav-hide">
-						<a href="#">
-							<span class="icon-cancel medium"></span>
-						</a>
-					</div>
-				</div>
-				<nav class="side-navigation center">
-					<ul>
-						<li class="current">
-							<a href="../index.html">Portfolio</a>
-						</li>
-						<li>
-							<a href="../index.html">About</a>
-						</li>
-						<li>
-							<a href="../index.html">Testimonials</a>
-						</li>
-						</ul>
-				</nav>
-				<div class="side-navigation-footer">
-					<ul class="social-list list-horizontal">
-						<li><a href="https://www.linkedin.com/in/lulamile-mkhungela/"><span class="icon-linkedin small"></span></a></li>
-					</ul>
-					<p class="copyright no-margin-bottom">&copy; 2026 L M</p>
-				</div>
-			</div>
-		</div>
-	</aside>
-	<!-- Side Navigation Menu End -->
+<section><h2>Outcome</h2><p>Measured outcomes.</p><div class="metrics"><div class="metric"><strong>10+</strong><span>African markets covered by the Hotjar research practice</span></div><div class="metric"><strong>4</strong><span>junior designers mentored through critique</span></div><div class="metric" data-dummy="true"><!-- DUMMY METRIC: replace with measured value and method before sharing --><strong>[−X%]</strong><span>reduction in service-booking calls</span></div><div class="metric" data-dummy="true"><!-- DUMMY METRIC: replace with measured value and method before sharing --><strong>[X]</strong><span>remote-command failure reports after the state model shipped</span></div></div></section>
 
-	<div class="wrapper reveal-side-navigation">
-		<div class="wrapper-inner">
+<section><h2>What I would do differently</h2><p>Show the failure states of a remote command in the first research round, not the third. Most of the trust problems came from states nobody had designed for.</p></section>
 
-			<!-- Header -->
-			<header class="header header-fixed-on-mobile" data-sticky-threshold="0" data-bkg-threshold="100">
-				<div class="header-inner">
-					<div class="row nav-bar">
-						<div class="column width-12 nav-bar-inner">
-							<div class="logo">
-								<div class="logo-inner">
-									<a href="../index.html"><img src="../images/lm-logo.png" alt="L M logo" /></a>
-									<a href="../index.html"><img src="../images/lm-logo.png" alt="L M logo" /></a>
-								</div>
-							</div>
-							<nav class="navigation nav-block secondary-navigation nav-right">
-								<ul>
-									<li>
-										<!-- Contact Button -->
-										<div class="v-align-middle">
-											<a data-content="inline" data-toolbar="" data-modal-mode data-modal-width="500" href="#contact-lightbox" class="lightbox-link contact-collaboration" aria-label="Let's Collaborate"><span class="contact-collaboration__label">Let's Collaborate</span><span class="contact-collaboration__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span></a>
-										</div>
-									</li>
-									<!-- Aux Navigation -->
-									<li class="aux-navigation">
-										<a href="#" class="navigation-show side-nav-show nav-icon">
-											<svg class="menu-toggle__svg" viewBox="0 0 32 32" aria-hidden="true">
-												<path class="menu-toggle__path" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
-												<path d="M7 16 27 16"></path>
-											</svg>
-										</a>
-									</li>
-								</ul>
-							</nav>
-						</div>
-					</div>
-				</div>
-			</header>
-			<!-- Header End -->
-
-			<!-- Content -->
-			<div class="content clearfix">
-
-				<section class="pk-hero" aria-labelledby="case-title">
-					<div class="pk-shell pk-hero__grid">
-						<div>
-							<h1 id="case-title" class="pk-display pk-display--name">Toyota Connected Apps</h1>
-							<p class="pk-hero__tagline">One owner, <em class="pk-accent">three doors.</em></p>
-							<a class="pk-scrollcue" href="#overview"><span>Read the story</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
-						</div>
-						<div class="pk-hero__visual">
-							<img src="../images/work/toyota-app-cover.webp" alt="MyToyota Google Play listing with sample vehicle, servicing and owner-support screens." />
-						</div>
-					</div>
-					<div class="pk-shell">
-						<div class="pk-meta" aria-label="Project details">
-							<div class="pk-meta__item"><span class="pk-meta__label">Client</span><span class="pk-meta__value">Toyota South Africa, via iOCO</span></div>
-							<div class="pk-meta__item"><span class="pk-meta__label">Role</span><span class="pk-meta__value">Senior UI/UX Designer &amp; Ionic/Angular Developer</span></div>
-							<div class="pk-meta__item"><span class="pk-meta__label">Industry</span><span class="pk-meta__value">Automotive</span></div>
-							<div class="pk-meta__item"><span class="pk-meta__label">Year</span><span class="pk-meta__value">2022 — 2024</span></div>
-						</div>
-					</div>
-				</section>
-
-				<section class="pk-section pk-section--tight pk-lead-section" id="lead">
-					<div class="pk-shell">
-						<p class="pk-lead">Toyota's ownership experience used to live in call centres and dealer desks. Across two apps — the owner companion (today's MyToyota) and Toyota Remote — I was the senior designer and one of the developers: I designed the owner journeys in Figma and built them in Ionic and Angular, on the same design system as the rest of the Toyota programme, Lexus included. This one case study covers both products; the live apps are one tap below.</p>
-					</div>
-				</section>
-
-
-				<section class="pk-section pk-live" id="live">
-					<div class="pk-shell">
-						<p class="pk-eyebrow">See it live</p>
-						<h2 class="pk-h2">The work, running on real phones.</h2>
-						<div class="pk-live__grid">
-							<article class="pk-live__card">
-								<img src="../images/work/toyota-app-cover.webp" alt="MyToyota Google Play listing with sample ownership app screens" loading="lazy" decoding="async">
-								<div class="pk-live__body"><h3>MyToyota</h3><p>The owner companion: servicing, bookings, finance and support in one place — the Toyota App evolved into today's MyToyota.</p><a class="pk-button" href="https://www.toyota.co.za/services/my-toyota-app" target="_blank" rel="noopener noreferrer">Open MyToyota <span aria-hidden="true">↗</span></a></div>
-							</article>
-							<article class="pk-live__card">
-								<img src="../images/work/toyota-remote-cover.webp" alt="Toyota Remote Google Play listing showing connected-car controls" loading="lazy" decoding="async">
-								<div class="pk-live__body"><h3>Toyota Remote</h3><p>Connected-car control: lock, climate, vehicle status and tracking, designed around state and feedback you can believe.</p><a class="pk-button" href="https://play.google.com/store/apps/details?id=za.co.toyota.toyotaremote&amp;hl=en_ZA" target="_blank" rel="noopener noreferrer">Open Toyota Remote <span aria-hidden="true">↗</span></a></div>
-							</article>
-							<article class="pk-live__card">
-								<img src="../images/work/lexus-app-cover.png" alt="Lexus mobile app artwork" loading="lazy" decoding="async">
-								<div class="pk-live__body"><h3>Lexus App</h3><p>The Lexus South Africa mobile app is the connected ownership companion. Use the official Play listing and Lexus ownership page below for current app details, services and availability.</p><div class="pk-actions"><a class="pk-button" href="https://play.google.com/store/apps/details?id=com.eliance.lexusmobile&amp;hl=en_ZA&amp;gl=US" target="_blank" rel="noopener noreferrer">Google Play <span aria-hidden="true">↗</span></a><a class="pk-button pk-button--ghost" href="https://www.lexus.co.za/ownership/mylexus-app" target="_blank" rel="noopener noreferrer">Lexus app page <span aria-hidden="true">↗</span></a></div></div>
-							</article>
-						</div>
-					</div>
-				</section>
-
-				<section class="pk-section" id="overview">
-					<div class="pk-shell pk-overview">
-						<div>
-							<p class="pk-overview__statement">Servicing, bookings, finance and support — <strong>in one owner companion.</strong></p>
-						</div>
-						<div><div class="pk-copy"><p>I delivered UI design in Figma and functional product in Ionic/Angular. Across the wider Toyota engagement I also built a structured UX research practice with Hotjar across 10+ African markets, turning behavioural data into a prioritised design backlog tied to Toyota's KPIs.</p></div></div>
-					</div>
-				</section>
-
-
-				<section class="pk-section pk-strategy" id="role">
-					<div class="pk-shell">
-						<p class="pk-eyebrow">What I did</p>
-						<h2 class="pk-h2">Owner journeys, remote states and one design system.</h2>
-						<div class="pk-grid-3">
-							<article class="pk-card"><span class="pk-card__index">01</span><div><h3>Owner companion UI</h3><p>Servicing, bookings, finance and support as one calm app — the journeys that became MyToyota.</p></div></article>
-							<article class="pk-card"><span class="pk-card__index">02</span><div><h3>Connected-car UX</h3><p>Toyota Remote's lock, climate, status and tracking flows, designed around state and feedback: what the car did, when, and what is still pending.</p></div></article>
-							<article class="pk-card"><span class="pk-card__index">03</span><div><h3>Service booking</h3><p>Appointments made against real dealer availability, without a phone call.</p></div></article>
-							<article class="pk-card"><span class="pk-card__index">04</span><div><h3>Design system</h3><p>The same tokens as KINTO, the brand programme and Lexus — one identity across every surface.</p></div></article>
-						</div>
-					</div>
-				</section>
-
-				<section class="pk-section pk-results" id="outcomes" aria-labelledby="outcomes-title">
-					<div class="pk-shell">
-						<h2 class="pk-h2" id="outcomes-title">Outcomes</h2>
-						<div class="pk-results__grid">
-							<article class="pk-result"><strong>One place for ownership admin</strong><p>Servicing, bookings, finance and support in the same app.</p></article>
-							<article class="pk-result"><strong>Remote buttons people trust</strong><p>State and feedback designed so a lock command reads as done, pending or failed.</p></article>
-							<article class="pk-result"><strong>Service booking without a phone call</strong><p>Appointments made against real dealer availability.</p></article>
-							<article class="pk-result"><strong>Designed and built by the same person</strong><p>Fewer things lost between the spec and the build.</p></article>
-						</div>
-					</div>
-				</section>
-
-				<section class="pk-section pk-conclusion" id="conclusion">
-					<div class="pk-shell">
-						<div class="pk-conclusion__grid">
-							<div><h2 class="pk-h2">See them live.</h2></div>
-							<div><div class="pk-copy"><p>MyToyota carries the owner companion forward, Toyota Remote handles connected-car controls, and Lexus owners can explore the My Lexus app through the official South African listing and ownership page above.</p></div><p class="pk-related">Part of the <a href="brand-strategy-programme.html">Toyota Brand Programme</a> — one brand system across KINTO, MyToyota, Toyota Remote and Lexus ownership.</p></div>
-						</div>
-						<div class="pk-closing"><div><strong>Research-led, system-built, shipped across markets.</strong><span>Mobile UI · Connected Car UX · Design System</span></div><div class="pk-actions"><a class="pk-button" href="https://www.toyota.co.za/services/my-toyota-app" target="_blank" rel="noopener noreferrer">MyToyota <span aria-hidden="true">↗</span></a><a class="pk-button pk-button--ghost" href="https://play.google.com/store/apps/details?id=za.co.toyota.toyotaremote&amp;hl=en_ZA" target="_blank" rel="noopener noreferrer">Toyota Remote <span aria-hidden="true">↗</span></a><a class="pk-button pk-button--ghost" href="https://play.google.com/store/apps/details?id=com.eliance.lexusmobile&amp;hl=en_ZA&amp;gl=US" target="_blank" rel="noopener noreferrer">Lexus on Google Play <span aria-hidden="true">↗</span></a><a class="pk-button pk-button--ghost" href="https://www.lexus.co.za/ownership/mylexus-app" target="_blank" rel="noopener noreferrer">Lexus app page <span aria-hidden="true">↗</span></a></div></div>
-					</div>
-				</section>
-
-				<nav class="tlc-project-pagination" aria-label="More projects">
-					<a class="tlc-project-pagination__item" href="brand-strategy-programme.html"><img src="../images/work/brand-strategy-cover.webp" alt="Toyota Brand Programme project" loading="lazy"><span class="tlc-project-pagination__shade"></span><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction"><span aria-hidden="true">←</span> Previous project</span><strong>Toyota Brand Programme</strong><span class="tlc-project-pagination__category">Brand · Strategy &amp; KINTO</span></span></a>
-					<a class="tlc-project-pagination__item" href="nerdma-website.html"><img src="../images/work/nerdma-cover.webp" alt="Nerdma project" loading="lazy"><span class="tlc-project-pagination__shade"></span><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction">Next project <span aria-hidden="true">→</span></span><strong>Nerdma</strong><span class="tlc-project-pagination__category">Web · Web &amp; Dashboards</span></span></a>
-					<a class="tlc-project-pagination__all" href="../index.html">View all work <span aria-hidden="true">↗</span></a>
-				</nav>
-
-			<!-- Contact Modal -->
-				<div id="contact-lightbox" class="pt-70 pb-50 hide">
-					<div class="row">
-						<div class="column width-12 left">
-							<h3 class="mb-50 weight-semi-bold font-alt-3">Reach Out</h3>
-							<div class="contact-form-container no-margin-bottom">
-								<form class="contact-form" action="../php/send-email.php" method="post" novalidate>
-									<div class="row">
-										<div class="column width-12">
-											<input type="text" name="fname" class="form-fname form-element large" placeholder="First Name*" tabindex="1" required>
-										</div>
-										<div class="column width-12">
-											<input type="email" name="email" class="form-email form-element large" placeholder="Email address*" tabindex="3" required>
-										</div>
-										<div class="column width-6">
-											<input type="text" name="honeypot" class="form-honeypot form-element large">
-										</div>
-									</div>
-									<div class="row">
-										<div class="column width-12">
-											<textarea name="message" class="form-message form-element large" placeholder="Message*" tabindex="5" required></textarea>
-											<input type="submit" value="Send Email" class="form-submit button medium text-uppercase bkg-grey bkg-hover-theme color-white color-hover-white">
-										</div>
-									</div>
-								</form>
-								<div class="form-response center"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Contact Modal End -->
-
-			</div>
-			<!-- Content End -->
-
-			<!-- Footer -->
-			<footer class="footer tlc-footer">
-				<div class="footer-top"><div class="row flex"><div class="column width-12 center"><div class="widget">
-					<p class="tlc-footer__eyebrow">Have a project in mind?</p>
-					<h4>Let's make something meaningful.</h4>
-					<a class="tlc-footer__email" href="mailto:mkhungela.l@gmail.com">mkhungela.l@gmail.com</a>
-					<ul class="social-list list-horizontal"><li><a href="https://www.linkedin.com/in/lulamile-mkhungela/" aria-label="LinkedIn"><span class="icon-linkedin small"></span></a></li></ul>
-				</div></div></div></div>
-			</footer>
-			<!-- Footer End -->
-
-		</div>
-	</div>
-
-	<!-- Js -->
-		<button class="tlc-scroll-top" type="button" aria-label="Back to top"><span aria-hidden="true">↑</span><span>Back to top</span></button>
-
-	<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
-	<script type="text/javascript" src="../js/jquery.tm.retinize.js"></script>
-	<script type="text/javascript" src="../js/jquery.tm.horizon.min.js"></script>
-	<script type="text/javascript" src="../js/jquery.tm.snowbridge.min.js"></script>
-	<script type="text/javascript" src="../js/jquery.tm.swipe.min.js"></script>
-	<script type="text/javascript" src="../js/jquery.tm.avalanche.min.js"></script>
-
-	<script src="../js/timber.master.min.js"></script>
-	<script src="../js/modern-menu.js?v=41"></script>
-
-	<script src="../js/luxury-collection-modern.js?v=4"></script>
-	<script src="../js/contact-form-fallback.js?v=2"></script>
-</body>
-</html>
+<div class="next"><b>Next:</b> <a href="enterprise-safety-platform.html?embedded=1">Enterprise safety reporting platform →</a></div>
+</div></main></body></html>

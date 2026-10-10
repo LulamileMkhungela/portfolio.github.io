@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Accountability dashboard">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b5e20"/><stop offset="1" stop-color="#0a0a0a"/></linearGradient></defs>
+<rect width="1200" height="720" fill="url(#g)"/>
+<text x="60" y="80" font-family="system-ui,sans-serif" font-size="22" font-weight="700" letter-spacing="3" fill="rgba(255,255,255,.8)">ACCOUNTABILITY DASHBOARD</text>
+<rect x="60" y="160" width="480" height="480" rx="14" fill="rgba(255,255,255,.92)"/><text x="78" y="190" font-family="system-ui,sans-serif" font-size="15" font-weight="600" fill="#161616">Regional risk map</text><rect x="580" y="160" width="560" height="220" rx="14" fill="rgba(255,255,255,.92)"/><text x="598" y="190" font-family="system-ui,sans-serif" font-size="15" font-weight="600" fill="#161616">Findings trend</text><rect x="580" y="420" width="560" height="220" rx="14" fill="rgba(255,255,255,.92)"/><text x="598" y="450" font-family="system-ui,sans-serif" font-size="15" font-weight="600" fill="#161616">Alert triage</text>
+</svg>
