@@ -28,8 +28,10 @@ the case studies share a consistent section order (problem, goals, personas, pro
 | iOCO | Employment, 2021 to present. Vodacom Engage (2024) and Toyota (2022 to 2024) were delivered through iOCO. Toyota Brand Programme and Vodacom Engage now say "via iOCO", matching the connected-apps page. |
 | AddmoreDigital (2021 to 2022) | Freelance, after hours alongside iOCO. Role changed from "Lead UI/UX Designer" to "Freelance UI/UX Designer". |
 | Nerdma (2023) | Freelance, after hours alongside iOCO. No longer described as work "at AddMoreDigital". CV line added. |
-| Digital Academy (2018 to 2019) | **Not changed, needs your answer.** CV says "Lead UI/UX Designer". The Digital Academy reference (in `testimonials-data.js`) describes an intern programme, 1 Aug 2018 to 31 Jan 2019. |
-| IntellehubSA and UluntuXd (2025 to 2026) | **Not changed, needs your answer.** Both overlap iOCO (2021 to present), like AddmoreDigital and Nerdma. |
+| Digital Academy (2018 to 2019) | Intern, not Lead. Now "UI/UX and Android development intern, 1 Aug 2018 to 31 Jan 2019", matching the Portfolio of Evidence (`_poe_out`) and the reference in `testimonials-data.js`. |
+| IntellehubSA and UluntuXd (2025 to 2026) | Freelance, after hours alongside iOCO, as you confirmed. Titles are "Freelance UI/UX Designer" and "Freelance UX Facilitator and Coach". |
+| FoodieZone (2025) | Freelance. Role "Freelance Lead Product Designer & Front-End Developer" on the case study and CV. |
+| Hypothetical Objective Systems (2020 to 2021) | **Not changed.** Its end date overlaps the start of iOCO (2021). Please confirm the dates. |
 
 ## 4. Missing clients (presented anonymised)
 - Takeda, Sasol, AGSA and Old Mutual are now named by sector in the CV line and About text: "a global pharmaceutical company", "a listed energy group", "a national audit institution", "a financial services group".
@@ -53,5 +55,9 @@ The services quote attribution was changed the same way.
 ## 7. Still open (case-study rewrite)
 The nine full case studies still use their original long-form copy. The storytelling rewrite (context, role and boundaries, 3 to 5 decisions with trade-offs, outcome and evidence, one-line "what changed") needs two things first:
 1. Facts for Takeda, Sasol, AGSA and Old Mutual (problem, your role, decisions, measured outcome, or agreement to keep them as sector-only entries).
-2. Confirmation of the open timeline items in section 3.
+2. Confirmation of the Hypothetical Objective Systems dates in section 3.
 Metrics in the CV and case studies (92% UAT, 65%, 35%, 32% checkout, 60% discoverability, and others) are kept as written. Each needs a source before it goes in a rewritten case study.
+
+## 8. Claims checked against the repo
+- Checkout completion +32%, order value +18%, 7-step flow to 3: appears only in the CV text (`js/desktop.js`). No case study supports it, so it stays CV-only until a source is given.
+- Digital Academy references naming people: unchanged, awaiting your decision.
