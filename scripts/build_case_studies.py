@@ -17,6 +17,10 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 PAGES = ROOT / "portfolio"
 
 ROLE = "Devsigner: full ownership of UX/UI design and frontend"
+# Role titles as recorded in the CV (Lulamile_Mkhungela_2026.pdf). Use these, not ROLE, for employment work.
+ROLE_VODACOM = "UI/UX Designer & Design System Lead, via iOCO"
+ROLE_TOYOTA = "Senior UI/UX Designer & Ionic/Angular Developer, via iOCO"
+ROLE_SNB = "UI/UX & Android Developer, Sesyme & SmartServe"
 
 
 def e(text):
@@ -31,7 +35,7 @@ CASES = [
         "tagline": ["From a wall of tiles ", "to a tool."],
         "meta": [
             ("Client", "Vodacom HRIT, Midrand · via iOCO"),
-            ("Role", ROLE),
+            ("Role", ROLE_VODACOM),
             ("Industry", "Telecommunications"),
             ("Year", "2024"),
         ],
@@ -99,7 +103,7 @@ CASES = [
         "tagline": ["One brand system, ", "three mobility products."],
         "meta": [
             ("Client", "Toyota South Africa · via iOCO"),
-            ("Role", ROLE),
+            ("Role", ROLE_TOYOTA),
             ("Industry", "Automotive & mobility"),
             ("Year", "2022 — 2024"),
         ],
@@ -160,7 +164,7 @@ CASES = [
         "tagline": ["Ownership, ", "from call centres to your phone."],
         "meta": [
             ("Client", "Toyota South Africa · via iOCO"),
-            ("Role", ROLE),
+            ("Role", ROLE_TOYOTA),
             ("Industry", "Automotive"),
             ("Year", "2022 — 2024"),
         ],
@@ -279,7 +283,7 @@ CASES = [
         "tagline": ["A site that presents the work, ", "ranks for it, and follows every enquiry up."],
         "meta": [
             ("Client", "AddmoreDigital"),
-            ("Role", "Devsigner, freelance (after hours, alongside iOCO)"),
+            ("Role", "UI/UX Designer, then Lead UI/UX Designer (after hours, alongside iOCO)"),
             ("Industry", "Digital agency"),
             ("Year", "2021"),
         ],
@@ -336,7 +340,7 @@ CASES = [
         "tagline": ["A site that answers what clients ask ", "before they call."],
         "meta": [
             ("Client", "SnB Chartered Accountants & Auditors"),
-            ("Role", ROLE),
+            ("Role", ROLE_SNB),
             ("Industry", "Professional services"),
             ("Year", "2019"),
         ],

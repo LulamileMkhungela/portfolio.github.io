@@ -78,3 +78,9 @@ Metrics in the CV and case studies (92% UAT, 65%, 35%, 32% checkout, 60% discove
 - **The Digital Academy:** "Lead UI/UX Designer", 1 Aug 2018 to 31 Jan 2019. Supersedes the "intern" entry in section 3.
 - **Nerdma and FoodieZone:** left off the revised CV at the user's request. They stay on the site.
 - The revised CV is in `docs/cv/` (see `CV-review-notes.md`). It is built from `Lulamile_Mkhungela_2026.pdf`, which is on the root of `main`.
+
+## 12. Roles on case-study pages and CV order (latest)
+- Case-study roles for employment work now use the CV titles: Vodacom "UI/UX Designer & Design System Lead, via iOCO"; Toyota "Senior UI/UX Designer & Ionic/Angular Developer, via iOCO"; SnB "UI/UX & Android Developer, Sesyme & SmartServe"; AddMoreDigital "UI/UX Designer, then Lead UI/UX Designer (after hours, alongside iOCO)". "Devsigner: full ownership" is kept only for self-initiated and freelance work.
+- Sesyme: the CV title is used, and "Web Designer" is not.
+- Site CV window now lists experience newest first (FoodieZone 2025, Nerdma 2023, AddmoreDigital 2021).
+- Year conflicts still open: Vodacom page 2024 vs CV 2021 to 2023; Toyota pages 2022 to 2024 vs CV 2023 to 2025.
