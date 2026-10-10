@@ -1,101 +1,477 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DesignOps — Lulamile Mkhungela</title>
-<meta name="description" content="DesignOps: a design-token pipeline that keeps Figma, code and 14 framework targets in sync, verified by a linter. Self-initiated case study by Lulamile Mkhungela.">
-<style>
-:root{--accent:#6d28d9;--ink:#161616;--muted:#5f5f5f;--line:#e4e4e4;--surface:#f6f6f6}
-*{box-sizing:border-box} body{margin:0;font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:#fff}
-.wrap{max-width:860px;margin:0 auto;padding:0 24px}
-.hero img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;background:#111}
-.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:40px 0 8px}
-h1{font-size:clamp(30px,5vw,44px);line-height:1.1;margin:0 0 12px}
-.lede{font-size:20px;color:var(--muted);margin:0 0 24px}
-.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin:24px 0 40px;font-size:14px}
-.meta b{display:block;color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.08em}
-section{margin:56px 0} h2{font-size:26px;margin:0 0 14px} h3{font-size:18px;margin:22px 0 6px}
-.callout{background:var(--surface);border-radius:14px;padding:20px 22px;margin:24px 0}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin:24px 0}
-.stat{background:var(--surface);border-radius:14px;padding:18px}
-.stat strong{display:block;font-size:34px;color:var(--accent);line-height:1.1}
-.stat span{color:var(--muted);font-size:14px}
-.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.cols div{border:1px solid var(--line);border-radius:12px;padding:16px;font-size:15px}
-figure{margin:28px 0} figure img{width:100%;border-radius:14px;display:block;background:var(--surface)} figcaption{color:var(--muted);font-size:14px;margin-top:8px}
-.next{margin:64px 0;padding:24px;background:var(--surface);border-radius:14px} .next a{color:var(--accent);font-weight:600}
-</style></head>
-<body class="lm-case-page">
-<script>
-(function(){var p=new URLSearchParams(location.search);if(p.get("embedded")==="1"){document.documentElement.classList.add("is-embedded")}
-if(p.get("appearance")==="dark"){document.documentElement.classList.add("is-dark")}})();
-</script>
-<main>
-<div class="hero"><img src="../images/work/design-ops-cover.webp" alt="DesignOps design system dashboard"></div>
-<div class="wrap">
-<div class="eyebrow">Self-initiated · Design systems and developer tooling</div>
-<h1>DesignOps</h1>
-<p class="lede">Design systems drift because the same token ends up in two places. I built the pipeline that stops it, and the linter that proves it.</p>
-<div class="meta">
-<div><b>Role</b>Lead product designer and front-end developer</div>
-<div><b>Type</b>Self-initiated</div>
-<div><b>Scope</b>Token model, token pipeline, component library, linter, documentation</div>
-<div><b>Stack</b>W3C DTCG tokens, Style Dictionary, React, Tailwind, ESLint, Oxlint</div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script>
+		(function () {
+			const params = new URLSearchParams(window.location.search);
+			if (params.get("embedded") !== "1") return;
+			document.documentElement.classList.add("is-embedded");
+			document.addEventListener("DOMContentLoaded", function () {
+				document.body.classList.add("is-embedded");
+			});
+		})();
+	</script>
+	<script>
+		(function () {
+			const root = document.documentElement;
+			const setMode = function (mode) { root.classList.toggle("is-dark", mode === "dark"); };
+			setMode(new URLSearchParams(window.location.search).get("appearance"));
+			window.addEventListener("message", function (event) {
+				if (event.data && event.data.type === "lm-appearance") setMode(event.data.mode);
+			});
+		})();
+	</script>
+	<meta charset="UTF-8" />
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0" name="viewport">
+	<meta name="twitter:widgets:theme" content="light">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="DesignOps — Lulamile Mkhungela">
+	<meta property="og:description" content="A design-system pipeline that verifies, not just ships: Figma variables become 41 W3C DTCG tokens, Style Dictionary builds fourteen targets, and @designops/lint keeps shipped code honest — one source of truth, a linter that checks shipped code.">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="DesignOps — Lulamile Mkhungela">
+	<meta name="twitter:description" content="A design-system pipeline that verifies, not just ships: Figma variables become 41 W3C DTCG tokens, Style Dictionary builds fourteen targets, and @designops/lint keeps shipped code honest — one source of truth, a linter that checks shipped code.">
+	<meta name="description" content="A design-system pipeline that verifies, not just ships: Figma variables become 41 W3C DTCG tokens, Style Dictionary builds fourteen targets, and @designops/lint keeps shipped code honest — one source of truth, a linter that checks shipped code.">
+	<meta name="theme-color" content="#ffffff">
 
-<section><h2>The problem</h2>
-<p>Every team says it has a design system. Most have a Figma file that quietly drifts from what is in production.</p>
-<div class="cols">
-<div><b>Design and code drift apart</b><br>A token changes in Figma, a value gets hard-coded in one app, and within a release or two nobody can say what the real spacing scale is.</div>
-<div><b>Every framework needs the same tokens, differently</b><br>CSS custom properties, Tailwind config, SCSS maps and TypeScript constants all express one design decision four different ways.</div>
-<div><b>Nobody can find the component they need</b><br>Components are scattered across files, stories and tickets, with no single place to search by name, token or framework.</div>
-<div><b>Documentation is the last thing updated</b><br>Usage rules live in people's heads or in a document from two renames ago.</div>
-</div></section>
+	<title>DesignOps — Lulamile Mkhungela</title>
+	<link rel="icon" href="../favicon.ico" sizes="any">
+	<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+	<link rel="manifest" href="../site.webmanifest">
 
-<section><h2>Who it is for</h2>
-<div class="cols">
-<div><b>The design system maintainer</b><br>Owns the tokens and components, and wants to publish a decision once and know every framework picks it up.</div>
-<div><b>The front-end developer</b><br>Wants the right token, in the right format, with the usage rules attached, instead of a hard-coded hex.</div>
-<div><b>The engineering lead</b><br>Wants to see that a UI change came from the token source rather than a hand edit.</div>
-</div></section>
+	<!-- Font -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="../fonts/Satoshi/css/satoshi.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato|Montserrat:300" rel="stylesheet">
 
-<section><h2>Decisions</h2>
-<div class="callout"><h3>1. One source of truth: the tokens</h3>
-<p>Figma variables are the input, and <code>tokens.json</code> is the single source of truth. Style Dictionary builds the output for every target from that one file. The model is 41 W3C DTCG tokens, covering primitives, semantic roles and component-level values, so one name means the same thing in Figma, CSS and TypeScript.</p></div>
-<div class="callout"><h3>2. The advisory proposes; it never writes</h3>
-<p>A design-intelligence catalogue turns a direction, such as "dark fintech dashboard", into a token proposal. Each proposal includes a map of where each token came from, seven WCAG contrast checks, and a record of what was deliberately not made into a token. A person approves the proposal before it touches the source.</p></div>
-<div class="callout"><h3>3. When the advisory and the linter disagree, the linter wins</h3>
-<p><code>@designops/lint</code> runs six rules in ESLint and Oxlint: no restyling system components, no raw colours, no arbitrary values, no inline styles, no unknown classes, and no unreadable class values. Each diagnostic explains itself and suggests a fix from the team's own theme.</p></div>
-</section>
+	<!-- Css -->
+	<link rel="stylesheet" href="../css/core.min.css" />
+	<link rel="stylesheet" href="../css/case-study-skin.css?v=10" />
+	<link rel="stylesheet" href="../css/avalanche.css" />
+	<link rel="stylesheet" href="../css/snowbridge.css" />
+	<link rel="stylesheet" href="../css/modern-menu.css?v=161" />
+	<link rel="stylesheet" href="../css/portfolio-case-shared.css?v=33" />
 
-<section><h2>Process</h2>
-<div class="cols">
-<div><b>1. Discovery</b><br>Mapped where design and development drift apart, and for whom.</div>
-<div><b>2. Audit and token model</b><br>Found which tokens were real and which had drifted.</div>
-<div><b>3. Advise</b><br>Turned a direction into a token proposal.</div>
-<div><b>4. Build</b><br>One source, fourteen framework targets.</div>
-<div><b>5. Prove</b><br>A gallery of forty generated sites.</div>
-<div><b>6. Verify</b><br>The linter checks the result.</div>
-</div>
-<figure><img src="../images/work/design-ops-flow.webp" alt="DesignOps token pipeline diagram" loading="lazy"><figcaption>From Figma variables to tokens.json to every framework target.</figcaption></figure>
-</section>
+<style id="lm-case-study">
+:root{--lm-accent:#6d28d9}
+:root{
+  --pk-red:var(--lm-accent,#ee0000);--pk-black:#0a0a0a;--pk-ink:#161616;--pk-muted:#666;--pk-line:#dedede;
+  --pk-surface:#f5f5f5;--pk-white:#fff;--pk-max:1240px;--pk-copy:760px;
+  --pk-s1:8px;--pk-s2:16px;--pk-s3:24px;--pk-s4:32px;--pk-s5:48px;--pk-s6:64px;--pk-s7:96px;--pk-s8:128px;
+}
+.lm-case-page .content{background:var(--pk-white);overflow:hidden}
+.lm-case-page .content *{box-sizing:border-box}
+.pk-shell{width:100%;max-width:var(--pk-max);margin:0 auto;padding-inline:clamp(24px,4vw,64px)}
+.pk-section{padding-block:clamp(64px,7vw,104px)}
+.pk-section--tight{padding-block:clamp(48px,5vw,72px)}
+.pk-eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--pk-muted)}
+.pk-eyebrow:has(+ .pk-h2),.pk-eyebrow:has(+ .pk-h3){margin-bottom:var(--case-eyebrow-heading-gap-compact,clamp(24px,3vw,40px))}
+.pk-eyebrow:before{content:"";width:24px;height:2px;background:var(--pk-red);flex:0 0 auto}
+.pk-display{margin:0;font-size:clamp(52px,8.2vw,126px);line-height:.88;letter-spacing:-.065em;font-weight:700;color:var(--pk-black)}
+.pk-display em{display:block;color:var(--pk-red);font-style:normal}
+.pk-h2{margin:0;font-size:clamp(36px,4.4vw,68px);line-height:.98;letter-spacing:-.045em;font-weight:700;color:var(--pk-black)}
+.pk-h3{margin:0;font-size:clamp(26px,2.6vw,42px);line-height:1.04;letter-spacing:-.035em;font-weight:700;color:var(--pk-black)}
+.pk-lede{max-width:800px;margin:28px 0 0;font-size:clamp(19px,1.65vw,25px);line-height:1.45;color:#333}
+.pk-copy{max-width:var(--pk-copy);font-size:17px;line-height:1.75;color:#3b3b3b;overflow-wrap:anywhere}
+.pk-copy p{margin:0}
+.pk-hero{padding-top:clamp(92px,7.5vw,116px);background:linear-gradient(180deg,#fff 0%,#fff 72%,#f5f5f5 72%,#f5f5f5 100%)}
+.pk-hero__grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);gap:clamp(36px,6vw,80px);align-items:center}
+.pk-hero__visual{position:relative;min-height:clamp(430px,40vw,560px);display:flex;align-items:flex-end;justify-content:center}
+.pk-hero__visual:before{content:"";position:absolute;inset:9% 0 0 10%;background:var(--pk-red);border-radius:999px 999px 0 0;transform:rotate(-7deg)}
+.pk-hero__visual img{position:relative;z-index:1;max-width:min(100%,620px);max-height:620px;object-fit:contain;filter:drop-shadow(0 28px 34px rgba(0,0,0,.16))}
+.pk-meta{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--pk-line);border-bottom:1px solid var(--pk-line);background:#fff}
+.pk-meta__item{padding:28px 30px;border-right:1px solid var(--pk-line)}.pk-meta__item:last-child{border-right:0}
+.pk-meta__label{display:block;margin-bottom:8px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#777;font-weight:700}
+.pk-meta__value{font-size:16px;line-height:1.35;color:#171717;font-weight:600}
+.pk-overview{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(48px,8vw,120px);align-items:start}
+.pk-overview__statement{font-size:clamp(28px,3vw,46px);line-height:1.08;letter-spacing:-.035em;font-weight:650;color:var(--pk-black)}
+.pk-overview__statement strong{color:var(--pk-red)}
+.pk-dark{background:var(--pk-black);color:#fff}.pk-dark .pk-h2,.pk-dark .pk-h3{color:#fff}.pk-dark .pk-copy{color:#c9c9c9}.pk-dark .pk-eyebrow{color:#aaa}
+.pk-problem-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(56px,9vw,140px);align-items:start}
+.pk-outcomes{margin-top:48px;border-top:1px solid #343434}
+.pk-outcome{display:grid;grid-template-columns:68px 1fr;gap:24px;padding:30px 0;border-bottom:1px solid #343434;align-items:start}
+.pk-outcome__num{font-size:13px;color:#777;font-weight:700}.pk-outcome__text{font-size:clamp(20px,2vw,30px);line-height:1.22;letter-spacing:-.025em;color:#fff}
+.pk-strategy{background:var(--pk-surface)}
+.pk-strategy__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:56px}
+.pk-card{background:#fff;border:1px solid #e3e3e3;border-radius:20px;padding:clamp(28px,4vw,48px);min-height:260px;display:flex;flex-direction:column;justify-content:space-between}
+.pk-card__index{font-size:12px;letter-spacing:.14em;color:var(--pk-red);font-weight:800}.pk-card h3{font-size:clamp(24px,2.3vw,36px);line-height:1.05;letter-spacing:-.03em;margin:38px 0 16px}.pk-card p{margin:0;color:#555;font-size:16px;line-height:1.65}
+.pk-role{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(48px,8vw,120px);padding-top:56px;margin-top:64px;border-top:1px solid #d8d8d8}
+.pk-role__list{font-size:clamp(20px,2vw,29px);line-height:1.45;letter-spacing:-.02em;color:#111}
+.pk-media-section{background:#fff}
+.pk-section-head{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(48px,8vw,120px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+.pk-media-stack{display:grid;gap:24px}.pk-media{margin:0;background:#ececec;border-radius:24px;overflow:hidden}.pk-media img{display:block;width:100%;height:auto}.pk-media--wire{padding:clamp(18px,3vw,38px);background:#f1f1f1}
+.pk-live-duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:24px}
+@media(max-width:820px){.pk-live-duo{grid-template-columns:minmax(0,1fr)}}
+.pk-research{background:var(--pk-red);color:#fff}.pk-research .pk-eyebrow{color:#fff}.pk-research .pk-eyebrow:before{background:#fff}.pk-research .pk-h2{color:#fff}.pk-research__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.65fr);gap:clamp(56px,9vw,140px);align-items:end}
+.pk-research__copy{font-size:clamp(19px,1.7vw,25px);line-height:1.55;max-width:760px;color:#fff}
+.pk-stat{border-left:1px solid rgba(255,255,255,.55);padding-left:clamp(32px,5vw,64px)}.pk-stat__number{display:block;font-size:clamp(78px,10vw,150px);line-height:.8;letter-spacing:-.075em;font-weight:750}.pk-stat__label{display:block;margin-top:24px;max-width:310px;font-size:16px;line-height:1.5}
+.pk-design{background:#111}.pk-design .pk-eyebrow,.pk-design .pk-h2{color:#fff}.pk-design .pk-media{background:#1b1b1b;border:1px solid #2c2c2c}
+.pk-design-intro{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(48px,8vw,120px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}.pk-design-intro p{color:#bcbcbc}
+.pk-conclusion{background:#fff}.pk-conclusion__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(48px,8vw,120px);align-items:start}
+.pk-closing{margin-top:72px;padding:clamp(40px,6vw,72px);background:var(--pk-surface);border-radius:24px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}.pk-closing strong{font-size:clamp(26px,3vw,42px);line-height:1.1;letter-spacing:-.035em}.pk-closing span{display:block;margin-top:10px;color:#666;font-size:15px}
+html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp(48px,5vw,64px)!important}
+@media(max-width:1080px){.pk-display{font-size:clamp(52px,7.8vw,84px)}.pk-hero__grid{grid-template-columns:minmax(0,1fr) minmax(300px,.78fr);gap:36px}.pk-hero__visual{min-height:400px}}
+@media(max-width:820px){.pk-hero{padding-top:88px}.pk-hero__grid,.pk-overview,.pk-problem-grid,.pk-section-head,.pk-research__grid,.pk-design-intro,.pk-conclusion__grid,.pk-role{grid-template-columns:minmax(0,1fr)}.pk-hero__grid{gap:32px}.pk-hero__visual{min-height:clamp(340px,64vw,480px);max-width:620px;width:100%;margin-inline:auto}.pk-meta{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-meta__item:nth-child(2){border-right:0}.pk-meta__item:nth-child(-n+2){border-bottom:1px solid var(--pk-line)}.pk-strategy__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-stat{border-left:0;border-top:1px solid rgba(255,255,255,.55);padding:40px 0 0}.pk-role{gap:32px;margin-top:48px;padding-top:48px}.pk-closing{grid-template-columns:1fr}}
+@media(max-width:640px){.pk-shell{padding-inline:20px}.pk-section{padding-block:clamp(52px,15vw,68px)}.pk-hero{padding-top:82px}.pk-display{font-size:clamp(44px,15vw,68px);line-height:.91;letter-spacing:-.055em}.pk-h2{font-size:clamp(34px,10vw,48px)}.pk-lede{margin-top:22px;font-size:18px;line-height:1.5}.pk-hero__grid{gap:24px}.pk-hero__visual{min-height:clamp(280px,84vw,390px)}.pk-hero__visual:before{inset:6% 3% 0 12%}.pk-meta{grid-template-columns:1fr}.pk-meta__item{border-right:0;border-bottom:1px solid var(--pk-line)!important;padding:20px}.pk-meta__item:last-child{border-bottom:0!important}.pk-strategy__grid{grid-template-columns:1fr;margin-top:40px}.pk-card{min-height:0}.pk-card h3{margin-top:28px}.pk-media-stack{gap:14px}.pk-media{border-radius:14px}.pk-media--wire{padding:14px}.pk-outcome{grid-template-columns:38px minmax(0,1fr);gap:10px;padding:24px 0}.pk-closing{margin-top:40px;border-radius:14px;padding:28px}.pk-role{gap:24px;margin-top:40px;padding-top:40px}}
+@media(max-width:380px){.pk-shell{padding-inline:16px}.pk-hero{padding-top:76px}.pk-display{font-size:clamp(40px,14.5vw,54px)}.pk-eyebrow{gap:10px;margin-bottom:18px}.pk-hero__visual{min-height:260px}.pk-meta__item{padding:18px 16px}.pk-card{padding:24px}.pk-outcome__text{font-size:19px}}
+.lm-case-page{--case-accent:var(--lm-accent)}
+.pk-copy p+p{margin-top:1em}
+.pk-research .pk-h2+.pk-research__copy{margin-top:28px}
+.pk-research__copy+.pk-research__copy{margin-top:16px}
+.pk-display em{color:var(--pk-red)}
+.pk-lede--small{font-size:clamp(17px,1.35vw,21px)}
+.pk-outcome__text small{display:block;margin-top:12px;font-size:16px;line-height:1.65;letter-spacing:0;color:#bdbdbd}
+.pk-outcome__text small b{display:block;margin:14px 0 4px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#8a8a8a;font-weight:700}
+.pk-card ul{margin:0;padding:0;list-style:none}
+.pk-card li{position:relative;padding-left:20px;margin:0 0 12px;color:#555;font-size:16px;line-height:1.6}
+.pk-card li:before{content:"";position:absolute;left:0;top:.72em;width:9px;height:2px;background:var(--pk-red)}
+.pk-card p+p{margin-top:12px}
+.pk-card__meta{display:block;margin:18px 0 6px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#888;font-weight:700}
+.pk-grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:56px}
+.pk-grid-3 .pk-card{min-height:0;justify-content:flex-start}
+.pk-grid-3.pk-grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pk-grid-3 .pk-card h3{margin-top:28px}
+.pk-dark .pk-card{background:#141414;border-color:#2c2c2c}.pk-dark .pk-card h3{color:#fff}.pk-dark .pk-card p{color:#bdbdbd}
+.pk-steps{display:grid;gap:clamp(40px,5vw,64px)}
+.pk-step{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,96px);align-items:start;padding-top:clamp(32px,4vw,48px);border-top:1px solid var(--pk-line)}
+.pk-step__index{display:block;margin-bottom:18px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--pk-red);font-weight:800}
+.pk-step .pk-media{margin-top:28px}
+.pk-list{margin:40px 0 0;padding:0;list-style:none;border-top:1px solid var(--pk-line)}
+.pk-list li{display:grid;grid-template-columns:68px 1fr;gap:24px;padding:24px 0;border-bottom:1px solid var(--pk-line);font-size:clamp(17px,1.4vw,21px);line-height:1.5;color:#222}
+.pk-list li span{font-size:13px;color:#999;font-weight:700;padding-top:4px}
+.pk-design .pk-list{border-color:#2c2c2c}.pk-design .pk-list li{border-color:#2c2c2c;color:#e6e6e6}
+.pk-research__grid--solo{grid-template-columns:minmax(0,1fr)}
+.pk-figcaption{margin:14px 4px 0;font-size:14px;line-height:1.5;color:#777}
+.pk-dark .pk-figcaption,.pk-design .pk-figcaption{color:#9a9a9a}
+.pk-media-stack+.pk-copy,.pk-copy+.pk-media-stack{margin-top:40px}
+.pk-disclaimer{margin-top:24px!important;font-size:14px;line-height:1.6;color:#8a8a8a}
+.pk-actions{display:flex;flex-wrap:wrap;gap:12px}
+.pk-button{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;background:var(--pk-red);color:#fff!important;font-size:15px;font-weight:700;line-height:1;text-decoration:none!important;white-space:nowrap}
+.pk-button--ghost{background:#fff;color:#111!important;border:1px solid #cfcfcf}
+.pk-related{margin-top:28px;font-size:16px;line-height:1.6;color:#555}.pk-related a{color:var(--pk-red);font-weight:700}
+@media(max-width:820px){.pk-grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-step{grid-template-columns:minmax(0,1fr);gap:20px}}
+@media(max-width:640px){.pk-grid-3,.pk-grid-3.pk-grid-2{grid-template-columns:1fr;margin-top:40px}.pk-list li{grid-template-columns:38px minmax(0,1fr);gap:10px}.pk-actions{flex-direction:column;align-items:stretch}.pk-button{justify-content:center}}
+</style>
 
-<section><h2>In the product</h2>
-<p>The dashboard is the workspace where the pipeline is visible. It has ten views with no build step, covering tokens and components, the advisory catalogue, the demo gallery, a live lint playground and the request board. Search reaches components, tokens, frameworks and requests in one place.</p>
-<figure><img src="../images/work/live/designops-desktop.webp" alt="DesignOps overview on desktop" loading="lazy"><figcaption>The overview as it loads.</figcaption></figure>
-<figure><img src="../images/work/live/designops-lint.webp" alt="DesignOps lint view" loading="lazy"><figcaption>The lint view: each diagnostic explains its own fix.</figcaption></figure>
-<figure><img src="../images/work/live/designops-demo-site.webp" alt="One of forty generated demo sites" loading="lazy"><figcaption>One of the forty demo sites, built from the components and linted clean.</figcaption></figure>
-<figure><img src="../images/work/live/designops-mobile.webp" alt="DesignOps on a phone" loading="lazy"><figcaption>The same workspace on a phone.</figcaption></figure>
-</section>
+</head>
+<body class="portfolio-case-updated lm-case-page">
 
-<section><h2>Outcome</h2>
-<p>A design change is a commit rather than a conversation, and a lint failure is a design decision caught by the pipeline instead of in review.</p>
-<div class="stats">
-<div class="stat"><strong>41</strong><span>W3C DTCG tokens in the pipeline</span></div>
-<div class="stat"><strong>14</strong><span>framework targets from one source</span></div>
-<div class="stat"><strong>6</strong><span>lint rules across ESLint and Oxlint</span></div>
-<div class="stat"><strong>40</strong><span>generated demo sites, zero lint findings</span></div>
-</div>
-<p>The source files, the working product and the code are available on request.</p>
-</section>
+<!-- Side Navigation Menu -->
+	<aside class="side-navigation-wrapper enter-right" data-no-scrollbar data-animation="reveal">
+		<div class="side-navigation-scroll-pane">
+			<div class="side-navigation-inner">
+				<div class="side-navigation-header">
+					<div class="navigation-hide side-nav-hide">
+						<a href="#">
+							<span class="icon-cancel medium"></span>
+						</a>
+					</div>
+				</div>
+				<nav class="side-navigation center">
+					<ul>
+						<li class="current">
+							<a href="../index.html">Portfolio</a>
+						</li>
+						<li>
+							<a href="../index.html">About</a>
+						</li>
+						<li>
+							<a href="../index.html">Testimonials</a>
+						</li>
+						<li>
+							<a href="#" class="contains-sub-menu">Honors &amp; Awards</a>
+							<ul class="sub-menu">
+								<li>
+									<a href="../index.html">Empire Foundation Hackathon — Winning Team</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+				<div class="side-navigation-footer">
+					<ul class="social-list list-horizontal">
+						<li><a href="https://www.linkedin.com/in/lulamile-mkhungela/"><span class="icon-linkedin small"></span></a></li>
+					</ul>
+					<p class="copyright no-margin-bottom">&copy; 2026 L M</p>
+				</div>
+			</div>
+		</div>
+	</aside>
+	<!-- Side Navigation Menu End -->
 
-<div class="next"><b>Next:</b> <a href="toyota-connected-apps.html?embedded=1">Toyota Connected Apps →</a></div>
-</div></main></body></html>
+	<div class="wrapper reveal-side-navigation">
+		<div class="wrapper-inner">
+
+			<!-- Header -->
+			<header class="header header-fixed-on-mobile" data-sticky-threshold="0" data-bkg-threshold="100">
+				<div class="header-inner">
+					<div class="row nav-bar">
+						<div class="column width-12 nav-bar-inner">
+							<div class="logo">
+								<div class="logo-inner">
+									<a href="../index.html"><img src="../images/lm-logo.png" alt="L M logo" /></a>
+									<a href="../index.html"><img src="../images/lm-logo.png" alt="L M logo" /></a>
+								</div>
+							</div>
+							<nav class="navigation nav-block secondary-navigation nav-right">
+								<ul>
+									<li>
+										<!-- Contact Button -->
+										<div class="v-align-middle">
+											<a data-content="inline" data-toolbar="" data-modal-mode data-modal-width="500" href="#contact-lightbox" class="lightbox-link contact-collaboration" aria-label="Let's Collaborate"><span class="contact-collaboration__label">Let's Collaborate</span><span class="contact-collaboration__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span></a>
+										</div>
+									</li>
+									<!-- Aux Navigation -->
+									<li class="aux-navigation">
+										<a href="#" class="navigation-show side-nav-show nav-icon">
+											<svg class="menu-toggle__svg" viewBox="0 0 32 32" aria-hidden="true">
+												<path class="menu-toggle__path" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+												<path d="M7 16 27 16"></path>
+											</svg>
+										</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</header>
+			<!-- Header End -->
+
+			<!-- Content -->
+			<div class="content clearfix">
+
+				<section class="pk-hero" aria-labelledby="case-title">
+					<div class="pk-shell pk-hero__grid">
+						<div>
+							<h1 id="case-title" class="pk-display pk-display--name">DesignOps</h1>
+							<p class="pk-hero__tagline">One design, <em class="pk-accent">every framework.</em></p>
+							<a class="pk-scrollcue" href="#overview"><span>Read the story</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
+						</div>
+						<div class="pk-hero__visual">
+							<img src="../images/work/design-ops-cover.webp" alt="DesignOps — DesignOps — One Design, Every Framework" />
+						</div>
+					</div>
+					<div class="pk-shell">
+						<div class="pk-meta" aria-label="Project details">
+							<div class="pk-meta__item"><span class="pk-meta__label">Client</span><span class="pk-meta__value">Self-initiated</span></div>
+							<div class="pk-meta__item"><span class="pk-meta__label">Role</span><span class="pk-meta__value">Devsigner: full ownership of UX/UI design and frontend</span></div>
+							<div class="pk-meta__item"><span class="pk-meta__label">Industry</span><span class="pk-meta__value">Design systems &amp; developer tooling</span></div>
+							<div class="pk-meta__item"><span class="pk-meta__label">Year</span><span class="pk-meta__value">2026</span></div>
+						</div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-section--tight pk-lead-section" id="lead">
+					<div class="pk-shell">
+						<p class="pk-lead">This one is mine. Design systems drift because the same token ends up in two places, so I built the pipeline that stops it — and the linter that proves it. Figma variables export to forty-one W3C DTCG tokens, Style Dictionary builds fourteen targets from them, and @designops/lint checks shipped code against the system. I designed the token model, wrote the pipeline, and documented the lot.</p>
+					</div>
+				</section>
+
+
+				<section class="pk-section" id="overview">
+					<div class="pk-shell pk-overview">
+						<div>
+							<p class="pk-overview__statement">One source of truth, fourteen targets — <strong>a linter that checks shipped code.</strong></p>
+						</div>
+						<div><div class="pk-copy"><p>Every team says it has a design system. Most have a Figma file that quietly drifts from what is actually in production. DesignOps was built to close that gap: Figma variables are treated as the input, tokens JSON as the single source of truth, and Style Dictionary as the machine that produces usable output for React, Vue, Angular, Svelte, Next, Nuxt, Remix, Astro, Ionic, MUI, Tailwind and the rest. The dashboard is the workspace where that pipeline is visible and usable — ten views with zero build step, from tokens and components to the advisory catalogue, the demo gallery, a live lint playground and the request board.</p><p>It is also a statement about how I work: design decisions should be expressed once, in a form code can consume, and then verified everywhere they land. The advisory proposes, the tokens record, the linter checks — and when they disagree, the linter wins.</p><p>The work followed the product design and front-end process end to end: discovery, audit and token model, advisory, build, proof and verify.</p></div><p class="pk-disclaimer">Designed, built and documented by LulaMile-HalfMachine.</p></div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-dark" id="problem">
+					<div class="pk-shell">
+						<div class="pk-problem-grid">
+							<div>
+								<p class="pk-eyebrow">The problem</p>
+								<h2 class="pk-h2">Design and code drift apart the moment they are handed off.</h2>
+							</div>
+							<div>
+								<div class="pk-outcomes">
+									<div class="pk-outcome"><span class="pk-outcome__num">01</span><span class="pk-outcome__text">Design and code drift apart<small>Tokens get changed in Figma, a value is hard-coded in one app, and within a release or two nobody can say what the real spacing scale is.<b>Impact</b>Inconsistent interfaces and design reviews that turn into archaeology.</small></span></div>
+									<div class="pk-outcome"><span class="pk-outcome__num">02</span><span class="pk-outcome__text">Every framework needs the same tokens, differently<small>CSS custom properties, Tailwind config, SCSS maps, TypeScript constants — the same design decision has to be expressed four different ways.<b>Impact</b>Manual re-entry, copy-paste errors and values that quietly diverge per platform.</small></span></div>
+									<div class="pk-outcome"><span class="pk-outcome__num">03</span><span class="pk-outcome__text">Nobody can find the component they need<small>Components exist but are scattered across files, stories and tickets, with no single place to search by name, token or framework.<b>Impact</b>Teams rebuild what already exists, so the system grows sideways instead of getting stronger.</small></span></div>
+									<div class="pk-outcome"><span class="pk-outcome__num">04</span><span class="pk-outcome__text">Documentation is the last thing that gets updated<small>Component behaviour, states and usage rules live in people’s heads or in a document from two renames ago.<b>Impact</b>New team members ship inconsistent work because the rules were never written down.</small></span></div>
+								</div>
+							</div>
+						</div>
+						<div class="pk-media-stack" style="margin-top:clamp(48px,6vw,80px)"><figure class="pk-media"><img src="../images/work/design-ops-flow.webp" alt="DesignOps — defining the problem" loading="lazy" decoding="async"></figure></div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-strategy" id="goals">
+					<div class="pk-shell">
+						<p class="pk-eyebrow">Goals</p>
+						<h2 class="pk-h2">One token source that every framework can trust.</h2>
+						<div class="pk-strategy__grid">
+							<article class="pk-card"><span class="pk-card__index">BUSINESS GOALS</span><div><h3>What the business needed</h3><ul><li>Make one source of truth authoritative: change the token once, ship it everywhere.</li><li>Remove manual translation between design and every framework the team uses.</li><li>Give the system a visible pipeline so drift is obvious instead of discovered in review.</li></ul></div></article>
+							<article class="pk-card"><span class="pk-card__index">USER GOALS</span><div><h3>What people needed</h3><ul><li>Find the right component or token in seconds, by name, token or framework.</li><li>See what each framework build will actually output before wiring it in.</li><li>Read the usage rules where the component lives, not in a separate document.</li></ul></div></article>
+						</div>
+						<div class="pk-role" id="role">
+							<div><p class="pk-eyebrow">Role &amp; responsibilities</p><h3 class="pk-h3">Product Designer &amp; Front-End Developer.</h3></div>
+							<div class="pk-role__list">Design Systems, Design Tokens, Front-End Development, Component API, Documentation</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-research" id="research">
+					<div class="pk-shell pk-research__grid">
+						<div>
+							<p class="pk-eyebrow">Our users</p>
+							<h2 class="pk-h2">Built for the people who feel drift first.</h2>
+							<p class="pk-research__copy">The tool is built for the people who feel drift first: the designer maintaining the system, the front-end developer consuming it, and the team lead who has to stop a release because two screens disagree.</p>
+						</div>
+						<div class="pk-stat"><span class="pk-stat__number">41</span><span class="pk-stat__label">W3C DTCG tokens feed fourteen targets — and a linter that checks the result.</span></div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-strategy pk-section--tight" id="personas">
+					<div class="pk-shell">
+						<p class="pk-eyebrow">Personas</p>
+						<div class="pk-grid-3">
+							<article class="pk-card"><span class="pk-card__index">PERSONA 01</span><div><h3>The Design System Maintainer</h3><p>Owns tokens and components, and spends far too much time answering &quot;what is the value now?&quot; across projects.</p><span class="pk-card__meta">Jobs To Be Done</span><p>When a design decision changes, I want to publish it once and know every framework build picks it up, so I stop being the human sync layer between design and code.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">PERSONA 02</span><div><h3>The Front-End Developer</h3><p>Consumes the system daily and just wants the right token, in the right format, with the rules attached.</p><span class="pk-card__meta">Jobs To Be Done</span><p>When I start a component, I want the token values and usage rules for my framework in front of me, so I do not hard-code a hex that will be wrong next quarter.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">PERSONA 03</span><div><h3>The Engineering Lead</h3><p>Reviews the pull requests and is the last line of defence against visual drift.</p><span class="pk-card__meta">Jobs To Be Done</span><p>When a UI change lands, I want to see it came from the token source rather than a hand edit, so consistency is enforced by the pipeline and not by my review comments.</p></div></article>
+						</div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-media-section" id="process">
+					<div class="pk-shell">
+						<div class="pk-section-head">
+							<div><p class="pk-eyebrow">Process</p><h2 class="pk-h2">Advise, tokenize, build, verify.</h2></div>
+							<div class="pk-copy"><p>6 stages — Discovery → Audit &amp; token model → Advise → Build → Prove → Verify.</p></div>
+						</div>
+						<div class="pk-steps">
+							<article class="pk-step"><div><span class="pk-step__index">01 · Discovery</span><h3 class="pk-h3">Where the handoff breaks</h3></div><div><div class="pk-copy"><p>Before any code, the work mapped where design and development drift apart, and for whom. Two users defined the brief: the designer who specs 16px, and the developer who types 15px at 11pm on a deadline. The failure points were mechanical — values re-typed by hand, frameworks that cannot express a style so developers improvise, the same component rebuilt slightly differently per stack, requests lost in Slack threads, and docs that rot the day they are written. Each one became a requirement.</p></div></div></article>
+							<article class="pk-step"><div><span class="pk-step__index">02 · Audit &amp; token model</span><h3 class="pk-h3">Forty-one tokens, one meaning</h3></div><div><div class="pk-copy"><p>The system was audited first: which tokens were real, which had drifted, and which frameworks had quietly invented their own. The model that came out is forty-one W3C DTCG tokens — primitives, semantic roles and component-level values — so a name means the same thing in Figma, in CSS, and in a TypeScript constant.</p></div></div></article>
+							<article class="pk-step"><div><span class="pk-step__index">03 · Advise</span><h3 class="pk-h3">A direction before a decision</h3></div><div><div class="pk-copy"><p>A vendored design-intelligence catalogue — 79 searchable styles, 192 product palettes, 74 font pairings and 119 UX guidelines, searchable offline — turns a direction like &quot;dark fintech dashboard&quot; into a W3C DTCG token proposal. Every proposal ships with a provenance map of where each token came from, seven WCAG contrast checks, and a record of what deliberately did not become a token. The advisory proposes; it never writes the source of truth.</p></div></div></article>
+							<article class="pk-step"><div><span class="pk-step__index">04 · Build</span><h3 class="pk-h3">One source, fourteen targets</h3></div><div><div class="pk-copy"><p>tokens.json stays the single source of truth, and Style Dictionary transforms it into CSS, SCSS, TypeScript and Tailwind artefacts, with components generated for all fourteen framework targets from that one file. The dashboard puts the whole system on screen in ten views with zero build step — tokens, components, frameworks, advisory, demos, a live lint playground, the request board, Storybook and integrations. Dev asks, designer designs, one approval ships it to every target.</p></div></div></article>
+							<article class="pk-step"><div><span class="pk-step__index">05 · Prove</span><h3 class="pk-h3">Forty sites, zero findings</h3></div><div><div class="pk-copy"><p>The proof is a gallery of forty generated sites across twenty categories, built from the components themselves rather than styled by hand. Each page is emitted twice from the same template — the HTML you open and the JSX the linter checks — so a finding is a finding about the page, not about a separate copy. Every site carries its own palette and font pairing, zero lint findings, and its measured contrast, reported rather than quietly fixed.</p></div></div></article>
+							<article class="pk-step"><div><span class="pk-step__index">06 · Verify</span><h3 class="pk-h3">The linter outranks the catalogue</h3></div><div><div class="pk-copy"><p>@designops/lint runs six rules in ESLint and Oxlint — no restyling system components, no raw colours, no arbitrary values, no inline styles, no unknown classes, no unreadable class values. Every diagnostic explains itself and suggests a fix drawn from the team's own theme. Dashboard smoke tests and a freshness gate fail the build if the generated artefacts ever drift from the tokens, so a broken value never reaches production.</p></div></div></article>
+						</div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-design" id="impact">
+					<div class="pk-shell">
+						<div class="pk-design-intro">
+							<div><p class="pk-eyebrow">Impact</p><h2 class="pk-h2">Verifies, not just ships.</h2></div>
+							<div class="pk-copy"><p>The loop runs end to end: the advisory proposes a direction, forty-one W3C DTCG tokens record the decision, Style Dictionary builds every target, and @designops/lint checks the result — when they disagree, the linter wins. Search reaches components, tokens, frameworks and requests in one dashboard, and the export step hands a build exactly the artefact it needs — no re-entry, no guessing at what the current value is.</p><p>The practical result is that a design change is a commit rather than a conversation, a lint failure is a design decision caught by the pipeline instead of in review, and the dashboard documents the system as it actually is, not as it was described in a slide six months ago.</p></div>
+						</div>
+						
+					</div>
+				</section>
+
+				<section class="pk-section pk-media-section pk-live" id="live" aria-labelledby="live-title">
+					<div class="pk-shell">
+					<p class="pk-eyebrow">The product</p>
+					<h2 class="pk-h2" id="live-title">Clicked through, live.</h2>
+					<div class="pk-live-grid">
+						<figure class="pk-media"><img src="../images/work/live/designops-desktop.webp" alt="DesignOps dashboard overview on desktop" loading="lazy" decoding="async"><figcaption>The Overview view as it loads: 41 tokens in the pipeline, 8 components, 14 targets. Captured from the live product, October 2026.</figcaption></figure>
+						<figure class="pk-media pk-media--phone"><img src="../images/work/live/designops-mobile.webp" alt="DesignOps dashboard on a phone" loading="lazy" decoding="async"><figcaption>The same workspace on a phone.</figcaption></figure>
+					</div>
+					<div class="pk-live-duo">
+						<figure class="pk-media"><img src="../images/work/live/designops-search.webp" alt="Global search showing results for the query button" loading="lazy" decoding="async"><figcaption>&quot;button&quot; typed into global search — the component surfaces before the query is finished.</figcaption></figure>
+						<figure class="pk-media"><img src="../images/work/live/designops-demos.webp" alt="Demo gallery view with category filters" loading="lazy" decoding="async"><figcaption>Clicking into Demos: forty generated sites, each card a live preview with its measured lint and contrast chips.</figcaption></figure>
+						<figure class="pk-media"><img src="../images/work/live/designops-lint.webp" alt="Lint view showing the six rules" loading="lazy" decoding="async"><figcaption>The Lint view: six rules across ESLint and Oxlint, every diagnostic explaining its own fix.</figcaption></figure>
+						<figure class="pk-media"><img src="../images/work/live/designops-demo-site.webp" alt="A generated demo site opened full size" loading="lazy" decoding="async"><figcaption>One of the forty opened full-size — built from the components, linted clean.</figcaption></figure>
+					</div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-section--tight" id="tradeoffs"><div class="pk-shell"><p class="pk-eyebrow">Trade-offs</p><div class="pk-grid-3"><article class="pk-card"><span class="pk-card__index">01</span><div><h3>Make one source of truth authoritative</h3><p>The page says that when the advisory, tokens and linter disagree, the linter wins. The cost: a designer&#x27;s value can be overridden until the source is fixed. (Stated on the page.)</p></div></article><article class="pk-card"><span class="pk-card__index">02</span><div><h3>Give the system a visible pipeline</h3><p>A visible pipeline makes drift obvious but adds build steps. To confirm: how long a token change takes to reach every framework.</p></div></article><article class="pk-card"><span class="pk-card__index">03</span><div><h3>Read the usage rules where the component lives</h3><p>Keeping rules next to components means every component needs maintained documentation. To confirm: who keeps it current.</p></div></article></div></div></section>
+				<section class="pk-section pk-results pk-dark" id="outcomes" aria-labelledby="outcomes-title">
+					<div class="pk-shell">
+						<h2 class="pk-h2" id="outcomes-title">Outcomes</h2>
+						<div class="pk-results__grid">
+							<article class="pk-result"><strong>Fourteen targets from one source</strong><p>Every supported framework is generated from the same forty-one tokens on each change.</p></article>
+							<article class="pk-result"><strong>Proof in forty sites</strong><p>A demo gallery built from the components themselves, every site passing the linter with zero findings.</p></article>
+							<article class="pk-result"><strong>Verifies, not just ships</strong><p>Six lint rules catch restyles, raw colours and drift in ESLint and Oxlint before review.</p></article>
+							<article class="pk-result"><strong>Available on request</strong><p>The Figma file, the working product and the code are shared on request.</p></article>
+						</div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-conclusion" id="conclusion">
+					<div class="pk-shell">
+						<div class="pk-conclusion__grid">
+							<div><h2 class="pk-h2">Tokens, components and code that stay in sync.</h2></div>
+							<div><div class="pk-copy"><p>The Figma file, the working product and the full codebase are available on request — no links on this page by design. Happy to walk through the token model, the advise-to-verify loop and how it would fit an existing codebase on a call.</p></div></div>
+						</div>
+						<div class="pk-closing"><div><strong>Figma variables in. Every framework out.</strong><span>Product Design · Design Systems · Front-End</span></div></div>
+					</div>
+				</section>
+
+				<nav class="tlc-project-pagination" aria-label="More projects">
+					<a class="tlc-project-pagination__item" href="foodiezone-pwa.html"><img src="../images/work/foodiezone-cover.webp" alt="FoodieZone project" loading="lazy"><span class="tlc-project-pagination__shade"></span><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction"><span aria-hidden="true">←</span> Previous project</span><strong>FoodieZone</strong><span class="tlc-project-pagination__category">Impact · Ordering PWA</span></span></a>
+					<a class="tlc-project-pagination__item" href="lula-gazette.html"><img src="../images/work/lulagazette/landing-bg.webp" alt="Lula Gazette project" loading="lazy"><span class="tlc-project-pagination__shade"></span><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction">Next project <span aria-hidden="true">→</span></span><strong>Lula Gazette</strong><span class="tlc-project-pagination__category">Product · Civic Newsroom</span></span></a>
+					<a class="tlc-project-pagination__all" href="../index.html">View all work <span aria-hidden="true">↗</span></a>
+				</nav>
+
+			<!-- Contact Modal -->
+				<div id="contact-lightbox" class="pt-70 pb-50 hide">
+					<div class="row">
+						<div class="column width-12 left">
+							<h3 class="mb-50 weight-semi-bold font-alt-3">Reach Out</h3>
+							<div class="contact-form-container no-margin-bottom">
+								<form class="contact-form" action="../php/send-email.php" method="post" novalidate>
+									<div class="row">
+										<div class="column width-12">
+											<input type="text" name="fname" class="form-fname form-element large" placeholder="First Name*" tabindex="1" required>
+										</div>
+										<div class="column width-12">
+											<input type="email" name="email" class="form-email form-element large" placeholder="Email address*" tabindex="3" required>
+										</div>
+										<div class="column width-6">
+											<input type="text" name="honeypot" class="form-honeypot form-element large">
+										</div>
+									</div>
+									<div class="row">
+										<div class="column width-12">
+											<textarea name="message" class="form-message form-element large" placeholder="Message*" tabindex="5" required></textarea>
+											<input type="submit" value="Send Email" class="form-submit button medium text-uppercase bkg-grey bkg-hover-theme color-white color-hover-white">
+										</div>
+									</div>
+								</form>
+								<div class="form-response center"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Contact Modal End -->
+
+			</div>
+			<!-- Content End -->
+
+			<!-- Footer -->
+			<footer class="footer tlc-footer">
+				<div class="footer-top"><div class="row flex"><div class="column width-12 center"><div class="widget">
+					<p class="tlc-footer__eyebrow">Have a project in mind?</p>
+					<h4>Let's make something meaningful.</h4>
+					<a class="tlc-footer__email" href="mailto:mkhungela.l@gmail.com">mkhungela.l@gmail.com</a>
+					<ul class="social-list list-horizontal"><li><a href="https://www.linkedin.com/in/lulamile-mkhungela/" aria-label="LinkedIn"><span class="icon-linkedin small"></span></a></li></ul>
+				</div></div></div></div>
+			</footer>
+			<!-- Footer End -->
+
+		</div>
+	</div>
+
+	<!-- Js -->
+		<button class="tlc-scroll-top" type="button" aria-label="Back to top"><span aria-hidden="true">↑</span><span>Back to top</span></button>
+
+	<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.retinize.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.horizon.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.snowbridge.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.swipe.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.avalanche.min.js"></script>
+
+	<script src="../js/timber.master.min.js"></script>
+	<script src="../js/modern-menu.js?v=41"></script>
+
+	<script src="../js/luxury-collection-modern.js?v=4"></script>
+	<script src="../js/contact-form-fallback.js?v=2"></script>
+</body>
+</html>

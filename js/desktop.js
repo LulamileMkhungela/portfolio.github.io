@@ -55,7 +55,7 @@ const NOTES_DATA = {
         <h1 class="notes-editor-title">About Lulamile</h1>
         <p>Hi, I'm Lulamile Mkhungela — LulaMile-HalfMachine. I'm a <strong>devsigner</strong>: UX/UI and product design on one side, front-end development on the other. I design digital products, brands and websites — then build them, and stay in the room until they actually work.</p>
         <p>Most product designers hand off to developers. I hand off to QA, because the front end is already built. Figma is where the thinking becomes an interface; VS Code is where it becomes a product. Eight years of doing both halves means fewer meetings about what is "technically possible" and more shipping.</p>
-        <p>My work sits where design meets delivery: research and information architecture, interface design and design systems, then the build itself — websites, progressive web apps, React and Angular front ends, and the CRM systems behind them. I've worked with organisations like Vodacom, DPSA, Nerdma, AddmoreDigital, Toyota, Sasol, Takeda and IOCO, and with small businesses who needed the same quality of thinking at a smaller scale.</p>
+        <p>My work sits where design meets delivery: research and information architecture, interface design and design systems, then the build itself — websites, progressive web apps, React and Angular front ends, and the CRM systems behind them. I've worked with organisations like Vodacom, DPSA, Toyota, Nerdma and AddmoreDigital, through iOCO's enterprise clients in pharma, energy, financial services and public audit (anonymised), and with small businesses who needed the same quality of thinking at a smaller scale.</p>
         <p>I've been the designer in the room — and the founder at the table. The domain shifts. The approach doesn't: clear thinking before any pixel or component gets made.</p>
         <p>Outside client work you'll find me in a side project, mentoring upcoming designers and front-end developers, or pushing AI further into the design-to-code workflow. Rooted in Johannesburg. Working anywhere.</p>
         <p>And this portfolio is the receipt: every window, animation and line of code on this desktop was designed and hand-written by me — LulaMile. No template, no page builder.</p>
@@ -68,15 +68,16 @@ const NOTES_DATA = {
     content: `
       <div class="notes-editor-body">
         <h1 class="notes-editor-title">CV</h1>
+        <p class="notes-cv-contact">Lulamile Mkhungela · Johannesburg, Gauteng · <a href="mailto:mkhungela.l@gmail.com">mkhungela.l@gmail.com</a> · <a href="https://www.linkedin.com/in/lulamile-mkhungela/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
         <p>Over the past 8+ years I've designed and built digital products across enterprise software, telecoms, automotive, public sector, fintech and small business — from user research and Figma design systems through to production React and Angular code, WCAG 2.2 AA compliance and UAT.</p>
         <p>I enjoy turning complicated workflows into interfaces that feel obvious, and then writing the front end so nothing gets lost between the file and the screen.</p>
-        <h2>Currently</h2><p>Embedded design and front-end authority at iOCO, plus select product, web and brand work directly with founders and teams.</p>
-        <h2>Selected highlights</h2><ul><li>92% UAT acceptance on the Vodacom Engage employee app — the highest score in that digital portfolio at the time.</li><li>Cut UI inconsistencies by 65% with a new design system and Design Authority governance at Vodacom.</li><li>Lifted sprint velocity 35% with a shared component library across two products at AddMoreDigital.</li><li>Increased checkout completion 32% and average order value 18% by taking a 7-step flow down to 3.</li><li>Shipped a 6-micro-frontend architecture and a 13-endpoint notifications system for a national audit platform.</li></ul>
-        <h2>Experience</h2><ul><li>iOCO — embedded design and development authority for Eskom, the Auditor-General of South Africa, Old Mutual, Takeda, Toyota South Africa, Sasol and Vodacom (2021–present)</li><li>UluntuXd — UX Facilitator and Coach (2025–2026)</li><li>IntellehubSA — UX/UI Designer (2025–2026)</li><li>AddMoreDigital — Lead UI/UX Designer (2021–2022)</li><li>Hypothetical Objective Systems — Senior UI/UX Designer and Developer Coach (2020–2021)</li><li>Sesyme and SmartServe — UI/UX and Android Developer (2019–2020)</li><li>The Digital Academy — Lead UI/UX Designer (2018–2019)</li><li>mLab — UI/UX and Android Developer (2017–2018)</li></ul>
+        <h2>Currently</h2><p>Eskom (Aug 2026 – present) and AGSA (May 2026 – present), embedded through iOCO as design and front-end authority. Select freelance product, web and brand work directly with founders and teams.</p>
+        <h2>Selected highlights</h2><ul><li>92% UAT acceptance on the Vodacom Engage employee app — the highest score in that digital portfolio at the time.</li><li>Cut UI inconsistencies by 65% with a new design system and Design Authority governance at Vodacom.</li><li>Lifted sprint velocity 35% with a shared component library across two products, delivered freelance for AddmoreDigital.</li><li>Increased checkout completion 32% and average order value 18% by taking a 7-step flow down to 3.</li><li>Shipped a 6-micro-frontend architecture and a 13-endpoint notifications system for a national audit platform.</li></ul>
+        <h2>Experience</h2><ul><li>iOCO — embedded design and development authority for Eskom, a national audit institution, a financial services group, a global pharmaceutical company, Toyota South Africa, a listed energy group and Vodacom (2021–present). <a class="notes-cv-link" href="portfolio/enterprise-engagements-anonymised.html?embedded=1" target="_blank" rel="noopener noreferrer">Enterprise engagements, anonymised →</a></li><li>UluntuXd — Freelance UX Facilitator and Coach, after hours alongside iOCO (2025–2026)</li><li>IntellehubSA — Freelance UI/UX Designer (2025–2026)</li><li>FoodieZone — Freelance Lead Product Designer &amp; Front-End Developer (2025)</li><li>Nerdma — Freelance UI/UX Designer, after hours alongside iOCO (2023)</li><li>AddmoreDigital — UI/UX Designer, then Lead UI/UX Designer, after hours alongside iOCO (2021–2022)</li><li>Hypothetical Objective Systems — Freelance Senior UI/UX Designer and Developer Coach (2020–2022)</li><li>Sesyme and SmartServe — UI/UX and Android Developer (2019–2020)</li><li>The Digital Academy — Lead UI/UX Designer, 1 Aug 2018 to 31 Jan 2019</li><li>mLab — UI/UX and Android Developer (2017–2018)</li></ul>
         <h2>Tools</h2><p>Figma for design, systems and prototypes. VS Code for the build — React, Angular, Ionic, TypeScript. GitHub for everything else. Short list on purpose.</p>
-        <h2>Education</h2><p>Full-Stack Development — FNB App of the Year Academy, 2025 (Distinction, 92.7%) · NQF Level 5 Mobile and Web Development — MTN Business App Academy, 2021 · UX/UI Design — Wits JCSE, 2017 · Google UX Design Professional Certificate. Every certificate is in the Certificates app on the Dock.</p>
-        <p>For the complete picture — every engagement, skill and tool — download the full résumé.</p>
-        <a class="notes-cv-link" href="https://drive.google.com/file/d/1iNgauKhYevO53_D5daPcT5cM5wkpuYkP/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Download Full CV →</a>
+        <h2>Education</h2><p>Full-Stack Development — FNB App of the Year Academy, 2025 (Distinction, 92.7%) · NQF Level 5 Mobile and Web Development — MTN Business App Academy, 2021 · UX/UI Design — Wits JCSE, 2017 · Google UX Design Professional Certificate. Certificates are listed in the Certificates app.</p>
+        <p>For a printable version, download the CV as a PDF.</p>
+        <a class="notes-cv-link" href="docs/cv/Lulamile-Mkhungela-CV.pdf" target="_blank" rel="noopener noreferrer">Download CV (PDF) →</a>
       </div>`
   },
   interests: {
@@ -325,7 +326,11 @@ const CURATED_POSITION_DOMAIN = {
 };
 let desktopLayoutFrame = 0;
 let desktopDockLayoutAdjustedThisSession = false;
-let activeCollectionFilter = "All Work";
+// Single source of truth for the collection filter labels. Used by the generated
+// menu items, the trigger label and the filter logic. Change them here only.
+const ALL_WORK_FILTER = "All Work";
+const CLEAR_FILTER_LABEL = "Clear Filter";
+let activeCollectionFilter = ALL_WORK_FILTER;
 let collectionFilterRun = 0;
 const PRIMARY_COLLECTION_FILTERS = new Set(["Product", "Brand", "Impact", "Web"]);
 
@@ -375,7 +380,7 @@ function applyCuratedDesktopPosition(button, project, options = {}) {
 }
 
 function updateCuratedDesktopPositions(options = {}) {
-  if (activeCollectionFilter !== "All Work") return;
+  if (activeCollectionFilter !== ALL_WORK_FILTER) return;
   cancelAnimationFrame(desktopLayoutFrame);
   desktopLayoutFrame = requestAnimationFrame(() => {
     projects.forEach(project => {
@@ -386,7 +391,7 @@ function updateCuratedDesktopPositions(options = {}) {
 }
 
 function saveDesktopFilePosition(projectId, button) {
-  if (activeCollectionFilter !== "All Work") return;
+  if (activeCollectionFilter !== ALL_WORK_FILTER) return;
   const layerWidth = projectLayer.clientWidth || 1;
   const layerHeight = projectLayer.clientHeight || 1;
   button.dataset.curatedPosition = "false";
@@ -1242,7 +1247,7 @@ mobileViewport.addEventListener("change", event => {
 // only ever appears once and only if at least one project actually carries
 // it. Order: All Work, Recent, categories, then tags, then Clear Filter.
 (function buildCollectionFilters() {
-  const seen = new Set(["All Work", "Clear Filter"]);
+  const seen = new Set([ALL_WORK_FILTER, CLEAR_FILTER_LABEL]);
   const categories = [];
   const tags = [];
   projects.forEach(project => {
@@ -1262,24 +1267,24 @@ mobileViewport.addEventListener("change", event => {
   const sheetItem = (filter, extraClass = "") =>
     `<button class="collections-sheet-option${extraClass}" type="button" role="menuitemradio" data-filter="${filter}" aria-checked="false"><span aria-hidden="true">${checkSvg}</span><span>${escape(filter)}</span></button>`;
   const menuBlocks = [
-    menuItem("All Work", " is-active"),
+    menuItem(ALL_WORK_FILTER, " is-active"),
     menuItem("Recent"),
     `<div class="collections-separator" role="separator"></div>`,
     ...categories.map(filter => menuItem(filter)),
     `<div class="collections-separator" role="separator"></div>`,
     ...tags.filter(tag => tag !== "Recent").map(filter => menuItem(filter)),
     `<div class="collections-separator" role="separator"></div>`,
-    menuItem("Clear Filter", " collections-menu-clear")
+    menuItem(CLEAR_FILTER_LABEL, " collections-menu-clear")
   ];
   const sheetBlocks = [
-    sheetItem("All Work", " is-active"),
+    sheetItem(ALL_WORK_FILTER, " is-active"),
     sheetItem("Recent"),
     `<div class="collections-sheet-separator" aria-hidden="true"></div>`,
     ...categories.map(filter => sheetItem(filter)),
     `<div class="collections-sheet-separator" aria-hidden="true"></div>`,
     ...tags.filter(tag => tag !== "Recent").map(filter => sheetItem(filter)),
     `<div class="collections-sheet-separator" aria-hidden="true"></div>`,
-    sheetItem("Clear Filter", " collections-sheet-clear")
+    sheetItem(CLEAR_FILTER_LABEL, " collections-sheet-clear")
   ];
   collectionsMenu.innerHTML = menuBlocks.join("");
   const sheetOptions = collectionsSheet.querySelector(".collections-sheet-options");
@@ -1537,7 +1542,7 @@ function syncVisionBinProjectFilterLock() {
 }
 
 function projectMatchesCollection(project, filter) {
-  if (filter === "All Work") return true;
+  if (filter === ALL_WORK_FILTER) return true;
   if (PRIMARY_COLLECTION_FILTERS.has(filter)) return project.category === filter;
   return project.tags.includes(filter);
 }
@@ -1616,35 +1621,35 @@ function animateCollectionLayout(filteredProjects, beforeRects) {
 
 async function applyCollectionFilter(requestedFilter) {
   if (projectFiltersLockedForVision) return;
-  const isClearAction = requestedFilter === "Clear Filter";
-  const filter = isClearAction ? "All Work" : requestedFilter;
-  collectionsTriggerLabel.textContent = filter === "All Work" ? "All Collections" : filter;
-  const filterLabel = filter === "All Work"
+  const isClearAction = requestedFilter === CLEAR_FILTER_LABEL;
+  const filter = isClearAction ? ALL_WORK_FILTER : requestedFilter;
+  collectionsTriggerLabel.textContent = filter === ALL_WORK_FILTER ? "All Collections" : filter;
+  const filterLabel = filter === ALL_WORK_FILTER
     ? "Filter projects, showing all work"
     : `Filter projects, current selection ${filter}`;
   collectionsTrigger.setAttribute("aria-label", filterLabel);
-  collectionsHelperTrigger?.setAttribute("aria-label", filter === "All Work"
+  collectionsHelperTrigger?.setAttribute("aria-label", filter === ALL_WORK_FILTER
     ? "Open project filters, showing all work"
     : `Open project filters, current selection ${filter}`);
   collectionMenuItems.forEach(item => {
-    const active = item.dataset.filter === filter && item.dataset.filter !== "Clear Filter";
+    const active = item.dataset.filter === filter && item.dataset.filter !== CLEAR_FILTER_LABEL;
     item.classList.toggle("is-active", active);
     item.setAttribute("aria-checked", String(active));
   });
   collectionSheetItems.forEach(item => {
-    const active = item.dataset.filter === filter && item.dataset.filter !== "Clear Filter";
+    const active = item.dataset.filter === filter && item.dataset.filter !== CLEAR_FILTER_LABEL;
     item.classList.toggle("is-active", active);
     item.setAttribute("aria-checked", String(active));
   });
-  const matchingProjectCount = filter === "All Work"
+  const matchingProjectCount = filter === ALL_WORK_FILTER
     ? projects.length
     : projects.filter(project => projectMatchesCollection(project, filter)).length;
-  collectionsFilterStatus.textContent = filter === "All Work"
+  collectionsFilterStatus.textContent = filter === ALL_WORK_FILTER
     ? `Showing all ${matchingProjectCount} projects.`
     : `Showing ${matchingProjectCount} ${filter} project${matchingProjectCount === 1 ? "" : "s"}.`;
   if (filter === activeCollectionFilter) return;
   const run = ++collectionFilterRun;
-  if (activeCollectionFilter === "All Work" && filter !== "All Work") rememberUnfilteredPositions();
+  if (activeCollectionFilter === ALL_WORK_FILTER && filter !== ALL_WORK_FILTER) rememberUnfilteredPositions();
 
   const filteredProjects = projects.filter(project => projectMatchesCollection(project, filter));
   const filteredIds = new Set(filteredProjects.map(project => project.id));
@@ -1675,13 +1680,13 @@ async function applyCollectionFilter(requestedFilter) {
     mobileFolder.hidden = !matches;
   });
 
-  if (filter === "All Work") restoreUnfilteredPositions();
+  if (filter === ALL_WORK_FILTER) restoreUnfilteredPositions();
   else setFilteredGridPositions(filteredProjects);
 
   requestAnimationFrame(() => animateCollectionLayout(filteredProjects, beforeRects));
-  if (filter === "All Work") {
+  if (filter === ALL_WORK_FILTER) {
     setTimeout(() => {
-      if (activeCollectionFilter !== "All Work") return;
+      if (activeCollectionFilter !== ALL_WORK_FILTER) return;
       projectLayer.querySelectorAll(".project-icon").forEach(button => {
         delete button.dataset.unfilteredLeft;
         delete button.dataset.unfilteredTop;
@@ -6714,7 +6719,7 @@ function applyDockPosition(position, persist = false, { adjustDesktopLayout = fa
   document.body.dataset.dockPosition = dockSettings.position;
   if (adjustDesktopLayout) {
     desktopDockLayoutAdjustedThisSession = true;
-    if (activeCollectionFilter === "All Work") {
+    if (activeCollectionFilter === ALL_WORK_FILTER) {
       updateCuratedDesktopPositions({ respectDock: dockSettings.position !== "bottom" });
     } else {
       setFilteredGridPositions(projects.filter(project => projectMatchesCollection(project, activeCollectionFilter)));
@@ -7519,7 +7524,7 @@ addEventListener("resize", () => {
   if (viewportResizeFrame) return;
   viewportResizeFrame = requestAnimationFrame(() => {
     viewportResizeFrame = 0;
-    if (activeCollectionFilter === "All Work") updateCuratedDesktopPositions();
+    if (activeCollectionFilter === ALL_WORK_FILTER) updateCuratedDesktopPositions();
     else setFilteredGridPositions(projects.filter(project => projectMatchesCollection(project, activeCollectionFilter)));
     updateDockUsableGeometry();
     dockLayout = null;

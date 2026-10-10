@@ -20,20 +20,9 @@ window.LIBRARY_DATA = {
     { id: "design", label: "Design" },
     { id: "development", label: "Development" },
     { id: "integration", label: "Integration" },
-    { id: "archive", label: "Archive" }
+    { id: "archive", label: "Archive Projects" }
   ],
   items: [
-    /* ── Archive: earlier and side projects (moved from the homepage) ── */
-    { id: "archive-service-waze", name: "ServiceWaze", url: "https://lulamilemkhungela.github.io/ServiceWaze/", category: "archive", noPreview: true, description: "Civic Tech PWA (open source)" },
-    { id: "archive-foodiezone-pwa", name: "FoodieZone", url: "portfolio/foodiezone-pwa.html", category: "archive", noPreview: true, description: "Ordering PWA" },
-    { id: "archive-designops-design-system", name: "DesignOps", url: "portfolio/designops-design-system.html", category: "archive", noPreview: true, description: "Design system" },
-    { id: "archive-lula-gazette", name: "LulaGazette", url: "portfolio/lula-gazette.html", category: "archive", noPreview: true, description: "Legal intelligence" },
-    { id: "archive-addmoredigital-website", name: "AddmoreDigital (freelance, 2021)", url: "portfolio/addmoredigital-website.html", category: "archive", noPreview: true, description: "Website, SEO & CRM" },
-    { id: "archive-nerdma-website", name: "Nerdma (freelance, 2023)", url: "portfolio/nerdma-website.html", category: "archive", noPreview: true, description: "Web & dashboards" },
-    { id: "archive-snb-website", name: "SNB", url: "portfolio/snb-website.html", category: "archive", noPreview: true, description: "Accounting website" },
-    { id: "archive-africa-cuisine-pwa", name: "Africa Cuisine", url: "https://africa-cuisine-pro.vercel.app", category: "archive", noPreview: true, description: "Restaurant PWA — live site" },
-    { id: "archive-wandisplace-pwa", name: "WandisPlace", url: "https://wandies.vercel.app/", category: "archive", noPreview: true, description: "Booking PWA — live site" },
-    { id: "archive-sk-finds-pwa", name: "SK Finds", url: "https://skautos.vercel.app/", category: "archive", noPreview: true, description: "WhatsApp storefront — live site" },
     /* ── Featured stories ─────────────────────────────────────────────── */
     {
       id: "invest-in-4ir-smartseve",
@@ -91,10 +80,12 @@ window.LIBRARY_DATA = {
     { id: "vision-sesyme-at-work", type: "image", category: "pictures", name: "Sesyme at work", image: "./vision/mee.jpg" },
     { id: "vision-mpilo-feature", type: "image", category: "pictures", name: "Mpilo community feature", image: "./vision/mpilo.jpg" },
     { id: "vision-technology-feature", type: "image", category: "pictures", name: "Technology taken to the next level", image: "./vision/news.jpg" },
+    { id: "vision-ply-project", type: "image", category: "pictures", name: "Ply project display", image: "./vision/ply.jpg" },
     { id: "vision-sesyme-platform", type: "image", category: "pictures", name: "Sesyme co-learning platform", image: "./vision/ses.jpg" },
     { id: "vision-sesyme-mockups", type: "image", category: "pictures", name: "Sesyme product mockups", image: "./vision/sesyme.jpeg" },
     { id: "vision-community-sport", type: "image", category: "pictures", name: "Community sports activity", image: "./vision/soc.jpg" },
     { id: "vision-star-card", type: "image", category: "pictures", name: "Recognition card", image: "./vision/star.jpg" },
+    { id: "vision-takeda-design", type: "image", category: "pictures", name: "Pharmaceutical client design workspace (anonymised)", image: "./vision/takeda.jpg" },
     { id: "vision-team-workshop", type: "image", category: "pictures", name: "Team workshop", image: "./vision/vd.jpg" },
     { id: "vision-video-call", type: "image", category: "pictures", name: "Virtual project meeting", image: "./vision/vv.jpg" },
 
@@ -427,6 +418,102 @@ window.LIBRARY_DATA = {
       url: "https://www.yoco.com/za/",
       category: "integration",
       description: "South African card-payment tools and payment links for small business workflows."
+    },
+    {
+      id: "archive-coal-stockpile",
+      name: "Coal stockpile forecasting",
+      url: "./portfolio/doc-coal-stockpile-forecasting.html",
+      category: "archive",
+      noPreview: true,
+      description: "Case study: energy and machine-learning forecasting."
+    },
+    {
+      id: "archive-compliance-ai",
+      name: "Compliance AI assistant",
+      url: "./portfolio/doc-compliance-ai-platform.html",
+      category: "archive",
+      noPreview: true,
+      description: "Case study: AI assistant with cited answers for financial services."
+    },
+    {
+      id: "archive-safety-statistics",
+      name: "Safety statistics reference",
+      url: "./portfolio/doc-safety-statistics-workbook.html",
+      category: "archive",
+      noPreview: true,
+      description: "Case study: safety-reporting reference for energy and chemicals."
+    },
+    {
+      id: "archive-chart-components",
+      name: "Configurable chart components",
+      url: "./portfolio/doc-chart-components.html",
+      category: "archive",
+      noPreview: true,
+      description: "Case study: dashboard chart components for a pharmaceutical client."
+    },
+    {
+      id: "archive-timeline-view",
+      name: "Configurable timeline view",
+      url: "./portfolio/doc-timeline-view.html",
+      category: "archive",
+      noPreview: true,
+      description: "Case study: enterprise product-operations timeline."
+    },
+    {
+      id: "archive-entrehive",
+      name: "EntreHive",
+      url: "./portfolio/doc-entrehive.html",
+      category: "archive",
+      noPreview: true,
+      description: "Case study: Android points app, Digital Academy team project."
+    },
+    {
+      id: "archive-addmoredigital",
+      name: "AddmoreDigital",
+      url: "./portfolio/addmoredigital-website.html",
+      category: "archive",
+      noPreview: true,
+      description: "Case study: agency website, SEO and CRM."
+    },
+    {
+      id: "archive-africa-cuisine",
+      name: "Africa Cuisine",
+      url: "https://africa-cuisine-pro.vercel.app",
+      category: "archive",
+      noPreview: true,
+      description: "Live restaurant PWA, Braamfontein."
+    },
+    {
+      id: "archive-media-scanning",
+      name: "Media scanning for audit",
+      url: "./portfolio/doc-media-scanning-audit.html",
+      category: "archive",
+      noPreview: true,
+      description: "Case study: public-sector media intelligence for audit planning."
+    },
+    {
+      id: "archive-servicewaze",
+      name: "ServiceWaze",
+      url: "https://lulamilemkhungela.github.io/ServiceWaze/",
+      category: "archive",
+      noPreview: true,
+      description: "Live civic-tech PWA."
+    },
+    {
+      id: "archive-wandisplace",
+      name: "WandisPlace",
+      url: "https://wandies.vercel.app/",
+      category: "archive",
+      noPreview: true,
+      description: "Live booking PWA."
+    },
+    {
+      id: "archive-sk-finds",
+      name: "SK Finds",
+      url: "https://skautos.vercel.app/",
+      category: "archive",
+      noPreview: true,
+      description: "Live WhatsApp storefront PWA."
     }
   ]
 };

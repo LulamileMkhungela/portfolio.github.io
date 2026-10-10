@@ -2,9 +2,8 @@
 // Each testimonial needs: id, name, role, company, avatar, preview, testimonial
 // and messages (type "text", direction "incoming"). Avatars live in assets/testimonials/.
 //
-// (Attachments removed: the repo no longer ships identity documents.)
-// Clicking an attachment opens the pages in the built-in document viewer
-// (scrollable, fit/actual size, with a link to the original file).
+// A message can also be an attachment (type "document", with file, preview and pages).
+// Clicking an attachment opens the pages in the built-in document viewer.
 const MESSAGES_APP = {
   id: "messages",
   number: "MS",
@@ -17,7 +16,7 @@ const TESTIMONIALS = [
     "id": "vodacom-employee-experience-lead",
     "name": "Employee Experience Lead",
     "role": "HRIT",
-    "company": "Vodacom",
+    "company": "Telecommunications group",
     "avatar": "./assets/testimonials/vodacom-employee-experience-lead.svg",
     "preview": "Lulamile came in, listened properly to how people actually use the app, and rebuilt the navigation around that…",
     "testimonial": "Lulamile came in, listened properly to how people actually use the app, and rebuilt the navigation around that. The search and grouped sections changed the way staff talk about the platform — the \"where do I find\" questions mostly stopped.",
@@ -32,8 +31,8 @@ const TESTIMONIALS = [
   {
     "id": "addmoredigital-founder",
     "name": "Founder",
-    "role": "Digital Agency",
-    "company": "AddmoreDigital",
+    "role": "Digital agency",
+    "company": "Client (anonymised)",
     "avatar": "./assets/testimonials/addmoredigital-founder.svg",
     "preview": "We had the work, we just could not present it…",
     "testimonial": "We had the work, we just could not present it. Lulamile restructured the site around our portfolio and then set up the pipeline behind it. Proposals stopped being a scramble and enquiries started arriving with context.",
@@ -48,8 +47,8 @@ const TESTIMONIALS = [
   {
     "id": "nerdma-managing-director",
     "name": "Managing Director",
-    "role": "Technology Services",
-    "company": "Nerdma",
+    "role": "Technology services",
+    "company": "Client (anonymised)",
     "avatar": "./assets/testimonials/nerdma-managing-director.svg",
     "preview": "Rare to find someone who can design a site this sharp and then think through the sales pipeline behind it…",
     "testimonial": "Rare to find someone who can design a site this sharp and then think through the sales pipeline behind it. The site finally explains what we do, and the CRM means nothing gets answered from memory.",
@@ -79,8 +78,8 @@ const TESTIMONIALS = [
   },
   {
     "id": "digital-academy-managing-director",
-    "name": "Managing Director",
-    "role": "Co-founder",
+    "name": "Gary Bannatyne",
+    "role": "Managing Director & Co-founder",
     "company": "The Digital Academy",
     "avatar": "./assets/testimonials/digital-academy-managing-director.svg",
     "preview": "I would have no hesitation recommending Lulamile for an extended internship or an intern developer role…",
@@ -100,7 +99,7 @@ const TESTIMONIALS = [
   },
   {
     "id": "digital-academy-technical-manager",
-    "name": "Technical Manager",
+    "name": "Ed Wrede",
     "role": "Technical Manager",
     "company": "The Digital Academy",
     "avatar": "./assets/testimonials/digital-academy-technical-manager.svg",
@@ -121,7 +120,7 @@ const TESTIMONIALS = [
   },
   {
     "id": "digital-academy-communications",
-    "name": "Internal Communications Coordinator",
+    "name": "Bongani Dlamini",
     "role": "Internal Communications Coordinator",
     "company": "The Digital Academy",
     "avatar": "./assets/testimonials/digital-academy-communications.svg",
