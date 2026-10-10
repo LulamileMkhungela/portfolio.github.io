@@ -93,7 +93,7 @@ const NOTES_DATA = {
         <h2>Building</h2><ul><li>Progressive web apps</li><li>React and Angular front ends</li><li>Micro-frontends</li><li>Design-to-code workflows</li><li>Data visualisation</li></ul>
       <h2>AI and emerging tech</h2><ul><li>Generative AI and RAG</li><li>Claude Code and Cursor</li><li>MCP agents</li><li>Vibe coding — prompting with intent, reviewing like an engineer</li><li>Decision-support tools</li></ul>
       <h2>Community and impact</h2><ul><li>Civic tech for South Africa</li><li>Mentoring upcoming designers &amp; front-end developers</li><li>Entrepreneurship</li><li>Hackathons</li></ul>
-      <h2>Beyond the screen</h2><ul><li>Sunday league football — PepeCafe FC, JHB Metro league</li><li>Ambient and sentimental jazz</li><li>Lo-fi and peaceful piano</li><li>Modern classical</li><li>Mid-century furniture and industrial design</li></ul>
+      <h2>Beyond the screen</h2><ul><li>Sunday league football — PepeCafe FC, JHB Metro league</li><li>Ambient and sentimental jazz</li><li>Lo-fi and peaceful piano</li><li>Modern classical</li></ul>
       </div>`
   }
 };
