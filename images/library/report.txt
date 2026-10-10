@@ -1,2 +1,0 @@
-captured 13/14
-cipc: Error: page.screenshot: Target page, context or browser has been closed
