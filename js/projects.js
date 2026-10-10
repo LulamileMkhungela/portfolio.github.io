@@ -1,122 +1,34 @@
-// Desktop portfolio data: five featured case studies. Everything else lives in the Vision Board.
-// Each url points to a case study in portfolio/ — keep "?embedded=1" on the end.
+// Editable desktop portfolio data. Add a category or tags here and the
+// Collections menu will automatically include the project in that filter.
+// Categories (Product, Brand, Impact, Web) and tags must match the
+// data-filter values generated for the filter menu. Each url points to a
+// case study in portfolio/ — keep "?embedded=1" on the end.
+// Projects with `external: true` are live-site shortcuts: the folder gets a
+// small alias arrow and clicking it opens the live site in a new tab
+// instead of opening a case study window.
 const projects = [
   {
-    "id": "employee-engagement-app-redesign",
-    "number": "VE",
-    "title": "Vodacom Engage",
-    "subtitle": "Employee App",
-    "category": "Product",
-    "tags": [
-      "Enterprise",
-      "Mobile App"
-    ],
-    "modal": "project",
-    "url": "./portfolio/employee-engagement-app-redesign.html?embedded=1",
-    "icon": "./public/icons/project-folder.png",
-    "position": {
-      "left": "33%",
-      "top": "23%"
-    },
-    "colors": [
-      "#e60000",
-      "#f59494"
-    ],
-    "ariaLabel": "Open Vodacom Engage"
+    id: "employee-engagement-app-redesign", number: "VE", title: "Vodacom Engage", subtitle: "Employee App",
+    category: "Product", tags: ["Enterprise", "Mobile App"], modal: "project",
+    url: "./portfolio/employee-engagement-app-redesign.html?embedded=1", icon: "./public/icons/project-folder.png",
+    position: { left: "33%", top: "23%" }, colors: ["#e60000", "#f59494"], ariaLabel: "Open Vodacom Engage"
   },
   {
-    "id": "toyota-connected-apps",
-    "number": "TC",
-    "title": "Toyota Connected Apps",
-    "subtitle": "Owner & remote apps",
-    "category": "Brand",
-    "tags": [
-      "Enterprise",
-      "Mobile App",
-      "Design Systems"
-    ],
-    "modal": "project",
-    "url": "./portfolio/toyota-connected-apps.html?embedded=1",
-    "icon": "./public/icons/project-folder.png",
-    "position": {
-      "left": "23%",
-      "top": "63%"
-    },
-    "colors": [
-      "#eb0a1e",
-      "#f798a1"
-    ],
-    "ariaLabel": "Open Toyota Connected Apps"
+    id: "brand-strategy-programme", number: "TB", title: "Toyota Brand Programme", subtitle: "Brand Strategy · KINTO",
+    folderTitle: "Toyota Brand", category: "Brand", tags: ["Enterprise", "Design Systems"], modal: "project",
+    url: "./portfolio/brand-strategy-programme.html?embedded=1", icon: "./public/icons/project-folder.png",
+    position: { left: "23%", top: "63%" }, colors: ["#01718e", "#94c3d0"], ariaLabel: "Open Toyota Brand Programme"
   },
   {
-    "id": "enterprise-safety-platform",
-    "number": "ES",
-    "title": "Enterprise Safety Platform",
-    "subtitle": "Angular workflow",
-    "category": "Product",
-    "tags": [
-      "Enterprise",
-      "Recent"
-    ],
-    "modal": "project",
-    "url": "./portfolio/enterprise-safety-platform.html?embedded=1",
-    "icon": "./public/icons/project-folder.png",
-    "position": {
-      "left": "70%",
-      "top": "33%"
-    },
-    "colors": [
-      "#0b5cad",
-      "#9ec0e6"
-    ],
-    "ariaLabel": "Open Enterprise Safety Platform"
+    id: "designops-design-system", number: "DO", title: "DesignOps", subtitle: "Design System",
+    category: "Product", tags: ["Recent", "Design Systems"], modal: "project",
+    url: "./portfolio/designops-design-system.html?embedded=1", icon: "./public/icons/project-folder.png",
+    position: { left: "74%", top: "62%" }, colors: ["#6d28d9", "#c2a5ef"], ariaLabel: "Open DesignOps"
   },
   {
-    "id": "global-pharma-supply-chain",
-    "number": "GP",
-    "title": "Global Supply-Chain SaaS",
-    "subtitle": "Data viz & design system",
-    "category": "Product",
-    "tags": [
-      "Enterprise",
-      "Design Systems",
-      "Recent"
-    ],
-    "modal": "project",
-    "url": "./portfolio/global-pharma-supply-chain.html?embedded=1",
-    "icon": "./public/icons/project-folder.png",
-    "position": {
-      "left": "60%",
-      "top": "62%"
-    },
-    "colors": [
-      "#c4002f",
-      "#f0a0b4"
-    ],
-    "ariaLabel": "Open Global Supply-Chain SaaS"
-  },
-  {
-    "id": "public-accountability-platform",
-    "number": "PA",
-    "title": "Public Accountability Platform",
-    "subtitle": "Public-sector data & a11y",
-    "category": "Impact",
-    "tags": [
-      "Enterprise",
-      "Civic Tech",
-      "Recent"
-    ],
-    "modal": "project",
-    "url": "./portfolio/public-accountability-platform.html?embedded=1",
-    "icon": "./public/icons/project-folder.png",
-    "position": {
-      "left": "84%",
-      "top": "14%"
-    },
-    "colors": [
-      "#1b5e20",
-      "#9fcaa2"
-    ],
-    "ariaLabel": "Open Public Accountability Platform"
+    id: "toyota-connected-apps", number: "TC", title: "Toyota Connected Apps", subtitle: "MyToyota · Remote · Lexus",
+    folderTitle: "Toyota Apps", category: "Brand", tags: ["Enterprise", "Mobile App", "Design Systems"], modal: "project",
+    url: "./portfolio/toyota-connected-apps.html?embedded=1", icon: "./public/icons/project-folder.png",
+    position: { left: "10%", top: "81%" }, colors: ["#eb0a1e", "#f798a1"], ariaLabel: "Open Toyota Connected Apps"
   }
 ];
