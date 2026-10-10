@@ -1,0 +1,57 @@
+# Site audit and content decisions
+
+Scope: `index.html`, the desktop/Messages/Services/CV data in `js/`, and the 13 pages in `portfolio/`.
+Sources used: the repository itself (CV content in `js/desktop.js`, testimonials, case-study pages),
+the live Pages index, and Superhive's UX portfolio structure guidance
+(https://www.superhive.co/ux-design-portfolio-projects-structure-recruiters-want).
+
+## 1. Is the site ready for UI, frontend and UX recruiters?
+
+**Strong:** a clear devsigner positioning in the About and Services text; real shipped products
+(Vodacom Engage, Toyota apps, FoodieZone, LulaGazette, DesignOps); a real CV and certificate trail;
+the case studies share a consistent section order (problem, goals, personas, process, impact, outcomes).
+
+**Weak for a time-pressed recruiter (Superhive "scan" layer):**
+- The homepage has no role-fit headline. A recruiter sees a desktop of folders before they learn the target role.
+- The desktop metaphor needs an interaction to reach content. Recruiters will not explore it, so the case studies need to be reachable from a plain, linear entry point.
+- Case-study narratives list problems and outcomes but seldom show *decisions with trade-offs* or *ownership boundaries* (the "credibility" layer).
+- Several outcome numbers appear without a stated measurement method, and some CV figures have no matching case study (see section 4).
+
+**Technical:** `js/desktop.js` is about 317 KB and loads jQuery plus about 256 KB of Timber. Lighthouse/RUM has not been run here, so treat load cost as unmeasured. The filter label duplication was fixed previously (`index.html`, `css/desktop.css` v=79).
+
+## 2. Privacy fix (done)
+`_poe_out/report.json` (tracked) contained the candidate's ID number in plain text, copied from the PDF text layer. The ID is now replaced with `[REDACTED]`. The PDF text layer and page images were checked: the ID is redacted there (page 2 image shows a black box).
+
+## 3. Timeline decisions (taken from the CV in `js/desktop.js`)
+| Item | Decision |
+|---|---|
+| iOCO | Employment, 2021 to present. Vodacom Engage (2024) and Toyota (2022 to 2024) were delivered through iOCO. Toyota Brand Programme and Vodacom Engage now say "via iOCO", matching the connected-apps page. |
+| AddmoreDigital (2021 to 2022) | Freelance, after hours alongside iOCO. Role changed from "Lead UI/UX Designer" to "Freelance UI/UX Designer". |
+| Nerdma (2023) | Freelance, after hours alongside iOCO. No longer described as work "at AddMoreDigital". CV line added. |
+| Digital Academy (2018 to 2019) | **Not changed, needs your answer.** CV says "Lead UI/UX Designer". The Digital Academy reference (in `testimonials-data.js`) describes an intern programme, 1 Aug 2018 to 31 Jan 2019. |
+| IntellehubSA and UluntuXd (2025 to 2026) | **Not changed, needs your answer.** Both overlap iOCO (2021 to present), like AddmoreDigital and Nerdma. |
+
+## 4. Missing clients (presented anonymised)
+- Takeda, Sasol, AGSA and Old Mutual are now named by sector in the CV line and About text: "a global pharmaceutical company", "a listed energy group", "a national audit institution", "a financial services group".
+- The library label "Takeda design workspace" is now "Pharmaceutical client design workspace (anonymised)". The image file name still contains "takeda"; rename it if you want it fully anonymous.
+- The CV highlight "6-micro-frontend architecture and 13-endpoint notifications system for a national audit platform" is kept as written. I have not stated which client it belongs to.
+- **Not done, needs facts:** per-client case studies for these four. I do not have their problems, roles, or outcomes in the repository, and I will not invent them.
+
+## 5. Testimonials (kept, anonymised)
+The three client testimonials (Vodacom, AddmoreDigital, Nerdma) now show role and sector only:
+- "Telecommunications group" (was "Vodacom")
+- "Digital agency / Client (anonymised)" (was "AddmoreDigital")
+- "Technology services / Client (anonymised)" (was "Nerdma")
+
+The services quote attribution was changed the same way.
+**Not changed:** the three Digital Academy references, which name people (for example Gary Bannatyne). They are not client testimonials, so I left them, but tell me if they should be anonymised too.
+
+## 6. Wording fixes made
+- DesignOps: "zero design drift" is an overclaim for a linter. Now "a linter that checks shipped code".
+- Toyota Connected Apps: the Lexus cover was labelled "illustrative" on a public page. Label removed.
+
+## 7. Still open (case-study rewrite)
+The nine full case studies still use their original long-form copy. The storytelling rewrite (context, role and boundaries, 3 to 5 decisions with trade-offs, outcome and evidence, one-line "what changed") needs two things first:
+1. Facts for Takeda, Sasol, AGSA and Old Mutual (problem, your role, decisions, measured outcome, or agreement to keep them as sector-only entries).
+2. Confirmation of the open timeline items in section 3.
+Metrics in the CV and case studies (92% UAT, 65%, 35%, 32% checkout, 60% discoverability, and others) are kept as written. Each needs a source before it goes in a rewritten case study.

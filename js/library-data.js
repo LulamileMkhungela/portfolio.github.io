@@ -84,7 +84,7 @@ window.LIBRARY_DATA = {
     { id: "vision-sesyme-mockups", type: "image", category: "pictures", name: "Sesyme product mockups", image: "./vision/sesyme.jpeg" },
     { id: "vision-community-sport", type: "image", category: "pictures", name: "Community sports activity", image: "./vision/soc.jpg" },
     { id: "vision-star-card", type: "image", category: "pictures", name: "Recognition card", image: "./vision/star.jpg" },
-    { id: "vision-takeda-design", type: "image", category: "pictures", name: "Takeda design workspace", image: "./vision/takeda.jpg" },
+    { id: "vision-takeda-design", type: "image", category: "pictures", name: "Pharmaceutical client design workspace (anonymised)", image: "./vision/takeda.jpg" },
     { id: "vision-team-workshop", type: "image", category: "pictures", name: "Team workshop", image: "./vision/vd.jpg" },
     { id: "vision-video-call", type: "image", category: "pictures", name: "Virtual project meeting", image: "./vision/vv.jpg" },
 

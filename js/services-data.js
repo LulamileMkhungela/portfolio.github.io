@@ -47,7 +47,7 @@ const SERVICE_GROUPS = [
       }
     ],
     quote: "Lulamile came in, listened properly to how people actually use the app, and rebuilt the navigation around that.",
-    quoteSource: "Employee Experience Lead · Vodacom"
+    quoteSource: "Employee Experience Lead · Telecommunications group"
   },
   {
     letter: "B",
@@ -97,7 +97,7 @@ const SERVICE_GROUPS = [
       }
     ],
     quote: "We had the work, we just could not present it. Proposals stopped being a scramble and enquiries started arriving with context.",
-    quoteSource: "Founder · AddmoreDigital"
+    quoteSource: "Founder · Digital agency"
   },
   {
     letter: "D",
