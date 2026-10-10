@@ -308,6 +308,8 @@ window.LIBRARY_RESOURCES = {
       description: "Inspect and test the APIs a screen depends on before the screen is built." },
     { id: "supabase", name: "Supabase", url: "https://supabase.com", category: "build",
       description: "Hosted Postgres, auth and storage for small products that need a backend quickly." },
+    { id: "firebase", name: "Firebase", url: "https://firebase.google.com", category: "build", noPreview: true,
+      description: "Auth, Firestore, hosting and push notifications for the Android and PWA builds." },
 
     /* ── Test and ship ──────────────────────────────────────────────── */
     { id: "lighthouse", name: "Lighthouse", url: "https://developer.chrome.com/docs/lighthouse/overview", category: "test", noPreview: true,
