@@ -1266,13 +1266,17 @@ mobileViewport.addEventListener("change", event => {
     `<button class="collections-menu-item${extraClass}" type="button" role="menuitemradio" aria-checked="false" data-filter="${filter}"><span class="collections-check" aria-hidden="true">${checkSvg}</span><span>${escape(filter)}</span></button>`;
   const sheetItem = (filter, extraClass = "") =>
     `<button class="collections-sheet-option${extraClass}" type="button" role="menuitemradio" data-filter="${filter}" aria-checked="false"><span aria-hidden="true">${checkSvg}</span><span>${escape(filter)}</span></button>`;
+  // The menu stays short on purpose: All Work, Recent, the four categories,
+  // Clear. Project tags are kept in the data for search and matching, but are
+  // not listed here (set SHOW_TAG_FILTERS to true to bring them back).
+  const SHOW_TAG_FILTERS = false;
+  const tagFilters = SHOW_TAG_FILTERS ? tags.filter(tag => tag !== "Recent") : [];
   const menuBlocks = [
     menuItem(ALL_WORK_FILTER, " is-active"),
     menuItem("Recent"),
     `<div class="collections-separator" role="separator"></div>`,
     ...categories.map(filter => menuItem(filter)),
-    `<div class="collections-separator" role="separator"></div>`,
-    ...tags.filter(tag => tag !== "Recent").map(filter => menuItem(filter)),
+    ...(tagFilters.length ? [`<div class="collections-separator" role="separator"></div>`, ...tagFilters.map(filter => menuItem(filter))] : []),
     `<div class="collections-separator" role="separator"></div>`,
     menuItem(CLEAR_FILTER_LABEL, " collections-menu-clear")
   ];
@@ -1281,8 +1285,7 @@ mobileViewport.addEventListener("change", event => {
     sheetItem("Recent"),
     `<div class="collections-sheet-separator" aria-hidden="true"></div>`,
     ...categories.map(filter => sheetItem(filter)),
-    `<div class="collections-sheet-separator" aria-hidden="true"></div>`,
-    ...tags.filter(tag => tag !== "Recent").map(filter => sheetItem(filter)),
+    ...(tagFilters.length ? [`<div class="collections-sheet-separator" aria-hidden="true"></div>`, ...tagFilters.map(filter => sheetItem(filter))] : []),
     `<div class="collections-sheet-separator" aria-hidden="true"></div>`,
     sheetItem(CLEAR_FILTER_LABEL, " collections-sheet-clear")
   ];
@@ -4361,7 +4364,7 @@ const LIBRARY_APP = {
   number: "VB",
   title: "Vision Bin",
   heading: "Vision Bin",
-  subheading: "Tools and references for everyday productivity, design, development and integration — plus featured stories, hackathon work and project imagery.",
+  subheading: "Selected projects and pictures on the board; on the toolkit, where I find inspiration, what I read, the frameworks I align to, how I hand over, and the tools I use from discovery to release.",
   dockSelector: "#dock-vision-bin",
   windowClass: "vision-bin-window library-window",
   colors: ["#8e8e93", "#d1d1d6"]
@@ -4396,17 +4399,24 @@ function libraryFallbackTile(item) {
   return `<span class="library-card-fallback" style="--library-hue:${hue}" aria-hidden="true">${escape((item.name || "?").slice(0, 1).toUpperCase())}</span>`;
 }
 
+const LIBRARY_LOCK_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>`;
+
 function createLibraryCard(item, index, categoryLabels, options = {}) {
-  const shape = libraryShape(item.id, index);
+  /* Project covers are 4:3; everything else staggers like a pinboard. */
+  const shape = item.image && item.type !== "image" ? "4 / 3" : libraryShape(item.id, index);
   const label = categoryLabels.get(item.category) || "";
   /* Site previews are looked up by name, so adding a picture is just a matter
      of dropping images/library/<id>.webp next to the others. */
   const preview = item.image || (!options.noPreview && item.noPreview !== true && item.url ? `./images/library/${item.id}.webp` : "");
+  const lock = item.locked
+    ? `<span class="library-card-lock" title="Password protected">${LIBRARY_LOCK_ICON}<span>Password</span></span>`
+    : "";
   const media = `
     <span class="library-card-media" style="aspect-ratio:${item.type === "image" ? "auto" : shape}">
       ${preview
         ? `<img src="${escape(preview)}" alt="" loading="${index < 8 ? "eager" : "lazy"}" decoding="async" draggable="false">`
         : libraryFallbackTile(item)}
+      ${lock}
     </span>`;
 
   if (item.type === "image") {
@@ -4419,8 +4429,8 @@ function createLibraryCard(item, index, categoryLabels, options = {}) {
   }
 
   return `
-    <a class="library-card" href="${escape(item.url)}" target="_blank" rel="noopener noreferrer"
-      data-category="${escape(item.category)}">
+    <a class="library-card${item.locked ? " library-card--locked" : ""}" href="${escape(item.url)}" target="_blank" rel="noopener noreferrer"
+      data-category="${escape(item.category)}"${item.locked ? ' aria-description="Password protected"' : ""}>
       ${media}
       <span class="library-card-body">
         <span class="library-card-title">${escape(item.name)}</span>
@@ -4440,20 +4450,24 @@ function resourcesData() {
   return { categories, items };
 }
 
+function libraryChips(categories, items, pane) {
+  return [{ id: "all", label: "All" }, ...categories]
+    .map(category => {
+      const count = category.id === "all" ? items.length : items.filter(item => item.category === category.id).length;
+      if (!count) return "";
+      return `<button class="library-chip${category.id === "all" ? " is-active" : ""}" type="button"
+        data-category="${escape(category.id)}" data-library-pane-chip="${pane}" aria-pressed="${category.id === "all"}">${escape(category.label)}<span>${count}</span></button>`;
+    })
+    .join("");
+}
+
 function buildLibraryMarkup(app) {
   const { categories, items } = libraryData();
   const categoryLabels = new Map(categories.map(category => [category.id, category.label]));
-  const chips = [{ id: "all", label: "All" }, ...categories]
-    .map(category => {
-      const count = category.id === "all" ? items.length : items.filter(item => item.category === category.id).length;
-      return `<button class="library-chip${category.id === "all" ? " is-active" : ""}" type="button"
-        data-category="${escape(category.id)}" aria-pressed="${category.id === "all"}">${escape(category.label)}<span>${count}</span></button>`;
-    })
-    .join("");
   const resources = resourcesData();
   const resourceLabels = new Map(resources.categories.map(category => [category.id, category.label]));
   const resourceCards = resources.items
-    .map((item, index) => createLibraryCard(item, index, resourceLabels, { noPreview: true }))
+    .map((item, index) => createLibraryCard(item, index, resourceLabels))
     .join("");
 
   return `
@@ -4465,14 +4479,15 @@ function buildLibraryMarkup(app) {
         </div>
         <label class="library-search">
           <img src="./assets/icons/sf/magnifyingglass.svg" alt="" aria-hidden="true">
-          <input type="search" placeholder="Search tools, resources &amp; pictures" aria-label="Search tools, resources and pictures" spellcheck="false">
+          <input type="search" placeholder="Search projects, tools &amp; pictures" aria-label="Search projects, tools and pictures" spellcheck="false">
         </label>
       </header>
       <nav class="library-tabs" role="tablist" aria-label="Vision Bin sections">
         <button class="library-tab is-active" type="button" role="tab" aria-selected="true" data-library-tab="vision">Vision Board</button>
-        <button class="library-tab" type="button" role="tab" aria-selected="false" data-library-tab="resources">Resources I Recommend</button>
+        <button class="library-tab" type="button" role="tab" aria-selected="false" data-library-tab="resources">Toolkit</button>
       </nav>
-      <nav class="library-filters" aria-label="Filter by category">${chips}</nav>
+      <nav class="library-filters" data-library-filters="vision" aria-label="Filter the vision board">${libraryChips(categories, items, "vision")}</nav>
+      <nav class="library-filters" data-library-filters="resources" aria-label="Filter the toolkit" hidden>${libraryChips(resources.categories, resources.items, "resources")}</nav>
       <main class="library-scroll-area" tabindex="0">
         <div class="library-grid" data-library-pane="vision">${items.map((item, index) => createLibraryCard(item, index, categoryLabels)).join("")}</div>
         <div class="library-grid library-grid--resources" data-library-pane="resources" hidden>${resourceCards}</div>
@@ -4494,7 +4509,7 @@ function wireLibrary(element) {
   const resourceItems = resourcesData().items;
   const visionGrid = element.querySelector('[data-library-pane="vision"]') || element.querySelector(".library-grid");
   const resourcesGrid = element.querySelector('[data-library-pane="resources"]');
-  const filtersNav = element.querySelector(".library-filters");
+  const filterNavs = [...element.querySelectorAll(".library-filters")];
   const tabs = [...element.querySelectorAll(".library-tab")];
   const empty = element.querySelector(".library-empty");
   const chips = [...element.querySelectorAll(".library-chip")];
@@ -4503,7 +4518,7 @@ function wireLibrary(element) {
   const resourceCards = [...(resourcesGrid?.querySelectorAll(".library-card") || [])];
   const lightbox = element.querySelector(".library-lightbox");
   const lightboxImage = lightbox?.querySelector(".photos-lightbox-image");
-  let activeCategory = "all";
+  const activeCategories = { vision: "all", resources: "all" };
   let activeTab = "vision";
 
   const applyFilter = () => {
@@ -4511,10 +4526,11 @@ function wireLibrary(element) {
     const onResources = activeTab === "resources";
     const list = onResources ? resourceCards : cards;
     const source = onResources ? resourceItems : items;
+    const activeCategory = activeCategories[activeTab];
     let visible = 0;
     list.forEach((card, index) => {
       const item = source[index] || {};
-      const matchesCategory = onResources || activeCategory === "all" || card.dataset.category === activeCategory;
+      const matchesCategory = activeCategory === "all" || card.dataset.category === activeCategory;
       const haystack = `${item.name || ""} ${item.description || ""} ${item.url || ""} ${item.category || ""}`.toLowerCase();
       const matchesTerm = !term || haystack.includes(term);
       const show = matchesCategory && matchesTerm;
@@ -4534,14 +4550,15 @@ function wireLibrary(element) {
     });
     if (visionGrid) visionGrid.hidden = tab !== "vision";
     if (resourcesGrid) resourcesGrid.hidden = tab !== "resources";
-    if (filtersNav) filtersNav.hidden = tab !== "vision";
+    filterNavs.forEach(nav => { nav.hidden = nav.dataset.libraryFilters !== tab; });
     applyFilter();
   };
   tabs.forEach(tab => tab.addEventListener("click", () => setLibraryTab(tab.dataset.libraryTab)));
 
   chips.forEach(chip => chip.addEventListener("click", () => {
-    activeCategory = chip.dataset.category;
-    chips.forEach(other => {
+    const pane = chip.dataset.libraryPaneChip || "vision";
+    activeCategories[pane] = chip.dataset.category;
+    chips.filter(other => other.dataset.libraryPaneChip === pane).forEach(other => {
       const isActive = other === chip;
       other.classList.toggle("is-active", isActive);
       other.setAttribute("aria-pressed", String(isActive));
@@ -4570,17 +4587,17 @@ function wireLibrary(element) {
 
   /* A screenshot that never arrived should not leave a grey hole: the card
      falls back to a lettered colour tile instead. */
-  cards.forEach((card, index) => {
+  [[cards, items], [resourceCards, resourceItems]].forEach(([list, source]) => list.forEach((card, index) => {
     const image = card.querySelector(".library-card-media img");
     if (!image) return;
     const swap = () => {
       if (!image.isConnected) return;
-      image.insertAdjacentHTML("afterend", libraryFallbackTile(items[index] || {}));
+      image.insertAdjacentHTML("afterend", libraryFallbackTile(source[index] || {}));
       image.remove();
     };
     image.addEventListener("error", swap, { once: true });
     if (image.complete && image.naturalWidth === 0) swap();
-  });
+  }));
 
   applyFilter();
   return { closeLightbox };

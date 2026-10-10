@@ -5657,6 +5657,26 @@ body.has-document-viewer { overflow: hidden; }
   object-position: top center;
 }
 .library-card--image .library-card-media img { height: auto; object-fit: contain; }
+.library-card-lock {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 9px 5px 7px;
+  border-radius: 999px;
+  background: rgba(20, 20, 22, .78);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  line-height: 1;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: none;
+}
+.library-card-lock svg { width: 12px; height: 12px; }
 .library-card-fallback {
   width: 100%;
   aspect-ratio: 4 / 3;
