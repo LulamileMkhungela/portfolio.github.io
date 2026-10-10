@@ -444,10 +444,12 @@ NEW_CASES = [
              "Updated the Figma designs and the frontend monorepos so the products use the same components and tokens. I developed the frontend, so the changes were made in code as well as in design."),
             ("6. Guidelines and rollout",
              "Agreed usage rules with marketing, product and retail, then enforced them by audit."),
+            ("7. Universal brand and design system",
+             "Built as one brand and one design system that KINTO, the Toyota App, Toyota Remote and AutoMark share, so other projects and teams can use the same universal brand. Adoption by each team is to confirm."),
         ],
         "checks": [
             "Each new component was reviewed with the design teams before it was added to the system, as the process above sets out.",
-            "To confirm: the list of missing components added, the number of monorepos updated, and how the brand guide was updated after each launch.",
+            "To confirm: the list of missing components added, the number of monorepos updated, which teams have adopted the system, and how the brand guide was updated after each launch.",
         ],
         "outcomes": [
             ("Published on Google Play",
