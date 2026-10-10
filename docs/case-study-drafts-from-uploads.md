@@ -6,7 +6,7 @@
 
 1. **Confidentiality.** These drafts are anonymised as you asked (client names replaced by sector). They still avoid client-specific figures, architecture, screen detail and internal names. Anonymised work can still be identifiable by sector, so check each draft against your NDAs before it goes public.
 2. **The source files are on public `main`.** The four upload commits on `main` (`04ffc2b`, `679bddb`, `cdf1995`, `f2129c9`) add client-confidential specifications, requirement documents, workbooks and a frontend guide to a **public** repository. Recommended: remove them from `main` (and from git history, if the client agreements require it) before any case study goes live. I cannot push to `main` from this session.
-3. **Your role is not in the documents.** None of the files name you. Every line marked **[CONFIRM ROLE]** or **[CONFIRM OUTCOME]** needs your input. I have not invented ownership, decisions or results.
+3. **Your role comes from you, not the documents.** None of the files name you. The role line in each draft (Devsigner, full UX/UI and frontend ownership) is applied as you instructed. Decisions and outcomes are still marked **[CONFIRM]**; I have not invented them.
 
 ---
 
