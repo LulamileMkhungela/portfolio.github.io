@@ -51,17 +51,14 @@ if(p.get("appearance")==="dark"){document.documentElement.classList.add("is-dark
 
 <section><h2>Three decisions</h2>
 <div class="callout"><h3>1. One source of truth: the tokens</h3>
-<p><b>Options considered:</b> keeping values in each framework's own files, such as CSS variables, Tailwind config and TypeScript constants, and syncing them by hand.</p>
 <p><b>Chose:</b> Figma variables as the input and <code>tokens.json</code> as the single source. Style Dictionary builds the output for every target. The model is 41 W3C DTCG tokens, so one name means the same thing in Figma, CSS and TypeScript.</p>
-<p><b>Trade-off accepted:</b> the token model has to be designed and maintained up front, before any component is built.</p></div>
+</div>
 <div class="callout"><h3>2. The advisory proposes; it never writes</h3>
-<p><b>Options considered:</b> letting a direction, such as "dark fintech dashboard", write tokens straight into the source.</p>
 <p><b>Chose:</b> the advisory produces a proposal with a map of where each token came from, seven WCAG contrast checks, and a record of what was not made into a token. A person approves it before it touches the source.</p>
-<p><b>Trade-off accepted:</b> every new direction needs a human approval step, so it is slower than automatic generation.</p></div>
+</div>
 <div class="callout"><h3>3. When the advisory and the linter disagree, the linter wins</h3>
-<p><b>Options considered:</b> trusting the advisory's output and checking only in code review.</p>
 <p><b>Chose:</b> <code>@designops/lint</code>, with six rules in ESLint and Oxlint: no restyling system components, no raw colours, no arbitrary values, no inline styles, no unknown classes, no unreadable class values. Each diagnostic explains itself and suggests a fix from the team's theme.</p>
-<p><b>Trade-off accepted:</b> strict rules can block a change that looks reasonable, so developers have to fix or justify it.</p></div>
+</div>
 </section>
 
 <section><h2>Process</h2>
