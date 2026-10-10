@@ -14,12 +14,6 @@ const projects = [
     position: { left: "33%", top: "23%" }, colors: ["#e60000", "#f59494"], ariaLabel: "Open Vodacom Engage"
   },
   {
-    id: "service-waze", number: "SW", title: "ServiceWaze", subtitle: "Civic Tech PWA",
-    category: "Impact", tags: ["Recent", "PWA", "Civic Tech", "Open Source"], modal: "redirect", external: true,
-    url: "https://lulamilemkhungela.github.io/ServiceWaze/", icon: "./public/icons/project-folder.png",
-    position: { left: "69%", top: "33%" }, colors: ["#1d4ed8", "#a0b5ef"], ariaLabel: "Open the live ServiceWaze site"
-  },
-  {
     id: "brand-strategy-programme", number: "TB", title: "Toyota Brand Programme", subtitle: "Brand Strategy · KINTO",
     folderTitle: "Toyota Brand", category: "Brand", tags: ["Enterprise", "Design Systems"], modal: "project",
     url: "./portfolio/brand-strategy-programme.html?embedded=1", icon: "./public/icons/project-folder.png",
@@ -60,11 +54,5 @@ const projects = [
     category: "Web", tags: ["Small Business", "SEO & CRM"], modal: "project",
     url: "./portfolio/snb-website.html?embedded=1", icon: "./public/icons/project-folder.png",
     position: { left: "88%", top: "57%" }, colors: ["#2f6b3a", "#a8c1ac"], ariaLabel: "Open SNB"
-  },
-  {
-    id: "wandisplace-pwa", number: "WP", title: "WandisPlace", subtitle: "Booking PWA",
-    category: "Impact", tags: ["PWA", "Small Business"], modal: "redirect", external: true,
-    url: "https://wandies.vercel.app/", icon: "./public/icons/project-folder.png",
-    position: { left: "88%", top: "81%" }, colors: ["#9a3412", "#d5aa9b"], ariaLabel: "Open the live WandisPlace site"
   },
 ];

@@ -492,6 +492,22 @@ window.LIBRARY_DATA = {
       description: "Case study: public-sector media intelligence for audit planning."
     },
     {
+      id: "archive-servicewaze",
+      name: "ServiceWaze",
+      url: "https://lulamilemkhungela.github.io/ServiceWaze/",
+      category: "archive",
+      noPreview: true,
+      description: "Live civic-tech PWA."
+    },
+    {
+      id: "archive-wandisplace",
+      name: "WandisPlace",
+      url: "https://wandies.vercel.app/",
+      category: "archive",
+      noPreview: true,
+      description: "Live booking PWA."
+    },
+    {
       id: "archive-sk-finds",
       name: "SK Finds",
       url: "https://skautos.vercel.app/",
