@@ -189,11 +189,11 @@ INDEPENDENT = [
       "in Figma for Power Pages and Canvas Apps. The designs follow South African government branding standards, and the "
       "internal team received a system they could maintain independently."]),
     ("AddMoreDigital", "UI/UX Designer, then Lead UI/UX Designer",
-     "Sep 2021 – Sep 2022 · After-hours contract, concurrent with full-time role at iOCO",
+     "Sep 2021 – Oct 2022 · After-hours contract, concurrent with full-time role at iOCO",
      ["Designed and delivered Aziza, a GBV emergency-response app with real-time officer dispatch, a station dashboard, and "
       "live map tracking. Led concurrent Agile sprints across two products, managing five developers and three designers. "
       "A shared component library lifted sprint velocity by 35%."]),
-    ("Hypothetical Objective Systems", "Senior UI/UX Designer & Developer Coach", "May 2020 – Dec 2021 · Freelance",
+    ("Hypothetical Objective Systems", "Senior UI/UX Designer & Developer Coach", "May 2020 – Jan 2022 · Freelance",
      ["Redesigned RetailFlow's checkout from seven steps to three, lifting checkout completion 32% and average order value "
       "18%. Restructured FarmTrack360's information architecture, cutting navigation time 47%."]),
     ("Sesyme & SmartServe", "UI/UX & Android Developer", "Jun 2019 – Mar 2020 · Contract concluded (startup funding lapsed)",
@@ -204,7 +204,7 @@ INDEPENDENT = [
      ["Led UX/UI design for EntreHive's fintech and training platforms, translating stakeholder requirements into "
       "production-ready UI while mentoring junior Android developers. Actively assisted desktop teams with hands-on design "
       "work and guided their final design decisions through structured reviews."]),
-    ("mLab", "UI/UX & Android Developer", "Apr 2017 – Feb 2018 · Fixed-term contract",
+    ("mLab", "UI/UX & Android Developer", "Apr 2017 – Mar 2018 · Fixed-term contract",
      ["Designed and built native Android interfaces for early-stage mobile products, including a co-working-space app, from "
       "user research through a working Java/Android application."]),
 ]

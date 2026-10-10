@@ -37,7 +37,7 @@ CASES = [
             ("Client", "Vodacom HRIT, Midrand · via iOCO"),
             ("Role", ROLE_VODACOM),
             ("Industry", "Telecommunications"),
-            ("Year", "2024"),
+            ("Year", "2021 — 2023"),
         ],
         "lead": (
             "Vodacom's employee app is the front door for communications, policies, wellness, "
@@ -105,7 +105,7 @@ CASES = [
             ("Client", "Toyota South Africa · via iOCO"),
             ("Role", ROLE_TOYOTA),
             ("Industry", "Automotive & mobility"),
-            ("Year", "2022 — 2024"),
+            ("Year", "2023 — 2025"),
         ],
         "lead": (
             "Toyota South Africa was taking three mobility products to market at the same time: KINTO, the "
@@ -166,7 +166,7 @@ CASES = [
             ("Client", "Toyota South Africa · via iOCO"),
             ("Role", ROLE_TOYOTA),
             ("Industry", "Automotive"),
-            ("Year", "2022 — 2024"),
+            ("Year", "2023 — 2025"),
         ],
         "lead": (
             "Toyota's ownership experience lived in call centres and dealer desks. Across two apps, the owner "

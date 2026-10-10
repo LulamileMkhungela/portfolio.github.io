@@ -84,3 +84,8 @@ Metrics in the CV and case studies (92% UAT, 65%, 35%, 32% checkout, 60% discove
 - Sesyme: the CV title is used, and "Web Designer" is not.
 - Site CV window now lists experience newest first (FoodieZone 2025, Nerdma 2023, AddmoreDigital 2021).
 - Year conflicts still open: Vodacom page 2024 vs CV 2021 to 2023; Toyota pages 2022 to 2024 vs CV 2023 to 2025.
+
+## 13. LinkedIn date check (latest)
+- Verified against the user LinkedIn experience list. Year conflicts resolved: Vodacom 2021 to 2023 and Toyota 2023 to 2025 on the case-study pages. Supersedes sections 3 and 12.
+- CV dates corrected: AddMoreDigital to Oct 2022, Hypothetical Objective Systems to Jan 2022, mLab to Mar 2018.
+- Open: Eskom is not on LinkedIn. Some titles differ from LinkedIn (see docs/cv/CV-review-notes.md).

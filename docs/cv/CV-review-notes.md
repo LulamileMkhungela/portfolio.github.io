@@ -34,3 +34,15 @@ CV dates were checked in code: iOCO engagements and independent work are in reve
 - "adopted across five-plus departments" and "became the baseline for later Sasol digital safety tools" (Sasol).
 - "47% navigation time" (FarmTrack360).
 - "Most product designers hand off to developers. I hand off to QA" (summary tone).
+
+## LinkedIn date check (Lulamile LinkedIn experience list)
+Applied:
+- Vodacom page year: 2024 changed to 2021 to 2023 (LinkedIn Oct 2021 to Mar 2023).
+- Toyota pages year: 2022 to 2024 changed to 2023 to 2025 (LinkedIn Aug 2023 to Apr 2025).
+- CV: AddMoreDigital Sep 2021 to Oct 2022 (was Sep 2022). Hypothetical Objective Systems May 2020 to Jan 2022 (was Dec 2021). mLab Apr 2017 to Mar 2018 (was Feb 2018). Site window: Hypothetical 2020 to 2022.
+- Already matching LinkedIn: iOCO, AGSA, Old Mutual, Takeda, Toyota, Sasol, Vodacom, UluntuXD, Sesyme (Jun 2019 to Mar 2020), The Digital Academy (Aug 2018 to Jan 2019).
+
+Not changed, for your decision:
+- Eskom (Aug 2026 to present) does not appear in the LinkedIn experience list. Is it listed elsewhere, or should it be added?
+- Titles differ from LinkedIn: Vodacom (User eXperience Designer, User iNterface Designer, Customer eXperience Designer), Toyota (Unicorn UX/UI Designer), Sasol (Unicorn UX/UI Designer), AddMoreDigital second title (Lead Product Designer | Project Manager). Sesyme on LinkedIn adds FrontEnd Developer.
+- GirlCode ZA (Feb to May 2019, seasonal) is not in the CV, as requested.
