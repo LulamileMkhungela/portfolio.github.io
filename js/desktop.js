@@ -3387,6 +3387,7 @@ async function mountHostedProjectDocument(host, source, scrollContainer) {
   const htmlShell = document.createElement("html");
   htmlShell.className = `${parsed.documentElement.className} is-embedded is-parent-scroll-host`.trim();
   htmlShell.style.setProperty("--project-host-viewport-height", `${Math.max(1, scrollContainer.clientHeight)}px`);
+  host.style.setProperty("--project-host-viewport-height", `${Math.max(1, scrollContainer.clientHeight)}px`);
   const bodyShell = document.createElement("body");
   bodyShell.className = `${parsed.body.className} is-embedded is-parent-scroll-host`.trim();
   [...parsed.body.attributes].forEach(({ name, value }) => {
@@ -3414,6 +3415,7 @@ async function mountHostedProjectDocument(host, source, scrollContainer) {
 
   const syncViewportHeight = () => {
     htmlShell.style.setProperty("--project-host-viewport-height", `${Math.max(1, scrollContainer.clientHeight)}px`);
+    host.style.setProperty("--project-host-viewport-height", `${Math.max(1, scrollContainer.clientHeight)}px`);
   };
   const viewportResizeObserver = typeof ResizeObserver === "function"
     ? new ResizeObserver(syncViewportHeight)

@@ -108,8 +108,16 @@
     if (hosted) {
       /* The theme's .wrapper-inner is overflow:hidden, which would stop a sticky
          rail. Mount at the very top of the hosted body instead. */
-      var body = root.matches && root.matches("body") ? root : (root.querySelector("body") || content.parentNode);
-      body.insertBefore(nav, body.firstChild);
+      /* Prefer the shadow root itself (a sibling of the <html> shell) so the
+         only scrolling ancestor is the window's scroller and sticky works. */
+      var shadowRoot = root.getRootNode && root.getRootNode();
+      var isShadow = shadowRoot && shadowRoot.nodeType === 11 && shadowRoot.host;
+      if (isShadow) {
+        shadowRoot.insertBefore(nav, shadowRoot.querySelector("html") || shadowRoot.firstChild);
+      } else {
+        var body = root.matches && root.matches("body") ? root : (root.querySelector("body") || content.parentNode);
+        body.insertBefore(nav, body.firstChild);
+      }
     } else {
       /* Sit between the header and the content so strip mode docks under the header. */
       var header = content.previousElementSibling && content.previousElementSibling.matches("header, .header") ? content.previousElementSibling : null;
@@ -148,7 +156,9 @@
     function layout() {
       var w = viewport().width;
       nav.classList.toggle("is-strip", w < 720);
-      nav.classList.toggle("is-compact", w >= 720 && w < 1480);
+      /* Labels stay visible on anything wider than a tablet; numbers-only
+         compact mode is for the narrow band in between. */
+      nav.classList.toggle("is-compact", w >= 720 && w < 960);
     }
     var ticking = false;
     function onScroll() {
