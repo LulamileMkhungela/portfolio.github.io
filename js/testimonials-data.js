@@ -2,14 +2,8 @@
 // Each testimonial needs: id, name, role, company, avatar, preview, testimonial
 // and messages (type "text", direction "incoming"). Avatars live in assets/testimonials/.
 //
-// A message can also be an attachment:
-//   { type: "document", title: "...", fileType: "PDF · 9 pages",
-//     file: "./_poe_out/portfolio-of-evidence-redacted.pdf",
-//     preview: "./_poe_out/page-03.jpg",
-//     pages: [{ src: "./_poe_out/page-01-large.jpg", fallback: "./_poe_out/page-01.jpg" }, ...] }
-// Clicking an attachment opens the pages in the built-in document viewer
-// (scrollable, fit/actual size, with a link to the original file). The Portfolio of Evidence copy in _poe_out/ is
-// the redacted version — the ID number is blacked out.
+// A message can also be an attachment (type "document", with file, preview and pages).
+// Clicking an attachment opens the pages in the built-in document viewer.
 const MESSAGES_APP = {
   id: "messages",
   number: "MS",
@@ -100,25 +94,6 @@ const TESTIMONIALS = [
         "type": "text",
         "direction": "incoming",
         "text": "Selected through a 3-stage process from roughly 350 applications, inducted 1 August 2018 and completed the programme on 31 January 2019."
-      },
-      {
-        "type": "document",
-        "direction": "incoming",
-        "title": "Portfolio of Evidence",
-        "fileType": "PDF · 9 pages · The Digital Academy, 2019",
-        "file": "./_poe_out/portfolio-of-evidence-redacted.pdf",
-        "preview": "./_poe_out/page-03.jpg",
-        "pages": [
-          { "src": "./_poe_out/page-01-large.jpg", "fallback": "./_poe_out/page-01.jpg", "alt": "Portfolio of Evidence — page 1" },
-          { "src": "./_poe_out/page-02-large.jpg", "fallback": "./_poe_out/page-02.jpg", "alt": "Portfolio of Evidence — page 2" },
-          { "src": "./_poe_out/page-03-large.jpg", "fallback": "./_poe_out/page-03.jpg", "alt": "Portfolio of Evidence — page 3" },
-          { "src": "./_poe_out/page-04-large.jpg", "fallback": "./_poe_out/page-04.jpg", "alt": "Portfolio of Evidence — page 4" },
-          { "src": "./_poe_out/page-05-large.jpg", "fallback": "./_poe_out/page-05.jpg", "alt": "Portfolio of Evidence — page 5" },
-          { "src": "./_poe_out/page-06-large.jpg", "fallback": "./_poe_out/page-06.jpg", "alt": "Portfolio of Evidence — page 6" },
-          { "src": "./_poe_out/page-07-large.jpg", "fallback": "./_poe_out/page-07.jpg", "alt": "Portfolio of Evidence — page 7" },
-          { "src": "./_poe_out/page-08-large.jpg", "fallback": "./_poe_out/page-08.jpg", "alt": "Portfolio of Evidence — page 8" },
-          { "src": "./_poe_out/page-09-large.jpg", "fallback": "./_poe_out/page-09.jpg", "alt": "Portfolio of Evidence — page 9" }
-        ]
       }
     ]
   },
