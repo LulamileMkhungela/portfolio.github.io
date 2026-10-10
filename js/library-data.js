@@ -148,16 +148,16 @@ window.LIBRARY_DATA = {
       name: "Financial inclusion for small businesses",
       url: "https://drive.google.com/file/d/1anSnYJt_4Okl3xQuKkCJDAVROcVOqEFr/view?usp=sharing",
       category: "press",
-      noPreview: true,
-      description: "Hackathon solution deck."
+      image: "./images/library/press-financial-inclusion.webp",
+      description: "FNB App of the Year hackathon solution deck."
     },
     {
       id: "press-community-hubs",
       name: "Community-based financial hubs",
       url: "https://drive.google.com/file/d/19_dk5NRI_gJzYwyyR5kw_POwazmNhgp-/view?usp=sharing",
       category: "press",
-      noPreview: true,
-      description: "Hackathon solution deck."
+      image: "./images/library/press-community-hubs.webp",
+      description: "Geekulcha hackathon solution deck."
     },
 
     /* ── Pictures (ux process.jpg is reserved for case studies) ─────── */

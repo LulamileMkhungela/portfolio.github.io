@@ -17,7 +17,7 @@ const projects = [
     id: "foodiezone-pwa", number: "FZ", title: "FoodieZone", subtitle: "Ordering PWA",
     category: "Impact", tags: ["PWA", "Small Business"], modal: "project",
     url: "./portfolio/foodiezone-pwa.html?embedded=1", icon: "./public/icons/project-folder.png",
-    position: { left: "60%", top: "81%" }, colors: ["#c2410c", "#e5af99"], ariaLabel: "Open FoodieZone"
+    position: { left: "60%", top: "calc(81% - 3px)" }, colors: ["#c2410c", "#e5af99"], ariaLabel: "Open FoodieZone"
   },
   {
     id: "designops-design-system", number: "DO", title: "DesignOps", subtitle: "Design System",

@@ -3407,7 +3407,10 @@ async function mountHostedProjectDocument(host, source, scrollContainer) {
   initializeHostedProjectMedia(bodyShell);
   const disposeEditorialGallery = initializeHostedEditorialGallery(bodyShell);
   const disposeAttExperience = initializeHostedAttExperience(bodyShell);
+  // Process stepper: the hosted document has no scripts, so mount it from here.
+  const hostedCaseNav = window.LMCaseNav?.mount(bodyShell, scrollContainer) || null;
   await document.fonts.ready;
+  hostedCaseNav?.refresh();
 
   const syncViewportHeight = () => {
     htmlShell.style.setProperty("--project-host-viewport-height", `${Math.max(1, scrollContainer.clientHeight)}px`);
@@ -3549,6 +3552,7 @@ async function mountHostedProjectDocument(host, source, scrollContainer) {
       viewportResizeObserver?.disconnect();
       disposeEditorialGallery();
       disposeAttExperience();
+      hostedCaseNav?.destroy();
       closeLightbox();
       shadow.replaceChildren();
     }

@@ -1,10 +1,16 @@
 /*
  * Case-study process navigator.
  *
- * Reads the sections of the page (every <section id> inside .content), draws
- * them as a numbered vertical rail on wide screens or a compact strip on
- * narrow ones, highlights the step you are reading as you scroll, and jumps
- * to a step when clicked. Protected studies build it once they are unlocked.
+ * Reads the sections of a case study (every <section id> inside .content),
+ * draws them as a numbered vertical rail, highlights the step being read as
+ * the page scrolls, and jumps to a step on click.
+ *
+ * Works in two places:
+ *  - the standalone page (document scrolls; nav is fixed to the viewport)
+ *  - a desktop project window, where js/desktop.js renders the page inside a
+ *    shadow root and the window body is the scroller. desktop.js calls
+ *    window.LMCaseNav.mount(root, scroller) after it injects the markup.
+ * Protected studies build it once they are unlocked.
  */
 (function () {
   "use strict";
@@ -24,48 +30,92 @@
     var h = section.querySelector("h1, h2, h3, .pk-eyebrow");
     return h ? h.textContent.trim().replace(/\s+/g, " ").slice(0, 32) : section.id;
   }
+  function prefersReduced() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
 
-  function build() {
-    if (document.querySelector(".case-nav")) return;
-    var content = document.querySelector(".content");
-    if (!content) return;
+  /**
+   * @param root      Document, ShadowRoot or element that contains .content
+   * @param scroller  window (standalone page) or the scrolling element (desktop window)
+   */
+  function mount(root, scroller) {
+    root = root || document;
+    scroller = scroller || window;
+    var hosted = scroller !== window;
+    if (root.querySelector(".case-nav")) return null;
+    var content = root.querySelector(".content");
+    if (!content) return null;
     var sections = Array.prototype.slice.call(content.querySelectorAll("section[id]")).filter(function (s) {
       if (s.hasAttribute("data-case-lock") || s.classList.contains("pk-lock")) return false;
       return s.textContent.trim().length > 0 || s.querySelector("img");
     });
-    if (sections.length < 3) return;
+    if (sections.length < 3) return null;
 
-    var nav = document.createElement("nav");
-    nav.className = "case-nav";
+    var doc = content.ownerDocument;
+    var nav = doc.createElement("nav");
+    nav.className = "case-nav" + (hosted ? " is-hosted" : "");
     nav.setAttribute("aria-label", "Case study steps");
-    var list = document.createElement("ol");
+    var list = doc.createElement("ol");
     list.className = "case-nav__list";
+
+    function viewport() {
+      if (!hosted) return { top: 0, height: window.innerHeight, width: window.innerWidth };
+      var r = scroller.getBoundingClientRect();
+      return { top: r.top, height: scroller.clientHeight, width: scroller.clientWidth };
+    }
+    function stripHeight() {
+      return nav.classList.contains("is-strip") ? nav.getBoundingClientRect().height : 0;
+    }
+    function offset() {
+      var h = 24 + stripHeight();
+      if (!hosted) {
+        var header = doc.querySelector(".header");
+        if (header && getComputedStyle(header).position === "fixed") h += header.getBoundingClientRect().height;
+      }
+      return h;
+    }
+    function scrollTo(section) {
+      var vp = viewport();
+      var current = hosted ? scroller.scrollTop : window.pageYOffset;
+      var top = current + section.getBoundingClientRect().top - vp.top - offset();
+      var behavior = prefersReduced() ? "auto" : "smooth";
+      if (hosted) scroller.scrollTo({ top: top, behavior: behavior });
+      else window.scrollTo({ top: top, behavior: behavior });
+    }
+
     var links = sections.map(function (section, i) {
-      var li = document.createElement("li");
-      var a = document.createElement("a");
+      var li = doc.createElement("li");
+      var a = doc.createElement("a");
       a.className = "case-nav__link";
       a.href = "#" + section.id;
       a.innerHTML = '<span class="case-nav__num">' + String(i + 1).padStart(2, "0") + '</span><span class="case-nav__label">' + labelFor(section) + "</span>";
       a.addEventListener("click", function (event) {
         event.preventDefault();
-        var top = section.getBoundingClientRect().top + window.pageYOffset - offset();
-        window.scrollTo({ top: top, behavior: prefersReduced() ? "auto" : "smooth" });
-        history.replaceState(null, "", "#" + section.id);
+        scrollTo(section);
+        if (!hosted) history.replaceState(null, "", "#" + section.id);
         setActive(i);
       });
       li.appendChild(a);
       list.appendChild(li);
       return a;
     });
-    var progress = document.createElement("span");
+    var progress = doc.createElement("span");
     progress.className = "case-nav__progress";
     progress.setAttribute("aria-hidden", "true");
     nav.appendChild(progress);
     nav.appendChild(list);
-    /* Sit between the header and the content so sticky mode docks under the header. */
-    var header = content.previousElementSibling && content.previousElementSibling.matches("header, .header") ? content.previousElementSibling : null;
-    if (header) header.insertAdjacentElement("afterend", nav); else content.parentNode.insertBefore(nav, content);
-    document.documentElement.classList.add("has-case-nav");
+
+    if (hosted) {
+      /* The theme's .wrapper-inner is overflow:hidden, which would stop a sticky
+         rail. Mount at the very top of the hosted body instead. */
+      var body = root.matches && root.matches("body") ? root : (root.querySelector("body") || content.parentNode);
+      body.insertBefore(nav, body.firstChild);
+    } else {
+      /* Sit between the header and the content so strip mode docks under the header. */
+      var header = content.previousElementSibling && content.previousElementSibling.matches("header, .header") ? content.previousElementSibling : null;
+      if (header) header.insertAdjacentElement("afterend", nav); else content.parentNode.insertBefore(nav, content);
+    }
+    (root.documentElement || root.host || doc.documentElement).classList.add("has-case-nav");
 
     var current = -1;
     function setActive(i) {
@@ -83,43 +133,55 @@
       }
     }
     function update() {
-      var line = window.innerHeight * 0.38;
+      var vp = viewport();
+      var line = vp.top + vp.height * 0.38;
       var i = 0;
       for (var k = 0; k < sections.length; k++) {
         if (sections[k].getBoundingClientRect().top - line <= 0) i = k;
       }
-      if (window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 2) i = sections.length - 1;
+      var atEnd = hosted
+        ? scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 2
+        : window.innerHeight + window.pageYOffset >= doc.documentElement.scrollHeight - 2;
+      if (atEnd) i = sections.length - 1;
       setActive(i);
     }
     function layout() {
-      var w = window.innerWidth;
+      var w = viewport().width;
       nav.classList.toggle("is-strip", w < 720);
       nav.classList.toggle("is-compact", w >= 720 && w < 1480);
     }
     var ticking = false;
-    window.addEventListener("scroll", function () {
+    function onScroll() {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(function () { update(); ticking = false; });
-    }, { passive: true });
-    window.addEventListener("resize", function () { layout(); update(); });
+    }
+    var scrollTarget = hosted ? scroller : window;
+    scrollTarget.addEventListener("scroll", onScroll, { passive: true });
+    var resizeObserver = hosted && typeof ResizeObserver === "function" ? new ResizeObserver(function () { layout(); update(); }) : null;
+    if (resizeObserver) resizeObserver.observe(scroller);
+    else window.addEventListener("resize", function () { layout(); update(); });
     layout();
     update();
+
+    return {
+      element: nav,
+      refresh: function () { layout(); update(); },
+      destroy: function () {
+        scrollTarget.removeEventListener("scroll", onScroll);
+        if (resizeObserver) resizeObserver.disconnect();
+        nav.remove();
+      }
+    };
   }
 
-  function offset() {
-    var strip = document.querySelector(".case-nav.is-strip");
-    var header = document.querySelector(".header");
-    var h = 24;
-    if (strip) h += strip.getBoundingClientRect().height;
-    if (header && getComputedStyle(header).position === "fixed") h += header.getBoundingClientRect().height;
-    return h;
-  }
-  function prefersReduced() {
-    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  }
+  window.LMCaseNav = { mount: mount };
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", build);
-  else build();
-  window.addEventListener("lm-case-unlocked", build);
+  /* Standalone page: build on load, and again once a protected study unlocks. */
+  if (document.querySelector(".content")) {
+    var auto = function () { mount(document, window); };
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", auto);
+    else auto();
+    window.addEventListener("lm-case-unlocked", auto);
+  }
 })();

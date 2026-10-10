@@ -1738,4 +1738,23 @@ html.is-dark .case-nav__link.is-active { color: #fff; }
 html.is-dark .case-nav.is-strip { background: rgba(14, 14, 15, .86); border-bottom-color: rgba(255, 255, 255, .08); }
 
 
+/* Hosted inside a desktop window: the window scrolls, so the rail is sticky
+   (fixed would pin it to the whole browser viewport). Zero height keeps it
+   out of the flow; the list overflows visibly beside the content. */
+.case-nav.is-hosted {
+	position: sticky;
+	top: 24px;
+	left: auto;
+	transform: none;
+	height: 0;
+	overflow: visible;
+	margin-left: clamp(10px, 1.2vw, 18px);
+	max-height: none;
+	align-items: flex-start;
+}
+.case-nav.is-hosted .case-nav__progress { height: min(60vh, 420px); flex: 0 0 2px; align-self: flex-start; }
+.case-nav.is-hosted .case-nav__list { max-height: min(60vh, 420px); }
+.case-nav.is-hosted.is-strip { position: sticky; top: 0; height: auto; margin-left: 0; }
+.case-nav.is-hosted.is-strip .case-nav__progress { height: 2px; width: 100%; }
+
 @media print { .case-nav { display: none; } }
