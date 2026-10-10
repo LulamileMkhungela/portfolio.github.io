@@ -44,18 +44,6 @@ const projects = [
     position: { left: "22%", top: "13%" }, colors: ["#a16207", "#d8bd97"], ariaLabel: "Open LulaGazette"
   },
   {
-    id: "addmoredigital-website", number: "AD", title: "AddmoreDigital", subtitle: "Website, SEO & CRM",
-    folderTitle: "Addmore Digital", category: "Web", tags: ["Small Business", "SEO & CRM"], modal: "project",
-    url: "./portfolio/addmoredigital-website.html?embedded=1", icon: "./public/icons/project-folder.png",
-    position: { left: "84%", top: "14%" }, colors: ["#2563eb", "#a3bdf7"], ariaLabel: "Open AddmoreDigital"
-  },
-  {
-    id: "africa-cuisine-pwa", number: "AC", title: "Africa Cuisine", subtitle: "Restaurant PWA",
-    category: "Impact", tags: ["PWA", "Small Business"], modal: "project",
-    url: "./portfolio/africa-cuisine-pwa.html?embedded=1", icon: "./public/icons/project-folder.png",
-    position: { left: "12%", top: "33%" }, colors: ["#b45309", "#e0b798"], ariaLabel: "Open the live Africa Cuisine site"
-  },
-  {
     id: "toyota-connected-apps", number: "TC", title: "Toyota Connected Apps", subtitle: "MyToyota · Remote · Lexus",
     folderTitle: "Toyota Apps", category: "Brand", tags: ["Enterprise", "Mobile App", "Design Systems"], modal: "project",
     url: "./portfolio/toyota-connected-apps.html?embedded=1", icon: "./public/icons/project-folder.png",
@@ -80,51 +68,9 @@ const projects = [
     position: { left: "88%", top: "81%" }, colors: ["#9a3412", "#d5aa9b"], ariaLabel: "Open the live WandisPlace site"
   },
   {
-    id: "sk-finds-pwa", number: "SK", title: "SK Finds", subtitle: "WhatsApp Storefront",
-    category: "Impact", tags: ["PWA", "Small Business"], modal: "redirect", external: true,
-    url: "https://skautos.vercel.app/", icon: "./public/icons/project-folder.png",
-    position: { left: "76%", top: "81%" }, colors: ["#be123c", "#e49bad"], ariaLabel: "Open the live SK Finds site"
-  },
-  {
-    id: "doc-coal-stockpile-forecasting", number: "CS", title: "Coal stockpile forecasting", subtitle: "Energy · ML forecasting",
-    category: "Product", tags: ["Enterprise"], modal: "project",
-    url: "./portfolio/doc-coal-stockpile-forecasting.html?embedded=1", icon: "./public/icons/project-folder.png",
-    position: { left: "6%", top: "47%" }, colors: ["#334155", "#cbd5e1"], ariaLabel: "Open Coal stockpile forecasting case study"
-  },
-  {
-    id: "doc-compliance-ai-platform", number: "CA", title: "Compliance AI assistant", subtitle: "Financial services · AI",
-    category: "Product", tags: ["Enterprise"], modal: "project",
-    url: "./portfolio/doc-compliance-ai-platform.html?embedded=1", icon: "./public/icons/project-folder.png",
-    position: { left: "18%", top: "47%" }, colors: ["#334155", "#cbd5e1"], ariaLabel: "Open Compliance AI assistant case study"
-  },
-  {
     id: "doc-media-scanning-audit", number: "MS", title: "Media scanning for audit", subtitle: "Public sector · Media intelligence",
     category: "Product", tags: ["Enterprise"], modal: "project",
     url: "./portfolio/doc-media-scanning-audit.html?embedded=1", icon: "./public/icons/project-folder.png",
     position: { left: "30%", top: "47%" }, colors: ["#334155", "#cbd5e1"], ariaLabel: "Open Media scanning for audit planning case study"
   },
-  {
-    id: "doc-safety-statistics-workbook", number: "SS", title: "Safety statistics reference", subtitle: "Energy and chemicals · Reference",
-    category: "Product", tags: ["Enterprise"], modal: "project",
-    url: "./portfolio/doc-safety-statistics-workbook.html?embedded=1", icon: "./public/icons/project-folder.png",
-    position: { left: "42%", top: "47%" }, colors: ["#334155", "#cbd5e1"], ariaLabel: "Open Safety statistics reference case study"
-  },
-  {
-    id: "doc-chart-components", number: "CC", title: "Configurable chart components", subtitle: "Pharmaceutical · Dashboards",
-    category: "Product", tags: ["Enterprise", "Design Systems"], modal: "project",
-    url: "./portfolio/doc-chart-components.html?embedded=1", icon: "./public/icons/project-folder.png",
-    position: { left: "54%", top: "47%" }, colors: ["#334155", "#cbd5e1"], ariaLabel: "Open Configurable chart components case study"
-  },
-  {
-    id: "doc-timeline-view", number: "TV", title: "Configurable timeline view", subtitle: "Enterprise · Product operations",
-    category: "Product", tags: ["Enterprise", "Design Systems"], modal: "project",
-    url: "./portfolio/doc-timeline-view.html?embedded=1", icon: "./public/icons/project-folder.png",
-    position: { left: "66%", top: "47%" }, colors: ["#334155", "#cbd5e1"], ariaLabel: "Open Configurable timeline view case study"
-  },
-  {
-    id: "doc-entrehive", number: "EH", title: "EntreHive", subtitle: "Mobile · Points for entrepreneurs",
-    category: "Product", tags: ["Mobile App"], modal: "project",
-    url: "./portfolio/doc-entrehive.html?embedded=1", icon: "./public/icons/project-folder.png",
-    position: { left: "78%", top: "47%" }, colors: ["#334155", "#cbd5e1"], ariaLabel: "Open EntreHive case study"
-  }
 ];

@@ -26,11 +26,11 @@
 	<meta name="twitter:widgets:theme" content="light">
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="DesignOps — Lulamile Mkhungela">
-	<meta property="og:description" content="Design systems drift because the same token ends up in two places. DesignOps closes that gap: Figma variables are the input, a tokens file is the single source of truth, Style Dictionary builds the output, and a linter checks shipped code against the system.">
+	<meta property="og:description" content="A design-system pipeline that verifies, not just ships: Figma variables become 41 W3C DTCG tokens, Style Dictionary builds fourteen targets, and @designops/lint keeps shipped code honest — one source of truth, a linter that checks shipped code.">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="DesignOps — Lulamile Mkhungela">
-	<meta name="twitter:description" content="Design systems drift because the same token ends up in two places. DesignOps closes that gap: Figma variables are the input, a tokens file is the single source of truth, Style Dictionary builds the output, and a linter checks shipped code against the system.">
-	<meta name="description" content="Design systems drift because the same token ends up in two places. DesignOps closes that gap: Figma variables are the input, a tokens file is the single source of truth, Style Dictionary builds the output, and a linter checks shipped code against the system.">
+	<meta name="twitter:description" content="A design-system pipeline that verifies, not just ships: Figma variables become 41 W3C DTCG tokens, Style Dictionary builds fourteen targets, and @designops/lint keeps shipped code honest — one source of truth, a linter that checks shipped code.">
+	<meta name="description" content="A design-system pipeline that verifies, not just ships: Figma variables become 41 W3C DTCG tokens, Style Dictionary builds fourteen targets, and @designops/lint keeps shipped code honest — one source of truth, a linter that checks shipped code.">
 	<meta name="theme-color" content="#ffffff">
 
 	<title>DesignOps — Lulamile Mkhungela</title>
@@ -243,35 +243,203 @@ html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp
 			<div class="content clearfix">
 
 				<section class="pk-hero" aria-labelledby="case-title">
-					<div class="pk-shell">
-						<p class="pk-eyebrow">Design system · Tooling</p>
-						<h1 id="case-title" class="pk-display pk-display--name">DesignOps</h1>
-						<p class="pk-hero__tagline">One source of truth, <em class="pk-accent">fourteen targets.</em></p>
+					<div class="pk-shell pk-hero__grid">
+						<div>
+							<h1 id="case-title" class="pk-display pk-display--name">DesignOps</h1>
+							<p class="pk-hero__tagline">One design, <em class="pk-accent">every framework.</em></p>
+							<a class="pk-scrollcue" href="#overview"><span>Read the story</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
+						</div>
+						<div class="pk-hero__visual">
+							<img src="../images/work/design-ops-cover.webp" alt="DesignOps — DesignOps — One Design, Every Framework" />
+						</div>
 					</div>
-					<div class="pk-shell"><div class="pk-meta" aria-label="Project details"><div class="pk-meta__item"><span class="pk-meta__label">Client</span><span class="pk-meta__value">Self-initiated</span></div><div class="pk-meta__item"><span class="pk-meta__label">Role</span><span class="pk-meta__value">Devsigner: full ownership of UX/UI design and frontend</span></div><div class="pk-meta__item"><span class="pk-meta__label">Industry</span><span class="pk-meta__value">Design systems &amp; developer tooling</span></div><div class="pk-meta__item"><span class="pk-meta__label">Year</span><span class="pk-meta__value">2026</span></div></div></div>
+					<div class="pk-shell">
+						<div class="pk-meta" aria-label="Project details">
+							<div class="pk-meta__item"><span class="pk-meta__label">Client</span><span class="pk-meta__value">Self-initiated</span></div>
+							<div class="pk-meta__item"><span class="pk-meta__label">Role</span><span class="pk-meta__value">Devsigner: full ownership of UX/UI design and frontend</span></div>
+							<div class="pk-meta__item"><span class="pk-meta__label">Industry</span><span class="pk-meta__value">Design systems &amp; developer tooling</span></div>
+							<div class="pk-meta__item"><span class="pk-meta__label">Year</span><span class="pk-meta__value">2026</span></div>
+						</div>
+					</div>
 				</section>
-				<section class="pk-section pk-section--tight pk-lead-section" id="context">
-					<div class="pk-shell"><p class="pk-lead">Design systems drift because the same token ends up in two places. DesignOps closes that gap: Figma variables are the input, a tokens file is the single source of truth, Style Dictionary builds the output, and a linter checks shipped code against the system.</p></div>
+
+				<section class="pk-section pk-section--tight pk-lead-section" id="lead">
+					<div class="pk-shell">
+						<p class="pk-lead">This one is mine. Design systems drift because the same token ends up in two places, so I built the pipeline that stops it — and the linter that proves it. Figma variables export to forty-one W3C DTCG tokens, Style Dictionary builds fourteen targets from them, and @designops/lint checks shipped code against the system. I designed the token model, wrote the pipeline, and documented the lot.</p>
+					</div>
 				</section>
+
+
+				<section class="pk-section" id="overview">
+					<div class="pk-shell pk-overview">
+						<div>
+							<p class="pk-overview__statement">One source of truth, fourteen targets — <strong>a linter that checks shipped code.</strong></p>
+						</div>
+						<div><div class="pk-copy"><p>Every team says it has a design system. Most have a Figma file that quietly drifts from what is actually in production. DesignOps was built to close that gap: Figma variables are treated as the input, tokens JSON as the single source of truth, and Style Dictionary as the machine that produces usable output for React, Vue, Angular, Svelte, Next, Nuxt, Remix, Astro, Ionic, MUI, Tailwind and the rest. The dashboard is the workspace where that pipeline is visible and usable — ten views with zero build step, from tokens and components to the advisory catalogue, the demo gallery, a live lint playground and the request board.</p><p>It is also a statement about how I work: design decisions should be expressed once, in a form code can consume, and then verified everywhere they land. The advisory proposes, the tokens record, the linter checks — and when they disagree, the linter wins.</p><p>The work followed the product design and front-end process end to end: discovery, audit and token model, advisory, build, proof and verify.</p></div><p class="pk-disclaimer">Designed, built and documented by LulaMile-HalfMachine.</p></div>
+					</div>
+				</section>
+
 				<section class="pk-section pk-dark" id="problem">
-					<div class="pk-shell"><div class="pk-problem-grid"><div><p class="pk-eyebrow">The problem</p><h2 class="pk-h2">Design and code drift apart at handoff</h2></div><div><div class="pk-outcomes"><div class="pk-outcome"><span class="pk-outcome__num">01</span><span class="pk-outcome__text">Design and code drift apart at handoff<small>A value changes in Figma and nobody updates the code, or the reverse.</small></span></div><div class="pk-outcome"><span class="pk-outcome__num">02</span><span class="pk-outcome__text">Nobody can say what the current value is<small>Engineers re-enter values by hand and guess which one is live.</small></span></div></div></div></div></div>
+					<div class="pk-shell">
+						<div class="pk-problem-grid">
+							<div>
+								<p class="pk-eyebrow">The problem</p>
+								<h2 class="pk-h2">Design and code drift apart the moment they are handed off.</h2>
+							</div>
+							<div>
+								<div class="pk-outcomes">
+									<div class="pk-outcome"><span class="pk-outcome__num">01</span><span class="pk-outcome__text">Design and code drift apart<small>Tokens get changed in Figma, a value is hard-coded in one app, and within a release or two nobody can say what the real spacing scale is.<b>Impact</b>Inconsistent interfaces and design reviews that turn into archaeology.</small></span></div>
+									<div class="pk-outcome"><span class="pk-outcome__num">02</span><span class="pk-outcome__text">Every framework needs the same tokens, differently<small>CSS custom properties, Tailwind config, SCSS maps, TypeScript constants — the same design decision has to be expressed four different ways.<b>Impact</b>Manual re-entry, copy-paste errors and values that quietly diverge per platform.</small></span></div>
+									<div class="pk-outcome"><span class="pk-outcome__num">03</span><span class="pk-outcome__text">Nobody can find the component they need<small>Components exist but are scattered across files, stories and tickets, with no single place to search by name, token or framework.<b>Impact</b>Teams rebuild what already exists, so the system grows sideways instead of getting stronger.</small></span></div>
+									<div class="pk-outcome"><span class="pk-outcome__num">04</span><span class="pk-outcome__text">Documentation is the last thing that gets updated<small>Component behaviour, states and usage rules live in people’s heads or in a document from two renames ago.<b>Impact</b>New team members ship inconsistent work because the rules were never written down.</small></span></div>
+								</div>
+							</div>
+						</div>
+						<div class="pk-media-stack" style="margin-top:clamp(48px,6vw,80px)"><figure class="pk-media"><img src="../images/work/design-ops-flow.webp" alt="DesignOps — defining the problem" loading="lazy" decoding="async"></figure></div>
+					</div>
 				</section>
-				<section class="pk-section" id="role">
-					<div class="pk-shell"><div class="pk-overview"><div><p class="pk-eyebrow">My role and boundaries</p></div><div><div class="pk-copy"><p>I designed the token model, wrote the pipeline, built the dashboard and documented the system. The work followed the design and front-end process end to end: discovery, token audit, build, and verification.</p></div></div></div></div>
+
+				<section class="pk-section pk-strategy" id="goals">
+					<div class="pk-shell">
+						<p class="pk-eyebrow">Goals</p>
+						<h2 class="pk-h2">One token source that every framework can trust.</h2>
+						<div class="pk-strategy__grid">
+							<article class="pk-card"><span class="pk-card__index">BUSINESS GOALS</span><div><h3>What the business needed</h3><ul><li>Make one source of truth authoritative: change the token once, ship it everywhere.</li><li>Remove manual translation between design and every framework the team uses.</li><li>Give the system a visible pipeline so drift is obvious instead of discovered in review.</li></ul></div></article>
+							<article class="pk-card"><span class="pk-card__index">USER GOALS</span><div><h3>What people needed</h3><ul><li>Find the right component or token in seconds, by name, token or framework.</li><li>See what each framework build will actually output before wiring it in.</li><li>Read the usage rules where the component lives, not in a separate document.</li></ul></div></article>
+						</div>
+						<div class="pk-role" id="role">
+							<div><p class="pk-eyebrow">Role &amp; responsibilities</p><h3 class="pk-h3">Product Designer &amp; Front-End Developer.</h3></div>
+							<div class="pk-role__list">Design Systems, Design Tokens, Front-End Development, Component API, Documentation</div>
+						</div>
+					</div>
 				</section>
-				<section class="pk-section" id="decisions">
-					<div class="pk-shell"><p class="pk-eyebrow">Key decisions</p><div class="pk-grid-3"><article class="pk-card"><span class="pk-card__index">01</span><div><h3>Use one source of truth</h3><p>The tokens file records the decision and everything else is generated from it.</p></div></article><article class="pk-card"><span class="pk-card__index">02</span><div><h3>Generate every target from the same tokens</h3><p>Style Dictionary builds the output for each framework, so nothing is copied by hand.</p></div></article><article class="pk-card"><span class="pk-card__index">03</span><div><h3>Let the linter win</h3><p>When the advisory, the tokens and the code disagree, the linter's check decides.</p></div></article></div></div>
+
+				<section class="pk-section pk-research" id="research">
+					<div class="pk-shell pk-research__grid">
+						<div>
+							<p class="pk-eyebrow">Our users</p>
+							<h2 class="pk-h2">Built for the people who feel drift first.</h2>
+							<p class="pk-research__copy">The tool is built for the people who feel drift first: the designer maintaining the system, the front-end developer consuming it, and the team lead who has to stop a release because two screens disagree.</p>
+						</div>
+						<div class="pk-stat"><span class="pk-stat__number">41</span><span class="pk-stat__label">W3C DTCG tokens feed fourteen targets — and a linter that checks the result.</span></div>
+					</div>
 				</section>
+
+				<section class="pk-section pk-strategy pk-section--tight" id="personas">
+					<div class="pk-shell">
+						<p class="pk-eyebrow">Personas</p>
+						<div class="pk-grid-3">
+							<article class="pk-card"><span class="pk-card__index">PERSONA 01</span><div><h3>The Design System Maintainer</h3><p>Owns tokens and components, and spends far too much time answering &quot;what is the value now?&quot; across projects.</p><span class="pk-card__meta">Jobs To Be Done</span><p>When a design decision changes, I want to publish it once and know every framework build picks it up, so I stop being the human sync layer between design and code.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">PERSONA 02</span><div><h3>The Front-End Developer</h3><p>Consumes the system daily and just wants the right token, in the right format, with the rules attached.</p><span class="pk-card__meta">Jobs To Be Done</span><p>When I start a component, I want the token values and usage rules for my framework in front of me, so I do not hard-code a hex that will be wrong next quarter.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">PERSONA 03</span><div><h3>The Engineering Lead</h3><p>Reviews the pull requests and is the last line of defence against visual drift.</p><span class="pk-card__meta">Jobs To Be Done</span><p>When a UI change lands, I want to see it came from the token source rather than a hand edit, so consistency is enforced by the pipeline and not by my review comments.</p></div></article>
+						</div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-media-section" id="process">
+					<div class="pk-shell">
+						<div class="pk-section-head">
+							<div><p class="pk-eyebrow">Process</p><h2 class="pk-h2">Advise, tokenize, build, verify.</h2></div>
+							<div class="pk-copy"><p>6 stages — Discovery → Audit &amp; token model → Advise → Build → Prove → Verify.</p></div>
+						</div>
+						<div class="pk-steps">
+							<article class="pk-step"><div><span class="pk-step__index">01 · Discovery</span><h3 class="pk-h3">Where the handoff breaks</h3></div><div><div class="pk-copy"><p>Before any code, the work mapped where design and development drift apart, and for whom. Two users defined the brief: the designer who specs 16px, and the developer who types 15px at 11pm on a deadline. The failure points were mechanical — values re-typed by hand, frameworks that cannot express a style so developers improvise, the same component rebuilt slightly differently per stack, requests lost in Slack threads, and docs that rot the day they are written. Each one became a requirement.</p></div></div></article>
+							<article class="pk-step"><div><span class="pk-step__index">02 · Audit &amp; token model</span><h3 class="pk-h3">Forty-one tokens, one meaning</h3></div><div><div class="pk-copy"><p>The system was audited first: which tokens were real, which had drifted, and which frameworks had quietly invented their own. The model that came out is forty-one W3C DTCG tokens — primitives, semantic roles and component-level values — so a name means the same thing in Figma, in CSS, and in a TypeScript constant.</p></div></div></article>
+							<article class="pk-step"><div><span class="pk-step__index">03 · Advise</span><h3 class="pk-h3">A direction before a decision</h3></div><div><div class="pk-copy"><p>A vendored design-intelligence catalogue — 79 searchable styles, 192 product palettes, 74 font pairings and 119 UX guidelines, searchable offline — turns a direction like &quot;dark fintech dashboard&quot; into a W3C DTCG token proposal. Every proposal ships with a provenance map of where each token came from, seven WCAG contrast checks, and a record of what deliberately did not become a token. The advisory proposes; it never writes the source of truth.</p></div></div></article>
+							<article class="pk-step"><div><span class="pk-step__index">04 · Build</span><h3 class="pk-h3">One source, fourteen targets</h3></div><div><div class="pk-copy"><p>tokens.json stays the single source of truth, and Style Dictionary transforms it into CSS, SCSS, TypeScript and Tailwind artefacts, with components generated for all fourteen framework targets from that one file. The dashboard puts the whole system on screen in ten views with zero build step — tokens, components, frameworks, advisory, demos, a live lint playground, the request board, Storybook and integrations. Dev asks, designer designs, one approval ships it to every target.</p></div></div></article>
+							<article class="pk-step"><div><span class="pk-step__index">05 · Prove</span><h3 class="pk-h3">Forty sites, zero findings</h3></div><div><div class="pk-copy"><p>The proof is a gallery of forty generated sites across twenty categories, built from the components themselves rather than styled by hand. Each page is emitted twice from the same template — the HTML you open and the JSX the linter checks — so a finding is a finding about the page, not about a separate copy. Every site carries its own palette and font pairing, zero lint findings, and its measured contrast, reported rather than quietly fixed.</p></div></div></article>
+							<article class="pk-step"><div><span class="pk-step__index">06 · Verify</span><h3 class="pk-h3">The linter outranks the catalogue</h3></div><div><div class="pk-copy"><p>@designops/lint runs six rules in ESLint and Oxlint — no restyling system components, no raw colours, no arbitrary values, no inline styles, no unknown classes, no unreadable class values. Every diagnostic explains itself and suggests a fix drawn from the team's own theme. Dashboard smoke tests and a freshness gate fail the build if the generated artefacts ever drift from the tokens, so a broken value never reaches production.</p></div></div></article>
+						</div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-design" id="impact">
+					<div class="pk-shell">
+						<div class="pk-design-intro">
+							<div><p class="pk-eyebrow">Impact</p><h2 class="pk-h2">Verifies, not just ships.</h2></div>
+							<div class="pk-copy"><p>The loop runs end to end: the advisory proposes a direction, forty-one W3C DTCG tokens record the decision, Style Dictionary builds every target, and @designops/lint checks the result — when they disagree, the linter wins. Search reaches components, tokens, frameworks and requests in one dashboard, and the export step hands a build exactly the artefact it needs — no re-entry, no guessing at what the current value is.</p><p>The practical result is that a design change is a commit rather than a conversation, a lint failure is a design decision caught by the pipeline instead of in review, and the dashboard documents the system as it actually is, not as it was described in a slide six months ago.</p></div>
+						</div>
+						
+					</div>
+				</section>
+
+				<section class="pk-section pk-media-section pk-live" id="live" aria-labelledby="live-title">
+					<div class="pk-shell">
+					<p class="pk-eyebrow">The product</p>
+					<h2 class="pk-h2" id="live-title">Clicked through, live.</h2>
+					<div class="pk-live-grid">
+						<figure class="pk-media"><img src="../images/work/live/designops-desktop.webp" alt="DesignOps dashboard overview on desktop" loading="lazy" decoding="async"><figcaption>The Overview view as it loads: 41 tokens in the pipeline, 8 components, 14 targets. Captured from the live product, October 2026.</figcaption></figure>
+						<figure class="pk-media pk-media--phone"><img src="../images/work/live/designops-mobile.webp" alt="DesignOps dashboard on a phone" loading="lazy" decoding="async"><figcaption>The same workspace on a phone.</figcaption></figure>
+					</div>
+					<div class="pk-live-duo">
+						<figure class="pk-media"><img src="../images/work/live/designops-search.webp" alt="Global search showing results for the query button" loading="lazy" decoding="async"><figcaption>&quot;button&quot; typed into global search — the component surfaces before the query is finished.</figcaption></figure>
+						<figure class="pk-media"><img src="../images/work/live/designops-demos.webp" alt="Demo gallery view with category filters" loading="lazy" decoding="async"><figcaption>Clicking into Demos: forty generated sites, each card a live preview with its measured lint and contrast chips.</figcaption></figure>
+						<figure class="pk-media"><img src="../images/work/live/designops-lint.webp" alt="Lint view showing the six rules" loading="lazy" decoding="async"><figcaption>The Lint view: six rules across ESLint and Oxlint, every diagnostic explaining its own fix.</figcaption></figure>
+						<figure class="pk-media"><img src="../images/work/live/designops-demo-site.webp" alt="A generated demo site opened full size" loading="lazy" decoding="async"><figcaption>One of the forty opened full-size — built from the components, linted clean.</figcaption></figure>
+					</div>
+					</div>
+				</section>
+
 				<section class="pk-section pk-results" id="outcomes" aria-labelledby="outcomes-title">
-					<div class="pk-shell"><p class="pk-eyebrow" id="outcomes-title">Outcome and evidence</p><p class="pk-disclaimer">Figures are shown only where they were published. Other results are described qualitatively.</p><div class="pk-outcomes"><div class="pk-outcome"><span class="pk-outcome__num">01</span><span class="pk-outcome__text">A design change is a commit<small>Qualitative: a token change is made in one place and built everywhere.</small></span></div><div class="pk-outcome"><span class="pk-outcome__num">02</span><span class="pk-outcome__text">A lint failure is caught before review<small>Qualitative: a design mismatch shows up in the pipeline rather than in review.</small></span></div><div class="pk-outcome"><span class="pk-outcome__num">03</span><span class="pk-outcome__text">The dashboard documents the system as built<small>Ten views cover tokens, components, the advisory catalogue, the demo gallery, a lint playground and the request board.</small></span></div></div></div>
+					<div class="pk-shell">
+						<h2 class="pk-h2" id="outcomes-title">Outcomes</h2>
+						<div class="pk-results__grid">
+							<article class="pk-result"><strong>Fourteen targets from one source</strong><p>Every supported framework is generated from the same forty-one tokens on each change.</p></article>
+							<article class="pk-result"><strong>Proof in forty sites</strong><p>A demo gallery built from the components themselves, every site passing the linter with zero findings.</p></article>
+							<article class="pk-result"><strong>Verifies, not just ships</strong><p>Six lint rules catch restyles, raw colours and drift in ESLint and Oxlint before review.</p></article>
+							<article class="pk-result"><strong>Available on request</strong><p>The Figma file, the working product and the code are shared on request.</p></article>
+						</div>
+					</div>
 				</section>
-				<section class="pk-section pk-media-section" id="work">
-					<div class="pk-shell"><div class="pk-media-stack"><figure class="pk-media"><img src="../images/work/design-ops-flow.webp" alt="DesignOps — defining the problem" loading="lazy" decoding="async"><figcaption>The token pipeline.</figcaption></figure><figure class="pk-media"><img src="../images/work/live/designops-desktop.webp" alt="DesignOps dashboard on desktop" loading="lazy" decoding="async"><figcaption>The overview.</figcaption></figure><figure class="pk-media"><img src="../images/work/live/designops-search.webp" alt="Global search for a component" loading="lazy" decoding="async"><figcaption>Search across the system.</figcaption></figure></div></div>
-				</section>
+
 				<section class="pk-section pk-conclusion" id="conclusion">
-					<div class="pk-shell"><p class="pk-lead">The design system is documented as it actually is, not as it was described in a presentation.</p></div>
+					<div class="pk-shell">
+						<div class="pk-conclusion__grid">
+							<div><h2 class="pk-h2">Tokens, components and code that stay in sync.</h2></div>
+							<div><div class="pk-copy"><p>The Figma file, the working product and the full codebase are available on request — no links on this page by design. Happy to walk through the token model, the advise-to-verify loop and how it would fit an existing codebase on a call.</p></div></div>
+						</div>
+						<div class="pk-closing"><div><strong>Figma variables in. Every framework out.</strong><span>Product Design · Design Systems · Front-End</span></div></div>
+					</div>
 				</section>
-				<nav class="tlc-project-pagination" aria-label="More projects"><a class="tlc-project-pagination__item" href="foodiezone-pwa.html"><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction">← Previous project</span><strong>FoodieZone</strong><span class="tlc-project-pagination__category">Ordering PWA · Hospitality</span></span></a><a class="tlc-project-pagination__item" href="lula-gazette.html"><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction">Next project →</span><strong>LulaGazette</strong><span class="tlc-project-pagination__category">Legal intelligence · Civic technology</span></span></a></nav>
+
+				<nav class="tlc-project-pagination" aria-label="More projects">
+					<a class="tlc-project-pagination__item" href="foodiezone-pwa.html"><img src="../images/work/foodiezone-cover.webp" alt="FoodieZone project" loading="lazy"><span class="tlc-project-pagination__shade"></span><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction"><span aria-hidden="true">←</span> Previous project</span><strong>FoodieZone</strong><span class="tlc-project-pagination__category">Impact · Ordering PWA</span></span></a>
+					<a class="tlc-project-pagination__item" href="lula-gazette.html"><img src="../images/work/lulagazette/landing-bg.webp" alt="Lula Gazette project" loading="lazy"><span class="tlc-project-pagination__shade"></span><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction">Next project <span aria-hidden="true">→</span></span><strong>Lula Gazette</strong><span class="tlc-project-pagination__category">Product · Civic Newsroom</span></span></a>
+					<a class="tlc-project-pagination__all" href="../index.html">View all work <span aria-hidden="true">↗</span></a>
+				</nav>
+
+			<!-- Contact Modal -->
+				<div id="contact-lightbox" class="pt-70 pb-50 hide">
+					<div class="row">
+						<div class="column width-12 left">
+							<h3 class="mb-50 weight-semi-bold font-alt-3">Reach Out</h3>
+							<div class="contact-form-container no-margin-bottom">
+								<form class="contact-form" action="../php/send-email.php" method="post" novalidate>
+									<div class="row">
+										<div class="column width-12">
+											<input type="text" name="fname" class="form-fname form-element large" placeholder="First Name*" tabindex="1" required>
+										</div>
+										<div class="column width-12">
+											<input type="email" name="email" class="form-email form-element large" placeholder="Email address*" tabindex="3" required>
+										</div>
+										<div class="column width-6">
+											<input type="text" name="honeypot" class="form-honeypot form-element large">
+										</div>
+									</div>
+									<div class="row">
+										<div class="column width-12">
+											<textarea name="message" class="form-message form-element large" placeholder="Message*" tabindex="5" required></textarea>
+											<input type="submit" value="Send Email" class="form-submit button medium text-uppercase bkg-grey bkg-hover-theme color-white color-hover-white">
+										</div>
+									</div>
+								</form>
+								<div class="form-response center"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Contact Modal End -->
+
 			</div>
 			<!-- Content End -->
 

@@ -19,7 +19,8 @@ window.LIBRARY_DATA = {
     { id: "productivity", label: "Productivity" },
     { id: "design", label: "Design" },
     { id: "development", label: "Development" },
-    { id: "integration", label: "Integration" }
+    { id: "integration", label: "Integration" },
+    { id: "archive", label: "Archive Projects" }
   ],
   items: [
     /* ── Featured stories ─────────────────────────────────────────────── */
@@ -417,6 +418,78 @@ window.LIBRARY_DATA = {
       url: "https://www.yoco.com/za/",
       category: "integration",
       description: "South African card-payment tools and payment links for small business workflows."
+    },
+    {
+      id: "archive-coal-stockpile",
+      name: "Coal stockpile forecasting",
+      url: "./portfolio/doc-coal-stockpile-forecasting.html",
+      category: "archive",
+      noPreview: true,
+      description: "Case study: energy and machine-learning forecasting."
+    },
+    {
+      id: "archive-compliance-ai",
+      name: "Compliance AI assistant",
+      url: "./portfolio/doc-compliance-ai-platform.html",
+      category: "archive",
+      noPreview: true,
+      description: "Case study: AI assistant with cited answers for financial services."
+    },
+    {
+      id: "archive-safety-statistics",
+      name: "Safety statistics reference",
+      url: "./portfolio/doc-safety-statistics-workbook.html",
+      category: "archive",
+      noPreview: true,
+      description: "Case study: safety-reporting reference for energy and chemicals."
+    },
+    {
+      id: "archive-chart-components",
+      name: "Configurable chart components",
+      url: "./portfolio/doc-chart-components.html",
+      category: "archive",
+      noPreview: true,
+      description: "Case study: dashboard chart components for a pharmaceutical client."
+    },
+    {
+      id: "archive-timeline-view",
+      name: "Configurable timeline view",
+      url: "./portfolio/doc-timeline-view.html",
+      category: "archive",
+      noPreview: true,
+      description: "Case study: enterprise product-operations timeline."
+    },
+    {
+      id: "archive-entrehive",
+      name: "EntreHive",
+      url: "./portfolio/doc-entrehive.html",
+      category: "archive",
+      noPreview: true,
+      description: "Case study: Android points app, Digital Academy team project."
+    },
+    {
+      id: "archive-addmoredigital",
+      name: "AddmoreDigital",
+      url: "./portfolio/addmoredigital-website.html",
+      category: "archive",
+      noPreview: true,
+      description: "Case study: agency website, SEO and CRM."
+    },
+    {
+      id: "archive-africa-cuisine",
+      name: "Africa Cuisine",
+      url: "https://africa-cuisine-pro.vercel.app",
+      category: "archive",
+      noPreview: true,
+      description: "Live restaurant PWA, Braamfontein."
+    },
+    {
+      id: "archive-sk-finds",
+      name: "SK Finds",
+      url: "https://skautos.vercel.app/",
+      category: "archive",
+      noPreview: true,
+      description: "Live WhatsApp storefront PWA."
     }
   ]
 };

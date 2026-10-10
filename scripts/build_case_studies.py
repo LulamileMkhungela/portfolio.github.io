@@ -704,7 +704,18 @@ def rebuild(case, index):
     return path
 
 
+# The nine original case studies were restored from the richer pre-rewrite pages
+# (with role, date and wording fixes applied). Do not regenerate them from CASES,
+# which holds the condensed versions and would make them thinner again.
+RESTORED = {
+    "addmoredigital-website.html", "brand-strategy-programme.html", "designops-design-system.html",
+    "employee-engagement-app-redesign.html", "foodiezone-pwa.html", "lula-gazette.html",
+    "nerdma-website.html", "snb-website.html", "toyota-connected-apps.html",
+}
+
 if __name__ == "__main__":
     for idx, case in enumerate(CASES):
+        if case["file"] in RESTORED:
+            continue
         out = rebuild(case, idx)
         print("rebuilt", out.relative_to(ROOT))
