@@ -1,6 +1,6 @@
 """Case-study content for the seven document-based drafts and the Africa Cuisine frontend case.
 
-Source for the seven drafts: docs/case-studies-from-documents.md (outcomes marked "not yet evidenced").
+Source for the seven drafts: the owner's source documents, which are not kept in the repository (outcomes marked "not yet evidenced").
 Source for Africa Cuisine: the live site (https://africa-cuisine-pro.vercel.app) plus the project brief
 given by the owner. Items marked "to confirm" must be checked before the owner relies on them.
 

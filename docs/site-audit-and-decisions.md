@@ -95,14 +95,14 @@ Metrics in the CV and case studies (92% UAT, 65%, 35%, 32% checkout, 60% discove
 - Eskom: current role (Aug 2026 to present), shown as current in the CV window. The CV already lists it as current. Eskom still has no public case study page.
 
 ## 15. Publishing the document case studies and the Africa Cuisine case (user approved)
-- Seven document-based case studies published as pages (portfolio/doc-*.html), built from docs/case-studies-from-documents.md by scripts/case_data_documents.py. Outcomes stay marked not yet evidenced. The draft gate still applies: check each against its NDA before going live on main, and remove the source documents from main as planned.
+- Seven document-based case studies published as pages (portfolio/doc-*.html), built from the drafts (source notes since removed) by scripts/case_data_documents.py. Outcomes stay marked not yet evidenced. The draft gate still applies: check each against its NDA before going live on main, and remove the source documents from main as planned.
 - Open items carried on the pages as to confirm: UI scope for Eskom and Sasol; Timeline View client; EntreHive team, event and result; Year fields.
 - EntreHive conflict: the draft says a team project for a competition. The CV says Lead UI/UX Designer for EntreHive fintech and training platforms (Digital Academy, 2018 to 2019). Confirm which is right before going live.
 - Africa Cuisine: case study written from the live site (restaurant with menu, ordering, daily special, hours, Braamfontein location) and the owner brief. The process and decision rationale are my reconstruction and must be confirmed. The desktop entry now opens the case study instead of the redirect.
 - Homepage featured set (user chose the mixed set): Vodacom Engage, Toyota Connected Apps, DesignOps, plus Africa Cuisine. Not yet applied to the desktop. The other projects still show as folders.
 
 ## 16. NDA, EntreHive, Vodacom Engage, and research (user, latest)
-- **NDA:** the user confirmed the NDAs allow these projects to be published. The draft gate in docs/case-studies-from-documents.md is therefore treated as cleared by the user. The source documents are still to be removed from main, as planned.
+- **NDA:** the user confirmed the NDAs allow these projects to be published. The draft gate (source notes since removed) is therefore treated as cleared by the user. The source documents are still to be removed from main, as planned.
 - **EntreHive:** the source is the OURAGAN TEAM pitch. It is a team project at The Digital Academy (Aug 2018 to Jan 2019). The role is Lead UI/UX Designer (CV and LinkedIn). The competition wording was removed. Code repository linked: LulamileMkhungela/EntreHiveApp.
 - **Vodacom Engage:** the user asked for an update from masegomongale.co.za. That site is not reachable from the sandbox. A search shows it belongs to a different person (a UX and front-end designer with a Vodacom consultancy role at EOH Group). Its content has not been copied. The Engage page now has a How I checked the work section, using only facts already on the page.
 - **Research:** the research note is docs/research-case-study-structure.md (7 sources read or searched, with what was applied and what was not).
