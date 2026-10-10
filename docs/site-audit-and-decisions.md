@@ -100,3 +100,10 @@ Metrics in the CV and case studies (92% UAT, 65%, 35%, 32% checkout, 60% discove
 - EntreHive conflict: the draft says a team project for a competition. The CV says Lead UI/UX Designer for EntreHive fintech and training platforms (Digital Academy, 2018 to 2019). Confirm which is right before going live.
 - Africa Cuisine: case study written from the live site (restaurant with menu, ordering, daily special, hours, Braamfontein location) and the owner brief. The process and decision rationale are my reconstruction and must be confirmed. The desktop entry now opens the case study instead of the redirect.
 - Homepage featured set (user chose the mixed set): Vodacom Engage, Toyota Connected Apps, DesignOps, plus Africa Cuisine. Not yet applied to the desktop. The other projects still show as folders.
+
+## 16. NDA, EntreHive, Vodacom Engage, and research (user, latest)
+- **NDA:** the user confirmed the NDAs allow these projects to be published. The draft gate in docs/case-studies-from-documents.md is therefore treated as cleared by the user. The source documents are still to be removed from main, as planned.
+- **EntreHive:** the source is the OURAGAN TEAM pitch. It is a team project at The Digital Academy (Aug 2018 to Jan 2019). The role is Lead UI/UX Designer (CV and LinkedIn). The competition wording was removed. Code repository linked: LulamileMkhungela/EntreHiveApp.
+- **Vodacom Engage:** the user asked for an update from masegomongale.co.za. That site is not reachable from the sandbox. A search shows it belongs to a different person (a UX and front-end designer with a Vodacom consultancy role at EOH Group). Its content has not been copied. The Engage page now has a How I checked the work section, using only facts already on the page.
+- **Research:** the research note is docs/research-case-study-structure.md (7 sources read or searched, with what was applied and what was not).
+- **Added to case studies:** How I checked the work, and What I would do next (for the 9 document and featured pages). Stack and metrics are not invented.

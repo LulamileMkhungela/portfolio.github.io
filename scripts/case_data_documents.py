@@ -318,10 +318,10 @@ NEW_CASES = [
         "category": "Mobile · Points-based app for entrepreneurs",
         "tagline": ["Points earned by learning,", " spent on real goods."],
         "meta": [
-            ("Client", "Team project for a competition (to confirm)"),
-            ("Role", DOC_ROLE),
+            ("Client", "The Digital Academy · Android development team project"),
+            ("Role", "Lead UI/UX Designer, Android development team"),
             ("Industry", "Entrepreneurship and skills"),
-            ("Year", TO_CONFIRM),
+            ("Year", "2018 — 2019"),
         ],
         "lead": (
             "Entrepreneurs need reasons to attend skills and knowledge events. EntreHive makes points the currency: they "
@@ -334,8 +334,8 @@ NEW_CASES = [
              "Points should be earned only from learning, and spent only on goods and services."),
         ],
         "role": (
-            "I owned the user interface and its frontend. The rest of the team owned the points rules and business model "
-            "(to confirm)."
+            "I was the Lead UI/UX Designer on the Android development team and owned the user interface and its frontend. "
+            "The team pitch (OURAGAN TEAM) sets out the points model and the QR-code transactions."
         ),
         "decisions": [
             ("Earn points only through learning events",
@@ -345,11 +345,12 @@ NEW_CASES = [
         ],
         "outcomes": [
             ("Not yet evidenced",
-             "The competition result is not confirmed in the source document."),
+             "The team pitch does not record an outcome. Add a result only with a source."),
         ],
         "what_changed": (
             "A points-based app design that rewards learning, with QR-code transactions. Not yet evidenced beyond the pitch."
         ),
+        "links": [("Code repository", "https://github.com/LulamileMkhungela/EntreHiveApp")],
         "figures": [],
     },
     {
@@ -405,3 +406,70 @@ NEW_CASES = [
         "figures": [],
     },
 ]
+
+
+# Quality and reflection, added per the research note (docs/research-case-study-structure.md).
+# Each entry uses only what the sources state. "To confirm" marks anything the owner must check.
+EXTRA = {
+    "employee-engagement-app-redesign.html": {
+        "checks": [
+            "Usability testing with employees before release, covering how fast someone could find a known feature, "
+            "whether search results matched expectations, and whether the favourites concept was understood without explanation.",
+            "Post-launch task testing against the old home screen, and time-to-task on the most common journeys.",
+            "User acceptance testing (UAT) reached 92%.",
+        ],
+        "next": "Keep tracking support requests on the \"where do I find\" pattern after each release. Confirm what is measured today before publishing.",
+    },
+    "doc-coal-stockpile-forecasting.html": {
+        "checks": [
+            "Requirements define the planning filters (time, data source, station) and the role-based access rules. "
+            "No UI test results are in the source documents.",
+        ],
+        "next": "Record forecast accuracy and stockout events once the model is in use. These are not yet in the documents.",
+    },
+    "doc-compliance-ai-platform.html": {
+        "checks": [
+            "Every answer passes a verification step before it is shown, and the frontend handles the loading state while checks run.",
+            "Production-grade authentication is a release condition in the documents.",
+        ],
+        "next": "Record answer quality and adoption after rollout. These are not yet in the documents.",
+    },
+    "doc-media-scanning-audit.html": {
+        "checks": [
+            "An 11-scenario acceptance workbook. Each scenario has an expected result, an actual result, pass or fail, and comments.",
+            "Each scenario is traced to a business requirement and an MVP flag.",
+        ],
+        "next": "Add the final pass rate, defects closed and sign-off status when they are confirmed.",
+    },
+    "doc-safety-statistics-workbook.html": {
+        "checks": [
+            "Each score is a fixed value in the table, so analysts can check formula output against it.",
+        ],
+        "next": "Confirm whether the scoring table has been used in reporting. No safety figures are shown here.",
+    },
+    "doc-chart-components.html": {
+        "checks": [
+            "The reuse decision was approved by a named reviewer, recorded in the specification.",
+        ],
+        "next": "Record which components shipped and whether business users adopted the configuration screen.",
+    },
+    "doc-timeline-view.html": {
+        "checks": [
+            "A 31-requirement specification. The three-entity-per-page limit is stated openly, because column sizing is not dynamic.",
+        ],
+        "next": "Record whether the three-entity limit was removed, and the ideal of five to ten entities per page.",
+    },
+    "doc-entrehive.html": {
+        "checks": [
+            "The team pitch sets out the points model and the QR-code transaction flow. No user testing is recorded in the pitch.",
+        ],
+        "next": "Add any user testing from the team, with a source.",
+    },
+    "africa-cuisine-pwa.html": {
+        "checks": [
+            "The live site was reviewed for the menu, prices, ordering path, daily special, opening hours and location. "
+            "Mobile testing and performance checks are to confirm.",
+        ],
+        "next": "To confirm: any measurement since launch, such as orders or visits. None is shown here.",
+    },
+}

@@ -539,9 +539,11 @@ CASES = [
     },
 ]
 
-from case_data_documents import NEW_CASES  # noqa: E402
+from case_data_documents import EXTRA, NEW_CASES  # noqa: E402
 
 CASES = CASES + NEW_CASES
+for _c in CASES:
+    _c.update(EXTRA.get(_c["file"], {}))
 ORDER = [c["file"] for c in CASES]
 
 
@@ -603,6 +605,13 @@ def body_for(case, index):
         f'<div class="pk-grid-3">{decisions}</div></div>\n'
         '\t\t\t\t</section>\n'
     )
+    checks_html = ""
+    if case.get("checks"):
+        checks_html = (
+            '<section class="pk-section" id="checks"><div class="pk-shell"><p class="pk-eyebrow">How I checked the work</p>'
+            '<div class="pk-copy">' + "".join(f"<p>{e(c)}</p>" for c in case["checks"]) + '</div></div></section>\n'
+        )
+    parts.append(checks_html)
     results = "".join(
         f'<div class="pk-outcome"><span class="pk-outcome__num">{i:02d}</span>'
         f'<span class="pk-outcome__text">{e(t)}<small>{e(d)}</small></span></div>'
@@ -625,6 +634,9 @@ def body_for(case, index):
         f'\t\t\t\t\t<div class="pk-shell"><div class="pk-media-stack">{media}</div></div>\n'
         '\t\t\t\t</section>\n'
     )
+    next_html = ""
+    if case.get("next"):
+        next_html = f'<p class="pk-copy"><strong>What I would do next:</strong> {e(case["next"])}</p>'
     links = ""
     if case.get("links"):
         links = '<div class="pk-actions">' + "".join(
@@ -633,7 +645,7 @@ def body_for(case, index):
         ) + "</div>"
     parts.append(
         '\t\t\t\t<section class="pk-section pk-conclusion" id="conclusion">\n'
-        f'\t\t\t\t\t<div class="pk-shell"><p class="pk-lead">{e(case["what_changed"])}</p>{links}</div>\n'
+        f'\t\t\t\t\t<div class="pk-shell"><p class="pk-lead">{e(case["what_changed"])}</p>{next_html}{links}</div>\n'
         '\t\t\t\t</section>\n'
     )
     # previous / next pagination
