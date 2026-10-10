@@ -20,7 +20,7 @@
 
 **The problem.** A forecast that ignores interdependence between stations gives planners the wrong stock targets. The product must produce actionable forecasts per station.
 
-**Role and boundaries.** [CONFIRM ROLE: which parts you designed, specified, built or reviewed. The documents are requirement specifications; they do not show who wrote them.]
+**Role and boundaries.** Devsigner: full ownership of UX/UI design and frontend development for this project. [CONFIRM SCOPE: the source document is a specification or workbook with no UI deliverable. Confirm the UX/UI and frontend work you owned here.]
 
 **Requirements the documents set (the design constraints):**
 - Forecast stock levels per power station, accounting for supply chain, external factors and inter-station relationships.
@@ -43,7 +43,7 @@
 
 **The problem.** Analysts need answers they can check. The frontend must show citations, handle loading states and keep the session, because a verification step runs before each response.
 
-**Role and boundaries.** [CONFIRM ROLE: frontend, design, or both. The guide is written for a frontend developer and the spec for the platform team.]
+**Role and boundaries.** Devsigner: full ownership of UX/UI design and frontend development for this project.
 
 **Frontend requirements the guide sets:**
 - Chat interface that returns answers with citations.
@@ -80,7 +80,7 @@
 - Governance and approval of outputs; AGSA-only control of the solution.
 - Compliance with ICT and legal constraints.
 
-**Role and boundaries.** [CONFIRM ROLE: UAT owner, product designer, or frontend developer.]
+**Role and boundaries.** Devsigner: full ownership of UX/UI design and frontend development for this project.
 
 **Design and quality decisions visible in the workbook.** Each scenario is traced to a business requirement and an MVP flag, with expected and actual results, pass/fail and comments. Alerts are restricted to users linked to the affected entity. [CONFIRM which decisions and test choices were yours.]
 
@@ -102,7 +102,7 @@
 - Severity scores by injury type (fatal, lost-day, restricted-work, medical-treatment, first-aid), with a separate severity-index scheme for hospitalised lost-day cases.
 - User roles and responsibilities; organisational structure; regional breakdown.
 
-**Role and boundaries.** [CONFIRM ROLE: data, product design or reporting. The workbook is an operational reference, not a design deliverable.]
+**Role and boundaries.** Devsigner: full ownership of UX/UI design and frontend development for this project. [CONFIRM SCOPE: the source document is a specification or workbook with no UI deliverable. Confirm the UX/UI and frontend work you owned here.]
 
 **Decisions.** Keep the scoring rules explicit so they can be checked against the formulas. [CONFIRM.]
 
@@ -127,7 +127,7 @@
 - Consolidate the old and new versions into one component with a toggle between them.
 - Pareto/combo chart: combine a bar and a line on one graphic.
 
-**Role and boundaries.** [CONFIRM ROLE: design, front-end, or both. The specs cite a named reviewer and linked Figma and Storybook files, but do not name the author.]
+**Role and boundaries.** Devsigner: full ownership of UX/UI design and frontend development for this project.
 
 **Key decisions recorded.** Reuse the existing component; make configuration the default path; keep the old version only until the new one is assessed. [CONFIRM.]
 
@@ -152,7 +152,7 @@
 - Quick filters, a shared filter component, wild-card entity search, configurable sorting.
 - Show when the data was last refreshed; collapse and open the legend.
 
-**Role and boundaries.** [CONFIRM ROLE.]
+**Role and boundaries.** Devsigner: full ownership of UX/UI design and frontend development for this project.
 
 **Decision the document makes visible.** Document the layout limit openly rather than hide it. [CONFIRM whether the limit has since been fixed.]
 
@@ -172,7 +172,7 @@
 
 **Design choices stated in the pitch.** Points are the only currency; earning is tied to attendance; QR codes process every transaction.
 
-**Role and boundaries.** [CONFIRM ROLE: product, UX/UI, or development. The pitch lists a user-interface section but does not name the author.]
+**Role and boundaries.** Devsigner: full ownership of UX/UI design and frontend development for this project.
 
 **Outcome.** [CONFIRM OUTCOME: competition result, if applicable. The honours entry on the site mentions a hackathon win; check that the event matches.]
 
@@ -180,7 +180,9 @@
 
 ## Before any draft goes live
 
-- [ ] Confirm your role and decisions for each project (every **[CONFIRM ROLE]**).
+- [x] Role applied to all projects: Devsigner, full ownership of UX/UI design and frontend.
+- [ ] Confirm the UI scope for the Eskom and Sasol projects (no UI in the source documents).
+- [ ] Confirm decisions for each project.
 - [ ] Confirm outcomes, or remove the outcome section.
 - [ ] Check each anonymised draft against the NDA for that client.
 - [ ] Remove the source documents from public `main`.
