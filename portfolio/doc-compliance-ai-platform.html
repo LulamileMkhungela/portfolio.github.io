@@ -58,7 +58,7 @@
 	<link rel="stylesheet" href="../css/avalanche.css" />
 	<link rel="stylesheet" href="../css/snowbridge.css" />
 	<link rel="stylesheet" href="../css/modern-menu.css?v=161" />
-	<link rel="stylesheet" href="../css/portfolio-case-shared.css?v=39" />
+	<link rel="stylesheet" href="../css/portfolio-case-shared.css?v=40" />
 
 <style id="lm-case-study">
 :root{--lm-accent:#2f6b3a}
@@ -251,22 +251,45 @@ html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp
 
 			<!-- Content -->
 			<div class="content clearfix">
-				<section class="pk-lock" data-case-lock aria-labelledby="case-lock-title">
-					<div class="pk-lock__card">
-						<div class="pk-lock__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></div>
-						<p class="pk-lock__eyebrow">Protected case study</p>
-						<h1 class="pk-lock__title" id="case-lock-title">Compliance AI assistant</h1>
-						<p class="pk-lock__copy">This work was done under a confidentiality agreement, so the full write-up is encrypted on this page and opens only with a password. If you have one, enter it below.</p>
-						<form class="pk-lock__form" autocomplete="off" novalidate>
-							<label class="sr-only" for="case-lock-password">Password</label>
-							<div class="pk-lock__field"><input id="case-lock-password" type="password" name="password" placeholder="Password" autocapitalize="off" autocorrect="off" spellcheck="false" required></div>
-							<button class="pk-lock__submit" type="submit">Unlock case study</button>
-							<p class="pk-lock__message" data-lock-message aria-live="polite"></p>
-						</form>
-						<p class="pk-lock__foot">Don’t have a password? <a href="mailto:mkhungela.l@gmail.com?subject=Access%20to%20a%20protected%20case%20study">Email Lulamile</a> and say which study you would like to read.</p>
+			<div class="pk-lock-shell" data-case-lock>
+				<section class="pk-hero" aria-labelledby="case-lock-title">
+					<div class="pk-shell">
+						<p class="pk-eyebrow">Protected case study</p>
+						<h1 id="case-lock-title" class="pk-display pk-display--name">Compliance AI assistant</h1>
+						<p class="pk-hero__tagline">Written under a confidentiality agreement.<em class="pk-accent"> Opens with a password.</em></p>
+						<span class="pk-lock-hero__cue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg>Encrypted on this page</span>
 					</div>
+					<div class="pk-shell"><div class="pk-meta" aria-label="Project details"><div class="pk-meta__item"><span class="pk-meta__label">Client</span><span class="pk-meta__value">Confidential client engagement</span></div><div class="pk-meta__item"><span class="pk-meta__label">Role</span><span class="pk-meta__value">Product design and front-end, via iOCO</span></div><div class="pk-meta__item"><span class="pk-meta__label">Industry</span><span class="pk-meta__value">Anonymised — ask me</span></div><div class="pk-meta__item"><span class="pk-meta__label">Access</span><span class="pk-meta__value">Password protected</span></div></div></div>
 				</section>
-				<script id="case-lock-payload" type="text/plain" data-meta="{&quot;salt&quot;: &quot;OGupZkvDbp8gpGO8LViH7w==&quot;, &quot;iv&quot;: &quot;QSY00P4zZo66bF69&quot;, &quot;iterations&quot;: 310000}">
+				<section class="pk-section" id="protected">
+					<div class="pk-shell"><div class="pk-lock-grid">
+						<div>
+							<p class="pk-eyebrow">How to open it</p>
+							<h2 class="pk-h2">The write-up is encrypted inside this page</h2>
+							<div class="pk-copy pk-lock-copy"><p>This work was done under a confidentiality agreement, so the client, the decisions and the results are held as ciphertext in this file and are only rendered after the right password is entered. Nothing is fetched from another site.</p></div>
+							<ul class="pk-lock-points"><li><b>01</b><span>This is the same case-study template as every other project on the site. Only the write-up is withheld, not the page.</span></li><li><b>02</b><span>The text is encrypted in this file, so it is not readable in view-source, in a cache or from the repository hosting it.</span></li><li><b>03</b><span>The key is derived in your browser and the page is never sent anywhere to be read.</span></li></ul>
+						</div>
+						<div class="pk-lock">
+							<div class="pk-lock__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></div>
+							<p class="pk-lock__eyebrow">Password required</p>
+							<h2 class="pk-lock__title">Compliance AI assistant</h2>
+							<p class="pk-lock__copy">If you have the password for this study, enter it below and the full case study opens here, in the page you are already reading.</p>
+							<form class="pk-lock__form" autocomplete="off" novalidate>
+								<label class="sr-only" for="case-lock-password">Password</label>
+								<div class="pk-lock__field"><input id="case-lock-password" type="password" name="password" placeholder="Password" autocapitalize="off" autocorrect="off" spellcheck="false" required></div>
+								<button class="pk-lock__submit" type="submit">Unlock case study</button>
+								<p class="pk-lock__message" data-lock-message aria-live="polite"></p>
+							</form>
+							<p class="pk-lock__foot">Don’t have a password? <a href="mailto:mkhungela.l@gmail.com?subject=Access%20to%20a%20protected%20case%20study">Email Lulamile</a> and say which study you would like to read.</p>
+						</div>
+					</div></div>
+				</section>
+				<section class="pk-section pk-conclusion" id="protected-note">
+					<div class="pk-shell"><p class="pk-lead">Happy to walk you through any of this in person, with the client anonymised.</p><p class="pk-copy">These studies come from enterprise engagements delivered through iOCO. The write-ups are sealed here so the clients’ material stays off the open web; the design decisions behind them are not a secret.</p><div class="pk-actions"><a class="pk-button" href="mailto:mkhungela.l@gmail.com?subject=Access%20to%20a%20protected%20case%20study">Ask for access →</a></div></div>
+				</section>
+<nav class="tlc-project-pagination" aria-label="More projects"><a class="tlc-project-pagination__item" href="doc-coal-stockpile-forecasting.html"><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction">← Previous project</span><strong>Coal stockpile forecasting</strong><span class="tlc-project-pagination__category">Energy · Machine-learning decision support</span></span></a><a class="tlc-project-pagination__item" href="doc-media-scanning-audit.html"><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction">Next project →</span><strong>Media scanning for audit planning</strong><span class="tlc-project-pagination__category">Public sector · Media intelligence for audit</span></span></a></nav>
+			</div>
+<script id="case-lock-payload" type="text/plain" data-meta="{&quot;salt&quot;: &quot;OGupZkvDbp8gpGO8LViH7w==&quot;, &quot;iv&quot;: &quot;QSY00P4zZo66bF69&quot;, &quot;iterations&quot;: 310000}">
 pqit4wJW8jgpDoRWZCdw9say+3X7Mp8CNwVV6VSlZGP8Q5VpleNp/5BM/G3KP1/xaSX0JvTjVMNTbik3TmpZ4VDAYDsF7OvrdGerD/KshoNvjC2BgOG8VYbj
 dBPEbaTbq0hA/s+/EJ5U0A+vTQ8AYRN1iq36TAg1lywiqqdnAGcQx13gYSwlgCTxqkHTXQQSBXXNeHkuTGSt8OLcO2Q1qDseZV+AaQvWSyHGFpNIOO0gfrYt
 1T1/UrCl1IICsD7PjQMRQw1a6Xcwb43yIYFXXGr24LbOuHCehJ5zFIJGrG+drKSxycpgPtVSn8x9wlta31gXehr6nqbG3jBpSMscSgydjIHauIHnQAJ5+OCk
@@ -340,6 +363,7 @@ UppYb9So5gHSVKz9zDbDCaeWEMUw5Sm5Ll53ixyZW60YifQgnmqXUADfHxPqJnR5kTMpLAiKeLzzh65L
 KYYFmDv12Ic8hdHBYNpCu5x2t2+1Lm31N1Ic93JdJ1/1xQG4hyboKgGuZiT3dpXGtHraKkazVfWt976YbfPWeQVepjmNd8IhU1upi60UgbiQ/+QD5LI6arb7
 b0xRxPHA
 				</script>
+			
 			<!-- Content End -->
 
 			<!-- Footer -->
@@ -372,6 +396,6 @@ b0xRxPHA
 	<script src="../js/luxury-collection-modern.js?v=4"></script>
 	<script src="../js/contact-form-fallback.js?v=2"></script>
 	<script src="../js/case-lock.js?v=1"></script>
-	<script src="../js/case-nav.js?v=5"></script>
+	<script src="../js/case-nav.js?v=6"></script>
 </body>
 </html>

@@ -498,6 +498,289 @@ NEW_CASES = [
              "Toyota Remote (Africa) on Google Play, the connected-car app."),
         ],
     },
+    {
+        # Was a bare page that redirected to the GitHub Pages URL. The repository
+        # publishes no site (GitHub Pages is off for it), so this is now the
+        # real case study and the app is reached from the repository.
+        "file": "service-waze.html",
+        "title": "ServiceWaze",
+        "category": "Impact · Civic-tech service alerts PWA",
+        "tagline": ["Two hours before the taps run dry,", " the app already knows."],
+        "accent": "#0369a1",
+        "meta": [
+            ("Client", "Self-initiated · open source"),
+            ("Role", "Devsigner: product, UX/UI, frontend and backend"),
+            ("Industry", "Civic technology and public services"),
+            ("Year", "2026"),
+        ],
+        "lead": (
+            "Load-shedding ended and the service crisis did not: it moved into water, roads, transport and "
+            "tariffs, and the information that would have helped arrived after the outage, in English, inside "
+            "an app that eats data. ServiceWaze is built for the window before an interruption, and the "
+            "whole thing — product, interface, service and tests — is open source."
+        ),
+        "problems": [
+            ("Status apps report the damage, not the warning",
+             "Most apps tell a household that the water is off. The useful moment is the two hours before, "
+             "when there is still time to store what you need and charge what you can."),
+            ("The official channels are pull-only",
+             "A resident has to already know a WhatsApp line or municipal page exists, message it and read "
+             "the reply. Planned maintenance and recovery times rarely reach people proactively."),
+            ("The households most harmed are the least reached",
+             "Official channels are app-first, English-first and data-hungry. Households with no tank, no "
+             "borehole and no spare data are the ones with the most to lose."),
+            ("Reports disappear into a black hole",
+             "Nobody gets a receipt saying a report was logged, who owns it and by when it will be fixed, so "
+             "trust in municipal response stays where it is."),
+        ],
+        "role": (
+            "I designed and built the product end to end: the competitive analysis and concept note, the "
+            "information architecture and interface, the FastAPI service, the PWA front end, the upstream "
+            "data connectors, the automated tests and the documentation. There was no client and no design "
+            "team, and I wrote the entry pack for the FNB App of the Year."
+        ),
+        "decisions": [
+            ("Count down to the disruption instead of alerting on it",
+             "The product is built around a Prepare Window: how long until impact, and what must be done in "
+             "the time available. Trade-off accepted: a forecast that is wrong reads as a broken promise, so "
+             "every threat carries its confidence and the evidence behind it."),
+            ("Show the data tier on every value",
+             "Live data is wrapped in a provenance envelope. When an upstream fails the app serves the last "
+             "good cache, and failing that a deterministic demo badged DEMO in the interface. Trade-off "
+             "accepted: a visible DEMO badge is less confident-looking than a clean answer, but the app never "
+             "presents simulated data as real."),
+            ("Design for the phone people actually own",
+             "Offline first, data-saver mode, read-aloud, five shipped languages, no login and no tracking. "
+             "Trade-off accepted: no account means no history across devices and a weaker reason to come back."),
+            ("Turn every report into a timed receipt",
+             "A report gets an id, a responsible entity and an SLA clock, and a ward scorecard shows whether "
+             "the promise was kept. Trade-off accepted: the accountability surface is only as strong as what "
+             "the utilities publish."),
+            ("Do not fight EskomSePush on app territory",
+             "The concept note argues the defensible ground is distribution the incumbent does not have: "
+             "WhatsApp and USSD, low-data, multilingual, and the accountability loop."),
+        ],
+        "checks": [
+            "54 automated tests run from the repository with no network access, plus a headless browser "
+            "smoke test over the front end.",
+            "Every upstream connector reports its own status, latency and last successful fetch in a sources "
+            "console, so a broken integration is visible instead of silent.",
+        ],
+        "outcomes": [
+            ("Open source, application and service",
+             "The interface, the FastAPI service, the tests, the architecture note and the pitch are public "
+             "in one repository."),
+            ("Entered in the FNB App of the Year",
+             "Across Best Consumer Solution, Most Innovative Solution, Best South African Solution, Best "
+             "Financial Solution and Best Agricultural Solution."),
+            ("Not yet evidenced",
+             "No user, adoption or outcome figures are published. Add them only with a source."),
+        ],
+        "what_changed": (
+            "A service-disruption product built for the hours before impact, published as open source and "
+            "honest about every byte it shows."
+        ),
+        "links": [("Code repository", "https://github.com/LulamileMkhungela/ServiceWaze")],
+        "figures": [
+            ("../images/work/servicewaze/cover.webp", "ServiceWaze — the household resilience network",
+             "The product cover."),
+            ("../images/work/servicewaze/01-home.webp", "ServiceWaze home screen",
+             "Area chips, active alerts, the service tiles and the tab bar."),
+            ("../images/work/servicewaze/06-report.webp", "ServiceWaze news and report flow",
+             "The merged feed, its filters, and the confirmation after a report is sent."),
+            ("../images/work/servicewaze/02-transport.webp", "ServiceWaze transport view",
+             "Route and strike status for the areas you follow."),
+            ("../images/work/servicewaze/05-areas.webp", "ServiceWaze area view",
+             "Reports and receipts for an area."),
+            ("../images/work/live/servicewaze-mobile.webp", "ServiceWaze on a phone",
+             "The phone view."),
+        ],
+    },
+    {
+        # Was a bare page that redirected to wandies.vercel.app. The case study
+        # is built from that live site; the site itself stays the destination.
+        "file": "wandisplace-pwa.html",
+        "title": "Wandies Place",
+        "category": "Small business · Restaurant website and PWA",
+        "tagline": ["A township buffet", " with a wall of a hundred thousand notes."],
+        "accent": "#b45309",
+        "meta": [
+            ("Client", "Wandies Place, Dube, Soweto"),
+            ("Role", "Devsigner, freelance: UX/UI and frontend (to confirm)"),
+            ("Industry", "Food and hospitality"),
+            ("Year", TO_CONFIRM),
+        ],
+        "lead": (
+            "Wandies Place has run an all-you-can-eat buffet in Dube for more than thirty years, and its "
+            "walls are covered in notes left by guests from six continents. The site has to do two jobs at "
+            "once: convince a first-time visitor it is worth the drive, and get a regular ordering without "
+            "phoning the restaurant."
+        ),
+        "problems": [
+            ("A landmark nobody can find online",
+             "For a restaurant whose whole draw is reputation and word of mouth, the site was the only place "
+             "a visitor checks before making the drive from Johannesburg."),
+            ("The wall is the asset, and it was invisible",
+             "A hundred thousand notes and signatures are the most distinctive thing in the building, and "
+             "none of it could be seen before arriving."),
+            ("Ordering meant a phone call",
+             "Delivery runs through Uber Eats and Mr D Food, but a guest who wanted to know about a table or "
+             "a special had no route to an answer."),
+            ("Hours and the way in get buried",
+             "Opening hours, the Dube address and the booking route change, and they are what a visitor "
+             "decides on."),
+        ],
+        "role": (
+            "I designed and built the website and PWA: the visual direction, the page structure, the menu "
+            "and gallery templates, and the front end (scope to confirm). The reasoning below is my "
+            "reconstruction from the live site — confirm the brief and dates before this page is quoted."
+        ),
+        "decisions": [
+            ("Lead with the room, not the menu",
+             "The home page opens on the restaurant exterior with the promise in type over it, so the first "
+             "thing a visitor sees is the place itself."),
+            ("Give the wall of notes its own section",
+             "The notes are treated as content with their own heading and figures — 30+ years, 100k+ notes, "
+             "six continents — rather than as decoration behind a hero."),
+            ("Put hours, location and delivery on the first screen",
+             "The information bar under the hero carries the buffet, happy hour, 9am to 10pm and Dube, with "
+             "Reserve table and Order Online held at the top."),
+            ("Hand ordering to the platforms guests already use",
+             "Delivery links go to Uber Eats and Mr D Food rather than a bespoke cart, which keeps the "
+             "restaurant on the rails it already runs."),
+            ("Give the story a page of its own",
+             "The history of Makhalemele Street and the guests who passed through is separated from the "
+             "visit flow, so a first-time visitor is not made to read it to find the menu."),
+        ],
+        "checks": [
+            "The live site was reviewed for the menu, signature dishes, delivery and booking routes, opening "
+            "hours, address and the tradition section. Mobile testing and performance checks are to confirm.",
+        ],
+        "outcomes": [
+            ("The restaurant's own published figures",
+             "30+ years of stories, 100k+ notes and signatures and six continents represented are the "
+             "restaurant's claims, shown on its own site."),
+            ("Not yet evidenced",
+             "No visit, order or revenue figures are shown. Add them only with a source from the business."),
+        ],
+        "what_changed": (
+            "One site that tells a first-time visitor where to go and lets a regular order, without the "
+            "story getting in the way."
+        ),
+        "links": [
+            ("Visit the live site", "https://wandies.vercel.app/"),
+            ("Order on Uber Eats", "https://www.ubereats.com/za/store/wandies-place-dube/90PRvw56SwyGKNaz4_MRwQ"),
+            ("Order on Mr D Food", "https://www.mrd.com/delivery/restaurant/wandies-place-soweto/11975"),
+        ],
+        "tradeoffs": [
+            ("Lead with the room, not the menu",
+             "A photographic hero pushes the menu further down. To confirm: how many visitors use the menu link from the first screen."),
+            ("Give the wall of notes its own section",
+             "The tradition section adds length to the page for guests who came to eat. To confirm: whether it is read or skipped."),
+            ("Put hours, location and delivery on the first screen",
+             "A permanent information bar eats vertical space on a phone. To confirm: how the page reads on a small screen."),
+            ("Hand ordering to the platforms guests already use",
+             "The restaurant loses the customer relationship to the delivery platform. Trade-off accepted: the alternative is a cart nobody maintains."),
+        ],
+        "figures": [
+            ("../images/work/wandisplace-cover.webp", "Wandies Place — Dube, Soweto",
+             "The restaurant cover."),
+            ("../images/work/live/wandisplace-desktop.webp", "Wandies Place on desktop",
+             "The home page: hero, navigation, and the hours, location and ordering bar."),
+            ("../images/work/live/wandisplace-mobile.webp", "Wandies Place on a phone",
+             "The phone view."),
+        ],
+    },
+    {
+        # Was a bare page that redirected to skautos.vercel.app. The case study
+        # is built from that live site; the site itself stays the destination.
+        "file": "sk-finds-pwa.html",
+        "title": "SK Finds",
+        "category": "Small business · WhatsApp storefront PWA",
+        "tagline": ["Car-culture finds", " ordered from the dash."],
+        "accent": "#65a30d",
+        "meta": [
+            ("Client", "SK Finds, Thembisa"),
+            ("Role", "Devsigner, freelance: UX/UI and frontend (to confirm)"),
+            ("Industry", "Small-business retail"),
+            ("Year", TO_CONFIRM),
+        ],
+        "lead": (
+            "SK Finds sells mudflaps, valve caps, mats, wheel covers and plush toys in Esangweni, Thembisa, "
+            "and trades until two in the morning. The storefront had to work on the phone the customer is "
+            "already holding, show prices in rand without a cart to build, and end in a WhatsApp message "
+            "rather than a checkout nobody wants to finish."
+        ),
+        "problems": [
+            ("Stock is chosen in person, not online",
+             "Car-culture finds are a trust purchase: the customer wants to see the price and know it is in "
+             "stock before they ask, and most of them are deciding at night."),
+            ("No cart is the shortest path to a sale",
+             "Most orders are a handful of items collected at the shop or delivered locally, so a full "
+             "checkout flow is more friction than it is worth."),
+            ("A request that is not on the shelf still has to work",
+             "Customers ask for specific accessories and plush toys that SK does not stock, and that request "
+             "is part of how the business runs."),
+            ("Open 24 hours has to look open",
+             "The trading hours are the product. A visitor arriving at 11pm should not have to guess whether "
+             "anyone is there."),
+        ],
+        "role": (
+            "I designed and built the storefront: the visual direction, the product and category templates, "
+            "the WhatsApp ordering path, and the front end as a PWA (scope to confirm). The reasoning below "
+            "is my reconstruction from the live site — confirm the brief and dates before this page is quoted."
+        ),
+        "decisions": [
+            ("Put the price on the tile, not behind a click",
+             "Every featured product shows its price in rand on the card, because the customer is comparing, "
+             "not browsing."),
+            ("Make WhatsApp the checkout",
+             "The primary action on a product and on the home page opens a pre-filled chat, so an order is a "
+             "conversation rather than a form."),
+            ("Group the stock the way it is bought",
+             "Exterior, Interior and Plushies match how a customer thinks about an upgrade, and each has its "
+             "own shelf on the shop page."),
+            ("State the hours and the meeting point as content",
+             "Thembisa · open 24 hours runs at the top of the page, with Esangweni collection or delivery "
+             "spelled out where the customer decides."),
+            ("Keep a request route for what is not stocked",
+             "The contact prompt asks for the item to be sourced, which turns the shop's supply chain into a "
+             "visible part of the storefront."),
+        ],
+        "checks": [
+            "The live site was reviewed for the product list and prices, the category shelves, the WhatsApp "
+            "ordering path, trading hours and the collection point. Mobile testing and performance checks are "
+            "to confirm.",
+        ],
+        "outcomes": [
+            ("Not yet evidenced",
+             "No sales, order volume or revenue figures are shown. Add them only with a source from the "
+             "business."),
+        ],
+        "what_changed": (
+            "A storefront that shows the price, takes the order in the chat the customer already uses, and "
+            "is legible at midnight."
+        ),
+        "links": [("Visit the live store", "https://skautos.vercel.app/")],
+        "tradeoffs": [
+            ("Put the price on the tile, not behind a click",
+             "Stock that moves fast can show a stale price until it is edited. Trade-off accepted: a visible wrong price is cheaper to fix than an abandoned enquiry."),
+            ("Make WhatsApp the checkout",
+             "Orders are not captured in a system the shop can report on. Trade-off accepted: the alternative is a checkout that loses the sale."),
+            ("Group the stock the way it is bought",
+             "The categories assume a car-culture customer and fit less well for gift-only buying. To confirm: how gift orders arrive."),
+            ("State the hours and the meeting point as content",
+             "Copy has to be edited whenever the hours or meeting point change. To confirm: how often the shop edits it."),
+        ],
+        "figures": [
+            ("../images/work/skfinds-cover.webp", "SK Finds — Thembisa",
+             "The storefront cover."),
+            ("../images/work/live/sk-finds-desktop.webp", "SK Finds on desktop",
+             "The home page: the promise, the two actions and the featured drops."),
+            ("../images/work/live/sk-finds-mobile.webp", "SK Finds on a phone",
+             "The phone view, with the shop and WhatsApp actions in the header."),
+        ],
+    },
 ]
 
 
