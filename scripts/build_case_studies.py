@@ -156,6 +156,9 @@ CASES = [
             ("../images/work/toyota-app-cover.webp", "Toyota Brand Programme — application",
              "The same tokens applied in the app."),
         ],
+        "links": [
+            ("See the full programme, design system and apps in one study", "toyota-mobility-brand.html"),
+        ],
     },
     {
         "file": "toyota-connected-apps.html",
@@ -218,6 +221,7 @@ CASES = [
             ("MyToyota", "https://www.toyota.co.za/services/my-toyota-app"),
             ("Toyota Remote", "https://play.google.com/store/apps/details?id=za.co.toyota.toyotaremote&hl=en_ZA"),
             ("Lexus on Google Play", "https://play.google.com/store/apps/details?id=com.eliance.lexusmobile&hl=en_ZA&gl=US"),
+            ("Brand programme, design system and KINTO", "toyota-mobility-brand.html"),
             ("Lexus ownership page", "https://www.lexus.co.za/ownership/mylexus-app"),
         ],
     },
@@ -706,6 +710,14 @@ def rebuild(case, index):
                     f'<meta name="twitter:title" content="{html.escape(title)}">', prefix, count=1)
     prefix = re.sub(r'<meta name="twitter:description" content="[^"]*"\s*/?>',
                     f'<meta name="twitter:description" content="{html.escape(desc)}">', prefix, count=1)
+    # A page built from another page's shell inherits that page's canonical
+    # URL; point it back at this case study.
+    canonical = "https://lulamilemkhungela.github.io/portfolio.github.io/portfolio/" + case["file"]
+    prefix = re.sub(r'<meta property="og:url" content="[^"]*"\s*/?>',
+                    f'<meta property="og:url" content="{canonical}">', prefix, count=1)
+    accent = case.get("accent")
+    if accent:
+        prefix = re.sub(r"--lm-accent:#[0-9a-fA-F]{3,8}", f"--lm-accent:{accent}", prefix, count=1)
     body = (
         '\t\t\t<div class="content clearfix">\n\n'
         + body_for(case, index)
@@ -718,15 +730,35 @@ def rebuild(case, index):
 # The nine original case studies were restored from the richer pre-rewrite pages
 # (with role, date and wording fixes applied). Do not regenerate them from CASES,
 # which holds the condensed versions and would make them thinner again.
+#
+# brand-strategy-programme.html and toyota-connected-apps.html used to be in this
+# set, but both had been reduced to redirect stubs (one to the merged
+# toyota-mobility-brand.html, one the same). They are rebuilt from CASES so the
+# URLs stay on the site and carry the existing template.
 RESTORED = {
-    "addmoredigital-website.html", "brand-strategy-programme.html", "designops-design-system.html",
+    "addmoredigital-website.html", "designops-design-system.html",
     "employee-engagement-app-redesign.html", "foodiezone-pwa.html", "lula-gazette.html",
-    "nerdma-website.html", "snb-website.html", "toyota-connected-apps.html",
+    "nerdma-website.html", "snb-website.html",
 }
 
 if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("files", nargs="*", metavar="file.html",
+                        help="only rebuild these case studies (default: every page not in RESTORED)")
+    args = parser.parse_args()
+
+    unknown = [f for f in args.files if f not in ORDER]
+    if unknown:
+        parser.error("unknown case study: " + ", ".join(unknown))
+
+    # Rebuilding a protected study writes it back as plaintext, so name the
+    # files explicitly when you only want to touch some of them.
     for idx, case in enumerate(CASES):
         if case["file"] in RESTORED:
+            continue
+        if args.files and case["file"] not in args.files:
             continue
         out = rebuild(case, idx)
         print("rebuilt", out.relative_to(ROOT))

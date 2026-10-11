@@ -58,7 +58,7 @@
 	<link rel="stylesheet" href="../css/avalanche.css" />
 	<link rel="stylesheet" href="../css/snowbridge.css" />
 	<link rel="stylesheet" href="../css/modern-menu.css?v=161" />
-	<link rel="stylesheet" href="../css/portfolio-case-shared.css?v=39" />
+	<link rel="stylesheet" href="../css/portfolio-case-shared.css?v=40" />
 
 <style id="lm-case-study">
 :root{--lm-accent:#2f6b3a}
@@ -251,92 +251,116 @@ html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp
 
 			<!-- Content -->
 			<div class="content clearfix">
-				<section class="pk-lock" data-case-lock aria-labelledby="case-lock-title">
-					<div class="pk-lock__card">
-						<div class="pk-lock__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></div>
-						<p class="pk-lock__eyebrow">Protected case study</p>
-						<h1 class="pk-lock__title" id="case-lock-title">Configurable chart components</h1>
-						<p class="pk-lock__copy">This work was done under a confidentiality agreement, so the full write-up is encrypted on this page and opens only with a password. If you have one, enter it below.</p>
-						<form class="pk-lock__form" autocomplete="off" novalidate>
-							<label class="sr-only" for="case-lock-password">Password</label>
-							<div class="pk-lock__field"><input id="case-lock-password" type="password" name="password" placeholder="Password" autocapitalize="off" autocorrect="off" spellcheck="false" required></div>
-							<button class="pk-lock__submit" type="submit">Unlock case study</button>
-							<p class="pk-lock__message" data-lock-message aria-live="polite"></p>
-						</form>
-						<p class="pk-lock__foot">Don’t have a password? <a href="mailto:mkhungela.l@gmail.com?subject=Access%20to%20a%20protected%20case%20study">Email Lulamile</a> and say which study you would like to read.</p>
+			<div class="pk-lock-shell" data-case-lock>
+				<section class="pk-hero" aria-labelledby="case-lock-title">
+					<div class="pk-shell">
+						<p class="pk-eyebrow">Protected case study</p>
+						<h1 id="case-lock-title" class="pk-display pk-display--name">Configurable chart components</h1>
+						<p class="pk-hero__tagline">Written under a confidentiality agreement.<em class="pk-accent"> Opens with a password.</em></p>
+						<span class="pk-lock-hero__cue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg>Encrypted on this page</span>
 					</div>
+					<div class="pk-shell"><div class="pk-meta" aria-label="Project details"><div class="pk-meta__item"><span class="pk-meta__label">Client</span><span class="pk-meta__value">Confidential client engagement</span></div><div class="pk-meta__item"><span class="pk-meta__label">Role</span><span class="pk-meta__value">Product design and front-end, via iOCO</span></div><div class="pk-meta__item"><span class="pk-meta__label">Industry</span><span class="pk-meta__value">Anonymised — ask me</span></div><div class="pk-meta__item"><span class="pk-meta__label">Access</span><span class="pk-meta__value">Password protected</span></div></div></div>
 				</section>
-				<script id="case-lock-payload" type="text/plain" data-meta="{&quot;salt&quot;: &quot;RhUyfpJgsGnnKWUVAt1pbw==&quot;, &quot;iv&quot;: &quot;R5ZR/90xnbdA5Q9j&quot;, &quot;iterations&quot;: 310000}">
-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
+				<section class="pk-section" id="protected">
+					<div class="pk-shell"><div class="pk-lock-grid">
+						<div>
+							<p class="pk-eyebrow">How to open it</p>
+							<h2 class="pk-h2">The write-up is encrypted inside this page</h2>
+							<div class="pk-copy pk-lock-copy"><p>This work was done under a confidentiality agreement, so the client, the decisions and the results are held as ciphertext in this file and are only rendered after the right password is entered. Nothing is fetched from another site.</p></div>
+							<ul class="pk-lock-points"><li><b>01</b><span>This is the same case-study template as every other project on the site. Only the write-up is withheld, not the page.</span></li><li><b>02</b><span>The text is encrypted in this file, so it is not readable in view-source, in a cache or from the repository hosting it.</span></li><li><b>03</b><span>The key is derived in your browser and the page is never sent anywhere to be read.</span></li></ul>
+						</div>
+						<div class="pk-lock">
+							<div class="pk-lock__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></div>
+							<p class="pk-lock__eyebrow">Password required</p>
+							<h2 class="pk-lock__title">Configurable chart components</h2>
+							<p class="pk-lock__copy">If you have the password for this study, enter it below and the full case study opens here, in the page you are already reading.</p>
+							<form class="pk-lock__form" autocomplete="off" novalidate>
+								<label class="sr-only" for="case-lock-password">Password</label>
+								<div class="pk-lock__field"><input id="case-lock-password" type="password" name="password" placeholder="Password" autocapitalize="off" autocorrect="off" spellcheck="false" required></div>
+								<button class="pk-lock__submit" type="submit">Unlock case study</button>
+								<p class="pk-lock__message" data-lock-message aria-live="polite"></p>
+							</form>
+							<p class="pk-lock__foot">Don’t have a password? <a href="mailto:mkhungela.l@gmail.com?subject=Access%20to%20a%20protected%20case%20study">Email Lulamile</a> and say which study you would like to read.</p>
+						</div>
+					</div></div>
+				</section>
+				<section class="pk-section pk-conclusion" id="protected-note">
+					<div class="pk-shell"><p class="pk-lead">Happy to walk you through any of this in person, with the client anonymised.</p><p class="pk-copy">These studies come from enterprise engagements delivered through iOCO. The write-ups are sealed here so the clients’ material stays off the open web; the design decisions behind them are not a secret.</p><div class="pk-actions"><a class="pk-button" href="mailto:mkhungela.l@gmail.com?subject=Access%20to%20a%20protected%20case%20study">Ask for access →</a></div></div>
+				</section>
+<nav class="tlc-project-pagination" aria-label="More projects"><a class="tlc-project-pagination__item" href="doc-safety-statistics-workbook.html"><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction">← Previous project</span><strong>Safety statistics reference</strong><span class="tlc-project-pagination__category">Energy and chemicals · Safety-reporting reference</span></span></a><a class="tlc-project-pagination__item" href="doc-timeline-view.html"><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction">Next project →</span><strong>Configurable timeline view</strong><span class="tlc-project-pagination__category">Enterprise · Product operations timeline</span></span></a></nav>
+			</div>
+				<script id="case-lock-payload" type="text/plain" data-meta="{&quot;salt&quot;: &quot;rN0KEf0VqmGbH7N+lAo1Ww==&quot;, &quot;iv&quot;: &quot;HHCE7D2Uzji3mQq1&quot;, &quot;iterations&quot;: 310000}">
+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
 				</script>
+			
 			<!-- Content End -->
 
 			<!-- Footer -->
@@ -369,6 +393,6 @@ gU6ptDl6d/WXDT/stHxDfQPsCmSLuBGZ9XecDgr/23VOiXsP9xZzdSLZO1bs+UgqHhwDXJGPEprDFvRn
 	<script src="../js/luxury-collection-modern.js?v=4"></script>
 	<script src="../js/contact-form-fallback.js?v=2"></script>
 	<script src="../js/case-lock.js?v=1"></script>
-	<script src="../js/case-nav.js?v=5"></script>
+	<script src="../js/case-nav.js?v=6"></script>
 </body>
 </html>

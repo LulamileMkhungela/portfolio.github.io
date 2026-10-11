@@ -46,7 +46,9 @@
     var content = root.querySelector(".content");
     if (!content) return null;
     var sections = Array.prototype.slice.call(content.querySelectorAll("section[id]")).filter(function (s) {
-      if (s.hasAttribute("data-case-lock") || s.classList.contains("pk-lock")) return false;
+      /* Skip the lock shell and its sections; a protected study builds the
+         navigator once js/case-lock.js has decrypted the body. */
+      if (s.closest("[data-case-lock]") || s.classList.contains("pk-lock")) return false;
       return s.textContent.trim().length > 0 || s.querySelector("img");
     });
     if (sections.length < 3) return null;

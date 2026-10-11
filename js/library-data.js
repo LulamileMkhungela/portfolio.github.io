@@ -10,7 +10,9 @@
  * true to use the lettered colour tile instead. Project cards set `image`
  * directly so each one shows its own cover. `locked: true` draws a padlock
  * badge: those studies are encrypted and open with a password
- * (scripts/lock_case_studies.py).
+ * (scripts/lock_case_studies.py). A project card links to its case study on
+ * this site, never straight off to the live product — the live URL is a
+ * button inside the case study.
  *
  * This stays a plain script so the library works when index.html is opened
  * directly from disk as well as when it is hosted.
@@ -96,34 +98,34 @@ window.LIBRARY_DATA = {
     {
       id: "project-africa-cuisine",
       name: "Africa Cuisine",
-      url: "https://africa-cuisine-pro.vercel.app",
+      url: "./portfolio/africa-cuisine-pwa.html",
       category: "projects",
       image: "./images/work/africa-cuisine-cover.webp",
-      description: "Live restaurant website and PWA, Braamfontein."
+      description: "Restaurant website and PWA, Braamfontein. The live site is linked from the case study."
     },
     {
       id: "project-servicewaze",
       name: "ServiceWaze",
-      url: "https://lulamilemkhungela.github.io/ServiceWaze/",
+      url: "./portfolio/service-waze.html",
       category: "projects",
       image: "./images/work/servicewaze/cover.webp",
-      description: "Live civic-tech PWA for service alerts and reports."
+      description: "Open-source civic-tech PWA that plans service disruptions before they land."
     },
     {
       id: "project-wandisplace",
-      name: "WandisPlace",
-      url: "https://wandies.vercel.app/",
+      name: "Wandies Place",
+      url: "./portfolio/wandisplace-pwa.html",
       category: "projects",
       image: "./images/work/wandisplace-cover.webp",
-      description: "Live booking PWA."
+      description: "Restaurant website and PWA for the Dube buffet. The live site is linked from the case study."
     },
     {
       id: "project-sk-finds",
       name: "SK Finds",
-      url: "https://skautos.vercel.app/",
+      url: "./portfolio/sk-finds-pwa.html",
       category: "projects",
       image: "./images/work/skfinds-cover.webp",
-      description: "Live WhatsApp storefront PWA."
+      description: "WhatsApp storefront PWA for the Thembisa car-culture and plush supplier."
     },
 
     /* ── Press and hackathons ───────────────────────────────────────── */
