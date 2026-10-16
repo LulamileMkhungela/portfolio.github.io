@@ -33,7 +33,7 @@
 	<link href="../fonts/Satoshi/css/satoshi.css" rel="stylesheet">
 	<!--
 		AI Design Prompts & Figma Files for the dock's "AI Prompts" item.
-		Built from the promptsite.tiiny.site structure, rebranded: Lulamile
+		Lulamile’s original design prompt library
 		Mkhungela's name, contact, photo and Selar store
 		(https://selar.com/m/le-loux). Cover images load from the original
 		hosts.
@@ -227,6 +227,8 @@
 		.ps-detail-body { padding: 22px 26px 26px; }
 		.ps-detail-body h2 { margin: 0 40px 4px 0; font-size: clamp(22px, 3vw, 28px); letter-spacing: -.02em; line-height: 1.2; }
 		.ps-detail-sub { margin: 0; color: var(--muted); font-size: 14px; }
+		.ps-detail-soon-note { margin: 12px 0 18px; color: var(--muted); }
+		.ps-detail-soon-note[hidden] { display: none; }
 		.ps-detail-paid-note {
 			margin: 18px 0 0; padding: 14px 16px; border-radius: 14px;
 			background: var(--paid-bg); color: var(--ink); font-size: 14px; font-weight: 650;
@@ -471,7 +473,6 @@
 				<article class="ps-card" data-price="soon" data-cat="portfolio hero" data-title="Receipt Style Portfolio" data-subtitle="Design + prompt" data-prompt="Design a minimalist portfolio page styled as a printed receipt — monospaced typography, itemised skills and projects as line items, total at the bottom, paper texture. Black ink on cream. Flat, hand-built feel.">
 					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791281978223-yr48j6.jpg" alt="Receipt Style Portfolio cover" loading="lazy"><span class="ps-badge ps-badge--soon">Coming soon</span></button>
 					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Receipt Style Portfolio</button></h3><span class="ps-sub">Design + prompt</span></div>
-						<button class="ps-copy" type="button" aria-label="Copy prompt for Receipt Style Portfolio" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
 						
 					</div>
 				</article>
@@ -680,6 +681,7 @@
 			<div class="ps-detail-body">
 				<h2 id="ps-detail-title"></h2>
 				<p class="ps-detail-sub" id="ps-detail-sub"></p>
+				<p class="ps-detail-soon-note" id="ps-detail-soon-note" hidden>I'm working on bringing you this — <strong>Lulamile's design prompt library</strong> will be available here soon. Want something like it now? Request a custom version and I'll make it for you.</p>
 				<p class="ps-detail-paid-note" id="ps-detail-paid-note" hidden>Premium design. Buy on Selar to receive its prompt and any included files.</p>
 				<div class="ps-detail-label" id="ps-detail-prompt-label">Prompt <span>Select all, then tap the copy icon</span></div>
 				<div class="ps-prompt-wrap" id="ps-detail-prompt-wrap">
@@ -989,6 +991,7 @@
 			var detailBadge = document.getElementById("ps-detail-badge");
 			var detailTitle = document.getElementById("ps-detail-title");
 			var detailSub = document.getElementById("ps-detail-sub");
+			var detailSoonNote = document.getElementById("ps-detail-soon-note");
 			var detailPrompt = document.getElementById("ps-detail-prompt");
 			var detailPromptLabel = document.getElementById("ps-detail-prompt-label");
 			var detailPromptWrap = document.getElementById("ps-detail-prompt-wrap");
@@ -1011,6 +1014,7 @@
 				var title = card.getAttribute("data-title") || "";
 				var sub = card.querySelector(".ps-sub");
 				var isPaid = card.getAttribute("data-price") === "paid";
+				var isSoon = card.getAttribute("data-price") === "soon";
 				detailIsPaid = isPaid;
 				detailImg.src = img ? img.getAttribute("src") : "";
 				detailImg.alt = title ? title + " cover" : "";
@@ -1023,8 +1027,9 @@
 				detailPrompt.scrollTop = 0;
 				detailPromptLabel.hidden = isPaid;
 				detailPromptWrap.hidden = isPaid;
-				detailActions.hidden = isPaid;
+				detailActions.hidden = isPaid || isSoon;
 				detailPaidNote.hidden = !isPaid;
+				if (detailSoonNote) detailSoonNote.hidden = !isSoon;
 				resetDetailCopyState();
 				var buyUrl = card.getAttribute("data-buy");
 				if (isPaid) {

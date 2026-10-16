@@ -263,7 +263,7 @@ const DOCK_APPS = [
   { id: "vision-bin", label: "Vision Bin", ariaLabel: "Open Vision Bin", icon: "./public/icons/dock/vision-bin.png", group: "system", opticalScale: 1.14, desktopOpticalScale: 1.14 }
 ];
 
-// The AI design prompts library (a clone of promptsite.tiiny.site) that the
+// Lulamile’s AI design prompts library that the
 // dock's AI Prompts item opens. `frame: true` keeps it in an iframe even on
 // the desktop, because the page is interactive (filters, copy, request form)
 // and needs its own scripts — mounted project documents run none.
@@ -271,7 +271,7 @@ const PROMPT_SITE_PROJECT = {
   id: "prompt-site",
   title: "AI Design Prompts",
   subtitle: "Designs \u00b7 Prompts \u00b7 Figma files",
-  url: "./portfolio/promptsite.html?embedded=1&v=2",
+  url: "./portfolio/lula-design-library.html?embedded=1&v=3",
   frame: true,
   icon: "./public/icons/dock/ai-prompts.svg",
   colors: ["#f4511e", "#ff8c3a"]
