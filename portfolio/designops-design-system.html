@@ -315,9 +315,9 @@ html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp
 				<section class="pk-section pk-research" id="research">
 					<div class="pk-shell pk-research__grid">
 						<div>
-							<p class="pk-eyebrow">Our users</p>
-							<h2 class="pk-h2">Built for the people who feel drift first.</h2>
-							<p class="pk-research__copy">The tool is built for the people who feel drift first: the designer maintaining the system, the UI developer consuming it, and the team lead who has to stop a release because two screens disagree.</p>
+							<p class="pk-eyebrow">Intended users</p>
+							<h2 class="pk-h2">Designed around design-system handoffs.</h2>
+							<p class="pk-research__copy">I designed this self-initiated tool for three roles: the person maintaining tokens, the developer using them, and the lead reviewing changes. These are intended users, not research participants; this case study does not claim interview or usability-test validation.</p>
 						</div>
 						<div class="pk-stat"><span class="pk-stat__number">41</span><span class="pk-stat__label">W3C DTCG tokens feed fourteen targets — and a linter that checks the result.</span></div>
 					</div>
@@ -325,11 +325,11 @@ html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp
 
 				<section class="pk-section pk-strategy pk-section--tight" id="personas">
 					<div class="pk-shell">
-						<p class="pk-eyebrow">Personas</p>
+						<p class="pk-eyebrow">Use-case hypotheses · not research personas</p>
 						<div class="pk-grid-3">
-							<article class="pk-card"><span class="pk-card__index">PERSONA 01</span><div><h3>The Design System Maintainer</h3><p>Owns tokens and components, and spends far too much time answering &quot;what is the value now?&quot; across projects.</p><span class="pk-card__meta">Jobs To Be Done</span><p>When a design decision changes, I want to publish it once and know every framework build picks it up, so I stop being the human sync layer between design and code.</p></div></article>
-							<article class="pk-card"><span class="pk-card__index">PERSONA 02</span><div><h3>The UI Developer</h3><p>Consumes the system daily and just wants the right token, in the right format, with the rules attached.</p><span class="pk-card__meta">Jobs To Be Done</span><p>When I start a component, I want the token values and usage rules for my framework in front of me, so I do not hard-code a hex that will be wrong next quarter.</p></div></article>
-							<article class="pk-card"><span class="pk-card__index">PERSONA 03</span><div><h3>The Engineering Lead</h3><p>Reviews the pull requests and is the last line of defence against visual drift.</p><span class="pk-card__meta">Jobs To Be Done</span><p>When a UI change lands, I want to see it came from the token source rather than a hand edit, so consistency is enforced by the pipeline and not by my review comments.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">ROLE 01 · HYPOTHESIS</span><div><h3>Design-system maintainer</h3><p>Potential need: keep token and component definitions aligned across tools and projects.</p><span class="pk-card__meta">Design implication</span><p>Generate framework outputs from one token source, rather than asking someone to synchronise each by hand.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">ROLE 02 · HYPOTHESIS</span><div><h3>UI developer</h3><p>Potential need: find the right token, framework format and usage guidance while implementing a component.</p><span class="pk-card__meta">Design implication</span><p>Make tokens and rules searchable, and expose framework-specific outputs.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">ROLE 03 · HYPOTHESIS</span><div><h3>Engineering lead</h3><p>Potential need: review whether interface code follows the shared design system.</p><span class="pk-card__meta">Design implication</span><p>Use lint diagnostics to flag deviations before they become review-only conventions.</p></div></article>
 						</div>
 					</div>
 				</section>
@@ -341,7 +341,7 @@ html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp
 							<div class="pk-copy"><p>6 stages — Discovery → Audit &amp; token model → Advise → Build → Prove → Verify.</p></div>
 						</div>
 						<div class="pk-steps">
-							<article class="pk-step"><div><span class="pk-step__index">01 · Discovery</span><h3 class="pk-h3">Where the handoff breaks</h3></div><div><div class="pk-copy"><p>Before any code, the work mapped where design and development drift apart, and for whom. Two users defined the brief: the designer who specs 16px, and the developer who types 15px at 11pm on a deadline. The failure points were mechanical — values re-typed by hand, frameworks that cannot express a style so developers improvise, the same component rebuilt slightly differently per stack, requests lost in Slack threads, and docs that rot the day they are written. Each one became a requirement.</p></div></div></article>
+							<article class="pk-step"><div><span class="pk-step__index">01 · Discovery</span><h3 class="pk-h3">Where the handoff breaks</h3></div><div><div class="pk-copy"><p>I began by listing the handoff problems this tool should address: values re-entered across tools, framework-specific token formats, duplicated components and documentation that can fall out of sync. Those are the product assumptions I used to set scope—not findings from interviews. I turned each one into a requirement, then implemented checks and generated outputs that can be inspected in the live product.</p></div></div></article>
 							<article class="pk-step"><div><span class="pk-step__index">02 · Audit &amp; token model</span><h3 class="pk-h3">Forty-one tokens, one meaning</h3></div><div><div class="pk-copy"><p>The system was audited first: which tokens were real, which had drifted, and which frameworks had quietly invented their own. The model that came out is forty-one W3C DTCG tokens — primitives, semantic roles and component-level values — so a name means the same thing in Figma, in CSS, and in a TypeScript constant.</p></div></div></article>
 							<article class="pk-step"><div><span class="pk-step__index">03 · Advise</span><h3 class="pk-h3">A direction before a decision</h3></div><div><div class="pk-copy"><p>A vendored design-intelligence catalogue — 79 searchable styles, 192 product palettes, 74 font pairings and 119 UX guidelines, searchable offline — turns a direction like &quot;dark fintech dashboard&quot; into a W3C DTCG token proposal. Every proposal ships with a provenance map of where each token came from, seven WCAG contrast checks, and a record of what deliberately did not become a token. The advisory proposes; it never writes the source of truth.</p></div></div></article>
 							<article class="pk-step"><div><span class="pk-step__index">04 · Build</span><h3 class="pk-h3">One source, fourteen targets</h3></div><div><div class="pk-copy"><p>tokens.json stays the single source of truth, and Style Dictionary transforms it into CSS, SCSS, TypeScript and Tailwind artefacts, with components generated for all fourteen framework targets from that one file. The dashboard puts the whole system on screen in ten views with zero build step — tokens, components, frameworks, advisory, demos, a live lint playground, the request board, Storybook and integrations. Dev asks, designer designs, one approval ships it to every target.</p></div></div></article>
