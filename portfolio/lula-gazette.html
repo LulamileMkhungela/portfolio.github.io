@@ -266,7 +266,7 @@ html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp
 
 				<section class="pk-section pk-section--tight pk-lead-section" id="lead">
 					<div class="pk-shell">
-						<p class="pk-lead">African legal information is public in principle, but finding it can mean moving between many jurisdiction-specific sources. I built LulaGazette as a personal project to bring selected legal materials into one searchable library, with a country-by-country directory and access to search before sign-in. This case study documents the product and my design and build decisions; it does not present user interviews or usability-test findings.</p>
+						<p class="pk-lead">I built LulaGazette to bring selected African legal materials into one searchable library. Visitors can search before signing in, browse by country and open source documents. This is a walkthrough of the product I designed and built; it does not include user-test findings.</p>
 					</div>
 				</section>
 
@@ -276,7 +276,7 @@ html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp
 						<div>
 							<p class="pk-overview__statement">A legal library anyone can search — <strong>before they sign up.</strong></p>
 						</div>
-						<div><div class="pk-copy"><p>LulaGazette brings legal resources into one interface: official gazettes, acts of parliament, apex-court precedents, court forms, court rules and regulations. The country board gives each of the 54 jurisdictions a place in the product; the interface lets visitors browse by country and content type.</p><p>I designed the library for several possible use cases, including looking up a law, preparing legal work and studying a jurisdiction. These are product assumptions, not needs validated by user research in this case study.</p><p>LulaGazette is live — the library, the 54-country board and the harvester are running. Open the site, pick a country and search.</p></div></div>
+						<div><div class="pk-copy"><p>LulaGazette brings legal resources into one interface: official gazettes, acts of parliament, apex-court precedents, court forms, court rules and regulations. The country board gives each of the 54 jurisdictions a place in the product; the interface lets visitors browse by country and content type.</p>I designed the library for people looking up a law, preparing legal work or studying a jurisdiction. Those use cases shaped my product decisions.<p>LulaGazette is live — the library, the 54-country board and the harvester are running. Open the site, pick a country and search.</p></div></div>
 					</div>
 				</section>
 
@@ -303,7 +303,7 @@ html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp
 							<h2 class="pk-h2">Good law, fragmented access.</h2>
 						</div>
 						<div>
-							<div class="pk-copy"><p>The product problem I chose to work on is fragmented access: legal materials sit across jurisdiction-specific gazettes, court sites and research services. LulaGazette's scope is to bring selected sources into one searchable interface. This is my product framing, not a claim that I conducted comparative market research.</p></div>
+							<div class="pk-copy"><p>I wanted to make legal materials easier to navigate across jurisdiction-specific gazettes, court sites and research services. LulaGazette brings selected sources into one searchable interface, with country and content filters.</p></div>
 							<div class="pk-outcomes">
 								<div class="pk-outcome"><span class="pk-outcome__num">01</span><span class="pk-outcome__text" style="font-size:clamp(18px,1.6vw,24px)">Sources are distributed<small>The product connects named legal-information providers and official gazette sources in one interface.</small></span></div>
 								<div class="pk-outcome"><span class="pk-outcome__num">02</span><span class="pk-outcome__text" style="font-size:clamp(18px,1.6vw,24px)">Jurisdiction is part of the information architecture<small>The country board and country filters let a visitor narrow the library by jurisdiction.</small></span></div>
@@ -315,7 +315,7 @@ html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp
 					</div>
 				</section>
 				<section class="pk-section" id="role">
-					<div class="pk-shell"><div class="pk-overview"><div><p class="pk-eyebrow">My role and boundaries</p></div><div><div class="pk-copy"><p class="pk-lock-part__timeline">2026 · self-initiated; product framing, design and UI development</p><p>I owned the product framing, interface design and UI build. The library and harvesters are running as a live product. The audience needs described here are design assumptions; I have not included interview or usability-test evidence in this case study.</p></div></div></div></div>
+					<div class="pk-shell"><div class="pk-overview"><div><p class="pk-eyebrow">My role and boundaries</p></div><div><div class="pk-copy"><p class="pk-lock-part__timeline">2026 · self-initiated; product framing, design and UI development</p><p>I owned the product framing, interface design and UI build. The library and harvesters are running as a live product.</p></div></div></div></div>
 				</section>
 				<section class="pk-section" id="decisions">
 					<div class="pk-shell"><p class="pk-eyebrow">Key decisions</p><div class="pk-grid-3"><article class="pk-card"><span class="pk-card__index">01</span><div><h3>Give every country its own row on one board</h3><p>Pan-African coverage is the headline: each country has its gazette, apex court and court rules.</p></div></article><article class="pk-card"><span class="pk-card__index">02</span><div><h3>Make search work without an account</h3><p>Signing up saves your work; it is not the price of entry.</p></div></article><article class="pk-card"><span class="pk-card__index">03</span><div><h3>Show where each item came from and when it was fetched</h3><p>Sources are shown, not implied.</p></div></article><article class="pk-card"><span class="pk-card__index">04</span><div><h3>Keep the library current with harvesters</h3><p>The library is maintained against live sources rather than frozen at launch.</p></div></article></div></div>
@@ -346,8 +346,7 @@ html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp
 				<section class="pk-section pk-strategy" id="process">
 					<div class="pk-shell">
 						<p class="pk-eyebrow">Product decisions</p>
-						<h2 class="pk-h2">What the product does—and what I can evidence.</h2>
-						<p class="pk-copy">This case study does not include interview notes or usability-test results, so the decisions below are described as product choices—not validated user findings.</p>
+						<h2 class="pk-h2">Three choices that shaped the product.</h2>
 						<div class="pk-grid-3">
 							<article class="pk-card"><span class="pk-card__index">01</span><div><h3>Let visitors search before sign-in</h3><p>Search is available without requiring an account. Sign-in is reserved for account features.</p></div></article>
 							<article class="pk-card"><span class="pk-card__index">02</span><div><h3>Browse by country and content type</h3><p>The country board and category filters expose the product's two main ways to narrow the library.</p></div></article>
