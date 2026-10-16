@@ -1,0 +1,20 @@
+14 sites queued
+ok    chatgpt
+ok    coolors
+ok    website-template
+ok    gamma
+ok    fontshare
+ok    notebooklm
+ok    unsplash
+slow  adobe-express Error: page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.adobe.com/express/
+ok    datacamp
+ok    google-docs
+ok    gemini
+ok    canva
+ok    adobe-express
+ok    khan-academy
+slow  cipc TimeoutError: page.goto: Timeout 25000ms exceeded.
+FAIL  cipc  Error: page.screenshot: Target page, context or browser has been closed
+
+captured 13/14
+  ! cipc: Error: page.screenshot: Target page, context or browser has been closed

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en" class="is-case-locked">
+<head>
+	<script src="../js/content-guard.js?v=1"></script>
+	<script>
+		(function () {
+			const params = new URLSearchParams(window.location.search);
+			if (params.get("embedded") !== "1") return;
+			document.documentElement.classList.add("is-embedded");
+			document.addEventListener("DOMContentLoaded", function () {
+				document.body.classList.add("is-embedded");
+			});
+		})();
+	</script>
+	<script>
+		(function () {
+			const root = document.documentElement;
+			const setMode = function (mode) { root.classList.toggle("is-dark", mode === "dark"); };
+			setMode(new URLSearchParams(window.location.search).get("appearance"));
+			window.addEventListener("message", function (event) {
+				if (event.data && event.data.type === "lm-appearance") setMode(event.data.mode);
+			});
+		})();
+	</script>
+	<meta charset="UTF-8" />
+	<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport">
+	<meta name="twitter:widgets:theme" content="light">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Coal stockpile forecasting — Lulamile Mkhungela">
+	<meta property="og:description" content="An internal project case study, not shown publicly due to an NDA. Ask Lulamile for access.">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta property="og:image" content="https://lulamilemkhungela.github.io/portfolio.github.io/images/social/lm-og.jpg">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:url" content="https://lulamilemkhungela.github.io/portfolio.github.io/portfolio/doc-coal-stockpile-forecasting.html">
+	<meta name="twitter:image" content="https://lulamilemkhungela.github.io/portfolio.github.io/images/social/lm-og.jpg">
+	<meta name="twitter:title" content="Coal stockpile forecasting — Lulamile Mkhungela">
+	<meta name="twitter:description" content="An internal project case study, not shown publicly due to an NDA. Ask Lulamile for access.">
+	<meta name="description" content="An internal project case study, not shown publicly due to an NDA. Ask Lulamile for access.">
+	<meta name="robots" content="noindex, nofollow">
+	<meta name="theme-color" content="#ffffff">
+
+	<title>Coal stockpile forecasting — Lulamile Mkhungela</title>
+	<link rel="icon" href="../favicon.ico" sizes="any">
+	<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+	<link rel="manifest" href="../site.webmanifest">
+
+	<!-- Font -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="../fonts/Satoshi/css/satoshi.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato|Montserrat:300" rel="stylesheet">
+
+	<!-- Css -->
+	<link rel="stylesheet" href="../css/core.min.css" />
+	<link rel="stylesheet" href="../css/case-study-skin.css?v=10" />
+	<link rel="stylesheet" href="../css/avalanche.css" />
+	<link rel="stylesheet" href="../css/snowbridge.css" />
+	<link rel="stylesheet" href="../css/modern-menu.css?v=161" />
+	<link rel="stylesheet" href="../css/portfolio-case-shared.css?v=49" />
+
+<style id="lm-case-study">
+:root{--lm-accent:#00529C}
+:root{
+  --pk-red:var(--lm-accent,#ee0000);--pk-black:#0a0a0a;--pk-ink:#161616;--pk-muted:#666;--pk-line:#dedede;
+  --pk-surface:#f5f5f5;--pk-white:#fff;--pk-max:1240px;--pk-copy:760px;
+  --pk-s1:8px;--pk-s2:16px;--pk-s3:24px;--pk-s4:32px;--pk-s5:48px;--pk-s6:64px;--pk-s7:96px;--pk-s8:128px;
+}
+.lm-case-page .content{background:var(--pk-white);overflow:hidden}
+.lm-case-page .content *{box-sizing:border-box}
+.pk-shell{width:100%;max-width:var(--pk-max);margin:0 auto;padding-inline:clamp(24px,4vw,64px)}
+.pk-section{padding-block:clamp(64px,7vw,104px)}
+.pk-section--tight{padding-block:clamp(48px,5vw,72px)}
+.pk-eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--pk-muted)}
+.pk-eyebrow:has(+ .pk-h2),.pk-eyebrow:has(+ .pk-h3){margin-bottom:var(--case-eyebrow-heading-gap-compact,clamp(24px,3vw,40px))}
+.pk-eyebrow:before{content:"";width:24px;height:2px;background:var(--pk-red);flex:0 0 auto}
+.pk-display{margin:0;font-size:clamp(52px,8.2vw,126px);line-height:.88;letter-spacing:-.065em;font-weight:700;color:var(--pk-black)}
+.pk-display em{display:block;color:var(--pk-red);font-style:normal}
+.pk-h2{margin:0;font-size:clamp(36px,4.4vw,68px);line-height:.98;letter-spacing:-.045em;font-weight:700;color:var(--pk-black)}
+.pk-h3{margin:0;font-size:clamp(26px,2.6vw,42px);line-height:1.04;letter-spacing:-.035em;font-weight:700;color:var(--pk-black)}
+.pk-lede{max-width:800px;margin:28px 0 0;font-size:clamp(19px,1.65vw,25px);line-height:1.45;color:#333}
+.pk-copy{max-width:var(--pk-copy);font-size:17px;line-height:1.75;color:#3b3b3b;overflow-wrap:anywhere}
+.pk-copy p{margin:0}
+.pk-hero{padding-top:clamp(92px,7.5vw,116px);background:linear-gradient(180deg,#fff 0%,#fff 72%,#f5f5f5 72%,#f5f5f5 100%)}
+.pk-hero__grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);gap:clamp(36px,6vw,80px);align-items:center}
+.pk-hero__visual{position:relative;min-height:clamp(430px,40vw,560px);display:flex;align-items:flex-end;justify-content:center}
+.pk-hero__visual:before{content:"";position:absolute;inset:9% 0 0 10%;background:var(--pk-red);border-radius:999px 999px 0 0;transform:rotate(-7deg)}
+.pk-hero__visual img{position:relative;z-index:1;max-width:min(100%,620px);max-height:620px;object-fit:contain;filter:drop-shadow(0 28px 34px rgba(0,0,0,.16))}
+.pk-meta{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--pk-line);border-bottom:1px solid var(--pk-line);background:#fff}
+.pk-meta__item{padding:28px 30px;border-right:1px solid var(--pk-line)}.pk-meta__item:last-child{border-right:0}
+.pk-meta__label{display:block;margin-bottom:8px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#777;font-weight:700}
+.pk-meta__value{font-size:16px;line-height:1.35;color:#171717;font-weight:600}
+.pk-overview{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(48px,8vw,120px);align-items:start}
+.pk-overview__statement{font-size:clamp(28px,3vw,46px);line-height:1.08;letter-spacing:-.035em;font-weight:650;color:var(--pk-black)}
+.pk-overview__statement strong{color:var(--pk-red)}
+.pk-dark{background:var(--pk-black);color:#fff}.pk-dark .pk-h2,.pk-dark .pk-h3{color:#fff}.pk-dark .pk-copy{color:#c9c9c9}.pk-dark .pk-eyebrow{color:#aaa}
+.pk-problem-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(56px,9vw,140px);align-items:start}
+.pk-outcomes{margin-top:48px;border-top:1px solid #343434}
+.pk-outcome{display:grid;grid-template-columns:68px 1fr;gap:24px;padding:30px 0;border-bottom:1px solid #343434;align-items:start}
+.pk-outcome__num{font-size:13px;color:#777;font-weight:700}.pk-outcome__text{font-size:clamp(20px,2vw,30px);line-height:1.22;letter-spacing:-.025em;color:#fff}
+.pk-strategy{background:var(--pk-surface)}
+.pk-strategy__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:56px}
+.pk-card{background:#fff;border:1px solid #e3e3e3;border-radius:20px;padding:clamp(28px,4vw,48px);min-height:260px;display:flex;flex-direction:column;justify-content:space-between}
+.pk-card__index{font-size:12px;letter-spacing:.14em;color:var(--pk-red);font-weight:800}.pk-card h3{font-size:clamp(24px,2.3vw,36px);line-height:1.05;letter-spacing:-.03em;margin:38px 0 16px}.pk-card p{margin:0;color:#555;font-size:16px;line-height:1.65}
+.pk-role{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(48px,8vw,120px);padding-top:56px;margin-top:64px;border-top:1px solid #d8d8d8}
+.pk-role__list{font-size:clamp(20px,2vw,29px);line-height:1.45;letter-spacing:-.02em;color:#111}
+.pk-media-section{background:#fff}
+.pk-section-head{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(48px,8vw,120px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+.pk-media-stack{display:grid;gap:24px}.pk-media{margin:0;background:#ececec;border-radius:24px;overflow:hidden}.pk-media img{display:block;width:100%;height:auto}.pk-media--wire{padding:clamp(18px,3vw,38px);background:#f1f1f1}
+.pk-research{background:var(--pk-red);color:#fff}.pk-research .pk-eyebrow{color:#fff}.pk-research .pk-eyebrow:before{background:#fff}.pk-research .pk-h2{color:#fff}.pk-research__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.65fr);gap:clamp(56px,9vw,140px);align-items:end}
+.pk-research__copy{font-size:clamp(19px,1.7vw,25px);line-height:1.55;max-width:760px;color:#fff}
+.pk-stat{border-left:1px solid rgba(255,255,255,.55);padding-left:clamp(32px,5vw,64px)}.pk-stat__number{display:block;font-size:clamp(78px,10vw,150px);line-height:.8;letter-spacing:-.075em;font-weight:750}.pk-stat__label{display:block;margin-top:24px;max-width:310px;font-size:16px;line-height:1.5}
+.pk-design{background:#111}.pk-design .pk-eyebrow,.pk-design .pk-h2{color:#fff}.pk-design .pk-media{background:#1b1b1b;border:1px solid #2c2c2c}
+.pk-design-intro{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(48px,8vw,120px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}.pk-design-intro p{color:#bcbcbc}
+.pk-conclusion{background:#fff}.pk-conclusion__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(48px,8vw,120px);align-items:start}
+.pk-closing{margin-top:72px;padding:clamp(40px,6vw,72px);background:var(--pk-surface);border-radius:24px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}.pk-closing strong{font-size:clamp(26px,3vw,42px);line-height:1.1;letter-spacing:-.035em}.pk-closing span{display:block;margin-top:10px;color:#666;font-size:15px}
+html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp(48px,5vw,64px)!important}
+@media(max-width:1080px){.pk-display{font-size:clamp(52px,7.8vw,84px)}.pk-hero__grid{grid-template-columns:minmax(0,1fr) minmax(300px,.78fr);gap:36px}.pk-hero__visual{min-height:400px}}
+@media(max-width:820px){.pk-hero{padding-top:88px}.pk-hero__grid,.pk-overview,.pk-problem-grid,.pk-section-head,.pk-research__grid,.pk-design-intro,.pk-conclusion__grid,.pk-role{grid-template-columns:minmax(0,1fr)}.pk-hero__grid{gap:32px}.pk-hero__visual{min-height:clamp(340px,64vw,480px);max-width:620px;width:100%;margin-inline:auto}.pk-meta{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-meta__item:nth-child(2){border-right:0}.pk-meta__item:nth-child(-n+2){border-bottom:1px solid var(--pk-line)}.pk-strategy__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-stat{border-left:0;border-top:1px solid rgba(255,255,255,.55);padding:40px 0 0}.pk-role{gap:32px;margin-top:48px;padding-top:48px}.pk-closing{grid-template-columns:1fr}}
+@media(max-width:640px){.pk-shell{padding-inline:20px}.pk-section{padding-block:clamp(52px,15vw,68px)}.pk-hero{padding-top:82px}.pk-display{font-size:clamp(44px,15vw,68px);line-height:.91;letter-spacing:-.055em}.pk-h2{font-size:clamp(34px,10vw,48px)}.pk-lede{margin-top:22px;font-size:18px;line-height:1.5}.pk-hero__grid{gap:24px}.pk-hero__visual{min-height:clamp(280px,84vw,390px)}.pk-hero__visual:before{inset:6% 3% 0 12%}.pk-meta{grid-template-columns:1fr}.pk-meta__item{border-right:0;border-bottom:1px solid var(--pk-line)!important;padding:20px}.pk-meta__item:last-child{border-bottom:0!important}.pk-strategy__grid{grid-template-columns:1fr;margin-top:40px}.pk-card{min-height:0}.pk-card h3{margin-top:28px}.pk-media-stack{gap:14px}.pk-media{border-radius:14px}.pk-media--wire{padding:14px}.pk-outcome{grid-template-columns:38px minmax(0,1fr);gap:10px;padding:24px 0}.pk-closing{margin-top:40px;border-radius:14px;padding:28px}.pk-role{gap:24px;margin-top:40px;padding-top:40px}}
+@media(max-width:380px){.pk-shell{padding-inline:16px}.pk-hero{padding-top:76px}.pk-display{font-size:clamp(40px,14.5vw,54px)}.pk-eyebrow{gap:10px;margin-bottom:18px}.pk-hero__visual{min-height:260px}.pk-meta__item{padding:18px 16px}.pk-card{padding:24px}.pk-outcome__text{font-size:19px}}
+.lm-case-page{--case-accent:var(--lm-accent)}
+.pk-copy p+p{margin-top:1em}
+.pk-research .pk-h2+.pk-research__copy{margin-top:28px}
+.pk-research__copy+.pk-research__copy{margin-top:16px}
+.pk-display em{color:var(--pk-red)}
+.pk-lede--small{font-size:clamp(17px,1.35vw,21px)}
+.pk-outcome__text small{display:block;margin-top:12px;font-size:16px;line-height:1.65;letter-spacing:0;color:#bdbdbd}
+.pk-outcome__text small b{display:block;margin:14px 0 4px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#8a8a8a;font-weight:700}
+.pk-card ul{margin:0;padding:0;list-style:none}
+.pk-card li{position:relative;padding-left:20px;margin:0 0 12px;color:#555;font-size:16px;line-height:1.6}
+.pk-card li:before{content:"";position:absolute;left:0;top:.72em;width:9px;height:2px;background:var(--pk-red)}
+.pk-card p+p{margin-top:12px}
+.pk-card__meta{display:block;margin:18px 0 6px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#888;font-weight:700}
+.pk-grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:56px}
+.pk-grid-3 .pk-card{min-height:0;justify-content:flex-start}
+.pk-grid-3.pk-grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pk-grid-3 .pk-card h3{margin-top:28px}
+.pk-dark .pk-card{background:#141414;border-color:#2c2c2c}.pk-dark .pk-card h3{color:#fff}.pk-dark .pk-card p{color:#bdbdbd}
+.pk-steps{display:grid;gap:clamp(40px,5vw,64px)}
+.pk-step{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,96px);align-items:start;padding-top:clamp(32px,4vw,48px);border-top:1px solid var(--pk-line)}
+.pk-step__index{display:block;margin-bottom:18px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--pk-red);font-weight:800}
+.pk-process-map{margin:0 0 clamp(40px,5vw,64px)}
+.pk-process-map img{display:block;width:100%;height:auto}
+.pk-process-map figcaption{margin:14px 4px 0;color:#777;font-size:14px;line-height:1.55}
+.pk-process-time{display:block;margin:-8px 0 14px;color:#888;font-size:12px;letter-spacing:.04em;text-transform:none}
+.pk-process-note{margin-top:14px!important;color:#777;font-size:14px!important;line-height:1.55!important}
+.pk-step .pk-media{margin-top:28px}
+.pk-list{margin:40px 0 0;padding:0;list-style:none;border-top:1px solid var(--pk-line)}
+.pk-list li{display:grid;grid-template-columns:68px 1fr;gap:24px;padding:24px 0;border-bottom:1px solid var(--pk-line);font-size:clamp(17px,1.4vw,21px);line-height:1.5;color:#222}
+.pk-list li span{font-size:13px;color:#999;font-weight:700;padding-top:4px}
+.pk-design .pk-list{border-color:#2c2c2c}.pk-design .pk-list li{border-color:#2c2c2c;color:#e6e6e6}
+.pk-research__grid--solo{grid-template-columns:minmax(0,1fr)}
+.pk-figcaption{margin:14px 4px 0;font-size:14px;line-height:1.5;color:#777}
+.pk-dark .pk-figcaption,.pk-design .pk-figcaption{color:#9a9a9a}
+.pk-media-stack+.pk-copy,.pk-copy+.pk-media-stack{margin-top:40px}
+.pk-disclaimer{margin-top:24px!important;font-size:14px;line-height:1.6;color:#8a8a8a}
+.pk-actions{display:flex;flex-wrap:wrap;gap:12px}
+.pk-button{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;background:var(--pk-red);color:#fff!important;font-size:15px;font-weight:700;line-height:1;text-decoration:none!important;white-space:nowrap}
+.pk-button--ghost{background:#fff;color:#111!important;border:1px solid #cfcfcf}
+.pk-related{margin-top:28px;font-size:16px;line-height:1.6;color:#555}.pk-related a{color:var(--pk-red);font-weight:700}
+@media(max-width:820px){.pk-grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-step{grid-template-columns:minmax(0,1fr);gap:20px}}
+@media(max-width:640px){.pk-grid-3,.pk-grid-3.pk-grid-2{grid-template-columns:1fr;margin-top:40px}.pk-list li{grid-template-columns:38px minmax(0,1fr);gap:10px}.pk-actions{flex-direction:column;align-items:stretch}.pk-button{justify-content:center}}
+</style>
+
+</head>
+<body class="portfolio-case-updated lm-case-page">
+
+<!-- Side Navigation Menu -->
+	<aside class="side-navigation-wrapper enter-right" data-no-scrollbar data-animation="reveal">
+		<div class="side-navigation-scroll-pane">
+			<div class="side-navigation-inner">
+				<div class="side-navigation-header">
+					<div class="navigation-hide side-nav-hide">
+						<a href="#">
+							<span class="icon-cancel medium"></span>
+						</a>
+					</div>
+				</div>
+				<nav class="side-navigation center">
+					<ul>
+						<li class="current">
+							<a href="../index.html">Portfolio</a>
+						</li>
+						<li>
+							<a href="../index.html?open=about">About</a>
+						</li>
+						<li>
+							<a href="../index.html?open=testimonials">Testimonials</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="side-navigation-footer">
+					<ul class="social-list list-horizontal">
+						<li><a href="https://www.linkedin.com/in/lulamile-mkhungela/"><span class="icon-linkedin small"></span></a></li>
+					</ul>
+					<p class="copyright no-margin-bottom">&copy; 2026 L M</p>
+				</div>
+			</div>
+		</div>
+	</aside>
+	<!-- Side Navigation Menu End -->
+
+	<div class="wrapper reveal-side-navigation">
+		<div class="wrapper-inner">
+
+			<!-- Header -->
+			<header class="header header-fixed-on-mobile" data-sticky-threshold="0" data-bkg-threshold="100">
+				<div class="header-inner">
+					<div class="row nav-bar">
+						<div class="column width-12 nav-bar-inner">
+							<div class="logo">
+								<div class="logo-inner">
+									<a href="../index.html"><img src="../images/lm-logo.png" alt="L M logo" /></a>
+									<a href="../index.html"><img src="../images/lm-logo.png" alt="L M logo" /></a>
+								</div>
+							</div>
+							<nav class="navigation nav-block secondary-navigation nav-right">
+								<ul>
+									<li>
+										<!-- Contact Button -->
+										<div class="v-align-middle">
+											<a data-content="inline" data-toolbar="" data-modal-mode data-modal-width="500" href="#contact-lightbox" class="lightbox-link contact-collaboration" aria-label="Contact me"><span class="contact-collaboration__label">Contact me</span><span class="contact-collaboration__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span></a>
+										</div>
+									</li>
+									<!-- Aux Navigation -->
+									<li class="aux-navigation">
+										<a href="#" class="navigation-show side-nav-show nav-icon">
+											<svg class="menu-toggle__svg" viewBox="0 0 32 32" aria-hidden="true">
+												<path class="menu-toggle__path" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+												<path d="M7 16 27 16"></path>
+											</svg>
+										</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</header>
+			<!-- Header End -->
+
+			<!-- Content -->
+			<div class="content clearfix">
+			<div class="pk-lock-shell" data-case-lock>
+				<section class="pk-hero" aria-labelledby="case-lock-title">
+					<div class="pk-shell pk-hero__grid">
+						<div>
+							<p class="pk-eyebrow">Internal project</p>
+							<h1 id="case-lock-title" class="pk-display pk-display--name">Coal stockpile forecasting</h1>
+							<p class="pk-hero__tagline">Not shown publicly due to an NDA.<em class="pk-accent"> Opens with a password.</em></p>
+							<a class="pk-scrollcue" href="#protected"><span>Unlock below</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
+						</div>
+						<div class="pk-hero__visual pk-lock-visual" aria-hidden="true">
+							<div class="pk-lock-visual__card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg><span>Internal · NDA</span></div>
+						</div>
+					</div>
+					<div class="pk-shell"><div class="pk-meta" aria-label="Project details"><div class="pk-meta__item"><span class="pk-meta__label">Client</span><span class="pk-meta__value">Eskom, via iOCO</span></div><div class="pk-meta__item"><span class="pk-meta__label">Role</span><span class="pk-meta__value">UI Developer &amp; UX/UI Designer (React, data visualisation)</span></div><div class="pk-meta__item"><span class="pk-meta__label">Industry</span><span class="pk-meta__value">Energy</span></div><div class="pk-meta__item"><span class="pk-meta__label">Year</span><span class="pk-meta__value">2026 — present</span></div></div></div>
+				</section>
+				<section class="pk-section pk-section--tight pk-lead-section" id="lead">
+					<div class="pk-shell"><p class="pk-lead">This is internal project work, delivered under a confidentiality agreement, so the full write-up is not shown publicly. What follows is the summary I can share — the problem, what I was responsible for, the solution and how I got there. The detailed write-up, the screens and the figures open with the password at the bottom of this page.</p></div>
+				</section>
+				<section class="pk-section" id="outline">
+					<div class="pk-shell">
+						<p class="pk-eyebrow">What the study covers</p>
+						<div class="pk-lock-summary"><article class="pk-lock-part"><span class="pk-lock-part__num" aria-hidden="true">01</span><div class="pk-lock-part__body"><h2 class="pk-lock-part__title">Context and stakes</h2><p class="pk-lock-part__copy">Coal stock across several power stations was planned with one static formula — closing stock equals opening stock plus supply minus burn. It ignored weather, inter-station dynamics and coal-price movements, and it treated every station as if it stood alone. That left planners with no safe middle: order too little and a station runs down its stockpile, order too much and the utility carries excess inventory or pays for urgent procurement.</p></div></article><article class="pk-lock-part"><span class="pk-lock-part__num" aria-hidden="true">02</span><div class="pk-lock-part__body"><h2 class="pk-lock-part__title">Role and boundaries</h2><p class="pk-lock-part__timeline">Aug 2026 — present · design and UI development inside a team with data engineering and data science</p><ul class="pk-lock-part__list"><li>I design the UX/UI and build the React UI for the planning tool, working in a team alongside data engineering and data science. The dashboard and data-visualisation layer turns multi-source model output (coal supply, burn, quality, weather and plant telemetry across several stations) into interactive charts and drill-down reports a non-technical decision-maker can read.</li><li>I design and build the interactive scenario-planning (“what-if”) tool, so managers can vary input assumptions and see the forecast stock impact. It runs against prediction and risk-assessment endpoints the data science team provides.</li><li>I work with data engineering and data science to turn role-based access, customisable stock-level widgets and audit-ready reporting into an interface non-specialists can use.</li></ul><p class="pk-lock-part__scope"><strong>Team and scope:</strong> The machine-learning model and the data pipeline belong to the data science and data engineering teams, not to me.</p></div></article><article class="pk-lock-part"><span class="pk-lock-part__num" aria-hidden="true">03</span><div class="pk-lock-part__body"><h2 class="pk-lock-part__title">Key decisions and trade-offs</h2><ul class="pk-lock-part__decisions"><li><strong>Per-station forecasts replace the single formula</strong><span>The forecast accounts for how one station's stock depends on the others.</span><span class="pk-lock-part__tradeoff">Trade-off: The alternative was to keep the static formula and adjust it by hand. Accepted instead: a model that needs its data maintained and periodic retraining.</span></li><li><strong>Every view filters by time, data source and station</strong><span>Planners compare stations without rebuilding a view.</span></li><li><strong>Early-warning indicators, not just forecast numbers</strong><span>The interface surfaces supply-chain risk early instead of reporting it late.</span></li><li><strong>Data access restricted by role</strong><span>People see the data their responsibilities cover.</span></li></ul></div></article><article class="pk-lock-part"><span class="pk-lock-part__num" aria-hidden="true">04</span><div class="pk-lock-part__body"><h2 class="pk-lock-part__title">How I got there</h2><ol class="pk-lock-part__process"><li><strong>Discovery</strong><span>Reading the existing planning model with data engineering and data science.</span></li><li><strong>Definition</strong><span>Turning role-based access, stock-level widgets and audit-ready reporting into requirements.</span></li><li><strong>Design</strong><span>Dashboard, drill-down reports and the what-if scenario tool.</span></li><li><strong>Build</strong><span>React UI against the team's prediction and risk-assessment endpoints.</span></li><li><strong>Implementation</strong><span>In active delivery — this engagement is ongoing.</span></li><li><strong>Governance</strong><span>Keeping the interface usable for non-specialists as the model's outputs change, and the access rules matched to each role.</span></li></ol></div></article><article class="pk-lock-part"><span class="pk-lock-part__num" aria-hidden="true">05</span><div class="pk-lock-part__body"><h2 class="pk-lock-part__title">Outcome and evidence</h2><p class="pk-lock-part__copy">No result is claimed: the engagement is still running and nothing is measured yet. What would settle it: forecast accuracy against actual closing stock per station, the count of stockouts and urgent-procurement events before and after, and how often planners open the what-if tool before placing an order.</p></div></article></div>
+						<p class="pk-disclaimer">Client screens, source documents and project data stay in the encrypted write-up. This public summary does not report measured outcomes.</p>
+					</div>
+				</section>
+				<section class="pk-section pk-strategy" id="protected">
+					<div class="pk-shell">
+						<div class="pk-lock pk-lock--solo">
+							<div class="pk-lock__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></div>
+							<p class="pk-lock__eyebrow">Password required</p>
+							<h2 class="pk-lock__title">Coal stockpile forecasting</h2>
+							<p class="pk-lock__copy">The write-up is encrypted in this page. Enter the password and the full case study opens right here.</p>
+							<form class="pk-lock__form" autocomplete="off" novalidate>
+								<label class="sr-only" for="case-lock-password">Password</label>
+								<div class="pk-lock__field"><input id="case-lock-password" type="password" name="password" placeholder="Password" autocapitalize="off" autocorrect="off" spellcheck="false" required></div>
+								<button class="pk-lock__submit" type="submit">Unlock case study</button>
+								<p class="pk-lock__message" data-lock-message aria-live="polite"></p>
+							</form>
+							<p class="pk-lock__foot">Don’t have a password? <a href="mailto:mkhungela.l@gmail.com?subject=Access%20to%20a%20protected%20case%20study">Email Lulamile</a> and say which study you would like to read.</p>
+						</div>
+					</div>
+				</section>
+<nav class="tlc-project-pagination tlc-project-pagination--sealed" aria-label="More projects"><a class="tlc-project-pagination__item" href="lula-gazette.html"><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction">← Previous project</span><strong>LulaGazette</strong><span class="tlc-project-pagination__category">Legal intelligence · Civic technology</span></span></a><a class="tlc-project-pagination__item" href="doc-compliance-ai-platform.html"><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction">Next project →</span><strong>Compliance AI assistant</strong><span class="tlc-project-pagination__category">Old Mutual · AI assistant with cited answers</span></span></a></nav>
+			</div>
+				<script id="case-lock-payload" type="text/plain" data-meta="{&quot;salt&quot;: &quot;LOUTgcHwukblcmFBW4yNVA==&quot;, &quot;iv&quot;: &quot;Lwt/Oe74a/TH0+7m&quot;, &quot;iterations&quot;: 310000}">
+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
+				</script>
+
+			<!-- Contact Modal -->
+				<div id="contact-lightbox" class="pt-70 pb-50 hide">
+					<div class="row">
+						<div class="column width-12 left">
+							<h3 class="mb-50 weight-semi-bold font-alt-3">Contact me</h3>
+							<div class="contact-form-container no-margin-bottom">
+								<form class="contact-form" action="../php/send-email.php" method="post" novalidate>
+									<div class="row">
+										<div class="column width-12">
+											<input type="text" name="fname" class="form-fname form-element large" placeholder="First Name*" tabindex="1" required>
+										</div>
+										<div class="column width-12">
+											<input type="email" name="email" class="form-email form-element large" placeholder="Email address*" tabindex="3" required>
+										</div>
+										<div class="column width-6">
+											<input type="text" name="honeypot" class="form-honeypot form-element large">
+										</div>
+									</div>
+									<div class="row">
+										<div class="column width-12">
+											<textarea name="message" class="form-message form-element large" placeholder="Message*" tabindex="5" required></textarea>
+											<input type="submit" value="Send Email" class="form-submit button medium text-uppercase bkg-grey bkg-hover-theme color-white color-hover-white">
+										</div>
+									</div>
+								</form>
+								<div class="form-response center"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Contact Modal End -->
+
+			<!-- Content End -->
+
+			<!-- Footer -->
+			<footer class="footer tlc-footer">
+				<div class="footer-top"><div class="row flex"><div class="column width-12 center"><div class="widget">
+					<p class="tlc-footer__eyebrow">What are you working on?</p>
+					<h4>Tell me what you need help with.</h4>
+					<a class="tlc-footer__email" href="mailto:mkhungela.l@gmail.com">mkhungela.l@gmail.com</a>
+					<ul class="social-list list-horizontal"><li><a href="https://www.linkedin.com/in/lulamile-mkhungela/" aria-label="LinkedIn"><span class="icon-linkedin small"></span></a></li></ul>
+				</div></div></div></div>
+			</footer>
+			<!-- Footer End -->
+
+		</div>
+	</div>
+
+	<!-- Js -->
+		<button class="tlc-scroll-top" type="button" aria-label="Back to top"><span aria-hidden="true">↑</span><span>Back to top</span></button>
+
+	<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.retinize.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.horizon.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.snowbridge.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.swipe.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.avalanche.min.js"></script>
+
+	<script src="../js/timber.master.min.js"></script>
+	<script src="../js/modern-menu.js?v=42"></script>
+
+	<script src="../js/luxury-collection-modern.js?v=4"></script>
+	<script src="../js/contact-form-fallback.js?v=2"></script>
+	<script src="../js/case-lock.js?v=2"></script>
+	<script src="../js/case-nav.js?v=8"></script>
+</body>
+</html>

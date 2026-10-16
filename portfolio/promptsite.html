@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script>
+		(function () {
+			const params = new URLSearchParams(window.location.search);
+			if (params.get("embedded") !== "1") return;
+			document.documentElement.classList.add("is-embedded");
+			document.addEventListener("DOMContentLoaded", function () {
+				document.body.classList.add("is-embedded");
+			});
+		})();
+	</script>
+	<script>
+		(function () {
+			const root = document.documentElement;
+			const setMode = function (mode) { root.classList.toggle("is-dark", mode === "dark"); };
+			setMode(new URLSearchParams(window.location.search).get("appearance"));
+			window.addEventListener("message", function (event) {
+				if (event.data && event.data.type === "lm-appearance") setMode(event.data.mode);
+			});
+		})();
+	</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+	<title>AI Design Prompts &amp; Figma Files — Lulamile Mkhungela</title>
+	<meta name="description" content="Explore free design prompts and premium design packs from Lulamile Mkhungela. Premium prompts and files are delivered through Selar after purchase.">
+	<meta name="color-scheme" content="light dark">
+	<link rel="icon" href="../favicon.ico" sizes="any">
+	<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+	<link href="../fonts/Satoshi/css/satoshi.css" rel="stylesheet">
+	<!--
+		AI Design Prompts & Figma Files for the dock's "AI Prompts" item.
+		Built from the promptsite.tiiny.site structure, rebranded: Lulamile
+		Mkhungela's name, contact, photo and Selar store
+		(https://selar.com/m/le-loux). Cover images load from the original
+		hosts.
+
+		FREE cards may store their public prompt in data-prompt="…" and include
+		a copy button. Never put prompt or code in a PAID card's HTML or add a
+		copy button to it: paid content is delivered only through Selar.
+	-->
+	<style>
+		:root {
+			--paper: #f4f2ee;
+			--ink: #15141a;
+			--muted: #6c6875;
+			--card: #ffffff;
+			--line: #e6e1d8;
+			--accent: #f4511e;
+			--accent-soft: #ffece2;
+			--free: #0e7a55;
+			--free-bg: #dff5ec;
+			--paid: #9a5b00;
+			--paid-bg: #fdeecd;
+			--soon: #5b6472;
+			--soon-bg: #e8ebef;
+			--radius: 20px;
+			--shadow: 0 18px 40px rgba(21, 20, 26, .08);
+		}
+		html.is-dark {
+			--paper: #111114;
+			--ink: #f4f3f7;
+			--muted: #a7a2b2;
+			--card: #1a1a20;
+			--line: #2b2a33;
+			--accent: #ff8a50;
+			--accent-soft: #3b2113;
+			--free: #7ee2bc;
+			--free-bg: #12321f;
+			--paid: #ffd28a;
+			--paid-bg: #38290c;
+			--soon: #aab3c0;
+			--soon-bg: #23262c;
+			--shadow: 0 18px 40px rgba(0, 0, 0, .45);
+		}
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body {
+			margin: 0;
+			background: var(--paper);
+			color: var(--ink);
+			font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+			font-size: 16px;
+			line-height: 1.55;
+			-webkit-font-smoothing: antialiased;
+		}
+		img { max-width: 100%; display: block; }
+		a { color: inherit; }
+		button { font: inherit; color: inherit; cursor: pointer; }
+
+		.ps-shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+		/* Top bar */
+		.ps-bar {
+			position: sticky; top: 0; z-index: 40;
+			display: flex; align-items: center; justify-content: space-between; gap: 16px;
+			padding: 14px 0;
+			background: color-mix(in srgb, var(--paper) 86%, transparent);
+			backdrop-filter: saturate(150%) blur(12px);
+			-webkit-backdrop-filter: saturate(150%) blur(12px);
+			border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+		}
+		.ps-bar .ps-shell { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: min(1120px, calc(100% - 40px)); }
+		.ps-brand { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+		/* Hero */
+		.ps-hero { padding: clamp(48px, 7vw, 92px) 0 clamp(28px, 4vw, 48px); }
+		.ps-hero h1 {
+			margin: 0; max-width: 15ch;
+			font-size: clamp(40px, 7vw, 76px); line-height: .96; letter-spacing: -.045em; font-weight: 800;
+		}
+		.ps-hero h1 em {
+			font-style: normal;
+			background: linear-gradient(120deg, var(--accent), #ff8c3a 55%, #ffc23d);
+			-webkit-background-clip: text; background-clip: text; color: transparent;
+		}
+		.ps-lede { max-width: 56ch; margin: 22px 0 0; font-size: clamp(17px, 1.6vw, 20px); color: var(--muted); }
+		.ps-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+		.ps-tab {
+			display: inline-flex; align-items: center; gap: 8px;
+			padding: 13px 20px; border-radius: 999px; text-decoration: none;
+			font-size: 15px; font-weight: 700; border: 1.5px solid transparent;
+			transition: transform .16s, box-shadow .16s, background .16s, border-color .16s;
+		}
+		.ps-tab:hover { transform: translateY(-2px); }
+		.ps-tab--primary { background: var(--ink); color: var(--paper); box-shadow: 0 12px 26px rgba(21,20,26,.22); }
+		html.is-dark .ps-tab--primary { background: var(--accent); color: #fff; box-shadow: 0 12px 26px rgba(0,0,0,.4); }
+		.ps-tab--ghost { background: var(--card); border-color: var(--line); }
+		.ps-tab--ghost:hover { border-color: var(--accent); }
+		.ps-tab--accent { background: var(--accent); color: #fff; box-shadow: 0 12px 26px color-mix(in srgb, var(--accent) 35%, transparent); }
+
+		/* Author */
+		.ps-author {
+			display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+			margin-top: 38px; padding: 18px 20px;
+			background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+			box-shadow: var(--shadow);
+		}
+		.ps-author img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; object-position: 50% 24%; background: var(--accent-soft); }
+		.ps-author b { font-size: 18px; display: block; }
+		.ps-author .ps-handle { color: var(--accent); font-weight: 700; font-size: 14px; text-decoration: none; overflow-wrap: anywhere; }
+		.ps-author p { margin: 2px 0 0; color: var(--muted); font-size: 14.5px; }
+
+		/* Shop */
+		.ps-shop { padding: clamp(28px, 4vw, 44px) 0 clamp(48px, 6vw, 80px); scroll-margin-top: 72px; }
+		.ps-shop h2, .ps-contact h2 { margin: 0; font-size: clamp(28px, 3.4vw, 42px); letter-spacing: -.03em; font-weight: 800; }
+		.ps-note { margin: 10px 0 0; color: var(--muted); }
+		.ps-filters { display: grid; gap: 10px; margin: 26px 0 8px; }
+		.ps-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+		.ps-chip {
+			padding: 8px 14px; border-radius: 999px; font-size: 13.5px; font-weight: 700;
+			background: var(--card); border: 1px solid var(--line); color: var(--muted);
+			transition: background .15s, color .15s, border-color .15s;
+		}
+		.ps-chip:hover { border-color: var(--accent); color: var(--ink); }
+		.ps-chip.is-active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+		html.is-dark .ps-chip.is-active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+		.ps-grid {
+			display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+			gap: 18px; margin-top: 22px;
+		}
+		.ps-card {
+			position: relative; background: var(--card); border: 1px solid var(--line);
+			border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column;
+			transition: transform .18s, box-shadow .18s;
+		}
+		.ps-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+		.ps-card[hidden] { display: none; }
+		.ps-cover { position: relative; aspect-ratio: 4 / 3; background: var(--accent-soft); overflow: hidden; }
+		.ps-cover img { width: 100%; height: 100%; object-fit: cover; }
+		.ps-badge {
+			position: absolute; top: 10px; left: 10px;
+			padding: 5px 10px; border-radius: 999px;
+			font-size: 11.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
+		}
+		.ps-badge--free { background: var(--free-bg); color: var(--free); }
+		.ps-badge--paid { background: var(--paid-bg); color: var(--paid); }
+		.ps-badge--soon { background: var(--soon-bg); color: var(--soon); }
+		.ps-card-body { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; padding: 14px 14px 16px; }
+		.ps-card h3 { margin: 0; font-size: 16px; letter-spacing: -.015em; line-height: 1.25; }
+		.ps-card h3 a { text-decoration: none; }
+		.ps-card h3 a:hover { color: var(--accent); }
+		.ps-sub { display: block; margin-top: 4px; font-size: 13px; color: var(--muted); }
+		.ps-copy {
+			flex: 0 0 auto; width: 38px; height: 38px; border-radius: 12px;
+			display: inline-flex; align-items: center; justify-content: center;
+			background: var(--accent-soft); border: 1px solid transparent; color: var(--accent);
+			transition: background .15s, transform .15s;
+		}
+		.ps-copy:hover { transform: scale(1.06); }
+		.ps-copy.is-done { background: var(--free-bg); color: var(--free); }
+		.ps-copy svg { width: 17px; height: 17px; }
+		.ps-empty {
+			grid-column: 1 / -1; text-align: center; padding: 44px 16px;
+			color: var(--muted); font-weight: 600;
+			border: 1.5px dashed var(--line); border-radius: var(--radius);
+		}
+
+		/* Card openers (cover + title are real buttons) */
+		.ps-cover { display: block; width: 100%; padding: 0; margin: 0; border: 0; cursor: zoom-in; font: inherit; color: inherit; text-align: left; }
+		.ps-cover img { transition: transform .3s ease; }
+		.ps-cover::after {
+			content: "View prompt"; position: absolute; left: 50%; bottom: 12px; z-index: 2;
+			transform: translate(-50%, 8px); opacity: 0; pointer-events: none;
+			padding: 7px 14px; border-radius: 999px; background: var(--ink); color: var(--paper);
+			font-size: 13px; font-weight: 800; white-space: nowrap; transition: opacity .18s, transform .18s;
+		}
+		.ps-cover:hover img, .ps-cover:focus-visible img { transform: scale(1.03); }
+		.ps-cover:hover::after, .ps-cover:focus-visible::after { opacity: 1; transform: translate(-50%, 0); }
+		.ps-open {
+			display: inline; padding: 0; margin: 0; border: 0; background: none; cursor: pointer;
+			font: inherit; font-weight: inherit; color: inherit; text-align: left;
+		}
+		.ps-open:hover { color: var(--accent); }
+		.ps-cover:focus-visible, .ps-open:focus-visible, .ps-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+		/* Design detail popup */
+		.ps-detail-card { width: min(640px, 100%); padding: 0; }
+		.ps-detail-close { background: var(--card); box-shadow: 0 6px 16px rgba(0,0,0,.25); z-index: 3; }
+		.ps-detail-cover { position: relative; aspect-ratio: 4 / 3; background: var(--accent-soft); overflow: hidden; }
+		.ps-detail-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+		.ps-detail-cover .ps-badge { top: 14px; left: 14px; }
+		.ps-detail-body { padding: 22px 26px 26px; }
+		.ps-detail-body h2 { margin: 0 40px 4px 0; font-size: clamp(22px, 3vw, 28px); letter-spacing: -.02em; line-height: 1.2; }
+		.ps-detail-sub { margin: 0; color: var(--muted); font-size: 14px; }
+		.ps-detail-paid-note {
+			margin: 18px 0 0; padding: 14px 16px; border-radius: 14px;
+			background: var(--paid-bg); color: var(--ink); font-size: 14px; font-weight: 650;
+		}
+		.ps-detail-paid-note[hidden], .ps-detail-label[hidden], .ps-prompt-wrap[hidden], .ps-detail-actions[hidden] { display: none; }
+		.ps-detail-label {
+			display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+			margin: 20px 0 8px; font-size: 12.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--muted);
+		}
+		.ps-detail-label span { text-transform: none; letter-spacing: 0; font-weight: 600; }
+		.ps-prompt {
+			display: block; width: 100%; min-height: 170px; max-height: 42vh; resize: vertical;
+			padding: 14px 60px 14px 16px; border-radius: 14px; border: 1.5px solid var(--line);
+			background: var(--paper); color: var(--ink); outline: none;
+			font: 14px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+			user-select: text; -webkit-user-select: text;
+		}
+		.ps-prompt:focus { border-color: var(--accent); }
+		.ps-prompt-wrap { position: relative; }
+		.ps-prompt-copy {
+			position: absolute; top: 10px; right: 12px; z-index: 2;
+			width: 36px; height: 36px; border-radius: 11px;
+			display: inline-flex; align-items: center; justify-content: center;
+			background: var(--card); border: 1.5px solid var(--line); color: var(--accent);
+			box-shadow: 0 8px 18px rgba(21, 20, 26, .14); cursor: pointer;
+			transition: transform .15s, border-color .15s, background .15s, color .15s;
+		}
+		.ps-prompt-copy:hover { border-color: var(--accent); transform: translateY(-1px); }
+		.ps-prompt-copy.is-done { background: var(--free-bg); border-color: var(--free-bg); color: var(--free); }
+		.ps-prompt-copy svg { width: 17px; height: 17px; }
+		.ps-prompt-copy[hidden] { display: none; }
+		.ps-detail-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+		.ps-btn {
+			flex: 1 1 170px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+			padding: 13px 16px; border-radius: 14px; border: 1.5px solid var(--line);
+			background: var(--card); color: var(--ink); font: inherit; font-weight: 800; font-size: 15px;
+			text-decoration: none; cursor: pointer; transition: border-color .15s, background .15s, color .15s, transform .15s;
+		}
+		.ps-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+		.ps-btn--primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+		.ps-btn--primary:hover { color: #fff; }
+		.ps-btn.is-done { background: var(--free-bg); border-color: var(--free-bg); color: var(--free); }
+		.ps-detail-foot { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line); display: flex; gap: 10px; flex-wrap: wrap; }
+		.ps-detail-foot .ps-btn { flex-basis: 220px; }
+		.ps-detail-foot[hidden] { display: none; }
+		.ps-detail-foot .ps-btn[hidden] { display: none; }
+		@media (max-width: 720px) {
+			.ps-detail-body { padding: 18px 18px 20px; }
+			.ps-detail-foot .ps-btn { flex-basis: 100%; }
+		}
+
+		/* Contact */
+		.ps-contact { padding: 0 0 clamp(56px, 7vw, 96px); }
+		.ps-contact-card {
+			display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+			padding: 26px 28px; background: var(--ink); color: var(--paper); border-radius: var(--radius);
+		}
+		html.is-dark .ps-contact-card { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
+		.ps-contact-links { display: flex; flex-wrap: wrap; gap: 12px; }
+		.ps-contact-links a {
+			padding: 11px 16px; border-radius: 999px; font-weight: 700; font-size: 14.5px;
+			overflow-wrap: anywhere;
+			text-decoration: none; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
+			transition: background .15s, transform .15s;
+		}
+		html.is-dark .ps-contact-links a { background: var(--accent-soft); border-color: transparent; }
+		.ps-contact-links a:hover { background: var(--accent); border-color: var(--accent); color: #fff; transform: translateY(-1px); }
+		.ps-contact p { margin: 0; opacity: .75; font-size: 14px; }
+
+		/* Modal */
+		.ps-modal { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; padding: 20px; }
+		.ps-modal[hidden] { display: none; }
+		.ps-modal-backdrop { position: absolute; inset: 0; background: rgba(12, 11, 16, .55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border: 0; }
+		.ps-modal-card {
+			position: relative; width: min(560px, 100%); max-height: min(86vh, 780px); overflow: auto;
+			background: var(--card); border-radius: 24px; border: 1px solid var(--line);
+			box-shadow: 0 30px 80px rgba(0,0,0,.35); padding: 28px;
+		}
+		.ps-modal-close {
+			position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border-radius: 50%;
+			border: 1px solid var(--line); background: var(--paper); font-size: 18px; line-height: 1;
+		}
+		.ps-modal-close:hover { border-color: var(--accent); color: var(--accent); }
+		.ps-modal-card h2 { margin: 0 40px 6px 0; font-size: clamp(22px, 3vw, 28px); letter-spacing: -.02em; }
+		.ps-modal-card > p { margin: 0 0 20px; color: var(--muted); }
+		.ps-field { display: grid; gap: 6px; margin-bottom: 14px; }
+		.ps-field[hidden] { display: none; }
+		.ps-field label { font-size: 13.5px; font-weight: 700; }
+		.ps-field input, .ps-field select, .ps-field textarea {
+			width: 100%; padding: 12px 14px; border-radius: 12px;
+			border: 1.5px solid var(--line); background: var(--paper); color: var(--ink);
+			font: inherit; outline: none; transition: border-color .15s;
+		}
+		.ps-field input:focus, .ps-field select:focus, .ps-field textarea:focus { border-color: var(--accent); }
+		.ps-field textarea { min-height: 96px; resize: vertical; }
+		.ps-field .ps-hint { font-size: 12.5px; color: var(--muted); }
+		.ps-field.is-invalid input, .ps-field.is-invalid select, .ps-field.is-invalid textarea { border-color: #d43d3d; }
+		.ps-radio-row { display: flex; gap: 8px; flex-wrap: wrap; }
+		.ps-radio-row label {
+			display: inline-flex; align-items: center; gap: 7px; font-weight: 600; font-size: 14px;
+			padding: 9px 13px; border: 1.5px solid var(--line); border-radius: 999px; background: var(--paper);
+		}
+		.ps-radio-row input { accent-color: var(--accent); }
+		.ps-submit {
+			width: 100%; margin-top: 6px; padding: 14px 18px; border: 0; border-radius: 14px;
+			background: var(--accent); color: #fff; font-weight: 800; font-size: 16px;
+			box-shadow: 0 14px 30px color-mix(in srgb, var(--accent) 32%, transparent);
+			transition: transform .15s;
+		}
+		.ps-submit:hover { transform: translateY(-1px); }
+		.ps-submit--whatsapp {
+			background: #1fa855; text-decoration: none; text-align: center; display: block;
+			box-shadow: 0 14px 30px rgba(31, 168, 85, .32);
+		}
+		.ps-submit[hidden] { display: none; }
+		.ps-success { text-align: center; padding: 26px 8px 8px; }
+		.ps-success b { display: block; font-size: 26px; letter-spacing: -.02em; }
+		.ps-success p { color: var(--muted); margin: 10px 0 18px; }
+		.ps-success .ps-submit { max-width: 320px; margin: 0 auto; }
+		.ps-success .ps-submit + .ps-submit { margin-top: 10px; }
+
+		/* Toast */
+		.ps-toast {
+			position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 16px); z-index: 95;
+			padding: 12px 18px; border-radius: 999px; background: var(--ink); color: var(--paper);
+			font-size: 14px; font-weight: 700; opacity: 0; pointer-events: none;
+			transition: opacity .2s, transform .2s;
+		}
+		.ps-toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+		@media (max-width: 720px) {
+			.ps-bar .ps-brand { font-size: 11px; letter-spacing: .1em; }
+			.ps-tabs .ps-tab { width: 100%; justify-content: center; }
+			.ps-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+			.ps-card-body { padding: 11px 11px 13px; }
+			.ps-card h3 { font-size: 14.5px; }
+			.ps-contact-card { padding: 22px; }
+		}
+		@media (prefers-reduced-motion: reduce) {
+			html { scroll-behavior: auto; }
+			.ps-tab, .ps-card, .ps-copy, .ps-toast { transition: none; }
+		}
+
+</style>
+</head>
+<body>
+
+	<header class="ps-bar">
+		<div class="ps-shell">
+			<span class="ps-brand">Designs · Prompts · Figma files</span>
+		</div>
+	</header>
+
+	<main class="ps-shell">
+		<section class="ps-hero" aria-labelledby="ps-title">
+			<h1 id="ps-title">Designs &amp; prompts <em>for your next build</em></h1>
+			<p class="ps-lede">Browse free prompts and premium design packs. Premium packs are purchased on Selar; custom work is available separately.</p>
+
+			<div class="ps-tabs" role="group" aria-label="Library sections">
+				<a class="ps-tab ps-tab--primary" href="#shopT">Browse designs</a>
+				<a class="ps-tab ps-tab--ghost" href="https://selar.com/m/le-loux" target="_blank" rel="noopener noreferrer">Design &amp; build my product</a>
+				<button class="ps-tab ps-tab--accent" type="button" data-open-request>Request a custom prompt or design</button>
+			</div>
+
+			<div class="ps-author">
+				<img src="../public/images/mainbkg-photo-mobile.jpg" alt="Lulamile Mkhungela" width="60" height="60" loading="lazy">
+				<div>
+					<b>Lulamile Mkhungela</b>
+					<a class="ps-handle" href="https://www.linkedin.com/in/lulamile-mkhungela/" target="_blank" rel="noopener noreferrer">linkedin.com/in/lulamile-mkhungela</a>
+					<p>Free prompts to explore, with premium design packs available through Selar.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="ps-shop" id="shopT" aria-labelledby="ps-shop-title">
+			<h2 id="ps-shop-title">Designs &amp; prompts</h2>
+			<p class="ps-note">Free cards include prompts you can view or copy. Premium designs link to Selar; their prompts and included files are delivered after purchase.</p>
+
+			<div class="ps-filters">
+				<div class="ps-chips" data-filter-group="price" role="group" aria-label="Filter by price">
+					<button class="ps-chip is-active" type="button" data-price="all">All</button>
+					<button class="ps-chip" type="button" data-price="free">Free</button>
+					<button class="ps-chip" type="button" data-price="paid">Paid</button>
+				</div>
+				<div class="ps-chips" data-filter-group="cat" role="group" aria-label="Filter by category">
+					<button class="ps-chip is-active" type="button" data-cat="all">All</button>
+					<button class="ps-chip" type="button" data-cat="appstore">App Store screenshots</button>
+					<button class="ps-chip" type="button" data-cat="mobile">Mobile app UI</button>
+					<button class="ps-chip" type="button" data-cat="landing">Landing pages</button>
+					<button class="ps-chip" type="button" data-cat="hero">Hero sections</button>
+					<button class="ps-chip" type="button" data-cat="portfolio">Portfolio websites</button>
+					<button class="ps-chip" type="button" data-cat="ecom">E-commerce</button>
+				</div>
+			</div>
+
+			<div class="ps-grid" id="ps-grid">
+				<!-- Free cards may store public prompt text in data-prompt. Never add prompt or code to paid cards. -->
+				<!-- TEMPORARILY HIDDEN: Apartment App. Remove the opening and closing comment markers to restore this card.
+				<article class="ps-card" data-price="free" data-cat="mobile" data-title="Apartment App" data-subtitle="Prompt only" data-prompt="Design a stylish apartment-booking app. Hero 'Explore — Where to?' with Anywhere / Any week / Guests chips, category row Studios / Lofts / City flats / Long stays, listing cards 'The Marble Suite, Camps Bay — 20% off weekend stays', 'Golden Hour Studio, Umhlanga — From R96', 'Sage Room, Maboneng — R88 night' with Guest favourite tags, bottom tabs Home / Saved / Inbox / Profile. Terracotta + cream palette, flat Figma case-study style.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791997176166-8s45sj.jpg" alt="Apartment App cover" loading="lazy"><span class="ps-badge ps-badge&#45;&#45;free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Apartment App</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Apartment App" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				END TEMPORARILY HIDDEN CARD -->
+				<article class="ps-card" data-price="free" data-cat="ecom" data-title="E-commerce website" data-subtitle="Prompt only" data-prompt="Design a supplement brand e-commerce page for MERRIDEW. Announcement bar 'Free delivery over R30 anywhere in SA. Subscribe and save 15%', wordmark MERRIDEW, nav Shop all / Sleep & calm / Immunity / Beauty / Our story, hero 'Daily rituals, made slowly' with three flat amber-jar product illustrations Deep Rest, Citrus Bright, Vitamin C + Zinc. Muted sand + sage palette, flat Figma mockup.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791821645525-akurfm.jpg" alt="E-commerce website cover" loading="lazy"><span class="ps-badge ps-badge--free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>E-commerce website</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for E-commerce website" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				<article class="ps-card" data-price="paid" data-buy="https://selar.com/m/le-loux" data-cat="portfolio" data-title="Spin the wheel portfolio" data-subtitle="R15 · Prompt+ Guide">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791725141901-5bard8.jpg" alt="Spin the wheel portfolio cover" loading="lazy"><span class="ps-badge ps-badge--paid">Paid</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Spin the wheel portfolio</button></h3><span class="ps-sub">R15 · Prompt+ Guide</span></div>
+
+					</div>
+				</article>
+				<article class="ps-card" data-price="free" data-cat="mobile" data-title="Delivery App" data-subtitle="Prompt only" data-prompt="Design 3 delivery app home screens in black iPhone frames, side by side, same content, different layouts, no labels. Canvas: light grey #E5E5E7, generous space between phones, extra empty space at the top for labels. Style: light mode only, brand dark red #8E1B24, pale rose #F7EEEE for soft cards, text black #111318 and grey #7C8089, fonts Manrope for UI and Bricolage Grotesque for headings and tracking numbers, generous gaps between sections. Images: random female portrait round crop for avatar, 3D stacked cardboard boxes with dark red tape and small red location pin, 3D white delivery van with dark red side stripe and box on roof. Content: header 'Good morning, Hello Tega, Send, track and receive with ease, avatar, bell'; search 'Track your parcel' with scan button; actions 'Send parcel, Track order, Schedule, More'; shipment '#TRK782910, Electronics 2.4 kg, Johannesburg to Durban, In transit, picked up 12 Oct 10:24, arriving tomorrow 2:30 PM'; steps 'Picked up, In transit, Out for delivery, Delivered'; promo 'Need a pickup? We'll come to you.'; nav 'Home, Orders, Send, Locations, Profile'. Screen 1: 4 rounded-square action tiles with labels, Send parcel in dark red; full dark red shipment card with white 'In transit' badge, Johannesburg to Durban route with dashed line and truck marker, 4-step tracker with ticks; pale rose promo card with 'Book pickup' button in black and large van image on the right; bottom bar with labels and raised round dark red Send button in the middle. Screen 2: pill chip actions, Send parcel in dark red; pale rose shipment card with tracking number large and parcel image on the right, white inner panel with vertical timeline and arrival-time tag; outlined promo row with van thumbnail and round black arrow button; floating white pill nav, Home highlighted, round dark red Send button. Screen 3 (deliberately weaker): cramped spacing, small text, thin grey borders everywhere; 4 outlined boxes with red icons; plain outlined shipment card, thin red progress bar, step labels underneath, arrival time in red; two near-identical outlined promo rows with small red buttons; flat bottom bar, no highlighted Send button.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791721202479-75wuu9.jpg" alt="Delivery App cover" loading="lazy"><span class="ps-badge ps-badge--free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Delivery App</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Delivery App" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				<!-- TEMPORARILY HIDDEN: Finance homescreen. Remove the opening and closing comment markers to restore this card.
+				<article class="ps-card" data-price="free" data-cat="mobile" data-title="Finance homescreen" data-subtitle="Prompt only" data-prompt="Design 3 mobile banking home screens, side by side, same content, different layouts, no labels. Canvas: light grey #EDF0F5, generous space between phones, extra empty space at the top for labels. Style: light mode only, brand #2251FF blue, text black #0E1B3D and grey #7A8399, no blue text, fonts Manrope for UI and Bricolage Grotesque for balances, generous gaps between sections. Content: header 'Good morning, Tega Peace, TP avatar, bell and settings icons'; ZAR account, R1,850.00, In R3,400.00 / Out R59.48; actions 'Add money, Send, Convert, More'; transactions 'Apple.com/bill -R37.49 Declined', 'Salary deposit +R3,400.00', 'Netflix subscription -R15.49', 'Nando's -R6.50'; nav 'Home, Cards, Invest, Accounts'. Screen 1: full blue banner card with wallet pill, big balance with faded decimals, white in/out progress bar; pill chip actions, Add money in dark navy; vertical timeline transactions with coloured status dots; standard bottom bar with labels, Home in blue. Screen 2: blue banner card with two lighter cards stacked behind it, balance and in/out bar; 4 small rounded-square icon buttons with labels below, Add money in blue; clean list transactions with dividers; floating white pill nav with soft shadow, Home as a blue pill. Screen 3: off-white filled banner card, dark balance, blue strip at the bottom with In and Out; one segmented action bar, Add money in blue.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791721167532-o751jq.jpg" alt="Finance homescreen cover" loading="lazy"><span class="ps-badge ps-badge&#45;&#45;free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Finance homescreen</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Finance homescreen" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				END TEMPORARILY HIDDEN CARD -->
+				<article class="ps-card" data-price="paid" data-buy="https://selar.com/m/le-loux" data-cat="mobile appstore" data-title="Tega Design App Home screen flow" data-subtitle="R20 · Prompt + Figma file">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791377545104-2v3ve2.jpg" alt="Tega Design App Home screen flow cover" loading="lazy"><span class="ps-badge ps-badge--paid">Paid</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Tega Design App Home screen flow</button></h3><span class="ps-sub">R20 · Prompt + Figma file</span></div>
+
+					</div>
+				</article>
+				<article class="ps-card" data-price="soon" data-cat="portfolio hero" data-title="Receipt Style Portfolio" data-subtitle="Design + prompt" data-prompt="Design a minimalist portfolio page styled as a printed receipt — monospaced typography, itemised skills and projects as line items, total at the bottom, paper texture. Black ink on cream. Flat, hand-built feel.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791281978223-yr48j6.jpg" alt="Receipt Style Portfolio cover" loading="lazy"><span class="ps-badge ps-badge--soon">Coming soon</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Receipt Style Portfolio</button></h3><span class="ps-sub">Design + prompt</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Receipt Style Portfolio" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+								<!-- TEMPORARILY HIDDEN: Service Provider App. Remove the opening and closing comment markers to restore this card.
+<article class="ps-card" data-price="free" data-cat="mobile appstore" data-title="Service Provider App" data-subtitle="" data-prompt="Design a home services app home screen for iPhone 15 Pro (393x852, status bar 9:41) in light mode, Angi-inspired: white, minimal colour, image-led, generous spacing, Inter font (headings 600, body 400-500). Colours: background #FFFFFF, text #121A1C, muted #6F7A7D, lines #E6EAEB, brand green #12935A, dark #141C1E. Layout: (1) header with brand-green circle avatar containing white 'T', map pin + 'Sandton, Johannesburg' + chevron, round outlined bell with small red dot; (2) large rounded outlined search bar 'Try plumbing, painting…' with thin full-width divider below; (3) 'Browse by category' section with 'View all' grey link, then 4 white circles with soft shadow containing charcoal duotone icons: Roofing, Painting, Cleaning, Plumbing; (4) 'Popular projects' section with project cards — 'Handyman' from R45 with image of handyman drilling a kitchen cabinet, 'Home cleaning' from R22 with image of cleaner wiping a white kitchen counter, 'Plumbing' from R60 with image of plumber fixing pipes under a sink — image on top, black price bar under image with bolt icon, title below, third card peeking; (5) 'Maintenance planner' section with autumn garden photo and checklist rows overlaid: 'Prepare garden for winter' (ticked), 'Clear your gutters'; (6) bottom nav on white bar: 4 tabs — Home (filled green icon + green label), Projects, Pros, More (grey outline). Rules: light mode only, brand colour only on avatar, active tab and key actions, realistic photography.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791211615669-s5ri8z.jpg" alt="Service Provider App cover" loading="lazy"><span class="ps-badge ps-badge&#45;&#45;free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Service Provider App</button></h3></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Service Provider App" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				END TEMPORARILY HIDDEN CARD -->
+				<article class="ps-card" data-price="free" data-cat="mobile appstore" data-title="Fitness App flow" data-subtitle="Prompt only" data-prompt="Design a fitness app home screen for iPhone 15 Pro (393x852, status bar 9:41) in light mode: bold, clean, generous white space, rounded cards, Inter font (headings 600, body 400). Colours: background #F2F2EF, cards #FFFFFF, text #111111, muted #8A8A90, brand #F2704F, calories #F5A524, active #4C8DFF, heart #FF4D6D. Layout: (1) header with brand-colour circle avatar containing white 'T' on left, round white search and bell buttons on right; (2) greeting 'Morning, Tega' in 26px semibold; (3) white activity card with three activity rings (steps brand, calories amber, active blue); stats: 8,432/10k steps, 486 kcal, 42 min, 72 bpm; (4) 'Daily routine' section with 'See all' link, routine list — 07:00 'Morning stretch' 10 min done with image of woman stretching in sunlit bedroom, 12:30 'Lunchtime walk' 20 min done with image of woman walking in a Johannesburg park, 18:00 'Leg workout' 45 min 'up next' tag in brand colour with image of man doing kettlebell goblet squat; (5) floating white pill bottom nav — active Home = brand pill with filled home icon + white label; Workouts, Stats, Profile grey outline icons. Rules: light mode only, one brand colour, realistic photography, nothing hidden behind nav.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791211375420-spaou9.jpg" alt="Fitness App flow cover" loading="lazy"><span class="ps-badge ps-badge--free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Fitness App flow</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Fitness App flow" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				<!-- TEMPORARILY HIDDEN: Streaming app homescreen. Remove the opening and closing comment markers to restore this card.
+				<article class="ps-card" data-price="free" data-cat="mobile" data-title="Streaming app homescreen" data-subtitle="Prompt only" data-prompt="Design a music streaming app home screen for iPhone 15 Pro (393x852, status bar 9:41) in light mode: modern, minimal, image-led, generous spacing, Inter font (headings 600, body 400). Colours: background #F4F4F1, cards #FFFFFF, text #111111, muted #8A8A93, brand lime #D4F06B. Layout: (1) header with black circle avatar containing lime 'T', round white search and heart buttons; (2) greeting 'Hi, Tega' in 26px semibold; (3) chips: 'All' (active, lime, black text), 'New releases', 'Trending', 'Podcasts'; (4) 'Curated & trending' section with full-bleed featured banner photo (no colour overlay): smiling woman in cream headphones under palm trees and blue sky, face on the right, white text top-left 'Weekly Discovery / Feel-good picks', black play button + white heart and download circles bottom-left, next card peeking from the right; (5) 'Top daily playlists' section with 'See all' link, playlist rows — 'Golden Hour' by Cleo Vance · 12 songs with image of man with headphones on a Johannesburg rooftop at golden hour, 'Sunday Reset' by Sola Reed · 8 songs with image of coffee and plant by a window, 'Focus Flow' by Juno Fields · 10 songs with image of desk with headphones under blue lamp; (6) floating white pill bottom nav — Home active = filled home icon centred in lime circle; music, shuffle, saved, settings grey outline icons. Rules: light mode only, lime and black only, no second accent, realistic photography, no tinted overlays.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791211248721-ouy68b.jpg" alt="Streaming app homescreen cover" loading="lazy"><span class="ps-badge ps-badge&#45;&#45;free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Streaming app homescreen</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Streaming app homescreen" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				END TEMPORARILY HIDDEN CARD -->
+				<!-- TEMPORARILY HIDDEN: Crypto App homescreen. Remove the opening and closing comment markers to restore this card.
+				<article class="ps-card" data-price="free" data-cat="mobile" data-title="Crypto App homescreen" data-subtitle="Prompt only" data-prompt="Design a dark-mode crypto portfolio app. Portfolio value R18,240.56, '+R612.40 (3.47%) today' green, range pills 1D 1W 1M 1Y, holdings 'Bitcoin BTC R9,820.40 +2.14%', 'Ethereum ETH R4,310.12 -0.82%' with flat line charts, Buy / Sell / Swap / Deposit actions, bottom tabs Home / Markets / Trade / Profile. Near-black background, green/red deltas.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791085714791-3wy14n.jpg" alt="Crypto App homescreen cover" loading="lazy"><span class="ps-badge ps-badge&#45;&#45;free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Crypto App homescreen</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Crypto App homescreen" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				END TEMPORARILY HIDDEN CARD -->
+				<!-- TEMPORARILY HIDDEN: Music app homescreen. Remove the opening and closing comment markers to restore this card.
+				<article class="ps-card" data-price="free" data-cat="mobile" data-title="Music app homescreen" data-subtitle="Prompt only" data-prompt="Design a music player app now-playing screen. Large album art, track title and artist, progress scrubber, queue, lyrics toggle, AirPlay. Warm gradient background, large art, minimal chrome.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791085544473-ro0dnx.jpg" alt="Music app homescreen cover" loading="lazy"><span class="ps-badge ps-badge&#45;&#45;free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Music app homescreen</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Music app homescreen" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				END TEMPORARILY HIDDEN CARD -->
+				<!-- TEMPORARILY HIDDEN: Finance App Flow +Figma file. Remove the opening and closing comment markers to restore this card.
+				<article class="ps-card" data-price="paid" data-buy="https://selar.com/m/le-loux" data-cat="mobile appstore" data-title="Finance App Flow +Figma file" data-subtitle="R10 · Prompt + Figma file">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1790950693141-6ej3l4.jpg" alt="Finance App Flow cover" loading="lazy"><span class="ps-badge ps-badge&#45;&#45;paid">Paid</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Finance App Flow +Figma file</button></h3><span class="ps-sub">R10 · Prompt + Figma file</span></div>
+
+					</div>
+				</article>
+				END TEMPORARILY HIDDEN CARD -->
+				<article class="ps-card" data-price="free" data-cat="ecom" data-title="OtO e-commerce website" data-subtitle="Design + prompt" data-prompt="Design an audio brand e-commerce page for OTO. Hero 'OTO ONE — Lie back. Tune in.' with SHOP OTO ONE R249 button, product grid 'OTO One Headphones R249.00', 'OTO Sport Open Earbuds R179.00', 'OTO Buds R149.00', 'OTO Roam Speaker R119.00', five-star ratings, Bestseller tags, swatches. Flat, clean, premium.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1790949501934-s2v8p0.jpg" alt="OtO e-commerce website cover" loading="lazy"><span class="ps-badge ps-badge--free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>OtO e-commerce website</button></h3><span class="ps-sub">Design + prompt</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for OtO e-commerce website" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				<article class="ps-card" data-price="free" data-cat="landing hero" data-title="Edtech Saas Landing page" data-subtitle="Prompt only" data-prompt="Design an edtech SaaS landing page. Headline 'Less admin, more teaching.', subline 'Reports, marking and parent emails, drafted for you.', buttons SEE HOW IT WORKS and BOOK A DEMO, floating cards 'Report draft — Drafted in 40 seconds', '32 / 36 checked against your mark scheme', stat card 'R142k saved this year'. Soft teal + sand palette, flat mockup.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1790948071938-r6k5rk.jpg" alt="Edtech Saas Landing page cover" loading="lazy"><span class="ps-badge ps-badge--free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Edtech Saas Landing page</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Edtech Saas Landing page" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				<article class="ps-card" data-price="free" data-cat="landing hero" data-title="E-commerce Landing page" data-subtitle="Prompt only" data-prompt="Design a canned mango drinks brand page. Wordmark RIPE, headline 'Four ways to drink a mango.', subline 'Same whole fruit in every can.', four product cards each with a can illustration: 'Mango — pressed and chilled. R1,500', 'Mango Passion — sweet first, tangy finish. R1,500', 'Mango Chili Lime — it bites back. R1,500', 'Mango Coconut — the softest one. R1,500', plus a steps strip. Vivid mango yellow + orange, flat Figma mockup.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1790947323627-vd7m6u.jpg" alt="E-commerce Landing page cover" loading="lazy"><span class="ps-badge ps-badge--free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>E-commerce Landing page</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for E-commerce Landing page" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				<article class="ps-card" data-price="free" data-cat="ecom" data-title="E-commerce website wth animations" data-subtitle="Prompt only" data-prompt="Design a fashion e-commerce webpage. Top nav Women / Men, wide hero band with six flat outfit silhouettes and headline 'Fall '26 Women — Six looks, styled head to toe.', product grid with garment tiles 'Satin Slip Dress R148', 'Strappy Heeled Sandal R118', 'Oversized Wool Blazer R228', 'Straight Leg Jean R118', 'Knit Polo Top R98'. Cream and camel palette, elegant typography, flat mockup.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1790946792253-35kekw.jpg" alt="E-commerce website with animations cover" loading="lazy"><span class="ps-badge ps-badge--free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>E-commerce website wth animations</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for E-commerce website with animations" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+								<!-- TEMPORARILY HIDDEN: Colourful portfolio website. Remove the opening and closing comment markers to restore this card.
+<article class="ps-card" data-price="free" data-cat="portfolio landing" data-title="Colourful portfolio website" data-subtitle="Prompt only" data-prompt="Design a colourful portfolio landing page with bold colour-blocking sections. Coral, electric blue, lime and sunny yellow. Huge display headline 'Design that ships.', small nav Work / About / Contact, project grid row, playful flat geometric shapes. Flat vector-style UI, sharp typography, hand-built feel.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://promptsite.tiiny.site/covers/color-portfolio.jpg" alt="Colourful portfolio website cover" loading="lazy"><span class="ps-badge ps-badge&#45;&#45;free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Colourful portfolio website</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Colourful portfolio website" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				END TEMPORARILY HIDDEN CARD -->
+				<article class="ps-card" data-price="free" data-cat="mobile" data-title="Fashion shopping app home screen" data-subtitle="Prompt + Figma file" data-prompt="Design a fashion e-commerce app home screen. Hero: new arrivals carousel, product grid with garments, search, cart icon, bottom nav Home / Search / Wishlist / Cart. Cream and camel palette, elegant serif and sans typography, flat case-study style.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://promptsite.tiiny.site/covers/fashion-app.jpg" alt="Fashion shopping app home screen cover" loading="lazy"><span class="ps-badge ps-badge--free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Fashion shopping app home screen</button></h3><span class="ps-sub">Prompt + Figma file</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Fashion shopping app home screen" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				<article class="ps-card" data-price="free" data-cat="mobile" data-title="Food delivery app home screen" data-subtitle="Prompt + Figma file" data-prompt="Design a food delivery app home. Status 9:41, location header '45 Commissioner St, Johannesburg CBD', search 'Search for restaurants, groceries, and more', category row Restaurants / Groceries / Convenience / Pharmacy, promo 'Get 40% off your first order — Free delivery fee on orders R15+ — Use code GET40', store rows 'Nando's — R3.99 delivery' and 'Mugg & Bean — R2.99 delivery' with star ratings, bottom tabs Home / Search / Orders. Cream UI with red-orange accents, flat Figma style.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://promptsite.tiiny.site/covers/food-app.jpg" alt="Food delivery app home screen cover" loading="lazy"><span class="ps-badge ps-badge--free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Food delivery app home screen</button></h3><span class="ps-sub">Prompt + Figma file</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Food delivery app home screen" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+
+				<p class="ps-empty" id="ps-empty" hidden>No designs match that filter yet — try “All”.</p>
+			</div>
+		</section>
+
+		<section class="ps-contact" aria-labelledby="ps-contact-title">
+			<div class="ps-contact-card">
+				<div>
+					<h2 id="ps-contact-title">Contact me</h2>
+					<p>Designs · prompts · Figma files — straight to Lulamile.</p>
+				</div>
+				<div class="ps-contact-links">
+					<a href="mailto:mkhungela.l@gmail.com">mkhungela.l@gmail.com</a>
+					<a href="https://www.linkedin.com/in/lulamile-mkhungela/" target="_blank" rel="noopener noreferrer">linkedin.com/in/lulamile-mkhungela</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<!-- Request modal (mirrors the live site's form) -->
+	<div class="ps-modal" id="ps-request" role="dialog" aria-modal="true" aria-labelledby="ps-request-title" hidden>
+		<button class="ps-modal-backdrop" type="button" data-close-request aria-label="Close request form"></button>
+		<div class="ps-modal-card">
+			<button class="ps-modal-close" type="button" data-close-request aria-label="Close request form">×</button>
+			<div id="ps-request-form-wrap">
+				<h2 id="ps-request-title">Request a custom prompt or design</h2>
+				<p>Fill this in, then choose how I get back to you — email or WhatsApp.</p>
+				<form id="ps-request-form" novalidate>
+					<div class="ps-field" data-field>
+						<label for="ps-name">Your name</label>
+						<input id="ps-name" name="name" type="text" autocomplete="name" required>
+					</div>
+					<div class="ps-field" data-field>
+						<label for="ps-need">What do you need?</label>
+						<select id="ps-need" name="need" required>
+							<option value="">Choose one…</option>
+							<option>Custom prompt</option>
+							<option>Custom design</option>
+							<option>Both</option>
+						</select>
+					</div>
+					<div class="ps-field" data-field>
+						<label for="ps-project">Tell me about your project</label>
+						<textarea id="ps-project" name="project" required></textarea>
+					</div>
+					<div class="ps-field" data-field>
+						<label for="ps-budget">Budget</label>
+						<input id="ps-budget" name="budget" type="text" placeholder="Not sure? Type &quot;not sure yet&quot;.">
+					</div>
+					<div class="ps-field" data-field>
+						<label for="ps-timeline">Timeline</label>
+						<select id="ps-timeline" name="timeline">
+							<option>How soon?</option>
+							<option>ASAP (within a week)</option>
+							<option>1–2 weeks</option>
+							<option>2–4 weeks</option>
+							<option>1–2 months</option>
+							<option>Flexible, no rush</option>
+						</select>
+					</div>
+					<div class="ps-field" data-field>
+						<span class="ps-radio-row-label" style="font-size:13.5px;font-weight:700;">Best way to contact you</span>
+						<div class="ps-radio-row" role="radiogroup" aria-label="Best way to contact you">
+							<label><input type="radio" name="channel" value="Email" checked> Email</label>
+							<label><input type="radio" name="channel" value="Phone / WhatsApp"> Phone / WhatsApp</label>
+						</div>
+					</div>
+					<div class="ps-field" data-field data-contact="email">
+						<label for="ps-email">Your email</label>
+						<input id="ps-email" name="email" type="email" autocomplete="email" required>
+					</div>
+					<div class="ps-field" data-field data-contact="phone" hidden>
+						<label for="ps-phone">Your phone / WhatsApp number</label>
+						<input id="ps-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+						<span class="ps-hint">We'll reach you on this number (include your country code).</span>
+					</div>
+					<button class="ps-submit" type="submit">Send request</button>
+					<a class="ps-submit ps-submit--whatsapp" id="ps-form-whatsapp" href="#"
+						target="_blank" rel="noopener noreferrer" hidden>Message me on WhatsApp instead</a>
+				</form>
+			</div>
+			<div class="ps-success" id="ps-request-success" hidden>
+				<b>Request sent</b>
+				<p id="ps-request-note">Thanks! I'll get back to you soon.</p>
+				<a class="ps-submit ps-submit--whatsapp" id="ps-success-whatsapp" href="#"
+					target="_blank" rel="noopener noreferrer" hidden>Send it on WhatsApp</a>
+				<button class="ps-submit" type="button" data-close-request>Close</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Design detail popup: opens when a card's cover or title is clicked -->
+	<div class="ps-modal ps-detail" id="ps-detail" role="dialog" aria-modal="true" aria-labelledby="ps-detail-title" hidden>
+		<button class="ps-modal-backdrop" type="button" data-close-detail aria-label="Close design details"></button>
+		<div class="ps-modal-card ps-detail-card">
+			<button class="ps-modal-close ps-detail-close" type="button" data-close-detail aria-label="Close design details">×</button>
+			<div class="ps-detail-cover">
+				<img id="ps-detail-img" src="" alt="">
+				<span class="ps-badge" id="ps-detail-badge"></span>
+			</div>
+			<div class="ps-detail-body">
+				<h2 id="ps-detail-title"></h2>
+				<p class="ps-detail-sub" id="ps-detail-sub"></p>
+				<p class="ps-detail-paid-note" id="ps-detail-paid-note" hidden>Premium design. Buy on Selar to receive its prompt and any included files.</p>
+				<div class="ps-detail-label" id="ps-detail-prompt-label">Prompt <span>Select all, then tap the copy icon</span></div>
+				<div class="ps-prompt-wrap" id="ps-detail-prompt-wrap">
+					<textarea class="ps-prompt" id="ps-detail-prompt" readonly spellcheck="false" aria-label="Full prompt"></textarea>
+					<button class="ps-prompt-copy" type="button" id="ps-detail-copy-icon" aria-label="Copy the selected prompt" title="Copy prompt" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+				</div>
+				<div class="ps-detail-actions" id="ps-detail-actions">
+					<button class="ps-btn" type="button" id="ps-detail-selectall">Select all</button>
+					<button class="ps-btn ps-btn--primary" type="button" id="ps-detail-copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:17px;height:17px"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span id="ps-detail-copy-label">Copy prompt</span></button>
+				</div>
+				<div class="ps-detail-foot">
+					<a class="ps-btn" id="ps-detail-buy" href="#" target="_blank" rel="noopener noreferrer" hidden>Buy on Selar</a>
+					<button class="ps-btn" type="button" data-detail-request>Request a custom version</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="ps-toast" id="ps-toast" role="status" aria-live="polite"></div>
+
+	<script>
+		(function () {
+			"use strict";
+
+			/* ── Filters ──────────────────────────────────────────────── */
+			var state = { price: "all", cat: "all" };
+			var cards = Array.prototype.slice.call(document.querySelectorAll(".ps-card"));
+			var empty = document.getElementById("ps-empty");
+
+			function applyFilters() {
+				var visible = 0;
+				cards.forEach(function (card) {
+					var okPrice = state.price === "all" || card.getAttribute("data-price") === state.price;
+					var cats = " " + (card.getAttribute("data-cat") || "") + " ";
+					var okCat = state.cat === "all" || cats.indexOf(" " + state.cat + " ") > -1;
+					card.hidden = !(okPrice && okCat);
+					if (!card.hidden) visible += 1;
+				});
+				if (empty) empty.hidden = visible !== 0;
+			}
+
+			document.querySelectorAll(".ps-chips").forEach(function (group) {
+				group.addEventListener("click", function (event) {
+					var chip = event.target.closest(".ps-chip");
+					if (!chip) return;
+					group.querySelectorAll(".ps-chip").forEach(function (c) { c.classList.toggle("is-active", c === chip); });
+					if (chip.hasAttribute("data-price")) state.price = chip.getAttribute("data-price");
+					if (chip.hasAttribute("data-cat")) state.cat = chip.getAttribute("data-cat");
+					applyFilters();
+				});
+			});
+
+			/* ── Copy prompt ─────────────────────────────────────────── */
+			var toast = document.getElementById("ps-toast");
+			var toastTimer = null;
+			function showToast(message) {
+				if (!toast) return;
+				toast.textContent = message;
+				toast.classList.add("is-visible");
+				window.clearTimeout(toastTimer);
+				toastTimer = window.setTimeout(function () { toast.classList.remove("is-visible"); }, 1900);
+			}
+
+			function promptForCard(card) {
+				if (card && card.getAttribute("data-price") === "paid") return "";
+				var explicit = ((card && card.getAttribute("data-prompt")) || "").trim();
+				if (explicit) return explicit;
+				var title = card ? card.getAttribute("data-title") : "Design prompt";
+				var sub = card ? (card.getAttribute("data-subtitle") || "") : "";
+				return "«" + title + "»" + (sub ? " — " + sub : "") + "\n" +
+					"AI design prompt by Lulamile Mkhungela\n" +
+					"linkedin.com/in/lulamile-mkhungela";
+			}
+
+			function promptFor(button) {
+				return promptForCard(button.closest(".ps-card"));
+			}
+
+			function copyText(text) {
+				if (navigator.clipboard && navigator.clipboard.writeText) {
+					return navigator.clipboard.writeText(text);
+				}
+				return new Promise(function (resolve, reject) {
+					var area = document.createElement("textarea");
+					area.value = text;
+					area.setAttribute("readonly", "");
+					area.style.position = "fixed";
+					area.style.opacity = "0";
+					document.body.appendChild(area);
+					area.select();
+					try {
+						document.execCommand("copy") ? resolve() : reject(new Error("copy failed"));
+					} catch (error) { reject(error); }
+					document.body.removeChild(area);
+				});
+			}
+
+			document.querySelectorAll(".ps-copy").forEach(function (button) {
+				button.addEventListener("click", function () {
+					var card = button.closest(".ps-card");
+					if (card && card.getAttribute("data-price") === "paid") {
+						showToast("Premium designs are available through Selar.");
+						return;
+					}
+					copyText(promptFor(button)).then(function () {
+						button.classList.add("is-done");
+						showToast("Prompt copied ✓");
+						window.setTimeout(function () { button.classList.remove("is-done"); }, 1400);
+					}).catch(function () {
+						showToast("Couldn't copy — select the card text instead.");
+					});
+				});
+			});
+
+			/* ── Request modal ───────────────────────────────────────── */
+			var modal = document.getElementById("ps-request");
+			var form = document.getElementById("ps-request-form");
+			var formWrap = document.getElementById("ps-request-form-wrap");
+			var success = document.getElementById("ps-request-success");
+			var lastFocus = null;
+
+			// This page is static: there is no server that can send a WhatsApp
+			// message on the visitor's behalf. A "Phone / WhatsApp" request is
+			// therefore handed to the visitor's own WhatsApp with everything
+			// they just typed already written in the box — they press send, and
+			// it lands on the number below. Sending it *for* them needs a
+			// hosted relay plus a paid WhatsApp Cloud API account.
+			var WHATSAPP_NUMBER = "27837195064"; // +27 83 719 5064
+			var FORMSPREE_URL = "https://formspree.io/f/xvkgqalq";
+			var OWNER_EMAIL = "mkhungela.l@gmail.com";
+			var successNote = document.getElementById("ps-request-note");
+			var successWhatsapp = document.getElementById("ps-success-whatsapp");
+			var formWhatsapp = document.getElementById("ps-form-whatsapp");
+
+			function whatsappText(payload) {
+				return [
+					"New request · AI Design Prompts",
+					"Name: " + payload.name,
+					"Need: " + payload.need,
+					"Project: " + payload.project,
+					"Budget: " + payload.budget,
+					"Timeline: " + payload.timeline,
+					payload.phone ? "Their WhatsApp number: " + payload.phone : "",
+					payload.email ? "Their email: " + payload.email : ""
+				].filter(Boolean).join("\n");
+			}
+
+			function whatsappUrl(payload) {
+				return "https://wa.me/" + WHATSAPP_NUMBER +
+					"?text=" + encodeURIComponent(whatsappText(payload));
+			}
+
+			// Browsers block a window opened after an async fetch, so this is
+			// best effort only — the button it backs up always works.
+			function tryOpenWhatsApp(payload) {
+				var opened = null;
+				try { opened = window.open(whatsappUrl(payload), "_blank"); } catch (error) { opened = null; }
+				if (opened && opened.opener) { try { opened.opener = null; } catch (error) {} }
+				return !!opened;
+			}
+
+			function hideWhatsAppHandoffs() {
+				if (successWhatsapp) { successWhatsapp.hidden = true; successWhatsapp.removeAttribute("href"); }
+				if (formWhatsapp) { formWhatsapp.hidden = true; formWhatsapp.removeAttribute("href"); }
+			}
+
+			function openModal() {
+				if (!modal) return;
+				lastFocus = document.activeElement;
+				modal.hidden = false;
+				document.body.style.overflow = "hidden";
+				var first = modal.querySelector("input, select, textarea, button");
+				if (first) first.focus({ preventScroll: true });
+			}
+			function closeModal() {
+				if (!modal) return;
+				modal.hidden = true;
+				document.body.style.overflow = "";
+				if (formWrap) formWrap.hidden = false;
+				if (success) success.hidden = true;
+				if (form) form.reset();
+				form && form.querySelectorAll(".is-invalid").forEach(function (f) { f.classList.remove("is-invalid"); });
+				hideWhatsAppHandoffs();
+				if (successNote) successNote.textContent = "";
+				syncContactFields();
+				if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+			}
+
+			document.querySelectorAll("[data-open-request]").forEach(function (button) {
+				button.addEventListener("click", openModal);
+			});
+			document.querySelectorAll("[data-close-request]").forEach(function (button) {
+				button.addEventListener("click", closeModal);
+			});
+			document.addEventListener("keydown", function (event) {
+				if (event.key === "Escape" && detail && !detail.hidden) { closeDetail(); return; }
+				if (event.key === "Escape" && modal && !modal.hidden) closeModal();
+			});
+
+			function syncContactFields() {
+				if (!form) return;
+				var checked = form.querySelector("input[name=channel]:checked");
+				var isPhone = !!(checked && checked.value === "Phone / WhatsApp");
+				var emailField = document.querySelector("[data-contact='email']");
+				var phoneField = document.querySelector("[data-contact='phone']");
+				var emailInput = document.getElementById("ps-email");
+				var phoneInput = document.getElementById("ps-phone");
+				if (emailField) emailField.hidden = isPhone;
+				if (phoneField) phoneField.hidden = !isPhone;
+				if (emailInput) emailInput.required = !isPhone;
+				if (phoneInput) phoneInput.required = isPhone;
+			}
+			if (form) {
+				form.querySelectorAll("input[name=channel]").forEach(function (radio) {
+					radio.addEventListener("change", syncContactFields);
+				});
+				syncContactFields();
+				form.addEventListener("submit", function (event) {
+					event.preventDefault();
+					var missing = false;
+					form.querySelectorAll("[required]").forEach(function (field) {
+						var wrapper = field.closest("[data-field]");
+						var bad = !String(field.value || "").trim();
+						if (wrapper) wrapper.classList.toggle("is-invalid", bad);
+						if (bad) missing = true;
+					});
+					var emailField = document.querySelector("[data-contact='email']");
+					var email = form.elements.namedItem("email");
+					if (email && !(emailField && emailField.hidden) && email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+						var wrapper = email.closest("[data-field]");
+						if (wrapper) wrapper.classList.add("is-invalid");
+						missing = true;
+					}
+					if (missing) {
+						showToast("Please fill out required fields.");
+						return;
+					}
+
+					var value = function (name) {
+						var el = form.elements.namedItem(name);
+						return el ? String(el.value || "").trim() : "";
+					};
+					var channel = form.querySelector("input[name=channel]:checked");
+					var payload = {
+						name: value("name"),
+						need: value("need"),
+						project: value("project"),
+						budget: value("budget") || "not sure yet",
+						timeline: value("timeline"),
+						channel: channel ? channel.value : "Email",
+						email: value("email"),
+						phone: value("phone"),
+						source: "AI Design Prompts — portfolio dock"
+					};
+					var isPhone = payload.channel === "Phone / WhatsApp";
+					// Read the JSON body even on a 200: a green status with an
+					// error inside is what silently swallowed enquiries before.
+					payload._subject = isPhone
+						? "PHONE / WhatsApp request " + payload.phone + " — " + payload.name
+						: "Prompts request — " + payload.name + " (" + payload.need + ")";
+					if (payload.email) payload._replyto = payload.email;
+
+					var submitButton = form.querySelector(".ps-submit");
+					if (submitButton) { submitButton.disabled = true; submitButton.textContent = "Sending\u2026"; }
+					hideWhatsAppHandoffs();
+					fetch(FORMSPREE_URL, {
+						method: "POST",
+						headers: { "Accept": "application/json", "Content-Type": "application/json" },
+						body: JSON.stringify(payload)
+					}).then(function (response) {
+						return response.json().catch(function () { return {}; }).then(function (data) {
+							if (!response.ok || (data && data.error)) {
+								throw new Error((data && data.error) ? String(data.error) : "the form service refused it");
+							}
+							return data;
+						});
+					}).then(function () {
+						if (formWrap) formWrap.hidden = true;
+						if (success) success.hidden = false;
+						if (successNote) {
+							successNote.textContent = isPhone
+								? "Your number is saved. Tap the button below — WhatsApp opens with everything you just typed, then press send and it comes straight to me."
+								: "Thanks, " + payload.name + ". I'll reply to " + payload.email + ".";
+						}
+						if (isPhone && successWhatsapp) {
+							successWhatsapp.href = whatsappUrl(payload);
+							successWhatsapp.hidden = false;
+							tryOpenWhatsApp(payload);
+						}
+					}).catch(function (error) {
+						var detail = (error && error.message) ? error.message : "the form service did not respond";
+						showToast("Couldn't send \u2014 " + detail + ". Email " + OWNER_EMAIL + " directly.");
+						if (isPhone && formWhatsapp) {
+							formWhatsapp.href = whatsappUrl(payload);
+							formWhatsapp.hidden = false;
+						}
+					}).then(function () {
+						if (submitButton) { submitButton.disabled = false; submitButton.textContent = "Send request"; }
+					});
+					});
+			}
+
+			/* ── Design detail popup ─────────────────────────────────── */
+			var detail = document.getElementById("ps-detail");
+			var detailOpener = null;
+			var detailImg = document.getElementById("ps-detail-img");
+			var detailBadge = document.getElementById("ps-detail-badge");
+			var detailTitle = document.getElementById("ps-detail-title");
+			var detailSub = document.getElementById("ps-detail-sub");
+			var detailPrompt = document.getElementById("ps-detail-prompt");
+			var detailPromptLabel = document.getElementById("ps-detail-prompt-label");
+			var detailPromptWrap = document.getElementById("ps-detail-prompt-wrap");
+			var detailActions = document.getElementById("ps-detail-actions");
+			var detailPaidNote = document.getElementById("ps-detail-paid-note");
+			var detailBuy = document.getElementById("ps-detail-buy");
+			var detailRequest = detail ? detail.querySelector("[data-detail-request]") : null;
+			var detailIsPaid = false;
+			var SELAR_STORE_URL = "https://selar.com/m/le-loux";
+			var detailCopy = document.getElementById("ps-detail-copy");
+			var detailCopyLabel = document.getElementById("ps-detail-copy-label");
+			var detailCopyIcon = document.getElementById("ps-detail-copy-icon");
+			var detailSelectAll = document.getElementById("ps-detail-selectall");
+
+			function openDetail(card, opener) {
+				if (!detail || !card) return;
+				detailOpener = opener || document.activeElement;
+				var img = card.querySelector(".ps-cover img");
+				var badge = card.querySelector(".ps-badge");
+				var title = card.getAttribute("data-title") || "";
+				var sub = card.querySelector(".ps-sub");
+				var isPaid = card.getAttribute("data-price") === "paid";
+				detailIsPaid = isPaid;
+				detailImg.src = img ? img.getAttribute("src") : "";
+				detailImg.alt = title ? title + " cover" : "";
+				detailBadge.className = badge ? badge.className : "ps-badge";
+				detailBadge.textContent = badge ? badge.textContent : "";
+				detailBadge.hidden = !badge;
+				detailTitle.textContent = title;
+				detailSub.textContent = sub ? sub.textContent : "";
+				detailPrompt.value = isPaid ? "" : promptForCard(card);
+				detailPrompt.scrollTop = 0;
+				detailPromptLabel.hidden = isPaid;
+				detailPromptWrap.hidden = isPaid;
+				detailActions.hidden = isPaid;
+				detailPaidNote.hidden = !isPaid;
+				resetDetailCopyState();
+				var buyUrl = card.getAttribute("data-buy");
+				if (isPaid) {
+					detailBuy.href = buyUrl || SELAR_STORE_URL;
+					detailBuy.textContent = "Buy on Selar";
+					detailBuy.hidden = false;
+				} else {
+					detailBuy.removeAttribute("href");
+					detailBuy.hidden = true;
+				}
+				if (detailRequest) detailRequest.hidden = isPaid;
+				detail.hidden = false;
+				document.body.style.overflow = "hidden";
+				detail.querySelector(".ps-detail-close").focus({ preventScroll: true });
+			}
+
+			function closeDetail() {
+				if (!detail || detail.hidden) return;
+				detail.hidden = true;
+				if (detailIsPaid && detailPrompt) detailPrompt.value = "";
+				detailIsPaid = false;
+				if (!modal || modal.hidden) document.body.style.overflow = "";
+				if (detailOpener && detailOpener.focus) detailOpener.focus({ preventScroll: true });
+				detailOpener = null;
+			}
+
+			function selectDetailPrompt() {
+				if (detailIsPaid) return;
+				detailPrompt.focus();
+				detailPrompt.select();
+				detailPrompt.setSelectionRange(0, detailPrompt.value.length);
+			}
+
+			/* Once the text is selected, the copy icon appears next to it so the
+			   prompt can be copied without a keyboard (mobile-friendly). */
+			function showDetailCopyIcon() {
+				if (detailIsPaid) return;
+				if (detailCopyIcon) detailCopyIcon.hidden = false;
+			}
+
+			function resetDetailCopyState() {
+				if (detailCopyIcon) { detailCopyIcon.hidden = true; detailCopyIcon.classList.remove("is-done"); }
+				if (detailCopy) detailCopy.classList.remove("is-done");
+				if (detailCopyLabel) detailCopyLabel.textContent = "Copy prompt";
+			}
+
+			function copyDetailPrompt() {
+				if (detailIsPaid) return;
+				copyText(detailPrompt.value).then(function () {
+					showDetailCopyIcon();
+					if (detailCopyIcon) detailCopyIcon.classList.add("is-done");
+					if (detailCopy) detailCopy.classList.add("is-done");
+					if (detailCopyLabel) detailCopyLabel.textContent = "Copied ✓";
+					showToast("Prompt copied ✓");
+					window.setTimeout(function () {
+						if (detailCopyIcon) detailCopyIcon.classList.remove("is-done");
+						if (detailCopy) detailCopy.classList.remove("is-done");
+						if (detailCopyLabel) detailCopyLabel.textContent = "Copy prompt";
+					}, 1600);
+				}).catch(function () {
+					selectDetailPrompt();
+					showDetailCopyIcon();
+					showToast("Prompt selected — press Ctrl+C (⌘C on Mac) to copy.");
+				});
+			}
+
+			document.querySelectorAll("[data-open-detail]").forEach(function (opener) {
+				opener.addEventListener("click", function () {
+					openDetail(opener.closest(".ps-card"), opener);
+				});
+			});
+			document.querySelectorAll("[data-close-detail]").forEach(function (button) {
+				button.addEventListener("click", closeDetail);
+			});
+			document.querySelectorAll("[data-detail-request]").forEach(function (button) {
+				button.addEventListener("click", function () {
+					if (detailIsPaid) return;
+					closeDetail();
+					openModal();
+				});
+			});
+			detailSelectAll.addEventListener("click", function () {
+				if (detailIsPaid) return;
+				selectDetailPrompt();
+				showDetailCopyIcon();
+				showToast("All selected — tap the copy icon, or press Ctrl+C (⌘C on Mac).");
+			});
+			if (detailCopyIcon) detailCopyIcon.addEventListener("click", copyDetailPrompt);
+			detailCopy.addEventListener("click", copyDetailPrompt);
+
+			/* Keep Tab inside the open popup */
+			document.addEventListener("keydown", function (event) {
+				if (event.key !== "Tab" || !detail || detail.hidden) return;
+				var items = Array.prototype.slice.call(detail.querySelectorAll("button, a[href], textarea")).filter(function (el) {
+					return !el.hidden && !el.closest("[hidden]") && el.offsetParent !== null;
+				});
+				if (!items.length) return;
+				var first = items[0], last = items[items.length - 1];
+				if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+				else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+			});
+		})();
+	</script>
+</body>
+</html>

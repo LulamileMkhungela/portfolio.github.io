@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" id="storybook">
+  <defs>
+    <linearGradient id="sb-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff5f9a"/>
+      <stop offset="1" stop-color="#e8306d"/>
+    </linearGradient>
+  </defs>
+  <path d="M83.6 0C96 0 102.1 0 108.5 2.1c7.1 2.5 12.7 8.1 15.2 15.2 2.1 6.5 2.1 12.5 2.1 24.7v36.3c0 12 0 18.1-2 24.5-2.5 7.1-8.1 12.7-15.2 15.2-6.5 2.1-12.5 2.1-24.7 2.1H47.4c-12 0-18.1 0-24.5-2C15.8 115.4 10.2 109.8 7.5 102.7c-2-6.4-2-12.4-2-24.5V41.9c0-12 0-18.1 2-24.5C10.2 10.3 15.8 4.7 22.9 2 29.3 0 35.3 0 47.4 0Z" transform="translate(-5.5)" fill="url(#sb-bg)"/>
+  <g fill="#ffffff">
+    <path d="M40 30h40c2.8 0 5 2.2 5 5v50c0 2.8-2.2 5-5 5H40c-4.4 0-8-3.6-8-8V38c0-4.4 3.6-8 8-8Zm0 6c-1.1 0-2 .9-2 2v44c0 1.1.9 2 2 2h1V36h-1Z" fill-opacity=".92"/>
+    <path d="M66 30h8v20l-4-3.4-4 3.4V30Z" fill-opacity=".62"/>
+    <path d="M50 46h22a3 3 0 0 1 0 6H50a3 3 0 0 1 0-6Zm0 14h16a3 3 0 0 1 0 6H50a3 3 0 0 1 0-6Z" fill="#ff4785"/>
+  </g>
+</svg>
