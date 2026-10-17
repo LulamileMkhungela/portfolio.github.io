@@ -446,7 +446,13 @@ const mobileAppWindow = document.querySelector("#mobile-app-window");
 const mobileAppContent = document.querySelector("#mobile-app-content");
 const mobileWindowTitle = document.querySelector("#mobile-window-title");
 const mobileWindowBack = document.querySelector("#mobile-window-back");
-const mobileViewport = window.matchMedia("(max-width: 767px)");
+// Phones use the mobile layout in portrait AND landscape. A landscape phone is
+// ~900px wide (past the 767px breakpoint) but only ~400px tall, so the second
+// query catches touch-only devices with a short viewport. Tablets and desktops
+// keep the desktop layout. This must stay in sync with the matching @media
+// queries in css/desktop.css — search for "hover: none" there when editing.
+const MOBILE_VIEWPORT_QUERY = "(max-width: 767px), (hover: none) and (pointer: coarse) and (max-height: 540px)";
+const mobileViewport = window.matchMedia(MOBILE_VIEWPORT_QUERY);
 const mobileAppAlertBackdrop = document.querySelector("[data-mobile-alert-backdrop]");
 const mobileAppAlert = document.querySelector("[data-mobile-alert]");
 const mobileAppAlertIcon = document.querySelector("[data-mobile-alert-icon]");
