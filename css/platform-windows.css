@@ -1,0 +1,691 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Windows appearance
+   The desktop ships as macOS. When Desktop style is set to Windows (or left
+   on "Match my device" and the visitor is on Windows), <body> gets
+   data-platform="windows" and everything in this file applies: Segoe type,
+   a full-width taskbar, Windows 11 window chrome with the controls on the
+   right, File Explorer breadcrumbs, Explorer folder icons and Windows
+   scrollbars. Nothing here loads a different layout, so it stays responsive
+   at every width.
+   ───────────────────────────────────────────────────────────────────────── */
+
+body[data-platform="windows"] {
+	--win-accent: #0067c0;
+	--win-surface: rgba(243,243,243,.86);
+	--win-surface-solid: #f9f9f9;
+	--win-card: #ffffff;
+	--win-line: rgba(0,0,0,.09);
+	--win-text: #1b1b1b;
+	--win-text-soft: #5d5d5d;
+	--win-radius: 8px;
+	--win-font: "Segoe UI Variable Text", "Segoe UI", system-ui, "Noto Sans", sans-serif;
+	font-family: var(--win-font);
+}
+
+body[data-platform="windows"] :is(.system-bar, .dock, .project-window, .settings-panel,
+  .collections-menu, .collections-sheet, .mobile-app-window, .desktop-folder-label,
+  .panel-scroll-area, .notes-split-view, .messages-app, .adobe-alert, .document-viewer) {
+	font-family: var(--win-font);
+}
+
+/* ── Top bar: a slim Explorer-style command bar ──────────────────────────── */
+body[data-platform="windows"] .system-bar {
+	height: 40px;
+	min-height: 40px;
+	background: var(--win-surface);
+	border-bottom: 1px solid var(--win-line);
+	backdrop-filter: blur(30px) saturate(120%);
+	-webkit-backdrop-filter: blur(30px) saturate(120%);
+	color: var(--win-text);
+	font-size: 12.5px;
+}
+
+body[data-platform="windows"] .collections-trigger,
+body[data-platform="windows"] .system-bar button {
+	border-radius: 4px;
+	font-family: var(--win-font);
+}
+
+/* ── Taskbar ─────────────────────────────────────────────────────────────── */
+body[data-platform="windows"] .dock {
+	/* The dock JS writes these as inline custom properties, so the taskbar
+	   has to win with !important rather than by specificity. */
+	--dock-icon-size: 32px !important;
+	--dock-icon-width: 46px !important;
+	--dock-icon-height: 46px !important;
+	--dock-gap: 6px !important;
+	--dock-group-gap: 22px !important;
+	--dock-padding-y: 6px !important;
+	--dock-padding-x: 18px !important;
+	--dock-radius: 0px !important;
+	--dock-divider-height: 26px !important;
+	--dock-tooltip-offset: 14px !important;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: auto;
+	bottom: 0;
+	width: 100%;
+	min-width: 100%;
+	height: 58px;
+	min-height: 58px;
+	max-height: 58px;
+	padding: 6px 18px;
+	flex-flow: row nowrap;
+	place-content: center center;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	border-radius: 0;
+	border-top: 1px solid var(--win-line);
+	background: var(--win-surface);
+	backdrop-filter: blur(30px) saturate(120%);
+	-webkit-backdrop-filter: blur(30px) saturate(120%);
+	box-shadow: 0 -1px 10px rgba(0,0,0,.06);
+	transform: none;
+}
+
+/* No dock magnification on Windows: the taskbar does not do that */
+body[data-platform="windows"] .dock-slot {
+	--dock-scale: 1 !important;
+	--dock-slot-extra: 0px !important;
+	--dock-x: 0px !important;
+	--dock-y: 0px !important;
+	--dock-icon-extra: 0px !important;
+	width: 46px !important;
+	height: 46px !important;
+	flex: 0 0 46px !important;
+}
+
+body[data-platform="windows"] .dock-item {
+	align-items: center;
+	border-radius: 5px;
+	transition: background 120ms ease;
+}
+
+body[data-platform="windows"] .dock-item:hover { background: rgba(0,0,0,.055); }
+body[data-platform="windows"] .dock-item:active { background: rgba(0,0,0,.09); }
+
+body[data-platform="windows"] .dock-icon-scale {
+	width: 32px !important;
+	height: 32px !important;
+	flex: 0 0 32px !important;
+	transform: scale(calc(var(--dock-press, 1) * var(--dock-art-scale, 1))) !important;
+	filter: none !important;
+}
+
+body[data-platform="windows"] .dock-divider {
+	background: rgba(0,0,0,.14);
+	border-radius: 1px;
+}
+
+/* Running indicator: the Windows underline, not the macOS dot */
+body[data-platform="windows"] .dock-item::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	bottom: 2px;
+	width: 0;
+	height: 3px;
+	border-radius: 2px;
+	background: var(--win-accent);
+	opacity: 0;
+	transform: translateX(-50%);
+	transition: width 140ms ease, opacity 140ms ease;
+}
+
+body[data-platform="windows"] .dock-item.is-running::after,
+body[data-platform="windows"] .dock-slot.is-running .dock-item::after {
+	width: 16px;
+	opacity: 1;
+}
+
+body[data-platform="windows"] .dock-label,
+body[data-platform="windows"] .dock-floating-label {
+	border-radius: 4px;
+	font-size: 12px;
+}
+
+/* ── Windows ─────────────────────────────────────────────────────────────── */
+body[data-platform="windows"] .project-window {
+	border-radius: var(--win-radius);
+	border: 1px solid rgba(0,0,0,.12);
+	background: var(--win-card);
+	box-shadow: 0 16px 42px rgba(0,0,0,.26), 0 2px 8px rgba(0,0,0,.14);
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
+body[data-platform="windows"] .window-bar,
+body[data-platform="windows"] .project-window.native-app-window > .window-bar,
+body[data-platform="windows"] .project-window.project-window--embedded > .window-bar {
+	height: 38px;
+	min-height: 38px;
+	background: var(--win-surface-solid) !important;
+	border-bottom: 1px solid var(--win-line);
+	box-shadow: none;
+}
+
+body[data-platform="windows"] .window-bar-main {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding-left: 12px;
+}
+
+body[data-platform="windows"] .window-bar-main > p,
+body[data-platform="windows"] .window-bar-title {
+	order: 0;
+	margin: 0;
+	font-size: 12.5px;
+	font-weight: 600;
+	color: var(--win-text);
+	letter-spacing: 0;
+}
+
+/* Controls move to the right and become square Windows buttons */
+body[data-platform="windows"] .traffic {
+	order: 9;
+	margin-left: auto;
+	gap: 0;
+	height: 38px;
+	align-items: stretch;
+}
+
+body[data-platform="windows"] .traffic-control {
+	width: 46px;
+	height: 38px;
+	min-width: 46px;
+	border-radius: 0;
+	background: transparent !important;
+	color: #1b1b1b;
+	cursor: pointer;
+	transition: background 110ms ease;
+}
+
+/* The macOS chrome styles embedded windows with a three-column grid
+   (54px | title | 54px) from inside a media query, so the Windows layout
+   has to override those properties explicitly. */
+body[data-platform="windows"] .project-window > .window-bar,
+body[data-platform="windows"] .project-window.project-window--embedded > .window-bar {
+	padding: 0 !important;
+	height: 38px !important;
+	min-height: 38px !important;
+	gap: 0 !important;
+	border-radius: calc(var(--win-radius) - 1px) calc(var(--win-radius) - 1px) 0 0 !important;
+	background: var(--win-surface-solid) !important;
+	border-bottom: 1px solid var(--win-line) !important;
+	box-shadow: none !important;
+	backdrop-filter: none !important;
+	-webkit-backdrop-filter: none !important;
+}
+
+body[data-platform="windows"] .project-window .window-bar-main,
+body[data-platform="windows"] .project-window.project-window--embedded .window-bar-main {
+	height: 38px !important;
+	display: flex !important;
+	grid-template-columns: none !important;
+	align-items: center !important;
+	gap: 10px !important;
+	padding: 0 0 0 12px !important;
+}
+
+body[data-platform="windows"] .project-window .window-bar-main::after { display: none !important; }
+
+body[data-platform="windows"] .project-window .window-bar p,
+body[data-platform="windows"] .project-window.project-window--embedded .window-bar p {
+	order: 0;
+	width: auto !important;
+	flex: 1 1 auto;
+	margin: 0 !important;
+	overflow: hidden;
+	color: var(--win-text);
+	font: 600 12.5px/1.2 var(--win-font) !important;
+	letter-spacing: 0 !important;
+	text-align: left !important;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+body[data-platform="windows"] .project-window .traffic,
+body[data-platform="windows"] .project-window.project-window--embedded .traffic {
+	order: 9;
+	width: auto !important;
+	height: 38px !important;
+	margin-left: auto !important;
+	justify-self: end !important;
+	gap: 0 !important;
+	align-items: stretch !important;
+}
+
+body[data-platform="windows"] .project-window .traffic-control,
+body[data-platform="windows"] .project-window.project-window--embedded .traffic-control {
+	width: 46px !important;
+	height: 38px !important;
+	min-width: 46px !important;
+	flex: 0 0 46px !important;
+	border-radius: 0 !important;
+	overflow: hidden;
+}
+
+body[data-platform="windows"] .traffic-symbol { display: none !important; }
+body[data-platform="windows"] .traffic-minimize { order: 1; }
+body[data-platform="windows"] .traffic-expand { order: 2; }
+body[data-platform="windows"] .traffic-close { order: 3; }
+
+body[data-platform="windows"] .traffic-control::before,
+body[data-platform="windows"] .traffic-control::after {
+	content: "";
+	position: absolute;
+	background: currentColor;
+}
+
+body[data-platform="windows"] .traffic-minimize::before {
+	width: 12px;
+	height: 1.5px;
+}
+
+body[data-platform="windows"] .traffic-expand::before {
+	width: 11px;
+	height: 11px;
+	background: transparent;
+	border: 1.5px solid currentColor;
+	border-radius: 1px;
+}
+
+body[data-platform="windows"] .traffic-close::before,
+body[data-platform="windows"] .traffic-close::after {
+	width: 14px;
+	height: 1.5px;
+}
+
+body[data-platform="windows"] .traffic-close::before { transform: rotate(45deg); }
+body[data-platform="windows"] .traffic-close::after { transform: rotate(-45deg); }
+
+body[data-platform="windows"] .traffic-minimize:hover,
+body[data-platform="windows"] .traffic-expand:hover { background: rgba(0,0,0,.06) !important; }
+
+body[data-platform="windows"] .traffic-close:hover {
+	background: #c42b1c !important;
+	color: #fff;
+}
+
+body[data-platform="windows"] .traffic-close { border-top-right-radius: calc(var(--win-radius) - 1px); }
+
+/* File Explorer breadcrumbs, only shown on Windows */
+.explorer-bar { display: none; }
+
+body[data-platform="windows"] .explorer-bar {
+	display: flex;
+	flex: 0 0 auto;
+	align-items: center;
+	gap: 6px;
+	height: 38px;
+	padding: 0 12px;
+	background: var(--win-card);
+	border-bottom: 1px solid var(--win-line);
+	color: var(--win-text-soft);
+	font-size: 12.5px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+body[data-platform="windows"] .explorer-bar__icon {
+	width: 16px;
+	height: 16px;
+	flex: 0 0 16px;
+}
+
+body[data-platform="windows"] .explorer-bar__crumb.is-current { color: var(--win-text); font-weight: 600; }
+body[data-platform="windows"] .explorer-bar__sep { opacity: .55; }
+
+/* ── Desktop icons: Explorer folders with a label underneath ─────────────── */
+body[data-platform="windows"] .desktop-folder-icon { display: none; }
+
+body[data-platform="windows"] .desktop-folder::before {
+	content: "";
+	width: 64px;
+	height: 64px;
+	background: url("../public/icons/project-folder-win.svg") center / contain no-repeat;
+	filter: drop-shadow(0 4px 6px rgba(20,25,40,.22));
+}
+
+body[data-platform="windows"] .desktop-folder-label {
+	padding: 2px 5px;
+	border-radius: 3px;
+	font-family: var(--win-font);
+	font-size: 12px;
+	line-height: 1.25;
+	text-shadow: 0 1px 2px rgba(0,0,0,.65);
+}
+
+body[data-platform="windows"] .desktop-folder:hover .desktop-folder-label {
+	background: rgba(255,255,255,.16);
+	outline: 1px solid rgba(255,255,255,.28);
+}
+
+body[data-platform="windows"] .desktop-folder:focus-visible .desktop-folder-label {
+	background: rgba(0,103,192,.5);
+	outline: 1px dotted rgba(255,255,255,.9);
+}
+
+/* ── Surfaces, controls and scrollbars ───────────────────────────────────── */
+body[data-platform="windows"] :is(.settings-panel, .collections-menu, .collections-sheet,
+  .setting-position-menu, .notes-toolbar-tooltip, .adobe-alert) {
+	border-radius: var(--win-radius);
+}
+
+body[data-platform="windows"] :is(.panel-button, .setting-select-trigger,
+  .setting-appearance-option, .setting-platform-option, .certificate-card,
+  .service-item, .service-tools li, .panel-cta, .mobile-list-card) {
+	border-radius: 4px;
+}
+
+body[data-platform="windows"] :is(.document-viewer-zoom, .document-viewer-download) { border-radius: 4px; }
+body[data-platform="windows"] .document-viewer-close { border-radius: 4px; }
+
+body[data-platform="windows"] :is(.panel-scroll-area, .notes-editor-pane, .messages-history,
+  .mobile-app-scroll, .document-viewer-stage, .project-content-scroll) {
+	scrollbar-width: auto;
+}
+
+body[data-platform="windows"] ::-webkit-scrollbar { width: 14px; height: 14px; }
+body[data-platform="windows"] ::-webkit-scrollbar-track { background: transparent; }
+
+body[data-platform="windows"] ::-webkit-scrollbar-thumb {
+	background: rgba(0,0,0,.32);
+	border: 4px solid transparent;
+	border-radius: 8px;
+	background-clip: padding-box;
+}
+
+body[data-platform="windows"] ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,.45); background-clip: padding-box; }
+
+/* ── Windows + dark ──────────────────────────────────────────────────────── */
+body[data-platform="windows"][data-appearance="dark"] {
+	--win-accent: #4cc2ff;
+	--win-surface: rgba(32,32,32,.86);
+	--win-surface-solid: #2b2b2b;
+	--win-card: #202020;
+	--win-line: rgba(255,255,255,.1);
+	--win-text: #f3f3f3;
+	--win-text-soft: #c5c5c5;
+}
+
+body[data-platform="windows"][data-appearance="dark"] .traffic-control { color: #f3f3f3; }
+body[data-platform="windows"][data-appearance="dark"] .traffic-minimize:hover,
+body[data-platform="windows"][data-appearance="dark"] .traffic-expand:hover { background: rgba(255,255,255,.08) !important; }
+body[data-platform="windows"][data-appearance="dark"] .dock-item:hover { background: rgba(255,255,255,.08); }
+body[data-platform="windows"][data-appearance="dark"] .dock-divider { background: rgba(255,255,255,.18); }
+body[data-platform="windows"][data-appearance="dark"] .explorer-bar { background: var(--win-card); }
+body[data-platform="windows"][data-appearance="dark"] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,.34); background-clip: padding-box; }
+body[data-platform="windows"][data-appearance="dark"] ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.5); background-clip: padding-box; }
+
+/* ── Narrow screens ──────────────────────────────────────────────────────
+ * Below 768px the site swaps to its own phone shell (.mobile-*), so the
+ * Windows skin follows it there instead of forcing desktop chrome onto a
+ * phone: same type, same accent, squarer corners, no macOS pill shapes.
+ */
+@media (max-width: 767px) {
+	body[data-platform="windows"] :is(.mobile-dock, .mobile-app-window, .mobile-window-bar,
+	  .mobile-app-alert, .mobile-project-folder, .mobile-list-card, .mobile-app-scroll) {
+		font-family: var(--win-font);
+	}
+
+	body[data-platform="windows"] .system-bar { height: 52px; }
+
+	body[data-platform="windows"] .mobile-dock {
+		border-radius: 10px;
+	}
+
+	body[data-platform="windows"] .mobile-dock::before { display: none; }
+
+	body[data-platform="windows"] .mobile-dock-item {
+		border-radius: 6px;
+	}
+
+	/* Explorer folders on the phone grid too */
+	body[data-platform="windows"] .mobile-project-folder img {
+		content: url("../public/icons/project-folder-win.svg");
+		object-fit: contain;
+	}
+
+	body[data-platform="windows"] .mobile-window-bar {
+		border-radius: 0;
+		background: var(--win-surface-solid);
+		border-bottom: 1px solid var(--win-line);
+	}
+
+	body[data-platform="windows"] .mobile-window-back { color: var(--win-accent); border-radius: 4px; }
+
+	body[data-platform="windows"] :is(.mobile-app-window, .mobile-app-alert, .mobile-app-alert-dismiss) {
+		border-radius: var(--win-radius);
+	}
+
+	body[data-platform="windows"] .mobile-app-alert-dismiss { background: var(--win-accent); }
+	body[data-platform="windows"] .mobile-app-alert-dismiss:active { background: #005ba1; }
+
+	/* The Explorer breadcrumb is desktop chrome, so it stays out of the phone shell */
+	body[data-platform="windows"] .explorer-bar { display: none; }
+}
+
+/* Tablets and small laptops: the taskbar keeps its shape, just tighter */
+@media (min-width: 768px) and (max-width: 1024px) {
+	body[data-platform="windows"] .dock {
+		--dock-gap: 3px !important;
+		--dock-group-gap: 10px !important;
+		--dock-padding-x: 8px !important;
+		--dock-icon-width: 38px !important;
+		--dock-icon-height: 38px !important;
+		--dock-icon-size: 26px !important;
+		height: 48px;
+		min-height: 48px;
+		max-height: 48px;
+		padding: 5px 8px;
+		gap: 5px;
+	}
+
+	body[data-platform="windows"] .dock-slot {
+		width: 38px !important;
+		height: 38px !important;
+		flex: 0 0 38px !important;
+	}
+
+	body[data-platform="windows"] .dock-icon-scale {
+		width: 26px !important;
+		height: 26px !important;
+		flex: 0 0 26px !important;
+	}
+
+	body[data-platform="windows"] .explorer-bar { font-size: 12px; padding: 0 10px; }
+}
+
+/* Platform control in System Settings */
+.setting-platform-options { display: flex; gap: 8px; flex-wrap: nowrap; }
+
+.setting-platform-option {
+	flex: 1 1 0;
+	min-width: 0;
+	height: 30px;
+	padding: 0 10px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	color: #1d1d1f;
+	font-size: 12px;
+	font-weight: 500;
+	background: rgba(120,120,128,.12);
+	border: 1px solid rgba(60,60,67,.14);
+	border-radius: 9px;
+	cursor: pointer;
+}
+
+.setting-platform-option[aria-pressed="true"] {
+	color: #fff;
+	background: #007aff;
+	border-color: #007aff;
+}
+
+body[data-appearance="dark"] .setting-platform-option {
+	color: #f2f2f7;
+	background: rgba(255,255,255,.1);
+	border-color: rgba(255,255,255,.14);
+}
+
+body[data-appearance="dark"] .setting-platform-option[aria-pressed="true"] {
+	color: #fff;
+	background: #0a84ff;
+	border-color: #0a84ff;
+}
+
+body[data-platform="windows"] .setting-platform-option[aria-pressed="true"],
+body[data-platform="windows"] .setting-appearance-option[aria-pressed="true"] {
+	background: var(--win-accent);
+	border-color: var(--win-accent);
+	color: #fff;
+}
+
+/* ── Vision Bin library ──────────────────────────────────────────────────── */
+body[data-platform="windows"] .library-app { font-family: var(--win-font); }
+body[data-platform="windows"] .library-card { border-radius: 8px; }
+body[data-platform="windows"] .library-card-fallback { border-radius: 0; }
+body[data-platform="windows"] .library-search { border-radius: 4px; }
+body[data-platform="windows"] .library-chip { border-radius: 4px; }
+
+body[data-platform="windows"] .library-chip.is-active {
+	background: var(--win-accent);
+	border-color: var(--win-accent);
+}
+
+body[data-platform="windows"] .library-card-tag {
+	color: var(--win-accent);
+	background: rgba(0,103,192,.12);
+	border-radius: 3px;
+}
+
+body[data-platform="windows"][data-appearance="dark"] .library-card-tag {
+	color: var(--dark-link, #5aa9ff);
+	background: rgba(90,169,255,.16);
+}
+
+/* ── Taskbar on the left or right edge ─────────────────────────────────────
+   The macOS skin supports a vertical Dock on either side; the Windows
+   taskbar used to ignore that choice and collapse into a broken hybrid
+   (pinned bottom AND offset right). Give left/right a proper full-height
+   vertical taskbar instead. */
+body[data-platform="windows"] .dock[data-position="left"],
+body[data-platform="windows"] .dock[data-position="right"] {
+	top: 40px;
+	bottom: 0;
+	height: auto;
+	min-height: 0;
+	max-height: none;
+	width: 62px;
+	min-width: 62px;
+	max-width: 62px;
+	padding: 12px 6px;
+	transform: none;
+	border-top: 0;
+	border-radius: 0;
+	place-content: start center;
+	justify-content: flex-start;
+}
+
+body[data-platform="windows"] .dock[data-position="left"] {
+	left: 0;
+	right: auto;
+	border-right: 1px solid var(--win-line);
+	box-shadow: 1px 0 10px rgba(0,0,0,.06);
+}
+
+body[data-platform="windows"] .dock[data-position="right"] {
+	right: 0;
+	left: auto;
+	border-left: 1px solid var(--win-line);
+	box-shadow: -1px 0 10px rgba(0,0,0,.06);
+}
+
+body[data-platform="windows"] .dock[data-position="left"] .dock-track,
+body[data-platform="windows"] .dock[data-position="right"] .dock-track {
+	height: 100%;
+	max-height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	scrollbar-width: none;
+	align-content: flex-start;
+}
+
+body[data-platform="windows"] .dock[data-position="left"] .dock-track::-webkit-scrollbar,
+body[data-platform="windows"] .dock[data-position="right"] .dock-track::-webkit-scrollbar { display: none; }
+
+body[data-platform="windows"] .dock[data-position="left"] .dock-group,
+body[data-platform="windows"] .dock[data-position="right"] .dock-group {
+	flex-flow: column;
+	width: min-content;
+	height: auto;
+}
+
+body[data-platform="windows"] .dock[data-position="left"] .dock-divider,
+body[data-platform="windows"] .dock[data-position="right"] .dock-divider {
+	width: 26px;
+	height: 1px;
+	flex: 0 0 1px;
+	margin: 8px 0;
+}
+
+body[data-platform="windows"] .dock[data-position="left"] .dock-slot,
+body[data-platform="windows"] .dock[data-position="right"] .dock-slot {
+	width: 46px !important;
+	height: 46px !important;
+	flex: 0 0 46px !important;
+}
+
+body[data-platform="windows"] .dock[data-position="left"] .settings-panel {
+	left: calc(100% + 16px);
+	right: auto;
+	top: 50%;
+	bottom: auto;
+	transform: translateY(-50%);
+}
+
+body[data-platform="windows"] .dock[data-position="right"] .settings-panel {
+	right: calc(100% + 16px);
+	left: auto;
+	top: 50%;
+	bottom: auto;
+	transform: translateY(-50%);
+}
+
+/* Keep the desktop workspace clear of a side taskbar */
+body[data-platform="windows"][data-dock-position="left"] .desktop-content,
+body[data-platform="windows"][data-dock-position="right"] .desktop-content {
+	padding-inline: 62px;
+}
+
+/* ── Windows 10 flavour ────────────────────────────────────────────────────
+   Square corners, a solid taskbar and a Start button on the left, the way
+   Windows 10 does it. */
+body[data-platform="windows"] { --win-radius: 0px; }
+body[data-platform="windows"] .project-window,
+body[data-platform="windows"] .settings-panel,
+body[data-platform="windows"] .collections-menu,
+body[data-platform="windows"] .mobile-app-window { border-radius: 0; }
+body[data-platform="windows"] .dock {
+  background: rgba(240,240,240,.96);
+  justify-content: flex-start;
+  padding-left: 12px;
+}
+body[data-platform="windows"][data-appearance="dark"] .dock { background: rgba(24,24,24,.96); }
+body[data-platform="windows"] .dock-track { justify-content: flex-start; }
+body[data-platform="windows"] .dock-track::before {
+  content: "";
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  margin-right: 6px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%230078d7' d='M0 2.2 6.6 1.3v6.2H0zM7.4 1.2 16 0v7.5H7.4zM0 8.5h6.6v6.2L0 13.8zM7.4 8.5H16V16l-8.6-1.2z'/%3E%3C/svg%3E") center / 18px 18px no-repeat;
+}
+body[data-platform="windows"] .dock[data-position="left"] .dock-track::before,
+body[data-platform="windows"] .dock[data-position="right"] .dock-track::before { margin: 0 0 10px; }

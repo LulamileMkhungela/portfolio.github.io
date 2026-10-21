@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Postman — Lulas Orders API | Lulamile Mkhungela</title>
+<meta name="description" content="A Postman workspace for the Lulas Orders API: saved requests with empty, slow, paginated and error responses, headers and test results.">
+<!--
+  The Postman item in the dock opens this page in an iframe.
+
+  It shows how I design against real responses rather than placeholder text:
+  pick a request, pick a state, press Send. The responses live in the REQUESTS
+  object below, so the empty / slow / paginated / error states are always there
+  to read.
+-->
+<style>
+  :root {
+    --bg: #1c1c1c;
+    --panel: #212121;
+    --panel-2: #262626;
+    --line: #333333;
+    --line-soft: #2b2b2b;
+    --text: #e6e6e6;
+    --muted: #9b9b9b;
+    --faint: #6f6f6f;
+    --orange: #ff6c37;
+    --orange-soft: rgba(255,108,55,.16);
+    --green: #6bbf59;
+    --blue: #6b9bd1;
+    --yellow: #d9b24c;
+    --red: #e2645f;
+    --purple: #b48ead;
+    --radius: 6px;
+    --ui: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 12px/1.4 var(--ui);
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+  button, select, input { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 2px solid #7aa7ff; outline-offset: 1px; }
+
+  .app { height: 100%; display: flex; flex-direction: column; min-height: 0; }
+
+  /* ── Top bar ─────────────────────────────────────────────────────────── */
+  .topbar {
+    flex: none;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 12px;
+    background: #1a1a1a;
+    border-bottom: 1px solid var(--line);
+  }
+  .brand { display: flex; align-items: center; gap: 7px; font-weight: 600; letter-spacing: .01em; }
+  .brand svg { width: 20px; height: 20px; }
+  .workspace {
+    display: flex; align-items: center; gap: 8px;
+    min-width: 0;
+    color: var(--muted);
+    font-size: 11px;
+  }
+  .workspace strong { color: var(--text); font-weight: 600; }
+  .workspace .sep { width: 1px; height: 14px; background: var(--line); }
+  .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  .env {
+    display: flex; align-items: center; gap: 6px;
+    padding: 4px 8px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--panel);
+    color: var(--muted);
+    font-size: 10.5px;
+  }
+  .env select {
+    border: 0; background: transparent; color: var(--text);
+    font-size: 10.5px; padding: 0 2px; outline-offset: 3px;
+  }
+  .env-flag { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+  .avatar {
+    width: 22px; height: 22px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: linear-gradient(140deg,#ff6c37,#b23cff);
+    color: #fff; font-size: 9px; font-weight: 700;
+  }
+
+  /* ── Shell ───────────────────────────────────────────────────────────── */
+  .shell { flex: 1; min-height: 0; display: flex; }
+
+  .sidebar {
+    flex: none;
+    width: 186px;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--panel);
+    border-right: 1px solid var(--line);
+  }
+  .sidebar-head {
+    flex: none;
+    height: 30px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line-soft);
+    color: var(--muted);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+  .sidebar-scroll { min-height: 0; overflow-y: auto; padding: 6px 6px 10px; }
+  .collection-title {
+    width: 100%;
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 6px;
+    border: 0; border-radius: 4px;
+    background: transparent;
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 600;
+    text-align: left;
+  }
+  .collection-title:hover { background: rgba(255,255,255,.05); }
+  .collection-title .caret { color: var(--muted); font-size: 9px; width: 9px; }
+  .collection-title .count { margin-left: auto; color: var(--faint); font-size: 9.5px; font-weight: 500; }
+  .folder-label {
+    margin: 9px 6px 3px;
+    color: var(--faint);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+  }
+  .request-list { list-style: none; margin: 0; padding: 0; }
+  .request-item {
+    width: 100%;
+    display: flex; align-items: center; gap: 7px;
+    padding: 5px 6px 5px 14px;
+    border: 0; border-radius: 4px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 11px;
+    text-align: left;
+  }
+  .request-item:hover { background: rgba(255,255,255,.05); color: var(--text); }
+  .request-item[aria-current="true"] { background: rgba(255,108,55,.12); color: var(--text); }
+  .method-tag {
+    flex: none;
+    font-family: var(--mono);
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: .03em;
+  }
+  .method-tag.get { color: var(--green); }
+  .method-tag.post { color: var(--yellow); }
+  .method-tag.patch { color: var(--purple); }
+  .method-tag.del { color: var(--red); }
+  .request-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sidebar-foot {
+    margin-top: auto;
+    flex: none;
+    padding: 8px 10px;
+    border-top: 1px solid var(--line-soft);
+    color: var(--faint);
+    font-size: 9.5px;
+    line-height: 1.45;
+  }
+  .sidebar-foot b { display: block; color: var(--muted); font-weight: 600; margin-bottom: 1px; }
+
+  .main { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; }
+
+  /* ── Request tabs ────────────────────────────────────────────────────── */
+  .tabbar {
+    flex: none;
+    height: 32px;
+    display: flex;
+    align-items: stretch;
+    background: #191919;
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabbar::-webkit-scrollbar { display: none; }
+  .tab {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 0 12px;
+    border: 0;
+    border-right: 1px solid var(--line);
+    background: transparent;
+    color: var(--muted);
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .tab:hover { color: var(--text); background: rgba(255,255,255,.03); }
+  .tab[aria-selected="true"] {
+    background: var(--panel-2);
+    color: var(--text);
+    box-shadow: inset 0 -2px 0 var(--orange);
+  }
+  .tab-add { width: 30px; border-right: 0; justify-content: center; color: var(--faint); font-size: 15px; }
+
+  /* ── URL bar ─────────────────────────────────────────────────────────── */
+  .urlbar {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+  }
+  .method-badge {
+    flex: none;
+    min-width: 62px;
+    height: 30px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--panel-2);
+    color: var(--green);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 700;
+  }
+  .url-field {
+    flex: 1;
+    min-width: 0;
+    height: 30px;
+    display: flex; align-items: center;
+    padding: 0 10px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--bg);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .url-field .host { color: var(--muted); }
+  .url-field .path { color: var(--text); overflow: hidden; text-overflow: ellipsis; }
+  .url-field .query { color: var(--blue); }
+  .send-btn {
+    flex: none;
+    height: 30px;
+    min-width: 78px;
+    padding: 0 14px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    border: 0; border-radius: 4px;
+    background: var(--orange);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .send-btn:hover { background: #ff7f4f; }
+  .send-btn[disabled] { opacity: .7; cursor: progress; }
+  .send-btn .spinner {
+    width: 11px; height: 11px;
+    border: 2px solid rgba(255,255,255,.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Request detail + response ───────────────────────────────────────── */
+  .request-meta {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 10px;
+    height: 28px;
+    border-bottom: 1px solid var(--line-soft);
+    background: var(--panel);
+    color: var(--muted);
+    font-size: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .request-meta::-webkit-scrollbar { display: none; }
+  .mini-tab {
+    border: 0; background: transparent; padding: 0;
+    color: var(--muted); font-size: 10px; white-space: nowrap;
+    height: 28px;
+  }
+  .mini-tab:hover { color: var(--text); }
+  .mini-tab[aria-selected="true"] { color: var(--text); box-shadow: inset 0 -1px 0 var(--orange); }
+  .mini-tab .num { color: var(--faint); margin-left: 3px; }
+
+  .request-detail {
+    flex: none;
+    max-height: 92px;
+    overflow: auto;
+    padding: 6px 10px 8px;
+    background: #1f1f1f;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 10px;
+    scrollbar-width: thin;
+  }
+  .kv { display: grid; grid-template-columns: 118px minmax(0,1fr); gap: 4px 12px; }
+  .kv dt { color: var(--faint); padding: 1px 0; }
+  .kv dd { margin: 0; color: var(--muted); padding: 1px 0; overflow-wrap: anywhere; }
+  .kv dd .key { color: var(--blue); }
+  .empty-note { color: var(--faint); font-family: var(--ui); font-size: 10px; }
+
+  .response {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+  }
+  .response-head {
+    flex: none;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    padding: 7px 10px 0;
+  }
+  .response-head h2 {
+    margin: 0;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .status {
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    font-weight: 700;
+  }
+  .status.ok { color: #a9e29c; background: rgba(107,191,89,.16); }
+  .status.warn { color: #f0d79a; background: rgba(217,178,76,.16); }
+  .status.bad { color: #f3b0ad; background: rgba(226,100,95,.16); }
+  .metric { color: var(--faint); font-family: var(--mono); font-size: 9.5px; }
+  .metric b { color: var(--muted); font-weight: 500; }
+  .state-chips {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .state-chips .label {
+    color: var(--faint);
+    font-family: var(--ui);
+    font-size: 9px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin-right: 2px;
+  }
+  .chip {
+    padding: 2px 7px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 9.5px;
+  }
+  .chip:hover { color: var(--text); border-color: #4a4a4a; }
+  .chip[aria-pressed="true"] {
+    color: var(--orange);
+    border-color: rgba(255,108,55,.55);
+    background: var(--orange-soft);
+  }
+  .response-tabs {
+    flex: none;
+    display: flex;
+    gap: 12px;
+    padding: 6px 10px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .response-tab {
+    border: 0; background: transparent; padding: 0 0 5px;
+    color: var(--muted); font-size: 10px;
+  }
+  .response-tab:hover { color: var(--text); }
+  .response-tab[aria-selected="true"] { color: var(--text); box-shadow: inset 0 -1px 0 var(--orange); }
+  .response-tab .num { color: var(--faint); margin-left: 3px; }
+
+  .response-body {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .code {
+    margin: 0;
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 9px 12px 14px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.55;
+    color: #cfcfcf;
+    tab-size: 2;
+    scrollbar-width: thin;
+    scrollbar-color: #4a4a4a transparent;
+    white-space: pre;
+  }
+  .code::-webkit-scrollbar { width: 8px; height: 8px; }
+  .code::-webkit-scrollbar-thumb { background: #3d3d3d; border-radius: 4px; }
+  .code .key { color: #8fb8e0; }
+  .code .str { color: #a5c98a; }
+  .code .num { color: #dcb173; }
+  .code .bool { color: #c9a0dc; }
+  .code .null { color: #c9a0dc; }
+
+  .test-list { margin: 0; padding: 9px 12px; list-style: none; overflow: auto; }
+  .test-list li {
+    display: flex; gap: 8px; align-items: flex-start;
+    padding: 4px 0;
+    font-family: var(--mono);
+    font-size: 10px;
+    line-height: 1.5;
+  }
+  .test-list .tick { color: var(--green); flex: none; }
+  .test-list .fail { color: var(--red); flex: none; }
+  .test-list .test-name { color: var(--muted); }
+  .test-list .test-name b { color: var(--text); font-weight: 500; }
+  .response-source {
+    flex: none;
+    padding: 5px 10px 7px;
+    border-top: 1px solid var(--line-soft);
+    color: var(--faint);
+    font-size: 9px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .response-source .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); }
+
+  .sending {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 10.5px;
+  }
+  .sending .bar { width: 132px; height: 3px; border-radius: 999px; background: #2f2f2f; overflow: hidden; }
+  .sending .bar i { display: block; width: 40%; height: 100%; background: var(--orange); animation: sweep 1s ease-in-out infinite; }
+  @keyframes sweep { 0% { transform: translateX(-100%); } 100% { transform: translateX(350%); } }
+
+  @media (max-width: 700px) {
+    .sidebar { width: 152px; }
+    .workspace .sep, .workspace .crumb { display: none; }
+    .kv { grid-template-columns: 96px minmax(0,1fr); }
+    .state-chips .label { display: none; }
+  }
+  @media (max-width: 560px) {
+    .sidebar, .tabbar { display: none; }
+    .env span, .avatar, .brand span { display: none; }
+    .method-badge { min-width: 48px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .send-btn .spinner, .sending .bar i { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#ff6c37"/><path d="M9 22.5c4.4 1.4 8.7-1.7 9.9-5.3 1.3-3.9-.9-6.7-3.7-6.9-3-.2-5.5 2.2-5.2 5.1.3 2.6 2.8 3.9 5 2.9" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round"/><circle cx="20.6" cy="10.6" r="1.6" fill="#fff"/></svg>
+      <span>Postman</span>
+    </div>
+    <div class="workspace">
+      <span class="sep" aria-hidden="true"></span>
+      <strong>Lulas — Orders API</strong>
+      <span class="crumb">Collections</span>
+    </div>
+    <div class="topbar-right">
+      <label class="env">
+        <span class="env-flag" aria-hidden="true"></span>
+        <span>Env</span>
+        <select id="env-select" aria-label="Environment">
+          <option>Lulas UAT</option>
+          <option>Lulas Production</option>
+          <option>Local</option>
+        </select>
+      </label>
+      <span class="avatar" aria-hidden="true">LM</span>
+    </div>
+  </header>
+
+  <div class="shell">
+    <aside class="sidebar" aria-label="Collections">
+      <div class="sidebar-head"><span>Collections</span><span aria-hidden="true">＋</span></div>
+      <div class="sidebar-scroll">
+        <button class="collection-title" type="button" aria-expanded="true" id="collection-toggle">
+          <span class="caret" aria-hidden="true">▾</span>
+          <span>Lulas Orders API</span>
+          <span class="count" id="collection-count">4</span>
+        </button>
+        <p class="folder-label">Orders</p>
+        <ul class="request-list" id="request-list"></ul>
+        <p class="folder-label">Payments</p>
+        <ul class="request-list">
+          <li><button class="request-item" type="button" disabled>
+            <span class="method-tag get">GET</span><span class="request-name">Payment status</span>
+          </button></li>
+        </ul>
+      </div>
+      <div class="sidebar-foot"><b>Orders API v1.4</b>Environment · Lulas UAT</div>
+    </aside>
+
+    <main class="main">
+      <div class="tabbar" role="tablist" aria-label="Open requests" id="tabbar"></div>
+
+      <div class="urlbar">
+        <span class="method-badge" id="method-badge">GET</span>
+        <div class="url-field" id="url-field"></div>
+        <button class="send-btn" id="send-btn" type="button">Send</button>
+      </div>
+
+      <div class="request-meta" role="tablist" aria-label="Request detail">
+        <button class="mini-tab" type="button" role="tab" data-request-tab="params" aria-selected="true">Params <span class="num" id="params-count">2</span></button>
+        <button class="mini-tab" type="button" role="tab" data-request-tab="headers" aria-selected="false">Headers <span class="num" id="headers-count">4</span></button>
+        <button class="mini-tab" type="button" role="tab" data-request-tab="body" aria-selected="false" id="body-tab">Body</button>
+        <button class="mini-tab" type="button" role="tab" data-request-tab="tests" aria-selected="false">Tests <span class="num" id="tests-count">3</span></button>
+      </div>
+      <div class="request-detail" id="request-detail" role="tabpanel" aria-live="polite"></div>
+
+      <section class="response" aria-label="Response">
+        <div class="response-head">
+          <h2>Response</h2>
+          <span class="status ok" id="status-pill" aria-live="polite">200 OK</span>
+          <span class="metric">Time <b id="metric-time">118 ms</b></span>
+          <span class="metric">Size <b id="metric-size">1.42 KB</b></span>
+          <div class="state-chips" id="state-chips" aria-label="Response state"></div>
+        </div>
+        <div class="response-tabs" role="tablist" aria-label="Response detail">
+          <button class="response-tab" type="button" role="tab" data-response-tab="body" aria-selected="true">Body</button>
+          <button class="response-tab" type="button" role="tab" data-response-tab="headers" aria-selected="false">Headers <span class="num" id="resp-headers-count">6</span></button>
+          <button class="response-tab" type="button" role="tab" data-response-tab="tests" aria-selected="false">Test results <span class="num" id="resp-tests-count">3</span></button>
+        </div>
+        <div class="response-body" id="response-body"></div>
+        <div class="response-source"><span class="dot" aria-hidden="true"></span><span id="response-source">GET · https://api.lulas.co.za/v1/orders</span></div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const currency = "ZAR";
+
+  const REQUESTS = {
+    "list-orders": {
+      name: "List orders",
+      method: "GET",
+      path: "/v1/orders",
+      query: "?page=1&per_page=3",
+      folder: "Orders",
+      summary: "Paginated order list. The screen needs a table, an empty state and a retry path.",
+      params: [
+        ["page", "1"],
+        ["per_page", "3"],
+        ["status", "(all)"]
+      ],
+      headers: [
+        ["Authorization", "Bearer {{token}}"],
+        ["Accept", "application/json"],
+        ["X-Request-Id", "{{$guid}}"],
+        ["Accept-Language", "en-ZA"]
+      ],
+      body: null,
+      states: [
+        { id: "success", label: "Success", status: "200 OK", code: 200, time: 118, size: "1.42 KB" },
+        { id: "empty", label: "Empty", status: "200 OK", code: 200, time: 94, size: "96 B" },
+        { id: "slow", label: "Slow", status: "200 OK", code: 200, time: 2412, size: "1.42 KB" },
+        { id: "paginated", label: "Paginated", status: "200 OK", code: 200, time: 131, size: "1.61 KB" },
+        { id: "error", label: "Error", status: "503 Service Unavailable", code: 503, time: 3021, size: "184 B" }
+      ],
+      defaultState: "success",
+      responses: {
+        success: {
+          body: {
+            data: [
+              { id: "ORD-88213", customer: "Naledi M.", status: "shipped", total: 1249, currency, placed_at: "2026-10-18T09:12:00Z" },
+              { id: "ORD-88214", customer: "Thabo K.", status: "processing", total: 399.99, currency, placed_at: "2026-10-18T11:41:00Z" },
+              { id: "ORD-88215", customer: "Anele S.", status: "delivered", total: 219.5, currency, placed_at: "2026-10-17T16:05:00Z" }
+            ],
+            meta: { page: 1, per_page: 3, total: 3 }
+          },
+          headers: {
+            "content-type": "application/json; charset=utf-8",
+            "x-request-id": "req_8f21c0",
+            "x-ratelimit-remaining": "842",
+            "cache-control": "no-store",
+            "server": "lulas-api",
+            "content-length": "1455"
+          },
+          tests: [
+            ["Status code is 200", true],
+            ["Response time is below 500 ms", true],
+            ["Schema matches OrdersList", true]
+          ]
+        },
+        empty: {
+          body: { data: [], meta: { page: 1, per_page: 3, total: 0 } },
+          headers: { "content-type": "application/json; charset=utf-8", "x-request-id": "req_8f21d4" },
+          tests: [
+            ["Status code is 200", true],
+            ["Body contains an empty data array", true],
+            ["Schema matches OrdersList", true]
+          ]
+        },
+        slow: {
+          body: {
+            data: [
+              { id: "ORD-88213", customer: "Naledi M.", status: "shipped", total: 1249, currency, placed_at: "2026-10-18T09:12:00Z" },
+              { id: "ORD-88214", customer: "Thabo K.", status: "processing", total: 399.99, currency, placed_at: "2026-10-18T11:41:00Z" }
+            ],
+            meta: { page: 1, per_page: 3, total: 2 }
+          },
+          headers: { "content-type": "application/json; charset=utf-8", "x-request-id": "req_90ab12", "x-upstream-time": "2301ms" },
+          tests: [
+            ["Status code is 200", true],
+            ["Response time is below 500 ms", false],
+            ["Schema matches OrdersList", true]
+          ]
+        },
+        paginated: {
+          body: {
+            data: [
+              { id: "ORD-88216", customer: "Sipho D.", status: "processing", total: 749, currency, placed_at: "2026-10-17T08:22:00Z" },
+              { id: "ORD-88217", customer: "Lerato B.", status: "shipped", total: 1899, currency, placed_at: "2026-10-16T14:48:00Z" },
+              { id: "ORD-88218", customer: "Karabo T.", status: "delivered", total: 89.99, currency, placed_at: "2026-10-16T07:15:00Z" }
+            ],
+            meta: { page: 2, per_page: 3, total: 27, next: "/v1/orders?page=3&per_page=3" }
+          },
+          headers: { "content-type": "application/json; charset=utf-8", "x-request-id": "req_90ab77", "link": "</v1/orders?page=3>; rel=\"next\"" },
+          tests: [
+            ["Status code is 200", true],
+            ["meta.next is present", true],
+            ["Schema matches OrdersList", true]
+          ]
+        },
+        error: {
+          body: {
+            error: {
+              code: "upstream_unavailable",
+              message: "Orders service timed out after 30000ms",
+              request_id: "req_7f3a91",
+              retry_after: 30
+            }
+          },
+          headers: { "content-type": "application/json; charset=utf-8", "retry-after": "30", "x-request-id": "req_7f3a91" },
+          tests: [
+            ["Status code is 200", false],
+            ["Error body has code and message", true],
+            ["Schema matches OrdersList", false]
+          ]
+        }
+      }
+    },
+
+    "get-order": {
+      name: "Get order",
+      method: "GET",
+      path: "/v1/orders/ORD-88213",
+      query: "",
+      folder: "Orders",
+      summary: "Single order with line items. Used by the order detail screen.",
+      params: [["expand", "items"]],
+      headers: [
+        ["Authorization", "Bearer {{token}}"],
+        ["Accept", "application/json"]
+      ],
+      body: null,
+      states: [
+        { id: "success", label: "Success", status: "200 OK", code: 200, time: 87, size: "812 B" },
+        { id: "notfound", label: "Not found", status: "404 Not Found", code: 404, time: 64, size: "142 B" },
+        { id: "slow", label: "Slow", status: "200 OK", code: 200, time: 1870, size: "812 B" }
+      ],
+      defaultState: "success",
+      responses: {
+        success: {
+          body: {
+            id: "ORD-88213",
+            customer: { id: "CUS-4412", name: "Naledi M.", email: "n***@lulas.co.za" },
+            status: "shipped",
+            placed_at: "2026-10-18T09:12:00Z",
+            delivery: { method: "courier", eta: "2026-10-21", tracking: "VD-9921-ZA" },
+            items: [
+              { sku: "SIM-PRE-10", name: "Prepaid SIM · 10GB", qty: 1, price: 999 },
+              { sku: "ACC-CSE-01", name: "Silicone case", qty: 1, price: 250 }
+            ],
+            total: 1249,
+            currency
+          },
+          headers: { "content-type": "application/json; charset=utf-8", "x-request-id": "req_a1120c", "cache-control": "no-store" },
+          tests: [
+            ["Status code is 200", true],
+            ["Order id matches the request", true],
+            ["items array is not empty", true]
+          ]
+        },
+        notfound: {
+          body: { error: { code: "not_found", message: "No order with id ORD-88213 for this account", request_id: "req_a1120e" } },
+          headers: { "content-type": "application/json; charset=utf-8", "x-request-id": "req_a1120e" },
+          tests: [
+            ["Status code is 200", false],
+            ["Error body has code and message", true],
+            ["items array is not empty", false]
+          ]
+        },
+        slow: {
+          body: { id: "ORD-88213", status: "shipped", total: 1249, currency },
+          headers: { "content-type": "application/json; charset=utf-8", "x-request-id": "req_a1129c", "x-upstream-time": "1810ms" },
+          tests: [
+            ["Status code is 200", true],
+            ["Response time is below 500 ms", false],
+            ["items array is not empty", false]
+          ]
+        }
+      }
+    },
+
+    "create-order": {
+      name: "Create order",
+      method: "POST",
+      path: "/v1/orders",
+      query: "",
+      folder: "Orders",
+      summary: "Checkout submit. The contract has to be right before the UI can be built.",
+      params: [],
+      headers: [
+        ["Authorization", "Bearer {{token}}"],
+        ["Content-Type", "application/json"],
+        ["Idempotency-Key", "{{$guid}}"]
+      ],
+      body: {
+        customer_id: "CUS-4412",
+        channel: "app",
+        items: [{ sku: "SIM-PRE-10", qty: 1 }],
+        delivery: { method: "courier" }
+      },
+      states: [
+        { id: "success", label: "201 Created", status: "201 Created", code: 201, time: 212, size: "236 B" },
+        { id: "validation", label: "Validation", status: "422 Unprocessable", code: 422, time: 141, size: "318 B" },
+        { id: "error", label: "Error", status: "502 Bad Gateway", code: 502, time: 2601, size: "176 B" }
+      ],
+      defaultState: "success",
+      responses: {
+        success: {
+          body: { id: "ORD-88219", status: "processing", total: 999, currency, created_at: "2026-10-21T10:02:00Z" },
+          headers: { "content-type": "application/json; charset=utf-8", "location": "/v1/orders/ORD-88219", "x-request-id": "req_b7d210" },
+          tests: [
+            ["Status code is 201", true],
+            ["Location header is set", true],
+            ["Response has an order id", true]
+          ]
+        },
+        validation: {
+          body: {
+            error: {
+              code: "validation_failed",
+              message: "One or more fields are invalid",
+              fields: [
+                { field: "items[0].sku", issue: "unknown_sku" },
+                { field: "delivery.method", issue: "not_deliverable" }
+              ],
+              request_id: "req_b7d221"
+            }
+          },
+          headers: { "content-type": "application/json; charset=utf-8", "x-request-id": "req_b7d221" },
+          tests: [
+            ["Status code is 201", false],
+            ["Error lists field-level issues", true],
+            ["Response has an order id", false]
+          ]
+        },
+        error: {
+          body: { error: { code: "bad_gateway", message: "Downstream writer refused the order", request_id: "req_b7d240" } },
+          headers: { "content-type": "application/json; charset=utf-8", "x-request-id": "req_b7d240" },
+          tests: [
+            ["Status code is 201", false],
+            ["Order can be retried with the idempotency key", true],
+            ["Response has an order id", false]
+          ]
+        }
+      }
+    },
+
+    "patch-order": {
+      name: "Cancel order",
+      method: "PATCH",
+      path: "/v1/orders/ORD-88214",
+      query: "",
+      folder: "Orders",
+      summary: "The cancel action, including what the button says when it fails.",
+      params: [],
+      headers: [
+        ["Authorization", "Bearer {{token}}"],
+        ["Content-Type", "application/merge-patch+json"]
+      ],
+      body: { status: "cancelled", reason: "customer_request" },
+      states: [
+        { id: "success", label: "Success", status: "200 OK", code: 200, time: 156, size: "204 B" },
+        { id: "conflict", label: "Conflict", status: "409 Conflict", code: 409, time: 121, size: "196 B" }
+      ],
+      defaultState: "success",
+      responses: {
+        success: {
+          body: { id: "ORD-88214", status: "cancelled", cancelled_at: "2026-10-21T10:06:00Z", refund_eta_days: 3 },
+          headers: { "content-type": "application/json; charset=utf-8", "x-request-id": "req_c91820" },
+          tests: [
+            ["Status code is 200", true],
+            ["Status is cancelled", true],
+            ["Refund window is returned", true]
+          ]
+        },
+        conflict: {
+          body: { error: { code: "already_shipped", message: "Order left the warehouse and can no longer be cancelled", request_id: "req_c9182a" } },
+          headers: { "content-type": "application/json; charset=utf-8", "x-request-id": "req_c9182a" },
+          tests: [
+            ["Status code is 200", false],
+            ["Error explains the conflict", true],
+            ["Refund window is returned", false]
+          ]
+        }
+      }
+    }
+  };
+
+  const ORDER = ["list-orders", "get-order", "create-order", "patch-order"];
+  const state = {
+    active: "list-orders",
+    openTabs: ["list-orders"],
+    requestTab: "params",
+    responseTab: "body",
+    activeState: {},
+    lastResponse: {},
+    sending: false
+  };
+
+  const $ = selector => document.querySelector(selector);
+  const el = {
+    list: $("#request-list"),
+    tabbar: $("#tabbar"),
+    method: $("#method-badge"),
+    url: $("#url-field"),
+    send: $("#send-btn"),
+    paramsCount: $("#params-count"),
+    headersCount: $("#headers-count"),
+    bodyTab: $("#body-tab"),
+    testsCount: $("#tests-count"),
+    detail: $("#request-detail"),
+    status: $("#status-pill"),
+    time: $("#metric-time"),
+    size: $("#metric-size"),
+    chips: $("#state-chips"),
+    responseBody: $("#response-body"),
+    respHeadersCount: $("#resp-headers-count"),
+    respTestsCount: $("#resp-tests-count"),
+    source: $("#response-source"),
+    collectionToggle: $("#collection-toggle"),
+    collectionCount: $("#collection-count")
+  };
+
+  const methodClass = method => method === "GET" ? "get" : method === "POST" ? "post" : method === "PATCH" ? "patch" : "del";
+
+  function current() {
+    return REQUESTS[state.active];
+  }
+
+  function currentState() {
+    const request = current();
+    return state.activeState[state.active] || request.defaultState;
+  }
+
+  function responseFor(requestId = state.active, stateId = currentState()) {
+    return REQUESTS[requestId].responses[stateId];
+  }
+
+  function escapeHtml(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function highlightJson(value) {
+    const text = JSON.stringify(value, null, 2);
+    return escapeHtml(text).replace(
+      /("(?:\\u[a-fA-F0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?)/g,
+      match => {
+        let cls = "num";
+        if (/^"/.test(match)) cls = /:$/.test(match) ? "key" : "str";
+        else if (/true|false/.test(match)) cls = "bool";
+        else if (/null/.test(match)) cls = "null";
+        return `<span class="${cls}">${match}</span>`;
+      }
+    );
+  }
+
+  function renderRequestList() {
+    el.list.replaceChildren();
+    ORDER.forEach(id => {
+      const request = REQUESTS[id];
+      const li = document.createElement("li");
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "request-item";
+      button.dataset.requestId = id;
+      button.setAttribute("aria-current", String(id === state.active));
+      button.innerHTML = `<span class="method-tag ${methodClass(request.method)}">${request.method}</span><span class="request-name">${escapeHtml(request.name)}</span>`;
+      button.addEventListener("click", () => selectRequest(id));
+      li.append(button);
+      el.list.append(li);
+    });
+  }
+
+  function renderTabs() {
+    el.tabbar.replaceChildren();
+    state.openTabs.forEach(id => {
+      const request = REQUESTS[id];
+      const tab = document.createElement("button");
+      tab.type = "button";
+      tab.className = "tab";
+      tab.setAttribute("role", "tab");
+      tab.setAttribute("aria-selected", String(id === state.active));
+      tab.innerHTML = `<span class="method-tag ${methodClass(request.method)}">${request.method}</span><span>${escapeHtml(request.name)}</span>`;
+      tab.addEventListener("click", () => selectRequest(id));
+      el.tabbar.append(tab);
+    });
+    const add = document.createElement("button");
+    add.type = "button";
+    add.className = "tab tab-add";
+    add.setAttribute("aria-label", "New request");
+    add.textContent = "＋";
+    add.addEventListener("click", () => {
+      const next = ORDER.find(id => !state.openTabs.includes(id));
+      if (next) selectRequest(next);
+    });
+    el.tabbar.append(add);
+  }
+
+  function renderUrl() {
+    const request = current();
+    el.method.textContent = request.method;
+    el.method.style.color = `var(--${request.method === "GET" ? "green" : request.method === "POST" ? "yellow" : "purple"})`;
+    el.url.innerHTML = `<span class="host">https://api.lulas.co.za</span><span class="path">${escapeHtml(request.path)}</span>${request.query ? `<span class="query">${escapeHtml(request.query)}</span>` : ""}`;
+  }
+
+  function renderCounts() {
+    const request = current();
+    const response = responseFor();
+    el.paramsCount.textContent = String(request.params.length);
+    el.headersCount.textContent = String(request.headers.length);
+    el.testsCount.textContent = String(response.tests.length);
+    el.respHeadersCount.textContent = String(Object.keys(response.headers).length);
+    el.respTestsCount.textContent = String(response.tests.length);
+    el.bodyTab.hidden = !request.body;
+    el.responseBody.dataset.request = state.active;
+  }
+
+  function renderRequestDetail() {
+    const request = current();
+    const response = responseFor();
+    el.detail.replaceChildren();
+
+    if (state.requestTab === "params") {
+      if (!request.params.length) {
+        el.detail.innerHTML = `<p class="empty-note">This request takes no query parameters.</p>`;
+        return;
+      }
+      const list = document.createElement("dl");
+      list.className = "kv";
+      request.params.forEach(([key, value]) => {
+        list.insertAdjacentHTML("beforeend", `<dt>${escapeHtml(key)}</dt><dd><span class="key">${escapeHtml(value)}</span></dd>`);
+      });
+      el.detail.append(list);
+      return;
+    }
+
+    if (state.requestTab === "headers") {
+      const list = document.createElement("dl");
+      list.className = "kv";
+      request.headers.forEach(([key, value]) => {
+        list.insertAdjacentHTML("beforeend", `<dt>${escapeHtml(key)}</dt><dd>${escapeHtml(value)}</dd>`);
+      });
+      el.detail.append(list);
+      return;
+    }
+
+    if (state.requestTab === "body") {
+      if (!request.body) {
+        el.detail.innerHTML = `<p class="empty-note">GET requests have no body. Select Create order to see the payload.</p>`;
+        return;
+      }
+      const pre = document.createElement("pre");
+      pre.className = "code";
+      pre.style.padding = "0";
+      pre.style.background = "transparent";
+      pre.style.fontSize = "10px";
+      pre.innerHTML = highlightJson(request.body);
+      el.detail.append(pre);
+      return;
+    }
+
+    el.detail.innerHTML = `<p class="empty-note">${response.tests.length} assertions run on every send. Switch to Test results after replying to see pass and fail.</p>`;
+  }
+
+  function renderChips() {
+    const request = current();
+    el.chips.replaceChildren();
+    const label = document.createElement("span");
+    label.className = "label";
+    label.textContent = "States";
+    el.chips.append(label);
+    request.states.forEach(item => {
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "chip";
+      chip.textContent = item.label;
+      chip.setAttribute("aria-pressed", String(item.id === currentState()));
+      chip.addEventListener("click", () => {
+        state.activeState[state.active] = item.id;
+        renderChips();
+        send();
+      });
+      el.chips.append(chip);
+    });
+  }
+
+  function statusClass(code) {
+    if (code < 300) return "ok";
+    if (code < 400) return "warn";
+    return "bad";
+  }
+
+  function renderResponse() {
+    const response = responseFor();
+    const meta = current().states.find(item => item.id === currentState());
+
+    el.status.textContent = meta.status;
+    el.status.className = `status ${statusClass(meta.code)}`;
+    el.time.textContent = `${meta.time} ms`;
+    el.size.textContent = meta.size;
+
+    el.responseBody.replaceChildren();
+
+    if (state.responseTab === "body") {
+      const pre = document.createElement("pre");
+      pre.className = "code";
+      pre.setAttribute("aria-label", "Response body");
+      pre.innerHTML = highlightJson(response.body);
+      el.responseBody.append(pre);
+      return;
+    }
+
+    if (state.responseTab === "headers") {
+      const list = document.createElement("dl");
+      list.className = "kv";
+      list.style.padding = "8px 12px";
+      list.style.overflow = "auto";
+      Object.entries(response.headers).forEach(([key, value]) => {
+        list.insertAdjacentHTML("beforeend", `<dt>${escapeHtml(key)}</dt><dd>${escapeHtml(value)}</dd>`);
+      });
+      el.responseBody.append(list);
+      return;
+    }
+
+    const list = document.createElement("ul");
+    list.className = "test-list";
+    response.tests.forEach(([name, passes]) => {
+      list.insertAdjacentHTML(
+        "beforeend",
+        `<li><span class="${passes ? "tick" : "fail"}" aria-hidden="true">${passes ? "✓" : "✕"}</span><span class="test-name"><b>${passes ? "Pass" : "Fail"}</b> · ${escapeHtml(name)}</span></li>`
+      );
+    });
+    el.responseBody.append(list);
+  }
+
+  function renderTabsSelection() {
+    document.querySelectorAll("[data-request-tab]").forEach(tab => {
+      tab.setAttribute("aria-selected", String(tab.dataset.requestTab === state.requestTab));
+    });
+    document.querySelectorAll("[data-response-tab]").forEach(tab => {
+      tab.setAttribute("aria-selected", String(tab.dataset.responseTab === state.responseTab));
+    });
+  }
+
+  function renderAll() {
+    renderRequestList();
+    renderTabs();
+    renderUrl();
+    renderChips();
+    renderCounts();
+    renderRequestDetail();
+    renderResponse();
+    renderTabsSelection();
+    el.source.textContent = `${current().method} · https://api.lulas.co.za${current().path}${current().query}`;
+  }
+
+  function selectRequest(id) {
+    if (!REQUESTS[id]) return;
+    state.active = id;
+    if (!state.openTabs.includes(id)) state.openTabs.push(id);
+    state.responseTab = "body";
+    renderAll();
+  }
+
+  function showSending() {
+    el.send.disabled = true;
+    el.send.innerHTML = `<span class="spinner" aria-hidden="true"></span><span>Sending</span>`;
+    el.responseBody.innerHTML = `<div class="sending"><span class="bar" aria-hidden="true"><i></i></span><span>Waiting for api.lulas.co.za…</span></div>`;
+    el.status.textContent = "Sending…";
+    el.status.className = "status warn";
+    el.time.textContent = "—";
+    el.size.textContent = "—";
+    el.source.textContent = `${current().method} · https://api.lulas.co.za${current().path}${current().query} · waiting`;
+  }
+
+  function send() {
+    if (state.sending) return;
+    state.sending = true;
+    const meta = current().states.find(item => item.id === currentState());
+    showSending();
+    const delay = Math.min(meta.time, 2600);
+    window.setTimeout(() => {
+      state.sending = false;
+      el.send.disabled = false;
+      el.send.textContent = "Send";
+      renderAll();
+    }, Math.max(420, delay * 0.55));
+  }
+
+  document.querySelectorAll("[data-request-tab]").forEach(tab => {
+    tab.addEventListener("click", () => {
+      state.requestTab = tab.dataset.requestTab;
+      renderTabsSelection();
+      renderRequestDetail();
+    });
+  });
+
+  document.querySelectorAll("[data-response-tab]").forEach(tab => {
+    tab.addEventListener("click", () => {
+      state.responseTab = tab.dataset.responseTab;
+      renderTabsSelection();
+      renderResponse();
+    });
+  });
+
+  el.send.addEventListener("click", send);
+  el.collectionToggle.addEventListener("click", () => {
+    const expanded = el.collectionToggle.getAttribute("aria-expanded") === "true";
+    el.collectionToggle.setAttribute("aria-expanded", String(!expanded));
+    el.list.hidden = expanded;
+  });
+
+  window.addEventListener("keydown", event => {
+    if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
+      event.preventDefault();
+      send();
+    }
+  });
+
+  renderAll();
+})();
+</script>
+</body>
+</html>

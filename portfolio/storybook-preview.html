@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Storybook — Lula Design Library | Lulamile Mkhungela</title>
+<meta name="description" content="The Lula Design Library in Storybook: components in every state, with live controls, docs and accessibility checks.">
+<!--
+  The Storybook item in the dock opens this page in an iframe.
+
+  The docs site I ship with a design system: stories in a sidebar, live
+  controls, a docs tab, an accessibility panel and code that matches what is on
+  the canvas. The components are authored inline so the page needs no build.
+-->
+<style>
+  :root {
+    --pink: #ff4785;
+    --pink-dark: #e0316b;
+    --ink: #2e3438;
+    --ink-soft: #5c6873;
+    --muted: #79868f;
+    --line: #e3e8ee;
+    --line-soft: #eef2f6;
+    --canvas: #ffffff;
+    --sidebar: #f7f9fb;
+    --panel: #f7f9fb;
+    --blue: #0a63c4;
+    --radius: 6px;
+    --ui: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: #fff;
+    color: var(--ink);
+    font: 12px/1.45 var(--ui);
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+  button, select, input { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 2px solid #7aa7ff; outline-offset: 1px; }
+
+  .app { height: 100%; display: flex; flex-direction: column; min-height: 0; }
+
+  /* ── Top bar ─────────────────────────────────────────────────────────── */
+  .topbar {
+    flex: none;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 12px;
+    border-bottom: 1px solid var(--line);
+    background: #fff;
+  }
+  .brand { display: flex; align-items: center; gap: 7px; font-weight: 800; letter-spacing: -.01em; }
+  .brand svg { width: 19px; height: 19px; }
+  .crumb { color: var(--muted); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .crumb b { color: var(--ink); font-weight: 700; }
+  .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  .view-tabs {
+    display: inline-flex;
+    padding: 2px;
+    gap: 2px;
+    border-radius: 6px;
+    background: #eef2f6;
+  }
+  .view-tab {
+    border: 0; border-radius: 4px;
+    padding: 3px 10px;
+    background: transparent;
+    color: var(--ink-soft);
+    font-size: 10.5px;
+    font-weight: 600;
+  }
+  .view-tab[aria-selected="true"] { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(20,32,44,.12); }
+  .avatar {
+    width: 22px; height: 22px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: linear-gradient(140deg,#ff4785,#f4511e);
+    color: #fff; font-size: 9px; font-weight: 800;
+  }
+
+  .shell { flex: 1; min-height: 0; display: flex; }
+
+  /* ── Sidebar ─────────────────────────────────────────────────────────── */
+  .sidebar {
+    flex: none;
+    width: 184px;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--sidebar);
+    border-right: 1px solid var(--line);
+  }
+  .sidebar-search {
+    flex: none;
+    margin: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 7px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--muted);
+    font-size: 10.5px;
+  }
+  .sidebar-search svg { width: 12px; height: 12px; flex: none; }
+  .sidebar-search input { flex: 1; min-width: 0; border: 0; background: transparent; padding: 0; font-size: 10.5px; }
+  .sidebar-search input:focus { outline: 0; }
+  .sidebar-scroll { min-height: 0; overflow-y: auto; padding: 2px 8px 12px; }
+  .group-label {
+    margin: 10px 4px 3px;
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+  .story-list { list-style: none; margin: 0; padding: 0; }
+  .story-link {
+    width: 100%;
+    display: flex; align-items: center; gap: 7px;
+    padding: 4px 6px;
+    border: 0; border-radius: 4px;
+    background: transparent;
+    color: var(--ink-soft);
+    font-size: 11px;
+    text-align: left;
+  }
+  .story-link:hover { background: #eaeff5; color: var(--ink); }
+  .story-link[aria-current="true"] { background: rgba(255,71,133,.12); color: var(--ink); font-weight: 700; }
+  .story-link .dot { width: 5px; height: 5px; border-radius: 50%; background: #c3ccd6; flex: none; }
+  .story-link[aria-current="true"] .dot { background: var(--pink); }
+  .story-link .tag {
+    margin-left: auto;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .sidebar-foot {
+    flex: none;
+    margin-top: auto;
+    padding: 8px 10px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 9px;
+    line-height: 1.5;
+  }
+  .sidebar-foot b { display: block; color: var(--ink-soft); }
+
+  /* ── Main ────────────────────────────────────────────────────────────── */
+  .main { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; background: #fff; }
+  .main-toolbar {
+    flex: none;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 8px;
+    border-bottom: 1px solid var(--line);
+    background: #fff;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .main-toolbar::-webkit-scrollbar { display: none; }
+  .tool {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 5px;
+    height: 24px;
+    min-width: 24px;
+    padding: 0 7px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--ink-soft);
+    font-size: 10px;
+    white-space: nowrap;
+  }
+  .tool:hover { background: #eef2f6; }
+  .tool[aria-pressed="true"] { background: #eef2f6; color: var(--ink); border-color: var(--line); }
+  .tool svg { width: 13px; height: 13px; }
+  .tool-group { display: inline-flex; align-items: center; gap: 1px; }
+  .tool-divider { width: 1px; height: 16px; background: var(--line); margin: 0 3px; flex: none; }
+  .zoom { color: var(--muted); font-size: 9.5px; padding: 0 4px; white-space: nowrap; }
+
+  .viewport { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+  .canvas-wrap {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 14px;
+    background:
+      radial-gradient(circle at 1px 1px, #dfe6ee 1px, transparent 0) 0 0/16px 16px,
+      #fbfcfd;
+  }
+  .canvas {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 0 auto;
+    width: var(--stage-width, 100%);
+    max-width: 100%;
+    padding: 18px;
+    border-radius: 4px;
+    background: var(--canvas);
+    box-shadow: 0 1px 3px rgba(20,32,44,.08);
+    transition: width .18s ease;
+  }
+  .canvas.is-mobile { width: 375px; max-width: 100%; }
+  .canvas.is-tablet { width: 640px; max-width: 100%; }
+  .canvas.is-full { width: 100%; }
+  .canvas-caption { color: var(--muted); font-size: 9.5px; text-align: center; }
+
+  .code-drawer {
+    flex: none;
+    max-height: 132px;
+    overflow: auto;
+    border-top: 1px solid var(--line);
+    background: #1f2429;
+  }
+  .code-drawer pre {
+    margin: 0;
+    padding: 9px 12px;
+    color: #d6e2ea;
+    font-family: var(--mono);
+    font-size: 10px;
+    line-height: 1.6;
+    white-space: pre;
+  }
+  .code-drawer .x { color: #8fb8e0; }
+  .code-drawer .s { color: #b6d68c; }
+  .code-drawer .a { color: #e7c98a; }
+
+  /* ── Addon panel ─────────────────────────────────────────────────────── */
+  .panel {
+    flex: none;
+    height: 118px;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--line);
+    background: var(--panel);
+  }
+  .panel-tabs {
+    flex: none;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .panel-tab {
+    border: 0; background: transparent;
+    padding: 0 8px;
+    height: 28px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .03em;
+  }
+  .panel-tab[aria-selected="true"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--pink); }
+  .panel-body { flex: 1; min-height: 0; overflow: auto; padding: 8px 12px 12px; }
+  .controls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+    gap: 8px 14px;
+    align-content: start;
+  }
+  .control { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .control label { color: var(--ink-soft); font-size: 9px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+  .control select, .control input {
+    height: 24px;
+    min-width: 0;
+    width: 100%;
+    padding: 0 6px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: #fff;
+    color: var(--ink);
+    font-size: 10.5px;
+  }
+  .a11y-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+  .a11y-list li { display: flex; gap: 7px; align-items: baseline; color: var(--ink-soft); font-size: 10.5px; }
+  .a11y-list .pass { color: #1c8a5a; font-weight: 800; }
+  .a11y-list .warn { color: #b26a00; font-weight: 800; }
+  .a11y-list b { color: var(--ink); font-weight: 700; }
+
+  /* ── Docs view ───────────────────────────────────────────────────────── */
+  .docs { flex: 1; min-height: 0; overflow: auto; padding: 18px 20px 26px; }
+  .docs h1 { margin: 0 0 2px; font-size: 19px; letter-spacing: -.02em; }
+  .docs .kicker { color: var(--pink-dark); font-size: 9px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+  .docs p { margin: 8px 0 0; max-width: 62ch; color: var(--ink-soft); font-size: 11.5px; line-height: 1.6; }
+  .docs h2 { margin: 18px 0 6px; font-size: 12px; letter-spacing: .02em; }
+  .docs table { width: 100%; border-collapse: collapse; font-size: 10.5px; }
+  .docs th, .docs td { padding: 5px 8px; border-bottom: 1px solid var(--line-soft); text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+  .docs th { color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+  .docs td code, .docs p code {
+    padding: 1px 4px;
+    border-radius: 3px;
+    background: #f1f5f9;
+    color: #b03562;
+    font-family: var(--mono);
+    font-size: 9.5px;
+  }
+  .docs pre {
+    margin: 6px 0 0;
+    padding: 10px 12px;
+    overflow: auto;
+    border-radius: 6px;
+    background: #1f2429;
+    color: #d6e2ea;
+    font-family: var(--mono);
+    font-size: 10px;
+    line-height: 1.6;
+  }
+  .docs pre .x { color: #8fb8e0; }
+  .docs pre .s { color: #b6d68c; }
+  .docs pre .a { color: #e7c98a; }
+
+  /* ── Components on the canvas ────────────────────────────────────────── */
+  .sb-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    font-weight: 700;
+    letter-spacing: -.005em;
+    transition: background .15s, box-shadow .15s, transform .15s;
+    font-family: var(--ui);
+  }
+  .sb-btn--sm { height: 28px; padding: 0 12px; font-size: 11px; }
+  .sb-btn--md { height: 36px; padding: 0 18px; font-size: 12.5px; }
+  .sb-btn--lg { height: 44px; padding: 0 24px; font-size: 14px; }
+  .sb-btn--primary { background: var(--blue); color: #fff; box-shadow: 0 1px 2px rgba(10,99,196,.28); }
+  .sb-btn--primary.is-hover { background: #0854a6; }
+  .sb-btn--secondary { background: #fff; color: var(--blue); border-color: #b9cde4; }
+  .sb-btn--secondary.is-hover { background: #f2f7fd; }
+  .sb-btn--ghost { background: transparent; color: var(--ink-soft); }
+  .sb-btn--ghost.is-hover { background: #eef2f6; }
+  .sb-btn--danger { background: #b3261e; color: #fff; }
+  .sb-btn--danger.is-hover { background: #93180f; }
+  .sb-btn.is-focus { outline: 3px solid rgba(10,99,196,.38); outline-offset: 2px; }
+  .sb-btn.is-disabled { opacity: .45; cursor: not-allowed; }
+  .sb-btn.is-loading { cursor: progress; }
+  .sb-btn .spin {
+    width: 11px; height: 11px;
+    border: 2px solid rgba(255,255,255,.42);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin .75s linear infinite;
+  }
+  .sb-btn--secondary .spin, .sb-btn--ghost .spin { border-color: rgba(10,99,196,.28); border-top-color: var(--blue); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .sb-order {
+    width: 100%;
+    max-width: 332px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(20,32,44,.06);
+    font-family: var(--ui);
+    text-align: left;
+  }
+  .sb-order header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+  .sb-order .order-id { color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .sb-order h3 { margin: 1px 0 0; font-size: 14px; letter-spacing: -.01em; }
+  .sb-order ul { margin: 0; padding: 8px 0 0; list-style: none; border-top: 1px solid var(--line-soft); display: flex; flex-direction: column; gap: 4px; }
+  .sb-order li { display: flex; justify-content: space-between; gap: 10px; color: var(--ink-soft); font-size: 11px; }
+  .sb-order li span:last-child { color: var(--ink); font-variant-numeric: tabular-nums; }
+  .sb-order footer { display: flex; align-items: baseline; justify-content: space-between; padding-top: 8px; border-top: 1px solid var(--line-soft); font-size: 11px; color: var(--muted); }
+  .sb-order footer strong { color: var(--ink); font-size: 15px; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+  .sb-order-actions { display: flex; gap: 8px; }
+  .sb-status {
+    flex: none;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .sb-status--processing { background: #fff3d6; color: #8a5a00; }
+  .sb-status--shipped { background: #e4effc; color: #0a4f9c; }
+  .sb-status--delivered { background: #e0f4ea; color: #126b45; }
+  .sb-status--cancelled { background: #fde7e5; color: #8f231c; }
+
+  .sb-empty {
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 18px 16px;
+    border-radius: 12px;
+    background: #fbfcfd;
+    border: 1px dashed #d5dee7;
+    text-align: center;
+    font-family: var(--ui);
+  }
+  .sb-empty svg { width: 46px; height: 46px; margin-bottom: 2px; }
+  .sb-empty h3 { margin: 0; font-size: 14px; }
+  .sb-empty p { margin: 0 0 8px; max-width: 240px; color: var(--ink-soft); font-size: 11px; line-height: 1.5; }
+
+  .sb-skeleton-wrap {
+    width: 100%;
+    max-width: 360px;
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #fff;
+    font-family: var(--ui);
+  }
+  .sb-skeleton-wrap > .sk-head { display: flex; justify-content: space-between; margin-bottom: 12px; }
+  .sk-line {
+    height: 9px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #edf1f5 25%, #f7f9fb 37%, #edf1f5 63%);
+    background-size: 400% 100%;
+    animation: shimmer 1.3s ease infinite;
+  }
+  .sk-line + .sk-line { margin-top: 9px; }
+  @keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: 0 0; } }
+  .sk-rows { display: flex; flex-direction: column; gap: 10px; }
+  .sk-row { display: grid; grid-template-columns: 26px 1fr 54px; gap: 10px; align-items: center; }
+  .sk-avatar { width: 26px; height: 26px; border-radius: 50%; background: #eef2f6; }
+  .sk-cards { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+  .sk-card { padding: 10px; border-radius: 8px; background: #f7f9fb; }
+
+  .sb-swatches { width: 100%; max-width: 400px; display: grid; grid-template-columns: repeat(auto-fill, minmax(90px,1fr)); gap: 10px; font-family: var(--ui); }
+  .swatch { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; }
+  .swatch .chip { height: 44px; }
+  .swatch .meta { padding: 6px 8px; }
+  .swatch strong { display: block; font-size: 10px; }
+  .swatch span { color: var(--muted); font-family: var(--mono); font-size: 9px; }
+
+  @media (max-width: 660px) {
+    .sidebar { width: 148px; }
+    .topbar .crumb { display: none; }
+    .panel { height: 112px; }
+  }
+  @media (max-width: 520px) {
+    .sidebar { display: none; }
+    .view-tabs, .zoom, .tool-divider { display: none; }
+    .panel { height: 104px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sk-line, .sb-btn .spin { animation: none; }
+    .canvas { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M20.7 1.6c.4-.4 1 0 .9.5l-1.4 8.2 8.1-1.6c.5-.1.9.5.5.9L13 30.4c-.4.4-1 0-.9-.5l1.4-8.2-8.1 1.6c-.5.1-.9-.5-.5-.9L20.7 1.6Z" fill="#ff4785"/></svg>
+      <span>Storybook</span>
+    </div>
+    <div class="crumb"><b>Lula Design Library</b> / <span id="crumb-story">Button</span></div>
+    <div class="topbar-right">
+      <div class="view-tabs" role="tablist" aria-label="View">
+        <button class="view-tab" type="button" role="tab" data-view="canvas" aria-selected="true">Canvas</button>
+        <button class="view-tab" type="button" role="tab" data-view="docs" aria-selected="false">Docs</button>
+      </div>
+      <span class="avatar" aria-hidden="true">LM</span>
+    </div>
+  </header>
+
+  <div class="shell">
+    <aside class="sidebar" aria-label="Stories">
+      <div class="sidebar-search">
+        <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="4.4"/><path d="m10.4 10.4 3.1 3.1"/></svg>
+        <input type="search" id="story-search" placeholder="Find components" aria-label="Find components">
+      </div>
+      <div class="sidebar-scroll" id="story-sidebar"></div>
+      <div class="sidebar-foot"><b>Generated from tokens</b>Stories ship with the components, so docs and code cannot drift.</div>
+    </aside>
+
+    <main class="main">
+      <div class="main-toolbar" id="toolbar" role="toolbar" aria-label="Canvas tools">
+        <div class="tool-group" role="group" aria-label="Viewport">
+          <button class="tool" type="button" data-viewport="mobile" aria-pressed="false" title="Mobile · 375px" aria-label="Mobile viewport">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4.6" y="1.6" width="6.8" height="12.8" rx="1.6"/><path d="M7 12.4h2"/></svg>
+          </button>
+          <button class="tool" type="button" data-viewport="tablet" aria-pressed="false" title="Tablet · 640px" aria-label="Tablet viewport">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2.4" y="2.4" width="11.2" height="11.2" rx="1.6"/><path d="M7.2 12h1.6"/></svg>
+          </button>
+          <button class="tool" type="button" data-viewport="full" aria-pressed="true" title="Full width" aria-label="Full width viewport">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="1.6" y="3" width="12.8" height="10" rx="1.4"/><path d="M1.6 5.6h12.8"/></svg>
+          </button>
+        </div>
+        <span class="tool-divider" aria-hidden="true"></span>
+        <button class="tool" type="button" id="zoom-tool" title="Toggle zoom" aria-pressed="false">100%</button>
+        <span class="tool-divider" aria-hidden="true"></span>
+        <button class="tool" type="button" id="code-tool" aria-pressed="false">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m5.6 4.4-3 3.6 3 3.6M10.4 4.4l3 3.6-3 3.6"/></svg>
+          Show code
+        </button>
+        <span class="tool-divider" aria-hidden="true"></span>
+        <button class="tool" type="button" id="reset-tool" title="Reset controls">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 8a5 5 0 1 1-1.6-3.7M13 2.6V6h-3.4"/></svg>
+          Reset
+        </button>
+        <span class="zoom" id="stage-note">Full width</span>
+      </div>
+
+      <div class="viewport" id="canvas-view">
+        <div class="canvas-wrap" id="canvas-wrap">
+          <div class="canvas is-full" id="canvas">
+            <div id="stage" aria-live="polite"></div>
+            <p class="canvas-caption" id="canvas-caption">Button · Primary · Medium</p>
+          </div>
+        </div>
+        <div class="code-drawer" id="code-drawer" hidden><pre id="code-output"></pre></div>
+      </div>
+
+      <div class="docs" id="docs-view" hidden></div>
+
+      <div class="panel" id="addon-panel">
+        <div class="panel-tabs" role="tablist" aria-label="Addons">
+          <button class="panel-tab" type="button" role="tab" data-panel="controls" aria-selected="true">Controls</button>
+          <button class="panel-tab" type="button" role="tab" data-panel="a11y" aria-selected="false">Accessibility</button>
+        </div>
+        <div class="panel-body" id="panel-body"></div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const $ = selector => document.querySelector(selector);
+  const el = {
+    sidebar: $("#story-sidebar"),
+    search: $("#story-search"),
+    crumb: $("#crumb-story"),
+    stage: $("#stage"),
+    caption: $("#canvas-caption"),
+    canvas: $("#canvas"),
+    note: $("#stage-note"),
+    codeDrawer: $("#code-drawer"),
+    codeOutput: $("#code-output"),
+    docs: $("#docs-view"),
+    canvasView: $("#canvas-view"),
+    panelBody: $("#panel-body"),
+    addonPanel: $("#addon-panel"),
+    codeTool: $("#code-tool"),
+    resetTool: $("#reset-tool"),
+    zoomTool: $("#zoom-tool")
+  };
+
+  const esc = value => String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+
+  const money = value => `R ${value.toLocaleString("en-ZA", { minimumFractionDigits: 2 })}`;
+
+  function buttonMarkup(values) {
+    const { variant, size, state, label } = values;
+    const classes = ["sb-btn", `sb-btn--${variant}`, `sb-btn--${size}`];
+    if (state === "hover") classes.push("is-hover");
+    if (state === "focus") classes.push("is-focus");
+    if (state === "disabled") classes.push("is-disabled");
+    if (state === "loading") classes.push("is-loading");
+    const disabled = state === "disabled" || state === "loading" ? " disabled" : "";
+    const spinner = state === "loading" ? '<span class="spin" aria-hidden="true"></span>' : "";
+    return `<button class="${classes.join(" ")}" type="button"${disabled}>${spinner}${esc(label)}</button>`;
+  }
+
+  function buttonCode(values) {
+    const attrs = [`class="btn btn--${values.variant} btn--${values.size}"`];
+    if (values.state === "disabled" || values.state === "loading") attrs.push("disabled");
+    const spinner = values.state === "loading" ? "\n  <span class=\"spinner\" aria-hidden=\"true\" />" : "";
+    return `<span class="x">&lt;button</span> ${attrs.map(a => `<span class="a">${a}</span>`).join(" ")}<span class="x">&gt;</span>${spinner}\n  ${esc(values.label)}\n<span class="x">&lt;/button&gt;</span>`;
+  }
+
+  const ORDERS = {
+    processing: {
+      status: "Processing",
+      items: [["Prepaid SIM · 10GB", 999], ["Silicone case", 250]],
+      action: "Cancel order",
+      note: "Paid · packing at the warehouse"
+    },
+    shipped: {
+      status: "Shipped",
+      items: [["Prepaid SIM · 10GB", 999], ["Silicone case", 250]],
+      action: "Track order",
+      note: "Courier · arriving 21 Oct"
+    },
+    delivered: {
+      status: "Delivered",
+      items: [["Prepaid SIM · 10GB", 999], ["Silicone case", 250]],
+      action: "Reorder",
+      note: "Delivered 18 Oct · signed for"
+    },
+    cancelled: {
+      status: "Cancelled",
+      items: [["Prepaid SIM · 10GB", 999]],
+      action: "Reorder",
+      note: "Refunded · 3 working days"
+    }
+  };
+
+  function orderMarkup(values) {
+    const order = ORDERS[values.status] || ORDERS.shipped;
+    const total = order.items.reduce((sum, item) => sum + item[1], 0);
+    return `
+      <article class="sb-order">
+        <header>
+          <div>
+            <span class="order-id">Order ORD-88213</span>
+            <h3>Naledi M.</h3>
+          </div>
+          <span class="sb-status sb-status--${values.status}">${order.status}</span>
+        </header>
+        <ul>
+          ${order.items.map(([name, price]) => `<li><span>${name}</span><span>${money(price)}</span></li>`).join("")}
+        </ul>
+        <footer><span>${order.note}</span><strong>${money(total)}</strong></footer>
+        <div class="sb-order-actions">
+          <button class="sb-btn sb-btn--primary sb-btn--sm" type="button">${order.action}</button>
+          <button class="sb-btn sb-btn--ghost sb-btn--sm" type="button">View invoice</button>
+        </div>
+      </article>`;
+  }
+
+  function orderCode(values) {
+    const order = ORDERS[values.status] || ORDERS.shipped;
+    return `<span class="x">&lt;OrderCard</span>
+  <span class="a">order</span>={order}
+  <span class="a">status</span>=<span class="s">"${values.status}"</span>
+  <span class="a">onAction</span>={track}
+<span class="x">/&gt;</span>
+
+<span class="x">// ${order.status} · ${order.action} · ${money(order.items.reduce((s,i)=>s+i[1],0))}</span>`;
+  }
+
+  const EMPTIES = {
+    orders: {
+      title: "No orders yet",
+      body: "Orders you place will show up here with delivery updates and invoices.",
+      action: "Browse plans",
+      icon: "box"
+    },
+    search: {
+      title: "No results for “sim only”",
+      body: "Check the spelling or try a broader term like “prepaid” or “data”.",
+      action: "Clear search",
+      icon: "search"
+    },
+    cart: {
+      title: "Your cart is empty",
+      body: "Add a plan or a device and the checkout summary will appear here.",
+      action: "Browse the store",
+      icon: "cart"
+    }
+  };
+
+  const EMPTY_ICONS = {
+    box: `<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 6 41 15v18L24 42 7 33V15L24 6Z" stroke="#b9cde4" stroke-width="2"/><path d="M7 15l17 9 17-9M24 24v18" stroke="#d5dee7" stroke-width="2"/><circle cx="24" cy="24" r="3.4" fill="#e4effc"/></svg>`,
+    search: `<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="21" cy="21" r="12" stroke="#b9cde4" stroke-width="2"/><path d="m30 30 9 9" stroke="#b9cde4" stroke-width="2" stroke-linecap="round"/><path d="M16 21h10" stroke="#d5dee7" stroke-width="2" stroke-linecap="round"/></svg>`,
+    cart: `<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M10 12h4l4 18h17l4-13H17" stroke="#b9cde4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="21" cy="36" r="2.6" fill="#b9cde4"/><circle cx="33" cy="36" r="2.6" fill="#b9cde4"/></svg>`
+  };
+
+  function emptyMarkup(values) {
+    const item = EMPTIES[values.context] || EMPTIES.orders;
+    return `
+      <div class="sb-empty">
+        ${EMPTY_ICONS[item.icon]}
+        <h3>${item.title}</h3>
+        <p>${item.body}</p>
+        <button class="sb-btn sb-btn--primary sb-btn--md" type="button">${item.action}</button>
+      </div>`;
+  }
+
+  function emptyCode(values) {
+    const item = EMPTIES[values.context] || EMPTIES.orders;
+    return `<span class="x">&lt;EmptyState</span>
+  <span class="a">title</span>=<span class="s">"${item.title}"</span>
+  <span class="a">description</span>=<span class="s">"${item.body}"</span>
+  <span class="a">action</span>={<span class="s">"${item.action}"</span>}
+  <span class="a">icon</span>=<span class="s">"${item.icon}"</span>
+<span class="x">/&gt;</span>`;
+  }
+
+  function skeletonMarkup(values) {
+    if (values.state === "loaded") {
+      return `
+        <div class="sb-skeleton-wrap">
+          <div class="sk-head"><strong style="font-size:12px">Recent orders</strong><span style="color:#79868f;font-size:10px">3 orders</span></div>
+          <div class="sk-rows">
+            ${[["ORD-88213", "R 1 249,00"], ["ORD-88214", "R 399,99"], ["ORD-88215", "R 219,50"]].map(([id, total]) => `
+              <div class="sk-row" style="display:flex;justify-content:space-between;font-size:11px">
+                <span><b style="font-weight:700">${id}</b><br><span style="color:#79868f;font-size:9.5px">Shipped · Naledi M.</span></span>
+                <span>${total}</span>
+              </div>`).join("")}
+          </div>
+        </div>`;
+    }
+    const rows = values.shape === "list" ? 4 : values.shape === "cards" ? 0 : 5;
+    if (values.shape === "cards") {
+      return `
+        <div class="sb-skeleton-wrap">
+          <div class="sk-line" style="width:42%;margin-bottom:12px"></div>
+          <div class="sk-cards">
+            ${[0, 1].map(() => `<div class="sk-card"><div class="sk-line" style="width:64%"></div><div class="sk-line" style="width:88%"></div><div class="sk-line" style="width:38%"></div></div>`).join("")}
+          </div>
+        </div>`;
+    }
+    return `
+      <div class="sb-skeleton-wrap">
+        <div class="sk-head"><div class="sk-line" style="width:96px"></div><div class="sk-line" style="width:52px"></div></div>
+        <div class="sk-rows">
+          ${Array.from({ length: rows }, (_, index) => `
+            <div class="sk-row">
+              <div class="sk-avatar"></div>
+              <div>
+                <div class="sk-line" style="width:${58 + (index % 3) * 11}%"></div>
+                <div class="sk-line" style="width:${26 + (index % 2) * 9}%"></div>
+              </div>
+              <div class="sk-line"></div>
+            </div>`).join("")}
+        </div>
+      </div>`;
+  }
+
+  function skeletonCode(values) {
+    return `<span class="x">&lt;Skeleton</span>
+  <span class="a">variant</span>=<span class="s">"${values.shape}"</span>
+  <span class="a">label</span>=<span class="s">"Loading orders"</span>
+  <span class="a">aria-busy</span>={${values.state === "loading" ? "true" : "false"}}
+<span class="x">/&gt;</span>`;
+  }
+
+  const SWATCHES = [
+    ["blue-600", "#0a63c4", "--lm-blue-600"],
+    ["blue-050", "#e4effc", "--lm-blue-050"],
+    ["ink", "#15141a", "--lm-ink"],
+    ["paper", "#f4f2ee", "--lm-paper"],
+    ["orange", "#f4511e", "--lm-orange"],
+    ["green", "#0e7a55", "--lm-green"],
+    ["danger", "#b3261e", "--lm-danger"],
+    ["line", "#e3e8ee", "--lm-line"]
+  ];
+
+  function tokensMarkup() {
+    return `<div class="sb-swatches">
+      ${SWATCHES.map(([name, value, token]) => `
+        <div class="swatch">
+          <div class="chip" style="background:${value}"></div>
+          <div class="meta"><strong>${name}</strong><span>${token}</span></div>
+        </div>`).join("")}
+    </div>`;
+  }
+
+  function tokensCode() {
+    return `:root {
+  --lm-blue-600: <span class="s">#0a63c4</span>;
+  --lm-ink: <span class="s">#15141a</span>;
+  --lm-paper: <span class="s">#f4f2ee</span>;
+  --lm-orange: <span class="s">#f4511e</span>;
+  --lm-green: <span class="s">#0e7a55</span>;
+}`;
+  }
+
+  const STORIES = {
+    button: {
+      group: "Components",
+      label: "Button",
+      title: "Button",
+      description: "The primary action on a screen. One primary button per view keeps the hierarchy obvious; everything else is secondary, ghost or destructive.",
+      controls: [
+        { id: "variant", label: "Variant", type: "select", options: ["primary", "secondary", "ghost", "danger"], value: "primary" },
+        { id: "size", label: "Size", type: "select", options: ["sm", "md", "lg"], value: "md" },
+        { id: "state", label: "State", type: "select", options: ["default", "hover", "focus", "disabled", "loading"], value: "default" },
+        { id: "label", label: "Label", type: "text", value: "Continue" }
+      ],
+      props: [
+        ["variant", "'primary' | 'secondary' | 'ghost' | 'danger'", "'primary'", "Visual weight. Use one primary per screen."],
+        ["size", "'sm' | 'md' | 'lg'", "'md'", "Height, padding and type scale."],
+        ["state", "'default' | 'hover' | 'focus' | 'disabled' | 'loading'", "'default'", "Interactive state used in tests and snapshots."],
+        ["label", "string", "'Continue'", "Visible text. Also becomes the accessible name."]
+      ],
+      a11y: [
+        ["pass", "Name from content", "The label is the accessible name; no aria-label needed."],
+        ["pass", "Contrast 4.8:1", "White on #0a63c4 passes AA at every size."],
+        ["pass", "Focus visible", "3px ring at 2px offset, never removed."],
+        ["warn", "Loading state", "Keep the label visible so screen readers keep the name."]
+      ],
+      render: buttonMarkup,
+      code: buttonCode
+    },
+    "order-card": {
+      group: "Components",
+      label: "Order card",
+      title: "Order card",
+      description: "A summary of one order: status, line items, total and the one action that matters next. The action changes with the status instead of showing every option.",
+      controls: [
+        { id: "status", label: "Status", type: "select", options: ["processing", "shipped", "delivered", "cancelled"], value: "shipped" }
+      ],
+      props: [
+        ["order", "Order", "—", "The order object from GET /v1/orders/{id}."],
+        ["status", "'processing' | 'shipped' | 'delivered' | 'cancelled'", "order.status", "Drives the badge, the note and the primary action."],
+        ["onAction", "(action: Action) => void", "—", "Cancel, track or reorder, depending on status."]
+      ],
+      a11y: [
+        ["pass", "Status is not colour alone", "The badge carries the status in words."],
+        ["pass", "List semantics", "Line items are a list, so counts are announced."],
+        ["pass", "One primary action", "The remaining action stays ghost-weight."]
+      ],
+      render: orderMarkup,
+      code: orderCode
+    },
+    "empty-state": {
+      group: "Components",
+      label: "Empty state",
+      title: "Empty state",
+      description: "An empty screen is a designed state, not a missing one. It explains what would be here and gives exactly one next step.",
+      controls: [
+        { id: "context", label: "Context", type: "select", options: ["orders", "search", "cart"], value: "orders" }
+      ],
+      props: [
+        ["title", "string", "—", "Short, human heading. Never “No data”."],
+        ["description", "string", "—", "One or two lines on what belongs here."],
+        ["action", "{ label, onClick }", "—", "The single next step."],
+        ["icon", "'box' | 'search' | 'cart'", "'box'", "Illustration tied to the context."]
+      ],
+      a11y: [
+        ["pass", "Heading level", "Rendered as an h3 inside the section, so it slots into the page outline."],
+        ["pass", "Action is reachable", "The button is the only focus stop in the block."],
+        ["warn", "Announcement", "Announce emptiness in a live region after loading, not on mount."]
+      ],
+      render: emptyMarkup,
+      code: emptyCode
+    },
+    skeleton: {
+      group: "Components",
+      label: "Skeleton loader",
+      title: "Skeleton loader",
+      description: "Shows the shape of what is loading instead of a spinner in the middle of nowhere. The layout does not jump when the data lands.",
+      controls: [
+        { id: "shape", label: "Shape", type: "select", options: ["list", "cards"], value: "list" },
+        { id: "state", label: "State", type: "select", options: ["loading", "loaded"], value: "loading" }
+      ],
+      props: [
+        ["variant", "'list' | 'cards'", "'list'", "Matches the layout that is about to render."],
+        ["label", "string", "'Loading'", "Screen-reader text for the busy region."],
+        ["aria-busy", "boolean", "true", "Marks the container while the request is open."]
+      ],
+      a11y: [
+        ["pass", "Busy region", "aria-busy tells assistive tech the update is coming."],
+        ["pass", "No false content", "Placeholders are not focusable or readable."],
+        ["warn", "Reduced motion", "The shimmer stops when prefers-reduced-motion is set."]
+      ],
+      render: skeletonMarkup,
+      code: skeletonCode
+    },
+    tokens: {
+      group: "Foundations",
+      label: "Colour tokens",
+      title: "Colour tokens",
+      description: "The palette the components read from. Tokens are named for the job, not the hue, so a rebrand changes one file and Storybook follows.",
+      controls: [],
+      props: [
+        ["--lm-blue-600", "colour", "#0a63c4", "Primary actions and links."],
+        ["--lm-ink", "colour", "#15141a", "Body text on light surfaces."],
+        ["--lm-paper", "colour", "#f4f2ee", "Page background."],
+        ["--lm-green", "colour", "#0e7a55", "Success and confirmation."],
+        ["--lm-danger", "colour", "#b3261e", "Destructive actions and errors."]
+      ],
+      a11y: [
+        ["pass", "Contrast checked", "Every text token is measured against the surface it sits on."],
+        ["pass", "One source", "Tokens are generated from the same JSON the app build reads."]
+      ],
+      render: tokensMarkup,
+      code: tokensCode
+    }
+  };
+
+  const STORY_ORDER = ["button", "order-card", "empty-state", "skeleton", "tokens"];
+  const state = {
+    story: "button",
+    view: "canvas",
+    viewport: "full",
+    zoom: false,
+    panelTab: "controls",
+    code: false,
+    values: {}
+  };
+
+  function storyValues(id) {
+    if (!state.values[id]) {
+      const values = {};
+      STORIES[id].controls.forEach(control => { values[control.id] = control.value; });
+      state.values[id] = values;
+    }
+    return state.values[id];
+  }
+
+  function renderSidebar() {
+    const query = el.search.value.trim().toLowerCase();
+    const visible = STORY_ORDER.filter(id => STORIES[id].title.toLowerCase().includes(query));
+    el.sidebar.replaceChildren();
+    ["Components", "Foundations"].forEach(group => {
+      const ids = visible.filter(id => STORIES[id].group === group);
+      if (!ids.length) return;
+      const label = document.createElement("p");
+      label.className = "group-label";
+      label.textContent = group;
+      el.sidebar.append(label);
+      const list = document.createElement("ul");
+      list.className = "story-list";
+      ids.forEach(id => {
+        const story = STORIES[id];
+        const item = document.createElement("li");
+        const link = document.createElement("button");
+        link.type = "button";
+        link.className = "story-link";
+        link.dataset.storyId = id;
+        link.setAttribute("aria-current", String(id === state.story));
+        link.innerHTML = `<span class="dot" aria-hidden="true"></span><span>${esc(story.label)}</span>`;
+        link.addEventListener("click", () => selectStory(id));
+        item.append(link);
+        list.append(item);
+      });
+      el.sidebar.append(list);
+    });
+    if (!visible.length) {
+      el.sidebar.innerHTML = `<p class="group-label">No matches</p>`;
+    }
+  }
+
+  function renderStage() {
+    const story = STORIES[state.story];
+    const values = storyValues(state.story);
+    el.stage.innerHTML = story.render(values);
+    el.crumb.textContent = story.title;
+    el.canvas.className = `canvas is-${state.viewport}`;
+    el.canvas.style.transformOrigin = "top center";
+    el.canvas.style.transform = state.zoom ? "scale(.82)" : "";
+    state.viewport === "mobile" ? el.note.textContent = "375px" : state.viewport === "tablet" ? el.note.textContent = "640px" : el.note.textContent = "Full width";
+    el.zoomTool.textContent = state.zoom ? "82%" : "100%";
+    el.zoomTool.setAttribute("aria-pressed", String(state.zoom));
+    const summary = story.controls.length
+      ? story.controls.map(control => {
+          const raw = values[control.id];
+          return raw.charAt(0).toUpperCase() + raw.slice(1);
+        }).join(" · ")
+      : "Design tokens";
+    el.caption.textContent = `${story.title} · ${summary}`;
+    el.codeOutput.innerHTML = story.code(values);
+  }
+
+  function renderPanel() {
+    const story = STORIES[state.story];
+    if (state.panelTab === "controls") {
+      if (!story.controls.length) {
+        el.panelBody.innerHTML = `<p style="margin:0;color:#79868f;font-size:10.5px">This story has no controls — the palette is the component. Check the Docs tab for the token table.</p>`;
+        return;
+      }
+      const values = storyValues(state.story);
+      el.panelBody.innerHTML = `<div class="controls-grid">${story.controls.map(control => {
+        const id = `control-${control.id}`;
+        if (control.type === "text") {
+          return `<div class="control"><label for="${id}">${control.label}</label><input id="${id}" type="text" value="${esc(values[control.id])}" data-control="${control.id}"></div>`;
+        }
+        return `<div class="control"><label for="${id}">${control.label}</label><select id="${id}" data-control="${control.id}">${control.options.map(option => `<option value="${option}"${values[control.id] === option ? " selected" : ""}>${option}</option>`).join("")}</select></div>`;
+      }).join("")}</div>`;
+      el.panelBody.querySelectorAll("[data-control]").forEach(control => {
+        control.addEventListener("input", () => {
+          storyValues(state.story)[control.dataset.control] = control.value;
+          renderStage();
+        });
+      });
+      return;
+    }
+    el.panelBody.innerHTML = `<ul class="a11y-list">${story.a11y.map(([status, title, detail]) => `
+      <li><span class="${status}" aria-hidden="true">${status === "pass" ? "✓" : "!"}</span><span><b>${title}</b> — ${detail}</span></li>`).join("")}
+    </ul>`;
+  }
+
+  function renderDocs() {
+    const story = STORIES[state.story];
+    el.docs.innerHTML = `
+      <span class="kicker">${story.group}</span>
+      <h1>${story.title}</h1>
+      <p>${story.description}</p>
+      <h2>Props</h2>
+      <table>
+        <thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Notes</th></tr></thead>
+        <tbody>${story.props.map(([name, type, fallback, notes]) => `
+          <tr><td><code>${esc(name)}</code></td><td><code>${esc(type)}</code></td><td><code>${esc(fallback)}</code></td><td>${esc(notes)}</td></tr>`).join("")}
+        </tbody>
+      </table>
+      <h2>Usage</h2>
+      <pre>${story.code(storyValues(state.story))}</pre>`;
+  }
+
+  function renderView() {
+    const docs = state.view === "docs";
+    el.canvasView.hidden = docs;
+    el.docs.hidden = !docs;
+    el.addonPanel.hidden = docs;
+    document.querySelectorAll("[data-view]").forEach(tab => {
+      tab.setAttribute("aria-selected", String(tab.dataset.view === state.view));
+    });
+    if (docs) renderDocs();
+  }
+
+  function renderAll() {
+    renderSidebar();
+    renderStage();
+    renderPanel();
+    renderView();
+    document.querySelectorAll("[data-panel]").forEach(tab => {
+      tab.setAttribute("aria-selected", String(tab.dataset.panel === state.panelTab));
+    });
+  }
+
+  function selectStory(id) {
+    if (!STORIES[id]) return;
+    state.story = id;
+    renderAll();
+  }
+
+  document.querySelectorAll("[data-view]").forEach(tab => {
+    tab.addEventListener("click", () => {
+      state.view = tab.dataset.view;
+      renderView();
+    });
+  });
+
+  document.querySelectorAll("[data-panel]").forEach(tab => {
+    tab.addEventListener("click", () => {
+      state.panelTab = tab.dataset.panel;
+      document.querySelectorAll("[data-panel]").forEach(item => {
+        item.setAttribute("aria-selected", String(item.dataset.panel === state.panelTab));
+      });
+      renderPanel();
+    });
+  });
+
+  document.querySelectorAll("[data-viewport]").forEach(button => {
+    button.addEventListener("click", () => {
+      state.viewport = button.dataset.viewport;
+      document.querySelectorAll("[data-viewport]").forEach(item => {
+        item.setAttribute("aria-pressed", String(item.dataset.viewport === state.viewport));
+      });
+      renderStage();
+    });
+  });
+
+  el.codeTool.addEventListener("click", () => {
+    state.code = !state.code;
+    el.codeDrawer.hidden = !state.code;
+    el.codeTool.setAttribute("aria-pressed", String(state.code));
+  });
+
+  el.zoomTool.addEventListener("click", () => {
+    state.zoom = !state.zoom;
+    renderStage();
+  });
+
+  el.resetTool.addEventListener("click", () => {
+    delete state.values[state.story];
+    renderStage();
+    renderPanel();
+  });
+
+  el.search.addEventListener("input", renderSidebar);
+
+  window.addEventListener("keydown", event => {
+    if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+    if (event.target.closest("input, select")) return;
+    event.preventDefault();
+    const index = STORY_ORDER.indexOf(state.story);
+    const next = event.key === "ArrowDown" ? Math.min(STORY_ORDER.length - 1, index + 1) : Math.max(0, index - 1);
+    selectStory(STORY_ORDER[next]);
+  });
+
+  renderAll();
+})();
+</script>
+</body>
+</html>

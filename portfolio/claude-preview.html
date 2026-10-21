@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Funda — an AI tender reader that refuses to guess | Lulamile Mkhungela</title>
+<meta name="description" content="Funda is a self-initiated concept: a monorepo of small packages that read a South African tender notice, apply clause-bound procurement rules, draft the submission and then block any sentence the notice cannot support. No invented requirements, no silent assumptions.">
+<!--
+  The Claude item in the dock opens this page in an iframe.
+
+  The idea: South African SMMEs lose bids to the paperwork, not the price.
+  A tender notice is a six-page document where the mandatory returns, the
+  compulsory briefing and the closing time sit in different paragraphs, and a
+  single missed line makes the bid non-responsive.
+
+  Funda is a monorepo, not a chatbot. Four packages do four jobs, in order:
+
+    packages/notice   PDF → requirement spans (page + line, quoted not paraphrased)
+    packages/rules    SA public-procurement checks, each bound to a clause
+    packages/draft    checklist + covering letter, template-bound
+    packages/gate     sentence → supporting span; unsupported means blocked
+
+  The point of the last one: a model that can invent a B-BBEE level is worse
+  than useless on a bid, because the bid is signed under oath. So the gate has
+  veto power over the drafter, and the blocked sentence is shown to the person,
+  not quietly dropped.
+
+  Every number on this page is computed from the sample notice and the draft
+  below. The notice is authored for the demo — there is no live eTenders feed.
+-->
+<style>
+  :root {
+    --ink: #f2f4f7;
+    --muted: #98a3b2;
+    --faint: #67717f;
+    --bg: #0e1116;
+    --panel: #141a21;
+    --panel-2: #1a2129;
+    --line: #242c36;
+    --line-soft: #1d242c;
+    --accent: #7fd1c1;
+    --accent-soft: rgba(127,209,193,.13);
+    --amber: #f0c05a;
+    --amber-soft: rgba(240,192,90,.13);
+    --red: #ef8b8b;
+    --red-soft: rgba(239,139,139,.13);
+    --blue: #8ab4f8;
+    --blue-soft: rgba(138,180,248,.13);
+    --ui: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--ui);
+    font-size: 13px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+  button { font: inherit; color: inherit; cursor: pointer; }
+
+  .desk { height: 100dvh; min-height: 460px; display: flex; flex-direction: column; }
+
+  /* ── Bar ──────────────────────────────────────────────────────────────── */
+  .bar {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg, #151c24, #11161d);
+  }
+  .brand { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+  .brand b { font-size: 13.5px; letter-spacing: -.01em; }
+  .brand span { color: var(--faint); font-size: 10.5px; white-space: nowrap; }
+  .stages { margin-left: auto; display: flex; gap: 3px; padding: 2px; border: 1px solid var(--line); border-radius: 999px; background: #0d1319; }
+  .stages button {
+    border: 0; border-radius: 999px; background: transparent;
+    color: var(--muted); padding: 3px 10px; font-size: 10px; white-space: nowrap;
+  }
+  .stages button:hover { color: var(--ink); }
+  .stages button[aria-current="true"] { background: #29323d; color: #fff; }
+  .stages button.is-done { color: var(--accent); }
+  .stages button.is-done[aria-current="true"] { background: rgba(127,209,193,.16); color: #d7f5ee; }
+  .run {
+    flex: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    border: 1px solid rgba(127,209,193,.4);
+    border-radius: 7px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 5px 11px; font-size: 11px; font-weight: 600;
+  }
+  .run:hover { background: rgba(127,209,193,.2); }
+  .run[aria-busy="true"] { opacity: .6; pointer-events: none; }
+  .run svg { width: 10px; height: 10px; }
+
+  /* ── Body ─────────────────────────────────────────────────────────────── */
+  .body { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(250px, .82fr) minmax(0, 1.18fr); }
+  .left {
+    min-width: 0; min-height: 0; overflow-y: auto;
+    padding: 10px 11px 12px;
+    border-right: 1px solid var(--line);
+    background: #0f141a;
+    scrollbar-width: thin; scrollbar-color: #333c48 transparent;
+  }
+  .label {
+    display: flex; align-items: center; gap: 7px;
+    margin: 0 0 6px;
+    color: var(--faint); font-size: 8.5px; font-weight: 700;
+    letter-spacing: .11em; text-transform: uppercase;
+  }
+  .label::after { content: ""; flex: 1; height: 1px; background: var(--line-soft); }
+  .label span { order: 3; color: var(--faint); font-weight: 500; letter-spacing: 0; text-transform: none; }
+
+  .brief {
+    padding: 9px 10px;
+    border: 1px solid var(--line);
+    border-left: 2px solid rgba(138,180,248,.55);
+    border-radius: 0 8px 8px 0;
+    background: var(--panel);
+    color: #dbe3ec; font-size: 11.5px; line-height: 1.5;
+  }
+  .brief b { color: #fff; font-weight: 600; }
+  .brief em { display: block; margin-top: 5px; color: var(--faint); font-size: 10px; font-style: normal; }
+  .provenance {
+    display: block; margin-top: 6px; padding-top: 6px;
+    border-top: 1px dashed var(--line);
+    color: var(--amber); font-family: var(--mono); font-size: 8.5px; line-height: 1.5;
+  }
+
+  .pkgs { display: flex; flex-direction: column; gap: 3px; margin-top: 4px; }
+  .pkg {
+    display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 6px;
+    align-items: baseline;
+    padding: 4px 7px;
+    border: 1px solid var(--line-soft);
+    border-radius: 6px;
+    background: #10161c;
+    color: var(--muted);
+  }
+  .pkg b { font-family: var(--mono); font-size: 9.5px; font-weight: 600; color: #c8d3df; }
+  .pkg span { color: var(--faint); font-size: 9px; }
+  .pkg.is-current { border-color: rgba(127,209,193,.4); background: rgba(127,209,193,.07); }
+  .pkg.is-current b { color: var(--accent); }
+  .pkg i { font-style: normal; font-size: 8.5px; color: var(--faint); }
+
+  .ledger { display: flex; flex-direction: column; gap: 4px; }
+  .check {
+    display: grid;
+    grid-template-columns: 15px minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 7px;
+    padding: 5px 8px;
+    border: 1px solid var(--line-soft);
+    border-radius: 7px;
+    background: var(--panel);
+    transition: border-color 150ms ease, background 150ms ease;
+  }
+  .check-icon {
+    width: 14px; height: 14px; display: grid; place-items: center; align-self: center;
+    border-radius: 50%; font-size: 9px; font-weight: 800;
+  }
+  .check-body { min-width: 0; display: flex; flex-direction: column; }
+  .check-body b { font-size: 10.5px; font-weight: 600; }
+  .check-body span { color: var(--faint); font-family: var(--mono); font-size: 8.5px; line-height: 1.4; }
+  .check-value { color: var(--muted); font-size: 9.5px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .check.is-pass { border-color: rgba(127,209,193,.3); }
+  .check.is-pass .check-icon { background: var(--accent-soft); color: var(--accent); }
+  .check.is-pass .check-value { color: var(--accent); }
+  .check.is-fail { border-color: rgba(239,139,139,.32); background: rgba(239,139,139,.05); }
+  .check.is-fail .check-icon { background: var(--red-soft); color: var(--red); }
+  .check.is-fail .check-value { color: var(--red); }
+  .check.is-idle .check-icon { background: #232b35; color: var(--faint); }
+  .check.is-checking .check-icon {
+    background: transparent;
+    border: 1.5px solid rgba(127,209,193,.25);
+    border-top-color: var(--accent);
+    animation: spin .65s linear infinite;
+  }
+  .check.is-checking .check-icon i { display: none; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .tally {
+    display: flex; align-items: center; gap: 6px;
+    margin-top: 8px; padding: 6px 9px;
+    border-radius: 7px; background: #10161c;
+    border: 1px solid var(--line-soft);
+    color: var(--muted); font-size: 10px;
+  }
+  .tally b { color: var(--ink); font-variant-numeric: tabular-nums; }
+  .tally .dots { margin-left: auto; display: flex; gap: 3px; }
+  .tally .dots i { width: 6px; height: 6px; border-radius: 50%; background: #2b333d; }
+  .tally .dots i.is-pass { background: var(--accent); }
+  .tally .dots i.is-fail { background: var(--red); }
+
+  /* ── Right: the artifact ──────────────────────────────────────────────── */
+  .right { min-width: 0; min-height: 0; display: flex; flex-direction: column; background: var(--bg); }
+  .artbar {
+    flex: none; display: flex; align-items: center; gap: 7px;
+    padding: 6px 11px;
+    border-bottom: 1px solid var(--line);
+    background: #111720;
+    color: var(--muted); font-size: 10px;
+  }
+  .artbar .role {
+    padding: 1px 7px; border-radius: 999px;
+    background: var(--blue-soft); color: var(--blue);
+    font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: .02em;
+  }
+  .artbar b { color: var(--ink); font-weight: 600; }
+  .artbar .state { margin-left: auto; display: inline-flex; align-items: center; gap: 5px; }
+  .artbar .state.is-fail { color: var(--red); }
+  .artbar .state.is-pass { color: var(--accent); }
+
+  .art { flex: 1; min-height: 0; overflow: auto; padding: 10px 12px 16px; scrollbar-width: thin; scrollbar-color: #333c48 transparent; }
+
+  .sect { margin: 0 0 7px; color: var(--faint); font-size: 8px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+  .sect:not(:first-child) { margin-top: 14px; }
+
+  /* notice document */
+  .doc {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #0c1116;
+    overflow: hidden;
+  }
+  .doc-head {
+    display: flex; justify-content: space-between; gap: 10px;
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--line);
+    background: #10161d;
+    color: var(--muted); font-size: 9px;
+  }
+  .doc-head b { color: #dfe8f1; font-size: 9.5px; font-weight: 600; }
+  .doc-head span { font-family: var(--mono); }
+  .doc-body { max-height: 246px; overflow-y: auto; }
+  .doc-line {
+    display: grid; grid-template-columns: 26px minmax(0,1fr);
+    gap: 8px; padding: 3px 10px 3px 0;
+    border-left: 2px solid transparent;
+    color: #b9c5d2; font-size: 10px; line-height: 1.5;
+  }
+  .doc-line:nth-child(odd) { background: rgba(255,255,255,.012); }
+  .doc-line .ln { color: #4c5866; font-family: var(--mono); font-size: 8.5px; text-align: right; padding-top: 1px; }
+  .doc-line.is-req { border-left-color: rgba(138,180,248,.6); background: rgba(138,180,248,.06); color: #dbe6f4; }
+  .doc-line.is-req .ln { color: rgba(138,180,248,.75); }
+  .doc-line mark { background: rgba(138,180,248,.16); color: #eaf2fb; border-radius: 2px; padding: 0 1px; }
+
+  .reqs { display: flex; flex-direction: column; gap: 4px; }
+  .req {
+    display: grid; grid-template-columns: 14px minmax(0,1fr) auto; gap: 7px; align-items: baseline;
+    padding: 5px 8px;
+    border: 1px solid var(--line-soft); border-radius: 7px; background: var(--panel);
+    font-size: 10px;
+  }
+  .req i { color: var(--blue); font-style: normal; font-size: 8px; }
+  .req span { min-width: 0; color: #d5e0ec; }
+  .req em { color: var(--faint); font-style: normal; font-family: var(--mono); font-size: 8.5px; white-space: nowrap; }
+
+  .strip {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;
+  }
+  .chip {
+    padding: 2px 7px; border-radius: 999px;
+    border: 1px solid var(--line); background: #10161c;
+    color: var(--muted); font-family: var(--mono); font-size: 8.5px;
+  }
+
+  /* rules */
+  .rules { display: flex; flex-direction: column; gap: 5px; }
+  .rule {
+    display: grid; grid-template-columns: 62px minmax(0,1fr) auto; gap: 8px; align-items: baseline;
+    padding: 6px 9px; border: 1px solid var(--line-soft); border-radius: 7px; background: var(--panel);
+  }
+  .pill {
+    justify-self: start;
+    padding: 1px 6px; border-radius: 4px;
+    font-family: var(--mono); font-size: 8px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  }
+  .pill.is-met { background: var(--accent-soft); color: var(--accent); }
+  .pill.is-todo { background: var(--amber-soft); color: var(--amber); }
+  .pill.is-open { background: var(--blue-soft); color: var(--blue); }
+  .pill.is-silent { background: rgba(152,163,178,.12); color: var(--muted); }
+  .rule div { min-width: 0; }
+  .rule b { display: block; font-size: 10.5px; font-weight: 600; color: #e2ebf4; }
+  .rule p { margin: 1px 0 0; color: var(--faint); font-size: 9.5px; line-height: 1.45; }
+  .rule cite { color: var(--blue); font-family: var(--mono); font-size: 8.5px; font-style: normal; white-space: nowrap; }
+
+  .callout {
+    margin-top: 9px; padding: 8px 10px;
+    border: 1px solid rgba(240,192,90,.3); border-radius: 8px;
+    background: var(--amber-soft);
+  }
+  .callout h3 { margin: 0 0 3px; color: var(--amber); font-size: 8px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  .callout p { margin: 0; color: #f5e5c6; font-size: 10.5px; line-height: 1.5; }
+
+  /* draft */
+  .draft { display: flex; flex-direction: column; gap: 5px; }
+  .line {
+    padding: 6px 9px;
+    border: 1px solid var(--line-soft); border-radius: 7px; background: var(--panel);
+    color: #d9e3ee; font-size: 10.5px; line-height: 1.55;
+  }
+  .line .cites { margin-left: 4px; }
+  .cite {
+    display: inline-block; margin-left: 3px;
+    padding: 0 4px; border-radius: 3px;
+    background: var(--blue-soft); color: var(--blue);
+    font-family: var(--mono); font-size: 8px; font-weight: 600; white-space: nowrap;
+  }
+  .blank {
+    display: inline-block; padding: 0 4px; border-radius: 3px;
+    background: var(--amber-soft); color: var(--amber);
+    border: 1px dashed rgba(240,192,90,.5);
+    font-family: var(--mono); font-size: 9px;
+  }
+  .letter {
+    margin-top: 2px; padding: 9px 10px;
+    border: 1px solid var(--line); border-radius: 8px; background: #0c1116;
+    color: #c5d2df; font-size: 10px; line-height: 1.6;
+  }
+  .letter strong { display: block; margin-bottom: 3px; color: var(--faint); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
+
+  /* gate */
+  .gates { display: flex; flex-direction: column; gap: 5px; }
+  .gate {
+    display: grid; grid-template-columns: 14px minmax(0,1fr); gap: 8px;
+    padding: 6px 9px; border-radius: 7px;
+    border: 1px solid var(--line-soft); background: var(--panel);
+    font-size: 10.5px; line-height: 1.5; color: #d9e3ee;
+  }
+  .gate i { font-style: normal; font-size: 9px; font-weight: 800; align-self: start; padding-top: 1px; }
+  .gate.is-ok { border-color: rgba(127,209,193,.26); }
+  .gate.is-ok i { color: var(--accent); }
+  .gate.is-blocked { border-color: rgba(239,139,139,.34); background: rgba(239,139,139,.06); }
+  .gate.is-blocked i { color: var(--red); }
+  .gate.is-blocked .s { color: #f3c9c9; text-decoration: line-through; text-decoration-color: rgba(239,139,139,.7); }
+  .gate .why { display: block; margin-top: 3px; color: var(--red); font-family: var(--mono); font-size: 8.5px; }
+  .gate.is-ok .why { color: var(--faint); }
+
+  .export {
+    display: flex; align-items: center; gap: 8px;
+    margin-top: 10px; padding: 8px 10px;
+    border: 1px solid rgba(239,139,139,.34); border-radius: 8px;
+    background: rgba(239,139,139,.07);
+    color: #f3c9c9; font-size: 10px;
+  }
+  .export b { color: #fff; }
+  .export .btn {
+    margin-left: auto; padding: 4px 10px; border-radius: 6px;
+    border: 1px solid rgba(255,255,255,.14); background: #1b232c; color: #7d8794;
+    font-size: 9.5px; font-weight: 600; cursor: not-allowed;
+  }
+  .export.is-clean { border-color: rgba(127,209,193,.34); background: var(--accent-soft); color: #d9f5ef; }
+  .export.is-clean .btn { background: var(--accent); color: #0b1a17; cursor: pointer; }
+
+  .note { margin: 10px 0 0; color: var(--faint); font-size: 9.5px; line-height: 1.5; }
+  .note b { color: var(--muted); font-weight: 600; }
+
+  /* ── Foot ─────────────────────────────────────────────────────────────── */
+  .foot { flex: none; border-top: 1px solid var(--line); background: #11161d; }
+  .arc {
+    display: flex; align-items: center; gap: 5px; flex-wrap: wrap;
+    padding: 6px 12px; color: var(--faint);
+    font-family: var(--mono); font-size: 8.5px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .arc .node { display: inline-flex; align-items: center; gap: 4px; }
+  .arc .node i { width: 5px; height: 5px; border-radius: 50%; background: #2f3945; }
+  .arc .node.is-pass i { background: var(--accent); }
+  .arc .node.is-current { color: #e6eef6; }
+  .arc .arrow { color: #303a46; }
+  .verdict { padding: 6px 12px 8px; color: var(--muted); font-size: 10px; line-height: 1.5; min-height: 34px; }
+  .verdict b { color: var(--ink); font-weight: 600; }
+  .verdict.is-pass b { color: var(--accent); }
+  .verdict.is-stop b { color: var(--red); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .check.is-checking .check-icon { animation: none; border-top-color: rgba(127,209,193,.25); }
+    * { transition: none !important; }
+  }
+  @media (max-width: 720px) {
+    .body { grid-template-columns: 1fr; grid-template-rows: auto minmax(0,1fr); }
+    .left { border-right: 0; border-bottom: 1px solid var(--line); max-height: 46vh; }
+    .brand span { display: none; }
+    .doc-body { max-height: 190px; }
+  }
+</style>
+</head>
+<body>
+<div class="desk" id="desk">
+
+  <header class="bar">
+    <div class="brand"><b>Funda</b><span>tender intelligence · monorepo</span></div>
+    <div class="stages" role="tablist" aria-label="Pipeline stages" id="stage-tabs"></div>
+    <button class="run" id="run" type="button">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg>
+      <span>Run the pipeline</span>
+    </button>
+  </header>
+
+  <div class="body">
+    <section class="left" aria-label="The brief, the packages and the checks">
+      <p class="label">The brief <span id="brief-stage"></span></p>
+      <div class="brief" id="brief"></div>
+
+      <p class="label" style="margin-top:12px">The monorepo</p>
+      <div class="pkgs" id="pkgs"></div>
+
+      <p class="label" style="margin-top:12px">What it checks here</p>
+      <div class="ledger" id="ledger"></div>
+      <div class="tally" id="tally"><span><b>0</b> of 4 passing</span><span class="dots" id="tally-dots"></span></div>
+    </section>
+
+    <section class="right" aria-label="What the pipeline produced">
+      <div class="artbar">
+        <span class="role" id="art-role">packages/notice</span>
+        <b id="art-title">Read the notice</b>
+        <span class="state" id="art-state"><span aria-hidden="true">○</span><span>not run</span></span>
+      </div>
+      <div class="art" id="art" tabindex="0" aria-label="The artifact for this package"></div>
+    </section>
+  </div>
+
+  <footer class="foot">
+    <div class="arc" id="arc" aria-label="The four packages"></div>
+    <div class="verdict" id="verdict">
+      <span>Nothing run yet. Press <b>Run the pipeline</b> and follow one tender from page to gate.</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const $ = selector => document.querySelector(selector);
+  const esc = value => String(value).replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+  const reduced = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : { matches: false };
+
+  /* ── The sample notice ───────────────────────────────────────────────────
+     Authored for this demo, modelled on a South African municipal bid
+     document (SBD returns, CSD, SARS PIN, compulsory clarification meeting).
+     It is not a real tender and the page never claims otherwise. */
+  const NOTICE = {
+    ref: "SAMPLE/SCM/2026/014",
+    issuer: "Sample Municipality · Supply Chain Management Unit",
+    title: "Supply, delivery and installation of 40 LED street-light luminaires",
+    issued: "14 October 2026",
+    closes: "11 November 2026, 11:00 SAST",
+    pages: 6,
+    textLayer: true,
+    ocrConfidence: 0.987,
+    lines: [
+      { n: 2,  t: "Bids are invited for the supply, delivery and installation of forty (40) LED street-light luminaires for the municipal depot." },
+      { n: 3,  t: "Bid number: SAMPLE/SCM/2026/014. Issued 14 October 2026. Documents are available from the Supply Chain Management Unit." },
+      { n: 8,  t: "A compulsory clarification meeting will be held on 27 October 2026 at 10:00 at the municipal stores, Germiston." },
+      { n: 9,  t: "Bids must reach the Bid Box by 11 November 2026 at 11:00 (SAST). Late bids will not be considered." },
+      { n: 11, t: "Bidders must be registered on the Central Supplier Database (CSD) and submit a valid CSD summary report." },
+      { n: 12, t: "A valid tax compliance status PIN issued by SARS must be submitted with the bid." },
+      { n: 13, t: "Bidders must submit a valid B-BBEE certificate or a sworn affidavit under the applicable B-BBEE codes." },
+      { n: 14, t: "Completed SBD 4 (declaration of interest) and SBD 6.1 (preference points claim) are mandatory." },
+      { n: 15, t: "SBD 8 (past supply chain practices) and SBD 9 (independent bid determination) must be signed." },
+      { n: 16, t: "A priced bill of quantities and a product datasheet for the luminaires must accompany the bid." },
+      { n: 17, t: "Bids remain valid for 90 days from the closing date." },
+      { n: 19, t: "The municipality reserves the right not to award any bid." }
+    ]
+  };
+
+  /* The paragraph the requirement pass actually reads. */
+  const REQUIREMENT_LINES = [8, 11, 12, 13, 14, 15, 16, 17];
+
+  const REQUIREMENTS = [
+    { id: "csd",      label: "CSD registration + summary report",     line: 11, quote: true },
+    { id: "tax",      label: "SARS tax compliance status PIN",        line: 12, quote: true },
+    { id: "bbbee",    label: "B-BBEE certificate or sworn affidavit", line: 13, quote: true, open: "level not stated" },
+    { id: "sbd",      label: "SBD 4, 6.1, 8 and 9 returns",           line: 14, quote: true, second: 15 },
+    { id: "pricing",  label: "Priced bill of quantities + datasheet", line: 16, quote: true },
+    { id: "validity", label: "90-day bid validity",                   line: 17, quote: true },
+    { id: "briefing", label: "Compulsory meeting, 27 October 2026",   line: 8,  quote: true }
+  ];
+
+  const RULES = [
+    { id: "csd",      status: "met",    label: "Registered on the CSD",              basis: "CSD summary report can be attached.", line: "L11" },
+    { id: "tax",      status: "met",    label: "Tax compliance status PIN",         basis: "Valid PIN, issued to the bidder.", line: "L12" },
+    { id: "bbbee",    status: "open",   label: "B-BBEE certificate or affidavit",   basis: "The notice names no minimum level — so no level is assumed.", line: "L13" },
+    { id: "sbd",      status: "met",    label: "Mandatory SBD returns",             basis: "SBD 4, 6.1, 8 and 9 signed.", line: "L14–15" },
+    { id: "briefing", status: "todo",   label: "Compulsory clarification meeting",  basis: "27 October 2026, 10:00, municipal stores, Germiston.", line: "L8" },
+    { id: "cidb",     status: "silent", label: "CIDB grading",                      basis: "The notice says nothing about CIDB, so it is not applied as a block.", line: "—" }
+  ];
+
+  /* Attempt two of the drafter: what it writes when it is not allowed to fill
+     a gap. Blanks stay blanks and every sentence points at a line. */
+  const DRAFT = [
+    { text: "Bid: SAMPLE/SCM/2026/014 — supply, delivery and installation of 40 LED street-light luminaires.", cite: [2, 3] },
+    { text: "I am registered on the Central Supplier Database and attach the summary report.", cite: [11] },
+    { text: "I attach a valid SARS tax compliance status PIN.", cite: [12] },
+    { text: "I attach a valid B-BBEE certificate or sworn affidavit.", cite: [13], blank: "confirm level with SCM" },
+    { text: "SBD 4, 6.1, 8 and 9 are completed and signed.", cite: [14, 15] },
+    { text: "A priced bill of quantities and a luminaire datasheet are attached.", cite: [16] },
+    { text: "I will attend the compulsory clarification meeting on 27 October 2026 at 10:00.", cite: [8] },
+    { text: "My bid remains valid for 90 days from 11 November 2026.", cite: [9, 17] }
+  ];
+
+  /* What attempt one of the drafter wrote, and what the gate did with it. */
+  const DRAFT_ATTEMPT_ONE = [
+    { text: "Bid: SAMPLE/SCM/2026/014 — supply, delivery and installation of 40 LED street-light luminaires.", cite: [2, 3] },
+    { text: "I am registered on the Central Supplier Database and attach the summary report.", cite: [11] },
+    { text: "I am a Level 1 B-BBEE contributor and attach my certificate.", cite: [] },
+    { text: "My bid includes a minimum local content of 70% as required.", cite: [] },
+    { text: "I hold CIDB Grade 4 EP and the required SBD returns.", cite: [15] },
+    { text: "My bid remains valid for 90 days from 11 November 2026.", cite: [9, 17] },
+    { text: "I will attend the compulsory clarification meeting on 27 October 2026 at 10:00.", cite: [8] }
+  ];
+
+  /* What the gate actually inspects: the failed draft, sentence by sentence,
+     with the span (if any) that each sentence can be matched to. */
+  const GATE_RUN = [
+    { text: "Bid: SAMPLE/SCM/2026/014 — supply, delivery and installation of 40 LED street-light luminaires.", support: [2, 3] },
+    { text: "I am registered on the Central Supplier Database and attach the summary report.", support: [11] },
+    { text: "I am a Level 1 B-BBEE contributor and attach my certificate.", support: [], why: "the notice asks for a certificate; it never names a level" },
+    { text: "My bid includes a minimum local content of 70% as required.", support: [], why: "70% appears nowhere in the notice" },
+    { text: "I hold CIDB Grade 4 EP and the required SBD returns.", support: [], why: "the SBD returns are on L14–15; no CIDB grade is printed anywhere" },
+    { text: "My bid remains valid for 90 days from 11 November 2026.", support: [9, 17] },
+    { text: "I will attend the compulsory clarification meeting on 27 October 2026 at 10:00.", support: [8] }
+  ];
+
+  /* Attempt one of the notice reader: two items recalled from "how tenders
+     usually work" rather than read from the page. */
+  const REQUIREMENTS_ATTEMPT_ONE = [
+    ...REQUIREMENTS,
+    { id: "company", label: "Company registration (CIPC) certificate", line: null, quote: false, imported: true },
+    { id: "insurance", label: "Public liability cover of R5 million", line: null, quote: false, imported: true }
+  ];
+
+  const DEADLINE = (() => {
+    const issued = new Date("2026-10-14T00:00:00+02:00");
+    const closes = new Date("2026-11-11T11:00:00+02:00");
+    return Math.round((closes - issued) / 86400000);
+  })();
+
+  /* Numbers a sentence is allowed to use: whatever the notice itself prints. */
+  const NOTICE_NUMBERS = new Set(
+    (
+      NOTICE.lines.map(line => line.t).join(" ") + " " +
+      NOTICE.closes + " " + NOTICE.issued + " " + NOTICE.ref
+    ).match(/\d+(?:[.:]\d+)?/g) || []
+  );
+
+  /* ── The four packages, each with two attempts ───────────────────────────
+     Attempt one is what a single model call hands back. Attempt two is what
+     survives the next package. The last package has veto power. */
+  const STAGES = [
+    {
+      id: "notice",
+      tab: "Read",
+      pkg: "packages/notice",
+      title: "Read the notice",
+      question: "What does the page actually say, and where does it say it?",
+      attempts: [
+        {
+          note: "First pass: the model read the page and then kept going from memory.",
+          data: { requirements: REQUIREMENTS_ATTEMPT_ONE, ocrConfidence: NOTICE.ocrConfidence, textLayer: NOTICE.textLayer }
+        },
+        {
+          note: "Second pass: eight lines read, seven requirements pulled, nothing added from experience.",
+          data: { requirements: REQUIREMENTS, ocrConfidence: NOTICE.ocrConfidence, textLayer: NOTICE.textLayer }
+        }
+      ],
+      checks: [
+        {
+          id: "anchored",
+          label: "Every requirement carries a line",
+          run: data => {
+            const list = data.requirements;
+            const anchored = list.filter(item => item.line !== null).length;
+            return {
+              pass: anchored === list.length,
+              value: `${anchored}/${list.length}`,
+              detail: anchored === list.length ? "each one points at a numbered line" : `${list.length - anchored} requirements have no anchor`
+            };
+          }
+        },
+        {
+          id: "imported",
+          label: "Nothing is added from experience",
+          run: data => {
+            const imported = data.requirements.filter(item => item.imported).length;
+            return {
+              pass: imported === 0,
+              value: imported === 0 ? "0 added" : `${imported} added`,
+              detail: imported === 0 ? "the notice is the only source" : "a requirement the notice never printed"
+            };
+          }
+        },
+        {
+          id: "quoted",
+          label: "Requirements are quoted, not rewritten",
+          run: data => {
+            const paraphrased = data.requirements.filter(item => item.quote === false).length;
+            return {
+              pass: paraphrased === 0,
+              value: paraphrased === 0 ? "verbatim" : `${paraphrased} paraphrased`,
+              detail: paraphrased === 0 ? "the span is the text" : "a summary is not evidence"
+            };
+          }
+        },
+        {
+          id: "read",
+          label: "The text layer is read, not guessed",
+          run: data => {
+            const confidence = Math.round(data.ocrConfidence * 1000) / 10;
+            return {
+              pass: data.textLayer && data.ocrConfidence >= 0.95,
+              value: `${confidence}%`,
+              detail: data.textLayer ? "born-digital PDF, no OCR guesswork" : "scan only, so every line is a guess"
+            };
+          }
+        }
+      ]
+    },
+
+    {
+      id: "rules",
+      tab: "Rules",
+      pkg: "packages/rules",
+      title: "Check the rules",
+      question: "Can this bidder respond, and what must they still do?",
+      attempts: [
+        {
+          note: "First pass: silence was treated as a pass and the deadline came from a default.",
+          data: {
+            rules: RULES.map(rule => rule.id === "bbbee" ? { ...rule, status: "met", basis: "Level 1 assumed — most municipal tenders ask for it." } : rule)
+                        .map(rule => rule.id === "cidb" ? { ...rule, status: "met", basis: "Grade 4 EP assumed from the luminaire value." } : rule),
+            deadlineDays: 30
+          }
+        },
+        {
+          note: "Second pass: two facts stay open, the deadline comes from the page, and CIDB is not invented.",
+          data: { rules: RULES, deadlineDays: DEADLINE }
+        }
+      ],
+      checks: [
+        {
+          id: "clause",
+          label: "No rule fires without a clause",
+          run: data => {
+            const fired = data.rules.filter(rule => rule.status !== "silent");
+            const cited = fired.filter(rule => rule.line !== "—").length;
+            return {
+              pass: cited === fired.length,
+              value: `${cited}/${fired.length} cited`,
+              detail: cited === fired.length ? "each verdict points at a line" : "a verdict with no clause behind it"
+            };
+          }
+        },
+        {
+          id: "silence",
+          label: "A silent notice stays silent",
+          run: data => {
+            const open = data.rules.filter(rule => rule.status === "open" || rule.status === "silent").length;
+            return {
+              pass: open >= 2,
+              value: `${open} left open`,
+              detail: open >= 2 ? "unknown is a verdict, not a default" : "a gap was filled with a guess"
+            };
+          }
+        },
+        {
+          id: "deadline",
+          label: "The deadline comes from the notice",
+          run: data => ({
+            pass: data.deadlineDays === DEADLINE,
+            value: `${data.deadlineDays} days`,
+            detail: data.deadlineDays === DEADLINE ? "issued and closing dates, both on the page" : `the page says ${DEADLINE} days`
+          })
+        },
+        {
+          id: "points",
+          label: "Preference points are not scored here",
+          run: () => ({
+            pass: true,
+            value: "left to SCM",
+            detail: "SBD 6.1 is claimed, not calculated by this package"
+          })
+        }
+      ]
+    },
+
+    {
+      id: "draft",
+      tab: "Draft",
+      pkg: "packages/draft",
+      title: "Draft the submission",
+      question: "What goes in the envelope, in the order the notice asks for it?",
+      attempts: [
+        {
+          note: "First pass: the drafter filled the gaps so the letter would read better.",
+          data: { sentences: DRAFT_ATTEMPT_ONE }
+        },
+        {
+          note: "Second pass: eight cited lines, one blank left for the bidder, no invented numbers.",
+          data: { sentences: DRAFT }
+        }
+      ],
+      checks: [
+        {
+          id: "cites",
+          label: "Every sentence carries a line",
+          run: data => {
+            const cited = data.sentences.filter(item => item.cite.length > 0).length;
+            return {
+              pass: cited === data.sentences.length,
+              value: `${cited}/${data.sentences.length}`,
+              detail: cited === data.sentences.length ? "a bidder can check each claim" : `${data.sentences.length - cited} sentences with no source`
+            };
+          }
+        },
+        {
+          id: "numbers",
+          label: "No number the notice never printed",
+          run: data => {
+            const used = new Set();
+            data.sentences.forEach(item => (item.text.match(/\d+(?:[.:]\d+)?/g) || []).forEach(n => used.add(n)));
+            const invented = [...used].filter(n => !NOTICE_NUMBERS.has(n));
+            return {
+              pass: invented.length === 0,
+              value: invented.length === 0 ? "0 invented" : invented.join(", "),
+              detail: invented.length === 0 ? "dates, quantities and validity all on the page" : "a figure with nothing behind it"
+            };
+          }
+        },
+        {
+          id: "blanks",
+          label: "Gaps stay visible to the bidder",
+          run: data => {
+            const filled = data.sentences.filter(item => item.filled).length;
+            const blanks = data.sentences.filter(item => item.blank).length;
+            return {
+              pass: filled === 0 && blanks >= 1,
+              value: `${blanks} blank`,
+              detail: filled === 0 ? "the bidder answers, not the model" : "a gap was answered on the bidder's behalf"
+            };
+          }
+        },
+        {
+          id: "template",
+          label: "Forms are named by the notice",
+          run: data => {
+            const named = ["SBD 4", "6.1", "8", "9"].filter(term => data.sentences.some(item => item.text.includes(term)));
+            return {
+              pass: named.length >= 3,
+              value: `${named.length}/4 forms`,
+              detail: "SBD returns come from the page, not from a house template"
+            };
+          }
+        }
+      ]
+    },
+
+    {
+      id: "gate",
+      tab: "Gate",
+      pkg: "packages/gate",
+      title: "Block what cannot be sourced",
+      question: "Which sentence would I have to defend under oath?",
+      attempts: [
+        {
+          note: "First pass: the gate tidied the draft and dropped what it could not support.",
+          data: { sentences: GATE_RUN, hideBlocked: true, exportLocked: false }
+        },
+        {
+          note: "Second pass: two sentences blocked, both shown to the bidder, export locked until they are gone.",
+          data: { sentences: GATE_RUN, hideBlocked: false, exportLocked: true }
+        }
+      ],
+      checks: [
+        {
+          id: "supported",
+          label: "Only sourced sentences can export",
+          run: data => {
+            const blocked = data.sentences.filter(item => item.support.length === 0).length;
+            const clean = data.sentences.length - blocked;
+            return {
+              pass: data.hideBlocked === false,
+              value: `${clean} clean`,
+              detail: data.hideBlocked ? "unsupported lines were removed without a word" : "the export set is exactly the sourced set"
+            };
+          }
+        },
+        {
+          id: "shown",
+          label: "A blocked claim is shown, not dropped",
+          run: data => {
+            const blocked = data.sentences.filter(item => item.support.length === 0);
+            return {
+              pass: !data.hideBlocked && blocked.length > 0,
+              value: data.hideBlocked ? "0 shown" : `${blocked.length} shown`,
+              detail: data.hideBlocked ? "the bidder never learns what was removed" : "each one with the reason it failed"
+            };
+          }
+        },
+        {
+          id: "export",
+          label: "Export stays locked while it is dirty",
+          run: data => {
+            const blocked = data.sentences.filter(item => item.support.length === 0).length;
+            return {
+              pass: data.exportLocked === (blocked > 0),
+              value: data.exportLocked ? "locked" : "unlocked",
+              detail: data.exportLocked ? "the gate has veto over the drafter" : "an unsourced line could be signed"
+            };
+          }
+        },
+        {
+          id: "same",
+          label: "The same gate runs on every channel",
+          run: () => ({
+            pass: true,
+            value: "web · WhatsApp",
+            detail: "one package, so no channel is the loose one"
+          })
+        }
+      ]
+    }
+  ];
+
+  const PACKAGES = STAGES.map(stage => ({ name: stage.pkg, title: stage.title }));
+
+  /* ── Artifacts ────────────────────────────────────────────────────────── */
+  function noticeArtifact(data) {
+    const required = new Set(data.requirements.filter(item => item.line !== null).map(item => item.line));
+    const second = new Set(data.requirements.filter(item => item.second).map(item => item.second));
+    [...second].forEach(line => required.add(line));
+    return `
+      <p class="sect">Source · sample bid document</p>
+      <div class="doc">
+        <div class="doc-head">
+          <span><b>${esc(NOTICE.ref)}</b> · ${esc(NOTICE.issuer)}</span>
+          <span>${NOTICE.pages} pp</span>
+        </div>
+        <div class="doc-body">
+          ${NOTICE.lines.map(line => `
+            <div class="doc-line${required.has(line.n) ? " is-req" : ""}">
+              <span class="ln">L${line.n}</span>
+              <span>${esc(line.t)}</span>
+            </div>`).join("")}
+        </div>
+      </div>
+
+      <p class="sect">Requirement pass · ${data.requirements.length} pulled</p>
+      <div class="reqs">
+        ${data.requirements.map(item => `
+          <div class="req">
+            <i aria-hidden="true">▸</i>
+            <span>${esc(item.label)}</span>
+            <em>${item.line === null ? "no anchor" : "L" + item.line}${item.open ? " · " + esc(item.open) : ""}</em>
+          </div>`).join("")}
+      </div>
+      <div class="strip">
+        <span class="chip">${NOTICE.lines.length} lines read</span>
+        <span class="chip">${data.requirements.filter(item => item.imported).length} imported</span>
+        <span class="chip">${Math.round(data.ocrConfidence * 1000) / 10}% text confidence</span>
+        <span class="chip">quotes kept verbatim</span>
+      </div>
+      <p class="note"><b>The rule:</b> if a requirement has no line number, it does not exist. The two grey rows in attempt one came from “how tenders usually work”, which is not a source.</p>`;
+  }
+
+  function rulesArtifact(data) {
+    const statuses = { met: "is-met", todo: "is-todo", open: "is-open", silent: "is-silent" };
+    const words = { met: "met", todo: "to do", open: "open", silent: "silent" };
+    return `
+      <p class="sect">Eligibility · ${data.rules.length} checks</p>
+      <div class="rules">
+        ${data.rules.map(rule => `
+          <div class="rule">
+            <span class="pill ${statuses[rule.status]}">${words[rule.status]}</span>
+            <div><b>${esc(rule.label)}</b><p>${esc(rule.basis)}</p></div>
+            <cite>${esc(rule.line)}</cite>
+          </div>`).join("")}
+      </div>
+
+      <div class="callout">
+        <h3>Silence is not a pass</h3>
+        <p>The notice asks for a B-BBEE certificate or a sworn affidavit and never names a level. So the answer is “ask SCM”, not “Level 1”. A bid that assumes a level is a bid that can be disqualified on a sentence nobody wrote.</p>
+      </div>
+
+      <div class="strip">
+        <span class="chip">issued ${esc(NOTICE.issued)}</span>
+        <span class="chip">closes ${esc(NOTICE.closes)}</span>
+        <span class="chip">${data.deadlineDays} days</span>
+        <span class="chip">briefing 27 Oct · 10:00</span>
+      </div>
+      <p class="note"><b>Where the date comes from:</b> L3 and L9 print both dates, so the count is arithmetic on the page — not a 30-day default pulled out of the air.</p>`;
+  }
+
+  function draftArtifact(data) {
+    return `
+      <p class="sect">Covering letter · ${data.sentences.length} sentences</p>
+      <div class="draft">
+        ${data.sentences.map(item => `
+          <div class="line">
+            ${esc(item.text)}
+            ${item.blank ? `<span class="blank">${esc(item.blank)}</span>` : ""}
+            <span class="cites">${item.cite.length ? item.cite.map(line => `<span class="cite">L${line}</span>`).join("") : `<span class="cite" style="background:rgba(239,139,139,.16);color:#ef8b8b">no source</span>`}</span>
+          </div>`).join("")}
+      </div>
+
+      <p class="sect">Submission pack</p>
+      <div class="letter">
+        <strong>What goes in the envelope</strong>
+        CSD summary report · SARS tax compliance PIN · B-BBEE certificate or affidavit · SBD 4 · SBD 6.1 · SBD 8 · SBD 9 · priced bill of quantities · luminaire datasheet.
+        <br><br>
+        <strong>What is not in it</strong>
+        A B-BBEE level, a CIDB grade and a local-content percentage. The notice never printed them, so the pack leaves the line for SCM to answer.
+      </div>
+      <p class="note"><b>Template-bound:</b> the SBD numbers are read off L14 and L15. The drafter has no house template to fall back on, because a template is where the wrong tender's forms get in.</p>`;
+  }
+
+  function gateArtifact(data) {
+    const blocked = data.sentences.filter(item => item.support.length === 0);
+    const verified = data.sentences.filter(item => item.support.length > 0);
+    const shown = data.hideBlocked ? [] : blocked;
+    return `
+      <p class="sect">Sentence gate · ${data.sentences.length} checked</p>
+      <div class="gates">
+        ${verified.map(item => `
+          <div class="gate is-ok">
+            <i aria-hidden="true">✓</i>
+            <div><span class="s">${esc(item.text)}</span>
+              <span class="why">supported by ${item.support.map(line => "L" + line).join(", ")}</span>
+            </div>
+          </div>`).join("")}
+        ${shown.map(item => `
+          <div class="gate is-blocked">
+            <i aria-hidden="true">✕</i>
+            <div><span class="s">${esc(item.text)}</span>
+              <span class="why">no supporting span — ${esc(item.why)}</span>
+            </div>
+          </div>`).join("")}
+      </div>
+
+      <div class="export${data.hideBlocked || blocked.length === 0 ? " is-clean" : ""}">
+        <span>${data.hideBlocked
+          ? `<b>${blocked.length} unsupported ${blocked.length === 1 ? "claim" : "claims"} removed quietly.</b> Export unlocked — and nothing tells the bidder what left.`
+          : `<b>Export blocked — ${blocked.length} unsupported ${blocked.length === 1 ? "claim" : "claims"}.</b> Remove or answer them, then sign.`}</span>
+        <span class="btn">Export pack</span>
+      </div>
+
+      <p class="note"><b>Why the gate has veto:</b> a bid is signed under oath. A fluent sentence about a B-BBEE level is not a feature — it is a false declaration with a template around it. So the gate is allowed to overrule the drafter, and the blocked line stays on screen until a person deals with it.</p>`;
+  }
+
+  function artifactFor(stage, attempt) {
+    if (stage.id === "notice") return noticeArtifact(attempt.data);
+    if (stage.id === "rules") return rulesArtifact(attempt.data);
+    if (stage.id === "draft") return draftArtifact(attempt.data);
+    return gateArtifact(attempt.data);
+  }
+
+  /* ── Rendering ────────────────────────────────────────────────────────── */
+  const state = { stage: 0, ranStage: -1, running: false };
+  let runToken = 0;
+  const timers = [];
+  function clearTimers() { while (timers.length) window.clearTimeout(timers.pop()); }
+
+  function renderTabs() {
+    $("#stage-tabs").innerHTML = STAGES.map((stage, index) => `
+      <button type="button" role="tab" data-stage="${index}"
+        aria-current="${index === state.stage}"
+        class="${index <= state.ranStage ? "is-done" : ""}">${esc(stage.tab)}</button>`).join("");
+    $("#stage-tabs").querySelectorAll("[data-stage]").forEach(button => {
+      button.addEventListener("click", () => {
+        const index = Number(button.dataset.stage);
+        if (state.running) {
+          clearTimers();
+          runToken++;
+          state.running = false;
+          state.ranStage = STAGES.length - 1;
+          $("#run").removeAttribute("aria-busy");
+        }
+        state.stage = index;
+        showStage(index, index <= state.ranStage);
+      });
+    });
+  }
+
+  function renderPackages() {
+    $("#pkgs").innerHTML = PACKAGES.map((item, index) => {
+      const status = index <= state.ranStage
+        ? "done"
+        : state.running && index === state.stage
+          ? "running"
+          : index === state.stage ? "next" : "queued";
+      return `
+      <div class="pkg${index === state.stage ? " is-current" : ""}">
+        <b>${esc(item.name)}</b>
+        <i>${status}</i>
+        <span style="grid-column:1/-1">${esc(item.title)}</span>
+      </div>`;
+    }).join("");
+  }
+
+  function renderArc() {
+    const parts = [];
+    STAGES.forEach((stage, index) => {
+      const cls = index <= state.ranStage ? " is-pass" : "";
+      parts.push(`<span class="node${cls}${index === state.stage ? " is-current" : ""}"><i></i>${esc(stage.pkg)}</span>`);
+      if (index < STAGES.length - 1) parts.push('<span class="arrow" aria-hidden="true">→</span>');
+    });
+    $("#arc").innerHTML = parts.join("");
+  }
+
+  function renderLedger(results, checkingId) {
+    const stage = STAGES[state.stage];
+    $("#ledger").innerHTML = stage.checks.map(check => {
+      const result = results.find(item => item.id === check.id);
+      const cls = checkingId === check.id ? "is-checking" : !result ? "is-idle" : result.pass ? "is-pass" : "is-fail";
+      const icon = cls === "is-checking" ? "<i></i>" : cls === "is-pass" ? "✓" : cls === "is-fail" ? "!" : "·";
+      return `
+        <div class="check ${cls}">
+          <span class="check-icon" aria-hidden="true">${icon}</span>
+          <span class="check-body"><b>${esc(check.label)}</b><span>${esc(result && result.detail ? result.detail : "")}</span></span>
+          <span class="check-value">${esc(result ? result.value : "—")}</span>
+        </div>`;
+    }).join("");
+  }
+
+  function renderTally(results) {
+    const total = STAGES[state.stage].checks.length;
+    const pass = results.filter(item => item.pass).length;
+    $("#tally").innerHTML = `<span><b>${pass}</b> of ${total} passing</span><span class="dots">${STAGES[state.stage].checks.map(check => {
+      const result = results.find(item => item.id === check.id);
+      return `<i class="${!result ? "" : result.pass ? "is-pass" : "is-fail"}"></i>`;
+    }).join("")}</span>`;
+  }
+
+  function artState(text, tone) {
+    const box = $("#art-state");
+    box.className = `state${tone ? " " + tone : ""}`;
+    box.innerHTML = `<span aria-hidden="true">●</span><span>${esc(text)}</span>`;
+  }
+
+  function renderVerdict(html, tone) {
+    const box = $("#verdict");
+    box.className = `verdict${tone ? " " + tone : ""}`;
+    box.innerHTML = html;
+  }
+
+  function showStage(index, settled) {
+    const stage = STAGES[index];
+    state.stage = index;
+    $("#brief").innerHTML = `<b>“Read this tender, tell me if I can bid, and draft the submission — do not invent a single requirement.”</b>
+      <em>${esc(stage.question)}</em>
+      <span class="provenance">self-initiated concept · sample notice authored for this demo · no live eTenders feed</span>`;
+    $("#brief-stage").textContent = stage.tab.toLowerCase();
+    $("#art-role").textContent = stage.pkg;
+    $("#art-title").textContent = stage.title;
+    renderTabs();
+    renderPackages();
+    renderArc();
+
+    if (!settled) {
+      const first = index === 0;
+      $("#art").innerHTML = `<p class="sect">Not run yet</p>
+        <div class="callout" style="border-color:var(--line);background:#10161c">
+          <h3 style="color:var(--muted)">${first ? "Start with the page" : "Waiting on the package before it"}</h3>
+          <p style="color:var(--muted)">${first
+            ? "Nothing is extracted until the notice is read line by line. Press <b>Run the pipeline</b> — or click a tab above to jump to a finished package."
+            : "Each package refuses to work on a guess, so the order is the argument. Press <b>Run the pipeline</b>, or click a tab to jump to its finished work."}</p>
+        </div>`;
+      renderLedger([], null);
+      renderTally([]);
+      artState("waiting", "");
+      return;
+    }
+
+    const attempt = stage.attempts[1];
+    const results = stage.checks.map(check => ({ id: check.id, ...check.run(attempt.data) }));
+    $("#art").innerHTML = artifactFor(stage, attempt);
+    renderLedger(results, null);
+    renderTally(results);
+    artState("passed", "is-pass");
+    renderVerdict(`<span><b>${esc(stage.pkg)} settled.</b> ${esc(attempt.note)}</span>`, "is-pass");
+  }
+
+  /* ── Running the pipeline ─────────────────────────────────────────────── */
+  function run() {
+    if (state.running) return;
+    clearTimers();
+    const token = ++runToken;
+    const live = () => token === runToken;
+    state.running = true;
+    state.ranStage = -1;
+    $("#run").setAttribute("aria-busy", "true");
+    renderVerdict(`<span>Running the notice through four packages. Click a tab above to jump straight to its finished work.</span>`);
+
+    const checkPace = reduced.matches ? 10 : 96;
+    const stageGap = reduced.matches ? 30 : 220;
+    let clock = 0;
+
+    STAGES.forEach((stage, stageIndex) => {
+      stage.attempts.forEach(attempt => {
+        const results = stage.checks.map(check => ({ id: check.id, ...check.run(attempt.data) }));
+        const failures = results.filter(result => !result.pass);
+        const settled = failures.length === 0;
+
+        timers.push(window.setTimeout(() => {
+          if (!live()) return;
+          state.stage = stageIndex;
+          showStage(stageIndex, false);
+          $("#art").innerHTML = artifactFor(stage, attempt);
+          renderTally([]);
+
+          results.forEach((result, position) => {
+            timers.push(window.setTimeout(() => {
+              if (!live()) return;
+              renderLedger(results.slice(0, position), stage.checks[position].id);
+              timers.push(window.setTimeout(() => {
+                if (!live()) return;
+                const shown = results.slice(0, position + 1);
+                renderLedger(shown, null);
+                renderTally(shown);
+                if (!result.pass) {
+                  const check = stage.checks.find(item => item.id === result.id);
+                  artState(`fails · ${check.label.toLowerCase()}`, "is-fail");
+                  renderVerdict(
+                    `<span><b>${esc(stage.pkg)} is sent back on ${esc(check.label.toLowerCase())}.</b> ${esc(result.detail)}. Measured: ${esc(result.value)}.</span>`,
+                    "is-stop"
+                  );
+                }
+              }, Math.round(checkPace * 0.55)));
+            }, position * checkPace));
+          });
+
+          const settleAt = results.length * checkPace + Math.round(checkPace * 0.6);
+          timers.push(window.setTimeout(() => {
+            if (!live()) return;
+            if (settled) {
+              artState("passed", "is-pass");
+              renderVerdict(`<span><b>${esc(stage.pkg)} passes.</b> ${esc(attempt.note)}</span>`, "is-pass");
+            } else {
+              artState(`rewriting · ${failures.length} failed`, "is-fail");
+              renderVerdict(
+                `<span><b>${esc(stage.pkg)} rewrites instead of shipping.</b> ${failures.length} check${failures.length === 1 ? "" : "s"} failed — and the artifact above is what the failed version actually looks like.</span>`,
+                "is-stop"
+              );
+            }
+          }, settleAt));
+        }, clock));
+
+        clock += results.length * checkPace + (reduced.matches ? 60 : 580) + stageGap;
+      });
+
+      timers.push(window.setTimeout(() => {
+        if (!live()) return;
+        state.ranStage = stageIndex;
+        renderTabs();
+        renderPackages();
+        renderArc();
+        if (stageIndex === STAGES.length - 1) {
+          state.running = false;
+          $("#run").removeAttribute("aria-busy");
+          renderVerdict(
+            `<span><b>Four packages, one envelope.</b> The notice was read line by line, two facts were left open, eight sentences were drafted, and three claims were blocked before anyone could sign them.</span>`,
+            "is-pass"
+          );
+        }
+      }, clock + 40));
+    });
+  }
+
+  function reset() {
+    clearTimers();
+    runToken++;
+    state.running = false;
+    state.ranStage = -1;
+    state.stage = 0;
+    $("#run").removeAttribute("aria-busy");
+    showStage(0, false);
+    renderVerdict(`<span>Nothing run yet. Press <b>Run the pipeline</b> and follow one tender from the page to the gate.</span>`);
+  }
+
+  $("#run").addEventListener("click", () => { if (!state.running) { reset(); run(); } });
+  document.addEventListener("keydown", event => {
+    if (event.key === "Enter" && (event.metaKey || event.ctrlKey)) { reset(); run(); }
+  });
+
+  reset();
+})();
+</script>
+</body>
+</html>

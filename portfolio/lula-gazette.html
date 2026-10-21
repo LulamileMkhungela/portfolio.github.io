@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="../js/content-guard.js?v=1"></script>
+	<script>
+		(function () {
+			const params = new URLSearchParams(window.location.search);
+			if (params.get("embedded") !== "1") return;
+			document.documentElement.classList.add("is-embedded");
+			document.addEventListener("DOMContentLoaded", function () {
+				document.body.classList.add("is-embedded");
+			});
+		})();
+	</script>
+	<meta charset="UTF-8" />
+	<script src="../js/appearance.js"></script>
+	<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport">
+	<meta name="twitter:widgets:theme" content="light">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="LulaGazette — Lulamile Mkhungela">
+	<meta property="og:description" content="South African statutes, judgments, court forms, rules and regulations in one searchable library, with the official PDF beside the summary. A legal library a citizen can search before they sign up, and a workspace a practitioner can run a matter from.">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta property="og:image" content="https://lulamilemkhungela.github.io/portfolio.github.io/images/social/lm-og.jpg">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:url" content="https://lulamilemkhungela.github.io/portfolio.github.io/portfolio/lula-gazette.html">
+	<meta name="twitter:image" content="https://lulamilemkhungela.github.io/portfolio.github.io/images/social/lm-og.jpg">
+	<meta name="twitter:title" content="LulaGazette — Lulamile Mkhungela">
+	<meta name="twitter:description" content="South African statutes, judgments, court forms, rules and regulations in one searchable library, with the official PDF beside the summary. A legal library a citizen can search before they sign up, and a workspace a practitioner can run a matter from.">
+	<meta name="description" content="South African statutes, judgments, court forms, rules and regulations in one searchable library, with the official PDF beside the summary. A legal library a citizen can search before they sign up, and a workspace a practitioner can run a matter from.">
+	<meta name="theme-color" content="#ffffff">
+
+	<title>LulaGazette — Lulamile Mkhungela</title>
+	<link rel="icon" href="../favicon.ico" sizes="any">
+	<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+	<link rel="manifest" href="../site.webmanifest">
+
+	<!-- Font -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="../fonts/Satoshi/css/satoshi.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato|Montserrat:300" rel="stylesheet">
+
+	<!-- Css -->
+	<link rel="stylesheet" href="../css/core.min.css" />
+	<link rel="stylesheet" href="../css/case-study-skin.css?v=10" />
+	<link rel="stylesheet" href="../css/avalanche.css" />
+	<link rel="stylesheet" href="../css/snowbridge.css" />
+	<link rel="stylesheet" href="../css/modern-menu.css?v=161" />
+	<link rel="stylesheet" href="../css/portfolio-case-shared.css?v=50" />
+
+<style id="lm-case-study">
+:root{--lm-accent:#a16207}
+:root{
+  --pk-red:var(--lm-accent,#ee0000);--pk-black:#0a0a0a;--pk-ink:#161616;--pk-muted:#666;--pk-line:#dedede;
+  --pk-surface:#f5f5f5;--pk-white:#fff;--pk-max:1240px;--pk-copy:760px;
+  --pk-s1:8px;--pk-s2:16px;--pk-s3:24px;--pk-s4:32px;--pk-s5:48px;--pk-s6:64px;--pk-s7:96px;--pk-s8:128px;
+}
+.lm-case-page .content{background:var(--pk-white);overflow:hidden}
+.lm-case-page .content *{box-sizing:border-box}
+.pk-shell{width:100%;max-width:var(--pk-max);margin:0 auto;padding-inline:clamp(24px,4vw,64px)}
+.pk-section{padding-block:clamp(64px,7vw,104px)}
+.pk-section--tight{padding-block:clamp(48px,5vw,72px)}
+.pk-eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--pk-muted)}
+.pk-eyebrow:has(+ .pk-h2),.pk-eyebrow:has(+ .pk-h3){margin-bottom:var(--case-eyebrow-heading-gap-compact,clamp(24px,3vw,40px))}
+.pk-eyebrow:before{content:"";width:24px;height:2px;background:var(--pk-red);flex:0 0 auto}
+.pk-display{margin:0;font-size:clamp(52px,8.2vw,126px);line-height:.88;letter-spacing:-.065em;font-weight:700;color:var(--pk-black)}
+.pk-display em{display:block;color:var(--pk-red);font-style:normal}
+.pk-h2{margin:0;font-size:clamp(36px,4.4vw,68px);line-height:.98;letter-spacing:-.045em;font-weight:700;color:var(--pk-black)}
+.pk-h3{margin:0;font-size:clamp(26px,2.6vw,42px);line-height:1.04;letter-spacing:-.035em;font-weight:700;color:var(--pk-black)}
+.pk-lede{max-width:800px;margin:28px 0 0;font-size:clamp(19px,1.65vw,25px);line-height:1.45;color:#333}
+.pk-copy{max-width:var(--pk-copy);font-size:17px;line-height:1.75;color:#3b3b3b;overflow-wrap:anywhere}
+.pk-copy p{margin:0}
+.pk-hero{padding-top:clamp(92px,7.5vw,116px);background:linear-gradient(180deg,#fff 0%,#fff 72%,#f5f5f5 72%,#f5f5f5 100%)}
+.pk-hero__grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);gap:clamp(36px,6vw,80px);align-items:center}
+.pk-hero__visual{position:relative;min-height:clamp(430px,40vw,560px);display:flex;align-items:flex-end;justify-content:center}
+.pk-hero__visual:before{content:"";position:absolute;inset:9% 0 0 10%;background:var(--pk-red);border-radius:999px 999px 0 0;transform:rotate(-7deg)}
+.pk-hero__visual img{position:relative;z-index:1;max-width:min(100%,620px);max-height:620px;object-fit:contain;filter:drop-shadow(0 28px 34px rgba(0,0,0,.16))}
+.pk-meta{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--pk-line);border-bottom:1px solid var(--pk-line);background:#fff}
+.pk-meta__item{padding:28px 30px;border-right:1px solid var(--pk-line)}.pk-meta__item:last-child{border-right:0}
+.pk-meta__label{display:block;margin-bottom:8px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#777;font-weight:700}
+.pk-meta__value{font-size:16px;line-height:1.35;color:#171717;font-weight:600}
+.pk-overview{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(48px,8vw,120px);align-items:start}
+.pk-overview__statement{font-size:clamp(28px,3vw,46px);line-height:1.08;letter-spacing:-.035em;font-weight:650;color:var(--pk-black)}
+.pk-overview__statement strong{color:var(--pk-red)}
+.pk-dark{background:var(--pk-black);color:#fff}.pk-dark .pk-h2,.pk-dark .pk-h3{color:#fff}.pk-dark .pk-copy{color:#c9c9c9}.pk-dark .pk-eyebrow{color:#aaa}
+.pk-problem-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(56px,9vw,140px);align-items:start}
+.pk-outcomes{margin-top:48px;border-top:1px solid #343434}
+.pk-outcome{display:grid;grid-template-columns:68px 1fr;gap:24px;padding:30px 0;border-bottom:1px solid #343434;align-items:start}
+.pk-outcome__num{font-size:13px;color:#777;font-weight:700}.pk-outcome__text{font-size:clamp(20px,2vw,30px);line-height:1.22;letter-spacing:-.025em;color:#fff}
+.pk-strategy{background:var(--pk-surface)}
+.pk-strategy__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:56px}
+.pk-card{background:#fff;border:1px solid #e3e3e3;border-radius:20px;padding:clamp(28px,4vw,48px);min-height:260px;display:flex;flex-direction:column;justify-content:space-between}
+.pk-card__index{font-size:12px;letter-spacing:.14em;color:var(--pk-red);font-weight:800}.pk-card h3{font-size:clamp(24px,2.3vw,36px);line-height:1.05;letter-spacing:-.03em;margin:38px 0 16px}.pk-card p{margin:0;color:#555;font-size:16px;line-height:1.65}
+.pk-role{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(48px,8vw,120px);padding-top:56px;margin-top:64px;border-top:1px solid #d8d8d8}
+.pk-role__list{font-size:clamp(20px,2vw,29px);line-height:1.45;letter-spacing:-.02em;color:#111}
+.pk-media-section{background:#fff}
+.pk-section-head{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(48px,8vw,120px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+.pk-media-stack{display:grid;gap:24px}.pk-media{margin:0;background:#ececec;border-radius:24px;overflow:hidden}.pk-media img{display:block;width:100%;height:auto}.pk-media--wire{padding:clamp(18px,3vw,38px);background:#f1f1f1}
+.pk-research{background:var(--pk-red);color:#fff}.pk-research .pk-eyebrow{color:#fff}.pk-research .pk-eyebrow:before{background:#fff}.pk-research .pk-h2{color:#fff}.pk-research__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.65fr);gap:clamp(56px,9vw,140px);align-items:end}
+.pk-research__copy{font-size:clamp(19px,1.7vw,25px);line-height:1.55;max-width:760px;color:#fff}
+.pk-stat{border-left:1px solid rgba(255,255,255,.55);padding-left:clamp(32px,5vw,64px)}.pk-stat__number{display:block;font-size:clamp(78px,10vw,150px);line-height:.8;letter-spacing:-.075em;font-weight:750}.pk-stat__label{display:block;margin-top:24px;max-width:310px;font-size:16px;line-height:1.5}
+.pk-design{background:#111}.pk-design .pk-eyebrow,.pk-design .pk-h2{color:#fff}.pk-design .pk-media{background:#1b1b1b;border:1px solid #2c2c2c}
+.pk-design-intro{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(48px,8vw,120px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}.pk-design-intro p{color:#bcbcbc}
+.pk-conclusion{background:#fff}.pk-conclusion__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(48px,8vw,120px);align-items:start}
+.pk-closing{margin-top:72px;padding:clamp(40px,6vw,72px);background:var(--pk-surface);border-radius:24px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}.pk-closing strong{font-size:clamp(26px,3vw,42px);line-height:1.1;letter-spacing:-.035em}.pk-closing span{display:block;margin-top:10px;color:#666;font-size:15px}
+html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp(48px,5vw,64px)!important}
+@media(max-width:1080px){.pk-display{font-size:clamp(52px,7.8vw,84px)}.pk-hero__grid{grid-template-columns:minmax(0,1fr) minmax(300px,.78fr);gap:36px}.pk-hero__visual{min-height:400px}}
+@media(max-width:820px){.pk-hero{padding-top:88px}.pk-hero__grid,.pk-overview,.pk-problem-grid,.pk-section-head,.pk-research__grid,.pk-design-intro,.pk-conclusion__grid,.pk-role{grid-template-columns:minmax(0,1fr)}.pk-hero__grid{gap:32px}.pk-hero__visual{min-height:clamp(340px,64vw,480px);max-width:620px;width:100%;margin-inline:auto}.pk-meta{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-meta__item:nth-child(2){border-right:0}.pk-meta__item:nth-child(-n+2){border-bottom:1px solid var(--pk-line)}.pk-strategy__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-stat{border-left:0;border-top:1px solid rgba(255,255,255,.55);padding:40px 0 0}.pk-role{gap:32px;margin-top:48px;padding-top:48px}.pk-closing{grid-template-columns:1fr}}
+@media(max-width:640px){.pk-shell{padding-inline:20px}.pk-section{padding-block:clamp(52px,15vw,68px)}.pk-hero{padding-top:82px}.pk-display{font-size:clamp(44px,15vw,68px);line-height:.91;letter-spacing:-.055em}.pk-h2{font-size:clamp(34px,10vw,48px)}.pk-lede{margin-top:22px;font-size:18px;line-height:1.5}.pk-hero__grid{gap:24px}.pk-hero__visual{min-height:clamp(280px,84vw,390px)}.pk-hero__visual:before{inset:6% 3% 0 12%}.pk-meta{grid-template-columns:1fr}.pk-meta__item{border-right:0;border-bottom:1px solid var(--pk-line)!important;padding:20px}.pk-meta__item:last-child{border-bottom:0!important}.pk-strategy__grid{grid-template-columns:1fr;margin-top:40px}.pk-card{min-height:0}.pk-card h3{margin-top:28px}.pk-media-stack{gap:14px}.pk-media{border-radius:14px}.pk-media--wire{padding:14px}.pk-outcome{grid-template-columns:38px minmax(0,1fr);gap:10px;padding:24px 0}.pk-closing{margin-top:40px;border-radius:14px;padding:28px}.pk-role{gap:24px;margin-top:40px;padding-top:40px}}
+@media(max-width:380px){.pk-shell{padding-inline:16px}.pk-hero{padding-top:76px}.pk-display{font-size:clamp(40px,14.5vw,54px)}.pk-eyebrow{gap:10px;margin-bottom:18px}.pk-hero__visual{min-height:260px}.pk-meta__item{padding:18px 16px}.pk-card{padding:24px}.pk-outcome__text{font-size:19px}}
+/* The LulaGazette cover is a wide product shot; present it as a framed
+   landscape card so it sits aligned in the hero instead of the tall arch. */
+.pk-hero__visual{min-height:0;align-items:center;justify-content:center}
+.pk-hero__visual:before{display:none}
+.pk-hero__visual img{width:100%;max-width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top center;border-radius:20px;border:1px solid rgba(0,0,0,.08);filter:drop-shadow(0 24px 30px rgba(0,0,0,.18))}
+.lm-case-page{--case-accent:var(--lm-accent)}
+.pk-copy p+p{margin-top:1em}
+.pk-copy code,.pk-card code,.pk-role__list code,.pk-evidence code,.pk-list code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:.86em;padding:.12em .4em;border-radius:5px;background:rgba(0,0,0,.055);color:#2b2b2b;overflow-wrap:anywhere}
+.pk-design code,.pk-dark code{background:rgba(255,255,255,.12);color:#f2f2f2}
+.pk-copy a:not(.pk-button){color:var(--pk-red);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(0,0,0,.18)}
+.pk-copy a:not(.pk-button):hover{border-bottom-color:currentColor}
+.pk-research .pk-h2+.pk-research__copy{margin-top:28px}
+.pk-research__copy+.pk-research__copy{margin-top:16px}
+.pk-display em{color:var(--pk-red)}
+.pk-lede--small{font-size:clamp(17px,1.35vw,21px)}
+.pk-outcome__text small{display:block;margin-top:12px;font-size:16px;line-height:1.65;letter-spacing:0;color:#bdbdbd}
+.pk-outcome__text small b{display:block;margin:14px 0 4px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#8a8a8a;font-weight:700}
+.pk-card ul{margin:0;padding:0;list-style:none}
+.pk-card li{position:relative;padding-left:20px;margin:0 0 12px;color:#555;font-size:16px;line-height:1.6}
+.pk-card li:before{content:"";position:absolute;left:0;top:.72em;width:9px;height:2px;background:var(--pk-red)}
+.pk-card p+p{margin-top:12px}
+.pk-card__meta{display:block;margin:18px 0 6px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#888;font-weight:700}
+.pk-grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:56px}
+.pk-grid-3 .pk-card{min-height:0;justify-content:flex-start}
+.pk-grid-3.pk-grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pk-grid-3 .pk-card h3{margin-top:28px}
+.pk-dark .pk-card{background:#141414;border-color:#2c2c2c}.pk-dark .pk-card h3{color:#fff}.pk-dark .pk-card p{color:#bdbdbd}
+.pk-steps{display:grid;gap:clamp(40px,5vw,64px)}
+.pk-step{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,96px);align-items:start;padding-top:clamp(32px,4vw,48px);border-top:1px solid var(--pk-line)}
+.pk-step__index{display:block;margin-bottom:18px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--pk-red);font-weight:800}
+.pk-step .pk-media{margin-top:28px}
+.pk-list{margin:40px 0 0;padding:0;list-style:none;border-top:1px solid var(--pk-line)}
+.pk-list li{display:grid;grid-template-columns:68px 1fr;gap:24px;padding:24px 0;border-bottom:1px solid var(--pk-line);font-size:clamp(17px,1.4vw,21px);line-height:1.5;color:#222}
+.pk-list li span{font-size:13px;color:#999;font-weight:700;padding-top:4px}
+.pk-design .pk-list{border-color:#2c2c2c}.pk-design .pk-list li{border-color:#2c2c2c;color:#e6e6e6}
+.pk-research__grid--solo{grid-template-columns:minmax(0,1fr)}
+.pk-figcaption{margin:14px 4px 0;font-size:14px;line-height:1.5;color:#777}
+.pk-dark .pk-figcaption,.pk-design .pk-figcaption{color:#9a9a9a}
+.pk-media-stack+.pk-copy,.pk-copy+.pk-media-stack{margin-top:40px}
+.pk-disclaimer{margin-top:24px!important;font-size:14px;line-height:1.6;color:#8a8a8a}
+.pk-actions{display:flex;flex-wrap:wrap;gap:12px}
+.pk-button{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;background:var(--pk-red);color:#fff!important;font-size:15px;font-weight:700;line-height:1;text-decoration:none!important;white-space:nowrap}
+.pk-button--ghost{background:#fff;color:#111!important;border:1px solid #cfcfcf}
+.pk-related{margin-top:28px;font-size:16px;line-height:1.6;color:#555}.pk-related a{color:var(--pk-red);font-weight:700}
+@media(max-width:820px){.pk-grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-step{grid-template-columns:minmax(0,1fr);gap:20px}}
+@media(max-width:640px){.pk-grid-3,.pk-grid-3.pk-grid-2{grid-template-columns:1fr;margin-top:40px}.pk-list li{grid-template-columns:38px minmax(0,1fr);gap:10px}.pk-actions{flex-direction:column;align-items:stretch}.pk-button{justify-content:center}}
+</style>
+
+</head>
+<body class="portfolio-case-updated lm-case-page">
+
+<!-- Side Navigation Menu -->
+	<aside class="side-navigation-wrapper enter-right" data-no-scrollbar data-animation="reveal">
+		<div class="side-navigation-scroll-pane">
+			<div class="side-navigation-inner">
+				<div class="side-navigation-header">
+					<div class="navigation-hide side-nav-hide">
+						<a href="#">
+							<span class="icon-cancel medium"></span>
+						</a>
+					</div>
+				</div>
+				<nav class="side-navigation center">
+					<ul>
+						<li class="current">
+							<a href="../index.html">Portfolio</a>
+						</li>
+						<li>
+							<a href="../index.html?open=about">About</a>
+						</li>
+						<li>
+							<a href="../index.html?open=testimonials">Testimonials</a>
+						</li>
+						<li>
+							<a href="../evidence.html">Evidence</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="side-navigation-footer">
+					<ul class="social-list list-horizontal">
+						<li><a href="https://www.linkedin.com/in/lulamile-mkhungela/"><span class="icon-linkedin small"></span></a></li>
+					</ul>
+					<p class="copyright no-margin-bottom">&copy; 2026 L M</p>
+				</div>
+			</div>
+		</div>
+	</aside>
+	<!-- Side Navigation Menu End -->
+
+	<div class="wrapper reveal-side-navigation">
+		<div class="wrapper-inner">
+
+			<!-- Header -->
+			<header class="header header-fixed-on-mobile" data-sticky-threshold="0" data-bkg-threshold="100">
+				<div class="header-inner">
+					<div class="row nav-bar">
+						<div class="column width-12 nav-bar-inner">
+							<div class="logo">
+								<div class="logo-inner">
+									<a href="../index.html"><img src="../images/lm-logo.png" alt="L M logo" /></a>
+									<a href="../index.html"><img src="../images/lm-logo.png" alt="L M logo" /></a>
+								</div>
+							</div>
+							<nav class="navigation nav-block secondary-navigation nav-right">
+								<ul>
+									<li>
+										<!-- Contact Button -->
+										<div class="v-align-middle">
+											<a data-content="inline" data-toolbar="" data-modal-mode data-modal-width="500" href="#contact-lightbox" class="lightbox-link contact-collaboration" aria-label="Contact me"><span class="contact-collaboration__label">Contact me</span><span class="contact-collaboration__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span></a>
+										</div>
+									</li>
+									<!-- Aux Navigation -->
+									<li class="aux-navigation">
+										<a href="#" class="navigation-show side-nav-show nav-icon">
+											<svg class="menu-toggle__svg" viewBox="0 0 32 32" aria-hidden="true">
+												<path class="menu-toggle__path" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+												<path d="M7 16 27 16"></path>
+											</svg>
+										</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</header>
+			<!-- Header End -->
+
+			<!-- Content -->
+			<div class="content clearfix">
+
+				<section class="pk-hero" aria-labelledby="case-title">
+					<div class="pk-shell pk-hero__grid">
+						<div>
+							<h1 id="case-title" class="pk-display pk-display--name">LulaGazette</h1>
+							<p class="pk-hero__tagline">Legal intelligence, <em class="pk-accent">read from the page.</em></p>
+							<a class="pk-scrollcue" href="#overview"><span>Read the story</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
+						</div>
+						<div class="pk-hero__visual">
+							<img src="../images/work/lulagazette/cover.webp" alt="LulaGazette live site — the legal library and search" />
+						</div>
+					</div>
+					<div class="pk-shell">
+						<div class="pk-meta" aria-label="Project details">
+							<div class="pk-meta__item"><span class="pk-meta__label">Client</span><span class="pk-meta__value">Self-initiated personal project</span></div>
+							<div class="pk-meta__item"><span class="pk-meta__label">Role</span><span class="pk-meta__value">Product design, UI development, data model</span></div>
+							<div class="pk-meta__item"><span class="pk-meta__label">Industry</span><span class="pk-meta__value">Legal &amp; civic technology</span></div>
+							<div class="pk-meta__item"><span class="pk-meta__label">Year</span><span class="pk-meta__value">2026</span></div>
+						</div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-section--tight pk-lead-section" id="lead">
+					<div class="pk-shell">
+						<p class="pk-lead">LulaGazette puts South African law in one place and opens on the page: 71 curated documents across six content types, each with a citation, a plain-language summary and the official PDF one tap away. It is a Next.js 14 App Router application — search route, reader, two audience modes, a workspace and a coverage page that publishes its own gaps. I designed the interface and built the app. The live link is a static deployment of the library shell; the full build runs from the repository.</p>
+					</div>
+				</section>
+
+				<section class="pk-section" id="overview">
+					<div class="pk-shell pk-overview">
+						<div>
+							<p class="pk-overview__statement">A legal library anyone can search — <strong>before they sign up.</strong></p>
+						</div>
+						<div><div class="pk-copy">
+							<p>LulaGazette brings six kinds of South African legal material into one interface: Acts of Parliament, reported judgments, court forms, court rules, regulations and provincial laws. Every record carries an official citation, a plain-language summary, a date and a status, plus the source PDF where I have one — 42 of them ship with the build.</p>
+							<p>The product is a Next.js 14 App Router application written in TypeScript and Tailwind, with react-pdf for the reader. I built the search route, the document reader, the audience modes, the workspace, the coverage page and the status page.</p>
+							<p>Everything here is checkable: the live link opens the library shell as deployed, the repository holds the full build, and <code>/coverage</code> and <code>/legal/status</code> state what works, what is still in progress and what I do not claim.</p>
+						</div></div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-strategy" id="product">
+					<div class="pk-shell">
+						<p class="pk-eyebrow">The product</p>
+						<h2 class="pk-h2">Six content types, one reading experience.</h2>
+						<div class="pk-grid-3">
+							<article class="pk-card"><span class="pk-card__index">01</span><div><h3>Acts</h3><p>The Constitution of 1996, the Labour Relations Act 66 of 1995, the BCEA 75 of 1997, POPIA 4 of 2013, the Consumer Protection Act 68 of 2008, the National Credit Act 34 of 2005 and the Companies Act 71 of 2008 — each with a summary and a citation you can copy.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">02</span><div><h3>Cases</h3><p>Reported judgments with their real citations: <em>S v Makwanyane</em> [1995] ZACC 3, <em>Grootboom</em> 2000, <em>Olivia Road</em> 2008, <em>Blue Moonlight</em> 2011, <em>Sidumo</em> 2007, <em>PE Municipality</em> 2004, <em>Treatment Action Campaign</em> 2002.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">03</span><div><h3>Forms and rules</h3><p>The paperwork a matter actually starts with: CCMA Form 7.11, Form N1, the magistrates' court summons, the Uniform Rules and the Magistrates' Courts Rules — filed against the right institution.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">04</span><div><h3>Regulations &amp; provincial laws</h3><p>POPIA regulations and the 2025 commencement notice, the national minimum wage schedule, the Gauteng liquor regulations, KwaZulu-Natal planning and Western Cape liquor — the layer below the Act.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">05</span><div><h3>Search that keeps its state</h3><p>One route, <code>/s</code>, carrying query, category, country, audience, sort, licence and year range in the URL. Country defaults to ZA, an unknown code falls back rather than emptying the page, and guests can search before they register.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">06</span><div><h3>Cited overviews</h3><p>The overview engine returns a headline, a plain-English position, next steps, warnings, citations and a confidence band. It is retrieval over the local corpus with topic routing — not a free-text model — and it refuses to answer without a source.</p></div></article>
+						</div>
+						<div class="pk-role"><div><p class="pk-eyebrow">The decision</p><h3 class="pk-h3">Open the library first.</h3></div><div class="pk-role__list">The decision I am proudest of: search is not gated. Anyone can search, read a summary, open the PDF and copy the citation before creating an account. Sign-in is for saved matters, bookmarks and the workspace — never for a search box.</div></div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-dark" id="problem">
+					<div class="pk-shell pk-problem-grid">
+						<div>
+							<p class="pk-eyebrow">The challenge</p>
+							<h2 class="pk-h2">Good law, fragmented access.</h2>
+						</div>
+						<div>
+							<div class="pk-copy"><p>South African legal material is free but scattered: statutes on one site, judgments on another, forms on a third, provincial notices in a gazette most people have never opened. I wanted one place where a citizen, a student and a practitioner could start.</p></div>
+							<div class="pk-outcomes">
+								<div class="pk-outcome"><span class="pk-outcome__num">01</span><span class="pk-outcome__text" style="font-size:clamp(18px,1.6vw,24px)">Sources are distributed<small>Statutes, judgments, rules, forms and regulations live on different sites in different formats.</small></span></div>
+								<div class="pk-outcome"><span class="pk-outcome__num">02</span><span class="pk-outcome__text" style="font-size:clamp(18px,1.6vw,24px)">Jurisdiction is part of the information architecture<small>A South African answer is not an African answer. Country is a first-class filter, not a footnote.</small></span></div>
+								<div class="pk-outcome"><span class="pk-outcome__num">03</span><span class="pk-outcome__text" style="font-size:clamp(18px,1.6vw,24px)">A citation has to survive the click<small>A summary is only useful if the reader can reach the page it came from and check it.</small></span></div>
+								<div class="pk-outcome"><span class="pk-outcome__num">04</span><span class="pk-outcome__text" style="font-size:clamp(18px,1.6vw,24px)">Coverage is not currency<small>A library can hold a statute and still be out of date. The product separates the two and says which one it is showing.</small></span></div>
+								<div class="pk-outcome"><span class="pk-outcome__num">05</span><span class="pk-outcome__text" style="font-size:clamp(18px,1.6vw,24px)">An answer without a citation is not an answer<small>Legal information that cannot be traced back to a source is a rumour with better typography.</small></span></div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="pk-section" id="role">
+					<div class="pk-shell"><div class="pk-overview"><div><p class="pk-eyebrow">My role and boundaries</p></div><div><div class="pk-copy"><p class="pk-lock-part__timeline">2026 · self-initiated; product framing, interface design, UI build and the data model</p><p>I owned the product framing, the interface design, the UI build and the content model: 71 records, six categories, 25 registered sources, 42 bundled PDFs. The app’s own status page is mine too, including the parts that are not finished — that page is product, not small print.</p></div></div></div></div>
+				</section>
+
+				<section class="pk-section pk-strategy" id="build">
+					<div class="pk-shell">
+						<p class="pk-eyebrow">Inside the build</p>
+						<h2 class="pk-h2">What is actually in the repository.</h2>
+						<div class="pk-grid-3">
+							<article class="pk-card"><span class="pk-card__index">01</span><div><h3>The route set</h3><p><code>/s</code> search · <code>/doc/[id]</code> and <code>/d/[id]</code> readers · <code>/library</code> · <code>/c/[category]</code> · <code>/countries/[code]</code> · <code>/courts</code> · <code>/directory</code> · <code>/guides</code> · <code>/templates</code> · <code>/lawyers</code> · <code>/workspace</code> · <code>/account</code> · <code>/admin</code> · <code>/coverage</code> · <code>/sources</code> · <code>/legal/status</code>.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">02</span><div><h3>Two audiences, one corpus</h3><p>Individual and Lawyer modes share the data and switch the navigation, the visible records and the copy — audience filtering happens at query time, not by maintaining two libraries.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">03</span><div><h3>The reader</h3><p>42 official PDFs bundled with the build, opened in the app with react-pdf and pdf.js, page counts from a metadata file, and the extracted gazette text beside the page it came from.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">04</span><div><h3>The overview engine</h3><p>One function composes the answer from documents, guides, courts and templates, applies twelve topic routes (dismissal, eviction, privacy, credit, bail, equality), and returns citations, warnings and a confidence level with the text.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">05</span><div><h3>Coverage that names its gaps</h3><p>The coverage page counts documents, categories, countries and connectors straight from the data, then lists the three gaps I will not paper over: point-in-time consolidation, paywalled reports and sub-national by-laws.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">06</span><div><h3>The source registry</h3><p>25 sources in one file — SAFLII, the Government Gazette, the Constitutional Court, Kenya Law, LawNigeria, GhanaLII, the regional courts, the CCMA, the Information Regulator — each with a role and a connector flag that the hub and the coverage page both read.</p></div></article>
+						</div>
+						<div class="pk-role"><div><p class="pk-eyebrow">Stated plainly</p><h3 class="pk-h3">The scraper layer, honestly.</h3></div><div class="pk-role__list"><code>/api/scrape</code> and <code>/api/pull</code> return a source-aware corpus, filtered by source, country, query and audience; <code>scripts/scrape_all_sources.mjs</code> writes a per-source run report to <code>src/data/harvest_report.json</code>. What is not wired yet is an HTTP crawl of the publishers themselves. So the connector list is a contract I can build against — it is not proof that the library updates itself, and I have not published a freshness measure.</div></div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-research" id="goal">
+					<div class="pk-shell pk-research__grid">
+						<div>
+							<p class="pk-eyebrow">Product goal</p>
+							<h2 class="pk-h2">Make jurisdiction part of the search.</h2>
+							<p class="pk-research__copy">My goal was narrow: let someone land on the site, pick a jurisdiction and a content type, find the right document and open the page. I have not measured whether that makes research faster for practitioners — I have only built the path and made it inspectable.</p>
+						</div>
+						<div class="pk-stat"><span class="pk-stat__number">54</span><span class="pk-stat__label">jurisdiction records, each with its gazette, its apex court and its court rules — plus a pan-African entry for regional bodies.</span></div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-media-section" id="solution">
+					<div class="pk-shell">
+						<div class="pk-section-head">
+							<div><p class="pk-eyebrow">The solution</p><h2 class="pk-h2">Ship the shortest path to a correct answer.</h2></div>
+							<div class="pk-copy"><p>Search, read, copy the citation, open the source.</p></div>
+						</div>
+						<ul class="pk-list"><li><span>01</span>A search route that holds its state: query, category, country, audience, sort, licence and year range live in the URL, so a result set can be sent to someone else and arrive intact.</li><li><span>02</span>A reader that shows the document and the page: 42 bundled PDFs opened with react-pdf, page numbers from metadata, and the extracted gazette text beside the scan.</li><li><span>03</span>Two audience modes over one corpus — citizen rights and everyday guides for individuals, pleadings, court procedure and authority bundles for practitioners.</li><li><span>04</span>Overviews that cite: every generated answer returns its sources, its warnings and a confidence level, and the topic routing runs on the local corpus rather than a browser-side model call.</li><li><span>05</span>A workspace with saved matters and bookmarks, and a status page that separates what works, what is in progress and what is deliberately not claimed.</li></ul>
+						<p class="pk-copy" style="margin-top:18px"><a class="pk-button" href="https://lulamilemkhungela.github.io/LulaGazette/" target="_blank" rel="noopener noreferrer">Open LulaGazette <span aria-hidden="true">↗</span></a></p>
+					</div>
+				</section>
+
+				<section class="pk-section pk-strategy" id="process">
+					<div class="pk-shell">
+						<p class="pk-eyebrow">Product decisions</p>
+						<h2 class="pk-h2">Three choices that shaped the product.</h2>
+						<div class="pk-grid-3">
+							<article class="pk-card"><span class="pk-card__index">01</span><div><h3>Default to South Africa, and say so</h3><p>A missing country param resolves to ZA, an unknown code falls back instead of emptying the page, and “all” is the only explicit way out. The default is visible in the filter, not hidden in the code.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">02</span><div><h3>Keep the citation in the same breath as the summary</h3><p>Every card carries its citation and a copy action. A summary you cannot check is a summary you should not rely on.</p></div></article>
+							<article class="pk-card"><span class="pk-card__index">03</span><div><h3>Publish the limits on the same site</h3><p><code>/coverage</code> lists the gaps and <code>/legal/status</code> says what is in progress. The limits are product pages, not a footnote under the footer.</p></div></article>
+						</div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-design" id="impact">
+					<div class="pk-shell">
+						<div class="pk-design-intro">
+							<div><p class="pk-eyebrow">Where it stands</p><h2 class="pk-h2">Built, deployed, and honest about the edges.</h2></div>
+							<div class="pk-copy"><p>The status, straight from the repository:</p></div>
+						</div>
+						<ul class="pk-list"><li><span>01</span>71 curated documents across six content types — Acts, cases, court forms, court rules, regulations and provincial laws — with 42 official PDFs bundled and readable offline in the build.</li><li><span>02</span>54 jurisdiction records, each with a gazette, an apex court and its court rules; the library filters by country as well as category, and the country board is how the breadth is shown.</li><li><span>03</span>Cited by construction: the overview engine returns citations, warnings and a confidence band, and it is retrieval over the local corpus rather than a free-text model.</li><li><span>04</span>The gated surface: <code>/legal/status</code> states that POPIA and production compliance are in progress, and that LulaGazette is not a law firm, not a gazette mirror and not certified legal advice.</li></ul>
+					</div>
+				</section>
+
+				<section class="pk-section pk-media-section pk-live" id="live" aria-labelledby="live-title">
+					<div class="pk-shell">
+						<p class="pk-eyebrow">The live link</p>
+						<h2 class="pk-h2" id="live-title">Pick a country, run a search.</h2>
+						<div class="pk-copy" style="margin-bottom:18px"><p>The GitHub Pages deployment is a single static page — search, the country board, the document modal, pricing and sign-in states. The full App Router build (<code>/s</code>, <code>/doc/[id]</code>, <code>/workspace</code>, <code>/coverage</code>, <code>/sources</code>, <code>/api/scrape</code>) runs from the repository. The case study does not blur the two.</p></div>
+						<div class="pk-live-grid">
+							<figure class="pk-media"><img src="../images/work/live/lula-gazette-desktop.webp" alt="LulaGazette on desktop" loading="lazy" decoding="async"><figcaption>The country board and search, captured from the live deployment, September 2026.</figcaption></figure>
+							<figure class="pk-media pk-media--phone"><img src="../images/work/live/lula-gazette-mobile.webp" alt="LulaGazette on a phone" loading="lazy" decoding="async"><figcaption>The same library on a phone.</figcaption></figure>
+						</div>
+					</div>
+				</section>
+
+				<section class="pk-section pk-section--tight" id="tradeoffs"><div class="pk-shell"><p class="pk-eyebrow">Trade-offs</p><div class="pk-grid-3"><article class="pk-card"><span class="pk-card__index">01</span><div><h3>Breadth before depth</h3><p>I put 54 jurisdictions on the map before going deep in one. Coverage is uneven, and the coverage page says so rather than averaging it into a headline number.</p></div></article><article class="pk-card"><span class="pk-card__index">02</span><div><h3>Corpus before crawl</h3><p>The scraper layer serves a source-aware corpus and a connector contract. Crawling the publishers is the next step; until it is wired, the library does not claim to be current.</p></div></article><article class="pk-card"><span class="pk-card__index">03</span><div><h3>Open the search box first</h3><p>Anyone can search before signing in. Accounts are for saved work, matter notes and the workspace — not for the library.</p></div></article></div></div></section>
+
+				<section class="pk-section pk-results pk-dark" id="outcomes" aria-labelledby="outcomes-title">
+					<div class="pk-shell">
+						<h2 class="pk-h2" id="outcomes-title">Outcomes</h2>
+						<div class="pk-results__grid">
+							<article class="pk-result"><strong>71 documents, 6 content types, 42 PDFs</strong><p>A curated South African corpus that ships with the build and reads offline.</p></article>
+							<article class="pk-result"><strong>54 jurisdiction records</strong><p>Each with a gazette, an apex court and a set of court rules.</p></article>
+							<article class="pk-result"><strong>Cited by construction</strong><p>Overviews return sources, warnings and a confidence level with the text.</p></article>
+							<article class="pk-result"><strong>Limits published</strong><p>A coverage page and a status page that state the gaps instead of hiding them.</p></article>
+						</div>
+					</div>
+				</section>
+
+				<section class="pk-section" id="checks"><div class="pk-shell"><p class="pk-eyebrow">Evidence</p><div class="pk-evidence"><p class="pk-evidence__row"><strong>See it for yourself</strong><a href="https://lulamilemkhungela.github.io/LulaGazette/" target="_blank" rel="noopener noreferrer">Open LulaGazette</a></p><p class="pk-evidence__row"><strong>What is not claimed</strong>The library does not crawl SAFLII, Kenya Law or the gazette printers yet — the scrape routes serve a source-aware corpus and a connector contract. The GitHub Pages deployment is the static shell, not the full App Router build.</p><p class="pk-evidence__row"><strong>What would settle it</strong>Connector uptime and freshness: how many sources returned new records this week, and whether anyone used it for real research. The harvest script writes a run report; I have not published a freshness measure.</p><p class="pk-evidence__row"><strong>Ask for the source</strong><a href="mailto:mkhungela.l@gmail.com?subject=Evidence%20for%3A%20LulaGazette">Email me about this study</a></p></div></div></section>
+				<section class="pk-section pk-conclusion" id="conclusion">
+					<div class="pk-shell">
+						<div class="pk-conclusion__grid">
+							<div><h2 class="pk-h2">Open it and see for yourself.</h2></div>
+							<div><div class="pk-copy"><p>Open the live link, pick a country, run a search, read a statute in the reader. Then open <code>/coverage</code> and <code>/legal/status</code> — the limits are part of the product, not a disclaimer bolted on.</p></div></div>
+						</div>
+						<div class="pk-closing"><div><strong>Legal information you can trace, not just read.</strong><span>Product Design · UI Development · Lawtech</span></div><div class="pk-actions"><a class="pk-button" href="https://lulamilemkhungela.github.io/LulaGazette/" target="_blank" rel="noopener noreferrer">Open LulaGazette <span aria-hidden="true">↗</span></a></div></div>
+					</div>
+				</section>
+
+				<nav class="tlc-project-pagination" aria-label="More projects">
+					<a class="tlc-project-pagination__item" href="designops-design-system.html"><img src="../images/work/design-ops-cover.webp" alt="DesignOps project" loading="lazy"><span class="tlc-project-pagination__shade"></span><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction"><span aria-hidden="true">←</span> Previous project</span><strong>DesignOps</strong><span class="tlc-project-pagination__category">Product · Design System</span></span></a>
+					<a class="tlc-project-pagination__item" href="doc-compliance-ai-platform.html"><img src="../images/work/covers/compliance-ai-cover.webp" alt="Compliance AI assistant project" loading="lazy"><span class="tlc-project-pagination__shade"></span><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction">Next project <span aria-hidden="true">→</span></span><strong>Compliance AI assistant</strong><span class="tlc-project-pagination__category">Old Mutual · AI assistant with cited answers</span></span></a>
+					<a class="tlc-project-pagination__all" href="../index.html">View all work <span aria-hidden="true">↗</span></a>
+				</nav>
+
+			<!-- Contact Modal -->
+				<div id="contact-lightbox" class="pt-70 pb-50 hide">
+					<div class="row">
+						<div class="column width-12 left">
+							<h3 class="mb-50 weight-semi-bold font-alt-3">Contact me</h3>
+							<div class="contact-form-container no-margin-bottom">
+								<form class="contact-form" action="../php/send-email.php" method="post" novalidate>
+									<div class="row">
+										<div class="column width-12">
+											<input type="text" name="fname" class="form-fname form-element large" placeholder="First Name*" tabindex="1" required>
+										</div>
+										<div class="column width-12">
+											<input type="email" name="email" class="form-email form-element large" placeholder="Email address*" tabindex="3" required>
+										</div>
+										<div class="column width-6">
+											<input type="text" name="honeypot" class="form-honeypot form-element large">
+										</div>
+									</div>
+									<div class="row">
+										<div class="column width-12">
+											<textarea name="message" class="form-message form-element large" placeholder="Message*" tabindex="5" required></textarea>
+											<input type="submit" value="Send Email" class="form-submit button medium text-uppercase bkg-grey bkg-hover-theme color-white color-hover-white">
+										</div>
+									</div>
+								</form>
+								<div class="form-response center"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Contact Modal End -->
+
+			</div>
+			<!-- Content End -->
+
+			<!-- Footer -->
+			<footer class="footer tlc-footer">
+				<div class="footer-top"><div class="row flex"><div class="column width-12 center"><div class="widget">
+					<p class="tlc-footer__eyebrow">What are you working on?</p>
+					<h4>Tell me what you need help with.</h4>
+					<a class="tlc-footer__email" href="mailto:mkhungela.l@gmail.com">mkhungela.l@gmail.com</a>
+					<ul class="social-list list-horizontal"><li><a href="https://www.linkedin.com/in/lulamile-mkhungela/" aria-label="LinkedIn"><span class="icon-linkedin small"></span></a></li></ul>
+				</div></div></div></div>
+			</footer>
+			<!-- Footer End -->
+
+		</div>
+	</div>
+
+	<!-- Js -->
+		<button class="tlc-scroll-top" type="button" aria-label="Back to top"><span aria-hidden="true">↑</span><span>Back to top</span></button>
+
+	<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.retinize.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.horizon.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.snowbridge.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.swipe.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.avalanche.min.js"></script>
+
+	<script src="../js/timber.master.min.js"></script>
+	<script src="../js/modern-menu.js?v=42"></script>
+
+	<script src="../js/luxury-collection-modern.js?v=4"></script>
+	<script src="../js/contact-form-fallback.js?v=2"></script>
+	<script src="../js/case-nav.js?v=8"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 720" role="img" aria-labelledby="title desc">
+  <title id="title">Forma Review Lab — check a token before it ships</title>
+  <desc id="desc">A diagram of a token review: inspect forest green 700, follow its semantic alias, and check selected contrast pairs in Light and Dark themes.</desc>
+  <rect width="1440" height="720" fill="#f4f7f2"/>
+  <text x="92" y="92" fill="#66806d" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="15" letter-spacing="3">DESIGN DECISIONS, WITH EVIDENCE</text>
+  <text x="92" y="154" fill="#1c2b21" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="42" font-weight="700" letter-spacing="-1.4">Change with confidence.</text>
+  <text x="92" y="197" fill="#657267" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="17">Trace a token through aliases, compare themes, then review the change locally.</text>
+
+  <rect x="92" y="246" width="390" height="366" rx="18" fill="#fff" stroke="#dce5dc"/>
+  <text x="124" y="288" fill="#748377" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" letter-spacing="2">TOKEN TO INSPECT</text>
+  <text x="124" y="336" fill="#25342a" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18">color.forest.700</text>
+  <rect x="124" y="361" width="326" height="98" rx="13" fill="#27563d"/>
+  <text x="148" y="402" fill="#d4e5d7" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13">PRIMITIVE VALUE</text>
+  <text x="148" y="438" fill="#fff" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" font-weight="650">#27563D</text>
+  <text x="124" y="506" fill="#748377" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" letter-spacing="2">DEPENDENT ALIAS</text>
+  <path d="M138 528v42m0 0h20m-20-20h20" fill="none" stroke="#8eb596" stroke-width="2"/>
+  <text x="172" y="548" fill="#334339" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">theme.light.action.primary</text>
+  <text x="172" y="576" fill="#667369" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13">Resolved from the same token source</text>
+
+  <rect x="512" y="246" width="836" height="366" rx="18" fill="#fff" stroke="#dce5dc"/>
+  <text x="548" y="290" fill="#748377" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" letter-spacing="2">CONTRAST GUARD · BOTH THEMES</text>
+  <rect x="548" y="320" width="764" height="120" rx="14" fill="#f4f7f2"/>
+  <rect x="574" y="346" width="54" height="54" rx="12" fill="#27563d"/>
+  <text x="650" y="362" fill="#25342a" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="18" font-weight="650">32 / 32 selected pairs pass</text>
+  <text x="650" y="392" fill="#657267" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14">The supplied screen shows all selected checks passing in Light and Dark.</text>
+  <rect x="574" y="464" width="340" height="100" rx="12" fill="#f0f6f1" stroke="#dfe9df"/>
+  <circle cx="604" cy="496" r="7" fill="#4d8b5d"/>
+  <text x="624" y="501" fill="#334339" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="15" font-weight="650">Light mode</text>
+  <text x="600" y="537" fill="#667369" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13">Token and semantic aliases checked</text>
+  <rect x="938" y="464" width="340" height="100" rx="12" fill="#1d2a22"/>
+  <circle cx="968" cy="496" r="7" fill="#c8e867"/>
+  <text x="988" y="501" fill="#f7faf7" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="15" font-weight="650">Dark mode</text>
+  <text x="964" y="537" fill="#c7d6ca" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13">Review stays in the local browser draft</text>
+
+  <text x="92" y="661" fill="#6e7e72" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13">An evidence view of the current Review Lab; results are implementation checks, not user or adoption metrics.</text>
+</svg>
