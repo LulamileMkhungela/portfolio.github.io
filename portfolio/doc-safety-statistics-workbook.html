@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" class="is-case-locked">
+<head>
+	<script src="../js/content-guard.js?v=1"></script>
+	<script>
+		(function () {
+			const params = new URLSearchParams(window.location.search);
+			if (params.get("embedded") !== "1") return;
+			document.documentElement.classList.add("is-embedded");
+			document.addEventListener("DOMContentLoaded", function () {
+				document.body.classList.add("is-embedded");
+			});
+		})();
+	</script>
+	<meta charset="UTF-8" />
+	<script src="../js/appearance.js"></script>
+	<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport">
+	<meta name="twitter:widgets:theme" content="light">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Safety statistics reference — Lulamile Mkhungela">
+	<meta property="og:description" content="An internal project case study, not shown publicly due to an NDA. Ask me for access.">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta property="og:image" content="https://lulamilemkhungela.github.io/portfolio.github.io/images/social/lm-og.jpg">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:url" content="https://lulamilemkhungela.github.io/portfolio.github.io/portfolio/doc-safety-statistics-workbook.html">
+	<meta name="twitter:image" content="https://lulamilemkhungela.github.io/portfolio.github.io/images/social/lm-og.jpg">
+	<meta name="twitter:title" content="Safety statistics reference — Lulamile Mkhungela">
+	<meta name="twitter:description" content="An internal project case study, not shown publicly due to an NDA. Ask me for access.">
+	<meta name="description" content="An internal project case study, not shown publicly due to an NDA. Ask me for access.">
+	<meta name="robots" content="noindex, nofollow">
+	<meta name="theme-color" content="#ffffff">
+
+	<title>Safety statistics reference — Lulamile Mkhungela</title>
+	<link rel="icon" href="../favicon.ico" sizes="any">
+	<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+	<link rel="manifest" href="../site.webmanifest">
+
+	<!-- Font -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="../fonts/Satoshi/css/satoshi.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato|Montserrat:300" rel="stylesheet">
+
+	<!-- Css -->
+	<link rel="stylesheet" href="../css/core.min.css" />
+	<link rel="stylesheet" href="../css/case-study-skin.css?v=10" />
+	<link rel="stylesheet" href="../css/avalanche.css" />
+	<link rel="stylesheet" href="../css/snowbridge.css" />
+	<link rel="stylesheet" href="../css/modern-menu.css?v=161" />
+	<link rel="stylesheet" href="../css/portfolio-case-shared.css?v=58" />
+
+<style id="lm-case-study">
+:root{--lm-accent:#ca8a04}
+:root{
+  --pk-red:var(--lm-accent,#ee0000);--pk-black:#0a0a0a;--pk-ink:#161616;--pk-muted:#666;--pk-line:#dedede;
+  --pk-surface:#f5f5f5;--pk-white:#fff;--pk-max:1240px;--pk-copy:760px;
+  --pk-s1:8px;--pk-s2:16px;--pk-s3:24px;--pk-s4:32px;--pk-s5:48px;--pk-s6:64px;--pk-s7:96px;--pk-s8:128px;
+}
+.lm-case-page .content{background:var(--pk-white);overflow:hidden}
+.lm-case-page .content *{box-sizing:border-box}
+.pk-shell{width:100%;max-width:var(--pk-max);margin:0 auto;padding-inline:clamp(24px,4vw,64px)}
+.pk-section{padding-block:clamp(64px,7vw,104px)}
+.pk-section--tight{padding-block:clamp(48px,5vw,72px)}
+.pk-eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--pk-muted)}
+.pk-eyebrow:has(+ .pk-h2),.pk-eyebrow:has(+ .pk-h3){margin-bottom:var(--case-eyebrow-heading-gap-compact,clamp(24px,3vw,40px))}
+.pk-eyebrow:before{content:"";width:24px;height:2px;background:var(--pk-red);flex:0 0 auto}
+.pk-display{margin:0;font-size:clamp(52px,8.2vw,126px);line-height:.88;letter-spacing:-.065em;font-weight:700;color:var(--pk-black)}
+.pk-display em{display:block;color:var(--pk-red);font-style:normal}
+.pk-h2{margin:0;font-size:clamp(36px,4.4vw,68px);line-height:.98;letter-spacing:-.045em;font-weight:700;color:var(--pk-black)}
+.pk-h3{margin:0;font-size:clamp(26px,2.6vw,42px);line-height:1.04;letter-spacing:-.035em;font-weight:700;color:var(--pk-black)}
+.pk-lede{max-width:800px;margin:28px 0 0;font-size:clamp(19px,1.65vw,25px);line-height:1.45;color:#333}
+.pk-copy{max-width:var(--pk-copy);font-size:17px;line-height:1.75;color:#3b3b3b;overflow-wrap:anywhere}
+.pk-copy p{margin:0}
+.pk-hero{padding-top:clamp(92px,7.5vw,116px);background:linear-gradient(180deg,#fff 0%,#fff 72%,#f5f5f5 72%,#f5f5f5 100%)}
+.pk-hero__grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);gap:clamp(36px,6vw,80px);align-items:center}
+.pk-hero__visual{position:relative;min-height:clamp(430px,40vw,560px);display:flex;align-items:flex-end;justify-content:center}
+.pk-hero__visual:before{content:"";position:absolute;inset:9% 0 0 10%;background:var(--pk-red);border-radius:999px 999px 0 0;transform:rotate(-7deg)}
+.pk-hero__visual img{position:relative;z-index:1;max-width:min(100%,620px);max-height:620px;object-fit:contain;filter:drop-shadow(0 28px 34px rgba(0,0,0,.16))}
+.pk-meta{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--pk-line);border-bottom:1px solid var(--pk-line);background:#fff}
+.pk-meta__item{padding:28px 30px;border-right:1px solid var(--pk-line)}.pk-meta__item:last-child{border-right:0}
+.pk-meta__label{display:block;margin-bottom:8px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#777;font-weight:700}
+.pk-meta__value{font-size:16px;line-height:1.35;color:#171717;font-weight:600}
+.pk-overview{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(48px,8vw,120px);align-items:start}
+.pk-overview__statement{font-size:clamp(28px,3vw,46px);line-height:1.08;letter-spacing:-.035em;font-weight:650;color:var(--pk-black)}
+.pk-overview__statement strong{color:var(--pk-red)}
+.pk-dark{background:var(--pk-black);color:#fff}.pk-dark .pk-h2,.pk-dark .pk-h3{color:#fff}.pk-dark .pk-copy{color:#c9c9c9}.pk-dark .pk-eyebrow{color:#aaa}
+.pk-problem-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(56px,9vw,140px);align-items:start}
+.pk-outcomes{margin-top:48px;border-top:1px solid #343434}
+.pk-outcome{display:grid;grid-template-columns:68px 1fr;gap:24px;padding:30px 0;border-bottom:1px solid #343434;align-items:start}
+.pk-outcome__num{font-size:13px;color:#777;font-weight:700}.pk-outcome__text{font-size:clamp(20px,2vw,30px);line-height:1.22;letter-spacing:-.025em;color:#fff}
+.pk-strategy{background:var(--pk-surface)}
+.pk-strategy__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:56px}
+.pk-card{background:#fff;border:1px solid #e3e3e3;border-radius:20px;padding:clamp(28px,4vw,48px);min-height:260px;display:flex;flex-direction:column;justify-content:space-between}
+.pk-card__index{font-size:12px;letter-spacing:.14em;color:var(--pk-red);font-weight:800}.pk-card h3{font-size:clamp(24px,2.3vw,36px);line-height:1.05;letter-spacing:-.03em;margin:38px 0 16px}.pk-card p{margin:0;color:#555;font-size:16px;line-height:1.65}
+.pk-role{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(48px,8vw,120px);padding-top:56px;margin-top:64px;border-top:1px solid #d8d8d8}
+.pk-role__list{font-size:clamp(20px,2vw,29px);line-height:1.45;letter-spacing:-.02em;color:#111}
+.pk-media-section{background:#fff}
+.pk-section-head{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(48px,8vw,120px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+.pk-media-stack{display:grid;gap:24px}.pk-media{margin:0;background:#ececec;border-radius:24px;overflow:hidden}.pk-media img{display:block;width:100%;height:auto}.pk-media--wire{padding:clamp(18px,3vw,38px);background:#f1f1f1}
+.pk-research{background:var(--pk-red);color:#fff}.pk-research .pk-eyebrow{color:#fff}.pk-research .pk-eyebrow:before{background:#fff}.pk-research .pk-h2{color:#fff}.pk-research__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.65fr);gap:clamp(56px,9vw,140px);align-items:end}
+.pk-research__copy{font-size:clamp(19px,1.7vw,25px);line-height:1.55;max-width:760px;color:#fff}
+.pk-stat{border-left:1px solid rgba(255,255,255,.55);padding-left:clamp(32px,5vw,64px)}.pk-stat__number{display:block;font-size:clamp(78px,10vw,150px);line-height:.8;letter-spacing:-.075em;font-weight:750}.pk-stat__label{display:block;margin-top:24px;max-width:310px;font-size:16px;line-height:1.5}
+.pk-design{background:#111}.pk-design .pk-eyebrow,.pk-design .pk-h2{color:#fff}.pk-design .pk-media{background:#1b1b1b;border:1px solid #2c2c2c}
+.pk-design-intro{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(48px,8vw,120px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}.pk-design-intro p{color:#bcbcbc}
+.pk-conclusion{background:#fff}.pk-conclusion__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(48px,8vw,120px);align-items:start}
+.pk-closing{margin-top:72px;padding:clamp(40px,6vw,72px);background:var(--pk-surface);border-radius:24px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}.pk-closing strong{font-size:clamp(26px,3vw,42px);line-height:1.1;letter-spacing:-.035em}.pk-closing span{display:block;margin-top:10px;color:#666;font-size:15px}
+html.is-embedded .lm-case-page .pk-hero{margin-top:0!important;padding-top:clamp(48px,5vw,64px)!important}
+@media(max-width:1080px){.pk-display{font-size:clamp(52px,7.8vw,84px)}.pk-hero__grid{grid-template-columns:minmax(0,1fr) minmax(300px,.78fr);gap:36px}.pk-hero__visual{min-height:400px}}
+@media(max-width:820px){.pk-hero{padding-top:88px}.pk-hero__grid,.pk-overview,.pk-problem-grid,.pk-section-head,.pk-research__grid,.pk-design-intro,.pk-conclusion__grid,.pk-role{grid-template-columns:minmax(0,1fr)}.pk-hero__grid{gap:32px}.pk-hero__visual{min-height:clamp(340px,64vw,480px);max-width:620px;width:100%;margin-inline:auto}.pk-meta{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-meta__item:nth-child(2){border-right:0}.pk-meta__item:nth-child(-n+2){border-bottom:1px solid var(--pk-line)}.pk-strategy__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-stat{border-left:0;border-top:1px solid rgba(255,255,255,.55);padding:40px 0 0}.pk-role{gap:32px;margin-top:48px;padding-top:48px}.pk-closing{grid-template-columns:1fr}}
+@media(max-width:640px){.pk-shell{padding-inline:20px}.pk-section{padding-block:clamp(52px,15vw,68px)}.pk-hero{padding-top:82px}.pk-display{font-size:clamp(44px,15vw,68px);line-height:.91;letter-spacing:-.055em}.pk-h2{font-size:clamp(34px,10vw,48px)}.pk-lede{margin-top:22px;font-size:18px;line-height:1.5}.pk-hero__grid{gap:24px}.pk-hero__visual{min-height:clamp(280px,84vw,390px)}.pk-hero__visual:before{inset:6% 3% 0 12%}.pk-meta{grid-template-columns:1fr}.pk-meta__item{border-right:0;border-bottom:1px solid var(--pk-line)!important;padding:20px}.pk-meta__item:last-child{border-bottom:0!important}.pk-strategy__grid{grid-template-columns:1fr;margin-top:40px}.pk-card{min-height:0}.pk-card h3{margin-top:28px}.pk-media-stack{gap:14px}.pk-media{border-radius:14px}.pk-media--wire{padding:14px}.pk-outcome{grid-template-columns:38px minmax(0,1fr);gap:10px;padding:24px 0}.pk-closing{margin-top:40px;border-radius:14px;padding:28px}.pk-role{gap:24px;margin-top:40px;padding-top:40px}}
+@media(max-width:380px){.pk-shell{padding-inline:16px}.pk-hero{padding-top:76px}.pk-display{font-size:clamp(40px,14.5vw,54px)}.pk-eyebrow{gap:10px;margin-bottom:18px}.pk-hero__visual{min-height:260px}.pk-meta__item{padding:18px 16px}.pk-card{padding:24px}.pk-outcome__text{font-size:19px}}
+.lm-case-page{--case-accent:var(--lm-accent)}
+.pk-copy p+p{margin-top:1em}
+.pk-research .pk-h2+.pk-research__copy{margin-top:28px}
+.pk-research__copy+.pk-research__copy{margin-top:16px}
+.pk-display em{color:var(--pk-red)}
+.pk-lede--small{font-size:clamp(17px,1.35vw,21px)}
+.pk-outcome__text small{display:block;margin-top:12px;font-size:16px;line-height:1.65;letter-spacing:0;color:#bdbdbd}
+.pk-outcome__text small b{display:block;margin:14px 0 4px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#8a8a8a;font-weight:700}
+.pk-card ul{margin:0;padding:0;list-style:none}
+.pk-card li{position:relative;padding-left:20px;margin:0 0 12px;color:#555;font-size:16px;line-height:1.6}
+.pk-card li:before{content:"";position:absolute;left:0;top:.72em;width:9px;height:2px;background:var(--pk-red)}
+.pk-card p+p{margin-top:12px}
+.pk-card__meta{display:block;margin:18px 0 6px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#888;font-weight:700}
+.pk-grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:56px}
+.pk-grid-3 .pk-card{min-height:0;justify-content:flex-start}
+.pk-grid-3.pk-grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pk-grid-3 .pk-card h3{margin-top:28px}
+.pk-dark .pk-card{background:#141414;border-color:#2c2c2c}.pk-dark .pk-card h3{color:#fff}.pk-dark .pk-card p{color:#bdbdbd}
+.pk-steps{display:grid;gap:clamp(40px,5vw,64px)}
+.pk-step{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,96px);align-items:start;padding-top:clamp(32px,4vw,48px);border-top:1px solid var(--pk-line)}
+.pk-step__index{display:block;margin-bottom:18px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--pk-red);font-weight:800}
+.pk-process-map{margin:0 0 clamp(40px,5vw,64px)}
+.pk-process-map img{display:block;width:100%;height:auto}
+.pk-process-map figcaption{margin:14px 4px 0;color:#777;font-size:14px;line-height:1.55}
+.pk-process-time{display:block;margin:-8px 0 14px;color:#888;font-size:12px;letter-spacing:.04em;text-transform:none}
+.pk-process-note{margin-top:14px!important;color:#777;font-size:14px!important;line-height:1.55!important}
+.pk-step .pk-media{margin-top:28px}
+.pk-list{margin:40px 0 0;padding:0;list-style:none;border-top:1px solid var(--pk-line)}
+.pk-list li{display:grid;grid-template-columns:68px 1fr;gap:24px;padding:24px 0;border-bottom:1px solid var(--pk-line);font-size:clamp(17px,1.4vw,21px);line-height:1.5;color:#222}
+.pk-list li span{font-size:13px;color:#999;font-weight:700;padding-top:4px}
+.pk-design .pk-list{border-color:#2c2c2c}.pk-design .pk-list li{border-color:#2c2c2c;color:#e6e6e6}
+.pk-research__grid--solo{grid-template-columns:minmax(0,1fr)}
+.pk-figcaption{margin:14px 4px 0;font-size:14px;line-height:1.5;color:#777}
+.pk-dark .pk-figcaption,.pk-design .pk-figcaption{color:#9a9a9a}
+.pk-media-stack+.pk-copy,.pk-copy+.pk-media-stack{margin-top:40px}
+.pk-disclaimer{margin-top:24px!important;font-size:14px;line-height:1.6;color:#8a8a8a}
+.pk-actions{display:flex;flex-wrap:wrap;gap:12px}
+.pk-button{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;background:var(--pk-red);color:#fff!important;font-size:15px;font-weight:700;line-height:1;text-decoration:none!important;white-space:nowrap}
+.pk-button--ghost{background:#fff;color:#111!important;border:1px solid #cfcfcf}
+.pk-related{margin-top:28px;font-size:16px;line-height:1.6;color:#555}.pk-related a{color:var(--pk-red);font-weight:700}
+@media(max-width:820px){.pk-grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-step{grid-template-columns:minmax(0,1fr);gap:20px}}
+@media(max-width:640px){.pk-grid-3,.pk-grid-3.pk-grid-2{grid-template-columns:1fr;margin-top:40px}.pk-list li{grid-template-columns:38px minmax(0,1fr);gap:10px}.pk-actions{flex-direction:column;align-items:stretch}.pk-button{justify-content:center}}
+</style>
+
+</head>
+<body class="portfolio-case-updated lm-case-page">
+
+<!-- Side Navigation Menu -->
+	<aside class="side-navigation-wrapper enter-right" data-no-scrollbar data-animation="reveal">
+		<div class="side-navigation-scroll-pane">
+			<div class="side-navigation-inner">
+				<div class="side-navigation-header">
+					<div class="navigation-hide side-nav-hide">
+						<a href="#">
+							<span class="icon-cancel medium"></span>
+						</a>
+					</div>
+				</div>
+				<nav class="side-navigation center">
+					<ul>
+						<li class="current">
+							<a href="../index.html">Portfolio</a>
+						</li>
+						<li>
+							<a href="../index.html?open=about">About</a>
+						</li>
+						<li>
+							<a href="../index.html?open=testimonials">Testimonials</a>
+						</li>
+						<li>
+							<a href="../evidence.html">Evidence</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="side-navigation-footer">
+					<ul class="social-list list-horizontal">
+						<li><a href="https://www.linkedin.com/in/lulamile-mkhungela/"><span class="icon-linkedin small"></span></a></li>
+					</ul>
+					<p class="copyright no-margin-bottom">&copy; 2026 L M</p>
+				</div>
+			</div>
+		</div>
+	</aside>
+	<!-- Side Navigation Menu End -->
+
+	<div class="wrapper reveal-side-navigation">
+		<div class="wrapper-inner">
+
+			<!-- Header -->
+			<header class="header header-fixed-on-mobile" data-sticky-threshold="0" data-bkg-threshold="100">
+				<div class="header-inner">
+					<div class="row nav-bar">
+						<div class="column width-12 nav-bar-inner">
+							<div class="logo">
+								<div class="logo-inner">
+									<a href="../index.html"><img src="../images/lm-logo.png" alt="L M logo" /></a>
+									<a href="../index.html"><img src="../images/lm-logo.png" alt="L M logo" /></a>
+								</div>
+							</div>
+							<nav class="navigation nav-block secondary-navigation nav-right">
+								<ul>
+									<li>
+										<!-- Contact Button -->
+										<div class="v-align-middle">
+											<a data-content="inline" data-toolbar="" data-modal-mode data-modal-width="500" href="#contact-lightbox" class="lightbox-link contact-collaboration" aria-label="Contact me"><span class="contact-collaboration__label">Contact me</span><span class="contact-collaboration__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span></a>
+										</div>
+									</li>
+									<!-- Aux Navigation -->
+									<li class="aux-navigation">
+										<a href="#" class="navigation-show side-nav-show nav-icon">
+											<svg class="menu-toggle__svg" viewBox="0 0 32 32" aria-hidden="true">
+												<path class="menu-toggle__path" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+												<path d="M7 16 27 16"></path>
+											</svg>
+										</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</header>
+			<!-- Header End -->
+
+			<!-- Content -->
+			<div class="content clearfix">
+			<div class="pk-lock-shell" data-case-lock>
+				<section class="pk-hero" aria-labelledby="case-lock-title">
+					<div class="pk-shell pk-hero__grid">
+						<div>
+							<p class="pk-eyebrow">Internal project</p>
+							<h1 id="case-lock-title" class="pk-display pk-display--name">Safety statistics reference</h1>
+							<p class="pk-hero__tagline">Not shown publicly due to an NDA.<em class="pk-accent"> Opens with a password.</em></p>
+							<a class="pk-scrollcue" href="#protected"><span>Unlock below</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
+						</div>
+						<div class="pk-hero__visual pk-lock-visual" aria-hidden="true">
+							<div class="pk-lock-visual__card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg><span>Internal · NDA</span></div>
+						</div>
+					</div>
+					<div class="pk-shell"><div class="pk-meta" aria-label="Project details"><div class="pk-meta__item"><span class="pk-meta__label">Client</span><span class="pk-meta__value">Sasol, via iOCO</span></div><div class="pk-meta__item"><span class="pk-meta__label">Role</span><span class="pk-meta__value">UI/UX Designer &amp; Angular Developer</span></div><div class="pk-meta__item"><span class="pk-meta__label">Industry</span><span class="pk-meta__value">Energy and chemicals</span></div><div class="pk-meta__item"><span class="pk-meta__label">Year</span><span class="pk-meta__value">2023</span></div></div></div>
+				</section>
+				<section class="pk-section pk-section--tight pk-lead-section" id="lead">
+					<div class="pk-shell"><p class="pk-lead">This is internal project work, delivered under a confidentiality agreement, so the full write-up is not shown publicly. What follows is the summary I can share — the problem, what I was responsible for, the solution and how I got there. The detailed write-up, the screens and the figures open with the password at the bottom of this page.</p></div>
+				</section>
+								<section class="pk-section" id="outline">
+					<div class="pk-shell">
+						<p class="pk-eyebrow">What the study covers</p>
+						<div class="pk-lock-summary"><article class="pk-lock-part"><span class="pk-lock-part__num" aria-hidden="true">01</span><div class="pk-lock-part__body"><h2 class="pk-lock-part__title">Context and stakes</h2><p class="pk-lock-part__copy">Safety performance is reported as rates, and those rates depend on injury-severity scores that had been buried inside spreadsheet formulas with the rules only partly written down. Analysts across regions had no single shared reference, and the ownership of each step in the process was not visible next to the numbers it produced.</p></div></article><article class="pk-lock-part"><span class="pk-lock-part__num" aria-hidden="true">02</span><div class="pk-lock-part__body"><h2 class="pk-lock-part__title">Role and boundaries</h2><p class="pk-lock-part__timeline">Mar 2023 — Aug 2023 · with stakeholders from five-plus departments</p><ul class="pk-lock-part__list"><li>I designed the replacement for a fragmented, Excel-based safety process — a live Angular platform adopted across five-plus departments. The three-tier reporting hierarchy and the NISS severity logic came out of workshops I ran with stakeholders from those departments.</li><li>I delivered the design process, the design system and the design itself, plus the Angular UI with RxJS and RESTful API integration — removing the manual consolidation step and giving leadership real-time visibility.</li><li>I was responsible for how the scoring rules, the roles and the regional structure are presented, and for the UI that reads from them.</li><li>I tested each release against NISS severity edge cases before rollout, and set UX governance standards the team carried into later Sasol digital safety tools.</li></ul><p class="pk-lock-part__scope"><strong>Team and scope:</strong> The reporting formulas themselves belong to the reporting team.</p></div></article><article class="pk-lock-part"><span class="pk-lock-part__num" aria-hidden="true">03</span><div class="pk-lock-part__body"><h2 class="pk-lock-part__title">Key decisions and trade-offs</h2><ul class="pk-lock-part__decisions"><li><strong>The scoring rules are stated explicitly</strong><span>Fatal, lost-day, restricted-work, medical-treatment and first-aid cases each carry a stated score, with a separate severity scheme for hospitalised lost-day cases. Each score is a fixed value, so an analyst can check formula output against the table.</span><span class="pk-lock-part__tradeoff">Trade-off: Fixed scores are easy to audit but do not adjust to context.</span></li><li><strong>Roles are documented alongside the numbers</strong><span>Analysts can see who owns each step without leaving the reference.</span><span class="pk-lock-part__tradeoff">Trade-off: Every figure needs its owner recorded, so the reference takes more upkeep.</span></li></ul></div></article><article class="pk-lock-part"><span class="pk-lock-part__num" aria-hidden="true">04</span><div class="pk-lock-part__body"><h2 class="pk-lock-part__title">How I got there</h2><ol class="pk-lock-part__process"><li><strong>Discovery</strong><span>Workshops with stakeholders across the departments, to surface rules that existed only inside spreadsheet formulas.</span></li><li><strong>Design</strong><span>The scoring reference, the three-tier hierarchy and the design system behind them.</span></li><li><strong>Build</strong><span>Angular UI with RxJS and RESTful API integration.</span></li><li><strong>Implementation</strong><span>Each release tested against NISS severity edge cases before rollout.</span></li></ol></div></article><article class="pk-lock-part"><span class="pk-lock-part__num" aria-hidden="true">05</span><div class="pk-lock-part__body"><h2 class="pk-lock-part__title">Outcome and evidence</h2><p class="pk-lock-part__copy">No safety figures are shown on this page, by choice. What would settle it: how many regions compute severity from the shared reference instead of their own spreadsheet, and the number of scoring disputes raised per reporting cycle.</p></div></article></div>
+						<p class="pk-disclaimer">Client screens, source documents and project data stay in the encrypted write-up. This public summary does not report measured outcomes.</p>
+					</div>
+				</section>
+				<section class="pk-section pk-strategy" id="protected">
+					<div class="pk-shell">
+						<div class="pk-lock pk-lock--solo">
+							<div class="pk-lock__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg></div>
+							<p class="pk-lock__eyebrow">Password required</p>
+							<h2 class="pk-lock__title">Safety statistics reference</h2>
+							<p class="pk-lock__copy">The write-up is encrypted in this page. Enter the password and the full case study opens right here.</p>
+							<form class="pk-lock__form" autocomplete="off" novalidate>
+								<label class="sr-only" for="case-lock-password">Password</label>
+								<div class="pk-lock__field"><input id="case-lock-password" type="password" name="password" placeholder="Password" autocapitalize="off" autocorrect="off" spellcheck="false" required></div>
+								<button class="pk-lock__submit" type="submit">Unlock case study</button>
+								<p class="pk-lock__message" data-lock-message aria-live="polite"></p>
+							</form>
+							<p class="pk-lock__foot">Don’t have a password? <a href="mailto:mkhungela.l@gmail.com?subject=Access%20to%20a%20protected%20case%20study">Email me</a> and say which study you would like to read.</p>
+						</div>
+					</div>
+				</section>
+<nav class="tlc-project-pagination tlc-project-pagination--sealed" aria-label="More projects"><a class="tlc-project-pagination__item" href="doc-media-scanning-audit.html"><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction">← Previous project</span><strong>Media scanning for audit planning</strong><span class="tlc-project-pagination__category">AGSA · Media intelligence for audit planning</span></span></a><a class="tlc-project-pagination__item" href="doc-chart-components.html"><span class="tlc-project-pagination__content"><span class="tlc-project-pagination__direction">Next project →</span><strong>Configurable chart components</strong><span class="tlc-project-pagination__category">Takeda · Dashboard visualisation components</span></span></a></nav>
+			</div>
+				<script id="case-lock-payload" type="text/plain" data-meta="{&quot;salt&quot;: &quot;fYCHOnJTR9IvDqgZrVMmRg==&quot;, &quot;iv&quot;: &quot;nVjPJsxg1qgay9uR&quot;, &quot;iterations&quot;: 310000}">
+wfH8Tov0b11IXiXCGmPaEGcn4ntofDSjsJpI4OcLZ1czzlI8bj6kCMcJt9wuXjHhIaWAU2/+EJGV3H5O+sfQtt+AVmE+6UnqRRiQFxn/Tq1x/wBp+Wip671e
+QNKJelKMnsLTD1AoGvpcS0sbS9zwhdxPgkDvPz37sTQkTIE/4kQi5e1+VTrZciZfcjuu/0hF74qCg12zcePiLwU2t1fQvgqR+eEBCAN0aA1/akDpUti8Esm0
+gKMyHJgR+5oAzR/Y4HENMseft04Zr3Ru1o7sfZaF7qGPQ0XuJ6NCv+wKMRerV7k6c+YQBRQPyFfeKqu8MygDBNV96q9GO5Wf+H+6CsMza6jrYjHUbB6A/aA5
+DGtMrLuL8gShtDVqMhgTfUdH2tiuN6ZfGGjDiYB+QzrEfmTGmlDtSgqvdq+U/NYORvLEjmqk9fG7cY8y0V9a/fSG5fIt/+fdXz00e2Lg1FgFLyFia3DYfy4U
+hXMHmucy8C8Ggiai2znAqABRXZ1ho2xtVTPNVdE3kUoYnTP33KVPBdNBXpBgUXg1QTrqwRBv168eoGAzTus+KIVUiB+7zIN/2N5fNAbAg10OaP2QCXWR1e2l
+L392zfYO8Q1Al1QjTUdpyg1ee5+fofU/5S0DtW8GH9MwMtoeOybiN6Q4eLlCLKpCmz7Vuc1GVUkq9mk3TYQ94O4722BUXAI8CdV4rteakSvXIi+2UWKyvWz5
+pg/vw/GwdFJPAUafttwqn9WZwy2CW/lAkgqnbxX26XnjuGrEqD3SoO/+Zuy2+kHSN5wHDLB37awU89PegZCdr+kg6z7yAWA8PCpT6zik0d5m822ySHdvC3cp
+GUtsCXxj+/okD3wzgw/V7Kkn2VQwxRI8HiNL05uetVscu9YZe/nU3WJJifcFr1AQSalOhZ+V29NSHPwxjTu17XA8yi4PA728BvoL3LixWybY5tkyss8ypnMc
+6Jppzbb/FsQRbb9CduX9aW1qs0u9P/T8QmTeSvi8F5ui03D2aXILOmNh0DRg0MR7cL8Zdmqkjeh5h+lrhG1PBLI16aWRkseHQAqFtQ9BZxByN/nmVEDMiOA/
+VWunX6ZxGIPSljfulGAnod5bZwINkOEGIgU2bm+vg7Iz4yx4tf/Nd/w9XpAih/461RdSTI6tRYeX286M7pAoCU2V7kBF7tDT0uaAbSxVxkaz4eBDWVRhoBFo
+G5q1uqWOKhngCLe+r9ZUYDRNu81iumnIXHbEh8opUSwdUEUyVRT2rds9YwsLOPXWVt/EFG9eyjx5RVsUjdOorQE+nP5cARR0QBxBmE/hdyIlQEO66FFgq71Z
+0LylJAp5AHJFgAv+3RCgrOauKkfx3J67SO38ZL56cjOZeEuQrmsQqQIMbox6wtt2tWTTHlc2WnJ30v4xlAREIjgw/JOgFDiHlH5qZlJ5Nc/T8pt8+FKpJW0M
+TpnZq7UCDmeAcJKZeJdeSXSHwjXp861iCoq8sKyIcUeL6LDDWo8LQ5OwIOL6a1Of6lop/IRhjB+E+aRTi0axsk6LXlk/SB0KBUmPQWK3qex5u6+y81eNNRo1
+btmvZO6J/IPLzHnneEYuyrCPINT6HbSjIQj8vcrn0MnJ4bONI0FoxX1oyjG9ndnvmtaYW2SB3cN3Nk4jG01LhptelxNjQU2Ng75AAK2PRy6FyeBFLsTr6KuO
+66hZHOmmiiT9gdw4dQyEkW2XpDO5u6Vpwl7jqD71jM9PzhMPoDvMUT+Auezs1sEFN9wTEo2gsOcwzX/D3IabCxIAUp2eHFktdrpixzutiWTouxG+nJ0tLK4t
+bHLxKoKSloRXJ4A6noQbfNDW9BEHOpG+McdT+tEAkO9A2alVY0wFSDSyFCmQiE8Hhu/CJuGw8h2nUxE1tdEjtu+7I2OLam43WT7GkRUDi7N8E29eWrKuoACu
+FmPp1xpmW4mxegaf6KJwIMT3ZNVqVA4qrkq4sh0fVyuTPBvaSqnDQUYlmk9iREEcyo6u11UUV+f+F0Ocn0c2pjoDPb2Ynx2Jw7hEzMcaoJW9QWz/opO1l32y
+yWbeq8lpPrmO/OcebosvxvFHrdYnPGTNoJScQmq7HHiuKsBC7bZaRe+7KBSJv8TZPex47QRc9vdpJdTcecN/fGza2jo7F1n1qmPRgj7L9D9BrSMsQ3UTXP6e
+NEKWE4Sh4wY0G7s9eqNSxDzxdRSp8vkM+/YW2k8HXEiWvFkNRSAuBtu1AUFdhEfWEU4PLf/U6NOJoKG++EZyxaqbs1l4xZ4GhQ3ku5SAJq1KoT9NDkTrQvmU
+Pl2NXMXd/r+zMon74ltnTlCft2Y7lrzMI5RQH+2BfEA5KvajYonhwJfS8lU9PD3ab0izrVQrtGCMs/7PVHiyGxfqVwpRTc6xhl6C0Hj86ilwHwpk/2cUjsUi
+KCu+iB3BGu4iUG4SpFoCPCQ4mNtC+FxmZMn6El42XLz8tueEjvK33ozj8g4nw5PKaMBjfZEh6OEk19KZCRBXievXZGRIp+ZTKJfd5XTvtzv9qx7QRAtKKZPo
+6+AjBQN3L+x+C38HKpI9mHBg5NRkRRTkx9dZVY2hjfNbd4txCuqbJsFU32ZIR+K6oN+2rXzLbSsIWN65Q3sOELN0wDPfF5clMC0nYiKtkHXehgmyy10gX76g
+mX8OqNjGn6bFrfQAMOy0dDk7vxzZATd+7ngazIyQKnNDSp32or6eY9B23VauN2NdJdRucC4Ehhh3084zah/h7RWJDEXKOJP82xwTd/v61VH0hgAigSOSX+8G
+cbJOY8KBDZDUuHcxp2hBb4ZN7JnuMgC97GuxahxmOK3ITA5s4V96bsf9vo8ChDT+T6y8zZkIkoSrY55BYPm8SiVtX7bxgwDLwqk0VffQZdbxqRnvWcgjC5Go
+b2TOK9/9DeMCfwblhjAGQWHtjX6OC6nq6s1RooubKEsol+wuaYHuB5Gswa4ZxlzW6SvfqJSjgtPCTRJhCuakWS5BrbcX5d4LZe05/zEQgm8QcSK8a439Fqwj
+L3UqxyMdetB7EVwYr4Rt6dFJu09vBG1Hx9KB6RIQHmzsjv8fD1xzbzT7nGa6GdPMopkui4KVHRrjKpvI2dJkZUJzwGNGTxbTyOJd5g8VcYtFgmX48RuFMb15
+fuEBOb4icGg/qlT/M9xW0oUD9lN9SnqciX9p3+8igJOjU5Qe091GaNiP7NRbgYp38fL7A0oiDHOTbRtKEZdwex0tyjsT/NvGD/4u+1Nb7SFxxDrI3+qWDo6b
+uOZR0bk9n9F1zD6bA8uGobDO7GfKXaERpEXutI9HC5cRqscix4V8Pb+kKxIUh0+9//IC5WfkdL+vMOiu5mCWua3ryo+f4U9ziWTBOGP0vkkhsNIcOHYDuXwo
+dkWcWbmDcy9+Mmd6nPIBUMyeXoij5Oc6T+d0ilFhOW76GoDKbt0GVcDGQM00bGKBy4+29tsbjFrROmm11jWxEFL8UZSte05wipE9pcwb/sbRvvoKRRgPiQWS
+iXHSl0568uH8QbvT7gjE+sVACUBQ8+EKGaW2Gzy0H4cri/Pw7p05fX+HMXD4j5FWPeERdN/QkihRxuoGFQGMTaEckJTCSZLZU1iKcQR3X2i1Zgpxit8nh/MM
+GpCPxNHLmDzxq2oqHUCq3tvkSmGyFtPrhLXqwfBSR5c374n9xcUq/bm6mVPNoGECqdFpKSV7fDF4Gx2XhKFeg2N0+wXKnrU6Xv96aMHo+0Jc3kLa+QBO2Tjs
+jbGiGuN+g2ti6hD1ASV7LHIxMDDztm+C4J+6lKgRe3I2/YLOfWN5tOTjElsJATXkDHVWD0XaiNPlKTrfrboNffU8VZSRZkqGz9Hgn7sijFj4Qj4rpuadTwKU
+/3wnc0IaynPpldIGb7FZxYp/Y3j/bWq/aRWLd/kIMbkE45i7eua10pDuLjCAEFfDsNBBBBxhVMjIn332ptCTkOqQ7qcQMWTAAHpgIDzNX+2/9Gw0P94M0xTG
+Kvfm2RnTTC897DWu81CHbmw/5MXwur4e1UdZVeGk7TFjOpAkt9wG2zI+OJ9OpvDjtg3L1tzYDC1EHP7Jy5FlQ19XZ5IZmbmbd+MN06D4kZYDM9o5qXRjHlu1
+Y0J5bBSSs8Nv/ML/bEWiTjQLsG95eexS2wcPW56Xlfh8Jz/8xoUIClLkHYjDm2YDFbkXghROlL//JtkoIOj1wM2D5B7xthcZXX/oeG8GCQVwzpE+EIMG9CTh
+lwjULIydOz70ue7AIjuCPT9x6ZHH29RcZ6/nab9Zjk8k7fFCCwBmVVI2LUHNAu+tTIHBhqEkWuHC5klkME7B/yD+CvOSV0J8HJtEIpFZI+CQYGPP73kFNWIt
+FVKLGYM5KXIpVVfN7muuBMq32gNl0Ic/LUlSWy0YZaoT8yMYV7t9wpziN7QaxchXNcURolSTMmG5N4U83IaUKIHu6fAQdJ20fPIjSf23e3MrccrBZaZzDRTc
+TOaS6VIWAzAq1yrP+snF/ZLRqYV+lkNgL4Vbe4EZHX84x3cSUnJcPpaV75DJm8i30M5/A+ePuxkpf7h2/qkmfraeD3iFJlsumahuc4qpqYV1hpIR/f4vDMHj
+m7+yOagMHBZ50Z+hTqrYKEQG3d0jmpyoyxEDiYs1MerKUh6+d1SFrvIT1Ul9QC1k8/jNKOWQp2dHTMh7hzoim4FOLs4JJXfeJQWhDjuhsZ7+/iqCvPqQ2E0B
+M9tlkB0FaOutroCEYQp0KcZ3wmw//Y8+RO7DQNL+7D/gLzWJgFaEtObA/yy50TQrYccQ9b7Sf88t3FC747EZUEbcDjmTnaT/M1JzD2lld1qwRg3aV5CTkqgQ
+3hT3Br59LG/HiO4J13HycO4EDXMtWSZMEOCZG2U+1P4Ssk7H50yYFixhCmGs+z4z64/UiK5E943hD46/mgg3tplVO+u7tV6SNP/MmcTium0BXo1nMDQbC/t1
+ZESnRC6aM2fdU3/xzLs6hRV5mG017YbjjaaHKa2rvG91fbOyTxOvYRJowgcuQSbvlmnxa1PtR0rqH2EVstFfoUqTvClmwpYUJsI58NKuZzFIP/gTiHzNWjwi
+7Rj/kfBX/rpCI2SF2t9c4QBq04j1W44q9648SyGe8uj4tj9IHGZKMYQLlXM6iNfcqlQYv9wvqtKXteKDTMBRmQXBeml4Eq0jho+cpvDCXui3LFGOBmqO0RAP
+Lx4bBgbl+aZkvwsYjVxinmXlyQiMTNS+Svk/aTPzDOoleXt+iiK0TDlkRZlc0DeGPOmFaovMgCFnof2ywRi1+Kpsrjyw+3gsmZwIIbAPgXkyVb1QFkLQJIvd
+JQoFpXR4yNCcT3J3ZhqepjisR16krRxXEERhVE+jrrv2uszy8TogtbXQ/576ssofYSZoN2oRWs3uv8zuDcweSU/KDJeaSBkgSQhQs1FDgKlTQFcjYh8bjRHq
+A8inhdr/PNZUzwUnVCdwAFltCLEWyH9rEDXoVYWSjPYYhPoAsZEAcl17e3LAe34XWkiPPm9BAFwSrBPjrab+Emjk+A3z3PUAAMndYOCPUzKNpIz5zVNmSchR
+aTKex8Usl+qLkRuilxmvqch/x+sSXBr9ZGVcr1Mpl0x8UmyQg7YOD3m+PkoAuNDKXc3Gg2setXRdfth/q2CPg7uJVp56tUXGCpQNbO1SAorPy7YWBnvdt/0I
+uT6TTKggBvC1F+0RSAUmG+4txDHfxYyzhfSADH5QsXW9U7tMWmxE/9lbgM5R+NTck0L/U7mioUCIrcH/QoIUGIlcDwUOx64k3kVX+iD8TlkssleM9m0Emdbt
+07fsgTggRexzd3+1g4b39foYxWdg+Sz7W9e/dU1kN9+W9+anJBkKo4KqX1YmOqwPj4XVetlgF5EWjciIckSBDmyZjcn3KipmdG/h/n0TVYD7mfUMjrdGdrgG
+egxv3hrbBP2QaxX0b6w+OpO/DNL9zUl5vGuO9VdnNxu3GOVSnIyk/oO8fX2O9OKYrM6ToP1jYqzGzI9P1tlZG2QwVUcup3lKEWmbC3GpTVDgfsZRLhlriziR
+sOlYDGI6ufFSV0CcUyv+fls3WTH2iHpxiXjJypu03PixeyAUlmeffIC1qI3jhcV21+Eht+Rhj049ZMS33c/gadXHHIPgvZZXKQpBo8Qwq9S9ZhiWy4mRbaFS
+HzAfCokwIvvwOL0Qi0GNguoAv9brRdLVXuhDsz1WemVzkdO3iGN1myPV6XreZg8r5oP3XYadID3t3NGyH2VG7ZmpY5IpdTLRa06NEDxSVj/YYSjz8bqs60jJ
+W889vYDxc4Cs43Bvoq5934LbPg4BBOzU0rymnYfpImbUuz9N8zsxDdbKfWQt81vMtjXpfgIC6yZ0l6rvspb1fGH1BLlhRY421AcXBXTIu3s0fR3IOk1eKhrT
+Ukn/SEC9Ne4zwDkG/6S4DvmmBamaQcbsrDyl3cBL03qkRke6fcQSAPGLuV9WiaFePm6WEymVXbMCsTUnGT3esNcQVuatzNbGUs8VFK+Ej9euU/B4MtccBOa/
+Lr+PB1WO84RVq4PpAaj/f5rx6ZNNxI/Iexputz/nl4xrVm1voIk403heQKmFRORPkZtiokrBcwrIP3FMMoeb7kQwX0wYYk9ehfJChhpvZSYHwUW1jEMLGrKv
+9xrZZ0J+LxqNcWTECLCOXuw58tCvmwA2saywjgdzWshK9r8KeG432ZepqOad06y2yn/TCQai6eVM3ukZQPgtagjEWfbWcMleZ5T99x6uaUF6bXfZhSzdJ1Ae
++AdyusXVnD0RaBhXQ2Uub8mv4/WyBZNLEr/Pk8l2qhUCKeDTW2JKpCOJoJ7oICW9JW0ktkRZ4Y5I/0npNNYE3hwshdiiyy+NC2JHHjHCMmFtJkmEwOdWw5ZC
+9pGTGw6BfFT5OvsFG1BYvKjECKh2IA9vfAClfYkUdXteFiMHthy2Pp+u5BEoBl2tnCb2h+fvLGgbR5d6sRDbGmS1ku7LV4o+s17oFuVvphf/pQH1oUCVqqr1
+SON2B5DNcPUbkHbLvcR7b/FO6n62dZbTOiC4jSwSgfll34KUtD1pHSXqExB2fid8F9wQqLSvMg/rFf3TxU5eh+Ko+fpwyxQ51qiFnYFn6GaJpO1Z0BAGYu5F
+V8o+vvS+ewaSRHvyYCPuLvHtO7qA/Yz3d/o4hJuyJ1kGftc9mhJ97jK02C0F6+c6AWBHyI9gIZrCFyz1R6BEgDXFq/soV96HZeTWeR2S+y3ANbZhg8Cx+7Xh
+ce0l/KP/Dt2PzEvhzHdMafS6PvQ29hde1z2fzch0dB6LI2qry+f4QBrt0Rvifuuqnzho02omErNR+Aa9OFj/Lj7slF2zMRGJIc53eRTalEuRSfyltt1Bna5v
+KFx+DOdFPUqvlS5fYY0BrGacnt2FWS6jtvyD9XEc/sFD4hncOA76dyvofE4ePR5Tcv2pcjXAnQAhxr8ndN9iV//x6w2NM1JjI7vgR2z2t7zERycJuMukj3Ke
+pN7jSt5rGQflK0STqNA4tfozKvHApPuUxF5HDLFPjBYv4mf+KQ2NTu9qFmN9Ek/XgTLZZp/HM9BrU9ni2Wqm0fnG4Vybfv6X9jzLpM1yL6nMYJr5qUY0pbVg
+1Wq/B3I4R1llXbS8ruVsvF6kwKUStEhV27TJtp2VfwbGDQcvvXCNdu64uccZ+7OfbrlHH02e2tF+S3YDPsDMuLSDKZ8Lj7El9KC+vWN4/Q6KtPEslTzJPmV1
+7N8qd36U97ZkHIWYMTrtSEwr6/xZuSV2SlxZ3J6z8bin3Ev6x+IGgcHPyVCf2TEuDM8mazq3NUv6i4D68ro2Y1mvpxvDNZhMgEDtLQkuK5nzpfliVZjAdg2w
+3tW/XjivdYuspPNan9PCUAbxdgf8lKGOemLk7mKzEWAuAEhv4HPu90wEOE7Cu05Hft+QcFhsSt+G7NqGpSO5aPcZ8cMLl8JPyQKA1sbwJb3znWRTZZOS7wDB
+gLiyLb27ycQIEH1pKt9h4lPYZ0vR5ikTjYy+zyIAUDu1ZgBmuPdPsYlu9HLlXa9R3rgVZif34OxvT879+ZSpwu8lMq43362qQ+cm45t38FIN2vzsZBuHdd/R
+SNF2Pmz1JHHMfDGcq2lXTL53i9zg6/woTONo8De1iVgxy9PQ7dElbF+x2ungYu1U3rcY2oqDaktZ7QyWBFl1DmXkEGZYwUXMt7rVoPJMlhtOrLKG32TFXNj0
+ZYzm5idqRP954lG7u3XI17Qh0U1G5Eo/454CpKSjTWLtk9u7YqlKr8rwPDydjPKbFL3jrxJskipGND9Ict6UF8D0zrhyD71+7UjzxTTzRqGKCOZ7fkwLfurh
+v7z/bg58SXHaFOTCBhQIv2ZHaAGy6mrTYyJWRbNtHn7l+CeDD/cqNtmNwCM5y5n+dH+6YE+ktyCPvz0rC9GxZ7q2pk5ORXGqYU5mDUtSGLn/7gILN1EyyQ+l
+2LmkqUQ/dWRHeokotecI8Y8vEO9VaPFYrB0r3sYcVBcuA2DGq/ugt1SaFpE++QvRIVqj2WLAD+3wf3KfO7FSAelt+QS19knzPESUEgiU/wjXOEzaYhbECP8v
+by+s1gcaZLT2gCEf5WnxlgPx6g5ghJrb1gvIC+jQJ7zAxbn9rqhsN+1PuOWZFg==
+				</script>
+
+			<!-- Contact Modal -->
+				<div id="contact-lightbox" class="pt-70 pb-50 hide">
+					<div class="row">
+						<div class="column width-12 left">
+							<h3 class="mb-50 weight-semi-bold font-alt-3">Contact me</h3>
+							<div class="contact-form-container no-margin-bottom">
+								<form class="contact-form" action="../php/send-email.php" method="post" novalidate>
+									<div class="row">
+										<div class="column width-12">
+											<input type="text" name="fname" class="form-fname form-element large" placeholder="First Name*" tabindex="1" required>
+										</div>
+										<div class="column width-12">
+											<input type="email" name="email" class="form-email form-element large" placeholder="Email address*" tabindex="3" required>
+										</div>
+										<div class="column width-6">
+											<input type="text" name="honeypot" class="form-honeypot form-element large">
+										</div>
+									</div>
+									<div class="row">
+										<div class="column width-12">
+											<textarea name="message" class="form-message form-element large" placeholder="Message*" tabindex="5" required></textarea>
+											<input type="submit" value="Send Email" class="form-submit button medium text-uppercase bkg-grey bkg-hover-theme color-white color-hover-white">
+										</div>
+									</div>
+								</form>
+								<div class="form-response center"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Contact Modal End -->
+
+			<!-- Content End -->
+
+<section class="pk-section" id="checks"><div class="pk-shell"><p class="pk-eyebrow">Evidence</p><div class="pk-evidence"><p class="pk-evidence__row"><strong>What you can open</strong>The detailed write-up sits behind a passphrase. Email me and I will send it over.</p><p class="pk-evidence__row"><strong>What would settle it</strong>Next, I would check whether teams used the shared table in reporting and record a source for any change in their work.</p><p class="pk-evidence__row"><strong>Ask for the source</strong><a href="mailto:mkhungela.l@gmail.com?subject=Evidence%20for%3A%20Safety%20statistics%20reference">Email me about this study</a></p></div></div></section>
+							<!-- Footer -->
+			<footer class="footer tlc-footer">
+				<div class="footer-top"><div class="row flex"><div class="column width-12 center"><div class="widget">
+					<p class="tlc-footer__eyebrow">What are you working on?</p>
+					<h4>Tell me what you need help with.</h4>
+					<a class="tlc-footer__email" href="mailto:mkhungela.l@gmail.com">mkhungela.l@gmail.com</a>
+					<ul class="social-list list-horizontal"><li><a href="https://www.linkedin.com/in/lulamile-mkhungela/" aria-label="LinkedIn"><span class="icon-linkedin small"></span></a></li></ul>
+				</div></div></div></div>
+			</footer>
+			<!-- Footer End -->
+
+		</div>
+	</div>
+
+	<!-- Js -->
+		<button class="tlc-scroll-top" type="button" aria-label="Back to top"><span aria-hidden="true">↑</span><span>Back to top</span></button>
+
+	<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.retinize.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.horizon.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.snowbridge.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.swipe.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tm.avalanche.min.js"></script>
+
+	<script src="../js/timber.master.min.js"></script>
+	<script src="../js/modern-menu.js?v=42"></script>
+
+	<script src="../js/luxury-collection-modern.js?v=4"></script>
+	<script src="../js/contact-form-fallback.js?v=2"></script>
+	<script src="../js/case-lock.js?v=2"></script>
+	<script src="../js/case-nav.js?v=8"></script>
+	<script src="../js/archive-timer.js?v=12" defer></script>
+</body>
+</html>

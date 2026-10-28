@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script>
+		(function () {
+			const params = new URLSearchParams(window.location.search);
+			if (params.get("embedded") !== "1") return;
+			document.documentElement.classList.add("is-embedded");
+			document.addEventListener("DOMContentLoaded", function () {
+				document.body.classList.add("is-embedded");
+			});
+		})();
+	</script>
+	<meta charset="UTF-8">
+	<script src="../js/appearance.js"></script>
+	<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+	<title>AI Design Prompts &amp; Figma Files — Lulamile Mkhungela</title>
+	<meta name="description" content="Explore free design prompts and premium design packs from Lulamile Mkhungela. Premium prompts and files are delivered through Selar after purchase.">
+	<meta name="color-scheme" content="light dark">
+	<link rel="icon" href="../favicon.ico" sizes="any">
+	<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+	<link href="../fonts/Satoshi/css/satoshi.css" rel="stylesheet">
+	<!--
+		Prompt and design library for the AI Prompts item in the dock.
+		Covers load from local files in public/images/promptsite-covers/.
+
+		Free cards may store their prompt in data-prompt="…" and include a copy
+		button. Paid cards never contain the prompt, code or a copy button:
+		paid content is delivered through Selar.
+	-->
+	<style>
+		:root {
+			--paper: #f4f2ee;
+			--ink: #15141a;
+			--muted: #6c6875;
+			--card: #ffffff;
+			--line: #e6e1d8;
+			--accent: #f4511e;
+			--accent-soft: #ffece2;
+			--free: #0e7a55;
+			--free-bg: #dff5ec;
+			--paid: #9a5b00;
+			--paid-bg: #fdeecd;
+			--soon: #5b6472;
+			--soon-bg: #e8ebef;
+			--radius: 20px;
+			--shadow: 0 18px 40px rgba(21, 20, 26, .08);
+		}
+		html.is-dark { background: #111114; color-scheme: dark; }
+		html.is-dark {
+			--paper: #111114;
+			--ink: #f4f3f7;
+			--muted: #a7a2b2;
+			--card: #1a1a20;
+			--line: #2b2a33;
+			--accent: #ff8a50;
+			--accent-soft: #3b2113;
+			--free: #7ee2bc;
+			--free-bg: #12321f;
+			--paid: #ffd28a;
+			--paid-bg: #38290c;
+			--soon: #aab3c0;
+			--soon-bg: #23262c;
+			--shadow: 0 18px 40px rgba(0, 0, 0, .45);
+			scrollbar-color: #3a3944 #111114;
+		}
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body {
+			margin: 0;
+			background: var(--paper);
+			color: var(--ink);
+			font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+			font-size: 16px;
+			line-height: 1.55;
+			-webkit-font-smoothing: antialiased;
+		}
+		img { max-width: 100%; display: block; }
+		a { color: inherit; }
+		button { font: inherit; color: inherit; cursor: pointer; }
+
+		.ps-shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+		/* Top bar */
+		.ps-bar {
+			position: sticky; top: 0; z-index: 40;
+			display: flex; align-items: center; justify-content: space-between; gap: 16px;
+			padding: 14px 0;
+			background: color-mix(in srgb, var(--paper) 86%, transparent);
+			backdrop-filter: saturate(150%) blur(12px);
+			-webkit-backdrop-filter: saturate(150%) blur(12px);
+			border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+		}
+		.ps-bar .ps-shell { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: min(1120px, calc(100% - 40px)); }
+		.ps-brand { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+		/* Hero */
+		.ps-hero { padding: clamp(48px, 7vw, 92px) 0 clamp(28px, 4vw, 48px); }
+		.ps-hero h1 {
+			margin: 0; max-width: 15ch;
+			font-size: clamp(40px, 7vw, 76px); line-height: .96; letter-spacing: -.045em; font-weight: 800;
+		}
+		.ps-hero h1 em {
+			font-style: normal;
+			background: linear-gradient(120deg, var(--accent), #ff8c3a 55%, #ffc23d);
+			-webkit-background-clip: text; background-clip: text; color: transparent;
+		}
+		.ps-lede { max-width: 56ch; margin: 22px 0 0; font-size: clamp(17px, 1.6vw, 20px); color: var(--muted); }
+		.ps-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+		.ps-tab {
+			display: inline-flex; align-items: center; gap: 8px;
+			padding: 13px 20px; border-radius: 999px; text-decoration: none;
+			font-size: 15px; font-weight: 700; border: 1.5px solid transparent;
+			transition: transform .16s, box-shadow .16s, background .16s, border-color .16s;
+		}
+		.ps-tab:hover { transform: translateY(-2px); }
+		.ps-tab--primary { background: var(--ink); color: var(--paper); box-shadow: 0 12px 26px rgba(21,20,26,.22); }
+		html.is-dark .ps-tab--primary { background: var(--accent); color: #fff; box-shadow: 0 12px 26px rgba(0,0,0,.4); }
+		.ps-tab--ghost { background: var(--card); border-color: var(--line); }
+		.ps-tab--ghost:hover { border-color: var(--accent); }
+		.ps-tab--accent { background: var(--accent); color: #fff; box-shadow: 0 12px 26px color-mix(in srgb, var(--accent) 35%, transparent); }
+
+		/* Author */
+		.ps-author {
+			display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+			margin-top: 38px; padding: 18px 20px;
+			background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+			box-shadow: var(--shadow);
+		}
+		.ps-author img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; object-position: 50% 24%; background: var(--accent-soft); }
+		.ps-author b { font-size: 18px; display: block; }
+		.ps-author .ps-handle { color: var(--accent); font-weight: 700; font-size: 14px; text-decoration: none; overflow-wrap: anywhere; }
+		.ps-author p { margin: 2px 0 0; color: var(--muted); font-size: 14.5px; }
+
+		/* Shop */
+		.ps-shop { padding: clamp(28px, 4vw, 44px) 0 clamp(48px, 6vw, 80px); scroll-margin-top: 72px; }
+		.ps-filters { display: grid; gap: 10px; margin: 0 0 8px; }
+		.ps-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+		.ps-chip {
+			padding: 8px 14px; border-radius: 999px; font-size: 13.5px; font-weight: 700;
+			background: var(--card); border: 1px solid var(--line); color: var(--muted);
+			transition: background .15s, color .15s, border-color .15s;
+		}
+		.ps-chip:hover { border-color: var(--accent); color: var(--ink); }
+		.ps-chip.is-active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+		html.is-dark .ps-chip.is-active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+		.ps-grid {
+			display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+			gap: 18px; margin-top: 22px;
+		}
+		.ps-card {
+			position: relative; background: var(--card); border: 1px solid var(--line);
+			border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column;
+			transition: transform .18s, box-shadow .18s;
+		}
+		.ps-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+		.ps-card[hidden] { display: none; }
+		.ps-cover { position: relative; display: block; aspect-ratio: 4 / 3; background: var(--accent-soft); overflow: hidden; }
+		.ps-cover img { width: 100%; height: 100%; object-fit: cover; }
+		.ps-badge {
+			position: absolute; top: 10px; left: 10px;
+			padding: 5px 10px; border-radius: 999px;
+			font-size: 11.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
+		}
+		.ps-badge--free { background: var(--free-bg); color: var(--free); }
+		.ps-badge--paid { background: var(--paid-bg); color: var(--paid); }
+		.ps-badge--soon { background: var(--soon-bg); color: var(--soon); }
+		.ps-card-body { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; padding: 14px 14px 16px; }
+		.ps-card h3 { margin: 0; font-size: 16px; letter-spacing: -.015em; line-height: 1.25; }
+		.ps-card h3 a { text-decoration: none; }
+		.ps-card h3 a:hover { color: var(--accent); }
+		.ps-sub { display: block; margin-top: 4px; font-size: 13px; color: var(--muted); }
+		.ps-copy {
+			flex: 0 0 auto; width: 38px; height: 38px; border-radius: 12px;
+			display: inline-flex; align-items: center; justify-content: center;
+			background: var(--accent-soft); border: 1px solid transparent; color: var(--accent);
+			transition: background .15s, transform .15s;
+		}
+		.ps-actions { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; }
+		.ps-copy:hover { transform: scale(1.06); }
+		.ps-copy--live { text-decoration: none; background: var(--ink); color: var(--paper); }
+		.ps-copy--live:hover { background: var(--accent); color: #fff; }
+		.ps-copy.is-done { background: var(--free-bg); color: var(--free); }
+		.ps-copy svg { width: 17px; height: 17px; }
+		.ps-empty {
+			grid-column: 1 / -1; text-align: center; padding: 44px 16px;
+			color: var(--muted); font-weight: 600;
+			border: 1.5px dashed var(--line); border-radius: var(--radius);
+		}
+
+		/* Card openers (cover + title are real buttons) */
+		.ps-cover { display: block; width: 100%; padding: 0; margin: 0; border: 0; cursor: zoom-in; font: inherit; color: inherit; text-align: left; }
+		.ps-cover img { transition: transform .3s ease; }
+		.ps-cover::after {
+			content: "View prompt"; position: absolute; left: 50%; bottom: 12px; z-index: 2;
+			transform: translate(-50%, 8px); opacity: 0; pointer-events: none;
+			padding: 7px 14px; border-radius: 999px; background: var(--ink); color: var(--paper);
+			font-size: 13px; font-weight: 800; white-space: nowrap; transition: opacity .18s, transform .18s;
+		}
+		.ps-cover:hover img, .ps-cover:focus-visible img { transform: scale(1.03); }
+		.ps-cover:hover::after, .ps-cover:focus-visible::after { opacity: 1; transform: translate(-50%, 0); }
+		.ps-open {
+			display: inline; padding: 0; margin: 0; border: 0; background: none; cursor: pointer;
+			font: inherit; font-weight: inherit; color: inherit; text-align: left;
+		}
+		.ps-open:hover { color: var(--accent); }
+		.ps-cover:focus-visible, .ps-open:focus-visible, .ps-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+		/* Design detail popup */
+		.ps-detail-card { width: min(640px, 100%); padding: 0; }
+		.ps-detail-close { background: var(--card); box-shadow: 0 6px 16px rgba(0,0,0,.25); z-index: 3; }
+		.ps-detail-cover { position: relative; aspect-ratio: 4 / 3; background: var(--accent-soft); overflow: hidden; }
+		.ps-detail-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+		.ps-detail-cover .ps-badge { top: 14px; left: 14px; }
+		.ps-detail-body { padding: 22px 26px 26px; }
+		.ps-detail-body h2 { margin: 0 40px 4px 0; font-size: clamp(22px, 3vw, 28px); letter-spacing: -.02em; line-height: 1.2; }
+		.ps-detail-sub { margin: 0; color: var(--muted); font-size: 14px; }
+		.ps-detail-soon-note { margin: 12px 0 18px; color: var(--muted); }
+		.ps-detail-soon-note[hidden] { display: none; }
+		.ps-detail-paid-note {
+			margin: 18px 0 0; padding: 14px 16px; border-radius: 14px;
+			background: var(--paid-bg); color: var(--ink); font-size: 14px; font-weight: 650;
+		}
+		.ps-detail-paid-note[hidden], .ps-detail-label[hidden], .ps-prompt-wrap[hidden], .ps-detail-actions[hidden] { display: none; }
+		.ps-detail-label {
+			display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+			margin: 20px 0 8px; font-size: 12.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--muted);
+		}
+		.ps-detail-label span { text-transform: none; letter-spacing: 0; font-weight: 600; }
+		.ps-prompt {
+			display: block; width: 100%; min-height: 170px; max-height: 42vh; resize: vertical;
+			padding: 14px 60px 14px 16px; border-radius: 14px; border: 1.5px solid var(--line);
+			background: var(--paper); color: var(--ink); outline: none;
+			font: 14px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+			user-select: text; -webkit-user-select: text;
+		}
+		.ps-prompt:focus { border-color: var(--accent); }
+		.ps-prompt-wrap { position: relative; }
+		.ps-prompt-copy {
+			position: absolute; top: 10px; right: 12px; z-index: 2;
+			width: 36px; height: 36px; border-radius: 11px;
+			display: inline-flex; align-items: center; justify-content: center;
+			background: var(--card); border: 1.5px solid var(--line); color: var(--accent);
+			box-shadow: 0 8px 18px rgba(21, 20, 26, .14); cursor: pointer;
+			transition: transform .15s, border-color .15s, background .15s, color .15s;
+		}
+		.ps-prompt-copy:hover { border-color: var(--accent); transform: translateY(-1px); }
+		.ps-prompt-copy.is-done { background: var(--free-bg); border-color: var(--free-bg); color: var(--free); }
+		.ps-prompt-copy svg { width: 17px; height: 17px; }
+		.ps-prompt-copy[hidden] { display: none; }
+		.ps-detail-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+		.ps-btn {
+			flex: 1 1 170px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+			padding: 13px 16px; border-radius: 14px; border: 1.5px solid var(--line);
+			background: var(--card); color: var(--ink); font: inherit; font-weight: 800; font-size: 15px;
+			text-decoration: none; cursor: pointer; transition: border-color .15s, background .15s, color .15s, transform .15s;
+		}
+		.ps-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+		.ps-btn--primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+		.ps-btn--primary:hover { color: #fff; }
+		.ps-btn.is-done { background: var(--free-bg); border-color: var(--free-bg); color: var(--free); }
+		.ps-detail-foot { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line); display: flex; gap: 10px; flex-wrap: wrap; }
+		.ps-detail-foot .ps-btn { flex-basis: 220px; }
+		.ps-detail-foot[hidden] { display: none; }
+		.ps-detail-foot .ps-btn[hidden] { display: none; }
+		@media (max-width: 720px) {
+			.ps-detail-body { padding: 18px 18px 20px; }
+			.ps-detail-foot .ps-btn { flex-basis: 100%; }
+		}
+
+
+		/* Modal */
+		.ps-modal { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; padding: 20px; }
+		.ps-modal[hidden] { display: none; }
+		.ps-modal-backdrop { position: absolute; inset: 0; background: rgba(12, 11, 16, .55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border: 0; }
+		.ps-modal-card {
+			position: relative; width: min(560px, 100%); max-height: min(86vh, 780px); overflow: auto;
+			background: var(--card); border-radius: 24px; border: 1px solid var(--line);
+			box-shadow: 0 30px 80px rgba(0,0,0,.35); padding: 28px;
+		}
+		.ps-modal-close {
+			position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border-radius: 50%;
+			border: 1px solid var(--line); background: var(--paper); font-size: 18px; line-height: 1;
+		}
+		.ps-modal-close:hover { border-color: var(--accent); color: var(--accent); }
+		.ps-modal-card h2 { margin: 0 40px 6px 0; font-size: clamp(22px, 3vw, 28px); letter-spacing: -.02em; }
+		.ps-modal-card > p { margin: 0 0 20px; color: var(--muted); }
+
+		/* Toast */
+		.ps-toast {
+			position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 16px); z-index: 95;
+			padding: 12px 18px; border-radius: 999px; background: var(--ink); color: var(--paper);
+			font-size: 14px; font-weight: 700; opacity: 0; pointer-events: none;
+			transition: opacity .2s, transform .2s;
+		}
+		.ps-toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+		@media (max-width: 720px) {
+			.ps-bar .ps-brand { font-size: 11px; letter-spacing: .1em; }
+			.ps-tabs .ps-tab { width: 100%; justify-content: center; }
+			.ps-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+			.ps-card-body { padding: 11px 11px 13px; }
+			.ps-card h3 { font-size: 14.5px; }
+		}
+		@media (prefers-reduced-motion: reduce) {
+			html { scroll-behavior: auto; }
+			.ps-tab, .ps-card, .ps-copy, .ps-toast { transition: none; }
+		}
+
+</style>
+	<script src="../js/content-guard.js?v=1"></script>
+</head>
+<body>
+
+	<header class="ps-bar">
+		<div class="ps-shell">
+			<span class="ps-brand">Designs · Prompts · Figma files</span>
+		</div>
+	</header>
+
+	<main class="ps-shell">
+		<section class="ps-hero" aria-labelledby="ps-title">
+			<h1 id="ps-title">Designs &amp; prompts <em>for your next build</em></h1>
+			<p class="ps-lede">Browse free prompts and premium design packs. Premium packs are purchased on Selar; custom work is available separately.</p>
+
+			<div class="ps-tabs" role="group" aria-label="Library sections">
+				<a class="ps-tab ps-tab--primary" href="#shopT">Browse designs</a>
+				<a class="ps-tab ps-tab--ghost" href="https://selar.com/m/le-loux" target="_blank" rel="noopener noreferrer">Design &amp; build my product</a>
+			</div>
+
+			<div class="ps-author">
+				<img src="../public/images/mainbkg-photo-mobile.jpg" alt="Lulamile Mkhungela" width="60" height="60" loading="lazy">
+				<div>
+					<b>Lulamile Mkhungela</b>
+					<a class="ps-handle" href="https://www.linkedin.com/in/lulamile-mkhungela/" target="_blank" rel="noopener noreferrer">linkedin.com/in/lulamile-mkhungela</a>
+					<p>Free prompts to explore, with premium design packs available through Selar.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="ps-shop" id="shopT" aria-label="Design catalogue">
+			<div class="ps-filters">
+				<div class="ps-chips" data-filter-group="price" role="group" aria-label="Filter by price">
+					<button class="ps-chip is-active" type="button" data-price="all">All</button>
+					<button class="ps-chip" type="button" data-price="free">Free</button>
+					<button class="ps-chip" type="button" data-price="paid">Paid</button>
+				</div>
+				<div class="ps-chips" data-filter-group="cat" role="group" aria-label="Filter by category">
+					<button class="ps-chip is-active" type="button" data-cat="all">All</button>
+					<button class="ps-chip" type="button" data-cat="appstore">App Store screenshots</button>
+					<button class="ps-chip" type="button" data-cat="mobile">Mobile app UI</button>
+					<button class="ps-chip" type="button" data-cat="landing">Landing pages</button>
+					<button class="ps-chip" type="button" data-cat="hero">Hero sections</button>
+					<button class="ps-chip" type="button" data-cat="portfolio">Portfolio websites</button>
+					<button class="ps-chip" type="button" data-cat="ecom">E-commerce</button>
+				</div>
+			</div>
+
+			<div class="ps-grid" id="ps-grid">
+				<!-- Free cards may store public prompt text in data-prompt. Never add prompt or code to paid cards. -->
+				<!-- TEMPORARILY HIDDEN: Apartment App. Remove the opening and closing comment markers to restore this card.
+				<article class="ps-card" data-price="free" data-cat="mobile" data-title="Apartment App" data-subtitle="Prompt only" data-prompt="Design a stylish apartment-booking app. Hero 'Explore — Where to?' with Anywhere / Any week / Guests chips, category row Studios / Lofts / City flats / Long stays, listing cards 'The Marble Suite, Camps Bay — 20% off weekend stays', 'Golden Hour Studio, Umhlanga — From R96', 'Sage Room, Maboneng — R88 night' with Guest favourite tags, bottom tabs Home / Saved / Inbox / Profile. Terracotta + cream palette, flat Figma case-study style.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791997176166-8s45sj.jpg" alt="Apartment App cover" loading="lazy"><span class="ps-badge ps-badge&#45;&#45;free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Apartment App</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Apartment App" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				END TEMPORARILY HIDDEN CARD -->
+				<article class="ps-card" data-price="free" data-cat="ecom" data-title="E-commerce website" data-subtitle="Prompt only" data-prompt="Design a supplement brand e-commerce page for MERRIDEW. Announcement bar 'Free delivery over R30 anywhere in SA. Subscribe and save 15%', wordmark MERRIDEW, nav Shop all / Sleep & calm / Immunity / Beauty / Our story, hero 'Daily rituals, made slowly' with three flat amber-jar product illustrations Deep Rest, Citrus Bright, Vitamin C + Zinc. Muted sand + sage palette, flat Figma mockup.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791821645525-akurfm.jpg" alt="E-commerce website cover" loading="lazy"><span class="ps-badge ps-badge--free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>E-commerce website</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for E-commerce website" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				<article class="ps-card" data-price="paid" data-buy="https://selar.com/m/le-loux" data-cat="portfolio" data-title="Spin the wheel portfolio" data-subtitle="R15 · Prompt+ Guide">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791725141901-5bard8.jpg" alt="Spin the wheel portfolio cover" loading="lazy"><span class="ps-badge ps-badge--paid">Paid</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Spin the wheel portfolio</button></h3><span class="ps-sub">R15 · Prompt+ Guide</span></div>
+
+					</div>
+				</article>
+				<article class="ps-card" data-price="paid" data-buy="https://selar.com/m/le-loux" data-cat="portfolio" data-title="ID card portfolio" data-subtitle="R15 · Design + prompt">
+					<button type="button" class="ps-cover" data-open-detail><img src="../public/images/promptsite-covers/id-card-portfolio.jpg" alt="ID card portfolio cover — Designer Developer Creator badge" loading="lazy"><span class="ps-badge ps-badge--paid">Paid</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>ID card portfolio</button></h3><span class="ps-sub">R15 · Design + prompt</span></div>
+
+					</div>
+				</article>
+				<article class="ps-card" data-price="free" data-cat="mobile" data-title="Delivery App" data-subtitle="Prompt only" data-prompt="Design 3 delivery app home screens in black iPhone frames, side by side, same content, different layouts, no labels. Canvas: light grey #E5E5E7, generous space between phones, extra empty space at the top for labels. Style: light mode only, brand dark red #8E1B24, pale rose #F7EEEE for soft cards, text black #111318 and grey #7C8089, fonts Manrope for UI and Bricolage Grotesque for headings and tracking numbers, generous gaps between sections. Label the three phones above the frames — left 'Claude', centre 'ChatGPT', right 'Figma Make' — in bold type. Images: random female portrait round crop for avatar, 3D stacked cardboard boxes with dark red tape and small red location pin, 3D white delivery van with dark red side stripe and box on roof. Content: header 'Good morning, Hello Lula, Send, track and receive with ease, portrait avatar, bell with a red dot'; search 'Track your parcel' with scan button; actions 'Send parcel, Track order, Schedule, More'; shipment '#TRK782910, Electronics 2.4 kg, Johannesburg to Durban, In transit, picked up 12 Oct 10:24, arriving tomorrow 2:30 PM'; steps 'Picked up, In transit, Out for delivery, Delivered'; promo 'Need a pickup? We'll come to you.'; nav 'Home, Orders, Send, Locations, Profile'. Screen 1: 4 rounded-square action tiles with labels, Send parcel in dark red; full dark red shipment card with white 'In transit' badge, Johannesburg to Durban route with dashed line and truck marker, 4-step tracker with ticks; pale rose promo card with 'Book pickup' button in black and large van image on the right; bottom bar with labels and raised round dark red Send button in the middle. Screen 2: pill chip actions, Send parcel in dark red; pale rose shipment card with tracking number large and parcel image on the right, white inner panel with vertical timeline and arrival-time tag; outlined promo row with van thumbnail and round black arrow button; floating white pill nav, Home highlighted, round dark red Send button. Screen 3 (deliberately weaker): cramped spacing, small text, thin grey borders everywhere; 4 outlined boxes with red icons; plain outlined shipment card, thin red progress bar, step labels underneath, arrival time in red; two near-identical outlined promo rows with small red buttons; flat bottom bar, no highlighted Send button.">
+					<button type="button" class="ps-cover" data-open-detail><img src="../public/images/promptsite-covers/delivery-app-concepts.jpg" alt="Delivery App cover — three concepts" loading="lazy"><span class="ps-badge ps-badge--free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Delivery App</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Delivery App" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+								<article class="ps-card" data-price="free" data-cat="mobile" data-title="Finance homescreen" data-subtitle="Prompt only" data-prompt="Design 3 mobile banking home screens, side by side, same content, different layouts, no labels. Canvas: light grey #EDF0F5, generous space between phones, extra empty space at the top for labels. Style: light mode only, brand #2251FF blue, text black #0E1B3D and grey #7A8399, no blue text, fonts Manrope for UI and Bricolage Grotesque for balances, generous gaps between sections. Label the three phones above the frames — left 'ChatGPT', centre 'Claude', right 'Figma Make' — in bold type. Content: header 'Good morning, Lulamile M, LM avatar, bell with a red dot, settings icon'; ZAR account, R1,850.00, In R3,400.00 / Out R59.48; actions 'Add money, Send, Convert, More'; transactions 'Apple.com/bill -R37.49 Declined', 'Salary deposit +R3,400.00', 'Netflix subscription -R15.49', 'Nando's -R6.50'; nav 'Home, Cards, Invest, Accounts'. Screen 1: full blue banner card with wallet pill, big balance with faded decimals, white in/out progress bar; pill chip actions, Add money in dark navy; vertical timeline transactions with coloured status dots; standard bottom bar with labels, Home in blue. Screen 2: blue banner card with two lighter cards stacked behind it, balance and in/out bar; 4 small rounded-square icon buttons with labels below, Add money in blue; clean list transactions with dividers; floating white pill nav with soft shadow, Home as a blue pill. Screen 3: off-white filled banner card, dark balance, blue strip at the bottom with In and Out; one segmented action bar, Add money in blue.">
+					<button type="button" class="ps-cover" data-open-detail><img src="../public/images/promptsite-covers/finance-homescreen-comparison.jpg" alt="Finance homescreen cover — ChatGPT, Claude and Figma Make versions" loading="lazy"><span class="ps-badge ps-badge&#45;&#45;free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Finance homescreen</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Finance homescreen" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				<article class="ps-card" data-price="paid" data-buy="https://selar.com/m/le-loux" data-cat="mobile appstore" data-title="HalfMan Design App Home screen flow" data-subtitle="R220 · Prompt + Figma file">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791377545104-2v3ve2.jpg" alt="HalfMan Design App Home screen flow cover" loading="lazy"><span class="ps-badge ps-badge--paid">Paid</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>HalfMan Design App Home screen flow</button></h3><span class="ps-sub">R220 · Prompt + Figma file</span></div>
+
+					</div>
+				</article>
+				<article class="ps-card" data-price="soon" data-cat="portfolio hero" data-title="Receipt Style Portfolio" data-subtitle="Design + prompt" data-prompt="Design a minimalist portfolio page styled as a printed receipt — monospaced typography, itemised skills and projects as line items, total at the bottom, paper texture. Black ink on cream. Flat, hand-built feel.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791281978223-yr48j6.jpg" alt="Receipt Style Portfolio cover" loading="lazy"><span class="ps-badge ps-badge--soon">Coming soon</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Receipt Style Portfolio</button></h3><span class="ps-sub">Design + prompt</span></div>
+						
+					</div>
+				</article>
+								<article class="ps-card" data-price="free" data-cat="mobile appstore" data-title="Service Provider App" data-subtitle="Prompt only" data-prompt="Design a home services app home screen for iPhone 15 Pro (393x852, status bar 9:41) in light mode, Angi-inspired: white, minimal colour, image-led, generous spacing, Inter font (headings 600, body 400-500). Colours: background #FFFFFF, text #121A1C, muted #6F7A7D, lines #E6EAEB, brand green #12935A, dark #141C1E. Layout: (1) header with brand-green circle avatar containing white 'L', map pin + 'Sandton, Johannesburg' + chevron, round outlined bell with small red dot; (2) large rounded outlined search bar 'Try plumbing, painting…' with thin full-width divider below; (3) 'Browse by category' section with 'View all' grey link, then 4 white circles with soft shadow containing charcoal duotone icons: Roofing, Painting, Cleaning, Plumbing; (4) 'Popular projects' section with project cards — 'Handyman' from R45 with image of handyman drilling a kitchen cabinet, 'Home cleaning' from R22 with image of cleaner wiping a white kitchen counter, 'Plumbing' from R60 with image of plumber fixing pipes under a sink — image on top, black price bar under image with bolt icon, title below, third card peeking; (5) 'Maintenance planner' section with autumn garden photo and checklist rows overlaid: 'Prepare garden for winter' (ticked), 'Clear your gutters'; (6) bottom nav on white bar: 4 tabs — Home (filled green icon + green label), Projects, Pros, More (grey outline). Label the three phones above the frames — left 'ChatGPT', centre 'Claude', right 'Figma Make' — in bold type. Rules: light mode only, brand colour only on avatar, active tab and key actions, realistic photography.">
+					<button type="button" class="ps-cover" data-open-detail><img src="../public/images/promptsite-covers/home-services-ui.jpg" alt="Service Provider App cover — three home-services concepts" loading="lazy"><span class="ps-badge ps-badge&#45;&#45;free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Service Provider App</button></h3></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Service Provider App" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				<article class="ps-card" data-price="free" data-cat="mobile appstore" data-title="Fitness App flow" data-subtitle="Prompt only" data-prompt="Design a fitness app home screen for iPhone 15 Pro (393x852, status bar 9:41) in light mode: bold, clean, generous white space, rounded cards, Inter font (headings 600, body 400). Colours: background #F2F2EF, cards #FFFFFF, text #111111, muted #8A8A90, brand #F2704F, calories #F5A524, active #4C8DFF, heart #FF4D6D. Layout: (1) header with brand-colour circle avatar containing white 'L' on left, round white search and bell buttons on right; (2) greeting 'Morning, Lulamile' in 26px semibold; (3) white activity card with three activity rings (steps brand, calories amber, active blue); stats: 8,432/10k steps, 486 kcal, 42 min, 72 bpm; (4) 'Daily routine' section with 'See all' link, routine list — 07:00 'Morning stretch' 10 min done with image of woman stretching in sunlit bedroom, 12:30 'Lunchtime walk' 20 min done with image of woman walking in a Johannesburg park, 18:00 'Leg workout' 45 min 'up next' tag in brand colour with image of man doing kettlebell goblet squat; (5) floating white pill bottom nav — active Home = brand pill with filled home icon + white label; Workouts, Stats, Profile grey outline icons. Rules: light mode only, one brand colour, realistic photography, nothing hidden behind nav.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791211375420-spaou9.jpg" alt="Fitness App flow cover" loading="lazy"><span class="ps-badge ps-badge--free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Fitness App flow</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Fitness App flow" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				<!-- TEMPORARILY HIDDEN: Streaming app homescreen. Remove the opening and closing comment markers to restore this card.
+				<article class="ps-card" data-price="free" data-cat="mobile" data-title="Streaming app homescreen" data-subtitle="Prompt only" data-prompt="Design a music streaming app home screen for iPhone 15 Pro (393x852, status bar 9:41) in light mode: modern, minimal, image-led, generous spacing, Inter font (headings 600, body 400). Colours: background #F4F4F1, cards #FFFFFF, text #111111, muted #8A8A93, brand lime #D4F06B. Layout: (1) header with black circle avatar containing lime 'L', round white search and heart buttons; (2) greeting 'Hi, Lulamile' in 26px semibold; (3) chips: 'All' (active, lime, black text), 'New releases', 'Trending', 'Podcasts'; (4) 'Curated & trending' section with full-bleed featured banner photo (no colour overlay): smiling woman in cream headphones under palm trees and blue sky, face on the right, white text top-left 'Weekly Discovery / Feel-good picks', black play button + white heart and download circles bottom-left, next card peeking from the right; (5) 'Top daily playlists' section with 'See all' link, playlist rows — 'Golden Hour' by Cleo Vance · 12 songs with image of man with headphones on a Johannesburg rooftop at golden hour, 'Sunday Reset' by Sola Reed · 8 songs with image of coffee and plant by a window, 'Focus Flow' by Juno Fields · 10 songs with image of desk with headphones under blue lamp; (6) floating white pill bottom nav — Home active = filled home icon centred in lime circle; music, shuffle, saved, settings grey outline icons. Rules: light mode only, lime and black only, no second accent, realistic photography, no tinted overlays.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791211248721-ouy68b.jpg" alt="Streaming app homescreen cover" loading="lazy"><span class="ps-badge ps-badge&#45;&#45;free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Streaming app homescreen</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Streaming app homescreen" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				END TEMPORARILY HIDDEN CARD -->
+				<!-- TEMPORARILY HIDDEN: Crypto App homescreen. Remove the opening and closing comment markers to restore this card.
+				<article class="ps-card" data-price="free" data-cat="mobile" data-title="Crypto App homescreen" data-subtitle="Prompt only" data-prompt="Design a dark-mode crypto portfolio app. Portfolio value R18,240.56, '+R612.40 (3.47%) today' green, range pills 1D 1W 1M 1Y, holdings 'Bitcoin BTC R9,820.40 +2.14%', 'Ethereum ETH R4,310.12 -0.82%' with flat line charts, Buy / Sell / Swap / Deposit actions, bottom tabs Home / Markets / Trade / Profile. Near-black background, green/red deltas.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791085714791-3wy14n.jpg" alt="Crypto App homescreen cover" loading="lazy"><span class="ps-badge ps-badge&#45;&#45;free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Crypto App homescreen</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Crypto App homescreen" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				END TEMPORARILY HIDDEN CARD -->
+				<!-- TEMPORARILY HIDDEN: Music app homescreen. Remove the opening and closing comment markers to restore this card.
+				<article class="ps-card" data-price="free" data-cat="mobile" data-title="Music app homescreen" data-subtitle="Prompt only" data-prompt="Design a music player app now-playing screen. Large album art, track title and artist, progress scrubber, queue, lyrics toggle, AirPlay. Warm gradient background, large art, minimal chrome.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791085544473-ro0dnx.jpg" alt="Music app homescreen cover" loading="lazy"><span class="ps-badge ps-badge&#45;&#45;free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Music app homescreen</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Music app homescreen" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				END TEMPORARILY HIDDEN CARD -->
+				<article class="ps-card" data-price="paid" data-buy="https://selar.com/m/le-loux" data-cat="mobile appstore" data-title="Finance App Flow +Figma file" data-subtitle="R300 · Prompt + Figma file">
+					<button type="button" class="ps-cover" data-open-detail><img src="../public/images/promptsite-covers/finance-app-flow.jpg" alt="Finance App Flow cover — eight-screen banking home flow" loading="lazy"><span class="ps-badge ps-badge&#45;&#45;paid">Paid</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Finance App Flow +Figma file</button></h3><span class="ps-sub">R300 · Prompt + Figma file</span></div>
+
+					</div>
+				</article>
+				<article class="ps-card" data-price="free" data-cat="ecom" data-title="OtO e-commerce website" data-subtitle="Design + prompt" data-prompt="Design an audio brand e-commerce page for OTO. Hero 'OTO ONE — Lie back. Tune in.' with SHOP OTO ONE R249 button, product grid 'OTO One Headphones R249.00', 'OTO Sport Open Earbuds R179.00', 'OTO Buds R149.00', 'OTO Roam Speaker R119.00', five-star ratings, Bestseller tags, swatches. Flat, clean, premium.">
+					<button type="button" class="ps-cover" data-open-detail><img src="../public/images/promptsite-covers/oto-audio-store.jpg" alt="OtO e-commerce website cover" loading="lazy"><span class="ps-badge ps-badge--free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>OtO e-commerce website</button></h3><span class="ps-sub">Design + prompt</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for OtO e-commerce website" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				<article class="ps-card" data-price="free" data-cat="landing hero" data-title="Edtech Saas Landing page" data-subtitle="Prompt only" data-prompt="Design an edtech SaaS landing page. Headline 'Less admin, more teaching.', subline 'Reports, marking and parent emails, drafted for you.', buttons SEE HOW IT WORKS and BOOK A DEMO, floating cards 'Report draft — Drafted in 40 seconds', '32 / 36 checked against your mark scheme', stat card 'R142k saved this year'. Soft teal + sand palette, flat mockup.">
+					<button type="button" class="ps-cover" data-open-detail><img src="../public/images/promptsite-covers/teachflow-landing.jpg" alt="Edtech Saas Landing page cover — TeachFlow" loading="lazy"><span class="ps-badge ps-badge--free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Edtech Saas Landing page</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Edtech Saas Landing page" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				<article class="ps-card" data-price="free" data-cat="landing hero" data-title="E-commerce Landing page" data-subtitle="Design + prompt" data-prompt="# PROMPT: Build RIPE — A Playful South African Mango Drink Website
+
+Build a single-page, fully responsive product website for **RIPE**, a cold-pressed mango drink sold in 330 ml cans. The brand should feel bold, fresh, playful, premium, and proudly South African.
+
+**Deliver ONE complete, self-contained HTML file** with inline CSS and vanilla JavaScript only. No frameworks or external JavaScript libraries. Use semantic HTML, accessible controls, responsive layouts, and optimised assets.
+
+## 1. VISUAL STYLE
+
+**Style:** Soft neobrutalism meets playful South African FMCG branding. Use flat candy-colour blocks, bold black outlines, oversized typography, hard offset shadows, rounded corners, playful tilts, and bouncy easing.
+
+**Colour palette**
+- Mango yellow: `#FFB81C`
+- Coral: `#FF6242`
+- Lime green: `#B8E04A`
+- Lilac: `#CDB9FF`
+- Sky blue: `#8ED8F8`
+- Paper background: `#FFF7E8`
+- Ink black: `#000000`
+- White: `#FFFFFF`
+
+**Design rules**
+- Use 3 px solid black outlines on cards, buttons, images, and decorative elements.
+- Use hard offset shadows: `6px 6px 0 #000`.
+- Use generous rounded corners between 20–28 px.
+- Introduce playful rotations, overlapping elements, sticker-like badges, and tactile hover effects.
+- Use Bricolage Grotesque 800 for headlines with tight letter spacing.
+- Use Figtree for body copy, navigation, prices, and interface elements.
+- Use large typography, strong contrast, generous spacing, and responsive layouts.
+- Keep the design flat and graphic rather than glossy or overly corporate.
+
+## 2. IMAGES AND ASSETS
+
+Generate or create clean, high-quality product imagery with transparent backgrounds wherever appropriate. Keep the images consistent in lighting, style, and scale.
+
+Required assets:
+1. A whole ripe mango with a red blush fading into golden yellow and a fresh green leaf.
+2. A lengthwise-cut mango displayed as two separate left and right halves.
+3. A mango cut into hedgehog-style cubes, with the pieces pushed outward.
+4. Four slim 330 ml cans with a bold, black-outlined RIPE wordmark:
+   - Mango — mango yellow.
+   - Mango Passion — coral.
+   - Mango Chili Lime — lime green.
+   - Mango Coconut — lilac.
+5. A dynamic product splash image showing a yellow RIPE can bursting through mango juice with mango cubes against a coral background.
+6. Five vertical 9:16, UGC-style video thumbnails featuring diverse young South African adults enjoying RIPE:
+   - A casual selfie with a can.
+   - A post-gym refreshment.
+   - An unboxing of a mixed-flavour pack.
+   - Friends enjoying drinks on a Cape Town rooftop.
+   - A relaxed home-office taste reaction in Johannesburg.
+
+Use original assets or generated imagery. Do not rely on external image URLs that may break. If an image cannot be generated, create an attractive CSS illustration or a clean placeholder that preserves the intended layout.
+
+## 3. PAGE STRUCTURE
+
+### Section 1 — Floating navigation
+
+Create a floating pill-shaped navigation bar containing:
+- RIPE wordmark.
+- Links: Our Drinks, Our Story, How It&#x27;s Made, Sippers Say.
+- A Bag button with a live item counter.
+
+The bag counter must update when a product is added. Add a subtle bounce animation when the count changes. On mobile, simplify the navigation while keeping the brand and bag accessible.
+
+### Section 2 — Hero: The real source of every sip
+
+Create a dramatic hero section approximately 340vh tall, with a sticky 100vh visual stage and a dotted background.
+
+Display the headline in three stacked lines:
+
+**The real**
+**source of**
+**every sip.**
+
+Style “source of” in coral with a black outline. Place “every sip.” inside a tilted lime-green box.
+
+Create a scroll-driven animation sequence:
+1. The headline words rise into view.
+2. A whole mango spins into the centre.
+3. The mango shrinks away as two cut mango halves pop in and split apart.
+4. A RIPE can springs up from below into the centre.
+5. Two circular stickers pop in: “0g added sugar” and “1 mango per can”.
+6. The headline words slide off to opposite sides.
+7. A white note card slides into the bottom-right corner with a “See the flavours” button.
+
+On initial load, animate the headline, mango, and note card into place.
+
+Keep the sequence smooth, responsive, and performant. On touch devices or when reduced motion is preferred, provide a simplified static version.
+
+### Section 3 — Coral scrolling marquee
+
+Add a coral band with a scalloped top edge and bold, outlined text scrolling horizontally:
+
+“Pure mango • No added sugar • Cold pressed • Real fruit • Nothing unnecessary •”
+
+Use scroll-linked movement where supported, with a seamless looping animation as a fallback. Prevent excessive movement for users who prefer reduced motion.
+
+### Section 4 — The problem with ordinary mango drinks
+
+Headline:
+
+**Most mango drinks barely know a mango.**
+
+Use two short, conversational paragraphs explaining that many mango-flavoured drinks rely on concentrates, excessive sweetness, or artificial-tasting flavour profiles.
+
+Position RIPE as a simple alternative made with real mango fruit.
+
+Include three bold proof stickers:
+- 100% pressed fruit.
+- 24 hours from tree to press.
+- 0 g added sugar.
+
+Animate the numbers counting up when the section enters view. Only present production claims that are verified and accurate for the actual product.
+
+Place the mango-juice splash image inside a large, tilted card with a black outline and hard shadow.
+
+### Section 5 — Meet the flavours
+
+Create four colourful product cards in a responsive grid, becoming a horizontally swipeable row on mobile.
+
+Each card must include a flavour-specific background, a white circular area behind the can illustration, product name, one-line description, price, and an “Add to bag” button.
+
+**Products and South African pricing:**
+
+1. **Mango**
+   Pressed and chilled. Pure mango goodness.
+   **R39.99**
+
+2. **Mango Passion**
+   Sweet first, tangy finish.
+   **R39.99**
+
+3. **Mango Chili Lime**
+   A little heat. A bright citrus kick.
+   **R39.99**
+
+4. **Mango Coconut**
+   Smooth, mellow, and made for slow sipping.
+   **R39.99**
+
+Prices are in South African rand (ZAR). Treat these as illustrative prices that can be edited later.
+
+Interactions:
+- Hovering lifts the card and tilts the can.
+- The add-to-bag button updates the shared bag counter.
+- Provide a brief confirmation animation or toast when an item is added.
+- Keep all controls keyboard-accessible.
+
+### Section 6 — How it&#x27;s made
+
+Use a bright lime-green section with a scalloped top edge.
+
+Include the hedgehog-cut mango illustration and the headline:
+
+**Real fruit. Simple process.**
+
+Show four staggered white cards with thick black outlines and hard shadows:
+
+1. **Picked ripe** — We start with ripe, flavour-packed mangoes.
+2. **Pressed same day** — Fresh fruit, handled with care.
+3. **Chilled fast** — Keeping the flavour bright and refreshing.
+4. **Canned cold** — Ready for your next proper mango moment.
+
+Add small fruit illustrations, numbered circles, and playful connector arrows.
+
+Only claim processes that reflect the real manufacturing process.
+
+### Section 7 — Seen on your feed
+
+Create a sky-blue UGC section with a subtle white dotted background.
+
+Show five staggered, slightly tilted vertical 9:16 clip cards featuring South African customers enjoying RIPE.
+
+Each card must contain:
+- A creator handle.
+- A prominent yellow play button with a pulsing ring.
+- A short caption.
+- A flavour chip.
+- View count and clip duration.
+
+Use locally relevant creator names and settings from Johannesburg, Cape Town, Durban, Pretoria, and Gqeberha. Keep the people and captions authentic, warm, diverse, and relatable.
+
+Add a sticker reading:
+
+**Post yours with #RipeSips**
+
+Below the cards, create a horizontal strip of hashtag pills, including:
+`#RipeSips` `#RealFruitEnergy` `#MangoMood` `#LocalSips`
+
+Animate the strip as the user scrolls, with a reduced-motion fallback.
+
+**Interactive story player:**
+When a clip is selected, open a full-screen, Instagram-Story-inspired viewer featuring:
+- Progress bars at the top.
+- A gentle slow-zoom effect.
+- Animated captions.
+- Tap on the left or right to navigate between clips.
+- Automatic progression after a configurable duration.
+- Escape key and visible close button to exit.
+- Keyboard support and appropriate accessible labels.
+
+Use generated stills or original assets; do not imply that fictional customer testimonials are real endorsements.
+
+### Section 8 — Sippers say!
+
+Create a playful testimonial carousel with slightly rotated, multicoloured cards, bold black outlines, and hard shadows.
+
+Use short, natural South African English reviews from fictional customers in Johannesburg, Cape Town, Durban, and Pretoria.
+
+Example tone:
+- “Proper mango flavour. Not that overly sweet stuff.”
+- “Mango Passion is my new fridge essential.”
+- “Cold after a hot day? Absolutely lekker.”
+- “The Chili Lime one has a little attitude. Love it.”
+
+Include a first name, city, flavour tried, and optional star rating on each card.
+
+Add functional previous and next arrow buttons, touch swiping, and keyboard support. Clearly treat sample testimonials as illustrative until replaced with genuine customer reviews.
+
+### Section 9 — Mango-yellow footer
+
+Finish with a bold mango-yellow footer featuring:
+- An email signup form.
+- A short, friendly invitation to join the RIPE community.
+- A success message after valid form submission.
+- Small mango pieces floating gently in the background.
+- An oversized white RIPE wordmark with a black outline and hard shadow.
+- A playful letter-by-letter bounce animation on the wordmark.
+
+Suggested copy:
+
+**Good things come to those who sip.**
+
+“Get flavour drops, fresh updates, and the occasional mango moment straight to your inbox.”
+
+Email placeholder: `Your email address`
+
+Button: **Count me in**
+
+Show an inline confirmation message after submission. Since this is a standalone HTML file, implement client-side validation and a demo success state without pretending that an email was stored or sent to a mailing list.
+
+Include a small footer note:
+
+“Made for mango moments in South Africa.”
+
+## 4. MOTION AND INTERACTION
+
+Use vanilla JavaScript and CSS animations.
+
+Implement:
+- IntersectionObserver-based scroll reveals.
+- Slide-up, slide-left, slide-right, pop, drop, and fade animations.
+- Staggered animation delays.
+- Word-by-word headline entrances.
+- Scroll-linked hero transitions.
+- Count-up animations for proof stickers.
+- Card hover lifts and can tilts.
+- Bag counter bounce.
+- Swipeable product and review carousels.
+- Functional product add-to-bag interactions.
+- An accessible story viewer with clip navigation.
+- Email form validation and a demo success state.
+- Floating footer decorations.
+
+**Important performance and accessibility rules:**
+- Only hide reveal elements when JavaScript is enabled; content must remain visible if JavaScript fails.
+- Respect `prefers-reduced-motion` with a genuinely usable static fallback.
+- Use passive scroll listeners where appropriate and throttle expensive work with `requestAnimationFrame`.
+- Avoid layout thrashing and unnecessary continuous animations.
+- Support keyboard navigation, visible focus states, sufficient colour contrast, and screen readers.
+- Ensure all controls have meaningful accessible names.
+- Keep the website usable on small mobile screens, tablets, and large desktop displays.
+
+## 5. SOUTH AFRICAN BRAND VOICE
+
+The copy should be warm, confident, playful, and conversational, with subtle South African character.
+
+Use:
+- South African English spelling and phrasing.
+- Rand prices displayed as `R39.99`, `R59.99`, etc.
+- South African city names and locally relatable settings.
+- Occasional natural expressions such as “lekker” or “proper mango flavour”, without forcing slang into every sentence.
+- A premium, locally grounded tone that feels fresh, youthful, and accessible.
+
+Avoid Nigerian references, naira currency, Nigerian cities, and Nigerian-specific expressions.
+
+## 6. TECHNICAL DELIVERABLE
+
+Return **one complete HTML document only**, with:
+- Semantic HTML structure.
+- All CSS inside a `&lt;style&gt;` element.
+- All JavaScript inside a `&lt;script&gt;` element.
+- No front-end frameworks.
+- No build process or installation required.
+- Responsive styling for desktop, tablet, and mobile.
+- Functional navigation, product cards, bag counter, carousels, story viewer, and signup form demo.
+- Clear comments separating each section.
+- Graceful fallbacks for unavailable images and reduced-motion preferences.
+
+Use external font loading only if needed, with sensible local fallback fonts. Prioritise performance and avoid unnecessary dependencies.
+
+The final result should feel like a real, polished, interactive South African beverage brand website—not a static wireframe. Make it bold, tactile, fruit-forward, memorable, and ready to open directly in a browser.">
+					<button type="button" class="ps-cover" data-open-detail><img src="../public/images/promptsite-covers/ripe-mango-landing.jpg" alt="E-commerce Landing page cover — RIPE mango drink site" loading="lazy"><span class="ps-badge ps-badge--free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>E-commerce Landing page</button></h3><span class="ps-sub">Design + prompt</span></div>
+						<div class="ps-actions">
+							<a class="ps-copy ps-copy--live" href="ripe-mango-landing.html?v=2" target="_blank" rel="noopener noreferrer" aria-label="Open the live RIPE landing page demo" title="Open live demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"/><path d="M21 3 11 13"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></a>
+							<button class="ps-copy" type="button" aria-label="Copy prompt for E-commerce Landing page" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						</div>
+					</div>
+				</article>
+				<article class="ps-card" data-price="free" data-cat="ecom" data-title="E-commerce website wth animations" data-subtitle="Prompt only" data-prompt="Design a fashion e-commerce website and app flow for LINEUP, Fall ’26. Desktop: slim serif wordmark, nav Women / Men, search, account, bag with a count, wide cream hero with six full-body looks and headline 'Fall '26 Women — Six looks, styled head to toe.', look selector, price line and a black 'Shop the look R266' button; 'Every piece, women' product grid with Satin Slip Dress R148, Strappy Heeled Sandal R118, Oversized Wool Blazer R228, Straight Leg Jean R118, Knit Polo Top R98 and a black footer with free-shipping and returns notes. Mobile app screens: look feed with thumbnails and an add-to-bag strip, product detail with size pills, colour swatches, fabric/size/shipping accordions and 'Add to bag R266', and a bag sheet with quantity steppers and checkout. Editorial serif headings, clean sans UI, cream and camel palette, soft product photography, no currency other than rand.">
+					<button type="button" class="ps-cover" data-open-detail><img src="../public/images/promptsite-covers/lineup-fashion.jpg" alt="E-commerce website with animations cover — LINEUP Fall ’26" loading="lazy"><span class="ps-badge ps-badge--free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>E-commerce website wth animations</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for E-commerce website with animations" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+								<!-- TEMPORARILY HIDDEN: Colourful portfolio website. Remove the opening and closing comment markers to restore this card.
+<article class="ps-card" data-price="free" data-cat="portfolio landing" data-title="Colourful portfolio website" data-subtitle="Prompt only" data-prompt="Design a colourful portfolio landing page with bold colour-blocking sections. Coral, electric blue, lime and sunny yellow. Huge display headline 'Design that ships.', small nav Work / About / Contact, project grid row, playful flat geometric shapes. Flat vector-style UI, sharp typography, hand-built feel.">
+					<button type="button" class="ps-cover" data-open-detail><img src="https://promptsite.tiiny.site/covers/color-portfolio.jpg" alt="Colourful portfolio website cover" loading="lazy"><span class="ps-badge ps-badge&#45;&#45;free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Colourful portfolio website</button></h3><span class="ps-sub">Prompt only</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Colourful portfolio website" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				END TEMPORARILY HIDDEN CARD -->
+				<article class="ps-card" data-price="free" data-cat="mobile" data-title="Fashion shopping app home screen" data-subtitle="Prompt + Figma file" data-prompt="Design a fashion e-commerce app home screen. Hero: new arrivals carousel, product grid with garments, search, cart icon, bottom nav Home / Search / Wishlist / Cart. Cream and camel palette, elegant serif and sans typography, flat case-study style.">
+					<button type="button" class="ps-cover" data-open-detail><img src="../public/images/promptsite-covers/luma-fashion-app.jpg" alt="Fashion shopping app home screen cover — Luma Fashion mockup" loading="lazy"><span class="ps-badge ps-badge--free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Fashion shopping app home screen</button></h3><span class="ps-sub">Prompt + Figma file</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Fashion shopping app home screen" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+				<article class="ps-card" data-price="free" data-cat="mobile" data-title="Food delivery app home screen" data-subtitle="Prompt + Figma file" data-prompt="Design a food delivery app home. Status 9:41, location header '45 Commissioner St, Johannesburg CBD', search 'Search for restaurants, groceries, and more', category row Restaurants / Groceries / Convenience / Pharmacy, promo 'Get 40% off your first order — Free delivery fee on orders R15+ — Use code GET40', store rows 'Nando's — R3.99 delivery' and 'Mugg & Bean — R2.99 delivery' with star ratings, bottom tabs Home / Search / Orders. Cream UI with red-orange accents, flat Figma style.">
+					<button type="button" class="ps-cover" data-open-detail><img src="../public/images/promptsite-covers/food-delivery-app.jpg" alt="Food delivery app home screen cover — warm pastel mockup" loading="lazy"><span class="ps-badge ps-badge--free">Free</span></button>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Food delivery app home screen</button></h3><span class="ps-sub">Prompt + Figma file</span></div>
+						<button class="ps-copy" type="button" aria-label="Copy prompt for Food delivery app home screen" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+						
+					</div>
+				</article>
+
+				<p class="ps-empty" id="ps-empty" hidden>No designs match that filter yet — try “All”.</p>
+			</div>
+		</section>
+
+	</main>
+
+	<!-- Design detail popup: opens when a card's cover or title is clicked -->
+	<div class="ps-modal ps-detail" id="ps-detail" role="dialog" aria-modal="true" aria-labelledby="ps-detail-title" hidden>
+		<button class="ps-modal-backdrop" type="button" data-close-detail aria-label="Close design details"></button>
+		<div class="ps-modal-card ps-detail-card">
+			<button class="ps-modal-close ps-detail-close" type="button" data-close-detail aria-label="Close design details">×</button>
+			<div class="ps-detail-cover">
+				<img id="ps-detail-img" src="" alt="">
+				<span class="ps-badge" id="ps-detail-badge"></span>
+			</div>
+			<div class="ps-detail-body">
+				<h2 id="ps-detail-title"></h2>
+				<p class="ps-detail-sub" id="ps-detail-sub"></p>
+				<p class="ps-detail-soon-note" id="ps-detail-soon-note" hidden>I'm working on bringing you this — <strong>Lulamile's design prompt library</strong> will be available here soon. </p>
+				<p class="ps-detail-paid-note" id="ps-detail-paid-note" hidden>Premium design. Buy on Selar to receive its prompt and any included files.</p>
+				<div class="ps-detail-label" id="ps-detail-prompt-label">Prompt <span>Select all, then tap the copy icon</span></div>
+				<div class="ps-prompt-wrap" id="ps-detail-prompt-wrap">
+					<textarea class="ps-prompt" id="ps-detail-prompt" readonly spellcheck="false" aria-label="Full prompt"></textarea>
+					<button class="ps-prompt-copy" type="button" id="ps-detail-copy-icon" aria-label="Copy the selected prompt" title="Copy prompt" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+				</div>
+				<div class="ps-detail-actions" id="ps-detail-actions">
+					<button class="ps-btn" type="button" id="ps-detail-selectall">Select all</button>
+					<button class="ps-btn ps-btn--primary" type="button" id="ps-detail-copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:17px;height:17px"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span id="ps-detail-copy-label">Copy prompt</span></button>
+				</div>
+				<div class="ps-detail-foot" id="ps-detail-foot">
+					<a class="ps-btn" id="ps-detail-buy" href="#" target="_blank" rel="noopener noreferrer" hidden>Buy on Selar</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="ps-toast" id="ps-toast" role="status" aria-live="polite"></div>
+
+	<script>
+		(function () {
+			"use strict";
+
+			/* ── Filters ──────────────────────────────────────────────── */
+			var state = { price: "all", cat: "all" };
+			var cards = Array.prototype.slice.call(document.querySelectorAll(".ps-card"));
+			var empty = document.getElementById("ps-empty");
+
+			function applyFilters() {
+				var visible = 0;
+				cards.forEach(function (card) {
+					var okPrice = state.price === "all" || card.getAttribute("data-price") === state.price;
+					var cats = " " + (card.getAttribute("data-cat") || "") + " ";
+					var okCat = state.cat === "all" || cats.indexOf(" " + state.cat + " ") > -1;
+					card.hidden = !(okPrice && okCat);
+					if (!card.hidden) visible += 1;
+				});
+				if (empty) empty.hidden = visible !== 0;
+			}
+
+			document.querySelectorAll(".ps-chips").forEach(function (group) {
+				group.addEventListener("click", function (event) {
+					var chip = event.target.closest(".ps-chip");
+					if (!chip) return;
+					group.querySelectorAll(".ps-chip").forEach(function (c) { c.classList.toggle("is-active", c === chip); });
+					if (chip.hasAttribute("data-price")) state.price = chip.getAttribute("data-price");
+					if (chip.hasAttribute("data-cat")) state.cat = chip.getAttribute("data-cat");
+					applyFilters();
+				});
+			});
+
+			/* ── Copy prompt ─────────────────────────────────────────── */
+			var toast = document.getElementById("ps-toast");
+			var toastTimer = null;
+			function showToast(message) {
+				if (!toast) return;
+				toast.textContent = message;
+				toast.classList.add("is-visible");
+				window.clearTimeout(toastTimer);
+				toastTimer = window.setTimeout(function () { toast.classList.remove("is-visible"); }, 1900);
+			}
+
+			function promptForCard(card) {
+				if (card && card.getAttribute("data-price") === "paid") return "";
+				var explicit = ((card && card.getAttribute("data-prompt")) || "").trim();
+				if (explicit) return explicit;
+				var title = card ? card.getAttribute("data-title") : "Design prompt";
+				var sub = card ? (card.getAttribute("data-subtitle") || "") : "";
+				return "«" + title + "»" + (sub ? " — " + sub : "") + "\n" +
+					"AI design prompt by Lulamile Mkhungela\n" +
+					"linkedin.com/in/lulamile-mkhungela";
+			}
+
+			function promptFor(button) {
+				return promptForCard(button.closest(".ps-card"));
+			}
+
+			function copyText(text) {
+				if (navigator.clipboard && navigator.clipboard.writeText) {
+					return navigator.clipboard.writeText(text);
+				}
+				return new Promise(function (resolve, reject) {
+					var area = document.createElement("textarea");
+					area.value = text;
+					area.setAttribute("readonly", "");
+					area.style.position = "fixed";
+					area.style.opacity = "0";
+					document.body.appendChild(area);
+					area.select();
+					try {
+						document.execCommand("copy") ? resolve() : reject(new Error("copy failed"));
+					} catch (error) { reject(error); }
+					document.body.removeChild(area);
+				});
+			}
+
+			document.querySelectorAll(".ps-copy").forEach(function (button) {
+				button.addEventListener("click", function () {
+					var card = button.closest(".ps-card");
+					if (card && card.getAttribute("data-price") === "paid") {
+						showToast("Premium designs are available through Selar.");
+						return;
+					}
+					copyText(promptFor(button)).then(function () {
+						button.classList.add("is-done");
+						showToast("Prompt copied ✓");
+						window.setTimeout(function () { button.classList.remove("is-done"); }, 1400);
+					}).catch(function () {
+						showToast("Couldn't copy — select the card text instead.");
+					});
+				});
+			});
+
+			/* ── Design detail popup ─────────────────────────────────── */
+			var detail = document.getElementById("ps-detail");
+			var detailOpener = null;
+			var detailImg = document.getElementById("ps-detail-img");
+			var detailBadge = document.getElementById("ps-detail-badge");
+			var detailTitle = document.getElementById("ps-detail-title");
+			var detailSub = document.getElementById("ps-detail-sub");
+			var detailSoonNote = document.getElementById("ps-detail-soon-note");
+			var detailPrompt = document.getElementById("ps-detail-prompt");
+			var detailPromptLabel = document.getElementById("ps-detail-prompt-label");
+			var detailPromptWrap = document.getElementById("ps-detail-prompt-wrap");
+			var detailActions = document.getElementById("ps-detail-actions");
+			var detailPaidNote = document.getElementById("ps-detail-paid-note");
+			var detailBuy = document.getElementById("ps-detail-buy");
+			var detailFoot = document.getElementById("ps-detail-foot");
+			var detailIsPaid = false;
+			var SELAR_STORE_URL = "https://selar.com/m/le-loux";
+			var detailCopy = document.getElementById("ps-detail-copy");
+			var detailCopyLabel = document.getElementById("ps-detail-copy-label");
+			var detailCopyIcon = document.getElementById("ps-detail-copy-icon");
+			var detailSelectAll = document.getElementById("ps-detail-selectall");
+
+			function openDetail(card, opener) {
+				if (!detail || !card) return;
+				detailOpener = opener || document.activeElement;
+				var img = card.querySelector(".ps-cover img");
+				var badge = card.querySelector(".ps-badge");
+				var title = card.getAttribute("data-title") || "";
+				var sub = card.querySelector(".ps-sub");
+				var isPaid = card.getAttribute("data-price") === "paid";
+				var isSoon = card.getAttribute("data-price") === "soon";
+				detailIsPaid = isPaid;
+				detailImg.src = img ? img.getAttribute("src") : "";
+				detailImg.alt = title ? title + " cover" : "";
+				detailBadge.className = badge ? badge.className : "ps-badge";
+				detailBadge.textContent = badge ? badge.textContent : "";
+				detailBadge.hidden = !badge;
+				detailTitle.textContent = title;
+				detailSub.textContent = sub ? sub.textContent : "";
+				detailPrompt.value = isPaid ? "" : promptForCard(card);
+				detailPrompt.scrollTop = 0;
+				detailPromptLabel.hidden = isPaid;
+				detailPromptWrap.hidden = isPaid;
+				detailActions.hidden = isPaid || isSoon;
+				detailPaidNote.hidden = !isPaid;
+				if (detailSoonNote) detailSoonNote.hidden = !isSoon;
+				resetDetailCopyState();
+				var buyUrl = card.getAttribute("data-buy");
+				if (isPaid) {
+					detailBuy.href = buyUrl || SELAR_STORE_URL;
+					detailBuy.textContent = "Buy on Selar";
+					detailBuy.hidden = false;
+				} else {
+					detailBuy.removeAttribute("href");
+					detailBuy.hidden = true;
+				}
+				if (detailFoot) detailFoot.hidden = !isPaid;
+				detail.hidden = false;
+				document.body.style.overflow = "hidden";
+				detail.querySelector(".ps-detail-close").focus({ preventScroll: true });
+			}
+
+			function closeDetail() {
+				if (!detail || detail.hidden) return;
+				detail.hidden = true;
+				if (detailIsPaid && detailPrompt) detailPrompt.value = "";
+				detailIsPaid = false;
+				document.body.style.overflow = "";
+				if (detailOpener && detailOpener.focus) detailOpener.focus({ preventScroll: true });
+				detailOpener = null;
+			}
+
+			function selectDetailPrompt() {
+				if (detailIsPaid) return;
+				detailPrompt.focus();
+				detailPrompt.select();
+				detailPrompt.setSelectionRange(0, detailPrompt.value.length);
+			}
+
+			/* Once the text is selected, the copy icon appears next to it so the
+			   prompt can be copied without a keyboard (mobile-friendly). */
+			function showDetailCopyIcon() {
+				if (detailIsPaid) return;
+				if (detailCopyIcon) detailCopyIcon.hidden = false;
+			}
+
+			function resetDetailCopyState() {
+				if (detailCopyIcon) { detailCopyIcon.hidden = true; detailCopyIcon.classList.remove("is-done"); }
+				if (detailCopy) detailCopy.classList.remove("is-done");
+				if (detailCopyLabel) detailCopyLabel.textContent = "Copy prompt";
+			}
+
+			function copyDetailPrompt() {
+				if (detailIsPaid) return;
+				copyText(detailPrompt.value).then(function () {
+					showDetailCopyIcon();
+					if (detailCopyIcon) detailCopyIcon.classList.add("is-done");
+					if (detailCopy) detailCopy.classList.add("is-done");
+					if (detailCopyLabel) detailCopyLabel.textContent = "Copied ✓";
+					showToast("Prompt copied ✓");
+					window.setTimeout(function () {
+						if (detailCopyIcon) detailCopyIcon.classList.remove("is-done");
+						if (detailCopy) detailCopy.classList.remove("is-done");
+						if (detailCopyLabel) detailCopyLabel.textContent = "Copy prompt";
+					}, 1600);
+				}).catch(function () {
+					selectDetailPrompt();
+					showDetailCopyIcon();
+					showToast("Prompt selected — press Ctrl+C (⌘C on Mac) to copy.");
+				});
+			}
+
+			document.querySelectorAll("[data-open-detail]").forEach(function (opener) {
+				opener.addEventListener("click", function () {
+					openDetail(opener.closest(".ps-card"), opener);
+				});
+			});
+			document.querySelectorAll("[data-close-detail]").forEach(function (button) {
+				button.addEventListener("click", closeDetail);
+			});
+			document.addEventListener("keydown", function (event) {
+				if (event.key === "Escape" && detail && !detail.hidden) closeDetail();
+			});
+			detailSelectAll.addEventListener("click", function () {
+				if (detailIsPaid) return;
+				selectDetailPrompt();
+				showDetailCopyIcon();
+				showToast("All selected — tap the copy icon, or press Ctrl+C (⌘C on Mac).");
+			});
+			if (detailCopyIcon) detailCopyIcon.addEventListener("click", copyDetailPrompt);
+			detailCopy.addEventListener("click", copyDetailPrompt);
+
+			/* Keep Tab inside the open popup */
+			document.addEventListener("keydown", function (event) {
+				if (event.key !== "Tab" || !detail || detail.hidden) return;
+				var items = Array.prototype.slice.call(detail.querySelectorAll("button, a[href], textarea")).filter(function (el) {
+					return !el.hidden && !el.closest("[hidden]") && el.offsetParent !== null;
+				});
+				if (!items.length) return;
+				var first = items[0], last = items[items.length - 1];
+				if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+				else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+			});
+		})();
+	</script>
+</body>
+</html>
