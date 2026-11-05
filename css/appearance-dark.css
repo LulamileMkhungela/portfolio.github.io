@@ -1,0 +1,588 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Dark appearance
+   Dark is the default. Everything here is scoped to
+   body[data-appearance="dark"], which index.html applies before the first
+   paint and js/desktop.js keeps in step with the Light/Dark switch in System
+   Settings. A saved preference of light is restored on the next visit.
+
+   Palette:
+     window / page          #1c1c1e
+     raised surface, card   #242426
+     sidebar, title bar     #2a2a2c
+     separator              rgba(255,255,255,.12)
+     primary text           #f2f2f7
+     secondary text         rgba(235,235,245,.62)
+     link / accent          #5aa9ff (solid blue buttons stay #0a84ff)
+   ───────────────────────────────────────────────────────────────────────── */
+
+body[data-appearance="dark"] {
+	--ink: #f2f2f7;
+	--dark-window: #1c1c1e;
+	--dark-raised: #242426;
+	--dark-bar: #2a2a2c;
+	--dark-line: rgba(255,255,255,.12);
+	--dark-text: #f2f2f7;
+	--dark-text-soft: rgba(235,235,245,.62);
+	--dark-link: #5aa9ff;
+	background: #101012;
+	color: var(--dark-text);
+}
+
+html:has(body[data-appearance="dark"]) { background: #101012; }
+
+/* ── Desktop, menu bar, dock ─────────────────────────────────────────────── */
+body[data-appearance="dark"] .system-bar {
+	color: var(--dark-text);
+	background: rgba(22,22,24,.62);
+	border-bottom-color: var(--dark-line);
+}
+
+body[data-appearance="dark"] .desktop-background::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: rgba(8,8,10,.46);
+	pointer-events: none;
+}
+
+/* The wallpaper photo is bright, but the dark scrim over it (46% black) eats a
+   blue wordmark. A thin white halo lifts the letters off the photo the way the
+   old SVG stroke did, without putting a card behind them. */
+body[data-appearance="dark"] .wallpaper-wordmark-name {
+	filter:
+		drop-shadow(0 2px 6px rgba(0, 18, 51, .35))
+		drop-shadow(0 8px 22px rgba(0, 0, 0, .42));
+}
+
+body[data-appearance="dark"] .dock {
+	background: rgba(32,32,34,.62);
+	border-color: var(--dark-line);
+}
+
+/* Dock tooltip. The text used to flip to white while the pill behind it stayed
+   a light translucent grey, so a hovered icon read as washed-out white-on-white.
+   The shape turns dark with a soft edge, and the text keeps the dark-theme
+   white. This applies wherever a label appears: dock hover, keyboard focus and
+   the floating label that follows magnification. */
+body[data-appearance="dark"] .dock-label,
+body[data-appearance="dark"] .dock-floating-label {
+	color: var(--dark-text);
+	text-shadow: 0 1px 2px rgba(0,0,0,.5);
+}
+
+/* The pill itself is dark in both appearances (css/desktop.css), so only the
+   drop shadow needs to get heavier on a dark desktop. */
+body[data-appearance="dark"] .dock-label .dock-label-shape,
+body[data-appearance="dark"] .dock-floating-label .dock-label-shape {
+	filter: drop-shadow(0 4px 10px rgba(0,0,0,.55));
+}
+
+/* The same pill is reused for minimised-window captions in the dock. */
+body[data-appearance="dark"] .minimized-window-preview .dock-label { color: var(--dark-text); }
+
+/* Running indicator: light dot on the dark shelf, the reverse of the default.
+   The permanent has-content dot flips with it. */
+body[data-appearance="dark"] .dock-item.running::before,
+body[data-appearance="dark"] .dock-item.has-content::before {
+	background: rgba(245,245,247,.88);
+	box-shadow: 0 0 0 1px rgba(0,0,0,.5), 0 1px 2px rgba(0,0,0,.4);
+}
+
+/* ── Menus, sheets, settings ─────────────────────────────────────────────── */
+body[data-appearance="dark"] .collections-menu,
+body[data-appearance="dark"] .collections-sheet,
+body[data-appearance="dark"] .setting-position-menu,
+body[data-appearance="dark"] .notes-toolbar-tooltip,
+body[data-appearance="dark"] .settings-panel,
+body[data-appearance="dark"] .native-settings-surface {
+	color: var(--dark-text);
+	background: rgba(40,40,42,.97);
+	border-color: var(--dark-line);
+}
+
+body[data-appearance="dark"] .collections-trigger,
+body[data-appearance="dark"] .collections-menu-item,
+body[data-appearance="dark"] .collections-sheet-option,
+body[data-appearance="dark"] .setting-position-menu > button,
+body[data-appearance="dark"] .setting-position-check,
+body[data-appearance="dark"] .setting-select,
+body[data-appearance="dark"] .settings-panel label,
+body[data-appearance="dark"] .settings-head b,
+body[data-appearance="dark"] .mobile-filter-label { color: var(--dark-text); }
+
+body[data-appearance="dark"] .settings-head small,
+body[data-appearance="dark"] .setting-range-labels span { color: var(--dark-text-soft); }
+
+body[data-appearance="dark"] .collections-menu-item:hover,
+body[data-appearance="dark"] .collections-sheet-option:hover,
+body[data-appearance="dark"] .setting-position-menu > button:hover { background: rgba(255,255,255,.1); }
+
+body[data-appearance="dark"] .collections-sheet-done,
+body[data-appearance="dark"] .collections-sheet-option > span:first-child,
+body[data-appearance="dark"] .mobile-window-back,
+body[data-appearance="dark"] .notes-editor-back,
+body[data-appearance="dark"] .notes-editor-body a,
+body[data-appearance="dark"] .notes-editor-body .notes-cv-link,
+body[data-appearance="dark"] .certificate-open,
+body[data-appearance="dark"] .mobile-app-alert-link,
+body[data-appearance="dark"] .adobe-alert-link { color: var(--dark-link); }
+
+body[data-appearance="dark"] .setting-select-trigger,
+body[data-appearance="dark"] .setting-appearance-option,
+body[data-appearance="dark"] .native-search-field,
+body[data-appearance="dark"] .messages-search,
+body[data-appearance="dark"] .native-app-window .messages-search,
+body[data-appearance="dark"] .mobile-messages-search {
+	color: var(--dark-text);
+	background: rgba(255,255,255,.1);
+	border-color: var(--dark-line);
+}
+
+body[data-appearance="dark"] .setting-select-trigger img,
+body[data-appearance="dark"] .mobile-messages-search img,
+body[data-appearance="dark"] .native-search-field img { filter: invert(1) brightness(1.4); }
+
+body[data-appearance="dark"] .setting-appearance-option[aria-pressed="true"] {
+	color: #fff;
+	background: #0a84ff;
+	border-color: #0a84ff;
+}
+
+body[data-appearance="dark"] .setting-range::-webkit-slider-thumb,
+body[data-appearance="dark"] .setting-range::-moz-range-thumb { background: #f2f2f7; }
+
+body[data-appearance="dark"] .settings-close.mac-button--plain {
+	color: var(--dark-text);
+}
+
+body[data-appearance="dark"] .settings-close.mac-button--plain:hover { background: rgba(255,255,255,.12); }
+
+/* ── Windows ─────────────────────────────────────────────────────────────── */
+body[data-appearance="dark"] .project-window,
+body[data-appearance="dark"] .project-window.maximized,
+body[data-appearance="dark"] .project-window.native-app-window,
+body[data-appearance="dark"] .project-window.notes-window,
+body[data-appearance="dark"] .project-window.messages-window,
+body[data-appearance="dark"] .project-window.panel-window,
+body[data-appearance="dark"] .project-window.project-window--embedded {
+	color: var(--dark-text);
+	background: var(--dark-window);
+	border-color: var(--dark-line);
+}
+
+body[data-appearance="dark"] .window-bar,
+body[data-appearance="dark"] .project-window.native-app-window > .window-bar,
+body[data-appearance="dark"] .project-window.project-window--embedded > .window-bar {
+	color: var(--dark-text);
+	background: var(--dark-bar);
+}
+
+body[data-appearance="dark"] .window-bar::after,
+body[data-appearance="dark"] .window-bar-subtitle { color: var(--dark-text-soft); }
+
+body[data-appearance="dark"] .window-bar::after { background: var(--dark-line); }
+
+body[data-appearance="dark"] .project-overview,
+body[data-appearance="dark"] .project-overview-inner,
+body[data-appearance="dark"] .project-content-scroll,
+body[data-appearance="dark"] .project-loading-state {
+	color: var(--dark-text);
+	background: var(--dark-window);
+}
+
+body[data-appearance="dark"] .project-loading-title,
+body[data-appearance="dark"] .project-content-scroll-top,
+body[data-appearance="dark"] .overview-expand { color: var(--dark-text); }
+
+body[data-appearance="dark"] .project-content-scroll-top,
+body[data-appearance="dark"] .overview-expand {
+	background: rgba(255,255,255,.1);
+	border-color: var(--dark-line);
+}
+
+body[data-appearance="dark"] .embedded-project,
+body[data-appearance="dark"] .embedded-project-frame,
+body[data-appearance="dark"] .project-window.project-window--embedded .embedded-project,
+body[data-appearance="dark"] .project-window.project-window--embedded .embedded-project-frame {
+	background: #121212;
+}
+
+/* ── Notes ───────────────────────────────────────────────────────────────── */
+body[data-appearance="dark"] .notes-split-view,
+body[data-appearance="dark"] .notes-editor-pane,
+body[data-appearance="dark"] .native-app-window .notes-editor-pane {
+	color: var(--dark-text);
+	background: var(--dark-window);
+}
+
+body[data-appearance="dark"] .notes-list-pane,
+body[data-appearance="dark"] .native-app-window .notes-list-pane,
+body[data-appearance="dark"] .notes-list-header,
+body[data-appearance="dark"] .native-app-window .notes-list-header,
+body[data-appearance="dark"] .notes-folders-pane,
+body[data-appearance="dark"] .native-app-window .notes-folders-pane {
+	color: var(--dark-text);
+	background: #202022;
+	border-color: var(--dark-line);
+}
+
+body[data-appearance="dark"] .notes-list-header,
+body[data-appearance="dark"] .notes-preview-row p,
+body[data-appearance="dark"] .notes-preview-row time,
+body[data-appearance="dark"] .notes-editor-date { color: var(--dark-text-soft); }
+
+body[data-appearance="dark"] .notes-editor-body,
+body[data-appearance="dark"] .notes-editor-title,
+body[data-appearance="dark"] .notes-window-title,
+body[data-appearance="dark"] .notes-preview-row,
+body[data-appearance="dark"] .notes-preview-row strong,
+body[data-appearance="dark"] .notes-document-row,
+body[data-appearance="dark"] .notes-folder-row { color: var(--dark-text); }
+
+body[data-appearance="dark"] .notes-preview-row:hover,
+body[data-appearance="dark"] .notes-folder-row:hover { background: rgba(255,255,255,.07); }
+
+body[data-appearance="dark"] .notes-preview-row.is-active,
+body[data-appearance="dark"] .notes-folder-row.is-active { background: rgba(255,255,255,.12); }
+
+body[data-appearance="dark"] .notes-editor-body hr,
+body[data-appearance="dark"] .notes-editor-body table,
+body[data-appearance="dark"] .notes-editor-body td,
+body[data-appearance="dark"] .notes-editor-body th { border-color: var(--dark-line); }
+
+/* ── Messages ────────────────────────────────────────────────────────────── */
+body[data-appearance="dark"] .messages-app,
+body[data-appearance="dark"] .messages-conversation,
+body[data-appearance="dark"] .messages-history,
+body[data-appearance="dark"] .mobile-messages-screen,
+body[data-appearance="dark"] .mobile-messages-list,
+body[data-appearance="dark"] .mobile-messages-conversation,
+body[data-appearance="dark"] .mobile-messages-search-wrap {
+	color: var(--dark-text);
+	background: var(--dark-window);
+}
+
+body[data-appearance="dark"] .messages-sidebar,
+body[data-appearance="dark"] .native-app-window .messages-sidebar,
+body[data-appearance="dark"] .messages-readonly-footer,
+body[data-appearance="dark"] .native-app-window .messages-readonly-footer {
+	background: #202022;
+	border-color: var(--dark-line);
+}
+
+body[data-appearance="dark"] .messages-thread,
+body[data-appearance="dark"] .messages-thread strong,
+body[data-appearance="dark"] .messages-contact-name,
+body[data-appearance="dark"] .mobile-message-name,
+body[data-appearance="dark"] .mobile-message-row { color: var(--dark-text); }
+
+body[data-appearance="dark"] .messages-thread p,
+body[data-appearance="dark"] .messages-thread-copy span,
+body[data-appearance="dark"] .messages-contact-role,
+body[data-appearance="dark"] .messages-history-label,
+body[data-appearance="dark"] .messages-readonly-footer,
+body[data-appearance="dark"] .mobile-message-row small { color: var(--dark-text-soft); }
+
+body[data-appearance="dark"] .messages-thread:hover,
+body[data-appearance="dark"] .mobile-message-row:hover { background: rgba(255,255,255,.07); }
+
+body[data-appearance="dark"] .messages-thread.is-active { background: rgba(255,255,255,.14); }
+/* The conversation header is a card of its own. `@media` in desktop.css paints
+   it a near-white translucent grey; the dark rules below missed it because they
+   named .messages-contact-name / .messages-contact-role, while the markup uses
+   .messages-contact-copy h2 / span. The result was white-on-white: the avatar
+   showed, the name, title and company did not. */
+body[data-appearance="dark"] .messages-conversation-header,
+body[data-appearance="dark"] .native-app-window .messages-conversation-header {
+	background: rgba(36,36,38,.96);
+	border-color: var(--dark-line);
+}
+
+body[data-appearance="dark"] .messages-contact-copy h2,
+body[data-appearance="dark"] .messages-contact-copy .messages-contact-name { color: var(--dark-text); }
+
+body[data-appearance="dark"] .messages-contact-copy span,
+body[data-appearance="dark"] .messages-contact-copy .messages-contact-role { color: var(--dark-text-soft); }
+
+/* The mobile list kept white cards on a dark wallpaper, which is the same
+   white-on-white problem one screen over. */
+body[data-appearance="dark"] .mobile-message-row { background: var(--dark-window); }
+body[data-appearance="dark"] .mobile-message-row:not(:last-child)::after { background: var(--dark-line); }
+body[data-appearance="dark"] .mobile-message-name,
+body[data-appearance="dark"] .mobile-message-role { color: var(--dark-text-soft); }
+body[data-appearance="dark"] .mobile-message-name,
+body[data-appearance="dark"] .mobile-message-contact strong { color: var(--dark-text); }
+
+body[data-appearance="dark"] .mobile-message-contact {
+	background: rgba(36,36,38,.96);
+	border-color: var(--dark-line);
+}
+body[data-appearance="dark"] .mobile-message-contact small { color: var(--dark-text-soft); }
+
+/* Same story in the thread list: the rows are a light grey hover surface, and
+   the selected row keeps its blue. */
+body[data-appearance="dark"] .messages-thread.is-selected { background: #0a84ff; }
+body[data-appearance="dark"] .messages-thread.is-selected .messages-thread-copy strong,
+body[data-appearance="dark"] .messages-thread.is-selected .messages-thread-copy span,
+body[data-appearance="dark"] .messages-thread.is-selected .messages-thread-copy p { color: #fff; }
+
+body[data-appearance="dark"] .messages-thread-avatar,
+body[data-appearance="dark"] .messages-contact-avatar { background: #3a3a3c; }
+
+body[data-appearance="dark"] .message-bubble.is-incoming,
+body[data-appearance="dark"] .message-document-attachment {
+	color: var(--dark-text);
+	background: #3a3a3c;
+}
+
+body[data-appearance="dark"] .message-document-attachment:hover { background: #454547; }
+
+body[data-appearance="dark"] .message-document-icon { background: rgba(255,255,255,.14); }
+
+body[data-appearance="dark"] .mobile-messages-search input { color: var(--dark-text); }
+
+/* ── Services and Certificates panels ────────────────────────────────────── */
+body[data-appearance="dark"] .panel-scroll-area,
+body[data-appearance="dark"] .panel-mobile,
+body[data-appearance="dark"] .mobile-detail,
+body[data-appearance="dark"] .mobile-app-content,
+body[data-appearance="dark"] .mobile-app-content.is-notes-list,
+body[data-appearance="dark"] .mobile-note-list.mobile-list-screen {
+	color: var(--dark-text);
+	background: var(--dark-window);
+}
+
+body[data-appearance="dark"] .panel-kicker,
+body[data-appearance="dark"] .panel-lede,
+body[data-appearance="dark"] .panel-section-note,
+body[data-appearance="dark"] .panel-footnote,
+body[data-appearance="dark"] .service-blurb,
+body[data-appearance="dark"] .service-item p,
+body[data-appearance="dark"] .service-step p,
+body[data-appearance="dark"] .service-problems p,
+body[data-appearance="dark"] .service-tools span,
+body[data-appearance="dark"] .certificate-issuer,
+body[data-appearance="dark"] .certificate-year { color: var(--dark-text-soft); }
+
+body[data-appearance="dark"] .panel-title,
+body[data-appearance="dark"] .service-group-head h3,
+body[data-appearance="dark"] .service-item strong,
+body[data-appearance="dark"] .certificate-title,
+body[data-appearance="dark"] .service-quote blockquote { color: var(--dark-text); }
+
+body[data-appearance="dark"] .panel-cta,
+body[data-appearance="dark"] .service-problems li,
+body[data-appearance="dark"] .service-step,
+body[data-appearance="dark"] .service-item,
+body[data-appearance="dark"] .service-tools li,
+body[data-appearance="dark"] .certificate-card,
+body[data-appearance="dark"] .panel-button,
+body[data-appearance="dark"] .mobile-list-card,
+body[data-appearance="dark"] .mobile-notes-group,
+body[data-appearance="dark"] .mobile-project-card,
+body[data-appearance="dark"] .mobile-note-row {
+	color: var(--dark-text);
+	background: var(--dark-raised);
+	border-color: var(--dark-line);
+}
+
+body[data-appearance="dark"] .certificate-card:hover,
+body[data-appearance="dark"] .panel-button:hover,
+body[data-appearance="dark"] .mobile-list-card:hover { background: #2e2e30; }
+
+body[data-appearance="dark"] .panel-button--primary {
+	color: #fff;
+	background: #0a84ff;
+	border-color: #0a84ff;
+}
+
+body[data-appearance="dark"] .service-tags em {
+	color: var(--dark-text-soft);
+	background: rgba(255,255,255,.1);
+}
+
+body[data-appearance="dark"] .service-group { border-top-color: var(--dark-line); }
+body[data-appearance="dark"] .service-quote figcaption { color: var(--dark-text-soft); }
+body[data-appearance="dark"] .service-tool-group-title { color: var(--dark-text-soft); }
+body[data-appearance="dark"] .service-tool-group-note { color: var(--dark-text-soft); }
+
+/* Certificates are scans of paper, so the artwork itself stays on white */
+body[data-appearance="dark"] .certificate-thumb {
+	background: #f4f4f5;
+	border-color: var(--dark-line);
+}
+
+/* ── Mobile shell ────────────────────────────────────────────────────────── */
+body[data-appearance="dark"] .mobile-app-window,
+body[data-appearance="dark"] .mobile-window-bar,
+body[data-appearance="dark"] .mobile-photos-grid,
+body[data-appearance="dark"] .mobile-app-alert {
+	color: var(--dark-text);
+	background: var(--dark-window);
+}
+
+body[data-appearance="dark"] .mobile-app-alert h2,
+body[data-appearance="dark"] .mobile-note-title,
+body[data-appearance="dark"] .mobile-notes-section-header { color: var(--dark-text); }
+
+body[data-appearance="dark"] .mobile-app-alert p,
+body[data-appearance="dark"] .mobile-note-row p { color: var(--dark-text-soft); }
+
+body[data-appearance="dark"] .mobile-dock { background: rgba(32,32,34,.72); }
+
+/* GitHub repository list inside the mobile alert (the desktop popup card is
+   dark in both appearances, so it needs no override). */
+body[data-appearance="dark"] .mobile-app-alert .github-repos-head { color: var(--dark-text-soft); }
+body[data-appearance="dark"] .mobile-app-alert .github-repos-profile,
+body[data-appearance="dark"] .mobile-app-alert .github-repo-name { color: var(--dark-link); }
+body[data-appearance="dark"] .mobile-app-alert .github-repo a:hover { background: rgba(255,255,255,.08); }
+body[data-appearance="dark"] .mobile-app-alert .github-repo-language,
+body[data-appearance="dark"] .mobile-app-alert .github-repo-description { color: var(--dark-text-soft); }
+body[data-appearance="dark"] .mobile-app-alert .github-repo-updated { color: rgba(235,235,245,.42); }
+body[data-appearance="dark"] .mobile-app-alert .github-repo-fork { background: rgba(255,255,255,.14); color: var(--dark-text-soft); }
+body[data-appearance="dark"] .mobile-app-alert .github-repos-list { scrollbar-color: rgba(255,255,255,.26) transparent; }
+body[data-appearance="dark"] .mobile-app-alert .github-repos-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,.22); }
+
+/* Embedded Figma preview inside the mobile alert (the desktop popup card is
+   dark in both appearances, so it needs no override). */
+body[data-appearance="dark"] .mobile-app-alert .adobe-alert-embed-frame { border-color: var(--dark-line); }
+body[data-appearance="dark"] .mobile-app-alert .adobe-alert-embed-caption { color: var(--dark-text-soft); }
+
+/* ── Photos ──────────────────────────────────────────────────────────────── */
+body[data-appearance="dark"] .project-window.photos-window,
+body[data-appearance="dark"] .photos-app {
+	background: var(--dark-window);
+	color: var(--dark-text);
+}
+
+body[data-appearance="dark"] .photos-content-header {
+	color: var(--dark-text);
+	background: var(--dark-bar);
+	border-bottom-color: var(--dark-line);
+}
+
+body[data-appearance="dark"] .photos-content-header p { color: var(--dark-text-soft); }
+body[data-appearance="dark"] .photos-scroll-area { background: #161618; }
+body[data-appearance="dark"] .photo-tile { background: rgba(255,255,255,.06); }
+body[data-appearance="dark"] .photo-tile.is-image-error::after { color: var(--dark-text-soft); }
+body[data-appearance="dark"] .minimized-photos-grid { background: #202022; }
+
+/* Project overview copy strip */
+body[data-appearance="dark"] .overview-description {
+	color: var(--dark-text-soft);
+	background: var(--dark-window);
+	border-block-color: var(--dark-line);
+}
+
+/* ── Minimised window previews in the dock ───────────────────────────────── */
+body[data-appearance="dark"] .minimized-window-content,
+body[data-appearance="dark"] .minimized-window-transition-content,
+body[data-appearance="dark"] .minimized-notes-page,
+body[data-appearance="dark"] .minimized-messages-thread {
+	color: var(--dark-text);
+	background: var(--dark-window);
+}
+
+body[data-appearance="dark"] .minimized-window-titlebar,
+body[data-appearance="dark"] .minimized-window-transition-titlebar { color: var(--dark-text); background: var(--dark-bar); }
+
+body[data-appearance="dark"] .minimized-notes-list,
+body[data-appearance="dark"] .minimized-notes-sidebar,
+body[data-appearance="dark"] .minimized-messages-sidebar { background: #202022; }
+
+body[data-appearance="dark"] .minimized-messages-thread i { background: #3a3a3c; }
+
+/* ── Alerts and embeds ───────────────────────────────────────────────────── */
+body[data-appearance="dark"] .adobe-alert,
+body[data-appearance="dark"] .instagram-window-content,
+body[data-appearance="dark"] .instagram-embed-host,
+body[data-appearance="dark"] .instagram-loading,
+body[data-appearance="dark"] .instagram-fallback {
+	color: var(--dark-text);
+	background: var(--dark-window);
+}
+
+body[data-appearance="dark"] .adobe-alert-body,
+body[data-appearance="dark"] .adobe-alert-body p { color: var(--dark-text-soft); }
+
+body[data-appearance="dark"] .adobe-alert-title { color: var(--dark-text); }
+
+body[data-appearance="dark"] .adobe-alert-actions button {
+	color: var(--dark-text);
+	background: rgba(255,255,255,.12);
+	border-color: var(--dark-line);
+}
+
+/* ── Vision Bin library ──────────────────────────────────────────────────── */
+body[data-appearance="dark"] .project-window.library-window,
+body[data-appearance="dark"] .library-app {
+	background: var(--dark-window);
+	color: var(--dark-text);
+}
+
+body[data-appearance="dark"] .library-intro p,
+body[data-appearance="dark"] .library-card-text,
+body[data-appearance="dark"] .library-card-caption,
+body[data-appearance="dark"] .library-empty { color: var(--dark-text-soft); }
+
+body[data-appearance="dark"] .library-search {
+	background: rgba(255,255,255,.07);
+	border-color: var(--dark-line);
+}
+
+body[data-appearance="dark"] .library-search img { opacity: .6; filter: invert(1); }
+
+body[data-appearance="dark"] .library-chip {
+	color: var(--dark-text);
+	background: rgba(255,255,255,.08);
+	border-color: var(--dark-line);
+}
+
+body[data-appearance="dark"] .library-chip span { color: var(--dark-text-soft); }
+body[data-appearance="dark"] .library-chip:hover { background: rgba(255,255,255,.14); }
+
+body[data-appearance="dark"] .library-chip.is-active {
+	color: #fff;
+	background: #0a84ff;
+	border-color: #0a84ff;
+}
+
+body[data-appearance="dark"] .library-card {
+	background: var(--dark-raised);
+	border-color: var(--dark-line);
+	box-shadow: none;
+}
+
+body[data-appearance="dark"] .library-card:hover {
+	border-color: rgba(255,255,255,.2);
+	box-shadow: 0 12px 26px rgba(0,0,0,.5);
+}
+
+body[data-appearance="dark"] .library-card-media { background: rgba(255,255,255,.06); }
+body[data-appearance="dark"] .library-card-host { color: rgba(235,235,245,.4); }
+
+body[data-appearance="dark"] .library-card-tag {
+	color: var(--dark-link);
+	background: rgba(90,169,255,.16);
+}
+
+body[data-appearance="dark"] .library-card-logo {
+	background:
+		radial-gradient(120% 90% at 50% 110%, hsl(var(--library-hue,210) 34% 26%) 0%, transparent 60%),
+		linear-gradient(160deg, #232326 0%, #1a1a1c 100%);
+}
+
+body[data-appearance="dark"] .library-card-logo img {
+	background: rgba(255,255,255,.92);
+	box-shadow: 0 10px 28px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.08);
+}
+
+/* Vision Bin tabs in dark appearance */
+body[data-appearance="dark"] .library-tab {
+  color: #f2f2f7;
+  background: rgba(255,255,255,.1);
+  border-color: rgba(255,255,255,.14);
+}
+body[data-appearance="dark"] .library-tab:hover { background: rgba(255,255,255,.16); }
+body[data-appearance="dark"] .library-tab.is-active { background: #0a84ff; border-color: #0a84ff; color: #fff; }
+body[data-appearance="dark"] .shortcut-badge { background: rgba(28,28,30,.92); color: #64b5ff; border-color: rgba(255,255,255,.18); }

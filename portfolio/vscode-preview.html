@@ -1,0 +1,2745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Visual Studio Code — Lulas monorepo | Lulamile Mkhungela</title>
+<meta name="description" content="The Lulas monorepo in Visual Studio Code: browse the workspace, read component and token source, and see the component render beside the code.">
+<!--
+  The VS Code item in the dock opens this page in an iframe.
+
+  A monorepo in the editor: the explorer, open tabs, syntax-highlighted source
+  and a preview pane that renders what the open file produces. Nothing is
+  compiled or run — the previews are authored markup and the code is read from
+  the text/plain blocks at the bottom of this page.
+-->
+<style>
+  :root {
+    --bg: #1f1f1f;
+    --bg-deep: #181818;
+    --activity: #181818;
+    --sidebar: #1f1f1f;
+    --tabs: #181818;
+    --tab-active: #1f1f1f;
+    --line: #2b2b2b;
+    --line-soft: #252526;
+    --text: #cccccc;
+    --text-soft: #9d9d9d;
+    --text-faint: #6e6e6e;
+    --blue: #0e639c;
+    --accent: #007acc;
+    --green: #4ec9b0;
+    --radius: 4px;
+    --ui: -apple-system, BlinkMacSystemFont, "Segoe UI", "Ubuntu", "Droid Sans", sans-serif;
+    --mono: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 12px/1.4 var(--ui);
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  :focus-visible { outline: 1px solid #4a9edb; outline-offset: 0; }
+
+  .app { height: 100%; display: flex; flex-direction: column; min-height: 0; }
+
+  /* ── Title bar ───────────────────────────────────────────────────────── */
+  .titlebar {
+    flex: none;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 10px;
+    background: #181818;
+    border-bottom: 1px solid #2b2b2b;
+    font-size: 11px;
+    user-select: none;
+  }
+  .menus { display: flex; gap: 10px; color: #cccccc; }
+  .menus span { padding: 2px 0; }
+  .title-center {
+    flex: 1;
+    text-align: center;
+    color: var(--text-soft);
+    font-size: 10.5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .title-center b { color: var(--text); font-weight: 400; }
+  .window-controls { display: flex; gap: 8px; color: var(--text-faint); font-size: 10px; }
+
+  .workbench { flex: 1; min-height: 0; display: flex; }
+
+  /* ── Activity bar ────────────────────────────────────────────────────── */
+  .activitybar {
+    flex: none;
+    width: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 4px 0;
+    background: #181818;
+    border-right: 1px solid #2b2b2b;
+  }
+  .activity-btn {
+    width: 44px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-left: 2px solid transparent;
+    background: transparent;
+    color: #858585;
+  }
+  .activity-btn svg { width: 19px; height: 19px; }
+  .activity-btn:hover { color: #cccccc; }
+  .activity-btn[aria-current="true"] { color: #ffffff; border-left-color: #ffffff; }
+  .activity-spacer { flex: 1; }
+
+  /* ── Explorer ────────────────────────────────────────────────────────── */
+  .sidebar {
+    flex: none;
+    width: 172px;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--sidebar);
+    border-right: 1px solid #2b2b2b;
+  }
+  .sidebar-head {
+    flex: none;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    color: #bbbbbb;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+  .sidebar-head span:last-child { color: var(--text-faint); font-size: 12px; letter-spacing: 0; }
+  .explorer {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 2px 0 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #424242 transparent;
+  }
+  .tree-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 21px;
+    padding: 0 8px 0 0;
+    border: 0;
+    background: transparent;
+    color: #cccccc;
+    font-size: 11px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  .tree-row:hover { background: #2a2d2e; }
+  .tree-row.is-dir { color: #cccccc; }
+  .tree-row[aria-current="true"] { background: #37373d; }
+  .tree-row:focus-visible { outline: 1px solid #007fd4; outline-offset: -1px; }
+  .tree-row .caret {
+    width: 12px;
+    flex: none;
+    color: #cccccc;
+    font-size: 8px;
+    text-align: center;
+    transition: transform .12s;
+  }
+  .tree-row.is-closed .caret { transform: rotate(-90deg); }
+  .file-icon {
+    flex: none;
+    width: 14px;
+    height: 14px;
+    display: grid;
+    place-items: center;
+    border-radius: 2px;
+    font-family: var(--mono);
+    font-size: 7.5px;
+    font-weight: 700;
+    letter-spacing: -.04em;
+  }
+  .file-icon.tsx { background: #2f6f9f; color: #cde8ff; }
+  .file-icon.ts { background: #3178c6; color: #ffffff; }
+  .file-icon.css { background: #a074c4; color: #ffffff; }
+  .file-icon.md { background: #519aba; color: #ffffff; }
+  .file-icon.json { background: #8a8a8a; color: #ffffff; }
+  .file-icon.yaml { background: #cb171e; color: #ffffff; }
+  .tree-name { overflow: hidden; text-overflow: ellipsis; }
+  .tree-children { overflow: hidden; }
+
+  /* ── Editor area ─────────────────────────────────────────────────────── */
+  .editor-area { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; background: var(--bg); }
+  .tabs {
+    flex: none;
+    height: 32px;
+    display: flex;
+    align-items: stretch;
+    background: var(--tabs);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0 8px 0 12px;
+    border: 0;
+    border-right: 1px solid #2b2b2b;
+    background: #1f1f1f;
+    color: #969696;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .tab:hover { color: #cccccc; }
+  .tab[aria-selected="true"] {
+    background: var(--tab-active);
+    color: #ffffff;
+    box-shadow: inset 0 1px 0 var(--accent);
+  }
+  .tab .tab-close {
+    width: 16px;
+    height: 16px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 3px;
+    background: transparent;
+    color: inherit;
+    font-size: 12px;
+    line-height: 1;
+    opacity: .7;
+  }
+  .tab .tab-close:hover { background: #3c3c3c; opacity: 1; }
+
+  .breadcrumbs {
+    flex: none;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 10px;
+    border-bottom: 1px solid var(--line-soft);
+    color: #8a8a8a;
+    font-size: 10px;
+    overflow: hidden;
+  }
+  .breadcrumbs .sep { color: #4a4a4a; }
+  .breadcrumbs .name { color: #cccccc; }
+  .pane-switch { display: none; margin-left: auto; gap: 2px; }
+  .pane-switch button {
+    border: 1px solid #3c3c3c;
+    background: #2a2a2a;
+    color: #bbb;
+    font-size: 9px;
+    padding: 1px 6px;
+  }
+  .pane-switch button[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+  .split { flex: 1; min-height: 0; display: flex; }
+  .editor-pane {
+    flex: 1.18;
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    background: var(--bg);
+  }
+  .editor-scroll {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #424242 transparent;
+  }
+  .lines { display: flex; min-height: 100%; }
+  .gutter {
+    flex: none;
+    padding: 8px 10px 16px 12px;
+    color: #6e7681;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.62;
+    text-align: right;
+    user-select: none;
+    white-space: pre;
+  }
+  .source {
+    flex: 1;
+    margin: 0;
+    padding: 8px 16px 16px 0;
+    color: #d4d4d4;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.62;
+    white-space: pre;
+    tab-size: 2;
+  }
+  .source::-moz-selection { background: #264f78; }
+  .source .c { color: #6a9955; }
+  .source .s { color: #ce9178; }
+  .source .k { color: #569cd6; }
+  .source .n { color: #b5cea8; }
+  .source .t { color: #4ec9b0; }
+  .source .a { color: #9cdcfe; }
+  .source .f { color: #dcdcaa; }
+  .source .p { color: #c586c0; }
+
+  /* ── Preview pane ────────────────────────────────────────────────────── */
+  .preview-pane {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #2b2b2b;
+    background: #232323;
+  }
+  .preview-head {
+    flex: none;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 8px;
+    border-bottom: 1px solid #2b2b2b;
+    background: #1f1f1f;
+    color: var(--text-soft);
+    font-size: 9.5px;
+  }
+  .preview-head strong {
+    color: var(--text);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+  }
+  .preview-head .url {
+    flex: 1;
+    min-width: 0;
+    padding: 1px 7px;
+    border-radius: 999px;
+    background: #2b2b2b;
+    color: #9d9d9d;
+    font-family: var(--mono);
+    font-size: 8.5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .icon-btn {
+    width: 20px; height: 20px;
+    display: grid; place-items: center;
+    border: 0; border-radius: 3px;
+    background: transparent;
+    color: #9d9d9d;
+  }
+  .icon-btn:hover { background: #333333; color: #ffffff; }
+  .icon-btn[aria-pressed="true"] { background: #094771; color: #ffffff; }
+  .icon-btn svg { width: 12px; height: 12px; }
+
+  .preview-body {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 14px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background:
+      linear-gradient(45deg, #262626 25%, transparent 25%) 0 0/12px 12px,
+      linear-gradient(-45deg, #262626 25%, transparent 25%) 0 6px/12px 12px,
+      linear-gradient(45deg, transparent 75%, #262626 75%) 6px -6px/12px 12px,
+      linear-gradient(-45deg, transparent 75%, #262626 75%) -6px 0/12px 12px,
+      #2a2a2a;
+    scrollbar-width: thin;
+    scrollbar-color: #424242 transparent;
+  }
+  .preview-body.is-mobile > * { max-width: 280px; }
+  .preview-stage {
+    width: 100%;
+    min-width: 0;
+    container-type: inline-size;
+    container-name: preview-stage;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    color: #23212b;
+    font-family: var(--ui);
+    font-size: 11px;
+  }
+  .preview-stage.is-markdown { background: #ffffff; padding: 14px 16px; border-radius: 4px; }
+  .preview-empty {
+    width: 100%;
+    padding: 20px 16px;
+    border: 1px dashed #454545;
+    border-radius: 6px;
+    color: #9d9d9d;
+    font-size: 10.5px;
+    text-align: center;
+    line-height: 1.6;
+  }
+  .preview-empty b { display: block; color: #cccccc; font-weight: 600; margin-bottom: 2px; }
+  .preview-loading {
+    width: 100%;
+    padding: 24px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #9d9d9d;
+    font-size: 10px;
+  }
+  .preview-loading i {
+    width: 11px; height: 11px;
+    border: 1.5px solid #4a4a4a;
+    border-top-color: #4ec9b0;
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Rendered Lulas components (preview only) ────────────────────────── */
+  .pv-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    font: 700 12px/1 var(--ui);
+    font-family: var(--ui);
+    cursor: default;
+  }
+  .pv-btn--sm { height: 27px; padding: 0 11px; font-size: 10.5px; }
+  .pv-btn--md { height: 34px; padding: 0 16px; font-size: 12px; }
+  .pv-btn--lg { height: 41px; padding: 0 22px; font-size: 13.5px; }
+  .pv-btn--primary { background: #0a63c4; color: #fff; box-shadow: 0 1px 2px rgba(10,99,196,.3); }
+  .pv-btn--secondary { background: #fff; color: #0a63c4; border-color: #b9cde4; }
+  .pv-btn--ghost { background: transparent; color: #4b5563; }
+  .pv-btn--danger { background: #b3261e; color: #fff; }
+
+  .pv-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    padding: 13px;
+    border: 1px solid #e3e8ee;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(20,32,44,.1);
+    font-family: var(--ui);
+  }
+  .pv-card header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .pv-card .order-id { color: #79868f; font-size: 8px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .pv-card h3 { margin: 1px 0 0; font-size: 13px; color: #23212b; }
+  .pv-card ul { margin: 0; padding: 8px 0 0; list-style: none; border-top: 1px solid #eef2f6; display: flex; flex-direction: column; gap: 4px; }
+  .pv-card li { display: flex; justify-content: space-between; gap: 8px; color: #5c6873; font-size: 10px; }
+  .pv-card li span:last-child { color: #23212b; }
+  .pv-card footer { display: flex; align-items: baseline; justify-content: space-between; padding-top: 8px; border-top: 1px solid #eef2f6; color: #79868f; font-size: 9.5px; gap: 8px; }
+  .pv-card footer strong { color: #23212b; font-size: 14px; }
+  .pv-status {
+    flex: none;
+    padding: 2px 7px;
+    border-radius: 999px;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .pv-status--processing { background: #fff3d6; color: #8a5a00; }
+  .pv-status--shipped { background: #e4effc; color: #0a4f9c; }
+  .pv-status--delivered { background: #e0f4ea; color: #126b45; }
+  .pv-status--cancelled { background: #fde7e5; color: #8f231c; }
+
+  .pv-empty {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 18px 16px;
+    border: 1px dashed #d5dee7;
+    border-radius: 12px;
+    background: #fbfcfd;
+    text-align: center;
+    font-family: var(--ui);
+  }
+  .pv-empty svg { width: 42px; height: 42px; }
+  .pv-empty h3 { margin: 0; font-size: 13px; color: #23212b; }
+  .pv-empty p { margin: 0 0 8px; max-width: 230px; color: #5c6873; font-size: 10.5px; line-height: 1.5; }
+
+  .pv-badges { display: flex; flex-wrap: wrap; gap: 6px; width: 100%; }
+  .pv-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid #e3e8ee;
+    color: #5c6873;
+    font-size: 9.5px;
+    font-weight: 700;
+  }
+  .pv-badge i { width: 6px; height: 6px; border-radius: 50%; }
+
+  .pv-tokens { width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 7px; }
+  .pv-token { border: 1px solid #e3e8ee; border-radius: 8px; overflow: hidden; background: #fff; }
+  .pv-token .chip { height: 38px; }
+  .pv-token .meta { padding: 5px 7px; font-family: var(--mono); }
+  .pv-token strong { display: block; color: #23212b; font-size: 8.5px; font-weight: 600; }
+  .pv-token span { color: #79868f; font-size: 8px; }
+
+  .pv-app {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    border-radius: 10px;
+    background: #f6f8fb;
+    font-family: var(--ui);
+  }
+  .pv-app .pv-app-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .pv-app h2 { margin: 0; font-size: 14px; color: #23212b; }
+  .pv-app .pv-app-head span { color: #79868f; font-size: 9px; }
+  .pv-app .pv-summary { background: #fff; border: 1px solid #e3e8ee; border-radius: 9px; padding: 10px; display: flex; flex-direction: column; gap: 6px; }
+  .pv-app .row { display: flex; justify-content: space-between; gap: 8px; color: #5c6873; font-size: 10px; }
+  .pv-app .row b { color: #23212b; }
+  .pv-app .row.total { padding-top: 7px; border-top: 1px solid #eef2f6; font-size: 11px; }
+  .pv-app .row.total b { font-size: 14px; }
+  .pv-app .delivery { display: flex; align-items: center; gap: 7px; padding: 7px 8px; border: 1px solid #2a6ff6; border-radius: 7px; background: #f4f8ff; color: #4b5563; font-size: 10px; }
+  .pv-app .delivery i { width: 9px; height: 9px; border-radius: 50%; border: 3px solid #2a6ff6; flex: none; }
+  .pv-app .delivery b { margin-left: auto; color: #23212b; }
+
+  /* ── The shop, cart to paid ──────────────────────────────────────────────
+     The preview pane runs the flow the files in the editor describe: cart,
+     delivery, card, authorising, receipt. Everything is local and nothing
+     is charged. */
+  .shop {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    border-radius: 10px;
+    background: #f6f8fb;
+    color: #23212b;
+    font-family: var(--ui);
+  }
+  .shop-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+  .shop-eyebrow { display: block; color: #79868f; font-size: 8px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+  .shop h2 { margin: 2px 0 0; font-size: 14px; line-height: 1.2; }
+  .shop-step { color: #0a4f9c; font-size: 9.5px; font-weight: 700; white-space: nowrap; }
+  .shop-step.is-complete { color: #0e7a55; }
+  .shop-progress { display: flex; gap: 4px; }
+  .shop-progress i {
+    flex: 1;
+    height: 4px;
+    border-radius: 2px;
+    background: #dde3ea;
+    transition: background 160ms ease;
+  }
+  .shop-progress i.is-done { background: #8ab8e8; }
+  /* The step you are on is the solid one, with a ring so it reads as current
+     even next to a full bar of finished steps. */
+  .shop-progress i.is-now {
+    background: #0a63c4;
+    box-shadow: 0 0 0 2px rgba(10,99,196,.22);
+  }
+
+
+  .shop-products {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+  }
+  .shop-product {
+    position: relative;
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-items: start;
+    gap: 4px 8px;
+    padding: 9px;
+    border: 1px solid #e3e8ee;
+    border-radius: 9px;
+    background: #fff;
+  }
+  .shop-product.is-in-cart { border-color: #9db6d6; }
+  .shop-product .shop-thumb { grid-row: 1; }
+  .shop-thumb--tall { height: 40px; }
+  .shop-product-copy { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+  .shop-product-copy b { font-size: 10.5px; line-height: 1.25; }
+  .shop-product-copy span { color: #79868f; font-size: 8.5px; }
+  .shop-product-buy {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-top: 5px;
+    border-top: 1px solid #f0f3f7;
+  }
+  .shop-product-buy > b { font-size: 11.5px; font-variant-numeric: tabular-nums; }
+  .shop-add { flex: none; }
+  .shop-tag {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background: #e4effc;
+    color: #0a4f9c;
+    font-size: 7.5px;
+    font-weight: 800;
+    letter-spacing: .03em;
+  }
+  .shop-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 7px 9px;
+    border: 1px solid #e3e8ee;
+    border-radius: 9px;
+    background: #fff;
+  }
+  .shop-bar-copy { color: #5c6873; font-size: 10px; font-variant-numeric: tabular-nums; }
+  .shop-bar .pv-btn:disabled { opacity: .45; pointer-events: none; }
+
+  .shop-lines { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .shop-lines li {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px;
+    min-height: 52px;
+    padding: 8px;
+    border: 1px solid #e3e8ee;
+    border-radius: 9px;
+    background: #fff;
+  }
+  .shop-thumb {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 7px;
+    background: linear-gradient(150deg, #e4effc, #d7e6f8);
+    color: #0a4f9c;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .02em;
+  }
+  .shop-thumb--case { background: linear-gradient(150deg, #e6e9ee, #d5dae2); color: #49515c; }
+  .shop-line-copy { min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .shop-line-copy b { font-size: 10.5px; font-weight: 600; }
+  .shop-line-copy span { color: #79868f; font-size: 9px; }
+  .shop-qty { display: flex; align-items: center; gap: 2px; justify-self: end; }
+  .shop-qty--card { gap: 3px; }
+  .shop-qty button {
+    width: 20px; height: 20px;
+    display: grid; place-items: center;
+    border: 1px solid #d3dbe4;
+    border-radius: 5px;
+    background: #fff;
+    color: #38414c;
+    font: 600 12px/1 var(--ui);
+    cursor: default;
+  }
+  .shop-qty button:hover { border-color: #0a63c4; color: #0a63c4; }
+  .shop-qty output { min-width: 16px; text-align: center; font-size: 10px; font-weight: 700; }
+
+  .shop-sum { display: flex; flex-direction: column; gap: 5px; padding: 9px 10px; border: 1px solid #e3e8ee; border-radius: 9px; background: #fff; }
+  .shop-sum .row { display: flex; justify-content: space-between; gap: 8px; color: #5c6873; font-size: 10px; }
+  .shop-sum .row b { color: #23212b; }
+  .shop-sum .row.total { padding-top: 6px; border-top: 1px solid #eef2f6; font-size: 11px; }
+  .shop-sum .row.total b { font-size: 14px; }
+  .shop-note { margin: 0; color: #79868f; font-size: 9px; line-height: 1.45; }
+  .shop-note--warn { color: #8a5a00; }
+
+  .shop-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
+  .shop-actions .pv-btn--primary { margin-left: auto; }
+  .shop-actions .pv-btn--secondary { margin-left: auto; }
+  .shop-actions .pv-btn { cursor: pointer; }
+  .shop-actions .pv-btn:active { transform: translateY(1px); }
+
+  .shop-field { display: flex; flex-direction: column; gap: 3px; }
+  .shop-field > span { color: #5c6873; font-size: 9px; font-weight: 600; }
+  .shop-field input {
+    height: 27px;
+    padding: 0 8px;
+    border: 1px solid #d3dbe4;
+    border-radius: 6px;
+    background: #fff;
+    color: #23212b;
+    font: 400 10.5px/1 var(--ui);
+  }
+  .shop-field input:focus-visible { outline: 2px solid #0a63c4; outline-offset: 1px; }
+  .shop-field input[aria-invalid="true"] { border-color: #b3261e; background: #fdf3f2; }
+  .shop-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+  .shop-grid .is-wide { grid-column: 1 / -1; }
+
+  .shop-method {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    width: 100%;
+    padding: 8px 9px;
+    border: 1px solid #d3dbe4;
+    border-radius: 8px;
+    background: #fff;
+    color: #4b5563;
+    font: 500 10px/1.2 var(--ui);
+    text-align: left;
+    cursor: pointer;
+  }
+  .shop-method i { width: 9px; height: 9px; flex: none; border: 3px solid #c3cbd4; border-radius: 50%; }
+  .shop-method b { margin-left: auto; color: #23212b; font-weight: 700; }
+  .shop-method.is-active { border-color: #2a6ff6; background: #f4f8ff; }
+  .shop-method.is-active i { border-color: #2a6ff6; }
+
+  /* How would you like to pay: three ways, each with its own next screen. */
+  .shop-methods { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .shop-paymethod {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    padding: 8px 9px;
+    border: 1px solid #d3dbe4;
+    border-radius: 8px;
+    background: #fff;
+    text-align: left;
+    cursor: pointer;
+  }
+  .shop-paymethod b { color: #23212b; font-size: 10.5px; font-weight: 600; }
+  .shop-paymethod span { color: #79868f; font-size: 8.5px; line-height: 1.3; }
+  .shop-paymethod:hover { border-color: #9db6d6; }
+  .shop-paymethod.is-active { border-color: #2a6ff6; background: #f4f8ff; box-shadow: inset 0 0 0 1px #2a6ff6; }
+  .shop-paymethod.is-active b { color: #0a4f9c; }
+  .shop-pay {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 9px;
+    align-items: start;
+    padding: 9px;
+    border: 1px solid #e3e8ee;
+    border-radius: 9px;
+    background: #fff;
+  }
+  .shop-pay b { display: block; color: #23212b; font-size: 10.5px; }
+  .shop-pay span { display: block; margin-top: 2px; color: #5c6873; font-size: 9.5px; line-height: 1.45; }
+
+  .shop-paying { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 26px 14px; }
+  .shop-paying i {
+    width: 22px; height: 22px;
+    border: 2px solid #d8e1ea;
+    border-top-color: #0a63c4;
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+  }
+  .shop-paying b { font-size: 12px; }
+  .shop-paying span { color: #79868f; font-size: 9.5px; }
+
+  .shop-done { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 6px 0 0; text-align: center; }
+  .shop-tick {
+    width: 38px; height: 38px;
+    display: grid; place-items: center;
+    border-radius: 50%;
+    background: #e0f4ea;
+    color: #0e7a55;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .shop-done h2 { margin: 2px 0 0; font-size: 15px; }
+  .shop-done-sub { margin: 0; color: #5c6873; font-size: 10px; }
+  .shop-receipt { width: 100%; margin-top: 4px; display: flex; flex-direction: column; gap: 5px; padding: 9px 10px; border: 1px solid #e3e8ee; border-radius: 9px; background: #fff; text-align: left; }
+  .shop-receipt .row { display: flex; justify-content: space-between; gap: 8px; color: #5c6873; font-size: 10px; }
+  .shop-receipt .row b { color: #23212b; }
+  .shop-receipt .row.paid { padding-top: 6px; border-top: 1px solid #eef2f6; font-size: 11px; font-weight: 700; }
+
+  @container preview-stage (max-width: 420px) {
+    .shop-products { grid-template-columns: 1fr; }
+    .shop-methods { grid-template-columns: 1fr; }
+    .shop-field.is-wide { grid-column: auto; }
+    .shop-grid { grid-template-columns: 1fr; }
+    .shop-bar { flex-wrap: wrap; }
+    .shop-bar .pv-btn { margin-left: auto; }
+  }
+  .shop-empty { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 22px 14px; text-align: center; }
+  .shop-empty b { font-size: 12px; }
+  .shop-empty p { margin: 0; max-width: 220px; color: #5c6873; font-size: 10px; line-height: 1.5; }
+
+  .preview-stage.is-markdown h1 { margin: 0 0 6px; font-size: 17px; color: #23212b; }
+  .preview-stage.is-markdown h2 { margin: 14px 0 5px; font-size: 12px; color: #23212b; }
+  .preview-stage.is-markdown p { margin: 0 0 7px; color: #5c6873; font-size: 10.5px; line-height: 1.6; }
+  .preview-stage.is-markdown ul { margin: 0 0 8px; padding-left: 16px; color: #5c6873; font-size: 10.5px; line-height: 1.6; }
+  .preview-stage.is-markdown code {
+    padding: 1px 4px;
+    border-radius: 3px;
+    background: #f1f5f9;
+    color: #b03562;
+    font-family: var(--mono);
+    font-size: 9.5px;
+  }
+  .preview-stage.is-markdown pre {
+    margin: 0 0 8px;
+    padding: 8px 10px;
+    border-radius: 5px;
+    background: #1f2429;
+    color: #d6e2ea;
+    font-family: var(--mono);
+    font-size: 9px;
+    line-height: 1.6;
+    overflow-x: auto;
+  }
+
+  /* ── Status bar ──────────────────────────────────────────────────────── */
+  .statusbar {
+    flex: none;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 10px;
+    background: #007acc;
+    color: #ffffff;
+    font-size: 9.5px;
+    user-select: none;
+  }
+  .statusbar .spacer { flex: 1; }
+  .statusbar .item { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+  .statusbar svg { width: 10px; height: 10px; }
+
+  @media (max-width: 660px) {
+    .sidebar { width: 148px; }
+    .menus span:nth-child(n+4) { display: none; }
+    .title-center { text-align: right; }
+  }
+  /* The dock popup is often narrower than the editor wants to be. Rather than
+     hiding half the workspace, the panes stack: code on top, the running app
+     under it, both scrollable. The switch still isolates either one. */
+  @media (max-width: 720px) {
+    .pane-switch { display: inline-flex; }
+  }
+  @media (max-width: 620px) {
+    .activitybar, .sidebar { display: none; }
+    .pane-switch { display: inline-flex; }
+    .split { flex-direction: column; overflow-y: auto; }
+    .split > .editor-pane, .split > .preview-pane { flex: 0 0 auto; }
+    .split > .editor-pane { max-height: 46%; }
+    .split > .preview-pane { min-height: 240px; }
+    .split[data-pane="code"] .preview-pane { display: none; }
+    .split[data-pane="preview"] .editor-pane { display: none; }
+    .split[data-pane="preview"] > .preview-pane { flex: 1 1 auto; min-height: 0; }
+    .split[data-pane="code"] > .editor-pane { flex: 1 1 auto; max-height: none; }
+    .menus { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .preview-loading i, .tree-row .caret { animation: none; transition: none; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="titlebar">
+    <div class="menus" aria-hidden="true"><span>File</span><span>Edit</span><span>Selection</span><span>View</span><span>Go</span><span>Run</span><span>Terminal</span></div>
+    <div class="title-center"><b>lulas-workspace</b> — Visual Studio Code</div>
+    <div class="window-controls" aria-hidden="true"><span>—</span><span>▢</span><span>✕</span></div>
+  </header>
+
+  <div class="workbench">
+    <nav class="activitybar" aria-label="Activity bar">
+      <button class="activity-btn" type="button" aria-label="Explorer" aria-current="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 4h6l2 2h8v14H4V4Z"/><path d="M4 10h16"/></svg>
+      </button>
+      <button class="activity-btn" type="button" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4 4"/></svg>
+      </button>
+      <button class="activity-btn" type="button" aria-label="Source control">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="6.5" cy="5.5" r="2.5"/><circle cx="6.5" cy="18.5" r="2.5"/><circle cx="17.5" cy="9" r="2.5"/><path d="M6.5 8v8M9 8.5c1.6 0 2.6.6 3.4 1.6.9 1.1 1.9 1.4 3.1 1.4"/></svg>
+      </button>
+      <button class="activity-btn" type="button" aria-label="Extensions">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/></svg>
+      </button>
+      <span class="activity-spacer"></span>
+      <button class="activity-btn" type="button" aria-label="Accounts">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="9" r="3.4"/><path d="M5.5 20c.8-3.4 3.4-5 6.5-5s5.7 1.6 6.5 5"/></svg>
+      </button>
+    </nav>
+
+    <aside class="sidebar" aria-label="Explorer">
+      <div class="sidebar-head"><span>Explorer</span><span aria-hidden="true">⋯</span></div>
+      <div class="explorer" id="explorer"></div>
+    </aside>
+
+    <main class="editor-area">
+      <div class="tabs" id="tabs" role="tablist" aria-label="Open editors"></div>
+
+      <div class="breadcrumbs">
+        <span id="breadcrumb-path">apps</span>
+        <div class="pane-switch" role="group" aria-label="Pane">
+          <button type="button" data-pane="code" aria-pressed="false">Code only</button>
+          <button type="button" data-pane="preview" aria-pressed="false">App only</button>
+          <button type="button" data-pane="both" aria-pressed="true">Both</button>
+        </div>
+      </div>
+
+      <div class="split" id="split" data-pane="both">
+        <section class="editor-pane" aria-label="Source code">
+          <div class="editor-scroll">
+            <div class="lines">
+              <div class="gutter" id="gutter" aria-hidden="true"></div>
+              <pre class="source" id="source" tabindex="0" aria-label="File source"></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="preview-pane" aria-label="Result preview">
+          <div class="preview-head">
+            <strong>Preview</strong>
+            <span class="url" id="preview-url">localhost:5173</span>
+            <button class="icon-btn" type="button" id="refresh-preview" aria-label="Refresh preview" title="Refresh preview">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 8a5 5 0 1 1-1.6-3.7M13 2.6V6H9.6"/></svg>
+            </button>
+            <button class="icon-btn" type="button" id="device-preview" aria-label="Toggle mobile preview" aria-pressed="false" title="Mobile width">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4.6" y="1.6" width="6.8" height="12.8" rx="1.6"/><path d="M7 12.4h2"/></svg>
+            </button>
+          </div>
+          <div class="preview-body" id="preview-body">
+            <div class="preview-stage" id="preview-stage" aria-live="polite"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <footer class="statusbar">
+    <span class="item">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="4" cy="3.5" r="1.6"/><circle cx="4" cy="12.5" r="1.6"/><circle cx="12" cy="5.5" r="1.6"/><path d="M4 5v6M6 5.5c2 0 3.4.5 4.4 1.5"/></svg>
+      main
+    </span>
+    <span class="item" aria-hidden="true">↻ 0↓ 0↑</span>
+    <span class="item">✓ 0 &nbsp; ⚠ 0</span>
+    <span class="spacer"></span>
+    <span class="item" id="status-position">Ln 1, Col 1</span>
+    <span class="item">Spaces: 2</span>
+    <span class="item">UTF-8</span>
+    <span class="item" id="status-language">TypeScript React</span>
+    <span class="item">Prettier</span>
+  </footer>
+</div>
+
+<!-- ── Workspace source, read as plain text by the editor ─────────────────── -->
+<script type="text/plain" id="code-App.tsx">
+// App.tsx — shop, cart, delivery, payment, receipt. The steps live here so
+// going back never loses a line item or an address someone already typed.
+import { useState } from "react";
+import { Home } from "./pages/Home";
+import { Cart } from "./pages/Cart";
+import { Checkout } from "./pages/Checkout";
+import { Payment } from "./pages/Payment";
+import { OrderCard } from "./components/OrderCard";
+import type { Line } from "./pages/Cart";
+import type { Order } from "./api/orders";
+
+type Screen = "home" | "cart" | "checkout" | "payment" | "confirmation";
+
+export default function App() {
+  const [screen, setScreen] = useState<Screen>("home");
+  const [lines, setLines] = useState<Line[]>([]);
+  const [amount, setAmount] = useState(0);
+  const [order, setOrder] = useState<Order | null>(null);
+
+  function onCheckout(next: Line[], total: number) {
+    setLines(next);
+    setAmount(total);
+    setScreen("checkout");
+  }
+
+  // The receipt only exists once there is a paid order to show.
+  function onPaid(paid: Order) {
+    setOrder(paid);
+    setScreen("confirmation");
+  }
+
+  if (screen === "confirmation" && order) {
+    return (
+      <main className="app">
+        <h1>You're all set</h1>
+        <OrderCard order={order} />
+      </main>
+    );
+  }
+
+  if (screen === "payment") {
+    return (
+      <Payment
+        amount={amount}
+        lines={lines.map(({ sku, qty }) => ({ sku, qty }))}
+        onPaid={onPaid}
+        onBack={() => setScreen("checkout")}
+      />
+    );
+  }
+
+  if (screen === "checkout") {
+    return <Checkout onContinue={() => setScreen("payment")} onBack={() => setScreen("cart")} />;
+  }
+
+  if (screen === "cart") {
+    return <Cart onCheckout={onCheckout} onBack={() => setScreen("home")} />;
+  }
+
+  return <Home onCart={() => setScreen("cart")} />;
+}
+</script>
+
+<script type="text/plain" id="code-Checkout.tsx">
+// Checkout.tsx — step 2 of 3. Delivery details only: the card step owns the
+// money, so this page never has to know how a payment works.
+import { useState } from "react";
+import { Button } from "../components/Button";
+
+type Method = "standard" | "express";
+
+export function Checkout({ onContinue, onBack }: { onContinue: () => void; onBack: () => void }) {
+  const [method, setMethod] = useState<Method>("standard");
+
+  return (
+    <main className="checkout">
+      <section className="checkout__form" aria-label="Delivery details">
+        <h1>Delivery details</h1>
+
+        {/* Address fields live in AddressForm; this page only owns the choice
+            of courier and the hand-off to payment. */}
+        <label>
+          <input type="radio" name="method" checked={method === "standard"} onChange={() => setMethod("standard")} />
+          Standard · 2–4 working days
+        </label>
+
+        <label>
+          <input type="radio" name="method" checked={method === "express"} onChange={() => setMethod("express")} />
+          Express · next working day
+        </label>
+
+        <Button size="sm" variant="ghost" onClick={onBack}>
+          Back to cart
+        </Button>
+        <Button size="md" onClick={onContinue}>
+          Continue to payment
+        </Button>
+      </section>
+    </main>
+  );
+}
+</script>
+
+<script type="text/plain" id="code-Home.tsx">
+// Home.tsx — the shelf. One list renders four products, and adding one is the
+// only thing this page does before handing over to the cart.
+import { useState } from "react";
+import { Button } from "../components/Button";
+import { formatZar } from "../lib/format";
+import { PRODUCTS, type Product } from "../lib/products";
+
+export function Home({ onCart }: { onCart: (lines: Record<string, number>) => void }) {
+  const [qty, setQty] = useState<Record<string, number>>({});
+
+  const lines = Object.entries(qty).filter(([, count]) => count > 0);
+  const count = lines.reduce((total, [, n]) => total + n, 0);
+
+  function add(product: Product) {
+    setQty(current => ({ ...current, [product.sku]: Math.min(9, (current[product.sku] || 0) + 1) }));
+  }
+
+  function step(product: Product, delta: number) {
+    setQty(current => ({ ...current, [product.sku]: Math.max(0, (current[product.sku] || 0) + delta) }));
+  }
+
+  return (
+    <main className="home">
+      <h1>Shop</h1>
+
+      <ul className="home__shelf">
+        {PRODUCTS.map(product => {
+          const inCart = qty[product.sku] || 0;
+          return (
+            <li key={product.sku} className={inCart ? "is-in-cart" : undefined}>
+              <div>
+                <h2>{product.name}</h2>
+                <p>{product.meta}</p>
+              </div>
+
+              <div className="home__buy">
+                <b>{formatZar(product.price)}</b>
+                {inCart ? (
+                  <>
+                    <Button size="sm" variant="ghost" onClick={() => step(product, -1)} aria-label={`One less ${product.name}`}>−</Button>
+                    <output aria-label={`In cart: ${inCart}`}>{inCart}</output>
+                    <Button size="sm" variant="ghost" onClick={() => step(product, 1)} aria-label={`One more ${product.name}`}>+</Button>
+                  </>
+                ) : (
+                  <Button size="sm" variant="secondary" onClick={() => add(product)}>Add</Button>
+                )}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+
+      <footer className="home__bar">
+        <span>{count ? `${count} item${count === 1 ? "" : "s"}` : "Nothing in the cart yet"}</span>
+        <Button size="sm" disabled={!count} onClick={() => onCart(Object.fromEntries(lines))}>
+          View cart
+        </Button>
+      </footer>
+    </main>
+  );
+}
+</script>
+
+<script type="text/plain" id="code-Cart.tsx">
+// Cart.tsx — step 1 of 3. Quantity, the running total and the free-delivery
+// gap live together here, so the summary can never disagree with the lines.
+import { useState } from "react";
+import { Button } from "../components/Button";
+import { formatZar } from "../lib/format";
+
+export type Line = { sku: string; name: string; price: number; qty: number };
+
+const START: Line[] = [
+  { sku: "SIM-PRE-10", name: "Prepaid SIM · 10GB", price: 99900, qty: 1 },
+  { sku: "CASE-SIL-01", name: "Silicone case", price: 25000, qty: 1 },
+];
+
+const FREE_OVER = 150000;
+const COURIER = 9900;
+
+export function Cart({ onCheckout, onBack }: { onCheckout: (lines: Line[]) => void; onBack: () => void }) {
+  const [lines, setLines] = useState(START);
+
+  const subtotal = lines.reduce((sum, line) => sum + line.price * line.qty, 0);
+  const shortfall = Math.max(0, FREE_OVER - subtotal);
+  const delivery = subtotal > 0 && shortfall > 0 ? COURIER : 0;
+
+  function setQty(sku: string, qty: number) {
+    // Zero removes the line, so the stepper is also the delete control.
+    setLines(current =>
+      current
+        .map(line => (line.sku === sku ? { ...line, qty } : line))
+        .filter(line => line.qty > 0)
+    );
+  }
+
+  return (
+    <main className="cart">
+      <h1>Your cart</h1>
+      <ul>
+        {lines.map(line => (
+          <li key={line.sku}>
+            <span>{line.name}</span>
+            <span>{formatZar(line.price)}</span>
+            <button type="button" aria-label={`One less ${line.name}`} onClick={() => setQty(line.sku, line.qty - 1)}>
+              −
+            </button>
+            <output aria-label={`Quantity: ${line.qty}`}>{line.qty}</output>
+            <button type="button" aria-label={`One more ${line.name}`} onClick={() => setQty(line.sku, line.qty + 1)}>
+              +
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      {lines.length === 0 ? (
+        <p>Your cart is empty. Add a plan to carry on.</p>
+      ) : (
+        <aside className="cart__summary" aria-label="Order summary">
+          <p><span>Subtotal</span><b>{formatZar(subtotal)}</b></p>
+          <p><span>Delivery</span><b>{delivery ? formatZar(delivery) : "Free"}</b></p>
+          <p className="total"><span>Total</span><b>{formatZar(subtotal + delivery)}</b></p>
+          {shortfall > 0 && <p>Add {formatZar(shortfall)} for free delivery.</p>}
+          <Button size="sm" variant="ghost" onClick={onBack}>
+            Keep shopping
+          </Button>
+
+          <Button size="md" onClick={() => onCheckout(lines)}>
+            Continue to delivery
+          </Button>
+        </aside>
+      )}
+    </main>
+  );
+}
+</script>
+
+<script type="text/plain" id="code-Payment.tsx">
+// Payment.tsx — step 3 of 3. The card is authorised before the order is
+// created, so a declined card never leaves an unpaid order behind.
+import { useState } from "react";
+import { Button } from "../components/Button";
+import { createOrder } from "../api/orders";
+import { formatZar } from "../lib/format";
+import type { Order } from "../api/orders";
+
+type Props = {
+  amount: number;
+  lines: { sku: string; qty: number }[];
+  onPaid: (order: Order) => void;
+  onBack: () => void;
+};
+
+type Method = "card" | "eft" | "transfer";
+
+export function Payment({ amount, lines, onPaid, onBack }: Props) {
+  const [method, setMethod] = useState<Method>("card");
+  const [isPaying, setIsPaying] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function pay() {
+    setIsPaying(true);
+    setError(null);
+
+    try {
+      onPaid(await createOrder({ items: lines, method }));
+    } catch {
+      // A decline is the customer's to retry, so the button comes back on.
+      setError("That card was declined. Try another card.");
+    } finally {
+      setIsPaying(false);
+    }
+  }
+
+  return (
+    <section className="payment" aria-label="Card details">
+      <h1>Payment</h1>
+      {/* Three ways in, and the page owns only the state machine. The card
+          fields live in CardForm, the bank hop lives in EftRedirect, and the
+          transfer screen just needs the reference the order was created with. */}
+      <fieldset className="payment__methods">
+        <legend>How would you like to pay</legend>
+
+        <label>
+          <input type="radio" name="method" checked={method === "card"} onChange={() => setMethod("card")} />
+          Card
+        </label>
+
+        <label>
+          <input type="radio" name="method" checked={method === "eft"} onChange={() => setMethod("eft")} />
+          Instant EFT
+        </label>
+
+        <label>
+          <input type="radio" name="method" checked={method === "transfer"} onChange={() => setMethod("transfer")} />
+          Bank transfer
+        </label>
+      </fieldset>
+
+      {method === "card" && (
+        <p className="payment__note">Test card 4242 4242 4242 4242. Nothing is charged.</p>
+      )}
+
+      {method === "transfer" && <TransferDetails amount={amount} reference="LUL-88320" />}
+
+      {error && <p role="alert">{error}</p>}
+
+      <Button size="sm" variant="ghost" onClick={onBack}>
+        Back
+      </Button>
+
+      <Button size="md" isLoading={isPaying} onClick={pay}>
+        {method === "card" ? "Pay" : "Continue"} {formatZar(amount)}
+      </Button>
+    </section>
+  );
+}
+</script>
+
+<script type="text/plain" id="code-OrderCard.tsx">
+// OrderCard.tsx — one order in the list and on the receipt. The action
+// changes with the status, so the card never offers something impossible.
+import { StatusBadge } from "@lulas/ui";
+import { formatZar } from "../lib/format";
+import { Button } from "./Button";
+import type { Order } from "../api/orders";
+
+const ACTION: Record<Order["status"], string> = {
+  processing: "Cancel order",
+  shipped: "Track order",
+  delivered: "Reorder",
+  cancelled: "Reorder",
+};
+
+export function OrderCard({ order }: { order: Order }) {
+  // The API returns cents; formatting happens once, at the edge.
+  const total = order.items.reduce(
+    (sum, item) => sum + item.price * item.qty,
+    0,
+  );
+
+  return (
+    <article className="order-card" aria-labelledby={`order-${order.id}`}>
+      <header>
+        <div>
+          <span className="order-card__id">Order {order.id}</span>
+          <h3 id={`order-${order.id}`}>{order.customer.name}</h3>
+        </div>
+        <StatusBadge status={order.status} />
+      </header>
+
+      <ul>
+        {order.items.map((item) => (
+          <li key={item.sku}>
+            <span>{item.name}</span>
+            <span>{formatZar(item.price)}</span>
+          </li>
+        ))}
+      </ul>
+
+      <footer>
+        <span>{order.note}</span>
+        <strong>{formatZar(total)}</strong>
+      </footer>
+
+      <Button size="sm">{ACTION[order.status]}</Button>
+    </article>
+  );
+}
+</script>
+
+<script type="text/plain" id="code-OrderList.tsx">
+// OrderList.tsx — the list has four states and I design all of them: loading,
+// empty, failed and populated. A spinner alone tells nobody anything.
+import { useEffect, useState } from "react";
+import { OrderCard } from "./OrderCard";
+import { EmptyState } from "@lulas/ui";
+import { getOrders, type Order } from "../api/orders";
+
+type Status = "loading" | "ready" | "empty" | "failed";
+
+export function OrderList() {
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [status, setStatus] = useState<Status>("loading");
+
+  useEffect(() => {
+    let cancelled = false;
+
+    getOrders()
+      .then((data) => {
+        if (cancelled) return; // the tab was closed mid-request
+        setOrders(data);
+        setStatus(data.length ? "ready" : "empty");
+      })
+      .catch(() => !cancelled && setStatus("failed"));
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (status === "loading") return <OrderListSkeleton rows={3} />;
+
+  if (status === "empty") {
+    return (
+      <EmptyState
+        title="No orders yet"
+        description="Orders you place will show up here with delivery updates."
+        action="Browse plans"
+      />
+    );
+  }
+
+  if (status === "failed") {
+    return (
+      <EmptyState
+        title="We couldn't load your orders"
+        description="The connection dropped. Your orders are safe."
+        action="Try again"
+      />
+    );
+  }
+
+  return (
+    <ul className="order-list">
+      {orders.map((order) => (
+        <li key={order.id}><OrderCard order={order} /></li>
+      ))}
+    </ul>
+  );
+}
+</script>
+
+<script type="text/plain" id="code-Button.tsx">
+// Button.tsx — one component for every button in the app. The busy state
+// keeps the label visible so the name never disappears from a screen reader.
+import { forwardRef } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+
+const button = cva("btn", {
+  variants: {
+    variant: {
+      primary: "btn--primary",
+      secondary: "btn--secondary",
+      ghost: "btn--ghost",
+      danger: "btn--danger",
+    },
+    size: { sm: "btn--sm", md: "btn--md", lg: "btn--lg" },
+  },
+  defaultVariants: { variant: "primary", size: "md" },
+});
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof button> {
+  isLoading?: boolean;
+}
+
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ variant, size, isLoading, children, ...props }, ref) => (
+    <button
+      ref={ref}
+      className={button({ variant, size })}
+      aria-busy={isLoading || undefined}
+      {...props}
+    >
+      {isLoading ? <Spinner aria-hidden /> : children}
+    </button>
+  ),
+);
+
+Button.displayName = "Button";
+</script>
+
+<script type="text/plain" id="code-orders.ts">
+// orders.ts — the only file that talks to the API. Screens get typed data
+// and one predictable error, nothing else.
+import type { Order, NewOrder } from "../types";
+
+const BASE = import.meta.env.VITE_API_URL;
+
+export async function getOrders(): Promise<Order[]> {
+  const response = await fetch(`${BASE}/v1/orders`, {
+    headers: { Accept: "application/json" },
+  });
+
+  if (!response.ok) throw new Error(`Orders failed: ${response.status}`);
+
+  const { data } = await response.json();
+  return data;
+}
+
+export async function getOrder(id: string): Promise<Order> {
+  const response = await fetch(`${BASE}/v1/orders/${id}`, {
+    headers: { Accept: "application/json" },
+  });
+
+  // A 404 is an answer, not a crash: the screen has a state for it.
+  if (!response.ok) throw new Error(`Order ${id}: ${response.status}`);
+
+  return response.json();
+}
+
+export async function createOrder(input: NewOrder): Promise<Order> {
+  const response = await fetch(`${BASE}/v1/orders`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      // Same key on a retry, so a double tap cannot create two orders.
+      "Idempotency-Key": crypto.randomUUID(),
+    },
+    body: JSON.stringify(input),
+  });
+
+  if (!response.ok) throw new Error(`Checkout failed: ${response.status}`);
+
+  return response.json();
+}
+</script>
+
+<script type="text/plain" id="code-format.ts">
+// format.ts — money and dates are formatted in one place, so the card, the
+// summary and the receipt can never disagree.
+
+export function formatZar(cents: number): string {
+  return new Intl.NumberFormat("en-ZA", {
+    style: "currency",
+    currency: "ZAR",
+  }).format(cents / 100);
+}
+
+export function formatDate(iso: string): string {
+  return new Intl.DateTimeFormat("en-ZA", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  }).format(new Date(iso));
+}
+</script>
+
+<script type="text/plain" id="code-checkout.css">
+/* checkout.css — layout for the checkout page. Tokens do the theming, so
+   there is no colour in this file. */
+
+.checkout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--lulas-space-3);
+  padding: var(--lulas-space-3);
+}
+
+/* The summary moves under the form on small screens instead of squeezing. */
+@media (min-width: 640px) {
+  .checkout {
+    grid-template-columns: minmax(0, 1.4fr) minmax(260px, 1fr);
+  }
+
+  .checkout__summary {
+    position: sticky;
+    top: var(--lulas-space-3);
+    align-self: start;
+  }
+}
+
+.checkout__summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lulas-space-2);
+  padding: var(--lulas-space-3);
+  border: 1px solid var(--lulas-line);
+  border-radius: var(--lulas-radius-md);
+  background: #fff;
+}
+
+.checkout__summary .total {
+  padding-top: var(--lulas-space-2);
+  border-top: 1px solid var(--lulas-line);
+  font-weight: 700;
+}
+
+/* Focus stays visible on every field: the keyboard path is the main path. */
+.checkout :focus-visible {
+  outline: 2px solid var(--lulas-blue-600);
+  outline-offset: 2px;
+}
+</script>
+
+<script type="text/plain" id="code-EmptyState.tsx">
+// EmptyState.tsx — shared by the orders list and search. One next step, in
+// plain words, instead of "No data".
+import type { ReactNode } from "react";
+
+interface EmptyStateProps {
+  title: string;
+  description: string;
+  action?: ReactNode;
+}
+
+export function EmptyState({ title, description, action }: EmptyStateProps) {
+  return (
+    <section className="empty-state" aria-labelledby="empty-title">
+      {/* Decorative: the heading carries the meaning. */}
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M24 6 41 15v18L24 42 7 33V15L24 6Z" />
+        <path d="m7 15 17 9 17-9M24 24v18" />
+      </svg>
+      <h3 id="empty-title">{title}</h3>
+      <p>{description}</p>
+      {action}
+    </section>
+  );
+}
+</script>
+
+<script type="text/plain" id="code-StatusBadge.tsx">
+// StatusBadge.tsx — status is written, colour only reinforces it. Anyone who
+// cannot tell blue from green still knows where the order is.
+import type { OrderStatus } from "../types";
+
+const LABEL: Record<OrderStatus, string> = {
+  processing: "Processing",
+  shipped: "Shipped",
+  delivered: "Delivered",
+  cancelled: "Cancelled",
+};
+
+export function StatusBadge({ status }: { status: OrderStatus }) {
+  return (
+    <span className={`status-badge status-badge--${status}`}>
+      <span className="status-badge__dot" aria-hidden="true" />
+      {LABEL[status]}
+    </span>
+  );
+}
+</script>
+
+<script type="text/plain" id="code-Button.stories.tsx">
+// Button.stories.tsx — the states I check before calling a button done.
+// If a state is not here, it is not designed yet.
+import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from "./Button";
+
+const meta = {
+  title: "Components/Button",
+  component: Button,
+  args: { children: "Continue", variant: "primary", size: "md" },
+} satisfies Meta<typeof Button>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Primary: Story = {};
+
+export const Secondary: Story = { args: { variant: "secondary" } };
+
+// A second tap must do nothing while the request is open.
+export const Loading: Story = { args: { isLoading: true } };
+
+export const Disabled: Story = { args: { disabled: true } };
+
+export const Danger: Story = {
+  args: { variant: "danger", children: "Cancel order" },
+};
+</script>
+
+<script type="text/plain" id="code-tokens.css">
+/* tokens.css — generated from tokens.json. Do not edit by hand: change the
+   JSON, run `pnpm tokens`, and this file is written again. */
+:root {
+  /* Colour */
+  --lulas-blue-600: #0a63c4;
+  --lulas-blue-050: #e4effc;
+  --lulas-ink: #23212b;
+  --lulas-paper: #f6f8fb;
+  --lulas-green: #0e7a55;
+  --lulas-danger: #b3261e;
+  --lulas-line: #e3e8ee;
+
+  /* Type */
+  --lulas-font: "Satoshi", system-ui, sans-serif;
+  --lulas-text-xs: 0.6875rem;
+  --lulas-text-sm: 0.8125rem;
+  --lulas-text-lg: 1rem;
+
+  /* Space and shape */
+  --lulas-space-1: 4px;
+  --lulas-space-2: 8px;
+  --lulas-space-3: 12px;
+  --lulas-radius-sm: 6px;
+  --lulas-radius-md: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --lulas-paper: #17161d;
+    --lulas-ink: #f1f0f5;
+    --lulas-line: #302d3a;
+  }
+}
+</script>
+
+<script type="text/plain" id="code-tokens.json">
+{
+  "$comment": "The single source of truth. tokens.css and tokens.ts are built from this file.",
+  "color": {
+    "blue": { "600": "#0a63c4", "050": "#e4effc" },
+    "ink": "#23212b",
+    "paper": "#f6f8fb",
+    "green": "#0e7a55",
+    "danger": "#b3261e",
+    "line": "#e3e8ee"
+  },
+  "space": { "1": "4px", "2": "8px", "3": "12px" },
+  "radius": { "sm": "6px", "md": "12px" },
+  "text": { "xs": "0.6875rem", "sm": "0.8125rem", "lg": "1rem" }
+}
+</script>
+
+<script type="text/plain" id="code-README.md">
+# Lulas workspace
+
+A pnpm monorepo for the Lulas customer products. I keep the app, the shared
+components, the tokens and the docs here so a change lands everywhere at once.
+
+## Packages
+
+- `apps/web` — checkout and account screens (React + Vite).
+- `apps/docs` — the docs site that publishes the component library.
+- `packages/ui` — Button, StatusBadge, EmptyState.
+- `packages/tokens` — `tokens.json`, plus the CSS, TS and Tailwind outputs.
+
+## Running it
+
+```sh
+pnpm install
+pnpm dev --filter web
+```
+
+Components are previewed in Storybook (`pnpm storybook`), and the tokens are
+generated from one JSON file, so the app and the docs cannot drift apart.
+</script>
+
+<script type="text/plain" id="code-package.json">
+{
+  "name": "lulas-workspace",
+  "private": true,
+  "packageManager": "pnpm@9.12.0",
+  "scripts": {
+    "dev": "pnpm --parallel dev",
+    "build": "pnpm -r build",
+    "storybook": "pnpm --filter @lulas/ui storybook",
+    "tokens": "pnpm --filter @lulas/tokens build",
+    "test": "pnpm -r test"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.2",
+    "prettier": "^3.3.3",
+    "vitest": "^2.1.1"
+  }
+}
+</script>
+
+<script type="text/plain" id="code-pnpm-workspace.yaml">
+packages:
+  - "apps/*"
+  - "packages/*"
+</script>
+
+<script type="text/plain" id="code-ci.yml">
+# ci.yml — runs on every pull request. If it fails, the pull request cannot
+# merge, which is the only reason the board and the repo agree.
+name: ci
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Tokens, lint and types
+        run: pnpm tokens && pnpm lint && pnpm typecheck
+
+      - name: Tests and visual snapshots
+        run: pnpm test && pnpm test:visual
+
+      - name: Build
+        run: pnpm build
+</script>
+
+<script>
+(function () {
+  "use strict";
+
+  const $ = selector => document.querySelector(selector);
+  const code = id => {
+    const node = document.getElementById(`code-${id}`);
+    return node ? node.textContent.replace(/^\n/, "").replace(/\s+$/, "") : "";
+  };
+
+  const FILES = {
+    "apps/web/src/App.tsx": {
+      icon: "tsx",
+      lang: "TypeScript React",
+      url: "localhost:5173",
+      preview: "shop"
+    },
+    "apps/web/src/pages/Home.tsx": {
+      icon: "tsx",
+      lang: "TypeScript React",
+      url: "localhost:5173",
+      preview: "home"
+    },
+    "apps/web/src/pages/Cart.tsx": {
+      icon: "tsx",
+      lang: "TypeScript React",
+      url: "localhost:5173/cart",
+      preview: "cart"
+    },
+    "apps/web/src/pages/Checkout.tsx": {
+      icon: "tsx",
+      lang: "TypeScript React",
+      url: "localhost:5173/checkout",
+      preview: "delivery"
+    },
+    "apps/web/src/pages/Payment.tsx": {
+      icon: "tsx",
+      lang: "TypeScript React",
+      url: "localhost:5173/payment",
+      preview: "payment"
+    },
+    "apps/web/src/components/OrderCard.tsx": {
+      icon: "tsx",
+      lang: "TypeScript React",
+      url: "localhost:5173/orders/ORD-88213",
+      preview: "order"
+    },
+    "apps/web/src/components/OrderList.tsx": {
+      icon: "tsx",
+      lang: "TypeScript React",
+      url: "localhost:5173/orders",
+      preview: "orderlist"
+    },
+    "apps/web/src/components/Button.tsx": {
+      icon: "tsx",
+      lang: "TypeScript React",
+      url: "localhost:5173/button",
+      preview: "buttons"
+    },
+    "apps/web/src/api/orders.ts": {
+      icon: "ts",
+      lang: "TypeScript",
+      url: "",
+      preview: "none"
+    },
+    "apps/web/src/lib/format.ts": {
+      icon: "ts",
+      lang: "TypeScript",
+      url: "",
+      preview: "none"
+    },
+    "apps/web/src/styles/checkout.css": {
+      icon: "css",
+      lang: "CSS",
+      url: "localhost:5173/checkout",
+      preview: "cart"
+    },
+    "packages/ui/src/EmptyState.tsx": {
+      icon: "tsx",
+      lang: "TypeScript React",
+      url: "localhost:5173/empty",
+      preview: "empty"
+    },
+    "packages/ui/src/StatusBadge.tsx": {
+      icon: "tsx",
+      lang: "TypeScript React",
+      url: "localhost:5173/status",
+      preview: "badges"
+    },
+    "packages/ui/src/Button.stories.tsx": {
+      icon: "tsx",
+      lang: "TypeScript React",
+      url: "localhost:6006/?path=/story/components-button",
+      preview: "buttons"
+    },
+    "packages/tokens/tokens.css": {
+      icon: "css",
+      lang: "CSS",
+      url: "localhost:5173/tokens",
+      preview: "tokens"
+    },
+    "packages/tokens/tokens.json": {
+      icon: "json",
+      lang: "JSON",
+      url: "localhost:5173/tokens",
+      preview: "tokens"
+    },
+    "apps/docs/README.md": {
+      icon: "md",
+      lang: "Markdown",
+      url: "localhost:5174/",
+      preview: "readme"
+    },
+    "package.json": { icon: "json", lang: "JSON", url: "", preview: "none" },
+    "pnpm-workspace.yaml": { icon: "yaml", lang: "YAML", url: "", preview: "none" },
+    ".github/workflows/ci.yml": { icon: "yaml", lang: "YAML", url: "github.com/lulas/ci", preview: "ci" }
+  };
+
+  const TREE = [
+    {
+      name: "apps", type: "dir", path: "apps", children: [
+        {
+          name: "web", type: "dir", path: "apps/web", children: [
+            {
+              name: "src", type: "dir", path: "apps/web/src", children: [
+                { name: "App.tsx", type: "file", path: "apps/web/src/App.tsx" },
+                {
+                  name: "pages", type: "dir", path: "apps/web/src/pages", children: [
+                    { name: "Home.tsx", type: "file", path: "apps/web/src/pages/Home.tsx" },
+                    { name: "Cart.tsx", type: "file", path: "apps/web/src/pages/Cart.tsx" },
+                    { name: "Checkout.tsx", type: "file", path: "apps/web/src/pages/Checkout.tsx" },
+                    { name: "Payment.tsx", type: "file", path: "apps/web/src/pages/Payment.tsx" }
+                  ]
+                },
+                {
+                  name: "components", type: "dir", path: "apps/web/src/components", children: [
+                    { name: "OrderCard.tsx", type: "file", path: "apps/web/src/components/OrderCard.tsx" },
+                    { name: "OrderList.tsx", type: "file", path: "apps/web/src/components/OrderList.tsx" },
+                    { name: "Button.tsx", type: "file", path: "apps/web/src/components/Button.tsx" }
+                  ]
+                },
+                {
+                  name: "api", type: "dir", path: "apps/web/src/api", children: [
+                    { name: "orders.ts", type: "file", path: "apps/web/src/api/orders.ts" }
+                  ]
+                },
+                {
+                  name: "lib", type: "dir", path: "apps/web/src/lib", children: [
+                    { name: "format.ts", type: "file", path: "apps/web/src/lib/format.ts" }
+                  ]
+                },
+                {
+                  name: "styles", type: "dir", path: "apps/web/src/styles", children: [
+                    { name: "checkout.css", type: "file", path: "apps/web/src/styles/checkout.css" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name: "docs", type: "dir", path: "apps/docs", children: [
+            { name: "README.md", type: "file", path: "apps/docs/README.md" }
+          ]
+        }
+      ]
+    },
+    {
+      name: "packages", type: "dir", path: "packages", children: [
+        {
+          name: "ui", type: "dir", path: "packages/ui", children: [
+            {
+              name: "src", type: "dir", path: "packages/ui/src", children: [
+                { name: "EmptyState.tsx", type: "file", path: "packages/ui/src/EmptyState.tsx" },
+                { name: "StatusBadge.tsx", type: "file", path: "packages/ui/src/StatusBadge.tsx" },
+                { name: "Button.stories.tsx", type: "file", path: "packages/ui/src/Button.stories.tsx" }
+              ]
+            }
+          ]
+        },
+        {
+          name: "tokens", type: "dir", path: "packages/tokens", children: [
+            { name: "tokens.css", type: "file", path: "packages/tokens/tokens.css" },
+            { name: "tokens.json", type: "file", path: "packages/tokens/tokens.json" }
+          ]
+        }
+      ]
+    },
+    {
+      name: ".github", type: "dir", path: ".github", children: [
+        {
+          name: "workflows", type: "dir", path: ".github/workflows", children: [
+            { name: "ci.yml", type: "file", path: ".github/workflows/ci.yml" }
+          ]
+        }
+      ]
+    },
+    { name: "package.json", type: "file", path: "package.json" },
+    { name: "pnpm-workspace.yaml", type: "file", path: "pnpm-workspace.yaml" }
+  ];
+
+  const state = {
+    /* Opens on the first step of the flow, with the other two beside it, so
+       the cart, the delivery screen and the card screen are one click apart. */
+    active: "apps/web/src/pages/Home.tsx",
+    open: [
+      "apps/web/src/pages/Home.tsx",
+      "apps/web/src/pages/Cart.tsx",
+      "apps/web/src/pages/Checkout.tsx",
+      "apps/web/src/pages/Payment.tsx"
+    ],
+    collapsed: new Set(),
+    mobilePreview: false,
+    pane: "both"
+  };
+
+  const el = {
+    explorer: $("#explorer"),
+    tabs: $("#tabs"),
+    gutter: $("#gutter"),
+    source: $("#source"),
+    breadcrumb: $("#breadcrumb-path"),
+    stage: $("#preview-stage"),
+    previewBody: $("#preview-body"),
+    previewUrl: $("#preview-url"),
+    language: $("#status-language"),
+    position: $("#status-position"),
+    split: $("#split")
+  };
+
+  function esc(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  /* Small tokeniser: comments, strings, keywords, numbers, JSX tags. */
+  const TOKEN = /(^[ \t]*#[^\n]*)|(\/\/[^\n]*|\/\*[\s\S]*?\*\/)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|`(?:[^`\\]|\\.)*`)|\b(import|from|export|default|const|let|function|return|if|else|new|interface|extends|type|readonly|as|async|await|true|false|null|undefined|Record|ReactNode)\b|(\b\d+(?:\.\d+)?(?:px|rem|em|%)?\b)|(<\/?[A-Za-z][\w.]*)/gm;
+
+  function highlight(text) {
+    let out = "";
+    let last = 0;
+    let match;
+    TOKEN.lastIndex = 0;
+    while ((match = TOKEN.exec(text))) {
+      out += esc(text.slice(last, match.index));
+      const [raw, hashComment, comment, string, keyword, number, tag] = match;
+      let cls = "";
+      if (hashComment || comment) cls = "c";
+      else if (string) cls = "s";
+      else if (keyword) cls = "k";
+      else if (number) cls = "n";
+      else if (tag) cls = "t";
+      out += `<span class="${cls}">${esc(raw)}</span>`;
+      last = match.index + raw.length;
+    }
+    out += esc(text.slice(last));
+    return out;
+  }
+
+  function fileIcon(icon) {
+    const label = icon === "tsx" || icon === "ts" ? "TS" : icon === "css" ? "#" : icon === "md" ? "M" : icon === "json" ? "{}" : "Y";
+    return `<span class="file-icon ${icon}" aria-hidden="true">${label}</span>`;
+  }
+
+  function renderTree(nodes, depth = 0) {
+    return nodes.map(node => {
+      if (node.type === "dir") {
+        const collapsed = state.collapsed.has(node.path);
+        return `
+          <button class="tree-row is-dir${collapsed ? " is-closed" : ""}" type="button" data-dir="${node.path}" aria-expanded="${!collapsed}" style="padding-left:${8 + depth * 12}px">
+            <span class="caret" aria-hidden="true">▾</span><span class="tree-name">${esc(node.name)}</span>
+          </button>
+          <div class="tree-children" ${collapsed ? "hidden" : ""}>${renderTree(node.children, depth + 1)}</div>`;
+      }
+      const file = FILES[node.path];
+      return `
+        <button class="tree-row" type="button" data-path="${node.path}" aria-current="${node.path === state.active}" style="padding-left:${8 + depth * 12 + 12}px">
+          ${fileIcon(file.icon)}<span class="tree-name">${esc(node.name)}</span>
+        </button>`;
+    }).join("");
+  }
+
+  function renderExplorer() {
+    el.explorer.innerHTML = renderTree(TREE);
+    el.explorer.querySelectorAll("[data-path]").forEach(button => {
+      button.addEventListener("click", () => openFile(button.dataset.path));
+    });
+    el.explorer.querySelectorAll("[data-dir]").forEach(button => {
+      button.addEventListener("click", () => {
+        const id = button.dataset.dir;
+        if (state.collapsed.has(id)) state.collapsed.delete(id);
+        else state.collapsed.add(id);
+        renderExplorer();
+      });
+    });
+  }
+
+  function renderTabs() {
+    el.tabs.replaceChildren();
+    state.open.forEach(path => {
+      const file = FILES[path];
+      const name = path.split("/").pop();
+      const tab = document.createElement("div");
+      tab.className = "tab";
+      tab.setAttribute("role", "tab");
+      tab.tabIndex = 0;
+      tab.setAttribute("aria-selected", String(path === state.active));
+      tab.innerHTML = `${fileIcon(file.icon)}<span>${esc(name)}</span>`;
+      tab.addEventListener("click", () => openFile(path));
+      tab.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openFile(path);
+        }
+      });
+      const close = document.createElement("button");
+      close.type = "button";
+      close.className = "tab-close";
+      close.setAttribute("aria-label", `Close ${name}`);
+      close.textContent = "×";
+      close.addEventListener("click", event => {
+        event.stopPropagation();
+        closeFile(path);
+      });
+      tab.append(close);
+      el.tabs.append(tab);
+    });
+  }
+
+  /* ── The shop flow: cart → delivery → card → authorising → paid ──────────
+     One state object drives the preview pane, so the summary, the card step
+     and the receipt can never drift apart. Everything runs in this file:
+     nothing is sent anywhere and nothing is charged. */
+  const zar = cents => new Intl.NumberFormat("en-ZA", { style: "currency", currency: "ZAR" }).format(cents / 100);
+  const SHOP_FREE_OVER = 150000;
+  const SHOP_COURIER = { standard: 9900, express: 15000 };
+
+  /* What the shop sells. The cart starts empty and the flow starts on the
+     shelf, because that is how someone actually arrives. */
+  const PRODUCTS = [
+    { id: "sim10", name: "Lulas SIM · 10GB", meta: "30 days · data only", price: 99900, thumb: "SIM", tone: "", tag: "Most bought" },
+    { id: "sim20", name: "Lulas SIM · 20GB", meta: "30 days · data only", price: 149900, thumb: "SIM", tone: "" },
+    { id: "case", name: "Silicone case", meta: "Fits Lulas A-series", price: 25000, thumb: "CASE", tone: " shop-thumb--case" },
+    { id: "glass", name: "Screen protector", meta: "Tempered glass", price: 12000, thumb: "GLASS", tone: " shop-thumb--case" }
+  ];
+
+  const shop = {
+    step: "home",
+    items: PRODUCTS.map(product => ({ ...product, qty: 0 })),
+    details: {
+      name: "Naledi Mokoena",
+      email: "naledi@lulasmail.co.za",
+      address: "24 Juta Street, Braamfontein",
+      city: "Johannesburg",
+      code: "2001"
+    },
+    method: "standard",
+    payMethod: "card",
+    card: { number: "4242 4242 4242 4242", expiry: "09 / 28", cvv: "123", holder: "N. Mokoena" },
+    error: "",
+    order: null,
+    timer: 0
+  };
+
+  const shopLines = () => shop.items.filter(item => item.qty > 0);
+  const shopCount = () => shopLines().reduce((count, item) => count + item.qty, 0);
+  const shopSubtotal = () => shopLines().reduce((sum, item) => sum + item.price * item.qty, 0);
+  const shopDelivery = () => {
+    const subtotal = shopSubtotal();
+    if (!subtotal) return 0;
+    if (shop.method === "standard" && subtotal >= SHOP_FREE_OVER) return 0;
+    return SHOP_COURIER[shop.method];
+  };
+  const shopTotal = () => shopSubtotal() + shopDelivery();
+
+  const SHOP_STEPS = [
+    { id: "home", label: "Shop" },
+    { id: "cart", label: "Cart" },
+    { id: "delivery", label: "Delivery" },
+    { id: "payment", label: "Payment" }
+  ];
+  /* The current step is a solid bar with a ring around it; the steps already
+     done are paler, the ones still ahead stay grey. Paid counts as the last
+     step finished, so every bar fills in. */
+  const shopHead = (title, step, complete = false) => {
+    let index = SHOP_STEPS.findIndex(item => item.id === step);
+    if (index < 0) index = step === "paid" || step === "paying" ? SHOP_STEPS.length - 1 : 0;
+    const bars = SHOP_STEPS.map((item, i) => {
+      const state = complete || i < index ? "is-done" : i === index ? "is-now" : "";
+      return `<i class="${state}"></i>`;
+    }).join("");
+    const current = complete ? SHOP_STEPS.length : index + 1;
+    const label = complete ? "Order complete" : `Step ${current} of ${SHOP_STEPS.length} · ${SHOP_STEPS[index].label}`;
+    return `
+      <div class="shop-head">
+        <div><span class="shop-eyebrow">Lulas store</span><h2>${title}</h2></div>
+        <span class="shop-step${complete ? " is-complete" : ""}">${label}</span>
+      </div>
+      <div class="shop-progress" role="img" aria-label="${label}">${bars}</div>`;
+  };
+
+  const shopSummary = () => {
+    const delivery = shopDelivery();
+    return `
+      <div class="shop-sum">
+        <div class="row"><span>Subtotal · ${shopCount()} item${shopCount() === 1 ? "" : "s"}</span><b>${zar(shopSubtotal())}</b></div>
+        <div class="row"><span>${shop.method === "express" ? "Express delivery" : "Standard delivery"}</span><b>${delivery ? zar(delivery) : "Free"}</b></div>
+        <div class="row total"><span>Total</span><b>${zar(shopTotal())}</b></div>
+      </div>`;
+  };
+
+  const shopError = () => shop.error ? `<p class="shop-note shop-note--warn" role="alert">${esc(shop.error)}</p>` : "";
+
+  const shopField = (group, field, label, value, { wide = false, mode = "text", invalid = false, label2 = "" } = {}) => `
+    <label class="shop-field${wide ? " is-wide" : ""}">
+      <span>${label}</span>
+      <input type="${mode}" value="${esc(value)}" data-shop-field="${field}" data-shop-group="${group}"
+        ${invalid ? 'aria-invalid="true"' : ""} ${field === "number" ? 'inputmode="numeric" autocomplete="off"' : ""} />
+    </label>`;
+
+  function shopAddButton(product) {
+    if (!product.qty) {
+      return `<button class="pv-btn pv-btn--secondary pv-btn--sm shop-add" type="button" data-shop="add" data-id="${product.id}">Add</button>`;
+    }
+    return `<span class="shop-qty shop-qty--card">
+      <button type="button" data-shop="dec" data-id="${product.id}" aria-label="One less ${esc(product.name)}">−</button>
+      <output aria-label="In cart: ${product.qty}">${product.qty}</output>
+      <button type="button" data-shop="inc" data-id="${product.id}" aria-label="One more ${esc(product.name)}">+</button>
+    </span>`;
+  }
+
+  function shopHome() {
+    const count = shopCount();
+    return `<div class="shop">
+      ${shopHead("Shop", "home")}
+      <ul class="shop-products">
+        ${shop.items.map(product => `
+          <li class="shop-product${product.qty ? " is-in-cart" : ""}">
+            <span class="shop-thumb shop-thumb--tall${product.tone}" aria-hidden="true">${product.thumb}</span>
+            <span class="shop-product-copy">
+              <b>${esc(product.name)}</b>
+              <span>${esc(product.meta)}</span>
+            </span>
+            <span class="shop-product-buy">
+              <b>${zar(product.price)}</b>
+              ${shopAddButton(product)}
+            </span>
+            ${product.tag ? `<span class="shop-tag">${esc(product.tag)}</span>` : ""}
+          </li>`).join("")}
+      </ul>
+      <div class="shop-bar">
+        <span class="shop-bar-copy">${count ? `${count} item${count === 1 ? "" : "s"} · ${zar(shopSubtotal())}` : "Nothing in the cart yet"}</span>
+        <button class="pv-btn pv-btn--primary pv-btn--sm" type="button" data-shop="go" data-to="cart" ${count ? "" : "disabled"}>View cart</button>
+      </div>
+    </div>`;
+  }
+
+  function shopCart() {
+    const lines = shopLines();
+    if (!lines.length) {
+      return `<div class="shop">${shopHead("Your cart", "cart")}
+        <div class="shop-empty">
+          <b>Your cart is empty</b>
+          <p>Pick a plan, a case or a protector on the shop screen and the totals follow you through delivery and payment.</p>
+          <button class="pv-btn pv-btn--secondary pv-btn--sm" type="button" data-shop="go" data-to="home">Browse the shop</button>
+        </div></div>`;
+    }
+    const shortfall = Math.max(0, SHOP_FREE_OVER - shopSubtotal());
+    return `<div class="shop">
+      ${shopHead("Your cart", "cart")}
+      <ul class="shop-lines">
+        ${lines.map(item => `
+          <li>
+            <span class="shop-thumb${item.tone}" aria-hidden="true">${item.thumb}</span>
+            <span class="shop-line-copy"><b>${esc(item.name)}</b><span>${zar(item.price)} each</span></span>
+            <span class="shop-qty">
+              <button type="button" data-shop="dec" data-id="${item.id}" aria-label="One less ${esc(item.name)}">−</button>
+              <output aria-label="Quantity ${item.qty}">${item.qty}</output>
+              <button type="button" data-shop="inc" data-id="${item.id}" aria-label="One more ${esc(item.name)}">+</button>
+            </span>
+          </li>`).join("")}
+      </ul>
+      ${shopSummary()}
+      <p class="shop-note">${shortfall > 0
+        ? `Add ${zar(shortfall)} for free standard delivery.`
+        : "Free standard delivery applied."}</p>
+      ${shopError()}
+      <div class="shop-actions">
+        <button class="pv-btn pv-btn--ghost pv-btn--sm" type="button" data-shop="go" data-to="home">Keep shopping</button>
+        <button class="pv-btn pv-btn--primary pv-btn--md" type="button" data-shop="go" data-to="delivery">Continue to delivery</button>
+      </div>
+    </div>`;
+  }
+
+  function shopDeliveryStep() {
+    const d = shop.details;
+    const missing = field => !String(field).trim();
+    return `<div class="shop">
+      ${shopHead("Delivery details", "delivery")}
+      <div class="shop-grid">
+        ${shopField("details", "name", "Full name", d.name, { wide: true, invalid: missing(d.name) })}
+        ${shopField("details", "email", "Email for the receipt", d.email, { wide: true, invalid: missing(d.email) })}
+        ${shopField("details", "address", "Street address", d.address, { wide: true, invalid: missing(d.address) })}
+        ${shopField("details", "city", "City", d.city, { invalid: missing(d.city) })}
+        ${shopField("details", "code", "Postal code", d.code, { mode: "text", invalid: !/^\d{4}$/.test(d.code.trim()) })}
+      </div>
+      <div class="shop-grid" style="grid-template-columns:1fr">
+        <button class="shop-method${shop.method === "standard" ? " is-active" : ""}" type="button" data-shop="method" data-method="standard">
+          <i aria-hidden="true"></i>Standard · 2–4 working days<b>${shopSubtotal() >= SHOP_FREE_OVER ? "Free" : zar(SHOP_COURIER.standard)}</b>
+        </button>
+        <button class="shop-method${shop.method === "express" ? " is-active" : ""}" type="button" data-shop="method" data-method="express">
+          <i aria-hidden="true"></i>Express · next working day<b>${zar(SHOP_COURIER.express)}</b>
+        </button>
+      </div>
+      ${shopSummary()}
+      ${shopError()}
+      <div class="shop-actions">
+        <button class="pv-btn pv-btn--ghost pv-btn--sm" type="button" data-shop="go" data-to="cart">Back to cart</button>
+        <button class="pv-btn pv-btn--primary pv-btn--md" type="button" data-shop="go" data-to="payment">Continue to payment</button>
+      </div>
+    </div>`;
+  }
+
+  const PAY_METHODS = [
+    { id: "card", label: "Card", note: "Visa, Mastercard" },
+    { id: "eft", label: "Instant EFT", note: "Approve in your bank" },
+    { id: "transfer", label: "Bank transfer", note: "Paid orders ship on clearance" }
+  ];
+
+  function shopPaymentStep() {
+    const c = shop.card;
+    const digits = c.number.replace(/\s+/g, "");
+    const method = shop.payMethod;
+    const cardBody = `
+      <div class="shop-grid">
+        ${shopField("card", "number", "Card number", c.number, { wide: true, invalid: digits.length !== 16 })}
+        ${shopField("card", "expiry", "Expiry", c.expiry, { invalid: !/^\d{2}\s*\/\s*\d{2}$/.test(c.expiry.trim()) })}
+        ${shopField("card", "cvv", "CVV", c.cvv, { mode: "text", invalid: !/^\d{3,4}$/.test(c.cvv.trim()) })}
+        ${shopField("card", "holder", "Name on card", c.holder, { wide: true, invalid: !c.holder.trim() })}
+      </div>
+      <p class="shop-note">Test card 4242 4242 4242 4242 · nothing is charged.</p>`;
+    const eftBody = `
+      <div class="shop-pay">
+        <span class="shop-thumb" aria-hidden="true">EFT</span>
+        <div>
+          <b>Approve ${zar(shopTotal())} in your banking app</b>
+          <span>You leave the shop for a moment, approve, and come straight back. No card details are entered here.</span>
+        </div>
+      </div>`;
+    const transferBody = `
+      <div class="shop-receipt" style="margin-top:0">
+        <div class="row"><span>Account</span><b>Lulas Mobile</b></div>
+        <div class="row"><span>Account number</span><b>6241 8890 231</b></div>
+        <div class="row"><span>Reference</span><b>LUL-88320</b></div>
+        <div class="row paid"><span>Amount</span><b>${zar(shopTotal())}</b></div>
+      </div>
+      <p class="shop-note">The reference is what lets me match your payment to this order. Orders ship once the money clears.</p>`;
+    const body = method === "card" ? cardBody : method === "eft" ? eftBody : transferBody;
+    const verb = method === "card" ? `Pay ${zar(shopTotal())}` : method === "eft" ? `Continue to my bank · ${zar(shopTotal())}` : "I've made the transfer";
+    return `<div class="shop">
+      ${shopHead("Payment", "payment")}
+      <div class="shop-methods" role="radiogroup" aria-label="How would you like to pay">
+        ${PAY_METHODS.map(item => `
+          <button class="shop-paymethod${method === item.id ? " is-active" : ""}" type="button" role="radio"
+            aria-checked="${method === item.id}" data-shop="paymethod" data-method="${item.id}">
+            <b>${item.label}</b><span>${item.note}</span>
+          </button>`).join("")}
+      </div>
+      ${body}
+      ${shopSummary()}
+      ${shopError()}
+      <div class="shop-actions">
+        <button class="pv-btn pv-btn--ghost pv-btn--sm" type="button" data-shop="go" data-to="delivery">Back</button>
+        <button class="pv-btn pv-btn--primary pv-btn--md" type="button" data-shop="pay">${verb}</button>
+      </div>
+    </div>`;
+  }
+
+  function shopPayingStep() {
+    const copy = shop.payMethod === "card"
+      ? ["Authorising card", "One moment while the bank answers."]
+      : shop.payMethod === "eft"
+        ? ["Waiting for your bank", "Approve the request in your banking app. This screen updates when it clears."]
+        : ["Waiting for the transfer", "Checking the incoming payments for the reference LUL-88320."];
+    return `<div class="shop">
+      ${shopHead(copy[0], "payment")}
+      <div class="shop-paying">
+        <i aria-hidden="true"></i>
+        <b>${shop.payMethod === "transfer" ? "Matching" : "Authorising"} ${zar(shopTotal())}</b>
+        <span>${copy[1]}</span>
+      </div>
+    </div>`;
+  }
+
+  function shopPaidStep() {
+    const order = shop.order;
+    if (!order) return shopCart();
+    const last4 = shop.card.number.replace(/\s+/g, "").slice(-4);
+    const paidWith = shop.payMethod === "card" ? `card ending ${last4}` : shop.payMethod === "eft" ? "instant EFT" : "bank transfer";
+    return `<div class="shop">
+      ${shopHead("Order confirmed", "paid", true)}
+      <div class="shop-done">
+        <span class="shop-tick" aria-hidden="true">✓</span>
+        <h2>Payment approved</h2>
+        <p class="shop-done-sub">${esc(order.id)} · ${zar(order.total)} paid by ${paidWith}</p>
+      </div>
+      <div class="shop-receipt">
+        ${order.lines.map(line => `<div class="row"><span>${esc(line.name)} × ${line.qty}</span><b>${zar(line.price * line.qty)}</b></div>`).join("")}
+        <div class="row"><span>${order.method === "express" ? "Express delivery" : "Standard delivery"}</span><b>${order.delivery ? zar(order.delivery) : "Free"}</b></div>
+        <div class="row"><span>Delivering to</span><b>${esc(shop.details.city)} ${esc(shop.details.code)}</b></div>
+        <div class="row paid"><span>Paid</span><b>${zar(order.total)}</b></div>
+      </div>
+      <p class="shop-note">${esc(shop.details.name)}, the courier collects tomorrow. Tracking goes to ${esc(shop.details.email)}.</p>
+      <div class="shop-actions">
+        <button class="pv-btn pv-btn--secondary pv-btn--sm" type="button" data-shop="restart">Start another order</button>
+        <button class="pv-btn pv-btn--primary pv-btn--sm" type="button" data-shop="restore">Back to the cart</button>
+      </div>
+    </div>`;
+  }
+
+  function shopMarkup() {
+    if (shop.step === "paid") return shopPaidStep();
+    if (shop.step === "paying") return shopPayingStep();
+    if (shop.step === "payment") return shopPaymentStep();
+    if (shop.step === "delivery") return shopDeliveryStep();
+    if (shop.step === "cart") return shopCart();
+    return shopHome();
+  }
+
+  const isShopFile = () => ["shop", "home", "cart", "delivery", "payment"].includes(FILES[state.active]?.preview);
+  function renderShop() {
+    if (isShopFile()) el.stage.innerHTML = shopMarkup();
+  }
+
+  function shopGo(step) {
+    window.clearTimeout(shop.timer);
+    shop.error = "";
+    shop.step = step;
+    if (step === "paying") {
+      const lines = shopLines().map(item => ({ name: item.name, price: item.price, qty: item.qty }));
+      const total = shopTotal();
+      const delivery = shopDelivery();
+      const method = shop.method;
+      renderShop();
+      shop.timer = window.setTimeout(() => {
+        shop.order = { id: "ORD-88320", lines, total, delivery, method };
+        shop.step = "paid";
+        renderShop();
+      }, 1400);
+      return;
+    }
+    renderShop();
+  }
+
+  function shopCheck() {
+    if (shop.step === "home" && !shopCount()) {
+      shop.error = "Add something to the cart first.";
+      renderShop();
+      return false;
+    }
+    if (shop.step === "delivery") {
+      const d = shop.details;
+      if (!d.name.trim() || !d.email.trim() || !d.address.trim() || !d.city.trim() || !/^\d{4}$/.test(d.code.trim())) {
+        shop.error = "Fill in your name, email, street, city and a four-digit postal code.";
+        renderShop();
+        return false;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email.trim())) {
+        shop.error = "That email address is missing something. The receipt goes there.";
+        renderShop();
+        return false;
+      }
+    }
+    if (shop.step === "payment" && shop.payMethod === "card") {
+      const c = shop.card;
+      if (c.number.replace(/\s+/g, "").length !== 16 || !/^\d{2}\s*\/\s*\d{2}$/.test(c.expiry.trim()) || !/^\d{3,4}$/.test(c.cvv.trim()) || !c.holder.trim()) {
+        shop.error = "Check the card number, expiry, CVV and the name on the card.";
+        renderShop();
+        return false;
+      }
+    }
+    shop.error = "";
+    return true;
+  }
+
+  el.stage.addEventListener("click", event => {
+    const trigger = event.target.closest("[data-shop]");
+    if (!trigger || !isShopFile()) return;
+    const action = trigger.dataset.shop;
+    if (action === "add") {
+      const product = shop.items.find(item => item.id === trigger.dataset.id);
+      if (!product) return;
+      product.qty = Math.min(9, product.qty + 1);
+      shop.error = "";
+      renderShop();
+      return;
+    }
+    if (action === "inc" || action === "dec") {
+      const item = shop.items.find(line => line.id === trigger.dataset.id);
+      if (!item) return;
+      item.qty = Math.max(0, Math.min(9, item.qty + (action === "inc" ? 1 : -1)));
+      shop.error = "";
+      renderShop();
+      return;
+    }
+    if (action === "method") {
+      shop.method = trigger.dataset.method === "express" ? "express" : "standard";
+      shop.error = "";
+      renderShop();
+      return;
+    }
+    if (action === "paymethod") {
+      shop.payMethod = PAY_METHODS.some(item => item.id === trigger.dataset.method) ? trigger.dataset.method : "card";
+      shop.error = "";
+      renderShop();
+      return;
+    }
+    if (action === "restore") {
+      shop.order = null;
+      shop.error = "";
+      shop.step = "home";
+      renderShop();
+      return;
+    }
+    if (action === "restart") {
+      shop.items.forEach(item => { item.qty = 0; });
+      shop.order = null;
+      shop.method = "standard";
+      shop.payMethod = "card";
+      shop.error = "";
+      shop.step = "home";
+      renderShop();
+      return;
+    }
+    if (action === "go") {
+      if (!shopCheck()) return;
+      shopGo(trigger.dataset.to || "cart");
+      return;
+    }
+    if (action === "pay") {
+      if (!shopCheck()) return;
+      shopGo("paying");
+    }
+  });
+
+  el.stage.addEventListener("input", event => {
+    const field = event.target.closest("[data-shop-field]");
+    if (!field) return;
+    const group = field.dataset.shopGroup === "card" ? shop.card : shop.details;
+    group[field.dataset.shopField] = field.value;
+  });
+
+  const PREVIEWS = {
+    /* App.tsx opens the running flow where it left off; the three page files
+       open their own step, which is how I move between them while building. */
+    shop: () => shopMarkup(),
+    home: () => { shop.step = "home"; shop.error = ""; return shopMarkup(); },
+    cart: () => { shop.step = "cart"; shop.error = ""; return shopMarkup(); },
+    delivery: () => { shop.step = "delivery"; shop.error = ""; return shopMarkup(); },
+    payment: () => { shop.step = shop.step === "paid" ? "paid" : "payment"; shop.error = ""; return shopMarkup(); },
+    buttons: () => `
+      <div class="pv-app">
+        <h2>Button</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+          <button class="pv-btn pv-btn--primary pv-btn--md" type="button">Continue</button>
+          <button class="pv-btn pv-btn--secondary pv-btn--md" type="button">Save draft</button>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+          <button class="pv-btn pv-btn--ghost pv-btn--sm" type="button">Back</button>
+          <button class="pv-btn pv-btn--danger pv-btn--sm" type="button">Cancel order</button>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+          <button class="pv-btn pv-btn--primary pv-btn--lg" type="button">Pay R 1 098</button>
+          <button class="pv-btn pv-btn--primary pv-btn--sm" type="button" aria-busy="true">Paying…</button>
+        </div>
+      </div>`,
+    order: () => `
+      <article class="pv-card">
+        <header>
+          <div>
+            <span class="order-id">Order ORD-88213</span>
+            <h3>Naledi M.</h3>
+          </div>
+          <span class="pv-status pv-status--shipped">Shipped</span>
+        </header>
+        <ul>
+          <li><span>Prepaid SIM · 10GB</span><span>R 999,00</span></li>
+          <li><span>Silicone case</span><span>R 250,00</span></li>
+        </ul>
+        <footer><span>Courier · arriving 21 Oct</span><strong>R 1 249,00</strong></footer>
+        <button class="pv-btn pv-btn--primary pv-btn--sm" type="button" style="align-self:flex-start">Track order</button>
+      </article>`,
+    orderlist: () => `
+      <div class="pv-app">
+        <div class="pv-app-head"><h2>Your orders</h2><span>3 orders</span></div>
+        <div class="pv-summary">
+          <div class="row"><span><b>ORD-88213</b> · Naledi M.</span><b>R 1 249,00</b></div>
+          <div class="row"><span><b>ORD-88214</b> · Thabo K.</span><b>R 399,99</b></div>
+          <div class="row"><span><b>ORD-88215</b> · Anele S.</span><b>R 219,50</b></div>
+        </div>
+        <p style="margin:0;color:#79868f;font-size:9.5px">Loading, empty and failed each have their own state in the component.</p>
+      </div>`,
+    empty: () => `
+      <div class="pv-empty">
+        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 6 41 15v18L24 42 7 33V15L24 6Z" stroke="#b9cde4" stroke-width="2"/><path d="M7 15l17 9 17-9M24 24v18" stroke="#d5dee7" stroke-width="2"/><circle cx="24" cy="24" r="3.4" fill="#e4effc"/></svg>
+        <h3>No orders yet</h3>
+        <p>Orders you place will show up here with delivery updates and invoices.</p>
+        <button class="pv-btn pv-btn--primary pv-btn--md" type="button">Browse plans</button>
+      </div>`,
+    badges: () => `
+      <div class="pv-app">
+        <h2>StatusBadge</h2>
+        <div class="pv-badges">
+          <span class="pv-badge"><i style="background:#d9a400"></i>Processing</span>
+          <span class="pv-badge"><i style="background:#0a63c4"></i>Shipped</span>
+          <span class="pv-badge"><i style="background:#0e7a55"></i>Delivered</span>
+          <span class="pv-badge"><i style="background:#b3261e"></i>Cancelled</span>
+        </div>
+        <p style="margin:0;color:#79868f;font-size:9.5px">Status is worded, never colour alone.</p>
+      </div>`,
+    tokens: () => {
+      const tokens = [
+        ["blue-600", "#0a63c4"], ["blue-050", "#e4effc"],
+        ["green", "#0e7a55"], ["danger", "#b3261e"],
+        ["ink", "#23212b"], ["paper", "#f6f8fb"],
+        ["line", "#e3e8ee"], ["radius", "#d9dee6"]
+      ];
+      return `<div class="pv-tokens">${tokens.map(([name, value]) => `
+        <div class="pv-token"><div class="chip" style="background:${value}"></div><div class="meta"><strong>--lulas-${name}</strong><span>${value}</span></div></div>`).join("")}</div>`;
+    },
+    ci: () => `
+      <div class="pv-app">
+        <div class="pv-app-head"><h2>ci · pull request 318</h2><span>3m 42s</span></div>
+        <div class="pv-summary">
+          <div class="row"><span>✓ Install workspace</span><b>38s</b></div>
+          <div class="row"><span>✓ Tokens, lint and types</span><b>41s</b></div>
+          <div class="row"><span>✓ Tests and visual snapshots</span><b>1m 46s</b></div>
+          <div class="row"><span>✓ Build</span><b>37s</b></div>
+        </div>
+        <p style="margin:0;color:#79868f;font-size:9.5px">Green here is what lets the board move a card to Done.</p>
+      </div>`,
+    readme: () => renderMarkdown(code("README.md")),
+    none: () => `
+      <div class="preview-empty">
+        <b>No visual preview for this file</b>
+        Configuration files stay in the editor. Components, styles, tokens and docs render in this pane.
+      </div>`
+  };
+
+  function renderMarkdown(text) {
+    const out = [];
+    const codeBlock = [];
+    let inCode = false;
+    let inList = false;
+    const inline = value => esc(value).replace(/`([^`]+)`/g, "<code>$1</code>");
+    const closeList = () => {
+      if (!inList) return;
+      out.push("</ul>");
+      inList = false;
+    };
+
+    text.split("\n").forEach(line => {
+      if (line.startsWith("```")) {
+        if (inCode) {
+          out.push(`<pre>${esc(codeBlock.join("\n"))}</pre>`);
+          codeBlock.length = 0;
+          inCode = false;
+        } else {
+          closeList();
+          inCode = true;
+        }
+        return;
+      }
+      if (inCode) {
+        codeBlock.push(line);
+        return;
+      }
+      const heading = /^(#{1,3})\s+(.*)$/.exec(line);
+      if (heading) {
+        closeList();
+        const level = heading[1].length;
+        out.push(`<h${level}>${inline(heading[2])}</h${level}>`);
+        return;
+      }
+      const item = /^-\s+(.*)$/.exec(line);
+      if (item) {
+        if (!inList) {
+          out.push("<ul>");
+          inList = true;
+        }
+        out.push(`<li>${inline(item[1])}</li>`);
+        return;
+      }
+      closeList();
+      if (line.trim()) out.push(`<p>${inline(line)}</p>`);
+    });
+    closeList();
+    if (inCode && codeBlock.length) out.push(`<pre>${esc(codeBlock.join("\n"))}</pre>`);
+    return out.join("");
+  }
+
+  function renderPreview() {
+    const file = FILES[state.active];
+    el.stage.classList.toggle("is-markdown", file.preview === "readme");
+    el.previewUrl.textContent = file.url || "localhost:5173";
+    el.stage.innerHTML = (PREVIEWS[file.preview] || PREVIEWS.none)();
+  }
+
+  function renderEditor() {
+    const file = FILES[state.active];
+    const text = code(state.active.split("/").pop());
+    const lines = text.split("\n");
+    el.gutter.textContent = lines.map((_, index) => index + 1).join("\n");
+    el.source.innerHTML = highlight(text);
+    el.language.textContent = file.lang;
+    el.breadcrumb.innerHTML = state.active.split("/").map((part, index, parts) =>
+      `<span${index === parts.length - 1 ? ' class="name"' : ""}>${esc(part)}</span>${index < parts.length - 1 ? '<span class="sep">›</span>' : ""}`
+    ).join("");
+    el.position.textContent = "Ln 1, Col 1";
+    const scroller = el.source.closest(".editor-scroll");
+    if (scroller) {
+      scroller.scrollTop = 0;
+      scroller.scrollLeft = 0;
+    }
+  }
+
+  function renderAll() {
+    renderExplorer();
+    renderTabs();
+    renderEditor();
+    renderPreview();
+  }
+
+  function openFile(path) {
+    if (!FILES[path]) return;
+    state.active = path;
+    if (!state.open.includes(path)) state.open.push(path);
+    renderAll();
+  }
+
+  function closeFile(path) {
+    state.open = state.open.filter(item => item !== path);
+    if (!state.open.length) state.open = ["apps/web/src/pages/Home.tsx"];
+    if (!state.open.includes(state.active)) state.active = state.open[state.open.length - 1];
+    renderAll();
+  }
+
+  $("#refresh-preview").addEventListener("click", () => {
+    const button = $("#refresh-preview");
+    button.style.transform = "rotate(180deg)";
+    window.setTimeout(() => { button.style.transform = ""; }, 240);
+    el.stage.innerHTML = `<div class="preview-loading"><i></i>Rendering preview…</div>`;
+    window.setTimeout(renderPreview, 260);
+  });
+
+  $("#device-preview").addEventListener("click", event => {
+    state.mobilePreview = !state.mobilePreview;
+    event.currentTarget.setAttribute("aria-pressed", String(state.mobilePreview));
+    el.previewBody.classList.toggle("is-mobile", state.mobilePreview);
+  });
+
+  document.querySelectorAll("[data-pane]").forEach(button => {
+    button.addEventListener("click", () => {
+      state.pane = button.dataset.pane;
+      el.split.dataset.pane = state.pane;
+      document.querySelectorAll("[data-pane]").forEach(item => {
+        item.setAttribute("aria-pressed", String(item.dataset.pane === state.pane));
+      });
+    });
+  });
+
+  el.source.addEventListener("keydown", event => {
+    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "s") event.preventDefault();
+  });
+
+  renderAll();
+})();
+</script>
+</body>
+</html>

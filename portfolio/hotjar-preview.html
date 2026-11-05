@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Hotjar — Checkout heatmap & recordings | Lulamile Mkhungela</title>
+<meta name="description" content="A Hotjar dashboard for the Lulas checkout: heatmaps, scroll reach and session recordings showing where people hesitate and give up.">
+<!--
+  The Hotjar item in the dock opens this page in an iframe.
+
+  The evidence I collect on a live product: a click / scroll / move heatmap
+  over the Lulas checkout, reach metrics, and session recordings that replay a
+  customer's path. The figures and paths live in the SESSIONS data below.
+-->
+<style>
+  :root {
+    --red: #ff3c00;
+    --red-dark: #d63100;
+    --red-soft: #fff1ec;
+    --ink: #23212b;
+    --ink-soft: #5f5c6b;
+    --muted: #8b8797;
+    --line: #e7e4ec;
+    --line-soft: #f1eef4;
+    --paper: #f7f6f9;
+    --card: #ffffff;
+    --blue: #2a6ff6;
+    --green: #1a8a5a;
+    --amber: #b56b00;
+    --radius: 8px;
+    --ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 12px/1.45 var(--ui);
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+  button, select, input { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 2px solid #7aa7ff; outline-offset: 1px; }
+
+  .app { height: 100%; display: flex; flex-direction: column; min-height: 0; }
+
+  /* ── Top bar ─────────────────────────────────────────────────────────── */
+  .topbar {
+    flex: none;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 12px;
+    border-bottom: 1px solid var(--line);
+    background: #fff;
+  }
+  .brand { display: flex; align-items: center; gap: 7px; font-weight: 800; letter-spacing: -.01em; }
+  .brand svg { width: 20px; height: 20px; }
+  .site {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 3px 8px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    font-size: 10.5px;
+  }
+  .site b { color: var(--ink); font-weight: 700; }
+  .site .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+  .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  .date-range {
+    padding: 4px 8px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--ink-soft);
+    font-size: 10.5px;
+  }
+  .avatar {
+    width: 22px; height: 22px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: linear-gradient(140deg,#ff3c00,#ff8a00);
+    color: #fff; font-size: 9px; font-weight: 800;
+  }
+
+  .shell { flex: 1; min-height: 0; display: flex; }
+
+  /* ── Rail ────────────────────────────────────────────────────────────── */
+  .rail {
+    flex: none;
+    width: 58px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 0;
+    background: #fff;
+    border-right: 1px solid var(--line);
+  }
+  .rail-btn {
+    width: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 6px 2px;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: .02em;
+  }
+  .rail-btn svg { width: 17px; height: 17px; }
+  .rail-btn:hover { background: var(--line-soft); color: var(--ink-soft); }
+  .rail-btn[aria-current="true"] { background: var(--red-soft); color: var(--red-dark); }
+  .rail-spacer { flex: 1; }
+
+  /* ── Main ────────────────────────────────────────────────────────────── */
+  .main { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; }
+  .main-head {
+    flex: none;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    padding: 8px 12px;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+  }
+  .main-head h1 { margin: 0; font-size: 13px; letter-spacing: -.01em; }
+  .main-head .path {
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: var(--line-soft);
+    color: var(--ink-soft);
+    font-family: var(--mono);
+    font-size: 9.5px;
+  }
+  .head-tools { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+  .segmented {
+    display: inline-flex;
+    gap: 2px;
+    padding: 2px;
+    border-radius: 6px;
+    background: var(--line-soft);
+  }
+  .segmented button {
+    border: 0; border-radius: 4px;
+    padding: 3px 9px;
+    background: transparent;
+    color: var(--ink-soft);
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .segmented button[aria-pressed="true"] { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(20,20,40,.14); }
+  .device-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 8px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--ink-soft);
+    font-size: 10px;
+  }
+
+  .views { flex: 1; min-height: 0; display: flex; }
+  .view { flex: 1; min-width: 0; min-height: 0; display: flex; }
+  .view[hidden] { display: none; }
+
+  .heat-layout {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 214px;
+    gap: 10px;
+    padding: 10px;
+    overflow: hidden;
+  }
+
+  .browser {
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(30,25,50,.06);
+  }
+  .browser-bar {
+    flex: none;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 10px;
+    background: #f4f2f7;
+    border-bottom: 1px solid var(--line);
+  }
+  .browser-bar .lights { display: inline-flex; gap: 4px; }
+  .browser-bar .lights i { width: 6px; height: 6px; border-radius: 50%; background: #d6d1dd; }
+  .browser-bar .url {
+    flex: 1;
+    min-width: 0;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 9px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .viewport {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    background: #fff;
+  }
+  #heat-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+    transition: opacity .18s;
+  }
+  #heat-canvas.is-hidden { opacity: 0; }
+
+  /* ── Checkout page ───────────────────────────────────────────────────── */
+  .page {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    color: #1d1b26;
+    font-size: 10px;
+    overflow: hidden;
+  }
+  .page.is-mobile {
+    width: 375px;
+    max-width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 0 0 1px #e7e4ec;
+  }
+  .page.is-mobile .page-body { grid-template-columns: 1fr; gap: 10px; overflow-y: auto; }
+  .page.is-mobile .page-nav { display: none; }
+  .page-top {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 12px;
+    border-bottom: 1px solid #eee9f1;
+  }
+  .page-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: -.01em;
+  }
+  .page-logo i {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #ff6a3d, #d61f00);
+    display: inline-block;
+  }
+  .page-nav { display: flex; gap: 10px; color: #77727f; font-size: 9px; }
+  .page-top .secure { margin-left: auto; color: #1a8a5a; font-size: 8.5px; font-weight: 700; }
+  .page-body {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: 14px;
+    padding: 12px;
+    overflow: hidden;
+  }
+  .steps { display: flex; gap: 6px; align-items: center; color: #9a95a3; font-size: 8.5px; margin-bottom: 8px; }
+  .steps .on { color: #1d1b26; font-weight: 700; }
+  .steps i { width: 14px; height: 1px; background: #e2dde8; display: inline-block; }
+  .page h2 { margin: 0 0 7px; font-size: 13px; letter-spacing: -.01em; }
+  .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+  .field { display: flex; flex-direction: column; gap: 3px; }
+  .field.full { grid-column: 1 / -1; }
+  .field label { color: #77727f; font-size: 8.5px; font-weight: 600; }
+  .field .input {
+    height: 22px;
+    display: flex; align-items: center;
+    padding: 0 7px;
+    border: 1px solid #e2dde8;
+    border-radius: 5px;
+    background: #fff;
+    color: #4b4754;
+    font-size: 9px;
+  }
+  .field .input.is-error { border-color: #d3301b; box-shadow: 0 0 0 2px rgba(211,48,27,.12); }
+  .field .help { color: #c2371f; font-size: 8px; }
+  .delivery-options { display: flex; flex-direction: column; gap: 4px; margin-top: 9px; }
+  .delivery-option {
+    display: flex; align-items: center; gap: 7px;
+    padding: 5px 7px;
+    border: 1px solid #e2dde8;
+    border-radius: 6px;
+    font-size: 9px;
+    color: #4b4754;
+  }
+  .delivery-option.is-selected { border-color: #2a6ff6; background: #f4f8ff; }
+  .delivery-option .radio { width: 9px; height: 9px; border-radius: 50%; border: 1px solid #b9b3c2; flex: none; }
+  .delivery-option.is-selected .radio { border: 3px solid #2a6ff6; }
+  .delivery-option .price { margin-left: auto; font-weight: 700; }
+  .summary {
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 10px;
+    border: 1px solid #eae5ef;
+    border-radius: 8px;
+    background: #fbfafd;
+  }
+  .summary h3 { margin: 0; font-size: 10px; }
+  .summary-row { display: flex; justify-content: space-between; gap: 8px; color: #77727f; font-size: 9px; }
+  .summary-row b { color: #1d1b26; }
+  .promo { display: flex; gap: 4px; }
+  .promo .input { flex: 1; height: 22px; display: flex; align-items: center; padding: 0 7px; border: 1px dashed #cdc6d6; border-radius: 5px; color: #8b8797; font-size: 8.5px; }
+  .promo button { height: 22px; padding: 0 8px; border: 1px solid #e2dde8; border-radius: 5px; background: #fff; font-size: 8.5px; font-weight: 600; }
+  .pay {
+    height: 27px;
+    border: 0;
+    border-radius: 6px;
+    background: var(--red);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .01em;
+  }
+  .pay-note { color: #9a95a3; font-size: 8px; text-align: center; }
+  .page-foot { flex: none; display: flex; gap: 10px; padding: 6px 12px; border-top: 1px solid #eee9f1; color: #9a95a3; font-size: 8px; }
+
+  /* ── Insights panel ──────────────────────────────────────────────────── */
+  .insights {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    padding-right: 2px;
+    scrollbar-width: thin;
+  }
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: #fff;
+    padding: 9px 10px;
+  }
+  .card h3 {
+    margin: 0 0 6px;
+    color: var(--muted);
+    font-size: 8.5px;
+    font-weight: 800;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+  }
+  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+  .metric b { display: block; font-size: 15px; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+  .metric span { color: var(--muted); font-size: 8.5px; }
+  .metric.warn b { color: var(--red-dark); }
+  .legend { margin-top: 8px; display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 8px; }
+  .legend .scale {
+    flex: 1;
+    height: 5px;
+    border-radius: 999px;
+    background: linear-gradient(90deg,#2a6ff6,#25c2a0,#f5c542,#ff8a00,#ff2d00);
+  }
+  .bars { display: flex; flex-direction: column; gap: 6px; }
+  .bar-row { display: grid; grid-template-columns: minmax(0,1fr) 34px; gap: 6px; align-items: center; font-size: 9px; }
+  .bar-row .name { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .bar-row .name span { color: var(--muted); font-size: 8px; }
+  .bar-track { height: 4px; border-radius: 999px; background: var(--line-soft); overflow: hidden; }
+  .bar-track i { display: block; height: 100%; border-radius: 999px; background: var(--red); }
+  .bar-row b { text-align: right; font-size: 9px; font-variant-numeric: tabular-nums; }
+
+  /* ── Recordings ──────────────────────────────────────────────────────── */
+  .recordings-layout {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 214px minmax(0, 1fr);
+    gap: 10px;
+    padding: 10px;
+  }
+  .session-list { min-height: 0; display: flex; flex-direction: column; gap: 6px; overflow-y: auto; scrollbar-width: thin; }
+  .session {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 7px 8px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    text-align: left;
+  }
+  .session:hover { border-color: #d7d1de; }
+  .session[aria-current="true"] { border-color: var(--red); box-shadow: 0 0 0 1px rgba(255,60,0,.18); }
+  .session .row { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; }
+  .session strong { font-size: 10px; font-weight: 700; }
+  .session .dur { color: var(--muted); font-family: var(--mono); font-size: 8.5px; }
+  .session .meta { color: var(--muted); font-size: 8.5px; }
+  .session .flags { display: flex; gap: 4px; margin-top: 3px; flex-wrap: wrap; }
+  .flag {
+    padding: 1px 5px;
+    border-radius: 999px;
+    background: var(--red-soft);
+    color: var(--red-dark);
+    font-size: 7.5px;
+    font-weight: 800;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+  }
+  .flag.calm { background: #eef7f2; color: var(--green); }
+  .replay { min-width: 0; min-height: 0; display: flex; flex-direction: column; gap: 8px; }
+  .replay .browser { flex: 1; }
+  .replay-foot {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 10px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: #fff;
+  }
+  .replay-btn {
+    flex: none;
+    width: 28px; height: 28px;
+    display: grid; place-items: center;
+    border: 0; border-radius: 50%;
+    background: var(--red);
+    color: #fff;
+  }
+  .replay-btn:hover { background: var(--red-dark); }
+  .replay-btn svg { width: 12px; height: 12px; }
+  .timeline { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+  .timeline-track {
+    position: relative;
+    height: 5px;
+    border-radius: 999px;
+    background: var(--line-soft);
+    overflow: hidden;
+  }
+  .timeline-fill { position: absolute; inset: 0 auto 0 0; width: 0%; background: var(--red); border-radius: 999px; }
+  .timeline-marks { position: relative; height: 10px; }
+  .timeline-marks i {
+    position: absolute;
+    top: 0;
+    width: 2px; height: 7px;
+    border-radius: 2px;
+    background: #cdc6d6;
+  }
+  .timeline-marks i.rage { background: var(--red); }
+  .timeline-note { color: var(--muted); font-size: 8.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .speed { flex: none; display: inline-flex; align-items: center; gap: 4px; color: var(--muted); font-size: 9px; }
+
+  #replay-cursor {
+    position: absolute;
+    z-index: 4;
+    left: 0;
+    top: 0;
+    width: 22px;
+    height: 22px;
+    margin: -11px 0 0 -11px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .2s;
+    filter: drop-shadow(0 2px 4px rgba(20,10,30,.35));
+  }
+  #replay-cursor.is-visible { opacity: 1; }
+  #replay-cursor svg { width: 100%; height: 100%; }
+  #replay-cursor .ripple {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 14px; height: 14px;
+    margin: -7px 0 0 -7px;
+    border: 2px solid var(--red);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(.4);
+  }
+  #replay-cursor.is-clicking .ripple { animation: ripple .6s ease-out; }
+  @keyframes ripple {
+    0% { opacity: .9; transform: scale(.4); }
+    100% { opacity: 0; transform: scale(2.6); }
+  }
+  .event-chip {
+    position: absolute;
+    z-index: 5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: #23212b;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 600;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, 2px);
+    transition: opacity .2s, transform .2s;
+    max-width: calc(100% - 16px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .event-chip.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 700px) {
+    .heat-layout { grid-template-columns: minmax(0, 1fr); }
+    .insights { display: none; }
+    .recordings-layout { grid-template-columns: 150px minmax(0, 1fr); }
+    .main-head .path { display: none; }
+  }
+  @media (max-width: 520px) {
+    .rail { width: 46px; }
+    .rail-btn { width: 36px; font-size: 0; }
+    .brand span, .site { display: none; }
+    .recordings-layout { grid-template-columns: minmax(0, 1fr); }
+    .session-list { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #heat-canvas, #replay-cursor, .event-chip { transition: none; }
+    #replay-cursor.is-clicking .ripple { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2c2.1 5.2 7.6 7.1 7.6 13.1 0 2.2-.9 3.9-2.4 5 .4-2.7-.8-4.6-2.6-6.1.3 3.4-2.1 4.7-3.2 7.1-.8 1.7-.3 3.4.9 4.6-3.4-.2-6.1-3-6.1-6.6C10.2 12.6 16 9.7 16 2Z" fill="#ff3c00"/><path d="M16 30c-4.7 0-8-3.1-8-7.3 0-2.6 1.4-4.5 3.2-6-.2 2.6.9 4 2.2 5.1-.4-2.7 1.2-4.2 2.3-6 .7 1.6 1.7 2.7 3 3.9 1.5 1.4 2.3 2.6 2.3 4.4 0 3.3-2.4 5.9-5 5.9Z" fill="#ff6a3d" opacity=".9"/></svg>
+      <span>Hotjar</span>
+    </div>
+    <div class="site"><span class="dot" aria-hidden="true"></span><b>lulas.co.za</b><span>/ checkout</span></div>
+    <div class="topbar-right">
+      <span class="date-range">Last 7 days</span>
+      <span class="avatar" aria-hidden="true">LM</span>
+    </div>
+  </header>
+
+  <div class="shell">
+    <nav class="rail" aria-label="Hotjar tools">
+      <button class="rail-btn" type="button" data-view="heatmaps" aria-current="true">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M10 17c3.9 0 7-2.8 7-6.6C17 6 13.9 3 10 3S3 6 3 10.4C3 14.2 6.1 17 10 17Z"/><circle cx="10" cy="10" r="2.4"/></svg>
+        Heatmaps
+      </button>
+      <button class="rail-btn" type="button" data-view="recordings" aria-current="false">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2.5" y="4" width="15" height="12" rx="2"/><path d="m8.2 8 4.2 2.4-4.2 2.4V8Z" fill="currentColor" stroke="none"/></svg>
+        Recordings
+      </button>
+      <button class="rail-btn" type="button" disabled style="opacity:.45">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="14" height="14" rx="2"/><path d="M7 8h6M7 12h4"/></svg>
+        Surveys
+      </button>
+      <span class="rail-spacer"></span>
+    </nav>
+
+    <main class="main">
+      <div class="main-head">
+        <h1>Checkout</h1>
+        <span class="path">/checkout</span>
+        <div class="head-tools">
+          <div class="segmented" role="group" aria-label="Heatmap type">
+            <button type="button" data-heat="clicks" aria-pressed="true">Clicks</button>
+            <button type="button" data-heat="scroll" aria-pressed="false">Scroll</button>
+            <button type="button" data-heat="move" aria-pressed="false">Move</button>
+          </div>
+          <button class="device-btn" type="button" id="device-btn" aria-pressed="false">
+            <svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="1.6" y="3" width="12.8" height="10" rx="1.4"/><path d="M1.6 5.6h12.8"/></svg>
+            <span id="device-label">Desktop</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="views">
+        <section class="view" id="heatmaps-view" aria-label="Heatmap">
+          <div class="heat-layout">
+            <div class="browser">
+              <div class="browser-bar">
+                <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="url">lulas.co.za/checkout</span>
+              </div>
+              <div class="viewport" id="heat-viewport">
+                <div class="page" id="checkout-page" aria-hidden="true">
+                  <div class="page-top">
+                    <span class="page-logo"><i></i>Lulas</span>
+                    <span class="page-nav"><span>Plans</span><span>Devices</span><span>Support</span></span>
+                    <span class="secure">Secure checkout</span>
+                  </div>
+                  <div class="page-body">
+                    <div>
+                      <div class="steps"><span class="on">1 Cart</span><i></i><span class="on">2 Details</span><i></i><span>3 Payment</span></div>
+                      <h2>Delivery details</h2>
+                      <div class="field-grid">
+                        <div class="field"><label>First name</label><div class="input hot">Naledi</div></div>
+                        <div class="field"><label>Last name</label><div class="input hot">Mokoena</div></div>
+                        <div class="field full"><label>Street address</label><div class="input">12 Juta Street, Braamfontein</div></div>
+                        <div class="field"><label>City</label><div class="input">Johannesburg</div></div>
+                        <div class="field"><label>Postal code</label><div class="input hot is-error">2001</div></div>
+                        <div class="field full"><span class="help">We can’t deliver to this postal code.</span></div>
+                      </div>
+                      <div class="delivery-options">
+                        <div class="delivery-option is-selected hot"><span class="radio"></span>Standard delivery · 2–4 days<span class="price">R 99</span></div>
+                        <div class="delivery-option hot"><span class="radio"></span>Express delivery · tomorrow<span class="price">R 149</span></div>
+                      </div>
+                    </div>
+                    <aside class="summary">
+                      <h3>Order summary</h3>
+                      <div class="summary-row"><span>Prepaid SIM · 10GB</span><b>R 999</b></div>
+                      <div class="summary-row"><span>Delivery</span><b>R 99</b></div>
+                      <div class="promo hot"><div class="input">Promo code</div><button type="button" tabindex="-1">Apply</button></div>
+                      <div class="summary-row"><span>Total</span><b style="font-size:12px">R 1 098</b></div>
+                      <button class="pay hot" type="button" tabindex="-1">Pay now</button>
+                      <span class="pay-note">You can review this order before payment.</span>
+                    </aside>
+                  </div>
+                  <div class="page-foot"><span>Terms</span><span>Privacy</span><span>Refunds</span><span style="margin-left:auto">Lulas (Pty) Ltd</span></div>
+                </div>
+                <canvas id="heat-canvas" aria-hidden="true"></canvas>
+              </div>
+            </div>
+
+            <aside class="insights" aria-label="Heatmap insights">
+              <div class="card">
+                <h3>Clicks here</h3>
+                <div class="metrics">
+                  <div class="metric"><b>1 284</b><span>total clicks</span></div>
+                  <div class="metric"><b>74%</b><span>scroll reached</span></div>
+                  <div class="metric warn"><b>23</b><span>rage clicks</span></div>
+                  <div class="metric warn"><b>61</b><span>dead clicks</span></div>
+                </div>
+                <div class="legend"><span>Less</span><span class="scale" aria-hidden="true"></span><span>More</span></div>
+              </div>
+              <div class="card">
+                <h3>Share of clicks</h3>
+                <div class="bars">
+                  <div class="bar-row"><span class="name">Pay now<span>23 rage clicks</span></span><b>34%</b></div>
+                  <div class="bar-track" aria-hidden="true"><i style="width:100%"></i></div>
+                  <div class="bar-row"><span class="name">Promo code<span>61 dead clicks</span></span><b>22%</b></div>
+                  <div class="bar-track" aria-hidden="true"><i style="width:65%"></i></div>
+                  <div class="bar-row"><span class="name">Postal code field<span>validation</span></span><b>17%</b></div>
+                  <div class="bar-track" aria-hidden="true"><i style="width:50%"></i></div>
+                  <div class="bar-row"><span class="name">Express delivery</span><b>9%</b></div>
+                  <div class="bar-track" aria-hidden="true"><i style="width:26%"></i></div>
+                </div>
+              </div>
+              <div class="card">
+                <h3>What it says</h3>
+                <p style="margin:0;color:var(--ink-soft);font-size:9.5px;line-height:1.5">People hit Pay while the postal-code error is below the fold, then rage-click because nothing appears to happen.</p>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view" id="recordings-view" aria-label="Session recordings" hidden>
+          <div class="recordings-layout">
+            <div class="session-list" id="session-list"></div>
+            <div class="replay">
+              <div class="browser">
+                <div class="browser-bar">
+                  <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <span class="url" id="replay-url">lulas.co.za/checkout · session 4821</span>
+                </div>
+                <div class="viewport" id="replay-viewport">
+                  <div class="page" id="replay-page" aria-hidden="true"></div>
+                  <div id="replay-cursor" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M4 2.5 19 12l-6.6 1.3L9.5 20 4 2.5Z" fill="#fff" stroke="#23212b" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                    <span class="ripple"></span>
+                  </div>
+                  <div class="event-chip" id="event-chip"></div>
+                </div>
+              </div>
+              <div class="replay-foot">
+                <button class="replay-btn" type="button" id="replay-btn" aria-label="Play recording">
+                  <svg viewBox="0 0 12 12" aria-hidden="true" id="replay-icon"><path d="M2.5 1.5 10 6l-7.5 4.5V1.5Z" fill="currentColor"/></svg>
+                </button>
+                <div class="timeline">
+                  <div class="timeline-track"><div class="timeline-fill" id="timeline-fill"></div></div>
+                  <div class="timeline-marks" id="timeline-marks"></div>
+                  <p class="timeline-note" id="timeline-note">Press play to watch the session. Rage clicks are marked in red.</p>
+                </div>
+                <span class="speed">1×</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const $ = selector => document.querySelector(selector);
+  const pageMarkup = $("#checkout-page").innerHTML;
+
+  const SESSIONS = [
+    {
+      id: 4821,
+      name: "Naledi M.",
+      device: "Mobile · Android",
+      duration: "4m 12s",
+      flags: ["3 rage clicks", "Abandoned"],
+      note: "Hit Pay three times while the postal-code error sat below the fold.",
+      path: [
+        { x: 30, y: 22, t: 0, label: "Lands on checkout" },
+        { x: 42, y: 36, t: 1, label: "Fills delivery details" },
+        { x: 34, y: 52, t: 2 },
+        { x: 62, y: 48, t: 3, label: "Types an invalid postal code" },
+        { x: 74, y: 70, t: 4, label: "Pay now · no visible response", click: true, rage: true },
+        { x: 74, y: 70, t: 5, click: true, rage: true },
+        { x: 74, y: 70, t: 6, click: true, rage: true, label: "Rage clicks · leaves" }
+      ]
+    },
+    {
+      id: 4836,
+      name: "Anonymous",
+      device: "Desktop · Chrome",
+      duration: "2m 06s",
+      flags: ["Dead clicks", "Bounced"],
+      note: "Clicked the promo-code label twice; dead clicks on the Apply button.",
+      path: [
+        { x: 26, y: 30, t: 0, label: "Lands on checkout" },
+        { x: 70, y: 48, t: 1, label: "Clicks the promo field" },
+        { x: 78, y: 48, t: 2, click: true, label: "Dead click · Apply" },
+        { x: 78, y: 48, t: 3, click: true },
+        { x: 50, y: 62, t: 4, label: "Scrolls, then bounces" }
+      ]
+    },
+    {
+      id: 4844,
+      name: "Thabo K.",
+      device: "Mobile · iOS",
+      duration: "7m 41s",
+      flags: ["Hesitation", "Converted"],
+      note: "Spent 48 seconds on delivery options, chose the cheapest, paid.",
+      path: [
+        { x: 30, y: 24, t: 0, label: "Lands on checkout" },
+        { x: 44, y: 64, t: 1, label: "Hovers delivery options · 48s" },
+        { x: 44, y: 60, t: 2 },
+        { x: 46, y: 66, t: 3, click: true, label: "Selects standard delivery" },
+        { x: 76, y: 72, t: 4, click: true, label: "Pay now" },
+        { x: 50, y: 40, t: 5, label: "Confirmation shown" }
+      ]
+    }
+  ];
+
+  const state = {
+    view: "heatmaps",
+    heat: "clicks",
+    device: "desktop",
+    session: 0,
+    playing: false,
+    progress: 0
+  };
+
+  const el = {
+    heatCanvas: $("#heat-canvas"),
+    heatViewport: $("#heat-viewport"),
+    checkoutPage: $("#checkout-page"),
+    replayPage: $("#replay-page"),
+    replayCursor: $("#replay-cursor"),
+    replayViewport: $("#replay-viewport"),
+    replayUrl: $("#replay-url"),
+    eventChip: $("#event-chip"),
+    sessionList: $("#session-list"),
+    replayBtn: $("#replay-btn"),
+    replayIcon: $("#replay-icon"),
+    fill: $("#timeline-fill"),
+    marks: $("#timeline-marks"),
+    note: $("#timeline-note"),
+    heatmapsView: $("#heatmaps-view"),
+    recordingsView: $("#recordings-view")
+  };
+
+  /* Deterministic pseudo-random so the heatmap is stable between redraws. */
+  function seeded(seed) {
+    let value = seed >>> 0;
+    return function () {
+      value = (value * 1664525 + 1013904223) >>> 0;
+      return value / 4294967296;
+    };
+  }
+
+  function hotspots() {
+    const viewport = el.heatViewport.getBoundingClientRect();
+    return Array.from(el.heatViewport.querySelectorAll(".hot")).map(node => {
+      const rect = node.getBoundingClientRect();
+      return {
+        x: rect.left - viewport.left + rect.width / 2,
+        y: rect.top - viewport.top + rect.height / 2,
+        w: rect.width,
+        h: rect.height,
+        pay: node.classList.contains("pay"),
+        promo: node.closest(".promo") !== null,
+        error: node.classList.contains("is-error")
+      };
+    });
+  }
+
+  function blob(ctx, x, y, radius, strength) {
+    const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
+    gradient.addColorStop(0, `rgba(255,42,0,${0.5 * strength})`);
+    gradient.addColorStop(0.24, `rgba(255,120,0,${0.34 * strength})`);
+    gradient.addColorStop(0.5, `rgba(255,206,60,${0.22 * strength})`);
+    gradient.addColorStop(0.74, `rgba(60,190,140,${0.14 * strength})`);
+    gradient.addColorStop(1, "rgba(42,111,246,0)");
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  function drawClicks(ctx, width, height) {
+    const spots = hotspots();
+    const random = seeded(8841);
+    ctx.globalCompositeOperation = "lighter";
+    spots.forEach((spot, index) => {
+      const weight = spot.pay ? 12 : spot.promo ? 8 : spot.error ? 7 : 4;
+      for (let i = 0; i < weight; i += 1) {
+        const angle = random() * Math.PI * 2;
+        const spread = spot.pay ? 0.34 : 0.5;
+        const distance = Math.sqrt(random()) * Math.max(spot.w, spot.h) * spread;
+        const x = spot.x + Math.cos(angle) * distance;
+        const y = spot.y + Math.sin(angle) * distance * 0.7;
+        blob(ctx, x, y, (spot.pay ? 15 : 12) + random() * 10, 0.55 + random() * 0.5);
+      }
+      // A little ambient interest on the rest of the page.
+      if (index % 2 === 0) {
+        blob(ctx, spot.x + 40, spot.y + 46, 22, 0.35);
+      }
+    });
+    for (let i = 0; i < 8; i += 1) {
+      blob(ctx, random() * width, random() * height, 20 + random() * 16, 0.22);
+    }
+    ctx.globalCompositeOperation = "source-over";
+  }
+
+  function drawScroll(ctx, width, height) {
+    const gradient = ctx.createLinearGradient(0, 0, 0, height);
+    gradient.addColorStop(0, "rgba(255,42,0,0.55)");
+    gradient.addColorStop(0.3, "rgba(255,140,0,0.4)");
+    gradient.addColorStop(0.55, "rgba(255,214,60,0.3)");
+    gradient.addColorStop(0.74, "rgba(37,194,160,0.26)");
+    gradient.addColorStop(0.86, "rgba(42,111,246,0.16)");
+    gradient.addColorStop(1, "rgba(42,111,246,0)");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.setLineDash([5, 4]);
+    ctx.strokeStyle = "rgba(35,33,43,.5)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, height * 0.74);
+    ctx.lineTo(width, height * 0.74);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.fillStyle = "rgba(35,33,43,.78)";
+    ctx.font = "600 9px system-ui, sans-serif";
+    ctx.fillText("74% scroll reach", 8, height * 0.74 - 6);
+  }
+
+  function drawMove(ctx, width, height) {
+    const random = seeded(2299);
+    ctx.globalCompositeOperation = "lighter";
+    for (let i = 0; i < 26; i += 1) {
+      const x = width * (0.18 + random() * 0.68);
+      const y = height * (0.14 + random() * 0.74);
+      blob(ctx, x, y, 24 + random() * 24, 0.3 + random() * 0.35);
+    }
+    ctx.globalCompositeOperation = "source-over";
+  }
+
+  function drawHeat() {
+    const canvas = el.heatCanvas;
+    const rect = el.heatViewport.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(rect.width * ratio);
+    canvas.height = Math.round(rect.height * ratio);
+    const ctx = canvas.getContext("2d");
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    ctx.clearRect(0, 0, rect.width, rect.height);
+    if (state.heat === "scroll") drawScroll(ctx, rect.width, rect.height);
+    else if (state.heat === "move") drawMove(ctx, rect.width, rect.height);
+    else drawClicks(ctx, rect.width, rect.height);
+  }
+
+  function setHeat(type) {
+    state.heat = type;
+    document.querySelectorAll("[data-heat]").forEach(button => {
+      button.setAttribute("aria-pressed", String(button.dataset.heat === type));
+    });
+    drawHeat();
+  }
+
+  function setView(view) {
+    state.view = view;
+    document.querySelectorAll(".rail-btn[data-view]").forEach(button => {
+      button.setAttribute("aria-current", String(button.dataset.view === view));
+    });
+    el.heatmapsView.hidden = view !== "heatmaps";
+    el.recordingsView.hidden = view !== "recordings";
+    if (view === "heatmaps") requestAnimationFrame(drawHeat);
+    else renderReplay();
+  }
+
+  /* ── Recordings ──────────────────────────────────────────────────────── */
+  function session() {
+    return SESSIONS[state.session];
+  }
+
+  function renderSessionList() {
+    el.sessionList.replaceChildren();
+    SESSIONS.forEach((item, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "session";
+      button.setAttribute("aria-current", String(index === state.session));
+      button.innerHTML = `
+        <div class="row"><strong>${item.name}</strong><span class="dur">${item.duration}</span></div>
+        <div class="meta">${item.device}</div>
+        <div class="flags">${item.flags.map(flag => `<span class="flag${/Converted|Hesitation/.test(flag) ? " calm" : ""}">${flag}</span>`).join("")}</div>`;
+      button.addEventListener("click", () => selectSession(index));
+      el.sessionList.append(button);
+    });
+  }
+
+  function renderReplay() {
+    const item = session();
+    el.replayPage.innerHTML = pageMarkup;
+    el.replayPage.classList.toggle("is-mobile", state.device === "mobile");
+    el.replayUrl.textContent = `lulas.co.za/checkout · session ${item.id}`;
+    el.note.textContent = item.note;
+    el.fill.style.width = "0%";
+    el.marks.replaceChildren();
+    const total = item.path[item.path.length - 1].t || 1;
+    item.path.filter(point => point.click || point.label).forEach(point => {
+      const mark = document.createElement("i");
+      mark.style.left = `${(point.t / total) * 100}%`;
+      if (point.rage) mark.className = "rage";
+      el.marks.append(mark);
+    });
+    el.replayCursor.classList.remove("is-visible", "is-clicking");
+    el.eventChip.classList.remove("is-visible");
+    stopPlayback();
+    renderSessionList();
+    requestAnimationFrame(() => positionCursor(item.path[0]));
+  }
+
+  function positionCursor(point) {
+    if (!point) return;
+    el.replayCursor.style.left = `${point.x}%`;
+    el.replayCursor.style.top = `${point.y}%`;
+    el.replayCursor.classList.add("is-visible");
+  }
+
+  function showEvent(point) {
+    if (!point.label) {
+      el.eventChip.classList.remove("is-visible");
+      return;
+    }
+    el.eventChip.textContent = point.label;
+    el.eventChip.style.left = `${Math.min(Math.max(point.x, 16), 80)}%`;
+    el.eventChip.style.top = `calc(${Math.max(point.y - 7, 2)}% - 6px)`;
+    el.eventChip.classList.add("is-visible");
+    el.note.textContent = point.label;
+  }
+
+  let playbackFrame = 0;
+  let playbackStart = 0;
+
+  function stopPlayback() {
+    state.playing = false;
+    cancelAnimationFrame(playbackFrame);
+    el.replayIcon.innerHTML = '<path d="M2.5 1.5 10 6l-7.5 4.5V1.5Z" fill="currentColor"/>';
+    el.replayBtn.setAttribute("aria-label", "Play recording");
+  }
+
+  function play() {
+    const item = session();
+    const path = item.path;
+    const total = path[path.length - 1].t || 1;
+    const duration = total * 950;
+    cancelAnimationFrame(playbackFrame);
+    state.playing = true;
+    el.replayIcon.innerHTML = '<rect x="2" y="1.6" width="3" height="8.8" rx=".8" fill="currentColor"/><rect x="7" y="1.6" width="3" height="8.8" rx=".8" fill="currentColor"/>';
+    el.replayBtn.setAttribute("aria-label", "Pause recording");
+    el.eventChip.classList.remove("is-visible");
+    let lastIndex = -1;
+
+    const step = now => {
+      if (!state.playing) return;
+      if (!playbackStart) playbackStart = now;
+      const elapsed = now - playbackStart;
+      const progress = Math.min(elapsed / duration, 1);
+      el.fill.style.width = `${progress * 100}%`;
+
+      const currentT = progress * total;
+      let index = 0;
+      while (index < path.length - 1 && path[index + 1].t <= currentT) index += 1;
+      const from = path[index];
+      const to = path[Math.min(index + 1, path.length - 1)];
+      const span = Math.max(to.t - from.t, 0.001);
+      const local = Math.min(Math.max((currentT - from.t) / span, 0), 1);
+      const x = from.x + (to.x - from.x) * local;
+      const y = from.y + (to.y - from.y) * local;
+      el.replayCursor.style.left = `${x}%`;
+      el.replayCursor.style.top = `${y}%`;
+      el.replayCursor.classList.add("is-visible");
+
+      if (index !== lastIndex) {
+        const point = path[index];
+        if (point.click) {
+          el.replayCursor.classList.remove("is-clicking");
+          void el.replayCursor.offsetWidth;
+          el.replayCursor.classList.add("is-clicking");
+        }
+        showEvent(point);
+        lastIndex = index;
+      }
+
+      if (progress < 1) {
+        playbackFrame = requestAnimationFrame(step);
+      } else {
+        stopPlayback();
+        el.fill.style.width = "100%";
+        el.note.textContent = "Session ended · " + item.flags.join(" · ");
+      }
+    };
+
+    playbackStart = 0;
+    playbackFrame = requestAnimationFrame(step);
+  }
+
+  function selectSession(index) {
+    state.session = index;
+    renderReplay();
+  }
+
+  el.replayBtn.addEventListener("click", () => {
+    if (state.playing) {
+      stopPlayback();
+      el.note.textContent = "Paused · press play to continue from the start.";
+      return;
+    }
+    play();
+  });
+
+  window.addEventListener("resize", () => {
+    if (state.view === "heatmaps") drawHeat();
+  });
+
+  const observer = typeof ResizeObserver === "function" ? new ResizeObserver(() => {
+    if (state.view === "heatmaps") drawHeat();
+  }) : null;
+  if (observer) observer.observe(el.heatViewport);
+
+  document.querySelectorAll("[data-heat]").forEach(button => {
+    button.addEventListener("click", () => setHeat(button.dataset.heat));
+  });
+
+  document.querySelectorAll(".rail-btn[data-view]").forEach(button => {
+    button.addEventListener("click", () => setView(button.dataset.view));
+  });
+
+  $("#device-btn").addEventListener("click", event => {
+    const button = event.currentTarget;
+    const mobile = state.device === "desktop";
+    state.device = mobile ? "mobile" : "desktop";
+    button.setAttribute("aria-pressed", String(mobile));
+    $("#device-label").textContent = mobile ? "Mobile" : "Desktop";
+    el.checkoutPage.classList.toggle("is-mobile", mobile);
+    el.replayPage.classList.toggle("is-mobile", mobile);
+    requestAnimationFrame(drawHeat);
+  });
+
+  renderSessionList();
+  drawHeat();
+})();
+</script>
+</body>
+</html>
