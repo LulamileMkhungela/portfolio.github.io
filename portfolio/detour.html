@@ -1,0 +1,1090 @@
+<!doctype html><html lang="en-ZA"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<title>Detour — Trips worth the detour | Lulamile Mkhungela</title>
+<meta name="description" content="A South African trip-booking landing page concept for Detour, by Lulamile Mkhungela.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,900;1,9..144,900&family=Yellowtail&display=swap">
+<style>
+/* Layout concept: a travel-postcard page. Cream ground, navy ink, one coral accent.
+   Stamps, arches and a notched ticket carry the personality. Imagery is drawn as SVG scenes. */
+:root{
+  --cream:#FFF7EC; --navy:#13294B; --coral:#FF7A59; --tint:#FFE6DC; --blue:#4A5B78; --white:#fff;
+  --coral-ink:#B83F22; /* coral deepened so small text passes contrast on light grounds */
+  --f-script:'Yellowtail',cursive;
+  --f-display:'Fraunces',Georgia,'Times New Roman',serif;
+  --f-body:'Archivo',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --r-xl:40px; --r-lg:28px;
+  --ease:cubic-bezier(.2,.75,.2,1);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html.reduce{scroll-behavior:auto}
+body{margin:0;background:var(--cream);color:var(--navy);font:500 17px/1.6 var(--f-body);-webkit-font-smoothing:antialiased;overflow-x:clip}
+h1,h2,h3,p,ul,ol,figure,dl,dd{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+button,input{font:inherit;color:inherit}
+svg{max-width:100%}
+:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
+.dark :focus-visible{outline-color:#fff}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:16px;top:-80px;z-index:300;background:#fff;color:var(--navy);padding:12px 18px;border-radius:12px;font-weight:700}
+.skip:focus{top:12px}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.scene{display:block;width:100%;height:100%}
+.coral{color:var(--coral)}
+
+/* ---------- type + buttons ---------- */
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font:800 13px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--coral-ink)}
+.eyebrow::before{content:"";width:28px;height:2px;background:currentColor}
+.dark .eyebrow{color:var(--coral)}
+.h2{font:900 clamp(2.2rem,5.2vw,4.1rem)/1.02 var(--f-display);letter-spacing:-.02em;text-wrap:balance}
+.dark .h2{color:#fff}
+.lead{font-size:1.125rem;color:var(--blue);max-width:34rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 28px;border-radius:999px;border:2px solid var(--navy);font:700 14px/1 var(--f-body);letter-spacing:.09em;text-transform:uppercase;text-decoration:none;cursor:pointer;white-space:nowrap;transition:background-color .25s,color .25s,border-color .25s,box-shadow .25s,transform .25s}
+.btn .arr{display:inline-block;transition:transform .25s var(--ease)}
+.btn:hover .arr{transform:translateX(5px)}
+.btn--primary{background:var(--coral);border-color:var(--coral);color:var(--navy)}
+.btn--primary:hover{background:var(--navy);border-color:var(--navy);color:#fff}
+.dark .btn--primary:hover{border-color:#fff}
+.btn--ghost{background:#fff;color:var(--navy)}
+.btn--ghost:hover{background:var(--navy);color:#fff}
+.dark .btn--ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.75)}
+.dark .btn--ghost:hover{background:#fff;color:var(--navy);border-color:#fff}
+.btn svg{width:18px;height:18px;flex:none}
+.u{display:inline-block;padding-bottom:3px;text-decoration:none;background:linear-gradient(var(--coral),var(--coral)) 0 100%/0 2px no-repeat;transition:background-size .35s var(--ease)}
+.u:hover,.u:focus-visible{background-size:100% 2px}
+
+/* ---------- reveal + word reveal ---------- */
+.js:not(.reduce) .reveal{opacity:0}
+.js:not(.reduce) .reveal.in{opacity:1;animation:rise .85s var(--ease) var(--d,0ms) backwards}
+@keyframes rise{from{opacity:0;translate:0 30px}}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .07em .16em;margin:0 -.07em -.16em}
+.wi{display:inline-block}
+.js:not(.reduce) [data-split] .wi{transform:translateY(112%);transition:transform .9s var(--ease);transition-delay:calc(var(--wi) * 70ms + 80ms)}
+.js:not(.reduce) [data-split].in .wi{transform:none}
+
+/* ---------- tickers ---------- */
+.tick{background:var(--navy);color:#fff;overflow:hidden;display:flex;min-height:38px;align-items:center}
+.tick__track{display:flex;width:max-content;animation:marq 38s linear infinite}
+.tick:hover .tick__track{animation-play-state:paused}
+.tick__group{display:flex;align-items:center;gap:22px;padding-right:22px;flex:none;font:700 12px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--coral);flex:none;display:inline-block}
+@keyframes marq{to{transform:translateX(-50%)}}
+.slogan{overflow:hidden;padding:46px 0;margin-top:clamp(56px,8vw,110px)}
+.slogan__strip{background:var(--coral);color:var(--navy);transform:rotate(-1.8deg);width:106%;margin-left:-3%;padding:14px 0;overflow:hidden;border-block:2px solid var(--navy)}
+.slogan .tick__track{animation-direction:reverse;animation-duration:34s}
+.slogan .tick__group{font:900 clamp(1.4rem,3.2vw,2.3rem)/1.1 var(--f-display);letter-spacing:0;text-transform:none;gap:30px;padding-right:30px}
+.slogan .dot{background:var(--navy)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;border-radius:0 0 var(--r-xl) var(--r-xl);min-height:clamp(660px,calc(100svh - 38px),940px);color:#fff;isolation:isolate;background:var(--navy)}
+.hero__bg{position:absolute;inset:-20% 0 0 0;z-index:-3;will-change:transform}
+.hero__bg .scene{animation:kb 24s ease-in-out infinite alternate;transform-origin:62% 55%}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.1)}}
+.hero__shade{position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(19,41,75,.94) 0%,rgba(19,41,75,.78) 36%,rgba(19,41,75,.22) 72%,rgba(19,41,75,.05) 100%),linear-gradient(180deg,rgba(19,41,75,.5) 0%,rgba(19,41,75,0) 28%)}
+.hero__in{position:relative;display:flex;flex-direction:column;min-height:inherit;padding-top:22px;padding-bottom:156px}
+.logo{font:400 clamp(2.2rem,4vw,2.9rem)/1 var(--f-script);color:#fff;text-decoration:none;display:inline-block;padding:4px 2px}
+.nav{position:relative;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav__menu{flex:1;display:flex;align-items:center;gap:20px}
+.nav__links{display:flex;gap:4px;padding:6px;margin:0 auto;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.nav__links a{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:999px;font:700 13px/1 var(--f-body);letter-spacing:.09em;text-transform:uppercase;text-decoration:none;color:#fff;transition:background-color .25s}
+.nav__links a:hover{background:rgba(255,255,255,.22)}
+.nav__cta{display:flex;gap:10px;align-items:center}
+.nav__toggle{display:none;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);cursor:pointer;align-items:center;justify-content:center;color:#fff}
+.nav__toggle svg{width:22px;height:22px}
+.hero__body{flex:1;display:flex;align-items:center;justify-content:space-between;gap:32px;padding-top:40px}
+.hero__title{font:900 clamp(3.2rem,9vw,8rem)/.94 var(--f-display);letter-spacing:-.03em}
+.hero__title em{font-style:italic;color:var(--coral)}
+.hero__copy p{margin-top:26px;max-width:32rem;font-size:clamp(1.05rem,1.6vw,1.25rem);color:rgba(255,255,255,.92)}
+.hero__btns{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.spin-badge{position:relative;width:clamp(150px,16vw,210px);aspect-ratio:1;flex:none}
+.spin-badge .ring{position:absolute;inset:0;width:100%;height:100%;animation:spin 22s linear infinite}
+.spin-badge text{font:800 13.5px var(--f-body);fill:#fff}
+.spin-badge .core{position:absolute;inset:31%;border-radius:50%;background:var(--coral);color:var(--navy);display:grid;place-items:center;animation:bob 3.4s ease-in-out infinite}
+.spin-badge .core svg{width:42%;height:42%}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bob{0%,100%{translate:0 -5px}50%{translate:0 6px}}
+
+/* ---------- booking bar ---------- */
+.booking{position:relative;z-index:6;margin-top:-96px}
+.bk{background:#fff;border:2px solid var(--navy);border-radius:32px;box-shadow:0 30px 60px -28px rgba(19,41,75,.5);padding:16px clamp(16px,2.4vw,28px) 24px}
+.bk.flash{animation:flash 1.3s ease-out}
+@keyframes flash{0%{box-shadow:0 0 0 0 rgba(255,122,89,.9),0 30px 60px -28px rgba(19,41,75,.5)}100%{box-shadow:0 0 0 26px rgba(255,122,89,0),0 30px 60px -28px rgba(19,41,75,.5)}}
+.tabs{display:inline-flex;gap:6px;padding:5px;margin-bottom:16px;border-radius:999px;background:var(--cream);border:1.5px solid rgba(19,41,75,.14)}
+.tab{min-height:44px;padding:0 22px;border:0;border-radius:999px;background:transparent;font:700 13px/1 var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--blue);cursor:pointer;transition:background-color .25s,color .25s}
+.tab[aria-selected="true"]{background:var(--navy);color:#fff}
+.bk__row{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch}
+.field{flex:1 1 190px;min-width:0;display:flex;flex-direction:column;gap:3px;padding:10px 16px;border-radius:18px;background:var(--cream);border:2px solid transparent;transition:border-color .2s,background-color .2s}
+.field--wide{flex:1.5 1 240px}
+.field:focus-within{border-color:var(--navy);background:#fff}
+.lbl{font:800 11px/1.2 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+.field input{border:0;background:transparent;outline:none;width:100%;min-width:0;padding:2px 0;font:600 18px/1.4 var(--f-body);color:var(--navy)}
+.field input::placeholder{color:var(--blue);opacity:1;font-weight:500}
+.field input[type=date]{min-height:30px}
+.stepper{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.stepper output{font:600 18px/1.4 var(--f-body);text-align:center;flex:1}
+.step{width:44px;height:44px;flex:none;border-radius:50%;border:2px solid var(--navy);background:#fff;font:700 22px/1 var(--f-body);cursor:pointer;display:grid;place-items:center;transition:background-color .2s}
+.step:hover:not(:disabled){background:var(--coral)}
+.step:disabled{opacity:.35;cursor:not-allowed}
+.bk__go{flex:0 0 auto;min-height:68px;padding:0 32px;animation:pulse 2.8s ease-out infinite}
+.bk__go:hover{animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,122,89,.6)}70%{box-shadow:0 0 0 16px rgba(255,122,89,0)}100%{box-shadow:0 0 0 0 rgba(255,122,89,0)}}
+
+/* ---------- sections ---------- */
+.section{padding-block:clamp(64px,9vw,120px)}
+.how{padding-top:clamp(72px,10vw,130px);padding-bottom:0}
+.how__head{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,5vw,72px);align-items:end}
+.how__head .h2{margin-top:18px}
+.how__head .lead{margin-bottom:24px}
+.road{display:block;width:100%;height:auto;margin-top:clamp(20px,3vw,40px)}
+.stamps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3.5vw,44px);margin-top:clamp(8px,2vw,24px);padding-top:20px}
+.rv:nth-child(2){margin-top:34px}
+.stamp-wrap{position:relative;filter:drop-shadow(0 16px 22px rgba(19,41,75,.22));rotate:var(--rot,0deg);animation:float 6s ease-in-out infinite}
+.rv:nth-child(2) .stamp-wrap{animation-delay:-2s}
+.rv:nth-child(3) .stamp-wrap{animation-delay:-4s}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.tilt{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out}
+.stamp{--r:9px;--p:22px;--h:calc(var(--r) * .78);background:#fff;padding:16px 16px 14px;
+  -webkit-mask:
+    linear-gradient(#000 0 0) center/calc(100% - var(--r) * 2) calc(100% - var(--r) * 2) no-repeat,
+    radial-gradient(circle at 50% 0,#0000 var(--h),#000 calc(var(--h) + .6px)) top left/var(--p) var(--r) repeat-x,
+    radial-gradient(circle at 50% 100%,#0000 var(--h),#000 calc(var(--h) + .6px)) bottom left/var(--p) var(--r) repeat-x,
+    radial-gradient(circle at 0 50%,#0000 var(--h),#000 calc(var(--h) + .6px)) top left/var(--r) var(--p) repeat-y,
+    radial-gradient(circle at 100% 50%,#0000 var(--h),#000 calc(var(--h) + .6px)) top right/var(--r) var(--p) repeat-y;
+  mask:
+    linear-gradient(#000 0 0) center/calc(100% - var(--r) * 2) calc(100% - var(--r) * 2) no-repeat,
+    radial-gradient(circle at 50% 0,#0000 var(--h),#000 calc(var(--h) + .6px)) top left/var(--p) var(--r) repeat-x,
+    radial-gradient(circle at 50% 100%,#0000 var(--h),#000 calc(var(--h) + .6px)) bottom left/var(--p) var(--r) repeat-x,
+    radial-gradient(circle at 0 50%,#0000 var(--h),#000 calc(var(--h) + .6px)) top left/var(--r) var(--p) repeat-y,
+    radial-gradient(circle at 100% 50%,#0000 var(--h),#000 calc(var(--h) + .6px)) top right/var(--r) var(--p) repeat-y}
+.stamp__photo{aspect-ratio:4/4.6;overflow:hidden;border-radius:4px;background:var(--tint)}
+.stamp__cap{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:12px 4px 2px;font:900 1.25rem/1.2 var(--f-display)}
+.stamp__cap b{font:800 .95rem/1 var(--f-body);letter-spacing:.1em;color:var(--coral-ink)}
+.sticker{position:absolute;top:-20px;right:-10px;z-index:3;max-width:128px;padding:12px 16px;border-radius:999px;background:var(--coral);border:2px solid var(--navy);color:var(--navy);text-align:center;font:800 12px/1.2 var(--f-body);letter-spacing:.1em;text-transform:uppercase;animation:wiggle 3.2s ease-in-out infinite}
+@keyframes wiggle{0%,100%{rotate:-7deg}50%{rotate:7deg}}
+
+/* story */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:center}
+.collage{position:relative;width:100%;max-width:560px;aspect-ratio:1;justify-self:center}
+.collage>*{position:absolute}
+.c1{left:0;top:5%;width:70%;height:64%;border-radius:var(--r-xl);overflow:hidden;border:6px solid #fff;box-shadow:0 22px 40px -22px rgba(19,41,75,.5)}
+.c2{right:0;top:0;width:40%;--rot:6deg}
+.c2 .stamp{padding:10px}
+.c2 .stamp__photo{aspect-ratio:4/5}
+.c3{left:17%;bottom:0;width:56%;height:34%;border-radius:170px 170px 26px 26px;overflow:hidden;border:6px solid #fff;box-shadow:0 22px 40px -22px rgba(19,41,75,.5);rotate:-3deg}
+.navy-stamp{right:1%;bottom:5%;width:clamp(104px,23%,142px);aspect-ratio:1;z-index:4}
+.navy-stamp .ring{position:absolute;inset:0;width:100%;height:100%;animation:spin 26s linear infinite}
+.navy-stamp text{font:800 13px var(--f-body);fill:#fff}
+.navy-stamp .core{position:absolute;inset:32%;display:grid;place-items:center;color:var(--coral)}
+.navy-stamp .core svg{width:100%;height:100%}
+.badge{left:-6px;top:0;z-index:4;padding:14px 20px;border-radius:26px;background:var(--coral);border:2px solid var(--navy);color:var(--navy);text-align:center;rotate:-8deg;box-shadow:0 14px 24px -14px rgba(19,41,75,.6)}
+.badge strong{display:block;font:900 1.3rem/1.1 var(--f-display)}
+.badge span{display:block;margin-top:5px;font:800 11px/1.2 var(--f-body);letter-spacing:.12em;text-transform:uppercase}
+.ticket{position:relative;background:var(--tint);padding:clamp(40px,5.2vw,72px) clamp(32px,5vw,68px);border-radius:var(--r-lg);
+  -webkit-mask:radial-gradient(circle 22px at 0 50%,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 22px at 100% 50%,#0000 97%,#000) right/51% 100% no-repeat;
+  mask:radial-gradient(circle 22px at 0 50%,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 22px at 100% 50%,#0000 97%,#000) right/51% 100% no-repeat}
+.ticket::before{content:"";position:absolute;inset:14px;border:2px dashed rgba(19,41,75,.5);border-radius:18px;pointer-events:none}
+.ticket .h2{margin:18px 0 20px}
+.ticket p+p{margin-top:14px}
+.ticket p{color:var(--blue);font-size:1.05rem;max-width:32rem}
+.ticket .btn{margin-top:28px}
+
+/* featured */
+.panel{background:var(--tint);border-radius:var(--r-xl);padding:clamp(24px,4.5vw,64px)}
+.panel__top{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,64px);align-items:center;margin-bottom:clamp(28px,4vw,52px)}
+.panel__top .h2{margin:18px 0 18px}
+.note{color:var(--blue);font-weight:600;max-width:26rem}
+.mapcard{position:relative;max-width:470px;width:100%;justify-self:end;aspect-ratio:400/360;border:2px solid var(--navy);border-radius:var(--r-lg);background:var(--cream)}
+.mapcard__svg{position:absolute;inset:0;border-radius:26px;overflow:hidden}
+.mapcard__svg svg{display:block;width:100%;height:100%}
+.route{fill:none;stroke:var(--coral);stroke-width:3.2;stroke-linecap:round;stroke-dasharray:3 9;animation:march 1.6s linear infinite}
+@keyframes march{to{stroke-dashoffset:-24}}
+.pin{position:absolute;width:44px;height:52px;transform:translate(-50%,-100%);padding:0;border:0;background:none;cursor:pointer}
+.pin svg{display:block;width:100%;height:100%;overflow:visible;transition:scale .2s}
+.pin:hover svg,.pin:focus-visible svg{scale:1.14}
+.pin.is-on svg{animation:bounce .75s ease-in-out infinite;scale:1.12}
+@keyframes bounce{0%,100%{translate:0 0}50%{translate:0 -11px}}
+.pin__tip{position:absolute;left:50%;bottom:calc(100% + 2px);translate:-50% 0;padding:6px 10px;border-radius:999px;background:var(--navy);color:#fff;font:700 11px/1 var(--f-body);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}
+.pin:hover .pin__tip,.pin:focus-visible .pin__tip,.pin.is-on .pin__tip{opacity:1}
+.trips{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,2.6vw,32px)}
+.trip{display:flex;flex-direction:column;background:#fff;border:2px solid var(--navy);border-radius:var(--r-lg);overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.trip:hover,.trip.is-hot{transform:translateY(-8px);box-shadow:0 26px 40px -22px rgba(19,41,75,.55)}
+.trip__img{position:relative;aspect-ratio:16/10;overflow:hidden;border-bottom:2px solid var(--navy)}
+.trip__img .scene{transition:transform .9s var(--ease)}
+.trip:hover .trip__img .scene,.trip.is-hot .trip__img .scene{transform:scale(1.07)}
+.trip__tag{position:absolute;left:16px;top:16px;min-width:44px;height:44px;padding:0 12px;display:grid;place-items:center;border-radius:999px;background:var(--navy);color:#fff;font:800 14px/1 var(--f-body);letter-spacing:.1em}
+.trip__body{display:flex;flex-direction:column;gap:14px;padding:clamp(18px,2.4vw,28px);flex:1}
+.trip h3{font:900 clamp(1.5rem,2.4vw,1.95rem)/1.1 var(--f-display);letter-spacing:-.01em}
+.trip p{color:var(--blue)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:var(--tint);font:700 12px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase}
+.chip svg{width:14px;height:14px}
+.trip__foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-top:auto;padding-top:6px}
+.price{font:800 1.15rem/1.2 var(--f-body)}
+.price small{display:block;font:600 12px/1.3 var(--f-body);letter-spacing:.04em;color:var(--blue)}
+.fine{margin-top:22px;font-size:13px;color:var(--blue);font-weight:600}
+
+/* styles */
+.styles{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,88px);align-items:center}
+.archbox{position:relative;max-width:460px;width:100%;justify-self:center;padding-bottom:26px}
+.arch{position:relative;aspect-ratio:4/5.1;border:12px solid #fff;border-radius:999px 999px 36px 36px;overflow:hidden;box-shadow:0 30px 50px -28px rgba(19,41,75,.55);background:var(--tint)}
+.arch__layer{position:absolute;inset:0;opacity:0;transform:scale(1.12);transition:opacity .8s ease,transform 1.1s var(--ease)}
+.arch__layer.on{opacity:1;transform:scale(1)}
+.arch__layer .scene{position:absolute;inset:0}
+.arch__label{position:absolute;left:50%;bottom:26px;translate:-50% 0;z-index:2;padding:12px 22px;border-radius:999px;background:var(--navy);color:#fff;font:800 13px/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.archbox .btn{position:absolute;right:-18px;bottom:0;z-index:3;box-shadow:0 16px 24px -14px rgba(19,41,75,.6)}
+.styles__txt .h2{margin:18px 0 18px}
+.pills{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.pill{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;border:2px solid var(--navy);background:#fff;font:800 13px/1 var(--f-body);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background-color .25s,transform .25s var(--ease)}
+.pill svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.pill:hover{transform:translateY(-3px)}
+.pill[aria-pressed="true"]{background:var(--coral)}
+
+/* destinations */
+.dest__head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:clamp(28px,4vw,48px)}
+.dest__head .h2{margin-top:18px}
+.dests{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,24px)}
+.dest{display:flex;flex-direction:column;gap:16px;padding:14px 14px 18px;background:#fff;border:2px solid var(--navy);border-radius:32px;text-decoration:none;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.dest:hover{transform:translateY(-6px);box-shadow:0 24px 36px -22px rgba(19,41,75,.5)}
+.dest__img{aspect-ratio:3/3.7;overflow:hidden;border-radius:999px 999px 20px 20px}
+.dest__img .scene{transition:transform .9s var(--ease)}
+.dest:hover .dest__img .scene{transform:scale(1.09)}
+.dest__row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 6px}
+.dest__name{font:900 1.45rem/1.1 var(--f-display)}
+.dest__sub{display:block;margin-top:4px;font:700 11px/1.2 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.dest__go{flex:none;width:48px;height:48px;border-radius:50%;border:2px solid var(--navy);display:grid;place-items:center;transition:transform .45s var(--ease),background-color .25s}
+.dest__go svg{width:20px;height:20px}
+.dest:hover .dest__go,.dest:focus-visible .dest__go{transform:rotate(-45deg);background:var(--coral)}
+
+/* app */
+.app{position:relative;overflow:hidden;background:var(--navy);border-radius:var(--r-xl);padding:clamp(32px,6vw,80px);color:#fff;isolation:isolate}
+.glow{position:absolute;z-index:-1;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(255,122,89,.55),rgba(255,122,89,0) 66%)}
+.glow--a{width:640px;height:640px;right:-160px;top:-200px;animation:drift 19s ease-in-out infinite alternate}
+.glow--b{width:520px;height:520px;left:-140px;bottom:-240px;animation:drift 23s ease-in-out infinite alternate-reverse;opacity:.7}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(-90px,70px) scale(1.2)}}
+.app__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center}
+.app__txt .h2{margin:18px 0 20px}
+.app__txt>p{color:rgba(255,255,255,.88);max-width:32rem}
+.steps{display:grid;gap:14px;margin:30px 0;counter-reset:s}
+.steps li{display:flex;align-items:center;gap:14px;font-weight:700;counter-increment:s}
+.steps li::before{content:counter(s);flex:none;width:40px;height:40px;border-radius:50%;background:var(--coral);color:var(--navy);display:grid;place-items:center;font:900 1rem/1 var(--f-display)}
+.stores{display:flex;flex-wrap:wrap;gap:12px}
+.store{flex-direction:column;align-items:flex-start;gap:4px;padding:10px 24px;min-height:56px;text-align:left}
+.store small{font:600 10px/1 var(--f-body);letter-spacing:.14em}
+.store b{font:800 15px/1 var(--f-body);letter-spacing:.08em}
+.app__vis{position:relative;display:flex;justify-content:center;padding:18px 0 8px}
+.app__stamp{position:absolute;left:-2%;top:6%;width:clamp(120px,34%,170px);z-index:3;--rot:-7deg}
+.app__stamp .stamp{padding:10px}
+.app__stamp .stamp__photo{aspect-ratio:4/5}
+.phone{position:relative;width:min(300px,86%);padding:12px;border-radius:44px;background:#0A1730;border:2px solid rgba(255,255,255,.28);box-shadow:0 40px 70px -30px rgba(0,0,0,.7)}
+.phone__screen{background:var(--cream);color:var(--navy);border-radius:34px;padding:16px 16px 20px;display:grid;gap:14px}
+.phone__img{aspect-ratio:16/8;overflow:hidden;border-radius:20px}
+.phone .kicker{font:800 11px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--coral-ink)}
+.phone h3{font:900 1.5rem/1.1 var(--f-display);margin-top:6px}
+.sum{display:grid;gap:8px}
+.sum .row{display:flex;justify-content:space-between;gap:12px;padding:11px 14px;border-radius:14px;background:#fff;border:1.5px solid rgba(19,41,75,.14);font-weight:700;font-size:14px}
+.sum dt{font:800 11px/1.4 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.sum dd{text-align:right}
+.js:not(.reduce) .phone:not(.in) .row{opacity:0;translate:36px 0}
+.js:not(.reduce) .phone .row{transition:opacity .6s ease calc(var(--i) * 130ms + 350ms),translate .7s var(--ease) calc(var(--i) * 130ms + 350ms)}
+.phone .btn{width:100%;animation:pulse 2.8s ease-out infinite}
+
+/* footer */
+.foot{position:relative;margin-top:clamp(64px,9vw,120px);color:#fff;border-radius:var(--r-xl) var(--r-xl) 0 0;overflow:hidden;isolation:isolate;background:var(--navy)}
+.foot__bg{position:absolute;inset:0;z-index:-2}
+.foot__shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(19,41,75,.72) 0%,rgba(19,41,75,.9) 55%,rgba(19,41,75,.97) 100%)}
+.foot__hero{text-align:center;padding-top:clamp(64px,9vw,120px);padding-bottom:clamp(48px,6vw,80px)}
+.foot__hero .h2{font-size:clamp(2.6rem,7vw,5.6rem);line-height:1}
+.foot__hero p{margin:22px auto 0;max-width:34rem;color:rgba(255,255,255,.9);font-size:1.12rem}
+.mail{display:flex;flex-wrap:wrap;gap:8px;max-width:580px;margin:34px auto 0;padding:7px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.38);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.mail input{flex:1 1 200px;min-width:0;min-height:48px;padding:0 20px;border:0;background:transparent;outline:none;font:600 17px/1 var(--f-body);color:#fff}
+.mail input::placeholder{color:rgba(255,255,255,.82);font-weight:500}
+.mail:focus-within{border-color:#fff}
+.cols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:clamp(24px,4vw,56px);padding:clamp(36px,5vw,60px) 0;border-top:1px solid rgba(255,255,255,.22)}
+.cols h3{font:800 12px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--coral);margin-bottom:18px}
+.cols ul{display:grid;gap:12px}
+.cols a{color:rgba(255,255,255,.92);font-weight:600;text-decoration:none}
+.cols p{margin-top:12px;max-width:22rem;color:rgba(255,255,255,.85)}
+.legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding:20px 0 calc(28px + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(255,255,255,.22);font-size:14px;color:rgba(255,255,255,.85)}
+
+/* toast + back to top */
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:200;max-width:min(92vw,560px);padding:14px 24px;border-radius:999px;background:var(--navy);color:#fff;border:2px solid var(--coral);font-weight:700;text-align:center;box-shadow:0 22px 40px -18px rgba(19,41,75,.7);transform:translate(-50%,24px);opacity:0;visibility:hidden;transition:opacity .3s,transform .4s var(--ease),visibility .3s}
+.toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.totop{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:150;width:52px;height:52px;border-radius:50%;border:2px solid var(--navy);background:var(--coral);color:var(--navy);display:grid;place-items:center;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .3s,transform .3s,visibility .3s,background-color .25s,color .25s}
+.totop.show{opacity:1;visibility:visible;transform:none}
+.totop:hover{background:var(--navy);color:#fff}
+.totop svg{width:22px;height:22px}
+
+/* ---------- responsive ---------- */
+@media (max-width:1020px){
+  .dests{grid-template-columns:repeat(2,1fr)}
+  .how__head,.panel__top,.story,.styles,.app__grid{grid-template-columns:1fr}
+  .mapcard{justify-self:start}
+  .how__head .lead{margin-bottom:0}
+  .cols{grid-template-columns:1fr 1fr}
+  .cols>div:first-child{grid-column:1/-1}
+}
+@media (max-width:960px){
+  .nav__toggle{display:inline-flex}
+  .nav__menu{display:none;position:absolute;left:0;right:0;top:calc(100% + 10px);z-index:20;flex-direction:column;align-items:stretch;gap:14px;padding:16px;border-radius:28px;background:rgba(19,41,75,.96);border:1px solid rgba(255,255,255,.22);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+  .nav__menu.open{display:flex}
+  .nav__links{flex-direction:column;margin:0;padding:0;background:none;border:0;border-radius:0}
+  .nav__links a{border-radius:14px;min-height:48px}
+  .nav__cta{flex-wrap:wrap}
+  .nav__cta .btn{flex:1 1 140px}
+  .hero__body{flex-direction:column;align-items:flex-start;justify-content:center}
+  .hero__shade{background:linear-gradient(180deg,rgba(19,41,75,.7) 0%,rgba(19,41,75,.86) 100%)}
+  .spin-badge{width:128px}
+}
+@media (max-width:760px){
+  .stamps{grid-template-columns:1fr;max-width:340px;margin-inline:auto}
+  .rv:nth-child(2){margin-top:0}
+  .booking{margin-top:-70px}
+  .hero__in{padding-bottom:120px}
+  .bk__go{width:100%;min-height:60px}
+  .archbox .btn{right:-6px}
+}
+@media (max-width:640px){
+  .trips{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr 1fr}
+  .tab{padding:0 16px}
+}
+@media (max-width:540px){
+  .dests{grid-template-columns:1fr}
+  .hero__btns .btn{flex:1 1 100%}
+  .store{flex:1 1 100%}
+  .btn{white-space:normal;text-align:center;padding:12px 24px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .tick{height:auto;padding:10px 0}
+  .tick__track{width:100%;transform:none}
+  .tick__group{flex-wrap:wrap;justify-content:center;padding:0 16px;white-space:normal}
+  .tick__group[aria-hidden="true"]{display:none}
+  .hero__bg{transform:none!important}
+  .slogan__strip{padding:18px 0}
+}
+</style>
+</head><body>
+
+
+<!-- Scene sprite: illustrated stand-ins for photography, drawn as cover-fit SVG symbols -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<!-- Cape Town, golden hour -->
+<symbol id="sc-cpt" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="cpt-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2F4676"/><stop offset=".32" stop-color="#9B6A8F"/><stop offset=".58" stop-color="#FF9B73"/><stop offset=".76" stop-color="#FFD3A8"/></linearGradient>
+<linearGradient id="cpt-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9967F"/><stop offset=".22" stop-color="#8A6F9A"/><stop offset="1" stop-color="#17305C"/></linearGradient>
+<radialGradient id="cpt-sun"><stop offset="0" stop-color="#FFF3DA"/><stop offset=".35" stop-color="#FFC28E" stop-opacity=".85"/><stop offset="1" stop-color="#FF9B73" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1200" height="800" fill="url(#cpt-sky)"/>
+<circle cx="900" cy="500" r="300" fill="url(#cpt-sun)"/>
+<circle cx="900" cy="500" r="58" fill="#FFF3DA"/>
+<g fill="#FFD9BC" opacity=".6"><rect x="90" y="170" width="380" height="14" rx="7"/><rect x="190" y="204" width="270" height="10" rx="5"/><rect x="720" y="120" width="340" height="12" rx="6"/><rect x="860" y="150" width="230" height="9" rx="4.5"/></g>
+<path d="M0 590 L0 505 L90 470 L180 455 L260 470 L330 520 L420 590Z" fill="#8F7AA6" opacity=".8"/>
+<path d="M280 592 L330 440 L372 345 L400 318 L830 318 L862 332 L905 430 L985 592Z" fill="#4C4F88"/>
+<path d="M560 318 L830 318 L862 332 L884 392 L590 392Z" fill="#7774A8" opacity=".35"/>
+<path d="M388 324 q70 -34 150 -10 q80 -30 160 4 q70 -22 126 6 L830 340 L400 340Z" fill="#FFE8D4" opacity=".75"/>
+<path d="M0 592 L40 522 L110 468 Q165 438 222 478 L275 542 L320 592Z" fill="#3A3F74"/>
+<path d="M930 592 L985 480 L1040 430 Q1085 414 1115 452 L1170 532 L1200 592Z" fill="#3E4278"/>
+<rect y="586" width="1200" height="214" fill="url(#cpt-sea)"/>
+<g fill="#FFF0DD"><rect x="372" y="572" width="22" height="16"/><rect x="400" y="566" width="30" height="22"/><rect x="438" y="574" width="20" height="14"/><rect x="470" y="568" width="34" height="20"/><rect x="512" y="574" width="24" height="14"/><rect x="545" y="566" width="28" height="22"/><rect x="590" y="572" width="22" height="16"/><rect x="640" y="568" width="30" height="20"/><rect x="690" y="574" width="24" height="14"/><rect x="730" y="566" width="34" height="22"/></g>
+<g fill="#FFE9CC" opacity=".85"><rect x="820" y="604" width="150" height="5" rx="2.5"/><rect x="845" y="622" width="100" height="5" rx="2.5"/><rect x="860" y="640" width="70" height="5" rx="2.5"/><rect x="872" y="658" width="46" height="5" rx="2.5"/></g>
+<path d="M0 700 Q300 662 620 692 T1200 672 V800 H0Z" fill="#B97F78"/>
+<path d="M0 760 Q90 700 190 738 Q250 760 300 800 H0Z" fill="#17274A"/>
+<path d="M1200 770 Q1110 720 1040 750 Q990 770 960 800 H1200Z" fill="#17274A"/>
+</symbol>
+<!-- Joyful woman on a boat -->
+<symbol id="sc-boat" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="bt-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7FB8EA"/><stop offset="1" stop-color="#FFE3C8"/></linearGradient>
+<linearGradient id="bt-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2F86BC"/><stop offset="1" stop-color="#123D6E"/></linearGradient>
+</defs>
+<rect width="1200" height="800" fill="url(#bt-sky)"/>
+<circle cx="1010" cy="160" r="66" fill="#FFF3D2"/>
+<path d="M0 478 L130 424 L215 446 L340 366 L410 356 L560 356 L600 372 L700 446 L860 470 L1200 478 V530H0Z" fill="#7F93B8" opacity=".7"/>
+<rect y="476" width="1200" height="324" fill="url(#bt-sea)"/>
+<g stroke="#C9E6F8" stroke-width="6" stroke-linecap="round" opacity=".6" fill="none"><path d="M80 540 q40 -14 80 0 t80 0"/><path d="M820 560 q40 -14 80 0 t80 0"/><path d="M300 600 q40 -14 80 0 t80 0"/><path d="M960 620 q40 -14 80 0 t80 0"/></g>
+<g stroke="#7B4A2F" stroke-width="40" fill="none" stroke-linecap="round"><path d="M520 540 Q430 440 428 330"/><path d="M680 540 Q770 440 772 330"/></g>
+<circle cx="428" cy="316" r="30" fill="#7B4A2F"/><circle cx="772" cy="316" r="30" fill="#7B4A2F"/>
+<path d="M496 660 Q496 540 560 506 L640 506 Q704 540 704 660Z" fill="#FF7A59"/>
+<rect x="574" y="446" width="52" height="76" rx="24" fill="#6E4129"/>
+<g fill="#1B1210"><circle cx="540" cy="338" r="42"/><circle cx="600" cy="308" r="52"/><circle cx="660" cy="338" r="42"/></g>
+<ellipse cx="600" cy="400" rx="64" ry="76" fill="#7B4A2F"/>
+<path d="M538 382 Q540 336 600 330 Q662 336 662 382 Q640 350 600 348 Q560 350 538 382Z" fill="#1B1210"/>
+<g stroke="#1B1210" stroke-width="5" fill="none" stroke-linecap="round"><path d="M571 400 q10 -11 22 0"/><path d="M607 400 q10 -11 22 0"/></g>
+<path d="M566 428 Q600 470 634 428Z" fill="#fff" stroke="#3C1F12" stroke-width="4" stroke-linejoin="round"/>
+<ellipse cx="560" cy="424" rx="14" ry="9" fill="#FF7A59" opacity=".3"/><ellipse cx="640" cy="424" rx="14" ry="9" fill="#FF7A59" opacity=".3"/>
+<path d="M0 650 H1200 V800 H0Z" fill="#F7F1E8"/>
+<path d="M0 650 H1200" stroke="#13294B" stroke-width="12"/>
+<g stroke="#fff" stroke-width="12" stroke-linecap="round"><path d="M120 650 V560"/><path d="M360 650 V560"/><path d="M840 650 V560"/><path d="M1080 650 V560"/></g>
+<path d="M60 566 H1140" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+<path d="M0 740 H1200" stroke="#E4D8C6" stroke-width="8"/>
+</symbol>
+<!-- Teal campervan, Garden Route -->
+<symbol id="sc-van" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="vn-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8CC4EE"/><stop offset="1" stop-color="#FFEBD5"/></linearGradient>
+<linearGradient id="vn-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3C8FC0"/><stop offset="1" stop-color="#86C3DC"/></linearGradient>
+</defs>
+<rect width="1200" height="800" fill="url(#vn-sky)"/>
+<circle cx="980" cy="150" r="60" fill="#FFF3D2"/>
+<g fill="#fff" opacity=".85"><ellipse cx="220" cy="140" rx="120" ry="22"/><ellipse cx="310" cy="118" rx="76" ry="20"/><ellipse cx="640" cy="210" rx="110" ry="18"/></g>
+<path d="M0 360 L140 300 L260 340 L420 270 L560 330 L700 290 L860 340 L1020 280 L1200 330 V430H0Z" fill="#6F8FB6" opacity=".75"/>
+<rect y="400" width="1200" height="110" fill="url(#vn-sea)"/>
+<path d="M0 470 Q200 410 420 450 T820 440 T1200 430 V800 H0Z" fill="#5FA06C"/>
+<path d="M0 540 Q260 470 520 520 T1200 500 V800 H0Z" fill="#3F7F5C"/>
+<path d="M0 640 Q320 560 700 610 T1200 590 V800 H0Z" fill="#2E6650"/>
+<path d="M-60 800 Q380 690 560 600 Q700 530 780 500 L820 502 Q770 560 700 610 Q540 720 520 800Z" fill="#46506A"/>
+<path d="M-10 800 Q430 690 610 600 Q730 540 800 504" stroke="#F3E9D6" stroke-width="5" stroke-dasharray="26 22" fill="none"/>
+<g fill="#C9568A"><circle cx="150" cy="620" r="9"/><circle cx="190" cy="650" r="8"/><circle cx="110" cy="660" r="7"/><circle cx="1010" cy="640" r="9"/><circle cx="1070" cy="670" r="8"/></g>
+<g transform="translate(470 470)">
+<rect x="70" y="2" width="210" height="16" rx="8" fill="#FF7A59" transform="rotate(-3 175 10)"/>
+<rect x="10" y="14" width="330" height="40" rx="14" fill="#E9F4F2"/>
+<path d="M0 66 Q0 36 34 34 H260 Q304 34 326 76 L352 100 Q362 110 362 130 V158 H0Z" fill="#1E9C99"/>
+<rect x="0" y="116" width="362" height="14" fill="#F4E9D8"/>
+<rect x="30" y="54" width="70" height="46" rx="8" fill="#CFEAF6"/><rect x="114" y="54" width="70" height="46" rx="8" fill="#CFEAF6"/>
+<path d="M264 54 H294 Q312 58 330 94 H264Z" fill="#CFEAF6"/>
+<rect x="340" y="124" width="22" height="12" rx="4" fill="#FFE9A8"/>
+<circle cx="88" cy="160" r="36" fill="#13294B"/><circle cx="88" cy="160" r="14" fill="#E8DFD0"/>
+<circle cx="288" cy="160" r="36" fill="#13294B"/><circle cx="288" cy="160" r="14" fill="#E8DFD0"/>
+</g>
+</symbol>
+<!-- Drakensberg peaks and a hiking trail -->
+<symbol id="sc-dra" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="dr-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8DBDEB"/><stop offset=".7" stop-color="#FDE0C8"/></linearGradient>
+</defs>
+<rect width="1200" height="800" fill="url(#dr-sky)"/>
+<g fill="#fff" opacity=".8"><ellipse cx="880" cy="130" rx="130" ry="20"/><ellipse cx="320" cy="170" rx="100" ry="16"/></g>
+<path d="M0 430 L90 390 L130 340 L180 346 L215 300 L262 310 L300 250 L420 250 L440 308 L610 308 L640 256 L700 252 L722 308 L860 312 L900 276 L960 282 L990 336 L1100 350 L1200 396 V600H0Z" fill="#5A6F96"/>
+<path d="M0 500 L100 450 L160 420 L240 430 L300 380 L420 380 L470 430 L640 430 L690 390 L760 394 L800 440 L960 440 L1040 410 L1200 460 V640H0Z" fill="#33466D"/>
+<g stroke="#4B6089" stroke-width="5" opacity=".7"><path d="M310 380 V430"/><path d="M350 380 V440"/><path d="M390 380 V436"/><path d="M700 394 V436"/><path d="M740 394 V440"/></g>
+<rect y="430" width="1200" height="60" fill="#fff" opacity=".28"/>
+<path d="M0 560 Q240 500 520 540 T1200 520 V800 H0Z" fill="#6FA26B"/>
+<path d="M0 650 Q300 580 640 630 T1200 600 V800 H0Z" fill="#4E8A5B"/>
+<path d="M520 800 Q540 740 620 720 Q720 700 700 650 Q690 610 760 590 Q820 575 830 560" stroke="#EBCBA4" stroke-width="22" fill="none" stroke-linecap="round"/>
+<g transform="translate(676 668)"><circle cx="0" cy="-48" r="9" fill="#6E4129"/><rect x="-10" y="-38" width="20" height="30" rx="8" fill="#FF7A59"/><rect x="-12" y="-36" width="8" height="22" rx="4" fill="#13294B"/><path d="M-6 -8 L-8 14 M6 -8 L8 14" stroke="#13294B" stroke-width="6" stroke-linecap="round"/></g>
+<g fill="#2F6B4A"><path d="M120 760 L150 690 L180 760Z"/><path d="M160 770 L195 690 L230 770Z"/><path d="M1020 780 L1056 700 L1092 780Z"/></g>
+</symbol>
+<!-- Durban shoreline -->
+<symbol id="sc-dbn" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="db-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#58A9DB"/><stop offset=".55" stop-color="#FFD9B0"/><stop offset="1" stop-color="#FFE9C9"/></linearGradient>
+<linearGradient id="db-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B8FA8"/><stop offset="1" stop-color="#3CC0C4"/></linearGradient>
+</defs>
+<rect width="1200" height="800" fill="url(#db-sky)"/>
+<circle cx="950" cy="190" r="72" fill="#FFF4D8"/>
+<g fill="#fff" opacity=".75"><ellipse cx="260" cy="170" rx="120" ry="22"/><ellipse cx="350" cy="150" rx="80" ry="20"/><ellipse cx="700" cy="250" rx="110" ry="18"/></g>
+<g fill="#F7EBDD"><rect x="40" y="380" width="70" height="124"/><rect x="120" y="340" width="60" height="164"/><rect x="190" y="400" width="90" height="104"/><rect x="760" y="392" width="80" height="112"/><rect x="850" y="350" width="64" height="154"/></g>
+<g fill="#B9C9D8"><rect x="54" y="400" width="12" height="14"/><rect x="80" y="400" width="12" height="14"/><rect x="54" y="436" width="12" height="14"/><rect x="80" y="436" width="12" height="14"/><rect x="134" y="364" width="12" height="14"/><rect x="156" y="364" width="12" height="14"/><rect x="134" y="404" width="12" height="14"/><rect x="156" y="404" width="12" height="14"/><rect x="864" y="374" width="12" height="14"/><rect x="886" y="374" width="12" height="14"/></g>
+<rect y="500" width="1200" height="170" fill="url(#db-sea)"/>
+<g stroke="#E8FBFA" stroke-width="6" stroke-linecap="round" opacity=".8" fill="none"><path d="M60 540 q40 -14 80 0 t80 0"/><path d="M520 560 q40 -14 80 0 t80 0"/><path d="M880 530 q40 -14 80 0 t80 0"/><path d="M280 590 q40 -14 80 0 t80 0"/><path d="M700 604 q40 -14 80 0 t80 0"/></g>
+<path d="M0 650 Q150 616 300 646 T600 646 T900 646 T1200 646 V700 H0Z" fill="#F4FFFE" opacity=".9"/>
+<path d="M0 672 Q300 642 600 674 T1200 654 V800 H0Z" fill="#F0CE9B"/>
+<path d="M0 740 Q400 708 800 746 T1200 724 V800 H0Z" fill="#E6BC87"/>
+<path d="M200 700 a72 58 0 0 1 144 0Z" fill="#FF7A59"/><path d="M272 700 V770" stroke="#13294B" stroke-width="6"/>
+<path d="M820 712 a62 50 0 0 1 124 0Z" fill="#fff"/><path d="M882 712 V776" stroke="#13294B" stroke-width="6"/>
+<g transform="translate(1040 760)"><path d="M0 0 Q-20 -140 20 -270" stroke="#6B4A33" stroke-width="16" fill="none" stroke-linecap="round"/><g transform="translate(20 -270)" fill="#2F7D55"><path d="M0 0 Q-70 -50 -150 -10 Q-80 -20 0 0Z"/><path d="M0 0 Q-40 -90 -120 -90 Q-50 -60 0 0Z"/><path d="M0 0 Q50 -90 130 -80 Q60 -50 0 0Z"/><path d="M0 0 Q80 -40 150 0 Q80 -10 0 0Z"/><path d="M0 0 Q-30 40 -100 50 Q-40 20 0 0Z"/><path d="M0 0 Q40 40 110 40 Q50 10 0 0Z"/></g></g>
+<g transform="translate(110 780)"><path d="M0 0 Q20 -120 -10 -230" stroke="#6B4A33" stroke-width="14" fill="none" stroke-linecap="round"/><g transform="translate(-10 -230)" fill="#2F7D55"><path d="M0 0 Q-70 -40 -130 0 Q-70 -14 0 0Z"/><path d="M0 0 Q-30 -80 -100 -80 Q-40 -50 0 0Z"/><path d="M0 0 Q44 -80 110 -70 Q50 -44 0 0Z"/><path d="M0 0 Q70 -30 130 4 Q70 -4 0 0Z"/><path d="M0 0 Q-24 36 -84 44 Q-34 18 0 0Z"/></g></g>
+</symbol>
+<!-- Dhow off Zanzibar -->
+<symbol id="sc-zan" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="zn-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4D3C7A"/><stop offset=".45" stop-color="#FF8F6B"/><stop offset=".72" stop-color="#FFD3A0"/></linearGradient>
+<linearGradient id="zn-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F0A284"/><stop offset=".2" stop-color="#3BB3BC"/><stop offset="1" stop-color="#136B8C"/></linearGradient>
+</defs>
+<rect width="1200" height="800" fill="url(#zn-sky)"/>
+<circle cx="880" cy="470" r="64" fill="#FFF0D4"/>
+<g fill="#FFD0AE" opacity=".6"><rect x="140" y="200" width="360" height="14" rx="7"/><rect x="240" y="236" width="250" height="10" rx="5"/><rect x="780" y="150" width="300" height="12" rx="6"/></g>
+<rect y="520" width="1200" height="280" fill="url(#zn-sea)"/>
+<path d="M60 524 Q130 490 220 520 Z" fill="#1F4B5E"/>
+<g stroke="#1F4B5E" stroke-width="5" fill="none" stroke-linecap="round"><path d="M120 508 V478"/><path d="M150 510 V472"/></g>
+<g fill="#FFE5C4" opacity=".8"><rect x="810" y="540" width="150" height="5" rx="2.5"/><rect x="835" y="560" width="100" height="5" rx="2.5"/><rect x="850" y="580" width="70" height="5" rx="2.5"/></g>
+<g transform="translate(560 620)">
+<path d="M-24 -10 L52 -330 L250 -40Z" fill="#FFF3E2"/>
+<path d="M-24 -10 L52 -330 L90 -60Z" fill="#FFE1C4"/>
+<path d="M-92 -62 L70 -344" stroke="#4A2F20" stroke-width="7" stroke-linecap="round"/>
+<path d="M60 -10 V-46" stroke="#4A2F20" stroke-width="8" stroke-linecap="round"/>
+<path d="M-190 4 Q-170 58 -80 62 H170 Q250 54 280 -12 Q190 16 -190 4Z" fill="#5A3A28"/>
+<path d="M-180 18 Q150 30 268 4" stroke="#F4E2C4" stroke-width="6" fill="none"/>
+<path d="M-190 4 L-232 -22" stroke="#5A3A28" stroke-width="9" stroke-linecap="round"/>
+<path d="M-180 74 Q50 100 270 70" stroke="#FFD0AE" stroke-width="6" fill="none" opacity=".6" stroke-linecap="round"/>
+</g>
+<g stroke="#D9F4F2" stroke-width="6" stroke-linecap="round" opacity=".6" fill="none"><path d="M100 620 q40 -14 80 0 t80 0"/><path d="M860 700 q40 -14 80 0 t80 0"/><path d="M300 740 q40 -14 80 0 t80 0"/></g>
+</symbol>
+<!-- Man with a backpack at a lake -->
+<symbol id="sc-lake" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="lk-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#86BDEB"/><stop offset="1" stop-color="#FFE8D0"/></linearGradient>
+<linearGradient id="lk-water" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4E93BF"/><stop offset="1" stop-color="#1D5C88"/></linearGradient>
+</defs>
+<rect width="1200" height="800" fill="url(#lk-sky)"/>
+<circle cx="190" cy="150" r="56" fill="#FFF3D2"/>
+<path d="M0 470 L180 330 L300 400 L520 260 L700 410 L860 320 L1040 420 L1200 360 V520H0Z" fill="#6C88B2"/>
+<path d="M440 306 L520 260 L590 320 L540 308 L500 330Z" fill="#F3F6FA"/>
+<path d="M0 500 L200 420 L400 490 L640 430 L900 500 L1200 440 V540H0Z" fill="#456A94"/>
+<rect y="480" width="1200" height="320" fill="url(#lk-water)"/>
+<g stroke="#CBE5F6" stroke-width="5" stroke-linecap="round" opacity=".55" fill="none"><path d="M80 560 q40 -12 80 0 t80 0"/><path d="M880 590 q40 -12 80 0 t80 0"/><path d="M500 640 q40 -12 80 0 t80 0"/></g>
+<g fill="#24604A"><path d="M0 560 L40 400 L80 560Z"/><path d="M50 600 L100 420 L150 600Z"/><path d="M1120 580 L1160 410 L1200 580Z"/><path d="M1060 620 L1110 440 L1160 620Z"/></g>
+<rect x="450" y="480" width="300" height="320" rx="60" fill="#E2603F"/>
+<path d="M350 800 Q350 640 440 612 L760 612 Q850 640 850 800Z" fill="#13294B"/>
+<g stroke="#FF7A59" stroke-width="26" stroke-linecap="round"><path d="M500 624 L482 800"/><path d="M700 624 L718 800"/></g>
+<rect x="548" y="540" width="104" height="90" rx="40" fill="#6A3F28"/>
+<ellipse cx="600" cy="470" rx="82" ry="96" fill="#7B4A2F"/>
+<path d="M516 450 Q520 372 600 366 Q682 372 684 450 Q662 404 600 402 Q538 404 516 450Z" fill="#17100E"/>
+<g stroke="#17100E" stroke-width="6" stroke-linecap="round" fill="none"><path d="M556 452 q14 -10 28 0"/><path d="M616 452 q14 -10 28 0"/></g>
+<path d="M550 494 Q600 548 650 494Z" fill="#fff" stroke="#3C1F12" stroke-width="5" stroke-linejoin="round"/>
+<ellipse cx="548" cy="492" rx="16" ry="10" fill="#FF7A59" opacity=".3"/><ellipse cx="652" cy="492" rx="16" ry="10" fill="#FF7A59" opacity=".3"/>
+</symbol>
+<!-- Plane wing over sunset clouds, seen through a window -->
+<symbol id="sc-wing" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="wg-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A2F66"/><stop offset=".4" stop-color="#9A5C8E"/><stop offset=".7" stop-color="#FF8F6B"/><stop offset="1" stop-color="#FFD2A4"/></linearGradient>
+<radialGradient id="wg-sun"><stop offset="0" stop-color="#FFF1D6"/><stop offset=".4" stop-color="#FFC08C" stop-opacity=".8"/><stop offset="1" stop-color="#FF8F6B" stop-opacity="0"/></radialGradient>
+<linearGradient id="wg-wing" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F1F4F9"/><stop offset="1" stop-color="#A9B4C8"/></linearGradient>
+</defs>
+<rect width="1200" height="800" fill="url(#wg-sky)"/>
+<circle cx="860" cy="520" r="280" fill="url(#wg-sun)"/>
+<circle cx="860" cy="520" r="52" fill="#FFF1D6"/>
+<g fill="#FFD9C2" opacity=".85"><ellipse cx="250" cy="600" rx="260" ry="52"/><ellipse cx="520" cy="640" rx="300" ry="46"/><ellipse cx="900" cy="620" rx="280" ry="50"/><ellipse cx="1120" cy="660" rx="200" ry="40"/></g>
+<g fill="#F2A98F" opacity=".9"><ellipse cx="120" cy="700" rx="280" ry="60"/><ellipse cx="480" cy="730" rx="320" ry="56"/><ellipse cx="900" cy="720" rx="300" ry="60"/></g>
+<path d="M-40 800 L-40 560 Q300 516 760 608 L900 640 Q500 704 160 800Z" fill="url(#wg-wing)"/>
+<path d="M-40 560 Q300 516 760 608" stroke="#fff" stroke-width="6" fill="none"/>
+<path d="M760 608 L812 504 L840 508 L830 636Z" fill="#DDE3EE"/>
+<circle cx="826" cy="506" r="9" fill="#FF7A59"/>
+<path d="M0 0H1200V800H0Z M130 70 H1070 Q1140 70 1140 140 V660 Q1140 730 1070 730 H130 Q60 730 60 660 V140 Q60 70 130 70Z" fill="#0E1B33" fill-rule="evenodd"/>
+<rect x="60" y="70" width="1080" height="660" rx="70" fill="none" stroke="#2A3C5E" stroke-width="8"/>
+</symbol>
+<!-- Maputo -->
+<symbol id="sc-mpm" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="mp-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5A4A86"/><stop offset=".5" stop-color="#FF8A6A"/><stop offset=".8" stop-color="#FFD6A5"/></linearGradient>
+</defs>
+<rect width="1200" height="800" fill="url(#mp-sky)"/>
+<circle cx="250" cy="420" r="50" fill="#FFF0D4"/>
+<g fill="#FFD9BC" opacity=".55"><rect x="700" y="150" width="340" height="12" rx="6"/><rect x="800" y="184" width="220" height="9" rx="4.5"/></g>
+<g><rect x="60" y="360" width="150" height="320" fill="#F2C9B0"/><rect x="900" y="340" width="170" height="340" fill="#C9D6E8"/><rect x="1070" y="410" width="130" height="270" fill="#F7E1C8"/><rect x="210" y="430" width="110" height="250" fill="#E58C74"/></g>
+<g fill="#6F7FA3" opacity=".7"><rect x="84" y="392" width="20" height="26"/><rect x="120" y="392" width="20" height="26"/><rect x="156" y="392" width="20" height="26"/><rect x="84" y="446" width="20" height="26"/><rect x="120" y="446" width="20" height="26"/><rect x="156" y="446" width="20" height="26"/><rect x="84" y="500" width="20" height="26"/><rect x="120" y="500" width="20" height="26"/><rect x="156" y="500" width="20" height="26"/><rect x="930" y="372" width="22" height="28"/><rect x="974" y="372" width="22" height="28"/><rect x="1018" y="372" width="22" height="28"/><rect x="930" y="430" width="22" height="28"/><rect x="974" y="430" width="22" height="28"/><rect x="1018" y="430" width="22" height="28"/><rect x="930" y="488" width="22" height="28"/><rect x="974" y="488" width="22" height="28"/><rect x="1018" y="488" width="22" height="28"/></g>
+<rect x="340" y="470" width="540" height="210" fill="#FFF0DD"/>
+<g fill="#E9D3B6"><rect x="370" y="500" width="22" height="180"/><rect x="420" y="500" width="22" height="180"/><rect x="470" y="500" width="22" height="180"/><rect x="718" y="500" width="22" height="180"/><rect x="768" y="500" width="22" height="180"/><rect x="818" y="500" width="22" height="180"/></g>
+<rect x="340" y="470" width="540" height="22" fill="#13294B"/>
+<path d="M500 470 V400 Q500 300 610 290 Q720 300 720 400 V470Z" fill="#2E8F78"/>
+<rect x="604" y="226" width="12" height="70" fill="#13294B"/><circle cx="610" cy="222" r="9" fill="#FF7A59"/>
+<path d="M560 680 V560 Q560 520 610 520 Q660 520 660 560 V680Z" fill="#13294B"/>
+<g><path d="M110 690 V610" stroke="#5B3A2A" stroke-width="12"/><circle cx="110" cy="590" r="64" fill="#E8553A"/><circle cx="70" cy="620" r="40" fill="#F26B4A"/><circle cx="152" cy="616" r="42" fill="#F26B4A"/></g>
+<g><path d="M1100 700 V620" stroke="#5B3A2A" stroke-width="12"/><circle cx="1100" cy="598" r="66" fill="#E8553A"/><circle cx="1058" cy="630" r="42" fill="#F26B4A"/><circle cx="1144" cy="628" r="42" fill="#F26B4A"/></g>
+<rect y="676" width="1200" height="124" fill="#3A3F5C"/>
+<path d="M0 740 H1200" stroke="#F3E9D6" stroke-width="5" stroke-dasharray="40 30"/>
+<path d="M240 700 a60 40 0 0 1 120 0Z" fill="#FF7A59"/><path d="M300 700 V760" stroke="#13294B" stroke-width="5"/>
+<path d="M880 700 a60 40 0 0 1 120 0Z" fill="#fff"/><path d="M940 700 V760" stroke="#13294B" stroke-width="5"/>
+</symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+<button class="totop" id="totop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<!-- 1. TOP TICKER -->
+<div class="tick dark" role="region" aria-label="Detour highlights">
+  <div class="tick__track">
+    <div class="tick__group"><span>Flights + stays in one booking</span><i class="dot"></i><span>Curated by locals</span><i class="dot"></i><span>Pay in instalments</span><i class="dot"></i><span>Flights + stays in one booking</span><i class="dot"></i><span>Curated by locals</span><i class="dot"></i><span>Pay in instalments</span><i class="dot"></i></div>
+    <div class="tick__group" aria-hidden="true"><span>Flights + stays in one booking</span><i class="dot"></i><span>Curated by locals</span><i class="dot"></i><span>Pay in instalments</span><i class="dot"></i><span>Flights + stays in one booking</span><i class="dot"></i><span>Curated by locals</span><i class="dot"></i><span>Pay in instalments</span><i class="dot"></i></div>
+  </div>
+</div>
+
+<!-- 2. HERO -->
+<header class="hero dark" id="top">
+  <div class="hero__bg" data-parallax>
+    <svg class="scene" role="img" aria-label="Table Mountain rising above the Atlantic coast of Cape Town at golden hour" focusable="false"><use href="#sc-cpt" width="100%" height="100%"/></svg>
+  </div>
+  <div class="hero__shade"></div>
+  <div class="wrap hero__in">
+    <nav class="nav" aria-label="Main">
+      <a class="logo" href="#top" aria-label="Detour, back to top">Detour</a>
+      <div class="nav__menu" id="nav-menu">
+        <div class="nav__links">
+          <a href="#trips">Trips</a><a href="#destinations">Destinations</a><a href="#styles">Trip styles</a><a href="#app">The app</a>
+        </div>
+        <div class="nav__cta">
+          <button class="btn btn--ghost" type="button" data-demo="Sign in isn’t switched on in this demo.">Sign in</button>
+          <a class="btn btn--primary" href="#app">Get the app</a>
+        </div>
+      </div>
+      <button class="nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </nav>
+    <div class="hero__body">
+      <div class="hero__copy">
+        <h1 class="hero__title" data-split>Trips worth<br><em>the detour</em></h1>
+        <p class="reveal">Flights, stays and local experiences booked together in one easy app, for travellers who want more than the usual.</p>
+        <div class="hero__btns" data-stagger>
+          <a class="btn btn--primary" href="#booking-card" data-go="booking">Plan my trip <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn btn--ghost" href="#trips">See featured trips</a>
+        </div>
+      </div>
+      <div class="spin-badge" role="img" aria-label="Search, book, go. All-in prices.">
+        <svg class="ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="ring1" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><circle cx="100" cy="100" r="98" fill="rgba(19,41,75,.6)" stroke="rgba(255,255,255,.4)"/><text><textPath href="#ring1" textLength="484" lengthAdjust="spacing">SEARCH · BOOK · GO · ALL-IN PRICES · </textPath></text></svg>
+        <div class="core"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<!-- 3. BOOKING BAR -->
+<section class="booking" id="booking" aria-label="Search trips">
+  <div class="wrap">
+    <div class="bk reveal" id="booking-card">
+      <div class="tabs" role="tablist" aria-label="Search type">
+        <button class="tab" role="tab" id="tab-full" type="button" data-mode="full" aria-selected="true" aria-controls="booking-form">Full trip</button>
+        <button class="tab" role="tab" id="tab-stays" type="button" data-mode="stays" aria-selected="false" tabindex="-1" aria-controls="booking-form">Stays only</button>
+      </div>
+      <form id="booking-form" role="tabpanel" aria-labelledby="tab-full">
+        <div class="bk__row">
+          <div class="field" id="field-from"><label class="lbl" for="from">From</label><input id="from" name="from" type="text" value="Johannesburg (JNB)" autocomplete="off"></div>
+          <div class="field field--wide"><label class="lbl" for="to">Where to?</label><input id="to" name="to" type="text" placeholder="Cape Town, Durban, Zanzibar, anywhere…" autocomplete="off"></div>
+          <div class="field"><label class="lbl" for="when" id="when-label">Leaving</label><input id="when" name="when" type="date"></div>
+          <div class="field"><span class="lbl" id="trav-lbl">Travellers</span>
+            <div class="stepper" role="group" aria-labelledby="trav-lbl">
+              <button class="step" id="minus" type="button" aria-label="Fewer travellers">&minus;</button>
+              <output id="tcount" for="minus plus">2 travellers</output>
+              <button class="step" id="plus" type="button" aria-label="More travellers">+</button>
+            </div>
+          </div>
+          <button class="btn btn--primary bk__go" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Find trips</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- 4. HOW IT WORKS -->
+<section class="section how" id="how">
+  <div class="wrap">
+    <div class="how__head">
+      <div><span class="eyebrow reveal">How Detour works</span><h2 class="h2" data-split>Plan less. Go further.</h2></div>
+      <div class="reveal"><p class="lead">Pick a place and a pace. Detour puts your flights, your stay and the local extras into one booking, with the price shown up front, so there is less to compare and more to look forward to.</p><a class="btn btn--primary" href="#trips" style="margin-top:24px">Explore trips <span class="arr" aria-hidden="true">→</span></a></div>
+    </div>
+    <svg class="road" viewBox="0 -60 1200 300" aria-hidden="true" focusable="false">
+      <path id="road-path" d="M-20 150 C150 20 300 20 420 110 S700 220 820 110 S1050 10 1220 80" fill="none" stroke="#13294B" stroke-width="34" stroke-linecap="round"/>
+      <path d="M-20 150 C150 20 300 20 420 110 S700 220 820 110 S1050 10 1220 80" fill="none" stroke="#FFF7EC" stroke-width="3" stroke-dasharray="14 12"/>
+      <g id="car-a" class="car" style="visibility:hidden"><rect x="-15" y="-7" width="30" height="11" rx="4" fill="#FF7A59" stroke="#FFF7EC" stroke-width="1.5"/><path d="M-8 -7 L-5 -13 H6 L11 -7Z" fill="#FF7A59" stroke="#FFF7EC" stroke-width="1.5" stroke-linejoin="round"/><circle cx="-8" cy="4" r="3.4" fill="#FFF7EC"/><circle cx="8" cy="4" r="3.4" fill="#FFF7EC"/></g>
+      <g id="car-b" class="car" style="visibility:hidden"><rect x="-15" y="-7" width="30" height="11" rx="4" fill="#fff"/><path d="M-8 -7 L-5 -13 H6 L11 -7Z" fill="#fff" stroke-linejoin="round"/><circle cx="-8" cy="4" r="3.4" fill="#FF7A59"/><circle cx="8" cy="4" r="3.4" fill="#FF7A59"/></g>
+      <g id="car-c" class="car" style="visibility:hidden"><rect x="-15" y="-7" width="30" height="11" rx="4" fill="#FFE6DC"/><path d="M-8 -7 L-5 -13 H6 L11 -7Z" fill="#FFE6DC" stroke-linejoin="round"/><circle cx="-8" cy="4" r="3.4" fill="#13294B" stroke="#FFF7EC"/><circle cx="8" cy="4" r="3.4" fill="#13294B" stroke="#FFF7EC"/></g>
+      <g transform="translate(219 30)"><path d="M0 0 C-4 -10 -16 -18 -16 -28 A16 16 0 0 1 16 -28 C16 -18 4 -10 0 0Z" fill="#FF7A59" stroke="#13294B" stroke-width="2.4"/><circle cx="0" cy="-28" r="6" fill="#FFF7EC"/></g>
+      <g transform="translate(620 166)"><path d="M0 0 C-4 -10 -16 -18 -16 -28 A16 16 0 0 1 16 -28 C16 -18 4 -10 0 0Z" fill="#FF7A59" stroke="#13294B" stroke-width="2.4"/><circle cx="0" cy="-28" r="6" fill="#FFF7EC"/></g>
+      <g transform="translate(1001 10)"><path d="M0 0 C-4 -10 -16 -18 -16 -28 A16 16 0 0 1 16 -28 C16 -18 4 -10 0 0Z" fill="#FF7A59" stroke="#13294B" stroke-width="2.4"/><circle cx="0" cy="-28" r="6" fill="#FFF7EC"/></g>
+    </svg>
+    <div class="stamps" data-stagger>
+      <div class="rv"><figure class="stamp-wrap" style="--rot:-3deg"><div class="tilt"><div class="stamp"><div class="stamp__photo"><svg class="scene" role="img" aria-label="A teal campervan driving along the Garden Route" focusable="false"><use href="#sc-van" width="100%" height="100%"/></svg></div><figcaption class="stamp__cap"><span>Road trips</span><b>01</b></figcaption></div></div></figure></div>
+      <div class="rv"><figure class="stamp-wrap" style="--rot:2deg"><div class="tilt"><div class="stamp"><div class="stamp__photo"><svg class="scene" role="img" aria-label="A wooden dhow with a cream sail off Zanzibar at sunset" focusable="false"><use href="#sc-zan" width="100%" height="100%"/></svg></div><figcaption class="stamp__cap"><span>Island hopping</span><b>02</b></figcaption></div></div><span class="sticker">Your trip, your way</span></figure></div>
+      <div class="rv"><figure class="stamp-wrap" style="--rot:-2deg"><div class="tilt"><div class="stamp"><div class="stamp__photo"><svg class="scene" role="img" aria-label="A joyful young woman with her arms raised on a boat, with the coast behind her" focusable="false"><use href="#sc-boat" width="100%" height="100%"/></svg></div><figcaption class="stamp__cap"><span>Sea views</span><b>03</b></figcaption></div></div></figure></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. STORY -->
+<section class="section" id="story" style="padding-bottom:0">
+  <div class="wrap story">
+    <div class="collage reveal">
+      <div class="c1"><svg class="scene" role="img" aria-label="Cape Town’s mountain and coast at golden hour" focusable="false"><use href="#sc-cpt" width="100%" height="100%"/></svg></div>
+      <figure class="c2 stamp-wrap" style="--rot:6deg"><div class="stamp"><div class="stamp__photo"><svg class="scene" role="img" aria-label="A teal campervan on the Garden Route" focusable="false"><use href="#sc-van" width="100%" height="100%"/></svg></div></div></figure>
+      <div class="c3"><svg class="scene" role="img" aria-label="A dhow sailing off Zanzibar" focusable="false"><use href="#sc-zan" width="100%" height="100%"/></svg></div>
+      <div class="navy-stamp" role="img" aria-label="Local hosts, real stories">
+        <svg class="ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="ring2" d="M100,100 m-70,0 a70,70 0 1,1 140,0 a70,70 0 1,1 -140,0"/></defs><circle cx="100" cy="100" r="98" fill="#13294B"/><circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,.35)" stroke-dasharray="2 6" stroke-linecap="round"/><text><textPath href="#ring2" textLength="434" lengthAdjust="spacing">LOCAL HOSTS · REAL STORIES · </textPath></text></svg>
+        <div class="core"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.6" fill="#13294B"/></svg></div>
+      </div>
+      <div class="badge"><strong>One booking</strong><span>Flight + stay + more</span></div>
+    </div>
+    <div class="ticket dark-free reveal">
+      <span class="eyebrow">Why Detour</span>
+      <h2 class="h2" data-split>Off the usual path!</h2>
+      <p>Every Detour trip starts with someone who actually lives there: a guesthouse host in Cape Town, a guide who grew up in the Berg, a skipper out of Stone Town. We build each route around them, so you see more than the postcard stops.</p>
+      <p>Local hosts and communities shape what is on the plan, and your flight and stay arrive in one booking. Expect a braai on the stoep instead of a tour bus, and a lot fewer open tabs.</p>
+      <a class="btn btn--primary" href="#trips">Meet the trips <span class="arr" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 6. SLOGAN TICKER -->
+<div class="slogan" role="region" aria-label="Detour slogan">
+  <div class="slogan__strip"><div class="tick__track" style="display:flex">
+    <div class="tick__group"><span>Don’t just book it. Live it.</span><i class="dot"></i><span>#TakeTheDetour</span><i class="dot"></i><span>Don’t just book it. Live it.</span><i class="dot"></i><span>#TakeTheDetour</span><i class="dot"></i><span>Don’t just book it. Live it.</span><i class="dot"></i><span>#TakeTheDetour</span><i class="dot"></i></div>
+    <div class="tick__group" aria-hidden="true"><span>Don’t just book it. Live it.</span><i class="dot"></i><span>#TakeTheDetour</span><i class="dot"></i><span>Don’t just book it. Live it.</span><i class="dot"></i><span>#TakeTheDetour</span><i class="dot"></i><span>Don’t just book it. Live it.</span><i class="dot"></i><span>#TakeTheDetour</span><i class="dot"></i></div>
+  </div></div>
+</div>
+
+<!-- 7. FEATURED TRIPS -->
+<section class="section" id="trips" style="padding-top:clamp(8px,2vw,24px)">
+  <div class="wrap">
+    <div class="panel">
+      <div class="panel__top">
+        <div><span class="eyebrow reveal">Featured trips</span><h2 class="h2" data-split>Trips people can’t stop talking about</h2><p class="note reveal">Hover a trip to find it on the map, or tap a pin.</p></div>
+        <div class="mapcard reveal" aria-label="Map of southern Africa with the four featured trips">
+          <div class="mapcard__svg"><svg viewBox="0 0 400 360" role="img" aria-label="Illustrated map of southern Africa showing routes from Johannesburg to Cape Town, the Garden Route, the Drakensberg and Zanzibar">
+            <g fill="none" stroke="#4A5B78" stroke-width="1.4" stroke-linecap="round" opacity=".35"><path d="M10 322 q20 -8 40 0 t40 0"/><path d="M12 338 q20 -8 40 0 t40 0"/><path d="M330 296 q20 -8 40 0 t40 0"/><path d="M340 316 q20 -8 40 0 t40 0"/><path d="M350 120 q14 -6 28 0 t28 0"/></g>
+            <path d="M18 40 L150 28 L260 30 L318 34 L336 52 L326 96 L338 140 L330 186 L322 214 L304 246 L270 282 L228 306 L186 322 L148 322 L112 312 L92 288 L74 252 L62 214 L56 160 L40 112 Z" fill="#fff" stroke="#13294B" stroke-width="2.4" stroke-linejoin="round"/>
+            <path d="M246 242 L264 228 L284 238 L280 258 L258 262Z" fill="#FFF7EC" stroke="#13294B" stroke-width="2"/>
+            <ellipse cx="356" cy="62" rx="9" ry="16" fill="#fff" stroke="#13294B" stroke-width="2.2" transform="rotate(14 356 62)"/>
+            <path class="route" d="M240 168 Q150 230 100 298"/>
+            <path class="route" d="M240 168 Q215 250 176 316"/>
+            <path class="route" d="M240 168 Q270 195 283 232"/>
+            <path class="route" d="M240 168 Q330 90 356 62"/>
+            <circle cx="240" cy="168" r="7" fill="#13294B"/><circle cx="240" cy="168" r="3" fill="#FFF7EC"/>
+            <text x="224" y="156" font-family="Archivo,sans-serif" font-weight="800" font-size="11" letter-spacing="1.4" fill="#13294B">JNB</text>
+            <text x="14" y="212" font-family="Fraunces,serif" font-style="italic" font-weight="900" font-size="12" fill="#4A5B78" opacity=".85">Atlantic</text>
+            <text x="338" y="250" font-family="Fraunces,serif" font-style="italic" font-weight="900" font-size="12" fill="#4A5B78" opacity=".85" text-anchor="middle" dx="14">Indian Ocean</text>
+          </svg></div>
+          <button class="pin" type="button" data-trip="cpt" style="left:26%;top:83%" aria-label="Coastline Unpacked, Cape Town. Go to this trip"><span class="pin__tip">Cape Town</span><svg viewBox="0 0 44 52" aria-hidden="true"><path d="M22 51 C18 40 5 33 5 20 A17 17 0 0 1 39 20 C39 33 26 40 22 51Z" fill="#FF7A59" stroke="#13294B" stroke-width="2.6"/><circle cx="22" cy="20" r="6.5" fill="#FFF7EC"/></svg></button>
+          <button class="pin" type="button" data-trip="gr" style="left:44%;top:88%" aria-label="Garden Route by Road. Go to this trip"><span class="pin__tip">Garden Route</span><svg viewBox="0 0 44 52" aria-hidden="true"><path d="M22 51 C18 40 5 33 5 20 A17 17 0 0 1 39 20 C39 33 26 40 22 51Z" fill="#FF7A59" stroke="#13294B" stroke-width="2.6"/><circle cx="22" cy="20" r="6.5" fill="#FFF7EC"/></svg></button>
+          <button class="pin" type="button" data-trip="dra" style="left:70.75%;top:65.5%" aria-label="Drakensberg Reset. Go to this trip"><span class="pin__tip">Drakensberg</span><svg viewBox="0 0 44 52" aria-hidden="true"><path d="M22 51 C18 40 5 33 5 20 A17 17 0 0 1 39 20 C39 33 26 40 22 51Z" fill="#FF7A59" stroke="#13294B" stroke-width="2.6"/><circle cx="22" cy="20" r="6.5" fill="#FFF7EC"/></svg></button>
+          <button class="pin" type="button" data-trip="zan" style="left:89%;top:17%" aria-label="Dhow and Spice, Zanzibar. Go to this trip"><span class="pin__tip">Zanzibar</span><svg viewBox="0 0 44 52" aria-hidden="true"><path d="M22 51 C18 40 5 33 5 20 A17 17 0 0 1 39 20 C39 33 26 40 22 51Z" fill="#FF7A59" stroke="#13294B" stroke-width="2.6"/><circle cx="22" cy="20" r="6.5" fill="#FFF7EC"/></svg></button>
+        </div>
+      </div>
+      <div class="trips" data-stagger>
+        <article class="trip" id="trip-cpt" data-trip="cpt" tabindex="-1">
+          <div class="trip__img"><svg class="scene" role="img" aria-label="Table Mountain and the Atlantic coast at golden hour" focusable="false"><use href="#sc-cpt" width="100%" height="100%"/></svg><span class="trip__tag">01</span></div>
+          <div class="trip__body">
+            <h3>Coastline Unpacked</h3>
+            <p>Sunrise on the mountain, a seafront stay on the Atlantic side and a Cape Peninsula day with a local guide. Flights from JNB and your stay come in one booking.</p>
+            <ul class="chips"><li class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>Cape Town</li><li class="chip">5 nights</li><li class="chip">Flight + stay</li></ul>
+            <div class="trip__foot"><p class="price"><small>From</small>R9&nbsp;800 pp</p><button class="btn btn--primary" type="button" data-book="Cape Town">Book this trip <span class="arr" aria-hidden="true">→</span></button></div>
+          </div>
+        </article>
+        <article class="trip" id="trip-gr" data-trip="gr" tabindex="-1">
+          <div class="trip__img"><svg class="scene" role="img" aria-label="A teal campervan on a coastal road along the Garden Route" focusable="false"><use href="#sc-van" width="100%" height="100%"/></svg><span class="trip__tag">02</span></div>
+          <div class="trip__body">
+            <h3>Garden Route by Road</h3>
+            <p>Pick up a campervan, follow the coast from Wilderness to Plettenberg Bay and sleep in stays chosen for the view. You set the pace, we line up the beds.</p>
+            <ul class="chips"><li class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>Garden Route</li><li class="chip">6 nights</li><li class="chip">Road trip + stays</li></ul>
+            <div class="trip__foot"><p class="price"><small>From</small>R11&nbsp;400 pp</p><button class="btn btn--primary" type="button" data-book="Garden Route">Book this trip <span class="arr" aria-hidden="true">→</span></button></div>
+          </div>
+        </article>
+        <article class="trip" id="trip-dra" data-trip="dra" tabindex="-1">
+          <div class="trip__img"><svg class="scene" role="img" aria-label="Drakensberg basalt peaks above a grassy hiking trail" focusable="false"><use href="#sc-dra" width="100%" height="100%"/></svg><span class="trip__tag">03</span></div>
+          <div class="trip__body">
+            <h3>Drakensberg Reset</h3>
+            <p>Four nights in the Berg with guided hikes to big escarpment views, slow mornings and evenings by the fire. A short drive from Joburg, so no flight needed.</p>
+            <ul class="chips"><li class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>Drakensberg</li><li class="chip">4 nights</li><li class="chip">Guided hikes</li></ul>
+            <div class="trip__foot"><p class="price"><small>From</small>R6&nbsp;200 pp</p><button class="btn btn--primary" type="button" data-book="Drakensberg">Book this trip <span class="arr" aria-hidden="true">→</span></button></div>
+          </div>
+        </article>
+        <article class="trip" id="trip-zan" data-trip="zan" tabindex="-1">
+          <div class="trip__img"><svg class="scene" role="img" aria-label="A dhow with a cream sail off Zanzibar at sunset" focusable="false"><use href="#sc-zan" width="100%" height="100%"/></svg><span class="trip__tag">04</span></div>
+          <div class="trip__body">
+            <h3>Dhow &amp; Spice</h3>
+            <p>Seven nights on Zanzibar: a spice walk through Stone Town, a sunset sail on a traditional dhow and long beach days on the east coast. Flights from JNB included.</p>
+            <ul class="chips"><li class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>Zanzibar</li><li class="chip">7 nights</li><li class="chip">Flight + stay</li></ul>
+            <div class="trip__foot"><p class="price"><small>From</small>R21&nbsp;900 pp</p><button class="btn btn--primary" type="button" data-book="Zanzibar">Book this trip <span class="arr" aria-hidden="true">→</span></button></div>
+          </div>
+        </article>
+      </div>
+      <p class="fine">Sample prices in rand, per person sharing. Swap in your own offers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. PICK YOUR KIND OF TRIP -->
+<section class="section" id="styles" style="padding-top:clamp(24px,4vw,60px)">
+  <div class="wrap styles">
+    <div class="archbox reveal">
+      <div class="arch" role="img" id="arch" aria-label="A dhow off Zanzibar, a beach trip">
+        <div class="arch__layer on" data-layer="zan"><svg class="scene" aria-hidden="true" focusable="false"><use href="#sc-zan" width="100%" height="100%"/></svg></div>
+        <div class="arch__layer" data-layer="dbn"><svg class="scene" aria-hidden="true" focusable="false"><use href="#sc-dbn" width="100%" height="100%"/></svg></div>
+        <div class="arch__layer" data-layer="cpt"><svg class="scene" aria-hidden="true" focusable="false"><use href="#sc-cpt" width="100%" height="100%"/></svg></div>
+        <div class="arch__layer" data-layer="dra"><svg class="scene" aria-hidden="true" focusable="false"><use href="#sc-dra" width="100%" height="100%"/></svg></div>
+        <div class="arch__layer" data-layer="mpm"><svg class="scene" aria-hidden="true" focusable="false"><use href="#sc-mpm" width="100%" height="100%"/></svg></div>
+        <span class="arch__label" id="arch-label">Beach · Zanzibar</span>
+      </div>
+      <button class="btn btn--primary" type="button" id="arch-go">Start booking <span class="arr" aria-hidden="true">→</span></button>
+    </div>
+    <div class="styles__txt">
+      <span class="eyebrow reveal">Trip styles</span>
+      <h2 class="h2" data-split>Pick your kind of trip</h2>
+      <p class="lead reveal">Not sure where to start? Choose the mood you are in and we will show you a place that fits it. Tap a style to preview.</p>
+      <div class="pills" role="group" aria-label="Trip styles" data-stagger>
+        <button class="pill" type="button" data-style="beach" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M3 17c2-2 4-2 6 0s4 2 6 0 4-2 6 0M3 21c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg>Beach</button>
+        <button class="pill" type="button" data-style="city" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V9h6v12M10 21V4h10v17M13 8h4M13 12h4M13 16h4M7 13v.01M7 17v.01"/></svg>City breaks</button>
+        <button class="pill" type="button" data-style="adv" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20l6-11 4 6 3-4 5 9z"/></svg>Adventure</button>
+        <button class="pill" type="button" data-style="cul" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-5 9 5M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18"/></svg>Culture</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. DESTINATIONS -->
+<section class="section" id="destinations" style="padding-top:clamp(24px,4vw,60px)">
+  <div class="wrap">
+    <div class="dest__head">
+      <div><span class="eyebrow reveal">Trending now</span><h2 class="h2" data-split>Where people are going</h2></div>
+      <button class="btn btn--ghost reveal" type="button" data-demo="The full destination list isn’t part of this demo yet.">See all destinations <span class="arr" aria-hidden="true">→</span></button>
+    </div>
+    <div class="dests" data-stagger>
+      <a class="dest" href="#booking-card" data-dest="Cape Town"><div class="dest__img"><svg class="scene" role="img" aria-label="Table Mountain at golden hour" focusable="false"><use href="#sc-cpt" width="100%" height="100%"/></svg></div><div class="dest__row"><div><span class="dest__name">Cape Town</span><span class="dest__sub">Western Cape</span></div><span class="dest__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+      <a class="dest" href="#booking-card" data-dest="Durban"><div class="dest__img"><svg class="scene" role="img" aria-label="Warm Indian Ocean shoreline in Durban" focusable="false"><use href="#sc-dbn" width="100%" height="100%"/></svg></div><div class="dest__row"><div><span class="dest__name">Durban</span><span class="dest__sub">KwaZulu-Natal</span></div><span class="dest__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+      <a class="dest" href="#booking-card" data-dest="Drakensberg"><div class="dest__img"><svg class="scene" role="img" aria-label="Drakensberg peaks and a hiking trail" focusable="false"><use href="#sc-dra" width="100%" height="100%"/></svg></div><div class="dest__row"><div><span class="dest__name">Drakensberg</span><span class="dest__sub">KwaZulu-Natal</span></div><span class="dest__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+      <a class="dest" href="#booking-card" data-dest="Zanzibar"><div class="dest__img"><svg class="scene" role="img" aria-label="A dhow off Zanzibar" focusable="false"><use href="#sc-zan" width="100%" height="100%"/></svg></div><div class="dest__row"><div><span class="dest__name">Zanzibar</span><span class="dest__sub">Tanzania</span></div><span class="dest__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- 10. APP -->
+<section class="section" id="app" style="padding-top:clamp(24px,4vw,60px);padding-bottom:0">
+  <div class="wrap">
+    <div class="app dark">
+      <span class="glow glow--a" aria-hidden="true"></span><span class="glow glow--b" aria-hidden="true"></span>
+      <div class="app__grid">
+        <div class="app__txt">
+          <span class="eyebrow reveal">The Detour app</span>
+          <h2 class="h2" data-split>Your whole trip. <span class="coral">One app.</span></h2>
+          <p class="reveal">Search, compare and book flights, stays and local extras in one place, then keep your plans, bookings and instalments together on your phone.</p>
+          <ol class="steps" data-stagger>
+            <li>Search where you want to go</li>
+            <li>Pick your flight, stay and extras</li>
+            <li>Pay once and pack your bag</li>
+          </ol>
+          <div class="stores" data-stagger>
+            <a class="btn btn--ghost store" href="#app" data-demo="App store links aren’t live in this demo."><small>Download on the</small><b>App Store</b></a>
+            <a class="btn btn--ghost store" href="#app" data-demo="App store links aren’t live in this demo."><small>Get it on</small><b>Google Play</b></a>
+          </div>
+        </div>
+        <div class="app__vis">
+          <figure class="app__stamp stamp-wrap" style="--rot:-7deg"><div class="stamp"><div class="stamp__photo"><svg class="scene" role="img" aria-label="A smiling young man with a backpack beside a mountain lake" focusable="false"><use href="#sc-lake" width="100%" height="100%"/></svg></div></div></figure>
+          <div class="phone reveal" id="phone">
+            <div class="phone__screen">
+              <div class="phone__img"><svg class="scene" aria-hidden="true" focusable="false"><use href="#sc-van" width="100%" height="100%"/></svg></div>
+              <div><span class="kicker">Booking summary</span><h3>Garden Route Escape</h3></div>
+              <dl class="sum">
+                <div class="row" style="--i:0"><dt>Route</dt><dd>JNB → CPT</dd></div>
+                <div class="row" style="--i:1"><dt>Stay</dt><dd>Coastal stay</dd></div>
+                <div class="row" style="--i:2"><dt>Length</dt><dd>6 nights</dd></div>
+                <div class="row" style="--i:3"><dt>Travellers</dt><dd>2 adults</dd></div>
+              </dl>
+              <button class="btn btn--primary" type="button" data-demo="This is a preview. Nothing has been booked.">Confirm trip</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- 11. FOOTER -->
+<footer class="foot dark">
+  <div class="foot__bg" aria-hidden="true"><svg class="scene" focusable="false"><use href="#sc-wing" width="100%" height="100%"/></svg></div>
+  <div class="foot__shade"></div>
+  <div class="wrap">
+    <div class="foot__hero">
+      <h2 class="h2" data-split>Your next trip <span class="coral">starts here.</span></h2>
+      <p class="reveal">Leave your email and we will send you trips worth the detour, with a little local know-how on the side.</p>
+      <form class="mail reveal" id="mail-form"><label class="sr" for="mail">Email address</label><input id="mail" type="email" required placeholder="Your email address" autocomplete="email"><button class="btn btn--primary" type="submit">Send me trips <span class="arr" aria-hidden="true">→</span></button></form>
+    </div>
+    <div class="cols">
+      <div><a class="logo" href="#top" aria-label="Detour, back to top">Detour</a><p>A trip-booking app for people who want more than the usual. Flights, stays and local experiences, in one booking.</p></div>
+      <div><h3>Explore</h3><ul><li><a class="u" href="#trips">Trips</a></li><li><a class="u" href="#destinations">Destinations</a></li><li><a class="u" href="#styles">Trip styles</a></li><li><a class="u" href="#app">The app</a></li></ul></div>
+      <div><h3>Company</h3><ul><li><a class="u" href="#top" data-demo="That page isn’t part of this demo yet.">About Detour</a></li><li><a class="u" href="#top" data-demo="That page isn’t part of this demo yet.">Local hosts</a></li><li><a class="u" href="#top" data-demo="That page isn’t part of this demo yet.">Careers</a></li><li><a class="u" href="#top" data-demo="That page isn’t part of this demo yet.">Press</a></li></ul></div>
+      <div><h3>Help</h3><ul><li><a class="u" href="#top" data-demo="That page isn’t part of this demo yet.">Help centre</a></li><li><a class="u" href="#top" data-demo="That page isn’t part of this demo yet.">Contact us</a></li><li><a class="u" href="#top" data-demo="That page isn’t part of this demo yet.">Paying in instalments</a></li><li><a class="u" href="#top" data-demo="That page isn’t part of this demo yet.">Terms</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Lulamile Mkhungela · Detour concept</span><span>Made for people who take the long way round.</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+var root=document.documentElement;
+var reduce=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+root.classList.add('js');
+if(reduce){root.classList.add('reduce');}
+function $(s,c){return (c||document).querySelector(s);}
+function $$(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));}
+var behavior=reduce?'auto':'smooth';
+
+/* toast */
+var toastEl=$('#toast'),toastT;
+function toast(msg){toastEl.textContent=msg;toastEl.classList.add('show');clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show');},4800);}
+$$('[data-demo]').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();toast(el.getAttribute('data-demo'));});});
+
+/* split headline words */
+function splitNode(node,idx){
+  var frag=document.createDocumentFragment();
+  Array.prototype.slice.call(node.childNodes).forEach(function(ch){
+    if(ch.nodeType===3){
+      ch.textContent.split(/(\s+)/).forEach(function(p){
+        if(!p){return;}
+        if(/^\s+$/.test(p)){frag.appendChild(document.createTextNode(' '));return;}
+        var w=document.createElement('span');w.className='w';
+        var i=document.createElement('span');i.className='wi';i.textContent=p;i.style.setProperty('--wi',idx.n++);
+        w.appendChild(i);frag.appendChild(w);
+      });
+    }else if(ch.nodeType===1){
+      if(ch.tagName==='BR'){frag.appendChild(ch.cloneNode());}
+      else{var c=ch.cloneNode(false);c.appendChild(splitNode(ch,idx));frag.appendChild(c);}
+    }
+  });
+  return frag;
+}
+$$('[data-split]').forEach(function(h){var idx={n:0};var f=splitNode(h,idx);h.textContent='';h.appendChild(f);});
+
+/* scroll reveal */
+$$('[data-stagger]').forEach(function(c){Array.prototype.forEach.call(c.children,function(el,i){el.classList.add('reveal');el.style.setProperty('--d',(i*90)+'ms');});});
+var targets=$$('.reveal,[data-split]');
+if(reduce||!('IntersectionObserver' in window)){
+  targets.forEach(function(t){t.classList.add('in');});
+}else{
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  targets.forEach(function(t){io.observe(t);});
+}
+
+/* parallax + back to top */
+var hero=$('.hero'),bg=$('[data-parallax]'),totop=$('#totop'),ticking=false;
+function onScroll(){
+  var y=window.pageYOffset||0;
+  if(bg&&!reduce&&y<hero.offsetHeight+160){bg.style.transform='translate3d(0,'+(y*0.16).toFixed(1)+'px,0)';}
+  totop.classList.toggle('show',y>700);
+  ticking=false;
+}
+window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
+onScroll();
+totop.addEventListener('click',function(){window.scrollTo({top:0,behavior:behavior});});
+
+/* nav */
+var nt=$('#nav-toggle'),nm=$('#nav-menu');
+function closeNav(){nt.setAttribute('aria-expanded','false');nm.classList.remove('open');}
+nt.addEventListener('click',function(){var o=nt.getAttribute('aria-expanded')==='true';nt.setAttribute('aria-expanded',String(!o));nm.classList.toggle('open',!o);});
+$$('a,button',nm).forEach(function(el){el.addEventListener('click',closeNav);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nm.classList.contains('open')){closeNav();nt.focus();}});
+
+/* booking bar */
+var form=$('#booking-form'),dest=$('#to'),dateEl=$('#when'),cnt=$('#tcount'),minus=$('#minus'),plus=$('#plus'),card=$('#booking-card');
+var n=2,mode='full';
+function pad(x){return (x<10?'0':'')+x;}
+function iso(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+var today=new Date(),ahead=new Date();ahead.setDate(ahead.getDate()+21);
+dateEl.min=iso(today);dateEl.value=iso(ahead);
+function who(){return n+(n===1?' traveller':' travellers');}
+function renderCount(){cnt.textContent=who();minus.disabled=n<=1;plus.disabled=n>=9;}
+minus.addEventListener('click',function(){if(n>1){n--;renderCount();}});
+plus.addEventListener('click',function(){if(n<9){n++;renderCount();}});
+renderCount();
+var tabs=$$('[role=tab]');
+function setMode(m,focus){
+  mode=m;
+  tabs.forEach(function(t){var on=t.getAttribute('data-mode')===m;t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1;if(on&&focus){t.focus();}});
+  $('#field-from').hidden=(m==='stays');
+  $('#when-label').textContent=(m==='stays')?'Check-in':'Leaving';
+  form.setAttribute('aria-labelledby',m==='stays'?'tab-stays':'tab-full');
+}
+tabs.forEach(function(t,i){
+  t.addEventListener('click',function(){setMode(t.getAttribute('data-mode'));});
+  t.addEventListener('keydown',function(e){
+    var k=e.key,j=-1;
+    if(k==='ArrowRight'||k==='ArrowDown'){j=(i+1)%tabs.length;}
+    else if(k==='ArrowLeft'||k==='ArrowUp'){j=(i-1+tabs.length)%tabs.length;}
+    else if(k==='Home'){j=0;}else if(k==='End'){j=tabs.length-1;}
+    if(j>-1){e.preventDefault();setMode(tabs[j].getAttribute('data-mode'),true);}
+  });
+});
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  var d=dest.value.trim()||'anywhere';
+  toast(mode==='stays'?('Searching stays in '+d+' for '+who()+'…'):('Searching trips to '+d+' for '+who()+'…'));
+});
+function flash(){card.classList.remove('flash');void card.offsetWidth;card.classList.add('flash');}
+function goBooking(place){
+  if(typeof place==='string'){dest.value=place;}
+  card.scrollIntoView({behavior:behavior,block:'center'});
+  flash();
+  setTimeout(function(){dest.focus({preventScroll:true});},reduce?0:500);
+  if(typeof place==='string'){toast(place+' is in your search. Pick your dates and hit Find trips.');}
+}
+$$('[data-go="booking"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();goBooking();});});
+$$('[data-book]').forEach(function(b){b.addEventListener('click',function(){goBooking(b.getAttribute('data-book'));});});
+$$('[data-dest]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();goBooking(a.getAttribute('data-dest'));});});
+
+/* tilt stamps */
+if(!reduce&&window.matchMedia&&matchMedia('(hover:hover)').matches){
+  $$('.stamp-wrap').forEach(function(w){
+    var t=$('.tilt',w);if(!t){return;}
+    w.addEventListener('pointermove',function(e){
+      var r=w.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      t.style.setProperty('--ry',(x*14).toFixed(2)+'deg');t.style.setProperty('--rx',(-y*12).toFixed(2)+'deg');
+    });
+    w.addEventListener('pointerleave',function(){t.style.setProperty('--rx','0deg');t.style.setProperty('--ry','0deg');});
+  });
+}
+
+/* cars on the winding road */
+(function(){
+  var road=$('#road-path');if(!road||!road.getTotalLength){return;}
+  var L=road.getTotalLength(),cars=[$('#car-a'),$('#car-b'),$('#car-c')];
+  var base=[.08,.46,.8],spd=[.021,.016,.024],dir=[1,-1,1],off=[7,-7,7];
+  function place(i,f){
+    var p=road.getPointAtLength(f*L),q=road.getPointAtLength(Math.min(L,f*L+2)),p0=road.getPointAtLength(Math.max(0,f*L-2));
+    var a=Math.atan2(q.y-p0.y,q.x-p0.x),nx=-Math.sin(a)*off[i],ny=Math.cos(a)*off[i];
+    cars[i].setAttribute('transform','translate('+(p.x+nx).toFixed(1)+' '+(p.y+ny).toFixed(1)+') rotate('+(a*180/Math.PI).toFixed(1)+')'+(dir[i]<0?' scale(-1 1)':''));
+    cars[i].style.visibility='visible';
+  }
+  if(reduce){cars.forEach(function(c,i){place(i,base[i]);});return;}
+  var vis=true,t0=performance.now();
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){vis=es[0].isIntersecting;}).observe(road);}
+  function frame(t){
+    if(vis){var s=(t-t0)/1000;cars.forEach(function(c,i){var f=((base[i]+dir[i]*spd[i]*s)%1+1)%1;place(i,f);});}
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+/* map pins and trip cards */
+var pins=$$('.pin'),trips=$$('.trip');
+function pinFor(k){return pins.filter(function(p){return p.getAttribute('data-trip')===k;})[0];}
+trips.forEach(function(c){
+  var k=c.getAttribute('data-trip');
+  function on(){var p=pinFor(k);if(p){p.classList.add('is-on');}}
+  function off(){var p=pinFor(k);if(p){p.classList.remove('is-on');}}
+  c.addEventListener('mouseenter',on);c.addEventListener('mouseleave',off);c.addEventListener('focusin',on);c.addEventListener('focusout',off);
+});
+pins.forEach(function(p){
+  var k=p.getAttribute('data-trip'),c=$('#trip-'+k);
+  p.addEventListener('mouseenter',function(){c.classList.add('is-hot');});
+  p.addEventListener('mouseleave',function(){c.classList.remove('is-hot');});
+  p.addEventListener('click',function(){
+    c.scrollIntoView({behavior:behavior,block:'center'});
+    c.classList.add('is-hot');setTimeout(function(){c.classList.remove('is-hot');},2200);
+    setTimeout(function(){c.focus({preventScroll:true});},reduce?0:450);
+  });
+});
+
+/* trip styles */
+var STY={
+  beach:{layer:'dbn',label:'Beach · Durban',dest:'Durban',alt:'Durban’s warm Indian Ocean shoreline, a beach trip'},
+  city:{layer:'cpt',label:'City · Cape Town',dest:'Cape Town',alt:'Table Mountain above Cape Town, a city break'},
+  adv:{layer:'dra',label:'Adventure · Drakensberg',dest:'Drakensberg',alt:'Drakensberg peaks and a hiking trail, an adventure trip'},
+  cul:{layer:'mpm',label:'Culture · Maputo',dest:'Maputo',alt:'Maputo’s station and old town at dusk, a culture trip'}
+};
+var archDest='Zanzibar',pills=$$('.pill'),layers=$$('.arch__layer'),archLabel=$('#arch-label'),arch=$('#arch');
+pills.forEach(function(p){
+  p.addEventListener('click',function(){
+    var s=STY[p.getAttribute('data-style')];
+    pills.forEach(function(q){q.setAttribute('aria-pressed',String(q===p));});
+    layers.forEach(function(l){l.classList.toggle('on',l.getAttribute('data-layer')===s.layer);});
+    archLabel.textContent=s.label;arch.setAttribute('aria-label',s.alt);archDest=s.dest;
+  });
+});
+$('#arch-go').addEventListener('click',function(){goBooking(archDest);});
+
+/* footer email */
+$('#mail-form').addEventListener('submit',function(e){
+  e.preventDefault();
+  var v=$('#mail').value.trim();
+  toast('Thanks! We’ll send trips worth the detour to '+v+'.');
+  e.target.reset();
+});
+})();
+</script>
+
+</body></html>

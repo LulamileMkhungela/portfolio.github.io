@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+<title id="title">Explore South African stays</title><desc id="desc">A cream iPhone-style booking screen featuring an apartment in Rosebank and a Sea Point listing.</desc>
+<defs>
+  <linearGradient id="room" x2="0" y2="1"><stop stop-color="#d6c7ae"/><stop offset="1" stop-color="#f2e9dc"/></linearGradient>
+  <linearGradient id="shade" x2="0" y2="1"><stop stop-color="#151212" stop-opacity="0"/><stop offset="1" stop-color="#151212" stop-opacity=".83"/></linearGradient>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#211d18" flood-opacity=".18"/></filter>
+</defs>
+<rect width="1200" height="900" fill="#f3eee6"/>
+<circle cx="164" cy="116" r="74" fill="#f0642d" opacity=".12"/><circle cx="1030" cy="782" r="145" fill="#e8d8c5" opacity=".54"/>
+<text x="90" y="112" fill="#111" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="5">STAYS, WITH A SENSE OF PLACE</text>
+<text x="90" y="172" fill="#6e675d" font-family="Arial,sans-serif" font-size="18" letter-spacing="2">JOHANNESBURG · CAPE TOWN · DURBAN</text>
+<g filter="url(#shadow)">
+  <rect x="355" y="90" width="490" height="730" rx="46" fill="#fff"/>
+  <rect x="366" y="101" width="468" height="708" rx="36" fill="#fcfbf9"/>
+</g>
+<rect x="510" y="109" width="180" height="28" rx="14" fill="#111"/>
+<text x="394" y="164" fill="#111" font-family="Arial,sans-serif" font-size="13" font-weight="700">9:41</text>
+<text x="775" y="164" fill="#111" font-family="Arial,sans-serif" font-size="13" text-anchor="end">•••  ◉ ▰</text>
+<text x="394" y="216" fill="#111" font-family="Arial,sans-serif" font-size="32" font-weight="700">Explore</text>
+<circle cx="785" cy="205" r="22" fill="#fff" stroke="#eee8e0"/>
+<path d="M778 212v-11a7 7 0 0 1 14 0v11m-17 0h20m-15 5a5 5 0 0 0 10 0" fill="none" stroke="#171615" stroke-width="2" stroke-linecap="round"/>
+<circle cx="800" cy="190" r="5" fill="#f0642d"/>
+<rect x="392" y="240" width="396" height="76" rx="18" fill="#fff" stroke="#ebe5de"/>
+<circle cx="420" cy="278" r="15" fill="#fff1e9"/><path d="m427 285-8-8m0 0a7 7 0 1 1 10-10 7 7 0 0 1-10 10Z" fill="none" stroke="#f0642d" stroke-width="2" stroke-linecap="round"/>
+<text x="450" y="270" fill="#141414" font-family="Arial,sans-serif" font-size="16" font-weight="700">Where to?</text>
+<text x="450" y="294" fill="#807a73" font-family="Arial,sans-serif" font-size="13">Anywhere · Any week · Guests</text>
+<circle cx="756" cy="278" r="20" fill="#f7f4f0"/><path d="M748 272h16m-13 6h10m-7 6h4" stroke="#282421" stroke-width="1.7" stroke-linecap="round"/>
+<text x="394" y="350" fill="#171615" font-family="Arial,sans-serif" font-size="12" font-weight="700">STUDIOS</text>
+<text x="480" y="350" fill="#827b73" font-family="Arial,sans-serif" font-size="12">LOFTS</text>
+<text x="553" y="350" fill="#827b73" font-family="Arial,sans-serif" font-size="12">CITY FLATS</text>
+<text x="651" y="350" fill="#827b73" font-family="Arial,sans-serif" font-size="12">LONG STAYS</text>
+<rect x="390" y="360" width="66" height="50" rx="12" fill="#fff" stroke="#f0642d" stroke-width="2"/>
+<rect x="468" y="360" width="66" height="50" rx="12" fill="#ddd0bd"/><rect x="545" y="360" width="66" height="50" rx="12" fill="#c7d1ca"/><rect x="623" y="360" width="66" height="50" rx="12" fill="#d7c9b7"/><rect x="701" y="360" width="66" height="50" rx="12" fill="#d6ded5"/>
+<rect x="394" y="430" width="392" height="211" rx="22" fill="url(#room)"/>
+<rect x="394" y="430" width="392" height="211" rx="22" fill="#4d443a" opacity=".12"/>
+<path d="M394 505 525 452l113 35 148-40v194H394Z" fill="#c6b9a5"/>
+<rect x="574" y="457" width="144" height="88" rx="3" fill="#9aa79d"/><path d="M645 457v88M574 502h144" stroke="#f5f0e7" stroke-width="4"/>
+<rect x="423" y="548" width="197" height="60" rx="17" fill="#eee8df"/><rect x="438" y="537" width="163" height="38" rx="15" fill="#faf8f3"/>
+<rect x="436" y="589" width="23" height="20" fill="#8a6f56"/><rect x="586" y="589" width="23" height="20" fill="#8a6f56"/>
+<rect x="688" y="531" width="23" height="66" rx="3" fill="#443a33"/><circle cx="699" cy="514" r="24" fill="#76836e"/><circle cx="715" cy="500" r="17" fill="#83917a"/>
+<rect x="394" y="531" width="392" height="110" rx="0" fill="url(#shade)"/>
+<rect x="412" y="547" width="110" height="22" rx="11" fill="#fff" fill-opacity=".92"/><text x="467" y="562" fill="#27221d" font-family="Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" letter-spacing="1">FEATURED STAY</text>
+<text x="414" y="594" fill="#fff" font-family="Arial,sans-serif" font-size="21" font-weight="700">The Marble Suite</text>
+<text x="414" y="616" fill="#f8f4ef" font-family="Arial,sans-serif" font-size="12">Rosebank · from R1,450 a night</text>
+<text x="394" y="681" fill="#171615" font-family="Arial,sans-serif" font-size="17" font-weight="700">This week’s picks</text><text x="786" y="681" fill="#f0642d" font-family="Arial,sans-serif" font-size="12" font-weight="700" text-anchor="end">See all</text>
+<rect x="394" y="698" width="112" height="66" rx="12" fill="#d7d0c5"/><rect x="410" y="714" width="70" height="28" fill="#eee9df"/><path d="M410 714 443 700l37 14" fill="#c6b8a1"/><rect x="521" y="706" width="174" height="9" rx="4" fill="#25211d"/><rect x="521" y="725" width="145" height="8" rx="4" fill="#c0bbb4"/><rect x="521" y="745" width="96" height="8" rx="4" fill="#d6d1ca"/>
+<circle cx="753" cy="720" r="20" fill="#fff"/><path d="M753 735s-12-7-12-15a6 6 0 0 1 12-2 6 6 0 0 1 12 2c0 8-12 15-12 15Z" fill="none" stroke="#f0642d" stroke-width="1.7"/>
+<path d="M445 780h22m60 0h22m60 0h22m60 0h22" stroke="#b6b0a8" stroke-width="3" stroke-linecap="round"/><rect x="417" y="769" width="48" height="25" rx="12" fill="#fff0e8"/><text x="441" y="786" fill="#f0642d" font-family="Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle">HOME</text>
+</svg>
