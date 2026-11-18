@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" id="certificates">
+  <defs>
+    <linearGradient id="cert-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8f4ea"/>
+      <stop offset="1" stop-color="#ded1b4"/>
+    </linearGradient>
+    <linearGradient id="cert-seal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eac377"/>
+      <stop offset="1" stop-color="#b5822f"/>
+    </linearGradient>
+  </defs>
+  <path d="M83.6 0C96 0 102.1 0 108.5 2.1c7.1 2.5 12.7 8.1 15.2 15.2 2.1 6.5 2.1 12.5 2.1 24.7v36.3c0 12 0 18.1-2 24.5-2.5 7.1-8.1 12.7-15.2 15.2-6.5 2.1-12.5 2.1-24.7 2.1H47.4c-12 0-18.1 0-24.5-2C15.8 115.4 10.2 109.8 7.5 102.7c-2-6.4-2-12.4-2-24.5V41.9c0-12 0-18.1 2-24.5C10.2 10.3 15.8 4.7 22.9 2 29.3 0 35.3 0 47.4 0Z" transform="translate(-5.5)" fill="url(#cert-bg)"/>
+  <rect x="22" y="24" width="76" height="56" rx="7" fill="#fff"/>
+  <rect x="33" y="37" width="54" height="6" rx="3" fill="#cdbfa2"/>
+  <rect x="33" y="50" width="42" height="6" rx="3" fill="#dfd4bc"/>
+  <rect x="33" y="63" width="31" height="6" rx="3" fill="#dfd4bc"/>
+  <path d="M65 84l-7.5 15 10.5-2.2 5.5 9.2 8-16z" fill="#c0463f"/>
+  <path d="M87 84l7.5 15-10.5-2.2-5.5 9.2-8-16z" fill="#dd5d54"/>
+  <circle cx="76" cy="77" r="17.5" fill="url(#cert-seal)"/>
+  <circle cx="76" cy="77" r="11.5" fill="none" stroke="#fff" stroke-width="2.6" opacity=".9"/>
+</svg>

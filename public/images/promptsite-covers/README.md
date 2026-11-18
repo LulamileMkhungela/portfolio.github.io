@@ -1,0 +1,1 @@
+These local SVG covers are catalogue previews for the long-form, South African-context prompt additions in `js/prompt-catalog-additions.js`. They are lightweight interface illustrations, not generated customer or product photography.

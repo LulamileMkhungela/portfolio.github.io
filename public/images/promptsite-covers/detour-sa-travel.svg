@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+<title id="title">Detour South African travel landing page</title><desc id="desc">A warm travel-booking hero featuring the Cape coast, a trip search card and Detour branding.</desc>
+<defs>
+  <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#78a5a3"/><stop offset=".55" stop-color="#f1aa7b"/><stop offset="1" stop-color="#f6c39c"/></linearGradient>
+  <linearGradient id="overlay" x2="1"><stop stop-color="#13294b" stop-opacity=".84"/><stop offset=".68" stop-color="#13294b" stop-opacity=".15"/><stop offset="1" stop-color="#13294b" stop-opacity=".03"/></linearGradient>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#13294b" flood-opacity=".18"/></filter>
+</defs>
+<rect width="1200" height="900" fill="#fff7ec"/>
+<rect x="54" y="46" width="1092" height="590" rx="38" fill="url(#sky)"/>
+<circle cx="906" cy="168" r="72" fill="#ffd08d" opacity=".8"/>
+<path d="M54 417 199 305l110 68 151-166 202 216 155-144 156 89 173-123v391H54Z" fill="#365c60" opacity=".87"/>
+<path d="M295 373 460 207l202 216 155-144 91 52-171 154H360Z" fill="#617f78"/>
+<path d="M54 482c143-54 254-4 373 28 127 35 218 1 326-30 139-40 259-33 393 15v141H54Z" fill="#2b8b92"/>
+<path d="M54 548c175-22 252 7 406 23 176 19 298-12 463-27 86-8 151 1 223 21v71H54Z" fill="#165f6b" opacity=".65"/>
+<rect x="54" y="46" width="1092" height="590" rx="38" fill="url(#overlay)"/>
+<text x="95" y="102" fill="#fff" font-family="Georgia,serif" font-size="37" font-style="italic" font-weight="700">Detour</text>
+<rect x="407" y="72" width="388" height="53" rx="27" fill="#ffffff" fill-opacity=".18" stroke="#fff" stroke-opacity=".4"/>
+<text x="601" y="104" fill="#fff" font-family="Arial,sans-serif" font-size="13" text-anchor="middle" letter-spacing="1">TRIPS     DESTINATIONS     TRIP STYLES     THE APP</text>
+<rect x="930" y="78" width="91" height="42" rx="21" fill="none" stroke="#fff" stroke-width="1.5"/><text x="975" y="104" fill="#fff" font-family="Arial,sans-serif" font-size="12" text-anchor="middle">SIGN IN</text><rect x="1029" y="78" width="103" height="42" rx="21" fill="#ff7a59"/><text x="1080" y="104" fill="#13294b" font-family="Arial,sans-serif" font-size="12" font-weight="700" text-anchor="middle">GET THE APP</text>
+<text x="100" y="271" fill="#fff7ec" font-family="Georgia,serif" font-size="68" font-weight="700">Trips worth</text><text x="100" y="348" fill="#ff7a59" font-family="Georgia,serif" font-size="76" font-style="italic" font-weight="700">the detour.</text>
+<text x="101" y="394" fill="#fff7ec" font-family="Arial,sans-serif" font-size="17">Flights, stays and local experiences, booked together.</text><text x="101" y="421" fill="#fff7ec" font-family="Arial,sans-serif" font-size="17">Start in Johannesburg. Find your own way round.</text>
+<rect x="101" y="450" width="175" height="51" rx="26" fill="#ff7a59"/><text x="188" y="482" fill="#13294b" font-family="Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle">PLAN MY TRIP →</text><rect x="289" y="450" width="188" height="51" rx="26" fill="none" stroke="#fff" stroke-width="2"/><text x="383" y="482" fill="#fff" font-family="Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle">SEE FEATURED TRIPS</text>
+<circle cx="1020" cy="412" r="78" fill="#fff7ec" stroke="#13294b" stroke-width="2"/><circle cx="1020" cy="412" r="56" fill="#ff7a59"/><text x="1020" y="400" fill="#13294b" font-family="Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="2">SEARCH · BOOK</text><text x="1020" y="420" fill="#13294b" font-family="Arial,sans-serif" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="2">· GO ·</text><text x="1020" y="440" fill="#13294b" font-family="Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="1">ALL-IN PRICES</text>
+<g filter="url(#shadow)"><rect x="150" y="592" width="900" height="142" rx="24" fill="#fff" stroke="#13294b" stroke-width="2"/></g>
+<text x="190" y="626" fill="#13294b" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="2">FULL TRIP</text><text x="190" y="672" fill="#13294b" font-family="Arial,sans-serif" font-size="16" font-weight="700">From</text><text x="190" y="697" fill="#4a5b78" font-family="Arial,sans-serif" font-size="13">Johannesburg · JNB</text>
+<path d="M385 617v91M600 617v91M797 617v91" stroke="#e8e0d7" stroke-width="2"/>
+<text x="423" y="646" fill="#13294b" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="2">WHERE TO?</text><text x="423" y="680" fill="#4a5b78" font-family="Arial,sans-serif" font-size="15">Cape Town, Durban…</text>
+<text x="635" y="646" fill="#13294b" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="2">LEAVING</text><text x="635" y="680" fill="#4a5b78" font-family="Arial,sans-serif" font-size="15">Choose a date</text>
+<text x="829" y="646" fill="#13294b" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="2">TRAVELLERS</text><text x="829" y="680" fill="#4a5b78" font-family="Arial,sans-serif" font-size="15">2 adults</text>
+<rect x="948" y="633" width="79" height="58" rx="29" fill="#ff7a59"/><circle cx="976" cy="661" r="9" fill="none" stroke="#13294b" stroke-width="2"/><path d="m983 668 8 8" stroke="#13294b" stroke-width="2"/><text x="1008" y="666" fill="#13294b" font-family="Arial,sans-serif" font-size="10" font-weight="700" text-anchor="middle">FIND</text>
+<text x="600" y="809" fill="#13294b" font-family="Georgia,serif" font-size="27" font-weight="700" text-anchor="middle">Take the long way round.</text><text x="600" y="841" fill="#4a5b78" font-family="Arial,sans-serif" font-size="13" text-anchor="middle" letter-spacing="2">SOUTH AFRICA · SADC · BEYOND</text>
+</svg>

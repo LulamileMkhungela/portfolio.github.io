@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" id="gsap" role="img" aria-label="GSAP">
+  <defs>
+    <linearGradient id="gs-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9ee61f"/>
+      <stop offset="1" stop-color="#4e9c00"/>
+    </linearGradient>
+  </defs>
+  <path d="M83.6 0C96 0 102.1 0 108.5 2.1c7.1 2.5 12.7 8.1 15.2 15.2 2.1 6.5 2.1 12.5 2.1 24.7v36.3c0 12 0 18.1-2 24.5-2.5 7.1-8.1 12.7-15.2 15.2-6.5 2.1-12.5 2.1-24.7 2.1H47.4c-12 0-18.1 0-24.5-2C15.8 115.4 10.2 109.8 7.5 102.7c-2-6.4-2-12.4-2-24.5V41.9c0-12 0-18.1 2-24.5C10.2 10.3 15.8 4.7 22.9 2 29.3 0 35.3 0 47.4 0Z" transform="translate(-5.5)" fill="url(#gs-bg)"/>
+  <circle cx="42" cy="42" r="8" fill="#ffffff"/>
+  <path d="M42 42h34" stroke="#ffffff" stroke-opacity=".55" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="76" cy="60" r="8" fill="#ffffff" fill-opacity=".8"/>
+  <path d="M76 60H42" stroke="#ffffff" stroke-opacity=".55" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="42" cy="78" r="8" fill="#ffffff" fill-opacity=".6"/>
+  <path d="M58 78h24" stroke="#ffffff" stroke-opacity=".35" stroke-width="4" stroke-linecap="round"/>
+</svg>
