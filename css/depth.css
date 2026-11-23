@@ -1,0 +1,49 @@
+/* A dimensional layer over the desktop UI. The actual controls stay flat in
+   the document flow so dragging, filtering and keyboard navigation still work. */
+.project-icon, .mobile-project-folder { perspective: 700px; }
+.project-icon .project-folder {
+  transform-origin: center 75%;
+  transform: rotateX(8deg) rotateY(-10deg) translateZ(8px);
+  filter: drop-shadow(5px 10px 7px rgba(16, 24, 40, .30));
+  transition: transform 250ms ease, filter 250ms ease;
+}
+.project-icon:hover .project-folder,
+.project-icon:focus-visible .project-folder {
+  transform: rotateX(var(--depth-x, 8deg)) rotateY(var(--depth-y, -10deg)) translateZ(24px) translateY(-5px) scale(1.08);
+  filter: brightness(1.06) drop-shadow(9px 16px 9px rgba(16, 24, 40, .35));
+}
+.project-icon:active .project-folder {
+  transform: rotateX(3deg) rotateY(-4deg) translateZ(4px) scale(.97);
+}
+.project-label {
+  transform: translateZ(12px);
+  transition: transform 250ms ease;
+}
+.project-icon:hover .project-label,
+.project-icon:focus-visible .project-label { transform: translateZ(20px) translateY(2px); }
+
+/* Preserve the dock's existing magnification and drag transforms by adding
+   depth to the artwork, not to its interactive slots. */
+.dock-item { perspective: 500px; }
+.dock-item .dock-app-icon img {
+  filter: drop-shadow(0 5px 3px rgba(0, 0, 0, .24));
+  transform: rotateX(7deg) translateZ(3px);
+  transition: transform 220ms ease, filter 220ms ease;
+}
+.dock-item:hover .dock-app-icon img,
+.dock-item:focus-visible .dock-app-icon img {
+  transform: rotateX(-8deg) translateZ(12px);
+  filter: drop-shadow(0 9px 5px rgba(0, 0, 0, .32));
+}
+.mobile-project-folder .mobile-project-folder-icon {
+  transform: perspective(700px) rotateX(8deg) rotateY(-10deg);
+  filter: drop-shadow(5px 9px 6px rgba(16, 24, 40, .28));
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-icon .project-folder, .project-label, .dock-item .dock-app-icon img { transition: none; }
+  .project-icon:hover .project-folder, .project-icon:focus-visible .project-folder {
+    transform: rotateX(8deg) rotateY(-10deg) translateZ(8px);
+  }
+  .project-icon:hover .project-label, .project-icon:focus-visible .project-label { transform: translateZ(12px); }
+  .dock-item:hover .dock-app-icon img, .dock-item:focus-visible .dock-app-icon img { transform: rotateX(7deg) translateZ(3px); }
+}

@@ -335,13 +335,13 @@ const RIGHT_CLICK_ALERT = Object.freeze({
    divider) an icon lands in: primary, then secondary, then system. Both the
    desktop dock and the mobile dock are built from this list, so reordering
    here moves the icons everywhere. Current arrangement: AI Prompts starts the
-   dock, Settings sits right after Photoshop, Figma follows Postman with the
+   dock, VS Code follows Settings, Figma follows Postman with the
    Website launcher next to it, Mail sits between Certificates and LinkedIn,
    and Testimonials and Services come immediately before the Vision Bin. */
 const DOCK_APPS = [
-  { id: "notes", label: "AI Prompts", ariaLabel: "Open AI Design Prompts", icon: "./public/icons/dock/ai-prompts.svg", group: "primary", opticalScale: 1.01, hasContent: true },
-  { id: "vscode", label: "VS Code", ariaLabel: "Open Visual Studio Code", icon: "./public/icons/dock/vscode.svg", group: "primary" },
+  { id: "notes", label: "AI Prompts", ariaLabel: "Open AI Design Prompts", icon: "./public/icons/dock/ai-prompts.svg?v=2", group: "primary", opticalScale: 1.01, hasContent: true },
   { id: "settings", label: "Settings", ariaLabel: "Open Settings", icon: "./public/icons/dock/settings.svg", group: "primary", opticalScale: 1.02, mobile: false },
+  { id: "vscode", label: "VS Code", ariaLabel: "Open Visual Studio Code", icon: "./public/icons/dock/vscode.svg", group: "primary" },
   { id: "storybook", label: "Storybook", ariaLabel: "Open Storybook", icon: "./public/icons/dock/storybook.svg", group: "primary" },
   { id: "postman", label: "Postman", ariaLabel: "Open Postman", icon: "./public/icons/dock/postman.svg", group: "primary" },
   { id: "figma", label: "Figma", ariaLabel: "Open Figma", icon: "./public/icons/dock/figma.svg", group: "primary", hasContent: true },
@@ -366,7 +366,7 @@ const PROMPT_SITE_PROJECT = {
   subtitle: "Designs \u00b7 Prompts \u00b7 Figma files",
   url: "./portfolio/lula-design-library.html?embedded=1&v=9",
   frame: true,
-  icon: "./public/icons/dock/ai-prompts.svg",
+  icon: "./public/icons/dock/ai-prompts.svg?v=2",
   colors: ["#f4511e", "#ff8c3a"]
 };
 
