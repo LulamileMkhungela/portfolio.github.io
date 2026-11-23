@@ -37,8 +37,9 @@
 			--muted: #6c6875;
 			--card: #ffffff;
 			--line: #e6e1d8;
-			--accent: #f4511e;
-			--accent-soft: #ffece2;
+			--accent: #0067ce;
+			--accent-soft: #e4f1ff;
+			--accent-on: #fff;
 			--free: #0e7a55;
 			--free-bg: #dff5ec;
 			--paid: #9a5b00;
@@ -55,8 +56,9 @@
 			--muted: #a7a2b2;
 			--card: #1a1a20;
 			--line: #2b2a33;
-			--accent: #ff8a50;
-			--accent-soft: #3b2113;
+			--accent: #85bdff;
+			--accent-soft: #142b46;
+			--accent-on: #0a1a2e;
 			--free: #7ee2bc;
 			--free-bg: #12321f;
 			--paid: #ffd28a;
@@ -104,7 +106,7 @@
 		}
 		.ps-hero h1 em {
 			font-style: normal;
-			background: linear-gradient(120deg, var(--accent), #ff8c3a 55%, #ffc23d);
+			background: linear-gradient(120deg, var(--accent), #0a84ff 55%, #5baeff);
 			-webkit-background-clip: text; background-clip: text; color: transparent;
 		}
 		.ps-lede { max-width: 56ch; margin: 22px 0 0; font-size: clamp(17px, 1.6vw, 20px); color: var(--muted); }
@@ -117,10 +119,10 @@
 		}
 		.ps-tab:hover { transform: translateY(-2px); }
 		.ps-tab--primary { background: var(--ink); color: var(--paper); box-shadow: 0 12px 26px rgba(21,20,26,.22); }
-		html.is-dark .ps-tab--primary { background: var(--accent); color: #fff; box-shadow: 0 12px 26px rgba(0,0,0,.4); }
+		html.is-dark .ps-tab--primary { background: var(--accent); color: var(--accent-on); box-shadow: 0 12px 26px rgba(0,0,0,.4); }
 		.ps-tab--ghost { background: var(--card); border-color: var(--line); }
 		.ps-tab--ghost:hover { border-color: var(--accent); }
-		.ps-tab--accent { background: var(--accent); color: #fff; box-shadow: 0 12px 26px color-mix(in srgb, var(--accent) 35%, transparent); }
+		.ps-tab--accent { background: var(--accent); color: var(--accent-on); box-shadow: 0 12px 26px color-mix(in srgb, var(--accent) 35%, transparent); }
 
 		/* Author */
 		.ps-author {
@@ -145,7 +147,7 @@
 		}
 		.ps-chip:hover { border-color: var(--accent); color: var(--ink); }
 		.ps-chip.is-active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-		html.is-dark .ps-chip.is-active { background: var(--accent); border-color: var(--accent); color: #fff; }
+		html.is-dark .ps-chip.is-active { background: var(--accent); border-color: var(--accent); color: var(--accent-on); }
 
 		.ps-request-more { display: flex; justify-content: center; padding-top: 28px; }
 		.ps-grid {
@@ -183,7 +185,7 @@
 		.ps-actions { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; }
 		.ps-copy:hover { transform: scale(1.06); }
 		.ps-copy--live { text-decoration: none; background: var(--ink); color: var(--paper); }
-		.ps-copy--live:hover { background: var(--accent); color: #fff; }
+		.ps-copy--live:hover { background: var(--accent); color: var(--accent-on); }
 		.ps-copy.is-done { background: var(--free-bg); color: var(--free); }
 		.ps-copy svg { width: 17px; height: 17px; }
 		.ps-empty {
@@ -260,7 +262,7 @@
 			text-decoration: none; cursor: pointer; transition: border-color .15s, background .15s, color .15s, transform .15s;
 		}
 		.ps-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
-		.ps-btn--primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+		.ps-btn--primary { background: var(--accent); border-color: var(--accent); color: var(--accent-on); }
 		.ps-btn--primary:hover { color: #fff; }
 		.ps-btn.is-done { background: var(--free-bg); border-color: var(--free-bg); color: var(--free); }
 		.ps-detail-foot { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line); display: flex; gap: 10px; flex-wrap: wrap; }
@@ -369,15 +371,15 @@
 						
 					</div>
 				</article>
-				<article class="ps-card" data-price="paid" data-buy="https://selar.com/m/le-loux" data-cat="portfolio" data-title="Spin the wheel portfolio" data-subtitle="R15 · Prompt+ Guide">
+				<article class="ps-card" data-price="paid" data-buy="https://selar.com/m/le-loux" data-cat="portfolio" data-title="Spin the wheel portfolio" data-subtitle="Prompt+ Guide">
 					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791725141901-5bard8.jpg" alt="Spin the wheel portfolio cover" loading="lazy"><span class="ps-badge ps-badge--paid">Paid</span></button>
-					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Spin the wheel portfolio</button></h3><span class="ps-sub">R15 · Prompt+ Guide</span></div>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Spin the wheel portfolio</button></h3><span class="ps-sub">Prompt+ Guide</span></div>
 
 					</div>
 				</article>
-				<article class="ps-card" data-price="paid" data-buy="https://selar.com/m/le-loux" data-cat="portfolio" data-title="ID card portfolio" data-subtitle="R15 · Design + prompt">
+				<article class="ps-card" data-price="paid" data-buy="https://selar.com/m/le-loux" data-cat="portfolio" data-title="ID card portfolio" data-subtitle="Design + prompt">
 					<button type="button" class="ps-cover" data-open-detail><img src="../public/images/promptsite-covers/id-card-portfolio.jpg" alt="ID card portfolio cover — Designer Developer Creator badge" loading="lazy"><span class="ps-badge ps-badge--paid">Paid</span></button>
-					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>ID card portfolio</button></h3><span class="ps-sub">R15 · Design + prompt</span></div>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>ID card portfolio</button></h3><span class="ps-sub">Design + prompt</span></div>
 
 					</div>
 				</article>
@@ -395,9 +397,9 @@
 						
 					</div>
 				</article>
-				<article class="ps-card" data-price="paid" data-buy="https://selar.com/m/le-loux" data-cat="mobile appstore" data-title="HalfMan Design App Home screen flow" data-subtitle="R220 · Prompt + Figma file">
+				<article class="ps-card" data-price="paid" data-buy="https://selar.com/m/le-loux" data-cat="mobile appstore" data-title="HalfMan Design App Home screen flow" data-subtitle="Prompt + Figma file">
 					<button type="button" class="ps-cover" data-open-detail><img src="https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791377545104-2v3ve2.jpg" alt="HalfMan Design App Home screen flow cover" loading="lazy"><span class="ps-badge ps-badge--paid">Paid</span></button>
-					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>HalfMan Design App Home screen flow</button></h3><span class="ps-sub">R220 · Prompt + Figma file</span></div>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>HalfMan Design App Home screen flow</button></h3><span class="ps-sub">Prompt + Figma file</span></div>
 
 					</div>
 				</article>
@@ -409,7 +411,7 @@
 				</article>
 								<article class="ps-card" data-price="free" data-cat="mobile appstore" data-title="Service Provider App" data-subtitle="Prompt only" data-prompt="Design a home services app home screen for iPhone 15 Pro (393x852, status bar 9:41) in light mode, Angi-inspired: white, minimal colour, image-led, generous spacing, Inter font (headings 600, body 400-500). Colours: background #FFFFFF, text #121A1C, muted #6F7A7D, lines #E6EAEB, brand green #12935A, dark #141C1E. Layout: (1) header with brand-green circle avatar containing white 'L', map pin + 'Sandton, Johannesburg' + chevron, round outlined bell with small red dot; (2) large rounded outlined search bar 'Try plumbing, painting…' with thin full-width divider below; (3) 'Browse by category' section with 'View all' grey link, then 4 white circles with soft shadow containing charcoal duotone icons: Roofing, Painting, Cleaning, Plumbing; (4) 'Popular projects' section with project cards — 'Handyman' from R45 with image of handyman drilling a kitchen cabinet, 'Home cleaning' from R22 with image of cleaner wiping a white kitchen counter, 'Plumbing' from R60 with image of plumber fixing pipes under a sink — image on top, black price bar under image with bolt icon, title below, third card peeking; (5) 'Maintenance planner' section with autumn garden photo and checklist rows overlaid: 'Prepare garden for winter' (ticked), 'Clear your gutters'; (6) bottom nav on white bar: 4 tabs — Home (filled green icon + green label), Projects, Pros, More (grey outline). Label the three phones above the frames — left 'ChatGPT', centre 'Claude', right 'Figma Make' — in bold type. Rules: light mode only, brand colour only on avatar, active tab and key actions, realistic photography.">
 					<button type="button" class="ps-cover" data-open-detail><img src="../public/images/promptsite-covers/home-services-ui.jpg" alt="Service Provider App cover — three home-services concepts" loading="lazy"><span class="ps-badge ps-badge&#45;&#45;free">Free</span></button>
-					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Service Provider App</button></h3></div>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Service Provider App</button></h3><span class="ps-sub">Prompt only</span></div>
 						<button class="ps-copy" type="button" aria-label="Copy prompt for Service Provider App" data-prompt=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
 						
 					</div>
@@ -448,9 +450,9 @@
 					</div>
 				</article>
 				END TEMPORARILY HIDDEN CARD -->
-				<article class="ps-card" data-price="paid" data-buy="https://selar.com/m/le-loux" data-cat="mobile appstore" data-title="Finance App Flow +Figma file" data-subtitle="R300 · Prompt + Figma file">
+				<article class="ps-card" data-price="paid" data-buy="https://selar.com/m/le-loux" data-cat="mobile appstore" data-title="Finance App Flow +Figma file" data-subtitle="Prompt + Figma file">
 					<button type="button" class="ps-cover" data-open-detail><img src="../public/images/promptsite-covers/finance-app-flow.jpg" alt="Finance App Flow cover — eight-screen banking home flow" loading="lazy"><span class="ps-badge ps-badge&#45;&#45;paid">Paid</span></button>
-					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Finance App Flow +Figma file</button></h3><span class="ps-sub">R300 · Prompt + Figma file</span></div>
+					<div class="ps-card-body"><div><h3><button type="button" class="ps-open" data-open-detail>Finance App Flow +Figma file</button></h3><span class="ps-sub">Prompt + Figma file</span></div>
 
 					</div>
 				</article>
@@ -853,7 +855,7 @@ The final result should feel like a real, polished, interactive South African be
 
 	<div class="ps-toast" id="ps-toast" role="status" aria-live="polite"></div>
 
-	<script src="../js/prompt-catalog-additions.js?v=3"></script>
+	<script src="../js/prompt-catalog-additions.js?v=4"></script>
 	<script>
 		(function () {
 			"use strict";

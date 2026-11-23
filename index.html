@@ -52,6 +52,7 @@
   <link rel="stylesheet" href="css/desktop.css?v=121">
   <link rel="stylesheet" href="css/appearance-dark.css?v=12">
   <link rel="stylesheet" href="css/platform-windows.css?v=7">
+  <link rel="stylesheet" href="css/depth.css?v=1">
 </head>
 <body>
   <header class="system-bar">
@@ -91,17 +92,17 @@
           <div class="dock-group" data-group="primary">
             <div class="dock-slot" data-dock-id="notes" draggable="false" aria-grabbed="false">
               <button class="dock-item" id="dock-notes" data-label="AI Prompts" aria-label="Open AI Design Prompts" type="button">
-                <span class="dock-icon-scale dock-app-icon" data-app="notes"><img src="public/icons/dock/ai-prompts.svg" alt="" draggable="false"></span>
-              </button>
-            </div>
-            <div class="dock-slot" data-dock-id="vscode" draggable="false" aria-grabbed="false">
-              <button class="dock-item" id="dock-vscode" data-label="VS Code" aria-label="Visual Studio Code" type="button">
-                <span class="dock-icon-scale dock-app-icon dock-app-icon--wide-artboard" data-app="vscode"><img src="public/icons/dock/vscode.svg" alt="" draggable="false"></span>
+                <span class="dock-icon-scale dock-app-icon" data-app="notes"><img src="public/icons/dock/ai-prompts.svg?v=2" alt="" draggable="false"></span>
               </button>
             </div>
             <div class="dock-slot settings-wrap" data-dock-id="settings" draggable="false" aria-grabbed="false">
               <button class="dock-item" id="dock-settings" data-label="System Settings" aria-label="Open Dock settings" aria-expanded="false">
                 <span class="dock-icon-scale dock-app-icon" data-app="settings"><img src="public/icons/dock/settings.svg" alt="" draggable="false"></span>
+              </button>
+            </div>
+            <div class="dock-slot" data-dock-id="vscode" draggable="false" aria-grabbed="false">
+              <button class="dock-item" id="dock-vscode" data-label="VS Code" aria-label="Visual Studio Code" type="button">
+                <span class="dock-icon-scale dock-app-icon dock-app-icon--wide-artboard" data-app="vscode"><img src="public/icons/dock/vscode.svg" alt="" draggable="false"></span>
               </button>
             </div>
             <div class="dock-slot" data-dock-id="storybook" draggable="false" aria-grabbed="false">
@@ -304,6 +305,7 @@
        the shadow root runs: js/desktop.js calls window.LMCaseLock.mount(). -->
   <script src="js/case-lock.js?v=2" defer></script>
   <script src="js/archive-timer.js?v=12" defer></script>
-  <script src="js/desktop.js?v=162" defer></script>
+  <script src="js/desktop.js?v=164" defer></script>
+  <script src="js/depth.js?v=1" defer></script>
 </body>
 </html>

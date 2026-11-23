@@ -21,15 +21,6 @@ const projects = [
     url: "./portfolio/foodiezone-pwa.html?embedded=1", icon: "./public/icons/project-folder.png",
     position: { left: "60%", top: "calc(81% - 3px)" }, colors: ["#c2410c", "#e5af99"], ariaLabel: "Open FoodieZone"
   },
-  /* Parked for now — I'll use it again later. Delete the comment markers
-     around this entry to put the LulaFind App folder back on the desktop.
-  {
-    id: "lula-find-app", number: "LF", title: "LulaFind App", subtitle: "Project Link",
-    category: "Product", tags: ["Mobile App"], modal: "project", external: true,
-    url: "https://drive.google.com/file/d/1lEjaRWSbDKzmyDqiPEY1LMoxTPgi2-Ln/view?usp=sharing", icon: "./public/icons/project-folder.png",
-    position: { left: "51%", top: "25%" }, colors: ["#15803d", "#a7d9b4"], ariaLabel: "Open LulaFind App project link"
-  },
-  */
   {
     id: "designops-design-system", number: "DO", title: "DesignOps", subtitle: "Tokens & Linter",
     category: "Product", tags: ["Recent", "Design Systems", "Figma", "React", "Angular"], modal: "project", highlight: true, highlightStep: 1, highlightTone: "red",
@@ -42,7 +33,6 @@ const projects = [
     url: "./portfolio/forma-design-system.html?embedded=1", icon: "./public/icons/project-folder.png",
     position: { left: "74%", top: "62%" }, colors: ["#27563d", "#c8e867"], ariaLabel: "Open Forma Design System work-in-progress case study"
   },
-  // Shortcut redirect — paste the destination URL into `url` below when ready.
   {
     id: "prodops", number: "PO", title: "ProdOps", subtitle: "In progress",
     category: "Product", tags: ["Recent"], modal: "project", external: true, highlight: true, highlightStep: 2, highlightTone: "green",

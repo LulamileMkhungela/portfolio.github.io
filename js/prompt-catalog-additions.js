@@ -5,6 +5,7 @@
  * preview, copy and detail-modal behaviour.
  */
 window.LULA_PROMPT_ADDITIONS = [
+  /* Temporarily hidden prompts. Remove these comment markers to restore them.
   {
     id: "explore-stays-sa",
     title: "Explore stays — South African home screen",
@@ -301,4 +302,5 @@ Orange #FF6B1F is the primary accent; deep navy #08141F, white text and a green 
 METRICS AND FINAL RULES
 The numbers are illustrative placeholders for a fictional design concept, not verified company claims; make them easy to replace before launch. Use South African English and local freight geography. No clutter, extra cards, misspelled text, watermark, distorted plane or ship, unsupported performance claims or blurry UI.`
   }
+  */
 ];
