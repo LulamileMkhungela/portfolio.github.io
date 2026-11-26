@@ -310,15 +310,6 @@ const ADOBE_APPS = {
     button: "Move it to done.",
     left: 68,
     top: 52
-  },
-  website: {
-    title: "Website",
-    icon: "./public/icons/dock/website.svg",
-    headline: "It’s in development — I’m cooking it.",
-    paragraphs: ["My professional website is coming soon."],
-    button: "Got it.",
-    left: 44,
-    top: 48
   }
 };
 const RIGHT_CLICK_ALERT_ID = "right-click-alert";
@@ -345,7 +336,7 @@ const DOCK_APPS = [
   { id: "storybook", label: "Storybook", ariaLabel: "Open Storybook", icon: "./public/icons/dock/storybook.svg", group: "primary" },
   { id: "postman", label: "Postman", ariaLabel: "Open Postman", icon: "./public/icons/dock/postman.svg", group: "primary" },
   { id: "figma", label: "Figma", ariaLabel: "Open Figma", icon: "./public/icons/dock/figma.svg", group: "primary", hasContent: true },
-  { id: "website", label: "Website", ariaLabel: "Open professional website — coming soon", icon: "./public/icons/dock/website.svg", group: "primary", hasContent: true },
+  { id: "website", label: "Website", ariaLabel: "Open Lulamile Mkhungela's website, lulazel.co.za", icon: "./public/icons/dock/website.svg", group: "primary", href: "http://www.lulazel.co.za", external: true, hasContent: true },
   { id: "hotjar", label: "Hotjar", ariaLabel: "Open Hotjar", icon: "./public/icons/dock/hotjar.svg", group: "primary" },
   { id: "azuredevops", label: "Azure DevOps", ariaLabel: "Open Azure DevOps", icon: "./public/icons/dock/azuredevops.svg?v=2", group: "primary" },
   { id: "certificates", label: "Certificates", ariaLabel: "Open Certificates", icon: "./public/icons/dock/certificates.svg", group: "secondary", opticalScale: 1.02 },

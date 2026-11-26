@@ -965,47 +965,6 @@ button { border: 0; }
   }
 }
 
-/* Keep a clear, non-animated launch cue visible after the spotlight finishes. */
-#dock-website::after,
-.mobile-dock-item[data-app="website"]::after {
-  content: "SOON";
-  position: absolute;
-  z-index: 3;
-  min-height: 16px;
-  padding: 0 6px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,.82);
-  border-radius: 999px;
-  background: linear-gradient(135deg, #ff754d, #e84952);
-  box-shadow: 0 3px 8px rgba(28,20,32,.28);
-  font: 750 8px/1 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
-  letter-spacing: .045em;
-  white-space: nowrap;
-  pointer-events: none;
-}
-#dock-website::after { top: -7px; right: -8px; }
-.dock[data-position="left"] #dock-website::after {
-  top: 50%;
-  right: auto;
-  left: calc(100% + 4px);
-  transform: translateY(-50%);
-}
-.dock[data-position="right"] #dock-website::after {
-  top: 50%;
-  right: calc(100% + 4px);
-  left: auto;
-  transform: translateY(-50%);
-}
-.mobile-dock-item[data-app="website"]::after {
-  top: 50%;
-  right: auto;
-  left: calc(100% + 5px);
-  transform: translateY(-50%);
-}
-
 .dock-app-icon[data-app="vision-bin"] img {
   translate: 0 5.5%;
 }
